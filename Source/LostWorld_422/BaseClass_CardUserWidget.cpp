@@ -1,0 +1,52 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "BaseClass_CardUserWidget.h"
+
+#include "BaseClass_PlayerController.h"
+#include "BaseClass_CardFunctionsLibrary.h"
+
+
+void UBaseClass_CardUserWidget::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
+{
+	Super::NativeTick(MyGeometry, DeltaTime);
+
+	float MousePosX;
+	float MousePosY;
+
+	if (IsDragging)
+	{
+		if (!LocalPlayerControllerRef)
+			LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+
+		LocalPlayerControllerRef->GetMousePosition(MousePosX, MousePosY);
+		// Set position to be equal to MousePos plus (5% of viewport width/height)
+		SetPositionInViewport(FVector2D(MousePosX + 10, MousePosY + 10), true);
+	}
+}
+
+
+void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget* CardDragWidgetInstance)
+{
+	if (!LocalPlayerControllerRef)
+		LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+
+	UBaseClass_CardUserWidget* CardDragWidgetRef;
+	CardDragWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), this->GetClass());
+	CardDragWidgetRef->CardData = CardData;
+	CardDragWidgetRef->IsDragging = true;
+	//CardDragWidgetRef->Index
+
+	CardDragWidgetRef->AddToViewport();
+	LocalPlayerControllerRef->CurrentDragCardRef = CardDragWidgetRef;
+}
+
+
+void UBaseClass_CardUserWidget::CastCard()
+{
+	if (!GameModeRef)
+		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
+
+	GameModeRef->CardFunctionLibraryReference->ExecuteCardFunctions(CardData);
+	UE_LOG(LogTemp, Warning, TEXT("Cast Card"));
+}

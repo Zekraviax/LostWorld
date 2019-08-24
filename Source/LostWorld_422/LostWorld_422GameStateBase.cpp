@@ -12,16 +12,14 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
 	if (PlayerControllerRef->CurrentEntityData.CurrentDeck.Num() < 10)
-	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.5f, FColor::Cyan, TEXT("Error: Not Enough Cards In Deck"));
-	}
 	else
 	{
 		SortedTurnOrderList.Empty();
 
 		// Spawn Player's EntityInBattle and add it to the turn order first
-		PlayerControllerRef->EntityInWorldRef->CreateEntityInBattle();
-		SortedTurnOrderList.Add(PlayerControllerRef->EntityInWorldRef->EntityInBattleRef);
+		//PlayerControllerRef->EntityInWorldRef->CreateEntityInBattle();
+		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
 		// Spawn every other entity's EntityInBattle and add them to the turn order last
 		for (TActorIterator<ABaseClass_EntityInWorld> ActorItr(GetWorld()); ActorItr; ++ActorItr)
@@ -32,8 +30,10 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 			// Set EntityInBattle data
 			FoundEntity->EntityInBattleRef->EntityBaseData = FoundEntity->EntityBaseData;
 
-			if (FoundEntity->EntityInBattleRef != PlayerControllerRef->EntityInWorldRef->EntityInBattleRef)
+			if (FoundEntity->EntityInBattleRef != PlayerControllerRef->EntityInBattleRef)
 				SortedTurnOrderList.Add(FoundEntity->EntityInBattleRef);
+			else
+				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("EntityInBattle Error"));
 		}
 
 		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
@@ -43,7 +43,6 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 			// Give an entity a default deck if they have no cards
 			if (BattleEntity->EntityBaseData.CurrentDeck.Num() <= 0)
 				BattleEntity->Debug_CreateDefaultDeck();
-			
 
 			BattleEntity->CardsInDeck = BattleEntity->EntityBaseData.CurrentDeck;
 			BattleEntity->ShuffleCardsInDeck_BP();
@@ -73,16 +72,16 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 	{
 		ABaseClass_EntityInWorld* FoundEntity = *ActorItr;
 
-		if (FoundEntity->PlayerControllerRef)
-			PlayerEntities.Add(FoundEntity->EntityInBattleRef);
-		else
-			EnemyEntities.Add(FoundEntity->EntityInBattleRef);
+	//	if (FoundEntity->PlayerControllerRef)
+	//		PlayerEntities.Add(*FoundEntity->EntityInBattleRef);
+	//	else
+	//		EnemyEntities.Add(*FoundEntity->EntityInBattleRef);
 	}
 
-	for (int i = 0; i < PlayerEntities.Num(); i++)
-		//SortedTurnOrderList.Add(PlayerEntities[i]);
+	//for (int i = 0; i < PlayerEntities.Num(); i++)
+	//	//SortedTurnOrderList.Add(PlayerEntities[i]);
 
-	for (int j = 0; j < EnemyEntities.Num(); j++)
+	//for (int j = 0; j < EnemyEntities.Num(); j++)
 		//SortedTurnOrderList.Add(EnemyEntities[j]);
 
 	SortedTurnOrderList[0]->Begin_Turn();

@@ -12,19 +12,31 @@ ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// Initialize Components
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+
+	FAttachmentTransformRules AttachRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
+	StaticMesh->AttachToComponent(RootComponent, AttachRules);
+	SpringArm->AttachToComponent(StaticMesh, AttachRules);
+	Camera->AttachToComponent(SpringArm, AttachRules);
 }
 
 // Called when the game starts or when spawned
 void ABaseClass_EntityInBattle::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ABaseClass_EntityInBattle::CustomOnBeginMouseOverEvent(UPrimitiveComponent * TouchedComponent)
+{
 
 }
 
@@ -70,15 +82,21 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 {
 	UpdateCardIndicesInAllZones();
 
-	if (EntityBaseData.IsPlayerControllable && EntityInWorldRef->PlayerControllerRef)
+	if (EntityBaseData.IsPlayerControllable && PlayerControllerRef)
 	{
 		for (int i = 0; i < 7; i++)
 		{
 			if(i == 0)
-				EntityInWorldRef->PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);
+				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);
 			else
-				EntityInWorldRef->PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CardsInHand[i]);
+				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CardsInHand[i]);
 		}
+	}
+	if (!EntityBaseData.IsPlayerControllable) {
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("IsPlayerControllable false"));
+	}
+	if (!PlayerControllerRef) {
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("PlayerControllerRef not valid"));
 	}
 }
 

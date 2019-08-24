@@ -7,6 +7,7 @@
 
 #include "BaseClass_HUD_Battle.h"
 #include "BaseClass_EntityInWorld.h"
+#include "BaseClass_EntityInBattle.h"
 #include "BaseClass_CardUserWidget.h"
 #include "LostWorld_422GameModeBase.h"
 
@@ -42,13 +43,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data - Technical")
 	TSubclassOf<class UBaseClass_HUD_Battle> Battle_HUD_Class;
 
-	// Player EntityInWorld class
+	// Player EntityInBattle class
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
-	class ABaseClass_EntityInWorld* EntityInWorldRef;
+	class ABaseClass_EntityInBattle* EntityInBattleRef;
 
-	// Player EntityInWorld instance
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
-	TSubclassOf<ABaseClass_EntityInWorld> EntityInWorld_Class;
+	// Player EntityInBattle instance
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
+	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
 	// The instance of the DeckBuilderCard 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")

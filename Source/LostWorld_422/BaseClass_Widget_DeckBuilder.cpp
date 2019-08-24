@@ -244,7 +244,7 @@ void UBaseClass_Widget_DeckBuilder::ExitDeckBuilder()
 	HUDRef->DeckBuilderRef = nullptr;
 
 	// Update player's deck everywhere
-	PlayerControllerRef->EntityInWorldRef->EntityBaseData.CurrentDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
+	PlayerControllerRef->EntityInBattleRef->EntityBaseData.CurrentDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 
 	RemoveFromParent();
 }

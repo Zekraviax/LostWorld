@@ -9,11 +9,11 @@
 ABaseClass_PlayerController::ABaseClass_PlayerController()
 {
 	// Construct Player EntityInWorld
-	static ConstructorHelpers::FObjectFinder<UBlueprint>EntityInWorldBlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInWorld.Blueprint_EntityInWorld'"));
+	//static ConstructorHelpers::FObjectFinder<UBlueprint>EntityInBattleBlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInBattle.Blueprint_EntityInBattle'"));
 
-	if (EntityInWorldBlueprintConstruct.Object) {
-		EntityInWorld_Class = (UClass*)EntityInWorldBlueprintConstruct.Object->GeneratedClass;
-	}
+	//if (EntityInBattleBlueprintConstruct.Object) {
+	//	EntityInBattle_Class = (UClass*)EntityInBattleBlueprintConstruct.Object->GeneratedClass;
+	//}
 }
 
 void ABaseClass_PlayerController::SetupInputComponent()
@@ -42,17 +42,18 @@ void ABaseClass_PlayerController::BeginPlay()
 	}
 
 	// Create the player EntityInWorld
-	if (!EntityInWorldRef && EntityInWorld_Class)
+	if (!EntityInBattleRef && EntityInBattle_Class)
 	{
 		UWorld* const World = GetWorld(); // get a reference to the world
 		FActorSpawnParameters SpawnParameters;
-		EntityInWorldRef = World->SpawnActor<ABaseClass_EntityInWorld>(EntityInWorld_Class, SpawnParameters);
-		EntityInWorldRef->EntityBaseData = CurrentEntityData;
+		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
+		EntityInBattleRef->EntityBaseData = CurrentEntityData;
+		EntityInBattleRef->PlayerControllerRef = this;
 
 		// Set Camera Target
 		FViewTargetTransitionParams Params;
-		SetViewTarget(EntityInWorldRef, Params);
-		EntityInWorldRef->Camera->SetActive(true);
+		SetViewTarget(EntityInBattleRef, Params);
+		EntityInBattleRef->Camera->SetActive(true);
 	}
 }
 
@@ -70,7 +71,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 	GetHitResultUnderCursor(ECollisionChannel::ECC_WorldDynamic, false, HitResult);
 
 	if (HitResult.GetActor())
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Hovered Over Actor: " + HitResult.GetActor()->GetName()));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Hit Actor: " + HitResult.GetActor()->GetName()));
 
 	// Delete CardDrag widget
 	if (CurrentDragCardRef)
@@ -78,15 +79,16 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		//CurrentDragCardRef->RemoveFromParent();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Card Widget Destroyed: " + CurrentDragCardRef->CardData.DisplayName));
 
-		if (Cast<ABaseClass_EntityInWorld>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget) 
+		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget) 
 			|| CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self))
 		{
-			
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
+
 			// Set rudimentary targets based on cast mode
 			if (CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
-				CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInWorld>(HitResult.GetActor())->EntityInBattleRef);
+				CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
 			}
 
 			CurrentDragCardRef->CastCard();

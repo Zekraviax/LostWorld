@@ -23,8 +23,8 @@ void UBaseClass_HUD_Battle::Test_SetPlayerData()
 	if(GameStateRef->PlayerControllerRef)
 		GameStateRef->PlayerControllerRef->CurrentEntityData.DisplayName = "Player";
 
-	if(GameStateRef->PlayerControllerRef->EntityInWorldRef->EntityInBattleRef)
-		GameStateRef->PlayerControllerRef->EntityInWorldRef->EntityInBattleRef->EntityBaseData = GameStateRef->PlayerControllerRef->CurrentEntityData;
+	if(GameStateRef->PlayerControllerRef->EntityInBattleRef)
+		GameStateRef->PlayerControllerRef->EntityInBattleRef->EntityBaseData = GameStateRef->PlayerControllerRef->CurrentEntityData;
 }
 
 void UBaseClass_HUD_Battle::OpenDeckBuilder()
@@ -52,5 +52,7 @@ void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard
 
 void UBaseClass_HUD_Battle::EndTurn_Function()
 {
+	//if (GameStateRef) {
 
+	//}
 }

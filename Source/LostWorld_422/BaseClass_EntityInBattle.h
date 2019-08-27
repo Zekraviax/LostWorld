@@ -94,4 +94,7 @@ public:
 
 	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
+
+	UFUNCTION()
+	void AI_CastRandomCard();
 };

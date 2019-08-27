@@ -17,10 +17,13 @@ ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 
-	FAttachmentTransformRules AttachRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
-	StaticMesh->AttachToComponent(RootComponent, AttachRules);
-	SpringArm->AttachToComponent(StaticMesh, AttachRules);
-	Camera->AttachToComponent(SpringArm, AttachRules);
+	//FAttachmentTransformRules AttachRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
+	//StaticMesh->AttachToComponent(RootComponent, AttachRules);
+	//SpringArm->AttachToComponent(StaticMesh, AttachRules);
+	//Camera->AttachToComponent(SpringArm, AttachRules);
+	StaticMesh->SetupAttachment(RootComponent);
+	SpringArm->SetupAttachment(RootComponent);
+	Camera->SetupAttachment(SpringArm);
 }
 
 // Called when the game starts or when spawned
@@ -42,16 +45,16 @@ void ABaseClass_EntityInBattle::CustomOnBeginMouseOverEvent(UPrimitiveComponent 
 
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
 		FString ContextString;
 		TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
-		EntityBaseData.CurrentDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[0], ContextString));
+		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
-		EntityBaseData.CurrentDeck[i].Controller = this;
-		EntityBaseData.CurrentDeck[i].Owner = this;
-		EntityBaseData.CurrentDeck[i].ZoneIndex = i;
+		CardsInDeck[i].Controller = this;
+		CardsInDeck[i].Owner = this;
+		CardsInDeck[i].ZoneIndex = i;
 	}
 }
 
@@ -62,17 +65,19 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	// Draw seven cards at random
 	for (int i = 0; i < 7; i++)
 	{
-		RandIndex = FMath::RandRange(0, EntityBaseData.CurrentDeck.Num() - 1);
-		CardsInHand.Add(EntityBaseData.CurrentDeck[RandIndex]);
-		EntityBaseData.CurrentDeck.RemoveAt(RandIndex);
+		RandIndex = FMath::RandRange(0, CardsInDeck.Num() - 1);
+		CardsInHand.Add(CardsInDeck[RandIndex]);
 
 		// Set Indices
 		CardsInHand[i].ZoneIndex = i;
 
+		// Set Ownership
 		if (!CardsInHand[i].Controller)
 			CardsInHand[i].Controller = this;
 		if (!CardsInHand[i].Owner)
 			CardsInHand[i].Owner = this;
+
+		CardsInDeck.RemoveAt(RandIndex);
 	}
 
 	UpdateCardIndicesInAllZones();
@@ -92,12 +97,12 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CardsInHand[i]);
 		}
 	}
-	if (!EntityBaseData.IsPlayerControllable) {
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("IsPlayerControllable false"));
-	}
-	if (!PlayerControllerRef) {
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("PlayerControllerRef not valid"));
-	}
+	//if (!EntityBaseData.IsPlayerControllable) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("IsPlayerControllable false"));
+	//}
+	//if (!PlayerControllerRef) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("PlayerControllerRef not valid"));
+	//}
 }
 
 void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
@@ -110,4 +115,9 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 
 	for (int k = 0; k < CardsInDeck.Num(); k++)
 		CardsInDeck[k].ZoneIndex = k;
+}
+
+void ABaseClass_EntityInBattle::AI_CastRandomCard()
+{
+
 }

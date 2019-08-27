@@ -18,33 +18,30 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 		SortedTurnOrderList.Empty();
 
 		// Spawn Player's EntityInBattle and add it to the turn order first
-		//PlayerControllerRef->EntityInWorldRef->CreateEntityInBattle();
+		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
 		// Spawn every other entity's EntityInBattle and add them to the turn order last
-		for (TActorIterator<ABaseClass_EntityInWorld> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
-			ABaseClass_EntityInWorld* FoundEntity = *ActorItr;
-			FoundEntity->CreateEntityInBattle();
+			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+			//BattleEntity->CardsInDeck = BattleEntity->EntityBaseData.CurrentDeck;
 
-			// Set EntityInBattle data
-			FoundEntity->EntityInBattleRef->EntityBaseData = FoundEntity->EntityBaseData;
+			if (FoundEntity != PlayerControllerRef->EntityInBattleRef) {
+				// Give an entity a default deck if they have no cards
+				if (FoundEntity->EntityBaseData.CurrentDeck.Num() <= 0) {
+					FoundEntity->Debug_CreateDefaultDeck();
+					FoundEntity->EntityBaseData.CurrentDeck = FoundEntity->CardsInDeck;
+				}
 
-			if (FoundEntity->EntityInBattleRef != PlayerControllerRef->EntityInBattleRef)
-				SortedTurnOrderList.Add(FoundEntity->EntityInBattleRef);
-			else
-				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("EntityInBattle Error"));
+				SortedTurnOrderList.Add(FoundEntity);
+			}
 		}
 
 		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
 		{
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
-			// Give an entity a default deck if they have no cards
-			if (BattleEntity->EntityBaseData.CurrentDeck.Num() <= 0)
-				BattleEntity->Debug_CreateDefaultDeck();
-
-			BattleEntity->CardsInDeck = BattleEntity->EntityBaseData.CurrentDeck;
 			BattleEntity->ShuffleCardsInDeck_BP();
 			BattleEntity->Begin_Battle();
 		}

@@ -12,38 +12,6 @@ void UBaseClass_Widget_DeckBuilder::NativeConstruct()
 	Super::NativeConstruct();
 }
 
-//TSharedRef<SWidget> UBaseClass_Widget_DeckBuilder::RebuildWidget()
-//{
-//	// Create a CanvasPanel in C++ to be the root
-//	//UPanelWidget* RootWidgetRef = WidgetTree->ConstructWidget<UCanvasPanel>(UCanvasPanel::StaticClass(), TEXT("Root"));
-//	//WidgetTree->RootWidget = RootWidgetRef;
-//	UPanelWidget* RootWidgetRef = Cast<UPanelWidget>(GetRootWidget());
-//
-//	// Rebuilt the widget
-//	TSharedRef<SWidget> Widget = Super::RebuildWidget();
-//
-//	// Construct components
-//	// The second parameter is the name and is optional.
-//	CurrentDeck_ScrollBox = WidgetTree->ConstructWidget<UScrollBox>(UScrollBox::StaticClass(), TEXT("CurrentDeck_ScrollBox"));
-//	RootWidgetRef->AddChild(CurrentDeck_ScrollBox);
-//
-//	if (!RootWidgetRef)
-//	{
-//		UE_LOG(LogTemp, Warning, TEXT("Root Widget Not Valid"));
-//	}
-//	else
-//		UE_LOG(LogTemp, Warning, TEXT("Root Widget Valid"));
-//
-//	if (!WidgetTree)
-//	{
-//		UE_LOG(LogTemp, Warning, TEXT("Widget Tree Not Valid"));
-//	}
-//	else
-//		UE_LOG(LogTemp, Warning, TEXT("Widget Tree Valid"));
-//
-//	return Widget;
-//}
-
 void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 {
 	if (!PlayerControllerRef)
@@ -59,9 +27,7 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 		CurrentCollection_ScrollBox->ClearChildren();
 
 		if (TestUnlimitedCardsMode)
-		{
 			Test_Activate_UnlimitedCards();
-		}
 
 		else
 		{
@@ -244,7 +210,7 @@ void UBaseClass_Widget_DeckBuilder::ExitDeckBuilder()
 	HUDRef->DeckBuilderRef = nullptr;
 
 	// Update player's deck everywhere
-	PlayerControllerRef->EntityInBattleRef->EntityBaseData.CurrentDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
+	PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 
 	RemoveFromParent();
 }

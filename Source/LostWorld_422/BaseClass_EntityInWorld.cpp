@@ -77,7 +77,7 @@ void ABaseClass_EntityInWorld::CreateEntityInBattle()
 		UWorld* const World = GetWorld(); // get a reference to the world
 		FActorSpawnParameters SpawnParameters;
 		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
-		EntityInBattleRef->EntityInWorldRef = this;
+		//EntityInBattleRef->EntityInWorldRef = this;
 
 		if(EntityBaseData.IsPlayerControllable || !PlayerControllerRef)
 			PlayerControllerRef = PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());

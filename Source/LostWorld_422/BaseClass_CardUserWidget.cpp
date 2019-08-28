@@ -35,7 +35,6 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 	CardDragWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), this->GetClass());
 	CardDragWidgetRef->CardData = CardData;
 	CardDragWidgetRef->IsDragging = true;
-	//CardDragWidgetRef->Index
 
 	CardDragWidgetRef->AddToViewport();
 	LocalPlayerControllerRef->CurrentDragCardRef = CardDragWidgetRef;

@@ -8,12 +8,7 @@
 
 ABaseClass_PlayerController::ABaseClass_PlayerController()
 {
-	// Construct Player EntityInWorld
-	//static ConstructorHelpers::FObjectFinder<UBlueprint>EntityInBattleBlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInBattle.Blueprint_EntityInBattle'"));
 
-	//if (EntityInBattleBlueprintConstruct.Object) {
-	//	EntityInBattle_Class = (UClass*)EntityInBattleBlueprintConstruct.Object->GeneratedClass;
-	//}
 }
 
 void ABaseClass_PlayerController::SetupInputComponent()

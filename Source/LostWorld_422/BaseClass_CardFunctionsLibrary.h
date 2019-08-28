@@ -29,18 +29,24 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- References
 	UPROPERTY()
 	FCardBase LocalCardReference;
 
-	// Supplemental Card Functions
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Card
 	UFUNCTION()
 	void SetCardTargets();
 
 	UFUNCTION()
 	int32 ReturnIntValueFromRules();
 
-	// Functions
-	//----------------
+// ------------------------- Function Library
 	// The Functions Pointer Variable Type
 	// Functions take 0 parameters and return void
 	typedef void(ABaseClass_CardFunctionsLibrary::*FunctionPtrType)();

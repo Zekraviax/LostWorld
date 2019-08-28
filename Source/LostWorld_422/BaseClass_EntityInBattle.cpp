@@ -5,6 +5,7 @@
 
 #include "BaseClass_EntityInWorld.h"
 #include "BaseClass_PlayerController.h"
+#include "LostWorld_422GameStateBase.h"
 
 // Sets default values
 ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
@@ -97,12 +98,11 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CardsInHand[i]);
 		}
 	}
-	//if (!EntityBaseData.IsPlayerControllable) {
-	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("IsPlayerControllable false"));
-	//}
-	//if (!PlayerControllerRef) {
-	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Cyan, TEXT("PlayerControllerRef not valid"));
-	//}
+
+	if (!EntityBaseData.IsPlayerControllable) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("IsPlayerControllable: False"));
+		AI_CastRandomCard();
+	}
 }
 
 void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
@@ -119,5 +119,36 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
+	// Get random card in hand
+	int32 RandCardIndex = FMath::RandRange(0, CardsInHand.Num() - 1);
+	FCardBase RandCard = CardsInHand[RandCardIndex];
+	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
+	// Set targets
+	for (int i = 0; i < RandCard.FunctionsWithRules.Num(); i++) {
+		if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
+			RandCard.CurrentTargets.Add(this);
+		}
+		else if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget)) {
+			for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+				ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+
+				if (FoundEntity->EntityBaseData.IsPlayerControllable) {
+					RandTargetsArray.Add(FoundEntity);
+				}
+			}
+			RandCard.CurrentTargets.Add(RandTargetsArray[FMath::RandRange(0, RandTargetsArray.Num() - 1)]);
+		}
+	}
+
+	// Cast card
+	if (!GameModeRef)
+		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
+
+	GameModeRef->CardFunctionLibraryReference->ExecuteCardFunctions(RandCard);
+
+	if (!GameStateRef)
+		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	GameStateRef->EntityEndOfTurn();
 }

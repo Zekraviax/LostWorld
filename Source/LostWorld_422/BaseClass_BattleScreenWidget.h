@@ -7,15 +7,13 @@
 
 #include "Runtime/UMG/Public/UMG.h"
 #include "Runtime/UMG/Public/UMGStyle.h"
-#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
 #include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
 #include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 
 #include "BaseClass_BattleScreenWidget.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_BattleScreenWidget : public UUserWidget
 {
@@ -25,7 +23,10 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
+// Base Variables
+// --------------------------------------------------
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidgetOptional))
+// ------------------------- Components
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidgetOptional))
 	UTextBlock* TestText = nullptr;
 };

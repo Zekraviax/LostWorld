@@ -22,13 +22,18 @@ public:
 	// NativeTick override
 	virtual void NativeTick(const FGeometry& MyGeometry, float DeltaTime) override;
 
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Technical Variables
 	// Card
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	FCardBase CardData;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	int32 IndexInZone;
 
+// ------------------------- Function Variables
 	// Function variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Functions")
 	bool IsDragging;
@@ -36,16 +41,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Functions")
 	ABaseClass_PlayerController* LocalPlayerControllerRef;
 
+// ------------------------- References
 	UPROPERTY()
 	ALostWorld_422GameModeBase* GameModeRef;
 
-	// Mouse Events
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void OnMouseButtonDownEvent(UBaseClass_CardUserWidget* CardDragWidgetInstance);
 
 	UFUNCTION()
 	void CastCard();
-
-	//UFUNCTION()
-	//void SetCardTargets();
 };

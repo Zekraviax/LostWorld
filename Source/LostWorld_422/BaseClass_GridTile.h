@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-#include "Components/StaticMeshComponent.h"
 #include "LostWorld_422GameModeBase.h"
+#include "Components/StaticMeshComponent.h"
 
 #include "BaseClass_GridTile.generated.h"
 
@@ -27,7 +27,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Components
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Components")
 	UStaticMeshComponent* StaticMesh;
 };

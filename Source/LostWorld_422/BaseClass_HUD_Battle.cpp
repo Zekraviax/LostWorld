@@ -52,7 +52,7 @@ void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard
 
 void UBaseClass_HUD_Battle::EndTurn_Function()
 {
-	//if (GameStateRef) {
-
-	//}
+	if (GameStateRef) {
+		GameStateRef->EntityEndOfTurn();
+	}
 }

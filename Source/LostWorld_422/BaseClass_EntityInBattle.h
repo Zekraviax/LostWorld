@@ -5,17 +5,20 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-#include "LostWorld_422GameModeBase.h"
-#include "Components/StaticMeshComponent.h"
-#include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
+#include "Camera/CameraComponent.h"
+#include "EngineUtils.h"
+#include "BaseClass_CardFunctionsLibrary.h"
+#include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_EntityInBattle.generated.h"
 
 // Forward Declarations
 class ABaseClass_EntityInWorld;
 class ABaseClass_PlayerController;
+class ALostWorld_422GameStateBase;
 
 // Entity In Battle:
 // A class that handles the functions of an entity in battle.
@@ -39,12 +42,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Entity Data
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Entity
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
 	FEntityBase EntityBaseData;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
-	ABaseClass_EntityInWorld* EntityInWorldRef;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	//ABaseClass_EntityInWorld* EntityInWorldRef;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
 	TArray<FCardBase> CardsInDeck;
@@ -55,7 +61,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
 	TArray<FCardBase> CardsInGraveyard;
 
-	// Components
+// ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* StaticMesh;
 
@@ -65,27 +71,35 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
 	UCameraComponent* Camera;
 
-	// UI in World Components
+	// UI in World Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UTextRenderComponent* HealthText_WorldRender;
 
-	// Player Controller
+// ------------------------- Technical Variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	ABaseClass_PlayerController* PlayerControllerRef;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
-	//FEntityBase EntityBaseData;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	ALostWorld_422GameModeBase* GameModeRef;
 
-	// Mouse Events
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	ALostWorld_422GameStateBase* GameStateRef;
+
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void CustomOnBeginMouseOverEvent(UPrimitiveComponent* TouchedComponent);
 
+// ------------------------- Deck
 	UFUNCTION()
 	void Debug_CreateDefaultDeck();
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void ShuffleCardsInDeck_BP();
 
+// ------------------------- Battle
 	UFUNCTION()
 	void Begin_Battle();
 
@@ -95,6 +109,7 @@ public:
 	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
 
+// ------------------------- AI
 	UFUNCTION()
 	void AI_CastRandomCard();
 };

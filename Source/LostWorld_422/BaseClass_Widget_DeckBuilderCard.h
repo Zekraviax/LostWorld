@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
+#include "LostWorld_422GameModeBase.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
-#include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_Widget_DeckBuilderCard.generated.h"
 
@@ -30,7 +30,10 @@ class LOSTWORLD_422_API UBaseClass_Widget_DeckBuilderCard : public UUserWidget
 	GENERATED_BODY()
 	
 public:
+// Base Variables
+// --------------------------------------------------
 
+// ------------------------- Components
 	UPROPERTY(meta = (BindWidget))
 	UButton* InteractButton;
 
@@ -43,12 +46,7 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* InteractButtonText;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Card")
-	FCardBase CardDataRef;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Card")
-	int32 QuantityBind;
-
+// ------------------------- Technical
 	UPROPERTY()
 	ABaseClass_PlayerController* PlayerControllerRef;
 
@@ -58,9 +56,21 @@ public:
 	UPROPERTY()
 	UBaseClass_Widget_DeckBuilder* DeckBuilderWidgetRef;
 
+// ------------------------- Card
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Card")
+	FCardBase CardDataRef;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Card")
+	int32 QuantityBind;
+
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Bind
 	UFUNCTION(BlueprintCallable)
 	void BindInfo();
 
+// ------------------------- Card
 	UFUNCTION(BlueprintCallable)
 	void InteractFunction();
 };

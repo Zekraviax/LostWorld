@@ -5,11 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-#include "Components/StaticMeshComponent.h"
-#include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "BaseClass_EntityInBattle.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
+#include "Camera/CameraComponent.h"
+#include "BaseClass_EntityInBattle.h"
 #include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_EntityInWorld.generated.h"
@@ -40,38 +40,47 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Entity
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	FEntityBase EntityBaseData;
+
+// ------------------------- Technical Variables
 	// EntityInBattle reference
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	ABaseClass_EntityInBattle* EntityInBattleRef;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	// Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Components")
+	// Player Controller
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	ABaseClass_PlayerController* PlayerControllerRef;
+
+// ------------------------- Components
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* StaticMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
 	UCameraComponent* Camera;
 
 	// UI in World Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UTextRenderComponent* HealthText_WorldRender;
 
-	// Player Controller
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
-	ABaseClass_PlayerController* PlayerControllerRef;
+// Base Variables
+// --------------------------------------------------
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Entity")
-	FEntityBase EntityBaseData;
-
-	// Mouse Events
+// ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void CustomOnBeginMouseOverEvent(UPrimitiveComponent* TouchedComponent);
 
+// ------------------------- Entity
 	UFUNCTION()
 	void CreateEntityInBattle();
 };

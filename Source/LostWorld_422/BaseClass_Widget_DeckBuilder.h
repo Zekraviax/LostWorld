@@ -29,21 +29,26 @@ public:
 protected:
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
-	ABaseClass_PlayerController* PlayerControllerRef;
+// Base Variables
+// --------------------------------------------------
 
-	UPROPERTY(meta = (BindWidget))
+// ------------------------- Components
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
 	UScrollBox* CurrentDeck_ScrollBox;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
 	UScrollBox* CurrentCollection_ScrollBox;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	ABaseClass_PlayerController* PlayerControllerRef;
+
+// ------------------------- Technical Variables
 	// The instance of the DeckBuilderCard 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	UBaseClass_Widget_DeckBuilderCard* DeckBuilderCard_Widget;
 
 	// The class that will be used for the DeckBuilderCard
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	TSubclassOf<UBaseClass_Widget_DeckBuilderCard> DeckBuilderCard_Class;
 
 	UPROPERTY()
@@ -55,18 +60,24 @@ public:
 	UPROPERTY()
 	UBaseClass_HUD_Battle* HUDRef;
 
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Components
 	UFUNCTION(BlueprintCallable)
 	void PopulateScrollBoxes();
 
 	UFUNCTION(BlueprintCallable)
 	void AddSingleCardToZone(FCardBase ChosenCard, E_DeckBuilder_Zone ChosenZone);
 
+// ------------------------- Debug
 	UFUNCTION(BlueprintCallable)
 	void Test_Activate_UnlimitedCards();
 
 	UFUNCTION(BlueprintCallable)
 	void Test_Dectivate_UnlimitedCards();
 
+// ------------------------- Other
 	UFUNCTION(BlueprintCallable)
 	void ExitDeckBuilder();
 };

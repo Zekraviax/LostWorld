@@ -29,7 +29,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Variables")
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Reference
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Reference")
 	TSubclassOf<class ABaseClass_CardFunctionsLibrary> CardFunctionsLibraryClass;
 
 	UPROPERTY()

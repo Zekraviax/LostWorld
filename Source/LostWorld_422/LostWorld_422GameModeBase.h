@@ -85,9 +85,11 @@ enum class E_Card_Rules : uint8
 	E_Rule_VariableInteger_Random_Number		UMETA(DisplayName = "Variable Integer: Random Number (0 - 10)"),
 	// Miscellaneoous Functions
 	E_Rule_Draw_Chosen_Card						UMETA(DisplayName = "Miscellaneous: Draw Chosen Card"),
+	//E_Rule_Discard_Chosen_Card				UMETA(DisplayName = "Miscellaneous: Discard Chosen Card"),
 	// Targets
-	E_Rule_Target_CastTarget					UMETA(DisplayName = "Target: Cast Target"),
 	E_Rule_Target_Self							UMETA(DisplayName = "Target: Self"),
+	E_Rule_Target_CastTarget					UMETA(DisplayName = "Target: Cast Target"),
+	E_Rule_Target_AllEnemies					UMETA(DisplayName = "Target: All Enemies"),
 };
 
 UENUM(BlueprintType)
@@ -213,6 +215,30 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 		CurrentSelectMode = E_Card_UserSelectModes::E_Cast;
 		Owner = NULL;
 		Controller = NULL;
+	}
+};
+
+// The Stack
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API FStackEntry
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FCardBase Card;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Delay;
+
+	FStackEntry(FCardBase NewCard, float SetDelay)
+	{
+		Card = NewCard;
+		Delay = SetDelay;
+	}
+
+	FStackEntry()
+	{
+
 	}
 };
 

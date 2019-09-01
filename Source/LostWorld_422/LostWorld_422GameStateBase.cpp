@@ -61,25 +61,6 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 
 void ALostWorld_422GameStateBase::NewCombatRound()
 {
-	TArray<ABaseClass_EntityInBattle> PlayerEntities;
-	TArray<ABaseClass_EntityInBattle> EnemyEntities;
-
-	//for (TActorIterator<ABaseClass_EntityInWorld> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-	//{
-	//	ABaseClass_EntityInWorld* FoundEntity = *ActorItr;
-
-	//	if (FoundEntity->PlayerControllerRef)
-	//		PlayerEntities.Add(*FoundEntity->EntityInBattleRef);
-	//	else
-	//		EnemyEntities.Add(*FoundEntity->EntityInBattleRef);
-	//}
-
-	//for (int i = 0; i < PlayerEntities.Num(); i++)
-	//	//SortedTurnOrderList.Add(PlayerEntities[i]);
-
-	//for (int j = 0; j < EnemyEntities.Num(); j++)
-		//SortedTurnOrderList.Add(EnemyEntities[j]);
-
 	// Player always goes first
 	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{

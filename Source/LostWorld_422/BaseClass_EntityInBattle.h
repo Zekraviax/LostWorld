@@ -107,6 +107,9 @@ public:
 	void Begin_Turn();
 
 	UFUNCTION()
+	void UpdateCardWidgets();
+
+	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
 
 // ------------------------- AI

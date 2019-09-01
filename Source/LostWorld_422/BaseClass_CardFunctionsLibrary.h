@@ -6,8 +6,12 @@
 #include "GameFramework/Actor.h"
 
 #include "LostWorld_422GameModeBase.h"
+#include "EngineUtils.h"
 
 #include "BaseClass_CardFunctionsLibrary.generated.h"
+
+// Forward Declarations
+class ALostWorld_422GameStateBase;
 
 // Explicitly define number of static card functions
 #define CARD_FUNCTIONS_COUNT 3
@@ -36,6 +40,14 @@ public:
 	UPROPERTY()
 	FCardBase LocalCardReference;
 
+	UPROPERTY()
+	ALostWorld_422GameStateBase* GameStateRef;
+
+// ------------------------- Timers	
+	UPROPERTY()
+	FTimerHandle StackTimerHandle;
+
+
 // Functions
 // --------------------------------------------------
 
@@ -45,6 +57,9 @@ public:
 
 	UFUNCTION()
 	int32 ReturnIntValueFromRules();
+
+	UFUNCTION()
+	void AddCardFunctionsToTheStack(FCardBase Card);
 
 // ------------------------- Function Library
 	// The Functions Pointer Variable Type
@@ -56,7 +71,7 @@ public:
 
 	// Executes a function from the CardFuntions Pointer Array
 	// Implementation does not vary in subclasses, so no virtual
-	void ExecuteCardFunctions(FCardBase CardReference);
+	void ExecuteCardFunctions();
 
 	// Initialize the array
 	void InitializeCardFunctions();

@@ -4,6 +4,7 @@
 #include "BaseClass_CardFunctionsLibrary.h"
 
 #include "BaseClass_EntityInBattle.h"
+#include "LostWorld_422GameStateBase.h"
 
 // Function index definitions
 #define NOTHING 0
@@ -82,26 +83,30 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 	}
 
 	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
+	//LocalCardReference.Controller->UpdateCardWidgets();
 }
 
 //-------------------- Execute Functions --------------------//
 
-void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions(FCardBase CardReference)
+void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 {
-	LocalCardReference = CardReference;
 	int32 CardFunctionIndex;
 
+	// Get GameState
+	if (!GameStateRef)
+		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	// Set card reference
+	LocalCardReference = GameStateRef->TheStack[0].Card;
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Searching for function to execute."));
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(CardReference.CurrentTargets.Num())));
-	
-	//for (int i = 0; i < LocalCardReference.FunctionsWithRules.Num(); i++)
-	//{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(LocalCardReference.CurrentTargets.Num())));
+
 	CardFunctionIndex = (int32)((uint8)LocalCardReference.FunctionsWithRules[0].Function);
-	SetCardTargets();
+	//SetCardTargets();
 
 	//Valid range check
-	if (CardFunctionIndex >= CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0)
-	{
+	if (CardFunctionIndex >= CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Failed Execution"));
 		return;
 	}
@@ -109,9 +114,65 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions(FCardBase CardReferen
 	(this->* (CardFunctions[CardFunctionIndex]))();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Successful Execution"));
 
-	LocalCardReference.FunctionsWithRules.RemoveAt(0);
-	if (LocalCardReference.FunctionsWithRules.Num() > 0)
-		ExecuteCardFunctions(LocalCardReference);
+	//CardReference.FunctionsWithRules.RemoveAt(0);
+	//if (CardReference.FunctionsWithRules.Num() > 0)
+	//	ExecuteCardFunctions(CardReference);
+
+	GameStateRef->TheStack.RemoveAt(0);
+	if (GameStateRef->TheStack.Num() > 0) {
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
+	}
+}
+
+
+void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
+{
+	FStackEntry NewStackEntry;
+
+	// Get GameState
+	if (!GameStateRef)
+		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	for (int i = 0; i < Card.FunctionsWithRules.Num(); i++)
+	{
+		// Add to the stack
+		NewStackEntry = FStackEntry(Card, 1.f);
+
+		// Set targets
+		// (if target equals CastTarget, do nothing)
+		// Self
+		if (NewStackEntry.Card.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
+			NewStackEntry.Card.CurrentTargets.Empty();
+			NewStackEntry.Card.CurrentTargets.Add(NewStackEntry.Card.Controller);
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Self"));
+		}
+
+		// All Enemies
+		else if (NewStackEntry.Card.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_AllEnemies)) {
+			NewStackEntry.Card.CurrentTargets.Empty();
+			for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+				ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+
+				if (FoundEntity->EntityBaseData.IsPlayerControllable == false) {
+					NewStackEntry.Card.CurrentTargets.Add(FoundEntity);
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Get All Enemies"));
+				}
+			}
+		}
+
+		GameStateRef->TheStack.Add(NewStackEntry);
+
+		// Remove all functions except one at a time.
+		for (int j = 0; j < GameStateRef->TheStack[i].Card.FunctionsWithRules.Num(); j++) {
+			if (j != i) {
+				GameStateRef->TheStack[i].Card.FunctionsWithRules.RemoveAt(j);
+			}
+		}
+	}
+
+	// Start timer for the stack
+	//GetWorldTimerManager().SetTimer(HealthRegenDelayTimerHandle, this, &AEntity_Base::StartHealthRegenTick, CurrentStats.HealthPoints_RegenStartDelay, false);
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
 }
 
 
@@ -121,11 +182,11 @@ void ABaseClass_CardFunctionsLibrary::SetCardTargets()
 
 	// Clear the targets array if the Target mode is *not* set to CastTarget
 	// Otherwise, do nothing
-	if (!LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
-		LocalCardReference.CurrentTargets.Empty();
+	//if (!LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
+	//	LocalCardReference.CurrentTargets.Empty();
 
-	if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self))
-		LocalCardReference.CurrentTargets.Add(LocalCardReference.Controller);
+	//if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self))
+	//	LocalCardReference.CurrentTargets.Add(LocalCardReference.Controller);
 }
 
 

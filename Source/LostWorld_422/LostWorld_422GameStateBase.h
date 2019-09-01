@@ -19,14 +19,17 @@ class LOSTWORLD_422_API ALostWorld_422GameStateBase : public AGameStateBase
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	TArray<ABaseClass_EntityInBattle*> SortedTurnOrderList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	ABaseClass_PlayerController* PlayerControllerRef;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	TArray<FStackEntry> TheStack;
 
 	UFUNCTION(BlueprintCallable)
 	void DebugBattleStart();

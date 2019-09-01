@@ -84,20 +84,24 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	UpdateCardIndicesInAllZones();
 }
 
-void ABaseClass_EntityInBattle::Begin_Turn()
+void ABaseClass_EntityInBattle::UpdateCardWidgets()
 {
-	UpdateCardIndicesInAllZones();
-
 	if (EntityBaseData.IsPlayerControllable && PlayerControllerRef)
 	{
 		for (int i = 0; i < 7; i++)
 		{
-			if(i == 0)
+			if (i == 0)
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);
 			else
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CardsInHand[i]);
 		}
 	}
+}
+
+void ABaseClass_EntityInBattle::Begin_Turn()
+{
+	UpdateCardIndicesInAllZones();
+	UpdateCardWidgets();
 
 	if (!EntityBaseData.IsPlayerControllable) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("IsPlayerControllable: False"));
@@ -145,7 +149,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	if (!GameModeRef)
 		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
 
-	GameModeRef->CardFunctionLibraryReference->ExecuteCardFunctions(RandCard);
+	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
 
 	if (!GameStateRef)
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();

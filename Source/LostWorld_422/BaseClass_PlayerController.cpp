@@ -73,44 +73,40 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 	{
 		//CurrentDragCardRef->RemoveFromParent();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Card Widget Destroyed: " + CurrentDragCardRef->CardData.DisplayName));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
 
-		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget) 
-			|| CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self))
+		// Set rudimentary targets based on cast mode
+		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
+			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
+		}
 
-			// Set rudimentary targets based on cast mode
-			if (CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
+		CurrentDragCardRef->CastCard();
+
+		// Remove card from hand and add to graveyard
+		for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
+
+			if (CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
-				CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-			}
-
-			CurrentDragCardRef->CastCard();
-
-			// Remove card from hand and add to graveyard
-			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
-			{
-				//
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
-
-				if (CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex)
-				{
-					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
-					CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
-					break;
-				}
-			}
-
-			for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); j++)
-			{
-				if (j == 0)
-					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
-				else
-					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+				CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
+				CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
+				break;
 			}
 		}
 
+		for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); j++)
+		{
+			if (j == 0)
+				Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+			else
+				Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+		}
+		//CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
+
 		CurrentDragCardRef->RemoveFromParent();
+		CurrentDragCardRef = NULL;
 	}
 }

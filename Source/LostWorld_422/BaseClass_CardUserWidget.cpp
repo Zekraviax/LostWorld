@@ -46,6 +46,6 @@ void UBaseClass_CardUserWidget::CastCard()
 	if (!GameModeRef)
 		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
 
-	GameModeRef->CardFunctionLibraryReference->ExecuteCardFunctions(CardData);
+	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(CardData);
 	UE_LOG(LogTemp, Warning, TEXT("Cast Card"));
 }

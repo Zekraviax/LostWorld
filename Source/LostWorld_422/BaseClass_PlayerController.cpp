@@ -84,29 +84,35 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 		CurrentDragCardRef->CastCard();
 
-		// Remove card from hand and add to graveyard
-		for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
-
-			if (CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex)
+		if (!CurrentDragCardRef->CardData.Controller) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No Controller"));
+		}
+		else {
+			// Remove card from hand and add to graveyard
+			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num() - 1; i++)
 			{
-				CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
-				CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
-				break;
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
+
+				if (CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex)
+				{
+					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
+					CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
+					break;
+				}
 			}
-		}
 
-		for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); j++)
-		{
-			if (j == 0)
-				Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
-			else
-				Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
-		}
-		//CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
+			for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num() - 1; j++)
+			{
+				if (j == 0)
+					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+				else
+					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+			}
 
-		CurrentDragCardRef->RemoveFromParent();
-		CurrentDragCardRef = NULL;
+			CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
+
+			CurrentDragCardRef->RemoveFromParent();
+			CurrentDragCardRef = NULL;
+		}
 	}
 }

@@ -72,9 +72,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Setup")
-	//FEntityBase TestData;
-
 // Functions
 // --------------------------------------------------
 

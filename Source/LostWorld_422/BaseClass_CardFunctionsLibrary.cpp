@@ -74,16 +74,25 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 
 	for (int i = 0; i < DrawValue; i++)
 	{
-		//FCardBase FirstCardInDeck = LocalCardReference.Controller->CardsInDeck[]
-		if (LocalCardReference.Controller->CardsInDeck.Num() > 0)
-		{
+		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
 			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
+
+			// Set ownership
+			//if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
+				LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+			//}
+			//if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
+				LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+			//}
+
 			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
 		}
 	}
 
 	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
-	//LocalCardReference.Controller->UpdateCardWidgets();
+	LocalCardReference.Controller->UpdateCardWidgets();
 }
 
 //-------------------- Execute Functions --------------------//
@@ -103,7 +112,6 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(LocalCardReference.CurrentTargets.Num())));
 
 	CardFunctionIndex = (int32)((uint8)LocalCardReference.FunctionsWithRules[0].Function);
-	//SetCardTargets();
 
 	//Valid range check
 	if (CardFunctionIndex >= CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
@@ -113,10 +121,6 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 
 	(this->* (CardFunctions[CardFunctionIndex]))();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Successful Execution"));
-
-	//CardReference.FunctionsWithRules.RemoveAt(0);
-	//if (CardReference.FunctionsWithRules.Num() > 0)
-	//	ExecuteCardFunctions(CardReference);
 
 	GameStateRef->TheStack.RemoveAt(0);
 	if (GameStateRef->TheStack.Num() > 0) {

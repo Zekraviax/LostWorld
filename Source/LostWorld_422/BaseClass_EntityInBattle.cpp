@@ -86,9 +86,12 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 
 void ABaseClass_EntityInBattle::UpdateCardWidgets()
 {
-	if (EntityBaseData.IsPlayerControllable && PlayerControllerRef)
+	if (!GameStateRef)
+		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	if (EntityBaseData.IsPlayerControllable && GameStateRef->SortedTurnOrderList[0] == this)
 	{
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < CardsInHand.Num(); i++)
 		{
 			if (i == 0)
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);

@@ -82,6 +82,17 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
 		}
 
+		// Mana Check
+		if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+			EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+		}
+		else {
+			CurrentDragCardRef->RemoveFromParent();
+			CurrentDragCardRef = NULL;
+
+			return;
+		}
+
 		CurrentDragCardRef->CastCard();
 
 		if (!CurrentDragCardRef->CardData.Controller) {

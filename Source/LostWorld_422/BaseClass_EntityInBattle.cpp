@@ -112,6 +112,8 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	UpdateCardIndicesInAllZones();
 	UpdateCardWidgets();
 
+	EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
+
 	if (!EntityBaseData.IsPlayerControllable) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("IsPlayerControllable: False"));
 		AI_CastRandomCard();
@@ -158,10 +160,20 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	if (!GameModeRef)
 		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
 
-	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
-
 	if (!GameStateRef)
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	// Mana Check
+	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
+		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
+	}
+	else {
+		GameStateRef->EntityEndOfTurn();
+	}
+
+	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
+
+
 
 	GameStateRef->EntityEndOfTurn();
 }

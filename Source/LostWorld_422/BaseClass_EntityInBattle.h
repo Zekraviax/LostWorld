@@ -51,9 +51,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
 	FEntityBase EntityBaseData;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
-	//ABaseClass_EntityInWorld* EntityInWorldRef;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
 	TArray<FCardBase> CardsInDeck;
 
@@ -94,6 +91,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UBaseClass_WidgetComponent_Stats> EntityStats_WidgetComponent_Class;
 
+// ------------------------- Timers
+	UPROPERTY()
+	FTimerHandle EndTurn_TimerHandle;
+
 // Functions
 // --------------------------------------------------
 
@@ -124,4 +125,7 @@ public:
 // ------------------------- AI
 	UFUNCTION()
 	void AI_CastRandomCard();
+
+	UFUNCTION()
+	void AI_EndTurnDelay();
 };

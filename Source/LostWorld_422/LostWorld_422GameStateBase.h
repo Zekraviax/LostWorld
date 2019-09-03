@@ -19,23 +19,39 @@ class LOSTWORLD_422_API ALostWorld_422GameStateBase : public AGameStateBase
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Technical Variables
+	UPROPERTY()
 	TArray<ABaseClass_EntityInBattle*> SortedTurnOrderList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY()
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
-	ABaseClass_PlayerController* PlayerControllerRef;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY()
 	TArray<FStackEntry> TheStack;
 
+// ------------------------- Technical Variables
+	UPROPERTY()
+	ABaseClass_PlayerController* PlayerControllerRef;
+
+// ------------------------- Timers	
+	UPROPERTY()
+	FTimerHandle BeginTurnTimerHandle;
+
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Battle
 	UFUNCTION(BlueprintCallable)
 	void DebugBattleStart();
 
 	UFUNCTION()
 	void EntityEndOfTurn();
+
+	UFUNCTION()
+	void EntityBeginTurn_Delay();
 
 	UFUNCTION()
 	void NewCombatRound();

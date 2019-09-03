@@ -7,6 +7,7 @@
 #include "BaseClass_PlayerController.h"
 #include "LostWorld_422GameStateBase.h"
 
+
 // Sets default values
 ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
 {
@@ -25,6 +26,7 @@ ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
 	EntityStats_WidgetComponent->SetupAttachment(RootComponent);
 }
 
+
 // Called when the game starts or when spawned
 void ABaseClass_EntityInBattle::BeginPlay()
 {
@@ -39,6 +41,7 @@ void ABaseClass_EntityInBattle::BeginPlay()
 	}
 }
 
+
 // Called every frame
 void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 {
@@ -49,6 +52,7 @@ void ABaseClass_EntityInBattle::CustomOnBeginMouseOverEvent(UPrimitiveComponent 
 {
 
 }
+
 
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
@@ -64,6 +68,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 		CardsInDeck[i].ZoneIndex = i;
 	}
 }
+
 
 void ABaseClass_EntityInBattle::Begin_Battle()
 {
@@ -90,6 +95,7 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	UpdateCardIndicesInAllZones();
 }
 
+
 void ABaseClass_EntityInBattle::UpdateCardWidgets()
 {
 	if (!GameStateRef)
@@ -107,6 +113,7 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 	}
 }
 
+
 void ABaseClass_EntityInBattle::Begin_Turn()
 {
 	UpdateCardIndicesInAllZones();
@@ -115,10 +122,11 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
 
 	if (!EntityBaseData.IsPlayerControllable) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("IsPlayerControllable: False"));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("IsPlayerControllable: False"));
 		AI_CastRandomCard();
 	}
 }
+
 
 void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 {
@@ -132,6 +140,7 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 		CardsInDeck[k].ZoneIndex = k;
 }
 
+
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand
@@ -143,16 +152,6 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	for (int i = 0; i < RandCard.FunctionsWithRules.Num(); i++) {
 		if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
 			RandCard.CurrentTargets.Add(this);
-		}
-		else if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget)) {
-			for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
-				ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-
-				if (FoundEntity->EntityBaseData.IsPlayerControllable) {
-					RandTargetsArray.Add(FoundEntity);
-				}
-			}
-			RandCard.CurrentTargets.Add(RandTargetsArray[FMath::RandRange(0, RandTargetsArray.Num() - 1)]);
 		}
 	}
 
@@ -172,8 +171,11 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	}
 
 	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
+	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.FunctionsWithRules.Num() + 1), false);
+}
 
 
-
+void ABaseClass_EntityInBattle::AI_EndTurnDelay()
+{
 	GameStateRef->EntityEndOfTurn();
 }

@@ -79,12 +79,12 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 
 			// Set ownership
 			//if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
-				LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+			LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
 			//}
 			//if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
-				LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
 			//}
 
 			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
@@ -157,7 +157,7 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 			for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 				ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
-				if (FoundEntity->EntityBaseData.IsPlayerControllable == false) {
+				if (FoundEntity->EntityBaseData.IsPlayerControllable != NewStackEntry.Card.Controller->EntityBaseData.IsPlayerControllable) {
 					NewStackEntry.Card.CurrentTargets.Add(FoundEntity);
 					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Get All Enemies"));
 				}
@@ -175,7 +175,6 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 	}
 
 	// Start timer for the stack
-	//GetWorldTimerManager().SetTimer(HealthRegenDelayTimerHandle, this, &AEntity_Base::StartHealthRegenTick, CurrentStats.HealthPoints_RegenStartDelay, false);
 	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
 }
 

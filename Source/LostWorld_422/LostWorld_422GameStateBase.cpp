@@ -49,15 +49,23 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 	}
 }
 
+
+void ALostWorld_422GameStateBase::EntityBeginTurn_Delay()
+{
+	SortedTurnOrderList[0]->Begin_Turn();
+}
+
+
 void ALostWorld_422GameStateBase::EntityEndOfTurn()
 {
 	SortedTurnOrderList.RemoveAt(0);
 
 	if (SortedTurnOrderList.Num() <= 0)
-		NewCombatRound();
+		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::NewCombatRound, 0.5f, false);
 	else
-		SortedTurnOrderList[0]->Begin_Turn();
+		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 1.f, false);
 }
+
 
 void ALostWorld_422GameStateBase::NewCombatRound()
 {
@@ -79,5 +87,5 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 		}
 	}
 
-	SortedTurnOrderList[0]->Begin_Turn();
+	GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 0.5f, false);
 }

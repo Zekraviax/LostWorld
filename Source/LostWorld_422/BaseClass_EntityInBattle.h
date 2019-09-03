@@ -6,11 +6,13 @@
 #include "GameFramework/Actor.h"
 
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/WidgetComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Camera/CameraComponent.h"
 #include "EngineUtils.h"
 #include "BaseClass_CardFunctionsLibrary.h"
+#include "BaseClass_WidgetComponent_Stats.h"
 #include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_EntityInBattle.generated.h"
@@ -72,8 +74,8 @@ public:
 	UCameraComponent* Camera;
 
 	// UI in World Component
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UTextRenderComponent* HealthText_WorldRender;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	UWidgetComponent* EntityStats_WidgetComponent;
 
 // ------------------------- Technical Variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
@@ -84,6 +86,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	ALostWorld_422GameStateBase* GameStateRef;
+
+// ------------------------- Widgets
+	UPROPERTY(visibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UBaseClass_WidgetComponent_Stats* EntityStats_WidgetComponent_Reference;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UBaseClass_WidgetComponent_Stats> EntityStats_WidgetComponent_Class;
 
 // Functions
 // --------------------------------------------------

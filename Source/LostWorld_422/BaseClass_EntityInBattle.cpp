@@ -17,20 +17,26 @@ ABaseClass_EntityInBattle::ABaseClass_EntityInBattle()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	EntityStats_WidgetComponent = CreateDefaultSubobject<UWidgetComponent>("EntityStats_WidgetComponent");
 
-	//FAttachmentTransformRules AttachRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
-	//StaticMesh->AttachToComponent(RootComponent, AttachRules);
-	//SpringArm->AttachToComponent(StaticMesh, AttachRules);
-	//Camera->AttachToComponent(SpringArm, AttachRules);
 	StaticMesh->SetupAttachment(RootComponent);
 	SpringArm->SetupAttachment(RootComponent);
 	Camera->SetupAttachment(SpringArm);
+	EntityStats_WidgetComponent->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
 void ABaseClass_EntityInBattle::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Get a reference to the EntityStats proper widget and set the variables
+	if (EntityStats_WidgetComponent && EntityStats_WidgetComponent_Class) {
+		EntityStats_WidgetComponent_Reference = Cast<UBaseClass_WidgetComponent_Stats>(EntityStats_WidgetComponent->GetUserWidgetObject());
+
+		if (EntityStats_WidgetComponent_Reference)
+			EntityStats_WidgetComponent_Reference->LinkedEntity = this;
+	}
 }
 
 // Called every frame

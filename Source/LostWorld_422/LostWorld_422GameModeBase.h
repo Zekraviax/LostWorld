@@ -44,26 +44,28 @@ enum class E_Card_Elements : uint8
 UENUM(BlueprintType)
 enum class E_Card_Functions : uint8
 {
-	E_Nothing						UMETA(DisplayName = "Nothing"),
-	E_Deal_X_Damage					UMETA(DisplayName = "Deal X Damage"),
-	E_Draw_X_Cards					UMETA(DisplayName = "Draw X Cards"),
-	E_Add_Status_Effect				UMETA(DisplayName = "Add Status Effect To Targets"),
-	E_Change_Current_Mana			UMETA(DisplayName = "Change Target's Current Mana"),
-	E_Change_Maximum_Mana			UMETA(DisplayName = "Change Target's Maximum Mana"),
-	E_Change_Current_Health			UMETA(DisplayName = "Change Target's Current Health"),
-	E_Change_Maximum_Health			UMETA(DisplayName = "Change Target's Maximum Health"),
-	E_Create_Card					UMETA(DisplayName = "Create A Card"),
-	E_Search_Zone					UMETA(DisplayName = "Search Zone (Hand/Deck/Graveyard)"),
-	E_Modal_Choose_One				UMETA(DisplayName = "Choose-One Effect"),						// Choose one-or-more function effects
+	E_Nothing									UMETA(DisplayName = "Nothing"),
+	E_Deal_X_Damage								UMETA(DisplayName = "Deal X Damage"),
+	E_Draw_X_Cards								UMETA(DisplayName = "Draw X Cards"),
+	E_Add_Status_Effect							UMETA(DisplayName = "Add Status Effect To Targets"),
+	E_Change_Current_Mana						UMETA(DisplayName = "Change Target's Current Mana"),
+	E_Change_Maximum_Mana						UMETA(DisplayName = "Change Target's Maximum Mana"),
+	E_Change_Current_Health						UMETA(DisplayName = "Change Target's Current Health"),
+	E_Change_Maximum_Health						UMETA(DisplayName = "Change Target's Maximum Health"),
+	E_Create_Card								UMETA(DisplayName = "Create A Card"),
+	E_Search_Zone								UMETA(DisplayName = "Search Zone (Hand/Deck/Graveyard)"),
+	E_Modal_Choose_X							UMETA(DisplayName = "Choose-X Effect"),							// Choose one-or-more function effects
+	E_Copy_Card_Function						UMETA(DisplayName = "Copy Card Function"),
 };
 
 UENUM(BlueprintType)
 enum class E_Card_Rules : uint8
 {
 	// Card Types
-	E_Rule_CardType_Spell_Cards					UMETA(DisplayName = "Card Type: Spells"),
-	E_Rule_CartType_Summon_Cards				UMETA(DisplayName = "Card Type: Summons"),
-	E_Rule_CardType_Technique_Cards				UMETA(DisplayName = "Card Type: Techniques"),
+	E_Rule_CardType_Spell						UMETA(DisplayName = "Card Type: Spells"),
+	E_Rule_CartType_Summon						UMETA(DisplayName = "Card Type: Summons"),
+	E_Rule_CardType_Technique					UMETA(DisplayName = "Card Type: Techniques"),
+	E_Rule_CardType_All							UMETA(DisplayName = "Card Type: All"),
 	// Card Zones
 	E_Rule_Zone_Hand							UMETA(DisplayName = "Zone: Hand"),
 	E_Rule_Zone_Deck							UMETA(DisplayName = "Zone: Deck"),
@@ -83,13 +85,38 @@ enum class E_Card_Rules : uint8
 	// Variable Numbers
 	E_Rule_VariableInteger_Current_Power		UMETA(DisplayName = "Variable Integer: Current Power"),
 	E_Rule_VariableInteger_Random_Number		UMETA(DisplayName = "Variable Integer: Random Number (0 - 10)"),
-	// Miscellaneoous Functions
-	E_Rule_Draw_Chosen_Card						UMETA(DisplayName = "Miscellaneous: Draw Chosen Card"),
-	//E_Rule_Discard_Chosen_Card				UMETA(DisplayName = "Miscellaneous: Discard Chosen Card"),
+	E_Rule_VariableInteger_Card_Cost			UMETA(DisplayName = "Variable Integer: Casting Cost"),
+	// Choose-a-Card Functions
+	E_Rule_ChooseCards_Draw						UMETA(DisplayName = "Miscellaneous: Draw Chosen Card"),
+	E_Rule_ChooseCards_Discard					UMETA(DisplayName = "Miscellaneous: Discard Chosen Card"),
 	// Targets
 	E_Rule_Target_Self							UMETA(DisplayName = "Target: Self"),
 	E_Rule_Target_CastTarget					UMETA(DisplayName = "Target: Cast Target"),
+	E_Rule_Target_RandomEnemy					UMETA(DisplayName = "Target: Random Enemy"),
 	E_Rule_Target_AllEnemies					UMETA(DisplayName = "Target: All Enemies"),
+	// The Stack
+	E_Rule_Stack_InterruptTheStack				UMETA(DisplayName = "The Stack: Interrupt The Stack"),
+	//Overrides
+	E_Rule_Override_CastingCostX				UMETA(DisplayName = "Override - Casting Cost: X Cost")
+};
+
+UENUM(BlueprintType)
+enum class E_Card_SetFunctions : uint8
+{
+	E_GunDown,
+	E_Shockwave,
+	E_SuddenInspiration,
+	E_EssenceRecycling,
+	E_Recall,
+	E_RollingQuake
+};
+
+UENUM(BlueprintType)
+enum class E_Card_SetTargets : uint8
+{
+	E_Self,
+	E_CastTarget,
+	E_AllEnemies,
 };
 
 UENUM(BlueprintType)
@@ -187,6 +214,12 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	TArray<FCardFunctionAndRules> FunctionsWithRules;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Set Functions")
+	TArray<E_Card_SetFunctions> Functions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Set Functions")
+	TArray<E_Card_SetTargets> Targets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	int32 ZoneIndex;

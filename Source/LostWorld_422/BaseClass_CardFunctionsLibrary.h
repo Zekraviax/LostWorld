@@ -14,7 +14,7 @@
 class ALostWorld_422GameStateBase;
 
 // Explicitly define number of static card functions
-#define CARD_FUNCTIONS_COUNT 3
+#define CARD_FUNCTIONS_COUNT 7
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_CardFunctionsLibrary : public AActor
@@ -81,4 +81,8 @@ public:
 	virtual void CardFunction_Nothing();
 	virtual void CardFunction_DealDamage();
 	virtual void CardFunction_DrawCards();
+	virtual void Gun_Down();
+	virtual void Shockwave();
+	virtual void Sudden_Inspiration();
+	virtual void Essence_Recycling();
 };

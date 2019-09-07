@@ -23,7 +23,7 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Technical Variables
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	TArray<ABaseClass_EntityInBattle*> SortedTurnOrderList;
 
 	UPROPERTY()

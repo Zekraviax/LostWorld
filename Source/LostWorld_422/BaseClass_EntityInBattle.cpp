@@ -149,10 +149,23 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
 	// Set targets
-	for (int i = 0; i < RandCard.FunctionsWithRules.Num(); i++) {
-		if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
-			RandCard.CurrentTargets.Add(this);
+	//for (int i = 0; i < RandCard.FunctionsWithRules.Num(); i++) {
+	//	if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
+	//		RandCard.CurrentTargets.Add(this);
+	//	}
+	//}
+	if (RandCard.Targets.Contains(E_Card_SetTargets::E_CastTarget)) {
+		TArray<ABaseClass_EntityInBattle*> TargetsArray;
+
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+
+			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
+				TargetsArray.Add(FoundEntity);
+			}
 		}
+
+		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
 	}
 
 	// Cast card

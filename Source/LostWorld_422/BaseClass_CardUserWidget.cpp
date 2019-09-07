@@ -20,6 +20,7 @@ void UBaseClass_CardUserWidget::NativeTick(const FGeometry& MyGeometry, float De
 			LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
 		LocalPlayerControllerRef->GetMousePosition(MousePosX, MousePosY);
+
 		// Set position to be equal to MousePos plus (5% of viewport width/height)
 		SetPositionInViewport(FVector2D(MousePosX + 10, MousePosY + 10), true);
 	}

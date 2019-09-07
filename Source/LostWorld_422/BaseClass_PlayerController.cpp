@@ -74,11 +74,12 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
 
 		// Set rudimentary targets based on cast mode
-		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
+		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.Targets.Contains(E_Card_SetTargets::E_CastTarget))
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
 			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget)) {
+		}
+		else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.Targets.Contains(E_Card_SetTargets::E_CastTarget)) {
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;
 
@@ -92,7 +93,8 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			// Mana Check
 			if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
 				EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
-			} else {
+			}
+			else {
 				CurrentDragCardRef->RemoveFromParent();
 				CurrentDragCardRef = NULL;
 
@@ -102,15 +104,13 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			CurrentDragCardRef->CastCard();
 
 			// Remove card from hand and add to graveyard
-			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num() - 1; i++)
+			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
 
-				if (CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex)
-				{
+				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
 					CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
-					break;
 				}
 			}
 
@@ -122,10 +122,23 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
 			}
 
+			CurrentDragCardRef->CardData.Controller->UpdateCardIndicesInAllZones();
 			CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
 
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;
+
+		//if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
+		//{
+		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
+		//	CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
+		//} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget)) {
+		//	CurrentDragCardRef->RemoveFromParent();
+		//	CurrentDragCardRef = NULL;
+
+		//	return;
+		//}
+
 		}
 	}
 }

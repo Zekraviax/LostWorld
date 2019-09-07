@@ -15,6 +15,15 @@
 class ALostWorld_422GameStateBase;
 
 
+// Class-Specific Enums
+UENUM(BlueprintType)
+enum class E_ContinueTurnButton_Function : uint8
+{
+	E_EndTurn,
+	E_ContinueTurn,
+};
+
+
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_HUD_Battle : public UUserWidget
 {

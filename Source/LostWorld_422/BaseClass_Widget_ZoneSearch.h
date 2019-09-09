@@ -5,11 +5,20 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
+#include "LostWorld_422GameModeBase.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
+#include "Components/Button.h"
 #include "BaseClass_CardUserWidget.h"
 
 #include "BaseClass_Widget_ZoneSearch.generated.h"
+
+
+UENUM(BlueprintType)
+enum class E_ZoneSearch_Functions : uint8
+{
+	E_DrawCards,
+};
 
 
 UCLASS()
@@ -27,4 +36,30 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
 	UTextBlock* ZoneName;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UButton* Confirm_Button;
+
+// ------------------------- Widgets
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<class UBaseClass_CardUserWidget> CardWidget_Class;
+
+// ------------------------- Function Variables
+	UPROPERTY()
+	E_ZoneSearch_Functions Function;
+
+// ------------------------- Cards
+	UPROPERTY()
+	TArray<FCardBase> ChosenCards;
+
+	UPROPERTY()
+	int32 CurrentMaxCardSelectCount;
+
+// Functions
+// --------------------------------------------------
+	UFUNCTION()
+	void PopulateWidget(TArray<FCardBase> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone);
+
+	UFUNCTION(BlueprintCallable)
+	void ConfirmButton_Function(TArray<FCardBase> &ReturnChosenCards);
 };

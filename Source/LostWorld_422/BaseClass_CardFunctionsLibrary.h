@@ -7,6 +7,7 @@
 
 #include "LostWorld_422GameModeBase.h"
 #include "EngineUtils.h"
+#include "BaseClass_Widget_ZoneSearch.h"
 
 #include "BaseClass_CardFunctionsLibrary.generated.h"
 
@@ -14,7 +15,7 @@
 class ALostWorld_422GameStateBase;
 
 // Explicitly define number of static card functions
-#define CARD_FUNCTIONS_COUNT 7
+#define CARD_FUNCTIONS_COUNT 8
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_CardFunctionsLibrary : public AActor
@@ -85,4 +86,5 @@ public:
 	virtual void Shockwave();
 	virtual void Sudden_Inspiration();
 	virtual void Essence_Recycling();
+	virtual void Recall();
 };

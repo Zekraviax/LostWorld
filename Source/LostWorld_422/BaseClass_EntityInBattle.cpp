@@ -61,7 +61,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 		ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
 		FString ContextString;
 		TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
-		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
+		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[0], ContextString));
 
 		CardsInDeck[i].Controller = this;
 		CardsInDeck[i].Owner = this;
@@ -74,6 +74,12 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 {
 	int32 RandIndex;
 
+	// Set ownership of all cards
+	for (int i = 0; i < CardsInDeck.Num(); i++) {
+		CardsInDeck[i].Owner = this;
+		CardsInDeck[i].Controller = this;
+	}
+
 	// Draw seven cards at random
 	for (int i = 0; i < 7; i++)
 	{
@@ -84,10 +90,12 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 		CardsInHand[i].ZoneIndex = i;
 
 		// Set Ownership
-		if (!CardsInHand[i].Controller)
+		if (!CardsInHand[i].Controller) {
 			CardsInHand[i].Controller = this;
-		if (!CardsInHand[i].Owner)
+		}
+		if (!CardsInHand[i].Owner == NULL) {
 			CardsInHand[i].Owner = this;
+		}
 
 		CardsInDeck.RemoveAt(RandIndex);
 	}

@@ -14,6 +14,7 @@
 #define SHOCKWAVE 4
 #define SUDDEN_INSPIRATION 5
 #define ESSENCE_RECYCLING 6
+#define RECALL 7
 
 // Sets default values
 ABaseClass_CardFunctionsLibrary::ABaseClass_CardFunctionsLibrary()
@@ -49,6 +50,7 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 	CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
 	CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
 	CardFunctions[ESSENCE_RECYCLING] = &ABaseClass_CardFunctionsLibrary::Essence_Recycling;
+	CardFunctions[RECALL] = &ABaseClass_CardFunctionsLibrary::Recall;
 
 
 	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized functions."));
@@ -88,8 +90,8 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 
 			// Set ownership
 			//if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
-			LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
 			//}
 			//if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
 			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
@@ -137,8 +139,8 @@ void ABaseClass_CardFunctionsLibrary::Sudden_Inspiration()
 			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
 
 			// Set ownership
-			LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
 
 			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
@@ -168,8 +170,8 @@ void ABaseClass_CardFunctionsLibrary::Essence_Recycling()
 			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
 
 			// Set ownership
-			LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
 
 			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
@@ -180,6 +182,14 @@ void ABaseClass_CardFunctionsLibrary::Essence_Recycling()
 
 	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
 	LocalCardReference.Controller->UpdateCardWidgets();
+}
+
+void ABaseClass_CardFunctionsLibrary::Recall() 
+{
+	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode())->ZoneSearchWidget_Class;
+	UBaseClass_Widget_ZoneSearch* ZoneSearchWidget_Reference = CreateWidget<UBaseClass_Widget_ZoneSearch>(GetWorld(), ZoneSearchWidget_Class);
+	ZoneSearchWidget_Reference->PopulateWidget(LocalCardReference.Controller->CardsInDeck, 1, E_ZoneSearch_Functions::E_DrawCards, E_Card_Zones::E_Deck);
+	ZoneSearchWidget_Reference->AddToViewport();
 }
 
 //-------------------- Execute Functions --------------------//

@@ -13,6 +13,7 @@
 // Forward Declarations
 class ABaseClass_EntityInBattle;
 class ABaseClass_CardFunctionsLibrary;
+class UBaseClass_Widget_ZoneSearch;
 
 
 // Enums
@@ -144,6 +145,14 @@ enum class E_Card_TargetModes : uint8
 	E_AllEnemies,
 };
 
+UENUM(BlueprintType)
+enum class E_Card_Zones : uint8
+{
+	E_Hand,
+	E_Deck,
+	E_Graveyard
+};
+
 
 // Structs
 //--------------------------------------------------
@@ -249,6 +258,20 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 		Owner = NULL;
 		Controller = NULL;
 	}
+
+	FORCEINLINE bool operator==(const FCardBase& OtherCard) const
+	{
+		if (DisplayName == OtherCard.DisplayName && 
+			ManaCost == OtherCard.ManaCost &&
+			Type == OtherCard.Type &&
+			Elements == OtherCard.Elements &&
+			Functions == OtherCard.Functions) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 };
 
 // The Stack
@@ -318,14 +341,21 @@ class LOSTWORLD_422_API ALostWorld_422GameModeBase : public AGameModeBase
 	GENERATED_BODY()
 	
 public:
+// Base Variables
+// --------------------------------------------------
 
+// ------------------------- References
 	// Card Data Table Reference
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
-	FDataTableRowHandle CardDataTableRowRef;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
+	//FDataTableRowHandle CardDataTableRowRef;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	UDataTable* CardDataTableRef;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	ABaseClass_CardFunctionsLibrary* CardFunctionLibraryReference;
+
+// ------------------------- Classes
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
+	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class;
 };

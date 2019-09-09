@@ -13,6 +13,7 @@ ABaseClass_EntityInWorld::ABaseClass_EntityInWorld()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Initialize Components
+	
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");

@@ -26,7 +26,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Technical Variables
-	// Card
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	FCardBase CardData;
 
@@ -34,7 +33,6 @@ public:
 	int32 IndexInZone;
 
 // ------------------------- Function Variables
-	// Function variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Functions")
 	bool IsDragging;
 

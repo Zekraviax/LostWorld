@@ -70,6 +70,12 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 }
 
 
+void ABaseClass_EntityInBattle::ResetStatsWidget()
+{
+	EntityStats_WidgetComponent->SetWorldLocation(FVector(0.f, 0.f, 150.f));
+}
+
+
 void ABaseClass_EntityInBattle::Begin_Battle()
 {
 	int32 RandIndex;

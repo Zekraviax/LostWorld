@@ -7,14 +7,15 @@
 #include "LostWorld_422GameStateBase.h"
 
 // Function index definitions
-#define NOTHING 0
-#define DEAL_DAMAGE 1
-#define DRAW_CARDS 2
-#define GUN_DOWN 3
-#define SHOCKWAVE 4
-#define SUDDEN_INSPIRATION 5
-#define ESSENCE_RECYCLING 6
-#define RECALL 7
+//#define NOTHING 0
+//#define DEAL_DAMAGE 1
+//#define DRAW_CARDS 2
+#define GUN_DOWN 0
+#define SHOCKWAVE 1
+#define SUDDEN_INSPIRATION 2
+#define ESSENCE_RECYCLING 2
+#define RECALL 4
+#define ROLLING_QUAKE 5
 
 // Sets default values
 ABaseClass_CardFunctionsLibrary::ABaseClass_CardFunctionsLibrary()
@@ -43,14 +44,15 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Initialize functions."));
 
-	CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::CardFunction_Nothing;
-	CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
-	CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards;
+	//CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::CardFunction_Nothing;
+	//CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
+	//CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards;
 	CardFunctions[GUN_DOWN] = &ABaseClass_CardFunctionsLibrary::Gun_Down;
 	CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
 	CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
 	CardFunctions[ESSENCE_RECYCLING] = &ABaseClass_CardFunctionsLibrary::Essence_Recycling;
 	CardFunctions[RECALL] = &ABaseClass_CardFunctionsLibrary::Recall;
+	CardFunctions[ROLLING_QUAKE] = &ABaseClass_CardFunctionsLibrary::Rolling_Quake;
 
 
 	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized functions."));
@@ -58,53 +60,53 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 
 //-------------------- Card Functions --------------------//
 
-void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Nothing"));
-}
-
-void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
-{
-	int32 DamageValue = ReturnIntValueFromRules();
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
-
-	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
-	{
-		int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
-		LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-	}
-}
-
-void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
-	int32 DrawValue = ReturnIntValueFromRules();
-
-	for (int i = 0; i < DrawValue; i++)
-	{
-		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
-			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
-
-			// Set ownership
-			//if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
-			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
-			//}
-			//if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
-			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
-			//}
-
-			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
-		}
-	}
-
-	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
-	LocalCardReference.Controller->UpdateCardWidgets();
-}
+//void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
+//{
+//	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Nothing"));
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
+//{
+//	int32 DamageValue = ReturnIntValueFromRules();
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
+//
+//	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
+//	{
+//		int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
+//		LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
+//
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+//	}
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
+//{
+//	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
+//	int32 DrawValue = ReturnIntValueFromRules();
+//
+//	for (int i = 0; i < DrawValue; i++)
+//	{
+//		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
+//			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
+//
+//			// Set ownership
+//			//if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
+//			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+//			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+//			//}
+//			//if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
+//			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+//			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+//			//}
+//
+//			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
+//		}
+//	}
+//
+//	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
+//	LocalCardReference.Controller->UpdateCardWidgets();
+//}
 
 void ABaseClass_CardFunctionsLibrary::Gun_Down()
 {
@@ -192,6 +194,24 @@ void ABaseClass_CardFunctionsLibrary::Recall()
 	ZoneSearchWidget_Reference->AddToViewport();
 }
 
+void ABaseClass_CardFunctionsLibrary::Rolling_Quake()
+{
+	int32 DamageValue = 2;
+	int32 OldHealthValue = 0;
+	ABaseClass_EntityInBattle* Target;
+
+	for (int i = 0; i < LocalCardReference.ManaCost; i++) {
+		Target = LocalCardReference.CurrentTargets[FMath::RandRange(0, LocalCardReference.CurrentTargets.Num() - 1)];
+
+		OldHealthValue = Target->EntityBaseData.HealthValues.X_Value;
+		Target->EntityBaseData.HealthValues.X_Value -= DamageValue;
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + Target->EntityBaseData.DisplayName)));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(Target->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+
+	}
+}
+
 //-------------------- Execute Functions --------------------//
 
 void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
@@ -208,10 +228,10 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Searching for function to execute."));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(LocalCardReference.CurrentTargets.Num())));
 
-	CardFunctionIndex = (int32)((uint8)LocalCardReference.Functions[0] + 3);
+	CardFunctionIndex = (int32)((uint8)LocalCardReference.Functions[0]);
 
 	//Valid range check
-	if (CardFunctionIndex >= CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
+	if (CardFunctionIndex > CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Failed Execution"));
 		return;
 	}

@@ -10,6 +10,7 @@
 #include "BaseClass_EntityInWorld.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_CardUserWidget.h"
+#include "BaseClass_Widget_SpentMana.h"
 
 #include "BaseClass_PlayerController.generated.h"
 
@@ -51,26 +52,32 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-// ------------------------- Widget
+// ------------------------- Widgets
 	// The instance of the players Inventory UI Widget
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	class UBaseClass_HUD_Battle* Battle_HUD_Widget;
 
 	// The class that will be used for the players Inventory UI
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
 	TSubclassOf<class UBaseClass_HUD_Battle> Battle_HUD_Class;
 
 	// The instance of the DeckBuilderCard 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	UBaseClass_CardUserWidget* Card_Widget;
 
 	// The class that will be used for the DeckBuilderCard
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UBaseClass_CardUserWidget> Card_Class;
 
 	// Dragging Card Widget Reference
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
 
 // Functions
 // --------------------------------------------------

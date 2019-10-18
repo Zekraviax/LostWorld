@@ -91,17 +91,28 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		}
 		else {
 			// Mana Check
-			if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
-				EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+			if (CurrentDragCardRef->CardData.ManaCost != -255) {
+				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+				}
+				else {
+					CurrentDragCardRef->RemoveFromParent();
+					CurrentDragCardRef = NULL;
+
+					return;
+				}
+
+				CurrentDragCardRef->CastCard();
 			}
 			else {
-				CurrentDragCardRef->RemoveFromParent();
-				CurrentDragCardRef = NULL;
+				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
+					SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
 
-				return;
+					SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
+					SpendManaWidget_Reference->OnWidgetCreated();
+					SpendManaWidget_Reference->AddToViewport();
+				}
 			}
-
-			CurrentDragCardRef->CastCard();
 
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)

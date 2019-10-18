@@ -109,6 +109,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ShuffleCardsInDeck_BP();
 
+// ------------------------- Components
+	UFUNCTION()
+	void ResetStatsWidget();
+
 // ------------------------- Battle
 	UFUNCTION()
 	void Begin_Battle();

@@ -13,6 +13,7 @@
 // Forward Declarations
 class ABaseClass_EntityInBattle;
 class ABaseClass_CardFunctionsLibrary;
+class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 
 
@@ -153,11 +154,19 @@ enum class E_Card_Zones : uint8
 	E_Graveyard
 };
 
+// Level Rooms
+UENUM(BlueprintType)
+enum class E_LevelRoom_EncounterTypes : uint8
+{
+	E_Enemy,
+	E_Treasure,
+	E_Conversation,
+};
 
 // Structs
 //--------------------------------------------------
 
-// Base
+// ------------------------- Base
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FIntVector2D
 {
@@ -179,7 +188,7 @@ struct LOSTWORLD_422_API FIntVector2D
 	}
 };
 
-// Cards and Card Functions
+// ------------------------- Cards and Card Functions
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCardFunctionAndRules
 {
@@ -274,7 +283,7 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	}
 };
 
-// The Stack
+// ------------------------- The Stack
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FStackEntry
 {
@@ -298,7 +307,7 @@ struct LOSTWORLD_422_API FStackEntry
 	}
 };
 
-// Entities
+// ------------------------- Entities
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FEntityBase
 {
@@ -307,10 +316,10 @@ struct LOSTWORLD_422_API FEntityBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
 	FString DisplayName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FIntVector2D HealthValues;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FIntVector2D ManaValues;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
@@ -328,12 +337,90 @@ struct LOSTWORLD_422_API FEntityBase
 	}
 };
 
-// Default
+// Enemy Database
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int32 MaximumHealthPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int32 MaximumManaPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cards")
+	TArray<FDataTableRowHandle> Cards;
+
+	F_NonPlayerEntity_DatabaseEntry()
+	{
+		DisplayName = "Default";
+		MaximumHealthPoints = 10;
+		MaximumManaPoints = 5;
+	}
+};
+
+// Summon Database
+//USTRUCT(BlueprintType)
+//struct LOSTWORLD_422_API F_Summon_DatabaseEntry
+//{
+//	GENERATED_BODY()
+//
+//	F_Summon_DatabaseEntry()
+//	{
+//
+//	}
+//};
+
+// ------------------------- Level
+
+// Room Enemy Formations
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_LevelRoom_EnemyFormation : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString FormationName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemies")
+	TMap<FVector2D, FDataTableRowHandle> EnemiesMap;
+
+	F_LevelRoom_EnemyFormation()
+	{
+		FormationName = "Default";
+	}
+};
+
+// Level Room
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FDataTableRowHandle EnemyFormation;
+
+	F_Level_Room()
+	{
+		DisplayName = "Default";
+	}
+};
+
+// ------------------------- Default
 USTRUCT()
 struct LOSTWORLD_422_API FTestStruct
 {
 	GENERATED_BODY();
+
 };
+
 
 UCLASS()
 class LOSTWORLD_422_API ALostWorld_422GameModeBase : public AGameModeBase

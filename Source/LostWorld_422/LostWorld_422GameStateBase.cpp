@@ -21,7 +21,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
-		// Spawn every other entity's EntityInBattle and add them to the turn order last
+		// Spawn every other entity's decks
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;

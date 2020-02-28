@@ -7,6 +7,7 @@
 
 #include "LostWorld_422GameModeBase.h"
 #include "BaseClass_HUD_Battle.h"
+#include "BaseClass_HUD_Level.h"
 #include "BaseClass_EntityInWorld.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_CardUserWidget.h"
@@ -53,11 +54,15 @@ public:
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
 // ------------------------- Widgets
-	// The instance of the players Inventory UI Widget
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	class UBaseClass_HUD_Level* Level_HUD_Widget;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
+	TSubclassOf<class UBaseClass_HUD_Level> Level_HUD_Class;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	class UBaseClass_HUD_Battle* Battle_HUD_Widget;
 
-	// The class that will be used for the players Inventory UI
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
 	TSubclassOf<class UBaseClass_HUD_Battle> Battle_HUD_Class;
 

@@ -72,7 +72,8 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 
 void ABaseClass_EntityInBattle::ResetStatsWidget()
 {
-	EntityStats_WidgetComponent->SetWorldLocation(FVector(0.f, 0.f, 150.f));
+	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
 }
 
 
@@ -155,6 +156,25 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 }
 
 
+void ABaseClass_EntityInBattle::Event_CardCastOnThis()
+{
+	// Check if entity is dead
+	if (EntityBaseData.HealthValues.X_Value <= 0) {
+		Destroy();
+
+		// Get GameState
+		if (!GameStateRef)
+			GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+		// BattleEvent_EntityDied();
+		GameStateRef->Event_EntityDied(this);
+	}
+
+	// Check if all entities are/the player is dead
+	// In the GameState class
+}
+
+
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand
@@ -162,12 +182,6 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	// Set targets
-	//for (int i = 0; i < RandCard.FunctionsWithRules.Num(); i++) {
-	//	if (RandCard.FunctionsWithRules[i].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
-	//		RandCard.CurrentTargets.Add(this);
-	//	}
-	//}
 	if (RandCard.Targets.Contains(E_Card_SetTargets::E_CastTarget)) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
 

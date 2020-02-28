@@ -126,6 +126,9 @@ public:
 	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
 
+	UFUNCTION()
+	void Event_CardCastOnThis();
+
 // ------------------------- AI
 	UFUNCTION()
 	void AI_CastRandomCard();

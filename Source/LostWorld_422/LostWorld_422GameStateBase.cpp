@@ -89,3 +89,29 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 
 	GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 0.5f, false);
 }
+
+
+void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* DeadEntity)
+{
+	TArray<ABaseClass_EntityInBattle*> CurrentAliveEnemyEntities;
+
+	// Check if entity that died is the player
+	// If it isn't the player, check if all enemies are dead
+	if (DeadEntity->PlayerControllerRef) {
+
+	}
+	else {
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+
+			if (!FoundEntity->EntityBaseData.IsPlayerControllable) {
+				CurrentAliveEnemyEntities.Add(FoundEntity);
+			}
+		}
+
+		// If all enemies are dead, end the battle
+		if (CurrentAliveEnemyEntities.Num() <= 0) {
+
+		}
+	}
+}

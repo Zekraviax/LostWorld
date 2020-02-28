@@ -55,4 +55,8 @@ public:
 
 	UFUNCTION()
 	void NewCombatRound();
+
+// ------------------------- Events
+	UFUNCTION()
+	void Event_EntityDied(ABaseClass_EntityInBattle* DeadEntity);
 };

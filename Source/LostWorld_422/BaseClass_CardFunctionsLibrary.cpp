@@ -230,7 +230,7 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 
 	CardFunctionIndex = (int32)((uint8)LocalCardReference.Functions[0]);
 
-	//Valid range check
+	// Valid range check
 	if (CardFunctionIndex > CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Failed Execution"));
 		return;
@@ -238,6 +238,11 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 
 	(this->* (CardFunctions[CardFunctionIndex]))();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Successful Execution"));
+
+	// Update all targets
+	for (int i = 0; i < LocalCardReference.Targets.Num(); i++) {
+		LocalCardReference.CurrentTargets[i]->Event_CardCastOnThis();
+	}
 
 	GameStateRef->TheStack.RemoveAt(0);
 	if (GameStateRef->TheStack.Num() > 0) {

@@ -30,9 +30,9 @@ void ABaseClass_PlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	// Create the battle HUD widget
-	if (!Battle_HUD_Widget && Battle_HUD_Class) {
-		Battle_HUD_Widget = CreateWidget<UBaseClass_HUD_Battle>(GetWorld(), Battle_HUD_Class);
-		Battle_HUD_Widget->AddToViewport();
+	if (!Level_HUD_Widget && Level_HUD_Class) {
+		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
+		Level_HUD_Widget->AddToViewport();
 	}
 
 	// Create the player EntityInWorld
@@ -67,7 +67,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Hit Actor: " + HitResult.GetActor()->GetName()));
 
 	// Delete CardDrag widget
-	if (CurrentDragCardRef)
+	if (CurrentDragCardRef && Battle_HUD_Widget)
 	{
 		//CurrentDragCardRef->RemoveFromParent();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Card Widget Destroyed: " + CurrentDragCardRef->CardData.DisplayName));

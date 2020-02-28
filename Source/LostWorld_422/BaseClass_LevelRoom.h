@@ -9,6 +9,7 @@
 #include "BaseClass_GridTile.h"
 #include "BaseClass_EntityInWorld.h"
 #include "BaseComponent_Room_Tile.h"
+#include "WidgetComponent_RoomEncounter.h"
 
 #include "BaseClass_LevelRoom.generated.h"
 
@@ -37,16 +38,25 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room")
 	F_Level_Room RoomData;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Room")
+	TArray<F_Level_Room> EncountersList;
+
 // ------------------------- Tile Grid
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tile Grid")
 	TArray<UBaseComponent_Room_Tile*> SceneCoordinateComponents;
 
-// ------------------------- Entity
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
+// ------------------------- Constructor Classes (?)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
 	ABaseClass_EntityInBattle* EntityInBattle_Reference;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	TSubclassOf<UWidgetComponent_RoomEncounter> RoomEncounter_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UWidgetComponent_RoomEncounter* RoomEncounter_Widget;
 
 
 // Functions
@@ -55,4 +65,7 @@ public:
 // ------------------------- Setup
 	UFUNCTION()
 	void SpawnEnemyFormation();
+
+	UFUNCTION(BlueprintCallable)
+	void PlayerEnterRoom();
 };

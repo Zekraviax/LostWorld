@@ -395,6 +395,21 @@ struct LOSTWORLD_422_API F_LevelRoom_EnemyFormation : public FTableRowBase
 	}
 };
 
+// Treasure Boxes Combinations
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString CombinationName;
+
+	F_LevelRoom_TreasureBoxCombination()
+	{
+		CombinationName = "Default";
+	}
+};
+
 // Level Room
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
@@ -405,7 +420,7 @@ struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
 	FString DisplayName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
-	FDataTableRowHandle EnemyFormation;
+	FDataTableRowHandle EncounterListEntry;
 
 	F_Level_Room()
 	{
@@ -441,6 +456,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	ABaseClass_CardFunctionsLibrary* CardFunctionLibraryReference;
+
+	// Player
+	//UPROPERTY()
+	//ABaseClass_EntityInBattle* Player;
 
 // ------------------------- Classes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")

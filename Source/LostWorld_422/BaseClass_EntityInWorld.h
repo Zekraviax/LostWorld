@@ -73,7 +73,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UTextRenderComponent* HealthText_WorldRender;
 
-// Base Variables
+// Functions
 // --------------------------------------------------
 
 // ------------------------- Mouse

@@ -11,6 +11,7 @@
 #include "BaseClass_EntityInWorld.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_CardUserWidget.h"
+#include "BaseClass_LevelRoom.h"
 #include "BaseClass_Widget_SpentMana.h"
 
 #include "BaseClass_PlayerController.generated.h"
@@ -53,6 +54,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	ABaseClass_LevelRoom* CurrentRoom;
+
 // ------------------------- Widgets
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	class UBaseClass_HUD_Level* Level_HUD_Widget;
@@ -90,4 +94,11 @@ public:
 // ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void CustomOnLeftMouseButtonUpEvent();
+
+// ------------------------- Gameplay
+	UFUNCTION(BlueprintCallable)
+	void BeginBattle();
+
+	UFUNCTION(BlueprintCallable)
+	void ExitBattle();
 };

@@ -74,7 +74,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Test_SetPlayerData();
 
-// ------------------------- Widget
+// ------------------------- Widgets
 	UFUNCTION(BlueprintCallable)
 	void OpenDeckBuilder();
 

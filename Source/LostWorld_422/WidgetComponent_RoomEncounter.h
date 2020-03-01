@@ -31,4 +31,11 @@ public:
 // ------------------------- Encounter
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
 	F_Level_Room EncounterData;
+
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Encounter
+	UFUNCTION(BlueprintCallable)
+	void SelectedEncounter();
 };

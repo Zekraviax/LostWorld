@@ -96,9 +96,9 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 	TArray<ABaseClass_EntityInBattle*> CurrentAliveEnemyEntities;
 
 	// Check if entity that died is the player
-	// If it isn't the player, check if all enemies are dead
+	// If it isn't the player, check if all enemies are dead instead
 	if (DeadEntity->PlayerControllerRef) {
-
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Game Over."));
 	}
 	else {
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
@@ -111,7 +111,8 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 		// If all enemies are dead, end the battle
 		if (CurrentAliveEnemyEntities.Num() <= 0) {
-
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->ExitBattle();
 		}
 	}
 }

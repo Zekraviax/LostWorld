@@ -73,7 +73,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 void ABaseClass_EntityInBattle::ResetStatsWidget()
 {
 	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
 }
 
 

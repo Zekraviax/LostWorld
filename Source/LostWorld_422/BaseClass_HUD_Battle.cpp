@@ -29,13 +29,13 @@ void UBaseClass_HUD_Battle::Test_SetPlayerData()
 
 void UBaseClass_HUD_Battle::OpenDeckBuilder()
 {
-	if (DeckBuilder_Class && !DeckBuilderRef)
-	{
-		DeckBuilderRef = CreateWidget<UBaseClass_Widget_DeckBuilder>(GetWorld(), DeckBuilder_Class);
-		DeckBuilderRef->HUDRef = this;
-		DeckBuilderRef->PopulateScrollBoxes();
-		DeckBuilderRef->AddToViewport();
-	}
+	//if (DeckBuilder_Class && !DeckBuilderRef)
+	//{
+	//	DeckBuilderRef = CreateWidget<UBaseClass_Widget_DeckBuilder>(GetWorld(), DeckBuilder_Class);
+	//	DeckBuilderRef->HUDRef = this;
+	//	DeckBuilderRef->PopulateScrollBoxes();
+	//	DeckBuilderRef->AddToViewport();
+	//}
 }
 
 void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)

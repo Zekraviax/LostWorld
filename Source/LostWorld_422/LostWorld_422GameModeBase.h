@@ -419,7 +419,7 @@ struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
 	FString DisplayName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	FDataTableRowHandle EncounterListEntry;
 
 	F_Level_Room()

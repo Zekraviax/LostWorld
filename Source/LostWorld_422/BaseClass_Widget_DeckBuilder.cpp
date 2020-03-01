@@ -1,11 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseClass_Widget_DeckBuilder.h"
 
 #include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
 #include "Components/CanvasPanel.h"
 #include "BaseClass_PlayerController.h"
+
 
 void UBaseClass_Widget_DeckBuilder::NativeConstruct()
 {
@@ -104,31 +102,11 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 				DeckBuilderCard_Widget->PlayerControllerRef = PlayerControllerRef;
 				DeckBuilderCard_Widget->DeckBuilderWidgetRef = this;
 				DeckBuilderCard_Widget->QuantityBind = 1;
-				//DeckBuilderCard_Widget->BindInfo();
 				CurrentDeck_ScrollBox->AddChild(DeckBuilderCard_Widget);
 			}
 		}
 	}
 }
-
-//void UBaseClass_Widget_DeckBuilder::SubtractFromCollection_AddToDeck(FCardBase ChosenCard)
-//{
-//	if (!PlayerControllerRef)
-//		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-//
-//}
-//
-//void UBaseClass_Widget_DeckBuilder::SubtractFromDeck_AddToCollection(FCardBase ChosenCard)
-//{
-//	if (!PlayerControllerRef)
-//		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-//}
-//
-//void UBaseClass_Widget_DeckBuilder::Test_AddToDeck(FCardBase ChosenCard)
-//{
-//	if (!PlayerControllerRef)
-//		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-//}
 
 void UBaseClass_Widget_DeckBuilder::AddSingleCardToZone(FCardBase ChosenCard, E_DeckBuilder_Zone ChosenZone)
 {
@@ -191,7 +169,6 @@ void UBaseClass_Widget_DeckBuilder::Test_Activate_UnlimitedCards()
 				DeckBuilderCard_Widget->PlayerControllerRef = PlayerControllerRef;
 				DeckBuilderCard_Widget->DeckBuilderWidgetRef = this;
 				DeckBuilderCard_Widget->QuantityBind = 255;
-				//DeckBuilderCard_Widget->BindInfo();
 				CurrentCollection_ScrollBox->AddChild(DeckBuilderCard_Widget);
 				TestUnlimitedCardsMode = true;
 			}

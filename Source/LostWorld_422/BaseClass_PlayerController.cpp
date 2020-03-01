@@ -29,7 +29,7 @@ void ABaseClass_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Create the battle HUD widget
+	// Create the Level HUD widget
 	if (!Level_HUD_Widget && Level_HUD_Class) {
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
@@ -55,6 +55,7 @@ void ABaseClass_PlayerController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+// ------------------------- Mouse
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Mouse Button Up"));
@@ -151,5 +152,34 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		//}
 
 		}
+	}
+}
+
+// ------------------------- Gameplay
+void ABaseClass_PlayerController::BeginBattle()
+{
+	if (Level_HUD_Widget) {
+		Level_HUD_Widget->RemoveFromParent();
+	}
+
+	// Create the Battle HUD widget
+	if (Battle_HUD_Class) {
+		Battle_HUD_Widget = CreateWidget<UBaseClass_HUD_Battle>(GetWorld(), Battle_HUD_Class);
+		Battle_HUD_Widget->AddToViewport();
+		Battle_HUD_Widget->DebugBeginBattle();
+	}
+}
+
+void ABaseClass_PlayerController::ExitBattle()
+{
+	if (Battle_HUD_Widget) {
+		Battle_HUD_Widget->RemoveFromParent();
+	}
+
+	// Create the Level HUD widget
+	if (Level_HUD_Class) {
+		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
+		Level_HUD_Widget->AddToViewport();
+		CurrentRoom->PlayerEnterRoom();
 	}
 }

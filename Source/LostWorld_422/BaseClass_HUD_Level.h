@@ -7,8 +7,8 @@
 
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
-#include "BaseClass_Widget_DeckBuilder.h"
 #include "BaseClass_CardUserWidget.h"
+#include "BaseClass_Widget_DeckBuilder.h"
 #include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_HUD_Level.generated.h"
@@ -31,6 +31,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
 	UScrollBox* EncounterList_ScrollBox;
 
+// ------------------------- Widgets
+	// Deck Builder Class
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	TSubclassOf<UBaseClass_Widget_DeckBuilder> DeckBuilder_Class;
+
+	// Deck Builder Instance
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UBaseClass_Widget_DeckBuilder* DeckBuilderRef;
+
 // ------------------------- Room Features
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Features")
 	TArray<E_LevelRoom_EncounterTypes> EncounterList;
@@ -38,6 +47,7 @@ public:
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Debug
-	
+// ------------------------- Widgets
+	UFUNCTION(BlueprintCallable)
+	void OpenDeckBuilder();
 };

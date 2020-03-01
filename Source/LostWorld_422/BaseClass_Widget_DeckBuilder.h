@@ -15,6 +15,7 @@
 // Forward Declaration
 class ABaseClass_PlayerController;
 class UBaseClass_HUD_Battle;
+class UBaseClass_HUD_Level;
 
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_Widget_DeckBuilder : public UUserWidget
@@ -58,7 +59,7 @@ public:
 	ALostWorld_422GameModeBase* GameModeRef;
 
 	UPROPERTY()
-	UBaseClass_HUD_Battle* HUDRef;
+	UBaseClass_HUD_Level* HUDRef;
 
 // Functions
 // --------------------------------------------------

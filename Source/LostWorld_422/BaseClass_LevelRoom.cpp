@@ -1,15 +1,17 @@
 #include "BaseClass_LevelRoom.h"
 
 #include "BaseClass_PlayerController.h"
+#include "BaseClass_Level_SpawnHandler.h"
 
 
+// ------------------------- Initializer
 // Sets default values
 ABaseClass_LevelRoom::ABaseClass_LevelRoom()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
-	// Construct EntityInWorld
+	// Construct EntityInBattle
 	static ConstructorHelpers::FObjectFinder<UBlueprint> EntityInBattle_BlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInBattle.Blueprint_EntityInBattle'"));
 
 	if (EntityInBattle_BlueprintConstruct.Object) {
@@ -22,12 +24,7 @@ ABaseClass_LevelRoom::ABaseClass_LevelRoom()
 void ABaseClass_LevelRoom::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	// Spawn enemies test
-	//SpawnEnemyFormation();
 
-	// Add a test encounter to the room
-	//EncountersList.
 }
 
 // Called every frame
@@ -38,6 +35,40 @@ void ABaseClass_LevelRoom::Tick(float DeltaTime)
 }
 
 // ------------------------- Setup
+void ABaseClass_LevelRoom::SpawnAdjacentRoom()
+{
+	FName Name;
+	FVector Location;
+	FRotator Rotation;
+	ABaseClass_Level_SpawnHandler* RoomSpawner = nullptr;
+
+	this->GetComponents<USceneComponent>(RoomSpawnSceneComponents);
+
+	// Find the Room SpawnHandler
+	for (TActorIterator<ABaseClass_Level_SpawnHandler> Itr(GetWorld()); Itr; ++Itr) {
+		RoomSpawner = *Itr;
+	}
+
+	// Clear out any non-RoomSpawn components from the array
+	for (int i = RoomSpawnSceneComponents.Num() - 1; i > 0; i--) {
+		if (RoomSpawnSceneComponents[i]->GetName().Contains("RoomSpawn")) {
+			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Found Spawn Component: " + RoomSpawnSceneComponents[i]->GetName()));
+		}
+		else {
+			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Cyan, TEXT("Found Non-Spawn Component: " + RoomSpawnSceneComponents[i]->GetName()));
+			RoomSpawnSceneComponents.RemoveAt(i);
+		}
+	}
+
+	if (RoomSpawner) {
+		for (int j = 0; j < RoomSpawnSceneComponents.Num(); j++) {
+			RoomSpawnSceneComponents[j]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
+
+			RoomSpawner->SpawnNewRoom(RoomSpawner->TestOne_Room_Class, Location, Rotation);
+		}
+	}
+}
+
 void ABaseClass_LevelRoom::SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyFormation)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Attempting to spawn enemy formation."));

@@ -13,21 +13,16 @@ ABaseClass_EntityInWorld::ABaseClass_EntityInWorld()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Initialize Components
-	
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 
 	FAttachmentTransformRules AttachRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
-	StaticMesh->AttachToComponent(RootComponent, AttachRules);
-	SpringArm->AttachToComponent(StaticMesh, AttachRules);
-	Camera->AttachToComponent(SpringArm, AttachRules);
+	AttachRules.bWeldSimulatedBodies = false;
 
-	//HealthText_WorldRender = CreateDefaultSubobject<UTextRenderComponent>("HealthText_WorldRender");
-	//HealthText_WorldRender->AttachToComponent(RootComponent, AttachRules);
-
-	// Initialize Mouse Events
-	//StaticMesh->OnBeginCursorOver.AddDynamic(this, &ABaseClass_EntityInWorld::CustomOnBeginMouseOverEvent);
+	StaticMesh->SetupAttachment(RootComponent);
+	SpringArm->SetupAttachment(RootComponent);
+	Camera->SetupAttachment(SpringArm);
 
 	// Create EntityInBattle Ref
 	static ConstructorHelpers::FObjectFinder<UBlueprint>EntityInBattleBlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInBattle.Blueprint_EntityInBattle'"));
@@ -49,20 +44,6 @@ void ABaseClass_EntityInWorld::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// Rotate TextRenders towards player camera
-	//if (!PlayerControllerRef)
-	//	PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-
-	//FVector CameraLocation = PlayerControllerRef->PlayerCameraManager->GetCameraLocation();
-	//FVector RenderLocation = HealthText_WorldRender->GetComponentLocation();
-	//FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(RenderLocation, CameraLocation);
-	//// Pitch, Yaw, Roll
-	//FRotator CalculatedRotation = FRotator(0, (LookAtRotation.Yaw - 90), ((LookAtRotation.Pitch * -1) + 90));
-
-	//if (HealthText_WorldRender)
-	//{
-	//	//HealthText_WorldRender->SetWorldRotation(CalculatedRotation);
-	//}
 }
 
 void ABaseClass_EntityInWorld::CustomOnBeginMouseOverEvent(UPrimitiveComponent* TouchedComponent)
@@ -78,7 +59,6 @@ void ABaseClass_EntityInWorld::CreateEntityInBattle()
 		UWorld* const World = GetWorld(); // get a reference to the world
 		FActorSpawnParameters SpawnParameters;
 		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
-		//EntityInBattleRef->EntityInWorldRef = this;
 
 		if(EntityBaseData.IsPlayerControllable || !PlayerControllerRef)
 			PlayerControllerRef = PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());

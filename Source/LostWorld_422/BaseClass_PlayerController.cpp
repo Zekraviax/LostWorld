@@ -35,7 +35,7 @@ void ABaseClass_PlayerController::BeginPlay()
 		Level_HUD_Widget->AddToViewport();
 	}
 
-	// Create the player EntityInWorld
+	// Create the player EntityInBattle
 	if (!EntityInBattleRef && EntityInBattle_Class) {
 		UWorld* const World = GetWorld(); // get a reference to the world
 		FActorSpawnParameters SpawnParameters;
@@ -139,18 +139,6 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;
-
-		//if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
-		//{
-		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
-		//	CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-		//} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget)) {
-		//	CurrentDragCardRef->RemoveFromParent();
-		//	CurrentDragCardRef = NULL;
-
-		//	return;
-		//}
-
 		}
 	}
 }
@@ -175,6 +163,8 @@ void ABaseClass_PlayerController::ExitBattle()
 	if (Battle_HUD_Widget) {
 		Battle_HUD_Widget->RemoveFromParent();
 	}
+
+
 
 	// Create the Level HUD widget
 	if (Level_HUD_Class) {

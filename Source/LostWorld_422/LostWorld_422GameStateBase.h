@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
 
-#include "BaseClass_EntityInWorld.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
 

@@ -18,7 +18,6 @@
 #include "BaseClass_EntityInBattle.generated.h"
 
 // Forward Declarations
-class ABaseClass_EntityInWorld;
 class ABaseClass_PlayerController;
 class ALostWorld_422GameStateBase;
 

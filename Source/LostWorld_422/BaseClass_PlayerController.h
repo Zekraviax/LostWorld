@@ -8,7 +8,6 @@
 #include "LostWorld_422GameModeBase.h"
 #include "BaseClass_HUD_Battle.h"
 #include "BaseClass_HUD_Level.h"
-#include "BaseClass_EntityInWorld.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_CardUserWidget.h"
 #include "BaseClass_LevelRoom.h"

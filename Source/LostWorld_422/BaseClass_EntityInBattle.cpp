@@ -3,7 +3,6 @@
 
 #include "BaseClass_EntityInBattle.h"
 
-#include "BaseClass_EntityInWorld.h"
 #include "BaseClass_PlayerController.h"
 #include "LostWorld_422GameStateBase.h"
 

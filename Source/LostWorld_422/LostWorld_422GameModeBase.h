@@ -420,11 +420,15 @@ struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
 	FString DisplayName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool CurrentlyActiveEncounter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	FDataTableRowHandle EncounterListEntry;
 
 	F_Level_Room()
 	{
 		DisplayName = "Default";
+		CurrentlyActiveEncounter = false;
 	}
 };
 

@@ -94,6 +94,7 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* DeadEntity)
 {
 	TArray<ABaseClass_EntityInBattle*> CurrentAliveEnemyEntities;
+	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
 	// Check if entity that died is the player
 	// If it isn't the player, check if all enemies are dead instead
@@ -112,7 +113,16 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 		// If all enemies are dead, end the battle
 		if (CurrentAliveEnemyEntities.Num() <= 0) {
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
-			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->ExitBattle();
+
+			// Remove the Encounter from the list
+			for (int i = 0; i < LocalPlayerControllerRef->CurrentRoom->EncountersList.Num(); i++) {
+				if (LocalPlayerControllerRef->CurrentRoom->EncountersList[i].CurrentlyActiveEncounter) {
+					LocalPlayerControllerRef->CurrentRoom->EncountersList.RemoveAt(i);
+				}
+			}
+
+			// Return the player to the Room
+			LocalPlayerControllerRef->ExitBattle();
 		}
 	}
 }

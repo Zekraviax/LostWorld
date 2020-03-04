@@ -10,12 +10,12 @@
 //#define NOTHING 0
 //#define DEAL_DAMAGE 1
 //#define DRAW_CARDS 2
-#define GUN_DOWN 0
-#define SHOCKWAVE 1
-#define SUDDEN_INSPIRATION 2
-#define ESSENCE_RECYCLING 2
-#define RECALL 4
-#define ROLLING_QUAKE 5
+//#define GUN_DOWN 0
+//#define SHOCKWAVE 1
+//#define SUDDEN_INSPIRATION 2
+//#define ESSENCE_RECYCLING 2
+//#define RECALL 4
+//#define ROLLING_QUAKE 5
 
 // Sets default values
 ABaseClass_CardFunctionsLibrary::ABaseClass_CardFunctionsLibrary()
@@ -47,12 +47,12 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 	//CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::CardFunction_Nothing;
 	//CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
 	//CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards;
-	CardFunctions[GUN_DOWN] = &ABaseClass_CardFunctionsLibrary::Gun_Down;
-	CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
-	CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
-	CardFunctions[ESSENCE_RECYCLING] = &ABaseClass_CardFunctionsLibrary::Essence_Recycling;
-	CardFunctions[RECALL] = &ABaseClass_CardFunctionsLibrary::Recall;
-	CardFunctions[ROLLING_QUAKE] = &ABaseClass_CardFunctionsLibrary::Rolling_Quake;
+	//CardFunctions[GUN_DOWN] = &ABaseClass_CardFunctionsLibrary::Gun_Down;
+	//CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
+	//CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
+	//CardFunctions[ESSENCE_RECYCLING] = &ABaseClass_CardFunctionsLibrary::Essence_Recycling;
+	//CardFunctions[RECALL] = &ABaseClass_CardFunctionsLibrary::Recall;
+	//CardFunctions[ROLLING_QUAKE] = &ABaseClass_CardFunctionsLibrary::Rolling_Quake;
 
 
 	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized functions."));
@@ -108,109 +108,109 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 //	LocalCardReference.Controller->UpdateCardWidgets();
 //}
 
-void ABaseClass_CardFunctionsLibrary::Gun_Down()
-{
-	int32 DamageValue = 7;
-	int32 OldHealthValue = LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
-	LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[0]->EntityBaseData.DisplayName)));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[00]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-}
-
-void ABaseClass_CardFunctionsLibrary::Shockwave()
-{
-	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
-	{
-		int32 DamageValue = 1;
-		int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
-		LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-	}
-}
-
-void ABaseClass_CardFunctionsLibrary::Sudden_Inspiration()
-{
-	int32 DrawValue = 2;
-
-	for (int i = 0; i < DrawValue; i++)
-	{
-		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
-			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
-
-			// Set ownership
-			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
-
-			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
-
-			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
-		}
-	}
-
-	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
-	LocalCardReference.Controller->UpdateCardWidgets();
-}
-
-void ABaseClass_CardFunctionsLibrary::Essence_Recycling()
-{
-	int32 DrawValue = 2;
-	int32 DamageValue = 2;
-
-	int32 OldHealthValue = LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
-	LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[0]->EntityBaseData.DisplayName)));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[00]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-
-	for (int i = 0; i < DrawValue; i++)
-	{
-		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
-			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
-
-			// Set ownership
-			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
-
-			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
-
-			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
-		}
-	}
-
-	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
-	LocalCardReference.Controller->UpdateCardWidgets();
-}
-
-void ABaseClass_CardFunctionsLibrary::Recall() 
-{
-	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode())->ZoneSearchWidget_Class;
-	UBaseClass_Widget_ZoneSearch* ZoneSearchWidget_Reference = CreateWidget<UBaseClass_Widget_ZoneSearch>(GetWorld(), ZoneSearchWidget_Class);
-	ZoneSearchWidget_Reference->PopulateWidget(LocalCardReference.Controller->CardsInDeck, 1, E_ZoneSearch_Functions::E_DrawCards, E_Card_Zones::E_Deck);
-	ZoneSearchWidget_Reference->AddToViewport();
-}
-
-void ABaseClass_CardFunctionsLibrary::Rolling_Quake()
-{
-	int32 DamageValue = 2;
-	int32 OldHealthValue = 0;
-	ABaseClass_EntityInBattle* Target;
-
-	for (int i = 0; i < LocalCardReference.ManaCost; i++) {
-		Target = LocalCardReference.CurrentTargets[FMath::RandRange(0, LocalCardReference.CurrentTargets.Num() - 1)];
-
-		OldHealthValue = Target->EntityBaseData.HealthValues.X_Value;
-		Target->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + Target->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(Target->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-
-	}
-}
+//void ABaseClass_CardFunctionsLibrary::Gun_Down()
+//{
+//	int32 DamageValue = 7;
+//	int32 OldHealthValue = LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
+//	LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= DamageValue;
+//
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[0]->EntityBaseData.DisplayName)));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[00]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::Shockwave()
+//{
+//	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
+//	{
+//		int32 DamageValue = 1;
+//		int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
+//		LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
+//
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+//	}
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::Sudden_Inspiration()
+//{
+//	int32 DrawValue = 2;
+//
+//	for (int i = 0; i < DrawValue; i++)
+//	{
+//		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
+//			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
+//
+//			// Set ownership
+//			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+//			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+//
+//			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+//			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+//
+//			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
+//		}
+//	}
+//
+//	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
+//	LocalCardReference.Controller->UpdateCardWidgets();
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::Essence_Recycling()
+//{
+//	int32 DrawValue = 2;
+//	int32 DamageValue = 2;
+//
+//	int32 OldHealthValue = LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
+//	LocalCardReference.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= DamageValue;
+//
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[0]->EntityBaseData.DisplayName)));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[00]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+//
+//	for (int i = 0; i < DrawValue; i++)
+//	{
+//		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
+//			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
+//
+//			// Set ownership
+//			//LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+//			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+//
+//			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+//			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+//
+//			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
+//		}
+//	}
+//
+//	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
+//	LocalCardReference.Controller->UpdateCardWidgets();
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::Recall() 
+//{
+//	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode())->ZoneSearchWidget_Class;
+//	UBaseClass_Widget_ZoneSearch* ZoneSearchWidget_Reference = CreateWidget<UBaseClass_Widget_ZoneSearch>(GetWorld(), ZoneSearchWidget_Class);
+//	ZoneSearchWidget_Reference->PopulateWidget(LocalCardReference.Controller->CardsInDeck, 1, E_ZoneSearch_Functions::E_DrawCards, E_Card_Zones::E_Deck);
+//	ZoneSearchWidget_Reference->AddToViewport();
+//}
+//
+//void ABaseClass_CardFunctionsLibrary::Rolling_Quake()
+//{
+//	int32 DamageValue = 2;
+//	int32 OldHealthValue = 0;
+//	ABaseClass_EntityInBattle* Target;
+//
+//	for (int i = 0; i < LocalCardReference.ManaCost; i++) {
+//		Target = LocalCardReference.CurrentTargets[FMath::RandRange(0, LocalCardReference.CurrentTargets.Num() - 1)];
+//
+//		OldHealthValue = Target->EntityBaseData.HealthValues.X_Value;
+//		Target->EntityBaseData.HealthValues.X_Value -= DamageValue;
+//
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + Target->EntityBaseData.DisplayName)));
+//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(Target->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+//
+//	}
+//}
 
 //-------------------- Execute Functions --------------------//
 
@@ -286,33 +286,7 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 			}
 		}
 
-		//if (NewStackEntry.Card.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self)) {
-		//	NewStackEntry.Card.CurrentTargets.Empty();
-		//	NewStackEntry.Card.CurrentTargets.Add(NewStackEntry.Card.Controller);
-		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Self"));
-		//}
-
-		// All Enemies
-		//else if (NewStackEntry.Card.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_AllEnemies)) {
-		//	NewStackEntry.Card.CurrentTargets.Empty();
-		//	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
-		//		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-
-		//		if (FoundEntity->EntityBaseData.IsPlayerControllable != NewStackEntry.Card.Controller->EntityBaseData.IsPlayerControllable) {
-		//			NewStackEntry.Card.CurrentTargets.Add(FoundEntity);
-		//			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Get All Enemies"));
-		//		}
-		//	}
-		//}
-
 		GameStateRef->TheStack.Add(NewStackEntry);
-
-		// Remove all functions except one at a time.
-		//for (int j = 0; j < GameStateRef->TheStack[i].Card.FunctionsWithRules.Num(); j++) {
-		//	if (j != i) {
-		//		GameStateRef->TheStack[i].Card.FunctionsWithRules.RemoveAt(j);
-		//	}
-		//}
 	}
 
 	// Start timer for the stack
@@ -323,45 +297,37 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 void ABaseClass_CardFunctionsLibrary::SetCardTargets()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Set Card Targets"));
-
-	// Clear the targets array if the Target mode is *not* set to CastTarget
-	// Otherwise, do nothing
-	//if (!LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_CastTarget))
-	//	LocalCardReference.CurrentTargets.Empty();
-
-	//if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_Target_Self))
-	//	LocalCardReference.CurrentTargets.Add(LocalCardReference.Controller);
 }
 
 
-int32 ABaseClass_CardFunctionsLibrary::ReturnIntValueFromRules()
-{
-	// Return Fixed Integers
-	if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_One))
-		return 1;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Two))
-		return 2;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Three))
-		return 3;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Four))
-		return 4;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Five))
-		return 5;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Six))
-		return 6;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Seven))
-		return 7;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Eight))
-		return 8;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Nine))
-		return 9;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Ten))
-		return 10;
-	// Calculate and return variable integers
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_VariableInteger_Current_Power))
-		return LocalCardReference.Controller->EntityBaseData.ManaValues.X_Value;
-	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_VariableInteger_Random_Number))
-		return FMath::RandRange(0, 10);
-	else
-		return 0;
-}
+//int32 ABaseClass_CardFunctionsLibrary::ReturnIntValueFromRules()
+//{
+//	// Return Fixed Integers
+//	if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_One))
+//		return 1;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Two))
+//		return 2;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Three))
+//		return 3;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Four))
+//		return 4;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Five))
+//		return 5;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Six))
+//		return 6;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Seven))
+//		return 7;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Eight))
+//		return 8;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Nine))
+//		return 9;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_FixedInteger_Ten))
+//		return 10;
+//	// Calculate and return variable integers
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_VariableInteger_Current_Power))
+//		return LocalCardReference.Controller->EntityBaseData.ManaValues.X_Value;
+//	else if (LocalCardReference.FunctionsWithRules[0].Rules.Contains(E_Card_Rules::E_Rule_VariableInteger_Random_Number))
+//		return FMath::RandRange(0, 10);
+//	else
+//		return 0;
+//}

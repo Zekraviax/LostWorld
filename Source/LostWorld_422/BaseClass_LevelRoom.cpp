@@ -51,11 +51,7 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 
 	// Clear out any non-RoomSpawn components from the array
 	for (int i = RoomSpawnSceneComponents.Num() - 1; i > 0; i--) {
-		if (RoomSpawnSceneComponents[i]->GetName().Contains("RoomSpawn")) {
-			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Found Spawn Component: " + RoomSpawnSceneComponents[i]->GetName()));
-		}
-		else {
-			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Cyan, TEXT("Found Non-Spawn Component: " + RoomSpawnSceneComponents[i]->GetName()));
+		if (!RoomSpawnSceneComponents[i]->GetName().Contains("RoomSpawn")) {
 			RoomSpawnSceneComponents.RemoveAt(i);
 		}
 	}

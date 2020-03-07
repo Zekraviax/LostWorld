@@ -61,17 +61,24 @@ enum class E_Card_Elements : uint8
 //	E_A_ChangeZone			UMETA(DisplayName = "A: Change Zone"),
 //};
 
+// Card Passive, Triggered, and Active Functions
+UENUM(BlueprintType)
 enum class E_Card_Abilities : uint8
 {
+	E_Default					UMETA(DisplayName = "Default"),
+	E_A_DrawCards				UMETA(DisplayName = "Active: Draw Cards"),
 	E_A_ChangeZone				UMETA(DisplayName = "Active: Change Zone"),
 };
 
+UENUM(BlueprintType)
 enum class E_Card_AbilityConditions : uint8
 {
+	E_Default					UMETA(DisplayName = "Default"),
+	E_ManaCost					UMETA(DisplayName = "Mana Cost: X"),
+	E_NumberOfCards				UMETA(DisplayName = "Number of Cards: X"),
 	E_ValidTargets_Monsters		UMETA(DisplayName = "ValidTargets: Monsters"),
 };
 
-// Card Technical Functions
 //UENUM(BlueprintType)
 //enum class E_Card_Functions : uint8
 //{
@@ -85,10 +92,10 @@ enum class E_Card_AbilityConditions : uint8
 //	E_Change_Maximum_Health						UMETA(DisplayName = "Change Target's Maximum Health"),
 //	E_Create_Card								UMETA(DisplayName = "Create A Card"),
 //	E_Search_Zone								UMETA(DisplayName = "Search Zone (Hand/Deck/Graveyard)"),
-//	E_Modal_Choose_X							UMETA(DisplayName = "Choose-X Effect"),							// Choose one-or-more function effects
+//	E_Modal_Choose_X							UMETA(DisplayName = "Choose-X Effect"),
 //	E_Copy_Card_Function						UMETA(DisplayName = "Copy Card Function"),
 //};
-//
+
 //UENUM(BlueprintType)
 //enum class E_Card_Rules : uint8
 //{
@@ -141,15 +148,15 @@ enum class E_Card_AbilityConditions : uint8
 //	E_Recall,
 //	E_RollingQuake
 //};
-//
-//UENUM(BlueprintType)
-//enum class E_Card_SetTargets : uint8
-//{
-//	E_Self,
-//	E_CastTarget,
-//	E_AllEnemies,
-//};
-//
+
+UENUM(BlueprintType)
+enum class E_Card_SetTargets : uint8
+{
+	E_Self,
+	E_CastTarget,
+	E_AllEnemies,
+};
+
 //UENUM(BlueprintType)
 //enum class E_Card_UserSelectModes : uint8
 //{
@@ -164,16 +171,16 @@ enum class E_Card_AbilityConditions : uint8
 //	E_Discard_Card,
 //};
 //
-//// Modes for casting on a target, not specifically the spells' target
-//UENUM(BlueprintType)
-//enum class E_Card_TargetModes : uint8
-//{
-//	E_Self,
-//	E_SingleEntity,
-//	E_AllEntities,
-//	E_SingleEnemy,
-//	E_AllEnemies,
-//};
+// Modes for casting on a target, not specifically the spells' target
+UENUM(BlueprintType)
+enum class E_Card_TargetModes : uint8
+{
+	E_Self,
+	E_SingleEntity,
+	E_AllEntities,
+	E_SingleEnemy,
+	E_AllEnemies,
+};
 
 UENUM(BlueprintType)
 enum class E_Card_Zones : uint8
@@ -219,7 +226,7 @@ struct LOSTWORLD_422_API FIntVector2D
 
 // ------------------------- Cards and Card Functions
 USTRUCT(BlueprintType)
-struct LOSTWORLD_422_API FCardFunctionAndRules
+struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 {
 	GENERATED_BODY()
 
@@ -229,7 +236,13 @@ struct LOSTWORLD_422_API FCardFunctionAndRules
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	//TArray<E_Card_Abilities> Abilities;
 
-	FCardFunctionAndRules()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_Card_Abilities Ability;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<E_Card_AbilityConditions, int> AbilityConditions;
+
+	FCardAbilitiesAndConditions()
 	{
 		//Function = E_Card_Functions::E_Deal_X_Damage;
 		//Rules.Add(E_Card_Rules::E_Rule_FixedInteger_Seven);
@@ -259,14 +272,16 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
 	FString Description;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	//TArray<FCardFunctionAndRules> FunctionsWithRules;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
+	TArray<FCardAbilitiesAndConditions> AbilitiesAndConditions;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	//TArray<E_Card_SetFunctions> Functions;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	//TArray<E_Card_SetTargets> Targets;
+	// Use this for spells that only have one target or set of targets.
+	// For complicated spells, use a target variable for each ability.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
+	E_Card_SetTargets SimpleTargetsOverride;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	int32 UniqueID;
@@ -334,10 +349,10 @@ struct LOSTWORLD_422_API FStackEntry
 		Delay = SetDelay;
 	}
 
-	//FStackEntry()
-	//{
+	FStackEntry()
+	{
 
-	//}
+	}
 };
 
 // ------------------------- Entities

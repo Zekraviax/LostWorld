@@ -35,14 +35,14 @@ void UBaseClass_Widget_SpentMana::CheckInputText(FText Text)
 
 void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 {
-	if (CardReference->CardData.ManaCost <= CurrentManaValue) {
+	//if (CardReference->CardData.ManaCost <= CurrentManaValue) {
 		UBaseClass_CardUserWidget* DuplicateCard = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
 
 		DuplicateCard->CardData = CardReference->CardData;
-		DuplicateCard->CardData.ManaCost = CurrentManaValue;
+		//DuplicateCard->CardData.ManaCost = CurrentManaValue;
 		DuplicateCard->CardData.Controller->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
 		DuplicateCard->CastCard();
 
 		this->RemoveFromParent();
-	}
+	//}
 }

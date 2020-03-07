@@ -41,7 +41,6 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 	FVector Location;
 	FRotator Rotation;
 	ABaseClass_Level_SpawnHandler* RoomSpawner = nullptr;
-
 	this->GetComponents<USceneComponent>(RoomSpawnSceneComponents);
 
 	// Find the Room SpawnHandler
@@ -50,16 +49,17 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 	}
 
 	// Clear out any non-RoomSpawn components from the array
-	for (int i = RoomSpawnSceneComponents.Num() - 1; i > 0; i--) {
-		if (!RoomSpawnSceneComponents[i]->GetName().Contains("RoomSpawn")) {
+	for (int i = RoomSpawnSceneComponents.Num() - 1; i >= 0; i--) {
+		if (!RoomSpawnSceneComponents[i]->ComponentHasTag(FName(TEXT("RoomSpawn")))) {
 			RoomSpawnSceneComponents.RemoveAt(i);
 		}
 	}
 
 	if (RoomSpawner) {
 		for (int j = 0; j < RoomSpawnSceneComponents.Num(); j++) {
-			RoomSpawnSceneComponents[j]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Component Name: " + RoomSpawnSceneComponents[j]->GetName()));
 
+			RoomSpawnSceneComponents[j]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
 			RoomSpawner->SpawnNewRoom(RoomSpawner->TestOne_Room_Class, Location, Rotation);
 		}
 	}

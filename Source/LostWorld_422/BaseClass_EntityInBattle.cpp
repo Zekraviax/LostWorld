@@ -181,19 +181,19 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	if (RandCard.Targets.Contains(E_Card_SetTargets::E_CastTarget)) {
-		TArray<ABaseClass_EntityInBattle*> TargetsArray;
+	//if (RandCard.CurrentTargets.Contains(E_Card_SetTargets::E_CastTarget)) {
+	//	TArray<ABaseClass_EntityInBattle*> TargetsArray;
 
-		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
-			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+	//	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+	//		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
-			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
-				TargetsArray.Add(FoundEntity);
-			}
-		}
+	//		if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
+	//			TargetsArray.Add(FoundEntity);
+	//		}
+	//	}
 
-		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
-	}
+	//	RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
+	//}
 
 	// Cast card
 	if (!GameModeRef)
@@ -203,15 +203,15 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Mana Check
-	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
-		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
-	}
-	else {
-		GameStateRef->EntityEndOfTurn();
-	}
+	//if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
+	//	EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
+	//}
+	//else {
+	//	GameStateRef->EntityEndOfTurn();
+	//}
 
-	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
-	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.FunctionsWithRules.Num() + 1), false);
+	//GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
+	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.AbilitiesAndConditions.Num() + 1), false);
 }
 
 

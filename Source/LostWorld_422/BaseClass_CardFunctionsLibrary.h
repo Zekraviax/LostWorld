@@ -15,7 +15,8 @@
 class ALostWorld_422GameStateBase;
 
 // Explicitly define number of static card functions
-#define CARD_FUNCTIONS_COUNT 0
+#define CARD_FUNCTIONS_COUNT 3
+#define CARD_ABILITY_CONDITIONS 0
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_CardFunctionsLibrary : public AActor
@@ -53,14 +54,14 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Card
-	UFUNCTION()
-	void SetCardTargets();
+	//UFUNCTION()
+	//void SetCardTargets();
 
 	//UFUNCTION()
 	//int32 ReturnIntValueFromRules();
 
-	UFUNCTION()
-	void AddCardFunctionsToTheStack(FCardBase Card);
+	//UFUNCTION()
+	//void AddCardFunctionsToTheStack(FCardBase Card);
 
 // ------------------------- Function Library
 	// The Functions Pointer Variable Type
@@ -69,19 +70,21 @@ public:
 
 	// Static Array of X function pointers
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
+	FunctionPtrType CardAbilityConditions[CARD_ABILITY_CONDITIONS];
 
 	// Executes a function from the CardFuntions Pointer Array
 	// Implementation does not vary in subclasses, so no virtual
 	void ExecuteCardFunctions();
+	void ExecuteAbilityConditionFunctions();
 
 	// Initialize the array
 	void InitializeCardFunctions();
+	void InitalizeAbilityConditionFunctions();
 
-	// The Actual Functions which are implemented in subclasses
-	// by this class.
-	//virtual void CardFunction_Nothing();
-	//virtual void CardFunction_DealDamage();
-	//virtual void CardFunction_DrawCards();
+	// The Actual Functions which are implemented in subclasses by this class.
+	virtual void CardFunction_Nothing();
+	virtual void CardFunction_DealDamage();
+	virtual void CardFunction_DrawCards();
 	//virtual void Gun_Down();
 	//virtual void Shockwave();
 	//virtual void Sudden_Inspiration();

@@ -96,10 +96,9 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 				} else {
 					CurrentDragCardRef->RemoveFromParent();
 					CurrentDragCardRef = NULL;
-
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
 					return;
 				}
-
 				CurrentDragCardRef->CastCard();
 			} else {
 				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
@@ -114,7 +113,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
 
 				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);

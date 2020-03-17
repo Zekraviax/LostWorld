@@ -1,8 +1,18 @@
 #include "LostWorld_422GameStateBase.h"
 
 #include "EngineUtils.h"
+#include "BaseClass_EntityInBattle.h"
+#include "BaseClass_PlayerController.h"
 
 
+//-------------------- Base --------------------//
+//ALostWorld_422GameStateBase::ALostWorld_422GameStateBase()
+//{
+//
+//}
+
+
+//-------------------- Battle --------------------//
 void ALostWorld_422GameStateBase::DebugBattleStart()
 {
 	if (!PlayerControllerRef)
@@ -85,6 +95,46 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 	}
 
 	GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 0.5f, false);
+}
+
+
+void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
+{
+	FCardBase NewStackEntry;
+	NewStackEntry.Art = Card.Art;
+	NewStackEntry.Controller = Card.Controller;
+	//NewStackEntry.CurrentTargets = Card.CurrentTargets;
+	NewStackEntry.DisplayName = Card.DisplayName;
+	NewStackEntry.Elements = Card.Elements;
+	NewStackEntry.ManaCost = Card.ManaCost;
+	NewStackEntry.Owner = Card.Owner;
+	NewStackEntry.Type = Card.Type;
+
+	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
+		NewStackEntry.Description = Card.Description;
+		NewStackEntry.CurrentTargets = Card.CurrentTargets;
+		NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
+		TheStack.Add(NewStackEntry);
+	}
+
+	// Start timer for the stack
+	ExecuteCardFunctions();
+	//GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+}
+
+
+void ALostWorld_422GameStateBase::ExecuteCardFunctions()
+{
+	// Spawn ability actor
+	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.bNoFail = true;
+	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	if (GetWorld()) {
+		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[TheStack.Num() - 1].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[TheStack.Num() - 1]);
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Cast card: " + TheStack[TheStack.Num() - 1].AbilitiesAndConditions[0].Ability.Get()->GetName()));
+	}
 }
 
 

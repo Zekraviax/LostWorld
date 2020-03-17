@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,6 +13,7 @@ class ABaseClass_EntityInBattle;
 class ABaseClass_CardFunctionsLibrary;
 class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
+class ACardAbilityActor_BaseClass;
 
 
 // Enums
@@ -236,11 +235,17 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	//TArray<E_Card_Abilities> Abilities;
 
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//E_Card_Abilities Ability;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	E_Card_Abilities Ability;
+	TSubclassOf<ACardAbilityActor_BaseClass> Ability;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<E_Card_AbilityConditions, int> AbilityConditions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString AbilityDescription;
 
 	FCardAbilitiesAndConditions()
 	{

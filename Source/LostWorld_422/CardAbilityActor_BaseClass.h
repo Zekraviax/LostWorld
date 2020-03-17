@@ -28,35 +28,34 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
-	TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_DrawCards_Class;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_DrawCards_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
-	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	//ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 // ------------------------- Card
-	UPROPERTY()
-	FCardBase LocalCardReference;
+	//UPROPERTY()
+	//FCardBase LocalAbilityReference;
 
 // ------------------------- The Stack
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stack")
-	TArray<FCardBase> StackArray;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stack")
+	//TArray<FCardBase> StackArray;
 
 // ------------------------- Timers	
-	UPROPERTY()
-	FTimerHandle StackTimerHandle;
+	//UPROPERTY()
+	//FTimerHandle StackTimerHandle;
 
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Base Class Functions
-	UFUNCTION()
-	void CastCard(FCardBase Card);
+	//UFUNCTION()
+	//void CastCard(FCardBase Card);
 
-	UFUNCTION()
-	void SpawnCardAbilityActor(TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_Class);
+	//UFUNCTION()
+	//void SpawnCardAbilityActor(TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_Class);
 
 // ------------------------- Sub Class Functions
-	UFUNCTION()
-	void RunCardAbilityFunction();
+	virtual void RunCardAbilityFunction(FCardBase CardAbility);
 };

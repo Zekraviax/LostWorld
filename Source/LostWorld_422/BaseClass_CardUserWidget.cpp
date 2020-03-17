@@ -3,6 +3,7 @@
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_CardFunctionsLibrary.h"
 #include "BaseClass_Widget_ZoneSearch.h"
+#include "LostWorld_422GameStateBase.h"
 #include "CardAbilityActor_BaseClass.h"
 
 
@@ -40,6 +41,7 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 
 	CardDragWidgetRef->AddToViewport();
 	LocalPlayerControllerRef->CurrentDragCardRef = CardDragWidgetRef;
+
 	//}
 	//else if (CardData.CurrentSelectMode == E_Card_UserSelectModes::E_Select) {
 	//	UBaseClass_Widget_ZoneSearch* FoundWidget = NULL;
@@ -61,9 +63,13 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 
 void UBaseClass_CardUserWidget::CastCard()
 {
-	if (!GameModeRef)
-		GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
+	//if (!GameModeRef)
+	//	GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if (!GameStateRef) {
+		GameStateRef = Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState());
+	}
 
 	//GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(CardData);
-	UE_LOG(LogTemp, Warning, TEXT("Cast Card"));
+	GameStateRef->AddCardFunctionsToTheStack(CardData);
 }

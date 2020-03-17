@@ -1,16 +1,17 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
 
-#include "BaseClass_EntityInBattle.h"
-#include "BaseClass_PlayerController.h"
+#include "CardAbilityActor_BaseClass.h"
+#include "CardAbilityActor_DrawCards.h"
 
 #include "LostWorld_422GameStateBase.generated.h"
 
-// Foward Declarations
+// Forward Declarations
+class ABaseClass_EntityInBattle;
+class ABaseClass_PlayerController;
+
 
 UCLASS()
 class LOSTWORLD_422_API ALostWorld_422GameStateBase : public AGameStateBase
@@ -18,6 +19,11 @@ class LOSTWORLD_422_API ALostWorld_422GameStateBase : public AGameStateBase
 	GENERATED_BODY()
 	
 public:
+// Initializers
+// --------------------------------------------------
+	//ALostWorld_422GameStateBase();
+
+
 // Base Variables
 // --------------------------------------------------
 
@@ -29,15 +35,24 @@ public:
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
 	UPROPERTY()
-	TArray<FStackEntry> TheStack;
+	TArray<FCardBase> TheStack;
 
-// ------------------------- Technical Variables
 	UPROPERTY()
 	ABaseClass_PlayerController* PlayerControllerRef;
 
 // ------------------------- Timers	
 	UPROPERTY()
 	FTimerHandle BeginTurnTimerHandle;
+
+	UPROPERTY()
+	FTimerHandle StackTimerHandle;
+
+// ------------------------- Constructors
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 // Functions
 // --------------------------------------------------
@@ -54,6 +69,13 @@ public:
 
 	UFUNCTION()
 	void NewCombatRound();
+
+// ------------------------- Combat Functions
+	UFUNCTION()
+	void AddCardFunctionsToTheStack(FCardBase Card);
+
+	UFUNCTION()
+	void ExecuteCardFunctions();
 
 // ------------------------- Events
 	UFUNCTION()

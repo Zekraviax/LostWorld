@@ -1,7 +1,7 @@
 #include "BaseClass_Level_SpawnHandler.h"
 
 
-//-------------------- Base Functions --------------------//
+//-------------------- Base --------------------//
 // Sets default values
 ABaseClass_Level_SpawnHandler::ABaseClass_Level_SpawnHandler()
 {
@@ -24,7 +24,7 @@ void ABaseClass_Level_SpawnHandler::Tick(float DeltaTime)
 
 }
 
-//-------------------- Spawn Functions --------------------//
+//-------------------- Spawn Rooms --------------------//
 void ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation)
 {
 	FActorSpawnParameters SpawnParameters;

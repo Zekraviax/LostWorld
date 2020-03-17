@@ -1,11 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
 #include "LostWorld_422GameModeBase.h"
+#include "Lostworld_422GameStateBase.h"
 
 #include "BaseClass_CardUserWidget.generated.h"
 
@@ -32,16 +31,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	int32 IndexInZone;
 
-// ------------------------- Function Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Functions")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	bool IsDragging;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Functions")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	ABaseClass_PlayerController* LocalPlayerControllerRef;
 
 // ------------------------- References
 	UPROPERTY()
 	ALostWorld_422GameModeBase* GameModeRef;
+
+	UPROPERTY()
+	ALostWorld_422GameStateBase* GameStateRef;
 
 // Base Variables
 // --------------------------------------------------

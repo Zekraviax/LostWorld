@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseClass_HUD_Battle.h"
 
 #include "LostWorld_422GameStateBase.h"
@@ -20,11 +17,11 @@ void UBaseClass_HUD_Battle::DebugBeginBattle()
 
 void UBaseClass_HUD_Battle::Test_SetPlayerData()
 {
-	if(GameStateRef->PlayerControllerRef)
-		GameStateRef->PlayerControllerRef->CurrentEntityData.DisplayName = "Player";
+	//if(GameStateRef->PlayerControllerRef)
+	//	GameStateRef->PlayerControllerRef->CurrentEntityData.DisplayName = "Player";
 
-	if(GameStateRef->PlayerControllerRef->EntityInBattleRef)
-		GameStateRef->PlayerControllerRef->EntityInBattleRef->EntityBaseData = GameStateRef->PlayerControllerRef->CurrentEntityData;
+	//if(GameStateRef->PlayerControllerRef->EntityInBattleRef)
+	//	GameStateRef->PlayerControllerRef->EntityInBattleRef->EntityBaseData = GameStateRef->PlayerControllerRef->CurrentEntityData;
 }
 
 void UBaseClass_HUD_Battle::OpenDeckBuilder()

@@ -6,8 +6,8 @@
 
 // Function index definitions
 #define NOTHING 0
-#define DEAL_DAMAGE 1
-#define DRAW_CARDS 2
+#define DRAW_CARDS 1
+#define DEAL_DAMAGE 2
 //#define GUN_DOWN 0
 //#define SHOCKWAVE 1
 //#define SUDDEN_INSPIRATION 2
@@ -44,8 +44,8 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 	UE_LOG(LogTemp, Warning, TEXT("Initialize ability functions."));
 
 	CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::CardFunction_Nothing;
-	CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
 	CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards;
+	CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
 	//CardFunctions[GUN_DOWN] = &ABaseClass_CardFunctionsLibrary::Gun_Down;
 	//CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
 	//CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
@@ -57,12 +57,12 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized ability functions."));
 }
 
-void ABaseClass_CardFunctionsLibrary::InitalizeAbilityConditionFunctions()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Initialize ability conditions functions."));
-
-	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized ability condition functions."));
-}
+//void ABaseClass_CardFunctionsLibrary::InitalizeAbilityConditionFunctions()
+//{
+//	UE_LOG(LogTemp, Warning, TEXT("Initialize ability conditions functions."));
+//
+//	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized ability condition functions."));
+//}
 
 //-------------------- Card Functions --------------------//
 void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
@@ -70,47 +70,49 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
 	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Nothing"));
 }
 
-void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
-{
-	int32 DamageValue = 0;
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
-
-	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
-	{
-		int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
-		LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-	}
-}
-
 void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
-	int32 DrawValue = 0;
 
-	for (int i = 0; i < DrawValue; i++)
-	{
-		if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
-			LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
+	//int32 DrawValue = 0;
 
-			// Set ownership
-			if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
-			LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
-			}
-			if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
-			LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
-			}
+	//for (int i = 0; i < DrawValue; i++)
+	//{
+	//	if (LocalCardReference.Controller->CardsInDeck.Num() > 0) {
+	//		LocalCardReference.Controller->CardsInHand.Add(LocalCardReference.Controller->CardsInDeck[0]);
 
-			LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
-		}
-	}
+	//		// Set ownership
+	//		if (!LocalCardReference.Controller->CardsInHand[0].Owner) {
+	//		LocalCardReference.Controller->CardsInHand.Last().Owner = LocalCardReference.Controller;
+	//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Owner"));
+	//		}
+	//		if (!LocalCardReference.Controller->CardsInHand[0].Controller) {
+	//		LocalCardReference.Controller->CardsInHand.Last().Controller = LocalCardReference.Controller;
+	//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Set Card Controller"));
+	//		}
 
-	LocalCardReference.Controller->UpdateCardIndicesInAllZones();
-	LocalCardReference.Controller->UpdateCardWidgets();
+	//		LocalCardReference.Controller->CardsInDeck.RemoveAt(0);
+	//	}
+	//}
+
+	//LocalCardReference.Controller->UpdateCardIndicesInAllZones();
+	//LocalCardReference.Controller->UpdateCardWidgets();
+}
+
+void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
+
+	//int32 DamageValue = 0
+
+	//for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++)
+	//{
+	//	int32 OldHealthValue = LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value;
+	//	LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value -= DamageValue;
+
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + LocalCardReference.CurrentTargets[i]->EntityBaseData.DisplayName)));
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(DamageValue) + "  /  New Health Value: " + FString::FromInt(LocalCardReference.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+	//}
 }
 
 //void ABaseClass_CardFunctionsLibrary::Gun_Down()
@@ -227,7 +229,7 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Set card reference
-	LocalCardReference = GameStateRef->TheStack[0].Card;
+	//LocalCardReference = GameStateRef->TheStack[0].Card;
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Searching for function to execute."));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(LocalCardReference.CurrentTargets.Num())));
@@ -244,28 +246,48 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Successful Execution"));
 
 	// Update all targets
-	for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++) {
-		LocalCardReference.CurrentTargets[i]->Event_CardCastOnThis();
-	}
+	//for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++) {
+	//	LocalCardReference.CurrentTargets[i]->Event_CardCastOnThis();
+	//}
 
 	GameStateRef->TheStack.RemoveAt(0);
 	if (GameStateRef->TheStack.Num() > 0) {
-		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, 2.f);
 	}
 }
 
-void ABaseClass_CardFunctionsLibrary::ExecuteAbilityConditionFunctions()
-{
-}
-
-
-//void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
+//void ABaseClass_CardFunctionsLibrary::ExecuteAbilityConditionFunctions()
 //{
+//}
+
+void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
+{
+	FCardBase NewStackEntry;
+	NewStackEntry.Art = Card.Art;
+	NewStackEntry.Controller = Card.Controller;
+	//NewStackEntry.CurrentTargets = Card.CurrentTargets;
+	NewStackEntry.DisplayName = Card.DisplayName;
+	NewStackEntry.Elements = Card.Elements;
+	NewStackEntry.ManaCost = Card.ManaCost;
+	NewStackEntry.Owner = Card.Owner;
+	NewStackEntry.Type = Card.Type;
+
+	// Get GameState
+	if (!GameStateRef)
+		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
+		NewStackEntry.Description = Card.Description;
+		NewStackEntry.CurrentTargets = Card.CurrentTargets;
+		NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
+		GameStateRef->TheStack.Add(NewStackEntry);
+	}
+
+	// Start timer for the stack
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, 2.f);
+
 //	FStackEntry NewStackEntry;
 //
-//	// Get GameState
-//	if (!GameStateRef)
-//		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 //
 //	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++)
 //	{
@@ -299,7 +321,7 @@ void ABaseClass_CardFunctionsLibrary::ExecuteAbilityConditionFunctions()
 //
 //	// Start timer for the stack
 //	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
-//}
+}
 
 
 //void ABaseClass_CardFunctionsLibrary::SetCardTargets()

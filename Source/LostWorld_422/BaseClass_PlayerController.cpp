@@ -73,22 +73,20 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
 
 		// Set rudimentary targets based on cast mode
-		//if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.CurrentTargets.Contains(E_Card_SetTargets::E_CastTarget))
-		//{
-		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
-		//	CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-		//}
-		//else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.CurrentTargets.Contains(E_Card_SetTargets::E_CastTarget)) {
-		//	CurrentDragCardRef->RemoveFromParent();
-		//	CurrentDragCardRef = NULL;
+		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
+			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
+		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
+			CurrentDragCardRef->RemoveFromParent();
+			CurrentDragCardRef = NULL;
 
-		//	return;
-		//}
+			return;
+		}
 
 		if (!CurrentDragCardRef->CardData.Controller) {
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No Controller"));
-		}
-		else {
+		} else {
 			// Mana Check
 			if (CurrentDragCardRef->CardData.ManaCost != -255) {
 				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {

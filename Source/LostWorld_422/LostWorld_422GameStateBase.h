@@ -34,7 +34,7 @@ public:
 	UPROPERTY()
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
 	TArray<FCardBase> TheStack;
 
 	UPROPERTY()

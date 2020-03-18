@@ -72,7 +72,7 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
 
 void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
+	//UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
 
 	//int32 DrawValue = 0;
 
@@ -101,7 +101,7 @@ void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
 
 void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Function: Deal Damage"));
 
 	//int32 DamageValue = 0
 

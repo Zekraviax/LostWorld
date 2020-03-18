@@ -7,7 +7,6 @@ void ACardAbilityActor_DrawCards::RunCardAbilityFunction(FCardBase CardAbility)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Execute Ability: Draw Cards"));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Execute Ability: Draw Cards"));
-	//LocalAbilityReference = CardAbility;
 
 	int32 DrawValue = 0;
 	TMap<E_Card_AbilityConditions, int32> ConditionsArray = CardAbility.AbilitiesAndConditions[0].AbilityConditions;

@@ -61,19 +61,20 @@ enum class E_Card_Elements : uint8
 //};
 
 // Card Passive, Triggered, and Active Functions
-UENUM(BlueprintType)
-enum class E_Card_Abilities : uint8
-{
-	E_Default					UMETA(DisplayName = "Default"),
-	E_A_DrawCards				UMETA(DisplayName = "Active: Draw Cards"),
-	E_A_ChangeZone				UMETA(DisplayName = "Active: Change Zone"),
-};
+//UENUM(BlueprintType)
+//enum class E_Card_Abilities : uint8
+//{
+//	E_Default					UMETA(DisplayName = "Default"),
+//	E_A_DrawCards				UMETA(DisplayName = "Active: Draw Cards"),
+//	E_A_ChangeZone				UMETA(DisplayName = "Active: Change Zone"),
+//};
 
 UENUM(BlueprintType)
 enum class E_Card_AbilityConditions : uint8
 {
 	E_Default					UMETA(DisplayName = "Default"),
 	E_ManaCost					UMETA(DisplayName = "Mana Cost: X"),
+	E_Damage					UMETA(DisplayName = "Damage: X"),
 	E_NumberOfCards				UMETA(DisplayName = "Number of Cards: X"),
 	E_ValidTargets_Monsters		UMETA(DisplayName = "ValidTargets: Monsters"),
 };
@@ -151,9 +152,11 @@ enum class E_Card_AbilityConditions : uint8
 UENUM(BlueprintType)
 enum class E_Card_SetTargets : uint8
 {
+	E_None,
 	E_Self,
-	E_CastTarget,
 	E_AllEnemies,
+	E_AnyTarget,
+	E_CastTarget
 };
 
 //UENUM(BlueprintType)

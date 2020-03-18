@@ -1,5 +1,6 @@
 #include "BaseClass_HUD_Level.h"
 
+
 void UBaseClass_HUD_Level::OpenDeckBuilder()
 {
 	if (DeckBuilder_Class && !DeckBuilderRef)

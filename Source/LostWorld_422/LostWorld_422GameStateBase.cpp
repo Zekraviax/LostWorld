@@ -67,6 +67,12 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 {
 	SortedTurnOrderList.RemoveAt(0);
 
+	// Clean up CardAbilityActors
+	for (TActorIterator<ACardAbilityActor_BaseClass> Itr(GetWorld()); Itr; ++Itr) {
+		ACardAbilityActor_BaseClass* FoundActor = *Itr;
+		FoundActor->Destroy();
+	}
+
 	if (SortedTurnOrderList.Num() <= 0)
 		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::NewCombatRound, 0.5f, false);
 	else
@@ -118,8 +124,8 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	}
 
 	// Start timer for the stack
-	ExecuteCardFunctions();
-	//GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+	//ExecuteCardFunctions();
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
 }
 
 
@@ -133,7 +139,14 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	if (GetWorld()) {
 		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[TheStack.Num() - 1].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[TheStack.Num() - 1]);
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Cast card: " + TheStack[TheStack.Num() - 1].AbilitiesAndConditions[0].Ability.Get()->GetName()));
+
+		//	Update all targets
+		for (int i = 0; i < TheStack[TheStack.Num() - 1].CurrentTargets.Num(); i++) {
+			TheStack[TheStack.Num() - 1].CurrentTargets[i]->Event_CardCastOnThis();
+		}
+
+		// Remove ability from the stack once done
+		TheStack.RemoveAt(TheStack.Num() - 1);
 	}
 }
 

@@ -117,14 +117,18 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	NewStackEntry.Type = Card.Type;
 
 	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
-		NewStackEntry.Description = Card.Description;
+		NewStackEntry.Description = Card.AbilitiesAndConditions[i].AbilityDescription;
 		NewStackEntry.CurrentTargets = Card.CurrentTargets;
+
+		NewStackEntry.AbilitiesAndConditions.Empty();
 		NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
+		
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Add Ability to the Stack: " + Card.AbilitiesAndConditions[i].Ability.Get()->GetName()));
+
 		TheStack.Add(NewStackEntry);
 	}
 
 	// Start timer for the stack
-	//ExecuteCardFunctions();
 	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
 }
 
@@ -137,16 +141,27 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	if (GetWorld()) {
-		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[TheStack.Num() - 1].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
-		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[TheStack.Num() - 1]);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Run Ability: " + TheStack[0].Description));
+		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+		//for (int i = 0; i < TheStack.Num(); i++) {
+		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Stack Entry: " + TheStack[i].AbilitiesAndConditions[0].Ability.Get()->GetName()));
+		//}
+
+		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
 
 		//	Update all targets
-		for (int i = 0; i < TheStack[TheStack.Num() - 1].CurrentTargets.Num(); i++) {
-			TheStack[TheStack.Num() - 1].CurrentTargets[i]->Event_CardCastOnThis();
+		for (int i = 0; i < TheStack[0].CurrentTargets.Num(); i++) {
+			TheStack[0].CurrentTargets[i]->Event_CardCastOnThis();
 		}
 
 		// Remove ability from the stack once done
-		TheStack.RemoveAt(TheStack.Num() - 1);
+		TheStack.RemoveAt(0);
+	}
+
+	// If there are still Abilities to run, reset the timer for this function
+	if (TheStack.Num() > 0) {
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
 	}
 }
 

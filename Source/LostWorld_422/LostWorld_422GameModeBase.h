@@ -72,11 +72,20 @@ enum class E_Card_Elements : uint8
 UENUM(BlueprintType)
 enum class E_Card_AbilityConditions : uint8
 {
-	E_Default					UMETA(DisplayName = "Default"),
-	E_ManaCost					UMETA(DisplayName = "Mana Cost: X"),
-	E_Damage					UMETA(DisplayName = "Damage: X"),
-	E_NumberOfCards				UMETA(DisplayName = "Number of Cards: X"),
-	E_ValidTargets_Monsters		UMETA(DisplayName = "ValidTargets: Monsters"),
+	E_Default								UMETA(DisplayName = "Default"),
+// Basic Functions
+	E_ManaCost								UMETA(DisplayName = "Mana Cost: X"),
+	E_Damage								UMETA(DisplayName = "Damage: X"),
+	E_NumberOfCards							UMETA(DisplayName = "Number of Cards: X"),
+// Keywords
+	E_Repeat								UMETA(DisplayName = "Repeat: X"),
+// Alternate Card Cost
+	E_CastingCost_X							UMETA(DisplayName = "Casting Cost: X"),
+// Target Overrides
+	//E_ValidTargets_Monsters				UMETA(DisplayName = "ValidTargets: Monsters"),
+	E_TargetOverride_SingleEnemy_Random		UMETA(DisplayName = "Target Override: Random Single Enemy"),
+// Alter Other Abilities' Values
+	E_NextAbility_CastingCost				UMETA(DisplayName = "Next Ability Equals Casting Cost"),
 };
 
 //UENUM(BlueprintType)
@@ -232,15 +241,6 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 {
 	GENERATED_BODY()
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	//int FunctionIndex;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	//TArray<E_Card_Abilities> Abilities;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//E_Card_Abilities Ability;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ACardAbilityActor_BaseClass> Ability;
 
@@ -252,8 +252,7 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 
 	FCardAbilitiesAndConditions()
 	{
-		//Function = E_Card_Functions::E_Deal_X_Damage;
-		//Rules.Add(E_Card_Rules::E_Rule_FixedInteger_Seven);
+
 	}
 };
 
@@ -282,9 +281,6 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	TArray<FCardAbilitiesAndConditions> AbilitiesAndConditions;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	//TArray<E_Card_SetFunctions> Functions;
 
 	// Use this for spells that only have one target or set of targets.
 	// For complicated spells, use a target variable for each ability.

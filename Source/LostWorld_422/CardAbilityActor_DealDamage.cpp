@@ -9,7 +9,26 @@ void ACardAbilityActor_DealDamage::RunCardAbilityFunction(FCardBase CardAbility)
 
 	int32 DamageValue = 0;
 	TMap<E_Card_AbilityConditions, int32> ConditionsArray = CardAbility.AbilitiesAndConditions[0].AbilityConditions;
+	TArray<ABaseClass_EntityInBattle> TargetsOverrideArray;
 
+	// If card ability has a TargetOverride condition, change the target
+	if (ConditionsArray.Contains(E_Card_AbilityConditions::E_TargetOverride_SingleEnemy_Random)) {
+		TArray<ABaseClass_EntityInBattle*> ValidTargetsArray;
+
+		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
+		{
+			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
+
+			if (!BattleEntity->EntityBaseData.IsPlayerControllable) {
+				ValidTargetsArray.Add(BattleEntity);
+			}
+		}
+
+		CardAbility.CurrentTargets.Empty();
+		CardAbility.CurrentTargets.Add(ValidTargetsArray[FMath::RandRange(0, ValidTargetsArray.Num() - 1)]);
+	}
+
+	// Get the ability's damage value
 	if (ConditionsArray.Contains(E_Card_AbilityConditions::E_Damage)) {
 		DamageValue = ConditionsArray.FindChecked(E_Card_AbilityConditions::E_Damage);
 	}

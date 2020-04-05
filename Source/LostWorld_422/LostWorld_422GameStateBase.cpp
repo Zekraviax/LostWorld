@@ -106,10 +106,10 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 
 void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 {
+	int RepeatCount = 1;
 	FCardBase NewStackEntry;
 	NewStackEntry.Art = Card.Art;
 	NewStackEntry.Controller = Card.Controller;
-	//NewStackEntry.CurrentTargets = Card.CurrentTargets;
 	NewStackEntry.DisplayName = Card.DisplayName;
 	NewStackEntry.Elements = Card.Elements;
 	NewStackEntry.ManaCost = Card.ManaCost;
@@ -117,16 +117,29 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	NewStackEntry.Type = Card.Type;
 
 	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
-		NewStackEntry.Description = Card.AbilitiesAndConditions[i].AbilityDescription;
-		NewStackEntry.CurrentTargets = Card.CurrentTargets;
 
-		NewStackEntry.AbilitiesAndConditions.Empty();
-		NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
-		
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Add Ability to the Stack: " + Card.AbilitiesAndConditions[i].Ability.Get()->GetName()));
+		// If this card has Repeat, then add multiple copies of the following ability to the stack
+		if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
+			RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
+		}
+		else {
+			RepeatCount = 1;
+		}
 
-		TheStack.Add(NewStackEntry);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
+
+		for (int r = 0; r < RepeatCount; r++) {
+			NewStackEntry.Description = Card.AbilitiesAndConditions[i].AbilityDescription;
+			NewStackEntry.CurrentTargets = Card.CurrentTargets;
+
+			NewStackEntry.AbilitiesAndConditions.Empty();
+			NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
+
+			TheStack.Add(NewStackEntry);
+		}
 	}
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 
 	// Start timer for the stack
 	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
@@ -143,10 +156,6 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	if (GetWorld()) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Run Ability: " + TheStack[0].Description));
 		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
-
-		//for (int i = 0; i < TheStack.Num(); i++) {
-		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Stack Entry: " + TheStack[i].AbilitiesAndConditions[0].Ability.Get()->GetName()));
-		//}
 
 		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
 

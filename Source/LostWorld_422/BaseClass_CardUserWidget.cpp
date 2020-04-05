@@ -63,13 +63,9 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 
 void UBaseClass_CardUserWidget::CastCard()
 {
-	//if (!GameModeRef)
-	//	GameModeRef = Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode());
-
 	if (!GameStateRef) {
 		GameStateRef = Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState());
 	}
 
-	//GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(CardData);
 	GameStateRef->AddCardFunctionsToTheStack(CardData);
 }

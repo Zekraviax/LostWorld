@@ -90,8 +90,36 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		if (!CurrentDragCardRef->CardData.Controller) {
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No Controller"));
 		} else {
-			// Mana Check
-			if (CurrentDragCardRef->CardData.ManaCost != -255) {
+			//// Mana Check
+			//if (CurrentDragCardRef->CardData.ManaCost != -255) {
+			//	if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+			//		EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+			//	} else {
+			//		CurrentDragCardRef->RemoveFromParent();
+			//		CurrentDragCardRef = NULL;
+			//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
+			//		return;
+			//	}
+			//	CurrentDragCardRef->CastCard();
+			//} else {
+			//	if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
+			//		SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
+
+			//		SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
+			//		SpendManaWidget_Reference->OnWidgetCreated();
+			//		SpendManaWidget_Reference->AddToViewport();
+			//	}
+			//}
+
+			if (CurrentDragCardRef->CardData.AbilitiesAndConditions[0].AbilityConditions.Contains(E_Card_AbilityConditions::E_CastingCost_X)) {
+				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
+					SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
+
+					SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
+					SpendManaWidget_Reference->OnWidgetCreated();
+					SpendManaWidget_Reference->AddToViewport();
+				}
+			} else {
 				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
 					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
 				} else {
@@ -101,14 +129,6 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 					return;
 				}
 				CurrentDragCardRef->CastCard();
-			} else {
-				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
-					SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
-
-					SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
-					SpendManaWidget_Reference->OnWidgetCreated();
-					SpendManaWidget_Reference->AddToViewport();
-				}
 			}
 
 			// Remove card from hand and add to graveyard

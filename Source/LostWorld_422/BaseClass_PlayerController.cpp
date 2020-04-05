@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "BaseClass_PlayerController.h"
 
 #include "EngineUtils.h"
@@ -75,37 +73,45 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
 
 		// Set rudimentary targets based on cast mode
-		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.Targets.Contains(E_Card_SetTargets::E_CastTarget))
+		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget)
 		{
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
 			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-		}
-		else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.Targets.Contains(E_Card_SetTargets::E_CastTarget)) {
+
+		} else if (CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_Self) {
+			CurrentDragCardRef->CardData.CurrentTargets.Add(CurrentDragCardRef->CardData.Controller);
+
+		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;
-
 			return;
 		}
 
 		if (!CurrentDragCardRef->CardData.Controller) {
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No Controller"));
-		}
-		else {
-			// Mana Check
-			if (CurrentDragCardRef->CardData.ManaCost != -255) {
-				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
-					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
-				}
-				else {
-					CurrentDragCardRef->RemoveFromParent();
-					CurrentDragCardRef = NULL;
+		} else {
+			//// Mana Check
+			//if (CurrentDragCardRef->CardData.ManaCost != -255) {
+			//	if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+			//		EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+			//	} else {
+			//		CurrentDragCardRef->RemoveFromParent();
+			//		CurrentDragCardRef = NULL;
+			//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
+			//		return;
+			//	}
+			//	CurrentDragCardRef->CastCard();
+			//} else {
+			//	if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
+			//		SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
 
-					return;
-				}
+			//		SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
+			//		SpendManaWidget_Reference->OnWidgetCreated();
+			//		SpendManaWidget_Reference->AddToViewport();
+			//	}
+			//}
 
-				CurrentDragCardRef->CastCard();
-			}
-			else {
+			if (CurrentDragCardRef->CardData.AbilitiesAndConditions[0].AbilityConditions.Contains(E_Card_AbilityConditions::E_CastingCost_X)) {
 				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
 					SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
 
@@ -113,12 +119,22 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 					SpendManaWidget_Reference->OnWidgetCreated();
 					SpendManaWidget_Reference->AddToViewport();
 				}
+			} else {
+				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+				} else {
+					CurrentDragCardRef->RemoveFromParent();
+					CurrentDragCardRef = NULL;
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
+					return;
+				}
+				CurrentDragCardRef->CastCard();
 			}
 
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
 
 				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
@@ -163,8 +179,6 @@ void ABaseClass_PlayerController::ExitBattle()
 	if (Battle_HUD_Widget) {
 		Battle_HUD_Widget->RemoveFromParent();
 	}
-
-
 
 	// Create the Level HUD widget
 	if (Level_HUD_Class) {

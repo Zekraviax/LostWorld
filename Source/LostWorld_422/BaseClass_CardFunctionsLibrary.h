@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,8 @@
 #include "LostWorld_422GameModeBase.h"
 #include "EngineUtils.h"
 #include "BaseClass_Widget_ZoneSearch.h"
+#include "CardAbilityActor_BaseClass.h"
+#include "CardAbilityActor_DrawCards.h"
 
 #include "BaseClass_CardFunctionsLibrary.generated.h"
 
@@ -15,7 +15,9 @@
 class ALostWorld_422GameStateBase;
 
 // Explicitly define number of static card functions
-#define CARD_FUNCTIONS_COUNT 6
+#define CARD_FUNCTIONS_COUNT 3
+//#define CARD_ABILITY_CONDITIONS 0
+
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_CardFunctionsLibrary : public AActor
@@ -48,16 +50,25 @@ public:
 	UPROPERTY()
 	FTimerHandle StackTimerHandle;
 
+// ------------------------- Constructors
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//TSubclassOf<ABaseClass_LevelRoom> StartingRoom_Class;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
+
 
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Card
-	UFUNCTION()
-	void SetCardTargets();
+	//UFUNCTION()
+	//void SetCardTargets();
 
-	UFUNCTION()
-	int32 ReturnIntValueFromRules();
+	//UFUNCTION()
+	//int32 ReturnIntValueFromRules();
 
 	UFUNCTION()
 	void AddCardFunctionsToTheStack(FCardBase Card);
@@ -69,23 +80,25 @@ public:
 
 	// Static Array of X function pointers
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
+	//FunctionPtrType CardAbilityConditions[CARD_ABILITY_CONDITIONS];
 
 	// Executes a function from the CardFuntions Pointer Array
 	// Implementation does not vary in subclasses, so no virtual
 	void ExecuteCardFunctions();
+	//void ExecuteAbilityConditionFunctions();
 
 	// Initialize the array
 	void InitializeCardFunctions();
+	//void InitalizeAbilityConditionFunctions();
 
-	// The Actual Functions which are implemented in subclasses
-	// by this class.
-	//virtual void CardFunction_Nothing();
-	//virtual void CardFunction_DealDamage();
-	//virtual void CardFunction_DrawCards();
-	virtual void Gun_Down();
-	virtual void Shockwave();
-	virtual void Sudden_Inspiration();
-	virtual void Essence_Recycling();
-	virtual void Recall();
-	virtual void Rolling_Quake();
+	// The Actual Functions which are implemented in subclasses by this class.
+	virtual void CardFunction_Nothing();
+	virtual void CardFunction_DrawCards();
+	virtual void CardFunction_DealDamage();
+	//virtual void Gun_Down();
+	//virtual void Shockwave();
+	//virtual void Sudden_Inspiration();
+	//virtual void Essence_Recycling();
+	//virtual void Recall();
+	//virtual void Rolling_Quake();
 };

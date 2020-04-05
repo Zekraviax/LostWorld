@@ -1,11 +1,18 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "LostWorld_422GameStateBase.h"
 
 #include "EngineUtils.h"
+#include "BaseClass_EntityInBattle.h"
+#include "BaseClass_PlayerController.h"
 
 
+//-------------------- Base --------------------//
+//ALostWorld_422GameStateBase::ALostWorld_422GameStateBase()
+//{
+//
+//}
+
+
+//-------------------- Battle --------------------//
 void ALostWorld_422GameStateBase::DebugBattleStart()
 {
 	if (!PlayerControllerRef)
@@ -60,6 +67,12 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 {
 	SortedTurnOrderList.RemoveAt(0);
 
+	// Clean up CardAbilityActors
+	for (TActorIterator<ACardAbilityActor_BaseClass> Itr(GetWorld()); Itr; ++Itr) {
+		ACardAbilityActor_BaseClass* FoundActor = *Itr;
+		FoundActor->Destroy();
+	}
+
 	if (SortedTurnOrderList.Num() <= 0)
 		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::NewCombatRound, 0.5f, false);
 	else
@@ -88,6 +101,77 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 	}
 
 	GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 0.5f, false);
+}
+
+
+void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
+{
+	int RepeatCount = 1;
+	FCardBase NewStackEntry;
+	NewStackEntry.Art = Card.Art;
+	NewStackEntry.Controller = Card.Controller;
+	NewStackEntry.DisplayName = Card.DisplayName;
+	NewStackEntry.Elements = Card.Elements;
+	NewStackEntry.ManaCost = Card.ManaCost;
+	NewStackEntry.Owner = Card.Owner;
+	NewStackEntry.Type = Card.Type;
+
+	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
+
+		// If this card has Repeat, then add multiple copies of the following ability to the stack
+		if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
+			RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
+		}
+		else {
+			RepeatCount = 1;
+		}
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
+
+		for (int r = 0; r < RepeatCount; r++) {
+			NewStackEntry.Description = Card.AbilitiesAndConditions[i].AbilityDescription;
+			NewStackEntry.CurrentTargets = Card.CurrentTargets;
+
+			NewStackEntry.AbilitiesAndConditions.Empty();
+			NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
+
+			TheStack.Add(NewStackEntry);
+		}
+	}
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
+
+	// Start timer for the stack
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+}
+
+
+void ALostWorld_422GameStateBase::ExecuteCardFunctions()
+{
+	// Spawn ability actor
+	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.bNoFail = true;
+	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	if (GetWorld()) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Run Ability: " + TheStack[0].Description));
+		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
+
+		//	Update all targets
+		for (int i = 0; i < TheStack[0].CurrentTargets.Num(); i++) {
+			TheStack[0].CurrentTargets[i]->Event_CardCastOnThis();
+		}
+
+		// Remove ability from the stack once done
+		TheStack.RemoveAt(0);
+	}
+
+	// If there are still Abilities to run, reset the timer for this function
+	if (TheStack.Num() > 0) {
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+	}
 }
 
 

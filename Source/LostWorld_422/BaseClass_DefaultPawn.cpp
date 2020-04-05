@@ -1,7 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseClass_DefaultPawn.h"
+
 
 // Sets default values
 ABaseClass_DefaultPawn::ABaseClass_DefaultPawn()
@@ -39,6 +37,4 @@ void ABaseClass_DefaultPawn::SetupPlayerInputComponent(UInputComponent* PlayerIn
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-
 }
-

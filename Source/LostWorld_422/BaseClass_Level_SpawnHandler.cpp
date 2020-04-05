@@ -1,7 +1,7 @@
 #include "BaseClass_Level_SpawnHandler.h"
 
 
-// ------------------------- Initializer
+//-------------------- Base --------------------//
 // Sets default values
 ABaseClass_Level_SpawnHandler::ABaseClass_Level_SpawnHandler()
 {
@@ -24,15 +24,14 @@ void ABaseClass_Level_SpawnHandler::Tick(float DeltaTime)
 
 }
 
-// Functions
-// --------------------------------------------------
+//-------------------- Spawn Rooms --------------------//
 void ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation)
 {
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.bNoFail = true;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	if (GetWorld() && TestOne_Room_Class) {
+	if (GetWorld()) {
 		Room_Reference = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(TestOne_Room_Class, WorldLocation, WorldRotation, SpawnParameters);
 	}
 }

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 #include "LostWorld_422GameModeBase.h"
 #include "BaseClass_GridTile.h"
 #include "BaseComponent_Room_Tile.h"
+#include "BaseComponent_Room_SpawnPoint.h"
 #include "WidgetComponent_RoomEncounter.h"
 #include "Lostworld_422GameInstanceBase.h"
 
@@ -15,6 +14,8 @@
 
 // Forward Declarations
 class ABaseClass_Level_SpawnHandler;
+
+
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_LevelRoom : public AActor
@@ -49,7 +50,7 @@ public:
 	TArray<UBaseComponent_Room_Tile*> SceneCoordinateComponents;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Room Components")
-	TArray<USceneComponent*> RoomSpawnSceneComponents;
+	TArray<UBaseComponent_Room_SpawnPoint*> RoomSpawnSceneComponents;
 
 // ------------------------- Constructor Classes (?)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")

@@ -2,17 +2,20 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "BaseComponent_Room_Tile.generated.h"
+#include "BaseComponent_Room_SpawnPoint.generated.h"
+
+// Forward Declarations
+class ABaseClass_LevelRoom;
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class LOSTWORLD_422_API UBaseComponent_Room_Tile : public USceneComponent
+class LOSTWORLD_422_API UBaseComponent_Room_SpawnPoint : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UBaseComponent_Room_Tile();
+	UBaseComponent_Room_SpawnPoint();
 
 protected:
 	// Called when the game starts
@@ -25,7 +28,7 @@ public:
 // Base Variables
 // --------------------------------------------------
 
-// ------------------------- Tile Grid
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Grid")
-	FVector2D GridCoordinates;
+// ------------------------- Rooms
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rooms")
+	TArray<TSubclassOf<ABaseClass_LevelRoom>> ValidRoomTypes;
 };

@@ -34,6 +34,8 @@ public:
 	//TSubclassOf<ABaseClass_LevelRoom> StartingRoom_Class;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
 	TSubclassOf<ABaseClass_LevelRoom> TestOne_Room_Class;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//TSubclassOf<ABaseClass_LevelRoom> TestTwo_Room_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
 	ABaseClass_LevelRoom* Room_Reference;

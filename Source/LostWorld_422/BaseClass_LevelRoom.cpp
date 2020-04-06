@@ -41,34 +41,33 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 	FVector Location;
 	FRotator Rotation;
 	ABaseClass_Level_SpawnHandler* RoomSpawner = nullptr;
-	this->GetComponents<USceneComponent>(RoomSpawnSceneComponents);
 
-	// Find the Room SpawnHandler
+	this->GetComponents<UBaseComponent_Room_SpawnPoint>(RoomSpawnSceneComponents);
+
+	// Find the level's Room SpawnHandler
 	for (TActorIterator<ABaseClass_Level_SpawnHandler> Itr(GetWorld()); Itr; ++Itr) {
 		RoomSpawner = *Itr;
 	}
 
-	// Clear out any non-RoomSpawn components from the array
-	for (int i = RoomSpawnSceneComponents.Num() - 1; i >= 0; i--) {
-		if (!RoomSpawnSceneComponents[i]->ComponentHasTag(FName(TEXT("RoomSpawn")))) {
-			RoomSpawnSceneComponents.RemoveAt(i);
-		}
-	}
+	if (RoomSpawner && RoomSpawnSceneComponents.Num() > 0) {
+		for (int i = 0; i < RoomSpawnSceneComponents.Num(); i++) {
 
-	if (RoomSpawner) {
-		for (int j = 0; j < RoomSpawnSceneComponents.Num(); j++) {
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Component Name: " + RoomSpawnSceneComponents[j]->GetName()));
+			if (RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() > 0) {
+				// Choose a valid Room to spawn at random
+				TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
 
-			RoomSpawnSceneComponents[j]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
-			RoomSpawner->SpawnNewRoom(RoomSpawner->TestOne_Room_Class, Location, Rotation);
+				RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
+				RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation);
+			} else {
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types"));
+			}
+
 		}
 	}
 }
 
 void ABaseClass_LevelRoom::SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyFormation)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Attempting to spawn enemy formation."));
-
 	FString ContextString;
 
 	// Get all the components first
@@ -78,7 +77,6 @@ void ABaseClass_LevelRoom::SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyF
 	for (const TPair<FVector2D, FDataTableRowHandle>& Map : EnemyFormation.EnemiesMap) {
 		for (int j = 0; j < SceneCoordinateComponents.Num(); j++) {
 			if (SceneCoordinateComponents[j]->GridCoordinates.X == Map.Key.X && SceneCoordinateComponents[j]->GridCoordinates.Y == Map.Key.Y) {
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Found a tile to spawn an enemy."));
 				EntityInBattle_Reference = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, (FVector(SceneCoordinateComponents[j]->GetComponentLocation().X, SceneCoordinateComponents[j]->GetComponentLocation().Y, (SceneCoordinateComponents[j]->GetComponentLocation().Z + 10))), (this->GetActorRotation()));
 				EntityInBattle_Reference->ResetStatsWidget();
 				break;

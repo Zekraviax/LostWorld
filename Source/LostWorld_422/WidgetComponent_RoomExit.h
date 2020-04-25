@@ -7,14 +7,13 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 
-#include "WidgetComponent_RoomEncounter.generated.h"
-
+#include "WidgetComponent_RoomExit.generated.h"
 
 UCLASS()
-class LOSTWORLD_422_API UWidgetComponent_RoomEncounter : public UUserWidget
+class LOSTWORLD_422_API UWidgetComponent_RoomExit : public UUserWidget
 {
 	GENERATED_BODY()
-
+	
 public:
 // Base Variables
 // --------------------------------------------------
@@ -27,13 +26,13 @@ public:
 	UTextBlock* EncounterLabel;
 
 // ------------------------- Encounter
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
-	F_LevelRoom_Encounter EncounterData;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
+	//F_LevelRoom_Encounter EncounterData;
 
 // Base Variables
 // --------------------------------------------------
 
 // ------------------------- Encounter
 	UFUNCTION(BlueprintCallable)
-	void SelectedEncounter();
+	void SelectedExit();
 };

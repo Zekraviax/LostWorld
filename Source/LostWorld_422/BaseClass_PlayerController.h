@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,8 +13,6 @@
 
 #include "BaseClass_PlayerController.generated.h"
 
-// Forward Declarations
-//class UBaseClass_HUD_Battle;
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_PlayerController : public APlayerController

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -19,8 +17,6 @@ class LOSTWORLD_422_API UBaseClass_HUD_Level : public UUserWidget
 {
 	GENERATED_BODY()
 
-public:
-
 protected:
 
 public:
@@ -30,6 +26,9 @@ public:
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
 	UScrollBox* EncounterList_ScrollBox;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UScrollBox* ExitList_ScrollBox;
 
 // ------------------------- Widgets
 	// Deck Builder Class

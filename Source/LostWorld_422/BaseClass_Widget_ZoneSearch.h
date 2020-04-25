@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -14,6 +12,7 @@
 #include "BaseClass_Widget_ZoneSearch.generated.h"
 
 
+// Unique Enum
 UENUM(BlueprintType)
 enum class E_ZoneSearch_Functions : uint8
 {

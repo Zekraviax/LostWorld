@@ -2,10 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+
+#include "LostWorld_422GameModeBase.h"
+
 #include "BaseComponent_Room_SpawnPoint.generated.h"
 
 // Forward Declarations
 class ABaseClass_LevelRoom;
+
+// Unique Enum
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -29,6 +34,12 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Rooms
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rooms")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<ABaseClass_LevelRoom>> ValidRoomTypes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_Room_ExitDirections ExitDirection;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString ExitLabel;
 };

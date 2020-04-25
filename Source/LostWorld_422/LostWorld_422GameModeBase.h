@@ -203,6 +203,16 @@ enum class E_Card_Zones : uint8
 
 // Level Rooms
 UENUM(BlueprintType)
+enum class E_Room_ExitDirections : uint8
+{
+	E_None,
+	E_North,
+	E_South,
+	E_East,
+	E_West
+};
+
+UENUM(BlueprintType)
 enum class E_LevelRoom_EncounterTypes : uint8
 {
 	E_Enemy,
@@ -415,18 +425,6 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 	}
 };
 
-// Summon Database
-//USTRUCT(BlueprintType)
-//struct LOSTWORLD_422_API F_Summon_DatabaseEntry
-//{
-//	GENERATED_BODY()
-//
-//	F_Summon_DatabaseEntry()
-//	{
-//
-//	}
-//};
-
 // ------------------------- Level
 
 // Room Enemy Formations
@@ -462,25 +460,48 @@ struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBa
 	}
 };
 
-// Level Room
+// Room encounter
 USTRUCT(BlueprintType)
-struct LOSTWORLD_422_API F_Level_Room : public FTableRowBase
+struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase
 {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
 	FString DisplayName;
 
+	// Used to remove encounters from the list when the player defeats them
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool CurrentlyActiveEncounter;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	FDataTableRowHandle EncounterListEntry;
 
-	F_Level_Room()
+	F_LevelRoom_Encounter()
 	{
 		DisplayName = "Default";
 		CurrentlyActiveEncounter = false;
+	}
+};
+
+// Room exit
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_LevelRoom_Exit
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	E_Room_ExitDirections ExitDirection;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	ABaseClass_LevelRoom* RoomReference;
+
+	F_LevelRoom_Exit()
+	{
+		DisplayName = "Default";
+		ExitDirection = E_Room_ExitDirections::E_None;
 	}
 };
 
@@ -503,19 +524,11 @@ public:
 // --------------------------------------------------
 
 // ------------------------- References
-	// Card Data Table Reference
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data - Technical")
-	//FDataTableRowHandle CardDataTableRowRef;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	UDataTable* CardDataTableRef;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	ABaseClass_CardFunctionsLibrary* CardFunctionLibraryReference;
-
-	// Player
-	//UPROPERTY()
-	//ABaseClass_EntityInBattle* Player;
 
 // ------------------------- Classes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")

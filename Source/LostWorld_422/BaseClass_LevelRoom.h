@@ -8,13 +8,13 @@
 #include "BaseComponent_Room_Tile.h"
 #include "BaseComponent_Room_SpawnPoint.h"
 #include "WidgetComponent_RoomEncounter.h"
+#include "WidgetComponent_RoomExit.h"
 #include "Lostworld_422GameInstanceBase.h"
 
 #include "BaseClass_LevelRoom.generated.h"
 
 // Forward Declarations
 class ABaseClass_Level_SpawnHandler;
-
 
 
 UCLASS()
@@ -39,11 +39,23 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Room
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	F_Level_Room RoomData;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	//F_LevelRoom_Encounter CurrentEncounterData;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	TArray<F_Level_Room> EncountersList;
+	TArray<F_LevelRoom_Encounter> EncountersList;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	TArray<F_LevelRoom_Exit> ExitsList;
+
+	// Previous room's exit to this room
+	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Data")
+	//E_Room_ExitDirections PreviousRoomExitDirection;
+
+	// Previous room exit
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Data")
+	F_LevelRoom_Exit PreviousRoomExit;
+
 
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Room Components")
@@ -64,6 +76,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
 	UWidgetComponent_RoomEncounter* RoomEncounter_Widget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	TSubclassOf<UWidgetComponent_RoomExit> RoomExit_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UWidgetComponent_RoomExit* RoomExit_Widget;
 
 
 // Functions

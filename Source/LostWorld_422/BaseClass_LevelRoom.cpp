@@ -17,9 +17,6 @@ ABaseClass_LevelRoom::ABaseClass_LevelRoom()
 	if (EntityInBattle_BlueprintConstruct.Object) {
 		EntityInBattle_Class = (UClass*)EntityInBattle_BlueprintConstruct.Object->GeneratedClass;
 	}
-
-	// Set Default Room Exit Direction
-	//PreviousRoomExitDirection = E_Room_ExitDirections::E_None;
 }
 
 // Called when the game starts or when spawned
@@ -61,13 +58,39 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 				RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
 
 				// Add the spawned room to the exits list
-				NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, RoomSpawnSceneComponents[i]->ExitDirection);
+				NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
 				NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
-				ExitsList.Add(NewExit);
+				NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
+
+				switch (NewExit.RoomReference->PreviousRoomExit.ExitDirection)
+				{
+				case(E_Room_ExitDirections::E_North):
+					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
+					NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
+					break;
+				case(E_Room_ExitDirections::E_South):
+					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_North;
+					NewExit.RoomReference->PreviousRoomExit.DisplayName = "North";
+					break;
+				case(E_Room_ExitDirections::E_East):
+					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_West;
+					NewExit.RoomReference->PreviousRoomExit.DisplayName = "West";
+					break;
+				case(E_Room_ExitDirections::E_West):
+					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_East;
+					NewExit.RoomReference->PreviousRoomExit.DisplayName = "East";
+					break;
+				default:
+					break;
+				}
 
 				// Set the spawned room's previous room to be this one
 				NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
-				//NewExit.RoomReference->PreviousRoomExit.
+
+				ExitsList.Add(NewExit);
+
+				// Spawn the next room's adjacent rooms
+				NewExit.RoomReference->SpawnAdjacentRoom();
 
 			} else {
 				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types"));
@@ -89,7 +112,7 @@ void ABaseClass_LevelRoom::SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyF
 		for (int j = 0; j < SceneCoordinateComponents.Num(); j++) {
 			if (SceneCoordinateComponents[j]->GridCoordinates.X == Map.Key.X && SceneCoordinateComponents[j]->GridCoordinates.Y == Map.Key.Y) {
 				EntityInBattle_Reference = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, (FVector(SceneCoordinateComponents[j]->GetComponentLocation().X, SceneCoordinateComponents[j]->GetComponentLocation().Y, (SceneCoordinateComponents[j]->GetComponentLocation().Z + 10))), (this->GetActorRotation()));
-				EntityInBattle_Reference->ResetStatsWidget();
+				EntityInBattle_Reference->ResetComponentsLocations();
 				break;
 			}
 		}
@@ -104,6 +127,11 @@ void ABaseClass_LevelRoom::PlayerEnterRoom()
 	if (PlayerControllerRef) {
 		if (PlayerControllerRef->Level_HUD_Widget->IsValidLowLevel() && RoomEncounter_Class) {
 
+			// Clear out Exit and Encounter ScrollBoxes
+			//PlayerControllerRef->Level_HUD_Widget->EncounterList.Empty();
+			PlayerControllerRef->Level_HUD_Widget->EncounterList_ScrollBox->ClearChildren();
+			PlayerControllerRef->Level_HUD_Widget->ExitList_ScrollBox->ClearChildren();
+
 			// Add Encounters to the List
 			for (int i = 0; i < EncountersList.Num(); i++) {
 				RoomEncounter_Widget = CreateWidget<UWidgetComponent_RoomEncounter>(GetWorld(), RoomEncounter_Class);
@@ -111,19 +139,28 @@ void ABaseClass_LevelRoom::PlayerEnterRoom()
 				RoomEncounter_Widget->EncounterLabel->SetText(FText::FromString(EncountersList[i].DisplayName));
 				PlayerControllerRef->Level_HUD_Widget->EncounterList_ScrollBox->AddChild(RoomEncounter_Widget);
 			}
+
+			// Set the previous room exit
+			
+
+			// Get all exits and add to HUD
+			if (RoomExit_Class) {
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Count: %s"), *FString::FromInt(ExitsList.Num())));
+
+				for (int i = 0; i < ExitsList.Num(); i++) {
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Found: %s"), *ExitsList[i].DisplayName));
+
+					RoomExit_Widget = CreateWidget<UWidgetComponent_RoomExit>(GetWorld(), RoomExit_Class);
+					RoomExit_Widget->RoomData = ExitsList[i];
+
+					RoomExit_Widget->EncounterLabel->SetText(FText::FromString(ExitsList[i].DisplayName));
+					PlayerControllerRef->Level_HUD_Widget->ExitList_ScrollBox->AddChild(RoomExit_Widget);
+				}
+			}
 		}
 
 		if (PlayerControllerRef->CurrentRoom != this)
 			PlayerControllerRef->CurrentRoom = this;
 
-		// Get all exits and add to HUD
-		if (RoomExit_Class) {
-			for (int i = 0; i < ExitsList.Num(); i++) {
-				RoomExit_Widget = CreateWidget<UWidgetComponent_RoomExit>(GetWorld(), RoomExit_Class);
-				RoomExit_Widget->EncounterLabel->SetText(FText::FromString("E"));
-
-				PlayerControllerRef->Level_HUD_Widget->ExitList_ScrollBox->AddChild(RoomExit_Widget);
-			}
-		}
 	}
 }

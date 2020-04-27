@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseClass_EntityInBattle.h"
 
 #include "BaseClass_PlayerController.h"
@@ -73,6 +70,13 @@ void ABaseClass_EntityInBattle::ResetStatsWidget()
 {
 	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
+}
+
+
+void ABaseClass_EntityInBattle::ResetComponentsLocations()
+{
+	SpringArm->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z));
+	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
 }
 
 

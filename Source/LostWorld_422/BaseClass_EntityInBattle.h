@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -111,6 +109,9 @@ public:
 // ------------------------- Components
 	UFUNCTION()
 	void ResetStatsWidget();
+
+	UFUNCTION()
+	void ResetComponentsLocations();
 
 // ------------------------- Battle
 	UFUNCTION()

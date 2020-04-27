@@ -25,14 +25,14 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* EncounterLabel;
 
-// ------------------------- Encounter
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
-	//F_LevelRoom_Encounter EncounterData;
+// ------------------------- Room
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
+	F_LevelRoom_Exit RoomData;
 
-// Base Variables
+// Functions
 // --------------------------------------------------
 
-// ------------------------- Encounter
+// ------------------------- Room
 	UFUNCTION(BlueprintCallable)
 	void SelectedExit();
 };

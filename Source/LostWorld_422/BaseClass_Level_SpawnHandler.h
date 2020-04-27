@@ -41,6 +41,6 @@ public:
 // Functions
 // --------------------------------------------------
 	UFUNCTION()
-	ABaseClass_LevelRoom* SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, E_Room_ExitDirections ExitDirection);
+	ABaseClass_LevelRoom* SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, ABaseClass_LevelRoom* PreviousRoomReference);
 
 };

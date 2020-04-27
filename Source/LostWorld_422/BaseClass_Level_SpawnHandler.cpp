@@ -22,7 +22,7 @@ void ABaseClass_Level_SpawnHandler::Tick(float DeltaTime)
 }
 
 //-------------------- Spawn Rooms --------------------//
-ABaseClass_LevelRoom* ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, E_Room_ExitDirections ExitDirection)
+ABaseClass_LevelRoom* ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, ABaseClass_LevelRoom* PreviousRoomReference)
 {
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.bNoFail = true;
@@ -32,7 +32,7 @@ ABaseClass_LevelRoom* ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<AB
 		Room_Reference = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(RoomToSpawnClass, WorldLocation, WorldRotation, SpawnParameters);
 
 		// Repeat the room spawn process
-		Room_Reference->SpawnAdjacentRoom();
+		//Room_Reference->SpawnAdjacentRoom();
 	}
 
 	if (Room_Reference)

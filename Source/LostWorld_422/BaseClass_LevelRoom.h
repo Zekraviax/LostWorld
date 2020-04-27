@@ -48,10 +48,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	TArray<F_LevelRoom_Exit> ExitsList;
 
-	// Previous room's exit to this room
-	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Data")
-	//E_Room_ExitDirections PreviousRoomExitDirection;
-
 	// Previous room exit
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Data")
 	F_LevelRoom_Exit PreviousRoomExit;

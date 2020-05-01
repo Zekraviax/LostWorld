@@ -5,6 +5,7 @@
 
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
+#include "Components/Button.h"
 #include "BaseClass_Widget_DeckBuilder.h"
 #include "BaseClass_CardUserWidget.h"
 
@@ -38,8 +39,14 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CardsInHand_ScrollBox;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UButton* GraveyardButton;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UButton* DeckButton;
 
 // ------------------------- Technical Variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")

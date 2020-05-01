@@ -19,7 +19,6 @@ void ABaseClass_PlayerController::SetupInputComponent()
 	ClickEventKeys.Add(EKeys::RightMouseButton);
 
 	// Mouse Up event for when players let go of cards
-	//if(GetPawn())
 	InputComponent->BindAction("MouseLeftClicked", IE_Pressed, this, &ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent);
 }
 
@@ -40,6 +39,9 @@ void ABaseClass_PlayerController::BeginPlay()
 		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
 		EntityInBattleRef->EntityBaseData = CurrentEntityData;
 		EntityInBattleRef->PlayerControllerRef = this;
+
+		// 
+		EntityInBattleRef->EntityBaseData.GameOverOnDeath.GameOverOnDeath = true;
 
 		// Set Camera Target
 		FViewTargetTransitionParams Params;

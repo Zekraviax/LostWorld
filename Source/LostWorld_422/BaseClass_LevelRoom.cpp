@@ -62,7 +62,10 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 				NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
 				NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
 
-				switch (NewExit.RoomReference->PreviousRoomExit.ExitDirection)
+				// Set the spawned room's previous room to be this one
+				NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
+
+				switch (NewExit.ExitDirection)
 				{
 				case(E_Room_ExitDirections::E_North):
 					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
@@ -81,11 +84,10 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 					NewExit.RoomReference->PreviousRoomExit.DisplayName = "East";
 					break;
 				default:
+					//NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
+					//NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
 					break;
 				}
-
-				// Set the spawned room's previous room to be this one
-				NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
 
 				ExitsList.Add(NewExit);
 
@@ -141,7 +143,12 @@ void ABaseClass_LevelRoom::PlayerEnterRoom()
 			}
 
 			// Set the previous room exit
-			
+			if (PreviousRoomExit.RoomReference) {
+				RoomExit_Widget = CreateWidget<UWidgetComponent_RoomExit>(GetWorld(), RoomExit_Class);
+				RoomExit_Widget->RoomData = PreviousRoomExit;
+				RoomExit_Widget->EncounterLabel->SetText(FText::FromString(PreviousRoomExit.DisplayName));
+				PlayerControllerRef->Level_HUD_Widget->ExitList_ScrollBox->AddChild(RoomExit_Widget);
+			}
 
 			// Get all exits and add to HUD
 			if (RoomExit_Class) {

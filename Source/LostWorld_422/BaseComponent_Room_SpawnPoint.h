@@ -10,8 +10,6 @@
 // Forward Declarations
 class ABaseClass_LevelRoom;
 
-// Unique Enum
-
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LOSTWORLD_422_API UBaseComponent_Room_SpawnPoint : public USceneComponent

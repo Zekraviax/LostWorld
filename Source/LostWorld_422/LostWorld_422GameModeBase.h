@@ -370,7 +370,7 @@ struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBa
 	}
 };
 
-// Room encounter
+// Room Encounter
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase
 {
@@ -393,7 +393,7 @@ struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase
 	}
 };
 
-// Room exit
+// Room Exit
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_Exit
 {
@@ -412,6 +412,33 @@ struct LOSTWORLD_422_API F_LevelRoom_Exit
 	{
 		DisplayName = "Default";
 		ExitDirection = E_Room_ExitDirections::E_None;
+	}
+};
+
+// Level Data
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_Level_Data
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rooms")
+	int MinimumRoomCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rooms")
+	int MaximumRoomCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rooms")
+	int CurrentRoomCount;
+
+	F_Level_Data()
+	{
+		DisplayName = "Level";
+		MinimumRoomCount = 6;
+		MaximumRoomCount = 10;
+		CurrentRoomCount = 0;
 	}
 };
 

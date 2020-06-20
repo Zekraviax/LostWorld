@@ -44,60 +44,75 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 	// Find the level's Room SpawnHandler
 	for (TActorIterator<ABaseClass_Level_SpawnHandler> Itr(GetWorld()); Itr; ++Itr) {
 		RoomSpawner = *Itr;
+		break;
 	}
 
 	if (RoomSpawner && RoomSpawnSceneComponents.Num() > 0) {
 		F_LevelRoom_Exit NewExit;
 		ABaseClass_PlayerController* PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
-		for (int i = 0; i < RoomSpawnSceneComponents.Num(); i++) {
-			if (RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() > 0) {
+		if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount) {
+			for (int i = 0; i < RoomSpawnSceneComponents.Num(); i++) {
+				if (RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() > 0) {
 
-				// Choose a valid Room to spawn at random
-				TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
-				RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
+					// Choose a valid Room to spawn at random
+					TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
+					RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
 
-				// Add the spawned room to the exits list
-				NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
-				NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
-				NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
+					// Increment the current room count
+					//RoomSpawner->LevelData.CurrentRoomCount++;
 
-				// Set the spawned room's previous room to be this one
-				NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
+					// Add the spawned room to the exits list
+					NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
+					NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
+					NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
 
-				switch (NewExit.ExitDirection)
-				{
-				case(E_Room_ExitDirections::E_North):
-					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
-					NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
-					break;
-				case(E_Room_ExitDirections::E_South):
-					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_North;
-					NewExit.RoomReference->PreviousRoomExit.DisplayName = "North";
-					break;
-				case(E_Room_ExitDirections::E_East):
-					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_West;
-					NewExit.RoomReference->PreviousRoomExit.DisplayName = "West";
-					break;
-				case(E_Room_ExitDirections::E_West):
-					NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_East;
-					NewExit.RoomReference->PreviousRoomExit.DisplayName = "East";
-					break;
-				default:
-					//NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
-					//NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
-					break;
+					// Set the spawned room's previous room to be this one
+					NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
+
+					switch (NewExit.ExitDirection)
+					{
+					case(E_Room_ExitDirections::E_North):
+						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
+						NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
+						break;
+					case(E_Room_ExitDirections::E_South):
+						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_North;
+						NewExit.RoomReference->PreviousRoomExit.DisplayName = "North";
+						break;
+					case(E_Room_ExitDirections::E_East):
+						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_West;
+						NewExit.RoomReference->PreviousRoomExit.DisplayName = "West";
+						break;
+					case(E_Room_ExitDirections::E_West):
+						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_East;
+						NewExit.RoomReference->PreviousRoomExit.DisplayName = "East";
+						break;
+					default:
+						//NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
+						//NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
+						break;
+					}
+
+					ExitsList.Add(NewExit);
 				}
-
-				ExitsList.Add(NewExit);
-
-				// Spawn the next room's adjacent rooms
-				NewExit.RoomReference->SpawnAdjacentRoom();
-
-			} else {
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types"));
+				else {
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types"));
+				}
 			}
 
+			if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 1) {
+				// Spawn each exit's adjacent rooms
+				// Add the spawned rooms to a queue for spawning adjacent rooms
+				for (int j = 1; j < ExitsList.Num(); j++) {
+					//ExitsList[j].RoomReference->SpawnAdjacentRoom();
+					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
+				}
+				RoomSpawner->ProcessQueue();
+			} else {
+				ExitsList[0].RoomReference->SpawnAdjacentRoom();
+			}
+				
 		}
 	}
 }

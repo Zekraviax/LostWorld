@@ -37,10 +37,18 @@ public:
 	ABaseClass_LevelRoom* Room_Reference;
 
 // ------------------------- Rooms
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rooms")
+	TArray<ABaseClass_LevelRoom*> RoomSpawnQueue;
+
+// ------------------------- Level
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
+	F_Level_Data LevelData;
 
 // Functions
 // --------------------------------------------------
 	UFUNCTION()
 	ABaseClass_LevelRoom* SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, ABaseClass_LevelRoom* PreviousRoomReference);
 
+	UFUNCTION()
+	void ProcessQueue();
 };

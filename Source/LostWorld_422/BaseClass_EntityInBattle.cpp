@@ -57,7 +57,8 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 		ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
 		FString ContextString;
 		TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
-		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[0], ContextString));
+		//CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[FMath::RandRange(0, RowNames.Num() - 1)], ContextString));
+		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;
 		CardsInDeck[i].Owner = this;
@@ -66,11 +67,11 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 }
 
 
-void ABaseClass_EntityInBattle::ResetStatsWidget()
-{
-	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
-}
+//void ABaseClass_EntityInBattle::ResetStatsWidget()
+//{
+//	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
+//	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
+//}
 
 
 void ABaseClass_EntityInBattle::ResetComponentsLocations()
@@ -185,18 +186,44 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	//if (RandCard.CurrentTargets.Contains(E_Card_SetTargets::E_CastTarget)) {
-	//	TArray<ABaseClass_EntityInBattle*> TargetsArray;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
 
+	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
+		TArray<ABaseClass_EntityInBattle*> TargetsArray;
+
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
+
+			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
+				TargetsArray.Add(FoundEntity);
+			}
+		}
+
+		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
+	}
+
+	//switch (RandCard.SimpleTargetsOverride) 
+	//{
+	//case(E_Card_SetTargets::E_CastTarget): 
+	//{
 	//	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 	//		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
+	//		RandTargetsArray.Add(FoundEntity);
 
-	//		if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
-	//			TargetsArray.Add(FoundEntity);
-	//		}
+	//		//if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
+	//		//	RandTargetsArray.Add(FoundEntity);
+	//		//}
 	//	}
 
-	//	RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
+	//	RandCard.CurrentTargets.Add(RandTargetsArray[FMath::RandRange(0, RandTargetsArray.Num() - 1)]);
+	//	break;
+	//}
+	//default:
+	//	break;
 	//}
 
 	// Cast card
@@ -207,14 +234,14 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Mana Check
-	//if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
-	//	EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
-	//}
-	//else {
-	//	GameStateRef->EntityEndOfTurn();
-	//}
+	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
+		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
+	}
+	else {
+		GameStateRef->EntityEndOfTurn();
+	}
 
-	//GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
+	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
 	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.AbilitiesAndConditions.Num() + 1), false);
 }
 

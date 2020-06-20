@@ -107,8 +107,8 @@ public:
 	void ShuffleCardsInDeck_BP();
 
 // ------------------------- Components
-	UFUNCTION()
-	void ResetStatsWidget();
+	//UFUNCTION()
+	//void ResetStatsWidget();
 
 	UFUNCTION()
 	void ResetComponentsLocations();

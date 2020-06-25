@@ -59,10 +59,6 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 					TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
 					RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
 
-					// Increment the current room count
-					//RoomSpawner->LevelData.CurrentRoomCount++;
-
-					// Add the spawned room to the exits list
 					NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
 					NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
 					NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
@@ -95,24 +91,20 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 					}
 
 					ExitsList.Add(NewExit);
-				}
-				else {
-					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types"));
+				} else {
+					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types."));
 				}
 			}
 
-			if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 1) {
-				// Spawn each exit's adjacent rooms
+			if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 0) {
 				// Add the spawned rooms to a queue for spawning adjacent rooms
-				for (int j = 1; j < ExitsList.Num(); j++) {
-					//ExitsList[j].RoomReference->SpawnAdjacentRoom();
+				for (int j = 0; j < ExitsList.Num(); j++) {
+					// RoomReference not being set to right room?
 					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
 				}
+
 				RoomSpawner->ProcessQueue();
-			} else {
-				ExitsList[0].RoomReference->SpawnAdjacentRoom();
-			}
-				
+			} 
 		}
 	}
 }
@@ -167,10 +159,10 @@ void ABaseClass_LevelRoom::PlayerEnterRoom()
 
 			// Get all exits and add to HUD
 			if (RoomExit_Class) {
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Count: %s"), *FString::FromInt(ExitsList.Num())));
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Count: %s"), *FString::FromInt(ExitsList.Num())));
 
 				for (int i = 0; i < ExitsList.Num(); i++) {
-					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Found: %s"), *ExitsList[i].DisplayName));
+					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Exit Found: %s"), *ExitsList[i].DisplayName));
 
 					RoomExit_Widget = CreateWidget<UWidgetComponent_RoomExit>(GetWorld(), RoomExit_Class);
 					RoomExit_Widget->RoomData = ExitsList[i];

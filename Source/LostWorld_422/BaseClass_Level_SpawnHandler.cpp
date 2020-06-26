@@ -45,13 +45,13 @@ ABaseClass_LevelRoom* ABaseClass_Level_SpawnHandler::SpawnNewRoom(TSubclassOf<AB
 void ABaseClass_Level_SpawnHandler::ProcessQueue()
 {
 	if (RoomSpawnQueue.Num() > 0 && LevelData.CurrentRoomCount <= LevelData.MaximumRoomCount) {
-		int LastIndex = RoomSpawnQueue.Num() - 1;
+		//int LastIndex = RoomSpawnQueue.Num() - 1;
+		ABaseClass_LevelRoom* LocalRoomRef;
 
 		LevelData.CurrentRoomCount++;
+		LocalRoomRef = RoomSpawnQueue[0];
 
-		RoomSpawnQueue[LastIndex]->SpawnAdjacentRoom();
-		RoomSpawnQueue.RemoveAt(LastIndex);
-
-		ProcessQueue();
+		RoomSpawnQueue.RemoveAt(0);
+		LocalRoomRef->SpawnAdjacentRoom();
 	}
 }

@@ -99,8 +99,9 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 			if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 0) {
 				// Add the spawned rooms to a queue for spawning adjacent rooms
 				for (int j = 0; j < ExitsList.Num(); j++) {
-					// RoomReference not being set to right room?
+					
 					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
+					//RoomSpawner->RoomSpawnQueue.Insert(ExitsList[j].RoomReference, 0);
 				}
 
 				RoomSpawner->ProcessQueue();

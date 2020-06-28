@@ -51,9 +51,11 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 		F_LevelRoom_Exit NewExit;
 		ABaseClass_PlayerController* PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
-		if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount) {
+		//if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount) {
 			for (int i = 0; i < RoomSpawnSceneComponents.Num(); i++) {
 				if (RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() > 0) {
+
+					GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, FString::Printf(TEXT("Spawn Adjacent Room %d"), RoomSpawner->LevelData.CurrentRoomCount));
 
 					// Choose a valid Room to spawn at random
 					TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
@@ -96,17 +98,15 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 				}
 			}
 
-			if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 0) {
+			//if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 0) {
+			if (ExitsList.Num() > 0) {
 				// Add the spawned rooms to a queue for spawning adjacent rooms
 				for (int j = 0; j < ExitsList.Num(); j++) {
-					
 					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
-					//RoomSpawner->RoomSpawnQueue.Insert(ExitsList[j].RoomReference, 0);
 				}
-
 				RoomSpawner->ProcessQueue();
 			} 
-		}
+		//}
 	}
 }
 

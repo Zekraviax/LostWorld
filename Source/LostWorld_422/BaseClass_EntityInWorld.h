@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -22,6 +20,7 @@ class ABaseClass_PlayerController;
 // Mostly a physical representation of an EntityInBattle.
 // Doesn't do much on it's own.
 // (Attached to a grid tile for the most part)
+
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_EntityInWorld : public AActor

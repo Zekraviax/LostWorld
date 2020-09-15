@@ -2,12 +2,15 @@
 
 #include "EngineUtils.h"
 #include "BaseClass_DefaultPawn.h"
+#include "BaseClass_GridTile.h"
+#include "Components/SceneComponent.h"
 
 
 ABaseClass_PlayerController::ABaseClass_PlayerController()
 {
 
 }
+
 
 void ABaseClass_PlayerController::SetupInputComponent()
 {
@@ -22,6 +25,7 @@ void ABaseClass_PlayerController::SetupInputComponent()
 	InputComponent->BindAction("MouseLeftClicked", IE_Pressed, this, &ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent);
 }
 
+
 void ABaseClass_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -31,7 +35,17 @@ void ABaseClass_PlayerController::BeginPlay()
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
 	}
+}
 
+
+void ABaseClass_PlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
+
+void ABaseClass_PlayerController::ManualBeginPlay()
+{
 	// Create the player EntityInBattle
 	if (!EntityInBattleRef && EntityInBattle_Class) {
 		UWorld* const World = GetWorld(); // get a reference to the world
@@ -47,13 +61,19 @@ void ABaseClass_PlayerController::BeginPlay()
 		FViewTargetTransitionParams Params;
 		SetViewTarget(EntityInBattleRef, Params);
 		EntityInBattleRef->Camera->SetActive(true);
+
+		// Move player to first tile
+		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+			ABaseClass_GridTile* FoundTile = *Itr;
+			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 5 && FoundTile->Y_Coordinate == 4) {
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found Grid Tiles"));
+				MoveToTile(FoundTile);
+				break;
+			}
+		}
 	}
 }
 
-void ABaseClass_PlayerController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
 
 // ------------------------- Mouse
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
@@ -161,6 +181,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 	}
 }
 
+
 // ------------------------- Gameplay
 void ABaseClass_PlayerController::BeginBattle()
 {
@@ -176,6 +197,7 @@ void ABaseClass_PlayerController::BeginBattle()
 	}
 }
 
+
 void ABaseClass_PlayerController::ExitBattle()
 {
 	if (Battle_HUD_Widget) {
@@ -187,5 +209,13 @@ void ABaseClass_PlayerController::ExitBattle()
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
 		CurrentRoom->PlayerEnterRoom();
+	}
+}
+
+
+void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile * TileReference)
+{
+	if (EntityInBattleRef) {
+		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 	}
 }

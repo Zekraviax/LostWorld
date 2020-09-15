@@ -13,6 +13,9 @@
 
 #include "BaseClass_PlayerController.generated.h"
 
+// Forward Declarations
+class ABaseClass_GridTile;
+
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_PlayerController : public APlayerController
@@ -85,6 +88,8 @@ public:
 
 // Functions
 // --------------------------------------------------
+	UFUNCTION()
+	void ManualBeginPlay();
 
 // ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
@@ -96,4 +101,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ExitBattle();
+
+	UFUNCTION()
+	void MoveToTile(ABaseClass_GridTile* TileReference);
 };

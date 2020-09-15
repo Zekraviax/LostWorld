@@ -1,6 +1,7 @@
 #include "BaseClass_EntityInBattle.h"
 
 #include "BaseClass_PlayerController.h"
+#include "BaseClass_GridTile.h"
 #include "LostWorld_422GameStateBase.h"
 
 
@@ -28,8 +29,14 @@ void ABaseClass_EntityInBattle::BeginPlay()
 {
 	Super::BeginPlay();
 
+	FAttachmentTransformRules AttachRules = FAttachmentTransformRules(EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, true);
+	// Attach components to entity
+	EntityStats_WidgetComponent->AttachToComponent(RootComponent, AttachRules);
+	SpringArm->AttachToComponent(RootComponent, AttachRules);
+
 	// Get a reference to the EntityStats proper widget and set the variables
 	if (EntityStats_WidgetComponent && EntityStats_WidgetComponent_Class) {
+
 		EntityStats_WidgetComponent_Reference = Cast<UBaseClass_WidgetComponent_Stats>(EntityStats_WidgetComponent->GetUserWidgetObject());
 
 		if (EntityStats_WidgetComponent_Reference)

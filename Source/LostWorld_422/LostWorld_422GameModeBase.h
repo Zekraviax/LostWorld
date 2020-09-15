@@ -370,6 +370,36 @@ struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBa
 	}
 };
 
+// Exits
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_LevelRoom_Exits : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString ExitName;
+
+	F_LevelRoom_Exits()
+	{
+		ExitName = "Default";
+	}
+};
+
+// Miscellaneous Encounters
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_LevelRoom_MiscellaneousEncounters : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	FString EncounterName;
+
+	F_LevelRoom_MiscellaneousEncounters()
+	{
+		EncounterName = "Default";
+	}
+};
+
 // Room Encounter
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,8 +5,13 @@
 
 #include "LostWorld_422GameModeBase.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/BoxComponent.h"
 
 #include "BaseClass_GridTile.generated.h"
+
+// Forward Declarations
+class UWidgetComponent_MinimapRoom;
+
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_GridTile : public AActor
@@ -31,6 +34,24 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Data - Components")
-	UStaticMeshComponent* StaticMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	USceneComponent* PlayerRestPointReference;
+
+// ------------------------- Widget
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UWidgetComponent_MinimapRoom* MinimapRoomReference;
+
+// ------------------------- Technical Variables
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
+	int X_Coordinate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
+	int Y_Coordinate;
+
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Mouse
+	UFUNCTION(BlueprintCallable)
+	void OnMouseBeginHover();
 };

@@ -52,9 +52,9 @@ public:
 
 // Functions
 // --------------------------------------------------
-	UFUNCTION()
-	ABaseClass_LevelRoom* SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, ABaseClass_LevelRoom* PreviousRoomReference);
+	//UFUNCTION()
+	//ABaseClass_LevelRoom* SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation, ABaseClass_LevelRoom* PreviousRoomReference);
 
-	UFUNCTION()
-	void ProcessQueue();
+	//UFUNCTION()
+	//void ProcessQueue();
 };

@@ -54,13 +54,13 @@ void ABaseClass_EntityInWorld::CustomOnBeginMouseOverEvent(UPrimitiveComponent* 
 void ABaseClass_EntityInWorld::CreateEntityInBattle()
 {
 	// Create the player EntityInBattle
-	if (!EntityInBattleRef && EntityInBattle_Class)
-	{
-		UWorld* const World = GetWorld(); // get a reference to the world
-		FActorSpawnParameters SpawnParameters;
-		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
+	//if (!EntityInBattleRef && EntityInBattle_Class)
+	//{
+	//	UWorld* const World = GetWorld(); // get a reference to the world
+	//	FActorSpawnParameters SpawnParameters;
+	//	EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
 
-		if(EntityBaseData.IsPlayerControllable || !PlayerControllerRef)
-			PlayerControllerRef = PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-	}
+	//	if(EntityBaseData.IsPlayerControllable || !PlayerControllerRef)
+	//		PlayerControllerRef = PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+	//}
 }

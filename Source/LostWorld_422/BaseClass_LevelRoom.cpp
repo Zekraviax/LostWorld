@@ -61,7 +61,7 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 					TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
 					RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
 
-					NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
+					//NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
 					NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
 					NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
 
@@ -104,7 +104,7 @@ void ABaseClass_LevelRoom::SpawnAdjacentRoom()
 				for (int j = 0; j < ExitsList.Num(); j++) {
 					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
 				}
-				RoomSpawner->ProcessQueue();
+				//RoomSpawner->ProcessQueue();
 			} 
 		//}
 	}

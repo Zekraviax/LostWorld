@@ -2,20 +2,30 @@
 
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
+#include "BaseClass_Widget_Minimap.h"
+
+
+void UWidgetComponent_MinimapRoom::SetColour()
+{
+	if (GridTileReference->EncountersList.Num() > 0) {
+		BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
+		return;
+	}
+}
 
 
 void UWidgetComponent_MinimapRoom::OnRoomSelected()
 {
-	for (TObjectIterator<ABaseClass_EntityInBattle> Itr; Itr; ++Itr) {
-		ABaseClass_EntityInBattle* FoundEntity = *Itr;
+	if (MinimapReference->PlayerNeighbouringRoomWidgets.Contains(this)) {
+		for (TObjectIterator<ABaseClass_EntityInBattle> Itr; Itr; ++Itr) {
+			ABaseClass_EntityInBattle* FoundEntity = *Itr;
 
-		if (FoundEntity->PlayerControllerRef && GridTileReference) {
-			if (GridTileReference) {
+			if (FoundEntity->PlayerControllerRef && GridTileReference) {
 				FoundEntity->PlayerControllerRef->MoveToTile(GridTileReference);
-			} else {
-
+				//BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
+				MinimapReference->GetPlayerNeighbouringTiles(this);
+				break;
 			}
-			break;
 		}
 	}
 }

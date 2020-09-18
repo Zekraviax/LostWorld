@@ -2,10 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+
+#include "Components/Image.h"
+
 #include "WidgetComponent_MinimapRoom.generated.h"
 
 // Forward Declarations
 class ABaseClass_GridTile;
+class UBaseClass_Widget_Minimap;
 
 
 UCLASS()
@@ -17,9 +21,16 @@ public:
 // Base Variables
 // --------------------------------------------------
 
+// ------------------------- Components
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References", meta = (BindWidget))
+	UImage* BackgroundImage;
+
 // ------------------------- References
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References")
 	ABaseClass_GridTile* GridTileReference;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References")
+	UBaseClass_Widget_Minimap* MinimapReference;
 
 // ------------------------- Technical Variables
 	UPROPERTY()
@@ -30,6 +41,10 @@ public:
 
 // Functions
 // --------------------------------------------------
+
+// ------------------------- Widget
+	UFUNCTION()
+	void SetColour();
 
 // ------------------------- Room
 	UFUNCTION(BlueprintCallable)

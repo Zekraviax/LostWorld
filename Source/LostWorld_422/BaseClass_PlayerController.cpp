@@ -3,7 +3,10 @@
 #include "EngineUtils.h"
 #include "BaseClass_DefaultPawn.h"
 #include "BaseClass_GridTile.h"
+#include "BaseClass_Widget_Minimap.h"
+#include "WidgetComponent_MinimapRoom.h"
 #include "Components/SceneComponent.h"
+
 
 
 ABaseClass_PlayerController::ABaseClass_PlayerController()
@@ -65,9 +68,18 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		// Move player to first tile
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
-			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 5 && FoundTile->Y_Coordinate == 4) {
+			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 0 && FoundTile->Y_Coordinate == 0) {
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found Grid Tiles"));
 				MoveToTile(FoundTile);
+
+				for (TObjectIterator<UBaseClass_Widget_Minimap> Itr2; Itr2; ++Itr2) {
+					UBaseClass_Widget_Minimap* FoundWidget = *Itr2;
+					if (FoundWidget->IsValidLowLevel()) {
+						FoundWidget->GetPlayerNeighbouringTiles(FoundTile->MinimapRoomReference);
+					}
+				}
+
+				FoundTile->MinimapRoomReference->SetColour();
 				break;
 			}
 		}

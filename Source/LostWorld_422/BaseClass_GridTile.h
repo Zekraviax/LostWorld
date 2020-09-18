@@ -41,12 +41,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	UWidgetComponent_MinimapRoom* MinimapRoomReference;
 
-// ------------------------- Technical Variables
+// ------------------------- Data
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
 	int X_Coordinate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
 	int Y_Coordinate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	TArray<F_LevelRoom_Encounter> EncountersList;
 
 // Functions
 // --------------------------------------------------

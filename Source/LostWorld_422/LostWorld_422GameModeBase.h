@@ -421,6 +421,13 @@ struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase
 		DisplayName = "Default";
 		CurrentlyActiveEncounter = false;
 	}
+
+	F_LevelRoom_Encounter(FString NewName, bool IsActiveEncounter, FDataTableRowHandle EnemyEncounterDataTableRow)
+	{
+		DisplayName = NewName;
+		CurrentlyActiveEncounter = IsActiveEncounter;
+		EncounterListEntry = EnemyEncounterDataTableRow;
+	}
 };
 
 // Room Exit

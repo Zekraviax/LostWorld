@@ -5,6 +5,7 @@
 
 #include "Components/UniformGridPanel.h"
 #include "Components/GridPanel.h"
+#include "Engine/DataTable.h"
 
 #include "BaseClass_Widget_Minimap.generated.h"
 
@@ -40,10 +41,24 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
 	ABaseClass_GridTile* GridTile_Actor;
 
+// ------------------------- References
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
+	UDataTable* EnemyFormationsTable;
+
+// ------------------------- Map
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Map")
+	TArray<ABaseClass_GridTile*> GridTilesArray;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Map")
+	TArray<UWidgetComponent_MinimapRoom*> PlayerNeighbouringRoomWidgets;
+
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Rooms
+// ------------------------- Map
 	UFUNCTION(BlueprintCallable)
 	void GenerateLevel();
+
+	UFUNCTION()
+	void GetPlayerNeighbouringTiles(UWidgetComponent_MinimapRoom* CurrentRoomWidget);
 };

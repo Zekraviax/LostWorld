@@ -4,6 +4,7 @@
 #include "Blueprint/UserWidget.h"
 
 #include "Components/Image.h"
+#include "Components/Button.h"
 
 #include "WidgetComponent_MinimapRoom.generated.h"
 
@@ -24,6 +25,9 @@ public:
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References", meta = (BindWidget))
 	UImage* BackgroundImage;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References", meta = (BindWidget))
+	UButton* InteractButton;
 
 // ------------------------- References
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References")

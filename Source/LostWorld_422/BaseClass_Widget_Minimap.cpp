@@ -13,10 +13,273 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	FActorSpawnParameters SpawnParameters;
 	TArray<USceneComponent*> GridTileSceneComponents;
 
+	// Test Room Formation: Four Square
+	// Divide the map into four equal quadrants,
+	// Then randomly pick a tile near the centre of each quadrant.
+	// Create a room of variable size around the chosen tiles.
+
+	// Randomly generate half-width values for the sizes of the room.
+	// Then pick a random tile to be the center of the room.
+	// Strip away all tiles that are further away than the half-values.
+	// We use half-values instead of full values in order to make it easier to generate rooms.
+	// And maybe we can have special things or events take place in room centers.
+
+	TArray<FVector2D> MinimapArrayRoomOneCoordinates, MinimapArrayRoomTwoCoordinates, MinimapArrayRoomThreeCoordinates, MinimapArrayRoomFourCoordinates, MinimapArrayRoomFiveCoordinates, MinimapArrayRoomSixCoordinates, MinimapArrayRoomSevenCoordinates, MinimapArrayRoomEightCoordinates;
+	TArray<FVector2D> MinimapArrayCorridorOneCoordinates, MinimapArrayCorridorTwoCoordinates, MinimapArrayCorridorThreeCoordinates, MinimapArrayCorridorFourCoordinates, MinimapArrayCorridorFiveCoordinates, MinimapArrayCorridorSixCoordinates, MinimapArrayCorridorSevenCoordinates, MinimapArrayCorridorEightCoordinates;
+
+	FVector2D RoomOneCenter = FVector2D(FMath::RandRange(4, 6), FMath::RandRange(4, 6));
+	//int RoomOneHalfWidth = FMath::RandRange(1, 3);
+	int RoomOneHalfWidth = 2;
+	int RoomOneHalfHeight = 2;
+
+	FVector2D RoomTwoCenter = FVector2D(FMath::RandRange(4, 6), FMath::RandRange(13, 15));
+	int RoomTwoHalfWidth = 2;
+	int RoomTwoHalfHeight = 2;
+
+	FVector2D RoomThreeCenter = FVector2D(FMath::RandRange(13, 15), FMath::RandRange(4, 6));
+	int RoomThreeHalfWidth = 2;
+	int RoomThreeHalfHeight = 2;
+
+	FVector2D RoomFourCenter = FVector2D(FMath::RandRange(13, 15), FMath::RandRange(13, 13));
+	int RoomFourHalfWidth = 2;
+	int RoomFourHalfHeight = 2;
+
+	//MinimapTileOne = MinimapRoomArrayOne[FMath::RandRange(3, MinimapRoomArrayOne.Num() - 4)];
+
+	//int LeftRoomBound = MinimapTileOne->X_Coordinate - RoomOneHalfWidth;
+	//int RightRoomBound = MinimapTileOne->X_Coordinate + RoomOneHalfHeight;
+
 	// Generate Base Level
+	// Hard-Coded to be no bigger than 20x20
+	// (Need to experiment with a reasonable size limit)
+	for (int x = 0; x <= 20; x++) {
+		for (int y = 0; y <= 20; y++) {
+			if (x <= (RoomOneCenter.X + RoomOneHalfWidth) && x >= (RoomOneCenter.X - RoomOneHalfWidth) &&
+				y <= (RoomOneCenter.Y + RoomOneHalfHeight) && y >= (RoomOneCenter.Y - RoomOneHalfHeight)) {
+				MinimapArrayRoomOneCoordinates.Add(FVector2D(x, y));
+			} else if (x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && x >= (RoomTwoCenter.X - RoomTwoHalfWidth) &&
+				y <= (RoomTwoCenter.Y + RoomTwoHalfHeight) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight)) {
+				MinimapArrayRoomTwoCoordinates.Add(FVector2D(x, y));
+			} else if (x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && x >= (RoomThreeCenter.X - RoomThreeHalfWidth) &&
+				y <= (RoomThreeCenter.Y + RoomThreeHalfHeight) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight)) {
+				MinimapArrayRoomThreeCoordinates.Add(FVector2D(x, y));
+			} else if (x <= (RoomFourCenter.X + RoomFourHalfWidth) && x >= (RoomFourCenter.X - RoomFourHalfWidth) &&
+				y <= (RoomFourCenter.Y + RoomFourHalfHeight) && y >= (RoomFourCenter.Y - RoomFourHalfHeight)) {
+				MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
+			}
+
+			//if (x <= (RoomOneCenter.X + RoomOneHalfWidth) && x >= (RoomOneCenter.X - RoomOneHalfWidth)) {
+			//	MinimapArrayRoomOneCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (y <= (RoomOneCenter.Y + RoomOneHalfHeight) && y >= (RoomOneCenter.Y - RoomOneHalfHeight)) {
+			//	MinimapArrayRoomFiveCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && x >= (RoomTwoCenter.X - RoomTwoHalfWidth)) {
+			//	MinimapArrayRoomTwoCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (y <= (RoomTwoCenter.Y + RoomTwoHalfHeight) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight)) {
+			//	MinimapArrayRoomSixCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && x >= (RoomThreeCenter.X - RoomThreeHalfWidth)) {
+			//	MinimapArrayRoomThreeCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (y <= (RoomThreeCenter.Y + RoomThreeHalfHeight) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight)) {
+			//	MinimapArrayRoomSevenCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (x <= (RoomFourCenter.X + RoomFourHalfWidth) && x >= (RoomFourCenter.X - RoomFourHalfWidth)) {
+			//	MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
+			//}
+			//else if (y <= (RoomFourCenter.Y + RoomFourHalfHeight) && y >= (RoomFourCenter.Y - RoomFourHalfHeight)) {
+			//	MinimapArrayRoomEightCoordinates.Add(FVector2D(x, y));
+			//}
+
+			//if (x <= (RoomOneCenter.X + RoomOneHalfWidth) && y <= (RoomOneCenter.Y + RoomOneHalfHeight) ||
+			//	x >= (RoomOneCenter.X - RoomOneHalfWidth) && y >= (RoomOneCenter.Y - RoomOneHalfHeight) ||
+			//	x <= (RoomOneCenter.X + RoomOneHalfWidth) && y >= (RoomOneCenter.Y - RoomOneHalfHeight) || 
+			//	x >= (RoomOneCenter.X - RoomOneHalfWidth) && y <= (RoomOneCenter.Y + RoomOneHalfHeight)) {
+			//	MinimapArrayRoomOneCoordinates.Add(FVector2D(x, y));
+			//} 
+			//else if (x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && y <= (RoomTwoCenter.Y + RoomTwoHalfHeight) ||
+			//	x >= (RoomTwoCenter.X - RoomTwoHalfWidth) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight) ||
+			//	x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight) ||
+			//	x >= (RoomTwoCenter.X - RoomTwoHalfWidth) && y <= (RoomTwoCenter.Y + RoomTwoHalfHeight)) {
+			//	MinimapArrayRoomTwoCoordinates.Add(FVector2D(x, y));
+			//} else if (x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && y <= (RoomThreeCenter.Y + RoomThreeHalfHeight) ||
+			//	x >= (RoomThreeCenter.X - RoomThreeHalfWidth) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight) ||
+			//	x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight) ||
+			//	x >= (RoomThreeCenter.X - RoomThreeHalfWidth) && y <= (RoomThreeCenter.Y + RoomThreeHalfHeight)) {
+			//	MinimapArrayRoomThreeCoordinates.Add(FVector2D(x, y));
+			//} else if (x <= (RoomFourCenter.X + RoomFourHalfWidth) && y <= (RoomFourCenter.Y + RoomFourHalfHeight) ||
+			//	x >= (RoomFourCenter.X - RoomFourHalfWidth) && y >= (RoomFourCenter.Y - RoomFourHalfHeight) ||
+			//	x <= (RoomFourCenter.X + RoomFourHalfWidth) && y >= (RoomFourCenter.Y - RoomFourHalfHeight) ||
+			//	x >= (RoomFourCenter.X - RoomFourHalfWidth) && y <= (RoomFourCenter.Y + RoomFourHalfHeight)) {
+			//	MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
+			//}
+		}
+	}
+
+	// Find the edges of the four rooms and select one tile to start making corridors
+	// Bottom Row and Right Column for Room One
+	for (int i = 0; i < MinimapArrayRoomOneCoordinates.Num(); i++) {
+		if (MinimapArrayRoomOneCoordinates[i].X == (RoomOneCenter.X + RoomOneHalfWidth)) {
+			MinimapArrayCorridorFiveCoordinates.Add(MinimapArrayRoomOneCoordinates[i]);
+		}
+		else if (MinimapArrayRoomOneCoordinates[i].Y == (RoomOneCenter.Y + RoomOneHalfHeight)) {
+			MinimapArrayCorridorOneCoordinates.Add(MinimapArrayRoomOneCoordinates[i]);
+		}
+	}
+	// Bottom Row and Left Column for Room Two
+	for (int i = 0; i < MinimapArrayRoomTwoCoordinates.Num(); i++) {
+		if (MinimapArrayRoomTwoCoordinates[i].X == (RoomTwoCenter.X + RoomTwoHalfWidth)) {
+			MinimapArrayCorridorSixCoordinates.Add(MinimapArrayRoomTwoCoordinates[i]);
+		}
+		else if (MinimapArrayRoomTwoCoordinates[i].Y == (RoomTwoCenter.Y - RoomTwoHalfWidth)) {
+			MinimapArrayCorridorTwoCoordinates.Add(MinimapArrayRoomTwoCoordinates[i]);
+		}
+	}
+	// Top Row and Right Colomn for Room Three
+	for (int i = 0; i < MinimapArrayRoomThreeCoordinates.Num(); i++) {
+		if (MinimapArrayRoomThreeCoordinates[i].X == (RoomThreeCenter.X - RoomTwoHalfWidth)) {
+			MinimapArrayCorridorSevenCoordinates.Add(MinimapArrayRoomThreeCoordinates[i]);
+		}
+		else if (MinimapArrayRoomThreeCoordinates[i].Y == (RoomThreeCenter.Y + RoomTwoHalfWidth)) {
+			MinimapArrayCorridorThreeCoordinates.Add(MinimapArrayRoomThreeCoordinates[i]);
+		}
+	}
+	// Top Row and Left Column for Room Four
+	for (int i = 0; i < MinimapArrayRoomFourCoordinates.Num(); i++) {
+		if (MinimapArrayRoomFourCoordinates[i].X == (RoomFourCenter.X - RoomTwoHalfWidth)) {
+			MinimapArrayCorridorEightCoordinates.Add(MinimapArrayRoomFourCoordinates[i]);
+		}
+		else if (MinimapArrayRoomFourCoordinates[i].Y == (RoomFourCenter.Y - RoomTwoHalfWidth)) {
+			MinimapArrayCorridorFourCoordinates.Add(MinimapArrayRoomFourCoordinates[i]);
+		}
+	}
+
+	// Pick eight random tiles along the edges of the rooms to be the start of the corridors that join the rooms
+	int MinimapArrayCorridorOneChosenIndex = FMath::RandRange(0, MinimapArrayCorridorOneCoordinates.Num() - 1);
+	int MinimapArrayCorridorTwoChosenIndex = FMath::RandRange(0, MinimapArrayCorridorTwoCoordinates.Num() - 1);
+	int MinimapArrayCorridorThreeChosenIndex = FMath::RandRange(0, MinimapArrayCorridorThreeCoordinates.Num() - 1);
+	int MinimapArrayCorridorFourChosenIndex = FMath::RandRange(0, MinimapArrayCorridorFourCoordinates.Num() - 1);
+	int MinimapArrayCorridorFiveChosenIndex = FMath::RandRange(0, MinimapArrayCorridorFiveCoordinates.Num() - 1);
+	int MinimapArrayCorridorSixChosenIndex = FMath::RandRange(0, MinimapArrayCorridorSixCoordinates.Num() - 1);
+	int MinimapArrayCorridorSevenChosenIndex = FMath::RandRange(0, MinimapArrayCorridorSevenCoordinates.Num() - 1);
+	int MinimapArrayCorridorEightChosenIndex = FMath::RandRange(0, MinimapArrayCorridorEightCoordinates.Num() - 1);
+
+	for (int i = MinimapArrayCorridorOneCoordinates.Num() - 1; i >= 0 ; i--) {
+		if (i != MinimapArrayCorridorOneChosenIndex) {
+			MinimapArrayCorridorOneCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorTwoCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorTwoChosenIndex) {
+			MinimapArrayCorridorTwoCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorThreeCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorThreeChosenIndex) {
+			MinimapArrayCorridorThreeCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorFourCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorFourChosenIndex) {
+			MinimapArrayCorridorFourCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorFiveCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorFiveChosenIndex) {
+			MinimapArrayCorridorFiveCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorSixCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorSixChosenIndex) {
+			MinimapArrayCorridorSixCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorSevenCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorSevenChosenIndex) {
+			MinimapArrayCorridorSevenCoordinates.RemoveAt(i);
+		}
+	}
+	for (int i = MinimapArrayCorridorEightCoordinates.Num() - 1; i >= 0; i--) {
+		if (i != MinimapArrayCorridorEightChosenIndex) {
+			MinimapArrayCorridorEightCoordinates.RemoveAt(i);
+		}
+	}
+
+	// Starting with the Bottom Row columns, place one tile in the corridor, then check if the corridor on the opposite side is at the same coordinate.
+	// If False, then swap to the Top Row columns and repeat the process.
+	// If True, start placing tiles perpendicular to the columns so that the two corridors meet and create one whole corridor that joins two rooms.
+	// Then swap to Left Rows and repeat the process for Rows.
+
+	// Generate Corridor coordinates until the two corridor segments are parallel
+	int MaxLoopCount = 0;
+	while (MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].Y != MinimapArrayCorridorTwoCoordinates[MinimapArrayCorridorTwoCoordinates.Num() - 1].Y && MaxLoopCount < 10) {
+		MinimapArrayCorridorOneCoordinates.Add(FVector2D(MinimapArrayCorridorOneCoordinates.Last().X, MinimapArrayCorridorOneCoordinates.Last().Y + 1));
+
+		if (MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].Y != MinimapArrayCorridorTwoCoordinates[MinimapArrayCorridorTwoCoordinates.Num() - 1].Y) {
+			MinimapArrayCorridorTwoCoordinates.Add(FVector2D(MinimapArrayCorridorTwoCoordinates.Last().X, MinimapArrayCorridorTwoCoordinates.Last().Y - 1));
+		}
+
+		MaxLoopCount++;
+	}
+
+	//MaxLoopCount = 0;
+	//while (MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].X != MinimapArrayCorridorTwoCoordinates[MinimapArrayCorridorTwoCoordinates.Num() - 1].X && MaxLoopCount < 10) {
+	//	MinimapArrayCorridorOneCoordinates.Add(FVector2D(MinimapArrayCorridorOneCoordinates.Last().X + 1, MinimapArrayCorridorOneCoordinates.Last().Y));
+	//	MinimapArrayCorridorTwoCoordinates.Add(FVector2D(MinimapArrayCorridorTwoCoordinates.Last().X, MinimapArrayCorridorTwoCoordinates.Last().Y));
+	//	MaxLoopCount++;
+	//}
+
+
+	// Test Level Generation Progress
+	TArray<FVector2D> FullLevelArrayCoordinates, CorridorSetOneCoordinates, CorridorSetTwoCoordinates;
+
+	FullLevelArrayCoordinates.Append(MinimapArrayRoomOneCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayRoomTwoCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayRoomThreeCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayRoomFourCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorOneCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorTwoCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorThreeCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorFourCoordinates);
+
+	CorridorSetOneCoordinates.Append(MinimapArrayCorridorOneCoordinates);
+	CorridorSetOneCoordinates.Append(MinimapArrayCorridorTwoCoordinates);
+	CorridorSetOneCoordinates.Append(MinimapArrayCorridorThreeCoordinates);
+	CorridorSetOneCoordinates.Append(MinimapArrayCorridorFourCoordinates);
+
+	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorFiveCoordinates);
+	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorSixCoordinates);
+	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorSevenCoordinates);
+	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorEightCoordinates);
+
+	//if (MinimapRoom_Class) {
+	//	for (int i = 0; i < FullLevelArrayCoordinates.Num(); i++) {
+	//		MinimapRoom_Widget = CreateWidget<UWidgetComponent_MinimapRoom>(GetWorld(), MinimapRoom_Class);
+	//		MinimapRoom_Widget->MinimapReference = this;
+
+	//		UUniformGridSlot* MinimapRoom_Slot = LevelGrid->AddChildToUniformGrid(Cast<UWidget>(MinimapRoom_Widget));
+
+	//		MinimapRoom_Slot->SetRow(FullLevelArrayCoordinates[i].Y);
+	//		MinimapRoom_Slot->SetColumn(FullLevelArrayCoordinates[i].X);
+
+	//		MinimapRoom_Widget->X_Coordinate = FullLevelArrayCoordinates[i].Y;
+	//		MinimapRoom_Widget->Y_Coordinate = FullLevelArrayCoordinates[i].X;
+
+	//		MinimapRoom_Slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
+	//		MinimapRoom_Slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
+
+	//		FullMinimapRoomArray.Add(MinimapRoom_Widget);
+	//	}
+	//}
+
+	//FullLevelArrayCoordinates.Empty();
+
+
 	if (MinimapRoom_Class) {
-		for (int x = 0; x <= 15; x++) {
-			for (int y = 0; y <= 15; y++) {
+		for (int x = 0; x <= 20; x++) {
+			for (int y = 0; y <= 20; y++) {
 				MinimapRoom_Widget = CreateWidget<UWidgetComponent_MinimapRoom>(GetWorld(), MinimapRoom_Class);
 				MinimapRoom_Widget->MinimapReference = this;
 
@@ -30,21 +293,120 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 				MinimapRoom_Slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
 				MinimapRoom_Slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
+
+				if (CorridorSetOneCoordinates.Contains(FVector2D(x, y))) {
+					MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
+				}
+				else if (CorridorSetTwoCoordinates.Contains(FVector2D(x, y))) {
+					MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
+				}
+
+				if (!FullLevelArrayCoordinates.Contains(FVector2D(x, y))) {
+					MinimapRoom_Widget->BackgroundImage->SetVisibility(ESlateVisibility::Hidden);
+					MinimapRoom_Widget->InteractButton->SetVisibility(ESlateVisibility::Collapsed);
+				}
+
+	//			//x != 0 && x!= 20 && y != 0 && y != 0 &&
+	//			if (x >= RoomOneCenter.X - RoomOneHalfWidth && x <= RoomOneCenter.X + RoomOneHalfWidth &&
+	//				y >= RoomOneCenter.Y - RoomOneHalfHeight && y <= RoomOneCenter.Y + RoomOneHalfHeight ||
+	//				x >= RoomTwoCenter.X - RoomTwoHalfWidth && x <= RoomTwoCenter.X + RoomTwoHalfWidth &&
+	//				y >= RoomTwoCenter.Y - RoomTwoHalfHeight && y <= RoomTwoCenter.Y + RoomTwoHalfHeight ||
+	//				x >= RoomThreeCenter.X - RoomThreeHalfWidth && x <= RoomThreeCenter.X + RoomThreeHalfWidth &&
+	//				y >= RoomThreeCenter.Y - RoomThreeHalfHeight && y <= RoomThreeCenter.Y + RoomThreeHalfHeight ||
+	//				x >= RoomFourCenter.X - RoomFourHalfWidth && x <= RoomFourCenter.X + RoomFourHalfWidth &&
+	//				y >= RoomFourCenter.Y - RoomFourHalfHeight && y <= RoomFourCenter.Y + RoomFourHalfHeight) {
+
+	//				FullMinimapRoomArray.Add(MinimapRoom_Widget);
+	//			}
+	//			else {
+	//				LevelGrid->RemoveChild(Cast<UWidget>(MinimapRoom_Widget));
+	//			}
 			}
 		}
 	}
 
+	// Generate Corridors
+	//for (int i = 0; i < MinimapRoomArrayOne.Num() - 1; i++) {
+	//	if (MinimapRoomArrayOne[i]->X_Coordinate != (RoomOneCenter.X + RoomOneHalfWidth) &&
+	//		MinimapRoomArrayOne[i]->Y_Coordinate != (RoomOneCenter.Y + RoomTwoHalfHeight)) {
+	//		MinimapRoomArrayOne.RemoveAt(i);
+	//	}
+	//}
+
+	//// Quadrants should be made into generic TArrays with UE4's UPROPERTY so they can be properly garbage collected
+	////for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
+	//for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
+	//	//UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
+
+	//	if (MinimapTile->X_Coordinate <= 10) {
+	//		if (MinimapTile->Y_Coordinate <= 10) {
+	//			// Quadrant One
+	//			MinimapRoomArrayOne.Add(MinimapTile);
+	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant One at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
+	//			UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant One at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
+	//		} else {
+	//			// Quadrant Two
+	//			MinimapRoomArrayTwo.Add(MinimapTile);
+	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Two at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
+	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Two at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
+	//		}
+	//	} else {
+	//		if (MinimapTile->Y_Coordinate <= 10) {
+	//			// Quadrant Three
+	//			MinimapRoomArrayThree.Add(MinimapTile);
+	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Three at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
+	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Three at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
+	//		} else {
+	//			// Quadrant Four
+	//			MinimapRoomArrayFour.Add(MinimapTile);
+	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Four at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
+	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Four at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
+	//		}
+	//	}
+	//}
+
+	//// Diagonals:
+	////for (UWidgetComponent_MinimapRoom* MinimapTile : MinimapRoomArrayTwo) {
+	//for (int i = 0; i < MinimapRoomArrayOne.Num() - 1; i++) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("Check if Tile Co-ordinates %s %s are greater than %s or less than %s."), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate), *FString::FromInt(RightRoomBound), *FString::FromInt(LeftRoomBound)));
+	//	UE_LOG(LogTemp, Display, TEXT("Check if Tile Co-ordinates %s %s are greater than %s or less than %s."), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate), *FString::FromInt(RightRoomBound), *FString::FromInt(LeftRoomBound));
+
+	//	if (MinimapRoomArrayOne[i]->X_Coordinate > RightRoomBound ||
+	//		//MinimapRoomArrayOne[i]->Y_Coordinate > MinimapTileOne->Y_Coordinate + RoomHalfHeight ||
+	//		MinimapRoomArrayOne[i]->X_Coordinate < LeftRoomBound) {
+	//		//MinimapRoomArrayOne[i]->Y_Coordinate < MinimapTileOne->Y_Coordinate - RoomHalfHeight) {
+	//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Delete Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate)));
+	//		UE_LOG(LogTemp, Warning, TEXT("Delete Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate));
+
+	//		MinimapRoomArrayOne[i]->RemoveFromParent();
+	//		MinimapRoomArrayOne.RemoveAt(i);
+	//	}
+	//	else {
+	//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("Ignore Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate)));
+	//		UE_LOG(LogTemp, Display, TEXT("Ignore Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate));
+	//	}
+	//}
+
+	// Add all the remaining tiles to an array we can use to generate the physical GridTiles.
+
+	//for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
+	//	UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
+	//	if (RowCoords.Contains(FoundWidget->X_Coordinate) || ColumnCoords.Contains(FoundWidget->Y_Coordinate)) {
+	//		FoundWidget->RemoveFromViewport();
+	//	}
+	//}
+
+	// Spawn Minimap tiles into World
 	if (GridTile_Class) {
-		for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
-			UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
-			FVector SpawnLocation = FVector((200 * FoundWidget->X_Coordinate) - 200, (200 * FoundWidget->Y_Coordinate) - 200, 0);
+		for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
+			FVector SpawnLocation = FVector((200 * MinimapTile->X_Coordinate) - 200, (200 * MinimapTile->Y_Coordinate) - 200, 0);
 
 			GridTile_Actor = GetWorld()->SpawnActor<ABaseClass_GridTile>(GridTile_Class, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
-			GridTile_Actor->X_Coordinate = FoundWidget->X_Coordinate;
-			GridTile_Actor->Y_Coordinate = FoundWidget->Y_Coordinate;
+			GridTile_Actor->X_Coordinate = MinimapTile->X_Coordinate;
+			GridTile_Actor->Y_Coordinate = MinimapTile->Y_Coordinate;
 
-			FoundWidget->GridTileReference = GridTile_Actor;
-			GridTile_Actor->MinimapRoomReference = FoundWidget;
+			MinimapTile->GridTileReference = GridTile_Actor;
+			GridTile_Actor->MinimapRoomReference = MinimapTile;
 
 			// Set PlayerRestPoint reference
 			if (GridTile_Actor) {
@@ -63,17 +425,17 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 	// Generate Encounters
 	// Get X Random Tiles to add Enemy Encounters to
-	FDataTableRowHandle EnemyFormationsTableRow;
+	//FDataTableRowHandle EnemyFormationsTableRow;
 
-	for (int i = 0; i < 10; i++) {
-		//EnemyFormationsTable->Table = EnemyFormationsTable;
-		EnemyFormationsTableRow.DataTable = EnemyFormationsTable;
-		EnemyFormationsTableRow.RowName = "Test";
+	//for (int i = 0; i < 10; i++) {
+	//	//EnemyFormationsTable->Table = EnemyFormationsTable;
+	//	EnemyFormationsTableRow.DataTable = EnemyFormationsTable;
+	//	EnemyFormationsTableRow.RowName = "Test";
 
-		F_LevelRoom_Encounter NewEncounter("Test", false, EnemyFormationsTableRow);
+	//	F_LevelRoom_Encounter NewEncounter("Test", false, EnemyFormationsTableRow);
 
-		GridTilesArray[FMath::RandRange(0, GridTilesArray.Num() - 1)]->EncountersList.Add(NewEncounter);
-	}
+	//	GridTilesArray[FMath::RandRange(0, GridTilesArray.Num() - 1)]->EncountersList.Add(NewEncounter);
+	//}
 
 	//for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 	//	ABaseClass_GridTile* FoundTile = *Itr;

@@ -52,6 +52,30 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Map")
 	TArray<UWidgetComponent_MinimapRoom*> PlayerNeighbouringRoomWidgets;
 
+	// Generic Arrays for Groups of MinimapTiles (e.g. Rooms and Corridors)
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayOne;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayTwo;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayThree;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayFour;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayFive;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArraySix;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArraySeven;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> MinimapRoomArrayEight;
+	UPROPERTY()
+	TArray<UWidgetComponent_MinimapRoom*> FullMinimapRoomArray;
+
+	// Generic MinimapTiles
+	UPROPERTY()
+	UWidgetComponent_MinimapRoom* MinimapTileOne;
+
 // Functions
 // --------------------------------------------------
 

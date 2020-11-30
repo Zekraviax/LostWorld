@@ -224,12 +224,92 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 		MaxLoopCount++;
 	}
 
-	//MaxLoopCount = 0;
-	//while (MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].X != MinimapArrayCorridorTwoCoordinates[MinimapArrayCorridorTwoCoordinates.Num() - 1].X && MaxLoopCount < 10) {
-	//	MinimapArrayCorridorOneCoordinates.Add(FVector2D(MinimapArrayCorridorOneCoordinates.Last().X + 1, MinimapArrayCorridorOneCoordinates.Last().Y));
-	//	MinimapArrayCorridorTwoCoordinates.Add(FVector2D(MinimapArrayCorridorTwoCoordinates.Last().X, MinimapArrayCorridorTwoCoordinates.Last().Y));
-	//	MaxLoopCount++;
-	//}
+	// If the corridors aren't already joined, figure out which direction to keep placing corridor tiles.
+	// Then place tiles until the first corridor has reached the second corridor.
+	while (!MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].X, MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].Y + 1)) &&
+		!MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].X - 1, MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].Y)) &&
+		!MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].X + 1, MinimapArrayCorridorOneCoordinates[MinimapArrayCorridorOneCoordinates.Num() - 1].Y))) {
+
+		if (MinimapArrayCorridorTwoCoordinates.Last().X > MinimapArrayCorridorOneCoordinates.Last().X) {
+			MinimapArrayCorridorOneCoordinates.Add(FVector2D(MinimapArrayCorridorOneCoordinates.Last().X + 1, MinimapArrayCorridorOneCoordinates.Last().Y));
+		}
+		else if (MinimapArrayCorridorTwoCoordinates.Last().X < MinimapArrayCorridorOneCoordinates.Last().X) {
+			MinimapArrayCorridorOneCoordinates.Add(FVector2D(MinimapArrayCorridorOneCoordinates.Last().X - 1, MinimapArrayCorridorOneCoordinates.Last().Y));
+		}
+	}
+
+	// Corridor Segments Three and Four
+	MaxLoopCount = 0;
+	while (MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].Y != MinimapArrayCorridorFourCoordinates[MinimapArrayCorridorFourCoordinates.Num() - 1].Y && MaxLoopCount < 10) {
+		MinimapArrayCorridorThreeCoordinates.Add(FVector2D(MinimapArrayCorridorThreeCoordinates.Last().X, MinimapArrayCorridorThreeCoordinates.Last().Y + 1));
+
+		if (MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].Y != MinimapArrayCorridorFourCoordinates[MinimapArrayCorridorFourCoordinates.Num() - 1].Y) {
+			MinimapArrayCorridorFourCoordinates.Add(FVector2D(MinimapArrayCorridorFourCoordinates.Last().X, MinimapArrayCorridorFourCoordinates.Last().Y - 1));
+		}
+
+		MaxLoopCount++;
+	}
+
+	while (!MinimapArrayCorridorFourCoordinates.Contains(FVector2D(MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].X, MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].Y + 1)) &&
+		!MinimapArrayCorridorFourCoordinates.Contains(FVector2D(MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].X - 1, MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].Y)) &&
+		!MinimapArrayCorridorFourCoordinates.Contains(FVector2D(MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].X + 1, MinimapArrayCorridorThreeCoordinates[MinimapArrayCorridorThreeCoordinates.Num() - 1].Y))) {
+
+		if (MinimapArrayCorridorFourCoordinates.Last().X > MinimapArrayCorridorThreeCoordinates.Last().X) {
+			MinimapArrayCorridorThreeCoordinates.Add(FVector2D(MinimapArrayCorridorThreeCoordinates.Last().X + 1, MinimapArrayCorridorThreeCoordinates.Last().Y));
+		}
+		else if (MinimapArrayCorridorFourCoordinates.Last().X < MinimapArrayCorridorThreeCoordinates.Last().X) {
+			MinimapArrayCorridorThreeCoordinates.Add(FVector2D(MinimapArrayCorridorThreeCoordinates.Last().X - 1, MinimapArrayCorridorThreeCoordinates.Last().Y));
+		}
+	}
+
+	// Corridor Segments Five and Seven
+	MaxLoopCount = 0;
+	while (MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].X != MinimapArrayCorridorSevenCoordinates[MinimapArrayCorridorSevenCoordinates.Num() - 1].X && MaxLoopCount < 10) {
+		MinimapArrayCorridorFiveCoordinates.Add(FVector2D(MinimapArrayCorridorFiveCoordinates.Last().X + 1, MinimapArrayCorridorFiveCoordinates.Last().Y));
+
+		if (MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].X != MinimapArrayCorridorSevenCoordinates[MinimapArrayCorridorSevenCoordinates.Num() - 1].X) {
+			MinimapArrayCorridorSevenCoordinates.Add(FVector2D(MinimapArrayCorridorSevenCoordinates.Last().X - 1, MinimapArrayCorridorSevenCoordinates.Last().Y));
+		}
+
+		MaxLoopCount++;
+	}
+
+	while (!MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].X + 1, MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].Y)) &&
+		!MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].X, MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].Y - 1)) &&
+		!MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].X, MinimapArrayCorridorFiveCoordinates[MinimapArrayCorridorFiveCoordinates.Num() - 1].Y + 1))) {
+
+		if (MinimapArrayCorridorSevenCoordinates.Last().Y > MinimapArrayCorridorFiveCoordinates.Last().Y) {
+			MinimapArrayCorridorFiveCoordinates.Add(FVector2D(MinimapArrayCorridorFiveCoordinates.Last().X, MinimapArrayCorridorFiveCoordinates.Last().Y + 1));
+		}
+		else if (MinimapArrayCorridorSevenCoordinates.Last().Y < MinimapArrayCorridorFiveCoordinates.Last().Y) {
+			MinimapArrayCorridorFiveCoordinates.Add(FVector2D(MinimapArrayCorridorFiveCoordinates.Last().X, MinimapArrayCorridorFiveCoordinates.Last().Y - 1));
+		}
+	}
+
+	// Corridor Segments Six and Eight
+	MaxLoopCount = 0;
+	while (MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].X != MinimapArrayCorridorEightCoordinates[MinimapArrayCorridorEightCoordinates.Num() - 1].X && MaxLoopCount < 10) {
+		MinimapArrayCorridorSixCoordinates.Add(FVector2D(MinimapArrayCorridorSixCoordinates.Last().X + 1, MinimapArrayCorridorSixCoordinates.Last().Y));
+
+		if (MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].X != MinimapArrayCorridorEightCoordinates[MinimapArrayCorridorEightCoordinates.Num() - 1].X) {
+			MinimapArrayCorridorEightCoordinates.Add(FVector2D(MinimapArrayCorridorEightCoordinates.Last().X - 1, MinimapArrayCorridorEightCoordinates.Last().Y));
+		}
+
+		MaxLoopCount++;
+	}
+
+	while (!MinimapArrayCorridorEightCoordinates.Contains(FVector2D(MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].X + 1, MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].Y)) &&
+		!MinimapArrayCorridorEightCoordinates.Contains(FVector2D(MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].X, MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].Y - 1)) &&
+		!MinimapArrayCorridorEightCoordinates.Contains(FVector2D(MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].X, MinimapArrayCorridorSixCoordinates[MinimapArrayCorridorSixCoordinates.Num() - 1].Y + 1))) {
+
+		if (MinimapArrayCorridorEightCoordinates.Last().Y > MinimapArrayCorridorSixCoordinates.Last().Y) {
+			MinimapArrayCorridorSixCoordinates.Add(FVector2D(MinimapArrayCorridorSixCoordinates.Last().X, MinimapArrayCorridorSixCoordinates.Last().Y + 1));
+		}
+		else if (MinimapArrayCorridorEightCoordinates.Last().Y < MinimapArrayCorridorSixCoordinates.Last().Y) {
+			MinimapArrayCorridorSixCoordinates.Add(FVector2D(MinimapArrayCorridorSixCoordinates.Last().X, MinimapArrayCorridorSixCoordinates.Last().Y - 1));
+		}
+	}
+
 
 
 	// Test Level Generation Progress
@@ -243,6 +323,10 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorTwoCoordinates);
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorThreeCoordinates);
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorFourCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorFiveCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorSixCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorSevenCoordinates);
+	FullLevelArrayCoordinates.Append(MinimapArrayCorridorEightCoordinates);
 
 	CorridorSetOneCoordinates.Append(MinimapArrayCorridorOneCoordinates);
 	CorridorSetOneCoordinates.Append(MinimapArrayCorridorTwoCoordinates);
@@ -294,12 +378,13 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 				MinimapRoom_Slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
 				MinimapRoom_Slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
 
-				if (CorridorSetOneCoordinates.Contains(FVector2D(x, y))) {
-					MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
-				}
-				else if (CorridorSetTwoCoordinates.Contains(FVector2D(x, y))) {
-					MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
-				}
+				//if (CorridorSetOneCoordinates.Contains(FVector2D(x, y))) {
+				//	MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
+				//}
+
+				//if (CorridorSetTwoCoordinates.Contains(FVector2D(x, y))) {
+				//	MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
+				//}
 
 				if (!FullLevelArrayCoordinates.Contains(FVector2D(x, y))) {
 					MinimapRoom_Widget->BackgroundImage->SetVisibility(ESlateVisibility::Hidden);

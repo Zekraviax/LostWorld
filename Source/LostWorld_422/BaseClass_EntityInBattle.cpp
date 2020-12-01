@@ -51,6 +51,7 @@ void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+
 void ABaseClass_EntityInBattle::CustomOnBeginMouseOverEvent(UPrimitiveComponent * TouchedComponent)
 {
 

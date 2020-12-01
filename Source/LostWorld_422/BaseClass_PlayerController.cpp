@@ -70,7 +70,7 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 			ABaseClass_GridTile* FoundTile = *Itr;
 			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 0 && FoundTile->Y_Coordinate == 0) {
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found Grid Tiles"));
-				MoveToTile(FoundTile);
+				//MoveToTile(FoundTile);
 
 				for (TObjectIterator<UBaseClass_Widget_Minimap> Itr2; Itr2; ++Itr2) {
 					UBaseClass_Widget_Minimap* FoundWidget = *Itr2;
@@ -229,5 +229,8 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile * TileReference
 {
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
+	}
+	else {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
 	}
 }

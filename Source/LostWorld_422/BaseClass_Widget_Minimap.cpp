@@ -313,7 +313,7 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 
 	// Test Level Generation Progress
-	TArray<FVector2D> FullLevelArrayCoordinates, CorridorSetOneCoordinates, CorridorSetTwoCoordinates;
+	TArray<FVector2D> FullLevelArrayCoordinates, RoomSetCoordinates, CorridorSetOneCoordinates, CorridorSetTwoCoordinates;
 
 	FullLevelArrayCoordinates.Append(MinimapArrayRoomOneCoordinates);
 	FullLevelArrayCoordinates.Append(MinimapArrayRoomTwoCoordinates);
@@ -327,6 +327,11 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorSixCoordinates);
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorSevenCoordinates);
 	FullLevelArrayCoordinates.Append(MinimapArrayCorridorEightCoordinates);
+
+	RoomSetCoordinates.Append(MinimapArrayRoomOneCoordinates);
+	RoomSetCoordinates.Append(MinimapArrayRoomTwoCoordinates);
+	RoomSetCoordinates.Append(MinimapArrayRoomThreeCoordinates);
+	RoomSetCoordinates.Append(MinimapArrayRoomFourCoordinates);
 
 	CorridorSetOneCoordinates.Append(MinimapArrayCorridorOneCoordinates);
 	CorridorSetOneCoordinates.Append(MinimapArrayCorridorTwoCoordinates);
@@ -358,9 +363,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	//	}
 	//}
 
-	//FullLevelArrayCoordinates.Empty();
-
-
 	if (MinimapRoom_Class) {
 		for (int x = 0; x <= 20; x++) {
 			for (int y = 0; y <= 20; y++) {
@@ -389,112 +391,38 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 				if (!FullLevelArrayCoordinates.Contains(FVector2D(x, y))) {
 					MinimapRoom_Widget->BackgroundImage->SetVisibility(ESlateVisibility::Hidden);
 					MinimapRoom_Widget->InteractButton->SetVisibility(ESlateVisibility::Collapsed);
+				} else {
+					FullMinimapRoomArray.Add(MinimapRoom_Widget);
 				}
-
-	//			//x != 0 && x!= 20 && y != 0 && y != 0 &&
-	//			if (x >= RoomOneCenter.X - RoomOneHalfWidth && x <= RoomOneCenter.X + RoomOneHalfWidth &&
-	//				y >= RoomOneCenter.Y - RoomOneHalfHeight && y <= RoomOneCenter.Y + RoomOneHalfHeight ||
-	//				x >= RoomTwoCenter.X - RoomTwoHalfWidth && x <= RoomTwoCenter.X + RoomTwoHalfWidth &&
-	//				y >= RoomTwoCenter.Y - RoomTwoHalfHeight && y <= RoomTwoCenter.Y + RoomTwoHalfHeight ||
-	//				x >= RoomThreeCenter.X - RoomThreeHalfWidth && x <= RoomThreeCenter.X + RoomThreeHalfWidth &&
-	//				y >= RoomThreeCenter.Y - RoomThreeHalfHeight && y <= RoomThreeCenter.Y + RoomThreeHalfHeight ||
-	//				x >= RoomFourCenter.X - RoomFourHalfWidth && x <= RoomFourCenter.X + RoomFourHalfWidth &&
-	//				y >= RoomFourCenter.Y - RoomFourHalfHeight && y <= RoomFourCenter.Y + RoomFourHalfHeight) {
-
-	//				FullMinimapRoomArray.Add(MinimapRoom_Widget);
-	//			}
-	//			else {
-	//				LevelGrid->RemoveChild(Cast<UWidget>(MinimapRoom_Widget));
-	//			}
 			}
 		}
 	}
 
-	// Generate Corridors
-	//for (int i = 0; i < MinimapRoomArrayOne.Num() - 1; i++) {
-	//	if (MinimapRoomArrayOne[i]->X_Coordinate != (RoomOneCenter.X + RoomOneHalfWidth) &&
-	//		MinimapRoomArrayOne[i]->Y_Coordinate != (RoomOneCenter.Y + RoomTwoHalfHeight)) {
-	//		MinimapRoomArrayOne.RemoveAt(i);
-	//	}
-	//}
-
-	//// Quadrants should be made into generic TArrays with UE4's UPROPERTY so they can be properly garbage collected
-	////for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
-	//for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
-	//	//UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
-
-	//	if (MinimapTile->X_Coordinate <= 10) {
-	//		if (MinimapTile->Y_Coordinate <= 10) {
-	//			// Quadrant One
-	//			MinimapRoomArrayOne.Add(MinimapTile);
-	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant One at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
-	//			UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant One at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
-	//		} else {
-	//			// Quadrant Two
-	//			MinimapRoomArrayTwo.Add(MinimapTile);
-	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Two at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
-	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Two at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
-	//		}
-	//	} else {
-	//		if (MinimapTile->Y_Coordinate <= 10) {
-	//			// Quadrant Three
-	//			MinimapRoomArrayThree.Add(MinimapTile);
-	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Three at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
-	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Three at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
-	//		} else {
-	//			// Quadrant Four
-	//			MinimapRoomArrayFour.Add(MinimapTile);
-	//			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Add tile to Quadrant Four at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate)));
-	//			//UE_LOG(LogTemp, Warning, TEXT("Add tile to Quadrant Four at Co-ordinates: %s %s"), *FString::FromInt(MinimapTile->X_Coordinate), *FString::FromInt(MinimapTile->Y_Coordinate));
-	//		}
-	//	}
-	//}
-
-	//// Diagonals:
-	////for (UWidgetComponent_MinimapRoom* MinimapTile : MinimapRoomArrayTwo) {
-	//for (int i = 0; i < MinimapRoomArrayOne.Num() - 1; i++) {
-	//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("Check if Tile Co-ordinates %s %s are greater than %s or less than %s."), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate), *FString::FromInt(RightRoomBound), *FString::FromInt(LeftRoomBound)));
-	//	UE_LOG(LogTemp, Display, TEXT("Check if Tile Co-ordinates %s %s are greater than %s or less than %s."), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate), *FString::FromInt(RightRoomBound), *FString::FromInt(LeftRoomBound));
-
-	//	if (MinimapRoomArrayOne[i]->X_Coordinate > RightRoomBound ||
-	//		//MinimapRoomArrayOne[i]->Y_Coordinate > MinimapTileOne->Y_Coordinate + RoomHalfHeight ||
-	//		MinimapRoomArrayOne[i]->X_Coordinate < LeftRoomBound) {
-	//		//MinimapRoomArrayOne[i]->Y_Coordinate < MinimapTileOne->Y_Coordinate - RoomHalfHeight) {
-	//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Delete Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate)));
-	//		UE_LOG(LogTemp, Warning, TEXT("Delete Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate));
-
-	//		MinimapRoomArrayOne[i]->RemoveFromParent();
-	//		MinimapRoomArrayOne.RemoveAt(i);
-	//	}
-	//	else {
-	//		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("Ignore Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate)));
-	//		UE_LOG(LogTemp, Display, TEXT("Ignore Tile at Co-ordinates: %s %s"), *FString::FromInt(MinimapRoomArrayOne[i]->X_Coordinate), *FString::FromInt(MinimapRoomArrayOne[i]->Y_Coordinate));
-	//	}
-	//}
-
-	// Add all the remaining tiles to an array we can use to generate the physical GridTiles.
-
-	//for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
-	//	UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
-	//	if (RowCoords.Contains(FoundWidget->X_Coordinate) || ColumnCoords.Contains(FoundWidget->Y_Coordinate)) {
-	//		FoundWidget->RemoveFromViewport();
-	//	}
-	//}
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("FullMinimapRoomArray Length: %s"), *FString::FromInt(FullMinimapRoomArray.Num())));
+	TArray<ABaseClass_GridTile*> PlayerSpawnTiles;
 
 	// Spawn Minimap tiles into World
 	if (GridTile_Class) {
-		for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
-			FVector SpawnLocation = FVector((200 * MinimapTile->X_Coordinate) - 200, (200 * MinimapTile->Y_Coordinate) - 200, 0);
+		//for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
+		for (int i = 0; i < FullMinimapRoomArray.Num(); i++) {
+			FVector SpawnLocation = FVector((200 * FullMinimapRoomArray[i]->X_Coordinate) - 200, (200 * FullMinimapRoomArray[i]->Y_Coordinate) - 200, 0);
 
 			GridTile_Actor = GetWorld()->SpawnActor<ABaseClass_GridTile>(GridTile_Class, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
-			GridTile_Actor->X_Coordinate = MinimapTile->X_Coordinate;
-			GridTile_Actor->Y_Coordinate = MinimapTile->Y_Coordinate;
+			GridTile_Actor->X_Coordinate = FullMinimapRoomArray[i]->X_Coordinate;
+			GridTile_Actor->Y_Coordinate = FullMinimapRoomArray[i]->Y_Coordinate;
 
-			MinimapTile->GridTileReference = GridTile_Actor;
-			GridTile_Actor->MinimapRoomReference = MinimapTile;
+			FullMinimapRoomArray[i]->GridTileReference = GridTile_Actor;
+			GridTile_Actor->MinimapRoomReference = FullMinimapRoomArray[i];
+
+			GridTilesArray.Add(GridTile_Actor);
+
+			if (RoomSetCoordinates.Contains(FVector2D(FullMinimapRoomArray[i]->X_Coordinate, FullMinimapRoomArray[i]->Y_Coordinate))) {
+				PlayerSpawnTiles.Add(GridTile_Actor);
+			}
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("GridTilesArray Length: %s"), *FString::FromInt(GridTilesArray.Num())));
 
 			// Set PlayerRestPoint reference
-			if (GridTile_Actor) {
+			/*if (GridTile_Actor) {
 				GridTile_Actor->GetComponents(GridTileSceneComponents);
 				for (USceneComponent* Component : GridTileSceneComponents) {
 					if (Component->GetName() == "PlayerRestPoint") {
@@ -502,11 +430,11 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 						break;
 					}
 				}
-			}
-
-			GridTilesArray.Add(GridTile_Actor);
+			}*/
 		}
 	}
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("GridTilesArray Length: %s"), *FString::FromInt(GridTilesArray.Num())));
 
 	// Generate Encounters
 	// Get X Random Tiles to add Enemy Encounters to
@@ -526,8 +454,10 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	//	ABaseClass_GridTile* FoundTile = *Itr;
 	//}
 
+	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 	LocalPlayerControllerRef->ManualBeginPlay();
+	LocalPlayerControllerRef->MoveToTile(PlayerSpawnTiles[FMath::RandRange(0, PlayerSpawnTiles.Num() - 1)]);
 }
 
 

@@ -225,12 +225,35 @@ void ABaseClass_PlayerController::ExitBattle()
 }
 
 
-void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile * TileReference)
+void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 	}
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
+	}
+
+	// Get neighbouring tiles
+	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
+		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
+
+		// Get immediate neighbours, not including diagonals
+		if (FoundWidget->X_Coordinate == TileReference->X_Coordinate + 1 && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate ||
+			FoundWidget->X_Coordinate == TileReference->X_Coordinate - 1 && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate ||
+			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate + 1 ||
+			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate - 1) {
+			//PlayerNeighbouringRoomWidgets.Add(FoundWidget);
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
+			FoundWidget->PlayerCanMoveTo = true;
+		}
+		else if (FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate) {
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.34f, 0.34f, 0.34f, 1.f));
+			FoundWidget->PlayerCanMoveTo = false;
+		}
+		else {
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
+			FoundWidget->PlayerCanMoveTo = false;
+		}
 	}
 }

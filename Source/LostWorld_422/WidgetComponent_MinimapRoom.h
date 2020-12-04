@@ -43,6 +43,9 @@ public:
 	UPROPERTY()
 	int Y_Coordinate;
 
+	UPROPERTY()
+	bool PlayerCanMoveTo;
+
 // Functions
 // --------------------------------------------------
 

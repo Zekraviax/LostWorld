@@ -27,20 +27,20 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	TArray<FVector2D> MinimapArrayRoomOneCoordinates, MinimapArrayRoomTwoCoordinates, MinimapArrayRoomThreeCoordinates, MinimapArrayRoomFourCoordinates, MinimapArrayRoomFiveCoordinates, MinimapArrayRoomSixCoordinates, MinimapArrayRoomSevenCoordinates, MinimapArrayRoomEightCoordinates;
 	TArray<FVector2D> MinimapArrayCorridorOneCoordinates, MinimapArrayCorridorTwoCoordinates, MinimapArrayCorridorThreeCoordinates, MinimapArrayCorridorFourCoordinates, MinimapArrayCorridorFiveCoordinates, MinimapArrayCorridorSixCoordinates, MinimapArrayCorridorSevenCoordinates, MinimapArrayCorridorEightCoordinates;
 
-	FVector2D RoomOneCenter = FVector2D(FMath::RandRange(4, 6), FMath::RandRange(4, 6));
+	FVector2D RoomOneCenter = FVector2D(FMath::RandRange(3, 6), FMath::RandRange(3, 6));
 	//int RoomOneHalfWidth = FMath::RandRange(1, 3);
 	int RoomOneHalfWidth = 2;
 	int RoomOneHalfHeight = 2;
 
-	FVector2D RoomTwoCenter = FVector2D(FMath::RandRange(4, 6), FMath::RandRange(13, 15));
+	FVector2D RoomTwoCenter = FVector2D(FMath::RandRange(3, 6), FMath::RandRange(13, 16));
 	int RoomTwoHalfWidth = 2;
 	int RoomTwoHalfHeight = 2;
 
-	FVector2D RoomThreeCenter = FVector2D(FMath::RandRange(13, 15), FMath::RandRange(4, 6));
+	FVector2D RoomThreeCenter = FVector2D(FMath::RandRange(13, 16), FMath::RandRange(3, 6));
 	int RoomThreeHalfWidth = 2;
 	int RoomThreeHalfHeight = 2;
 
-	FVector2D RoomFourCenter = FVector2D(FMath::RandRange(13, 15), FMath::RandRange(13, 13));
+	FVector2D RoomFourCenter = FVector2D(FMath::RandRange(13, 16), FMath::RandRange(13, 16));
 	int RoomFourHalfWidth = 2;
 	int RoomFourHalfHeight = 2;
 
@@ -399,11 +399,12 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	}
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("FullMinimapRoomArray Length: %s"), *FString::FromInt(FullMinimapRoomArray.Num())));
-	TArray<ABaseClass_GridTile*> PlayerSpawnTiles;
+
+	// Separate the Minimap Tiles into Rooms and Corridors so we can spawn enemies and events.
+	TArray<ABaseClass_GridTile*> PlayerSpawnTiles, RoomOneGridTiles, RoomTwoGridTiles, RoomThreeGridTiles, RoomFourGridTiles, CorridorOneGridTiles, CorridorTwoGridTiles, CorridorThreeGridTiles, CorridorFourGridTiles;
 
 	// Spawn Minimap tiles into World
 	if (GridTile_Class) {
-		//for (UWidgetComponent_MinimapRoom* MinimapTile : FullMinimapRoomArray) {
 		for (int i = 0; i < FullMinimapRoomArray.Num(); i++) {
 			FVector SpawnLocation = FVector((200 * FullMinimapRoomArray[i]->X_Coordinate) - 200, (200 * FullMinimapRoomArray[i]->Y_Coordinate) - 200, 0);
 
@@ -416,29 +417,41 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 			GridTilesArray.Add(GridTile_Actor);
 
-			if (RoomSetCoordinates.Contains(FVector2D(FullMinimapRoomArray[i]->X_Coordinate, FullMinimapRoomArray[i]->Y_Coordinate))) {
+			//if (RoomSetCoordinates.Contains(FVector2D(FullMinimapRoomArray[i]->X_Coordinate, FullMinimapRoomArray[i]->Y_Coordinate))) {
+			//	PlayerSpawnTiles.Add(GridTile_Actor);
+			//}
+			
+			if (MinimapArrayRoomOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				RoomOneGridTiles.Add(GridTile_Actor);
 				PlayerSpawnTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayRoomTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				RoomTwoGridTiles.Add(GridTile_Actor);
+				PlayerSpawnTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayRoomThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				RoomThreeGridTiles.Add(GridTile_Actor);
+				PlayerSpawnTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayRoomFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				RoomFourGridTiles.Add(GridTile_Actor);
+				PlayerSpawnTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
+				MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				CorridorOneGridTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayCorridorThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
+				MinimapArrayCorridorFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				CorridorTwoGridTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayCorridorFiveCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
+				MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				CorridorThreeGridTiles.Add(GridTile_Actor);
+			} else if (MinimapArrayCorridorSixCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
+				MinimapArrayCorridorEightCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
+				CorridorFourGridTiles.Add(GridTile_Actor);
 			}
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("GridTilesArray Length: %s"), *FString::FromInt(GridTilesArray.Num())));
-
-			// Set PlayerRestPoint reference
-			/*if (GridTile_Actor) {
-				GridTile_Actor->GetComponents(GridTileSceneComponents);
-				for (USceneComponent* Component : GridTileSceneComponents) {
-					if (Component->GetName() == "PlayerRestPoint") {
-						GridTile_Actor->PlayerRestPointReference = Component;
-						break;
-					}
-				}
-			}*/
 		}
 	}
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("GridTilesArray Length: %s"), *FString::FromInt(GridTilesArray.Num())));
-
-	// Generate Encounters
-	// Get X Random Tiles to add Enemy Encounters to
-	//FDataTableRowHandle EnemyFormationsTableRow;
+	// Add an enemy encounter or two to each room
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Generate Encounters")));
+	FDataTableRowHandle EnemyFormationsTableRow;
 
 	//for (int i = 0; i < 10; i++) {
 	//	//EnemyFormationsTable->Table = EnemyFormationsTable;
@@ -447,11 +460,7 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 	//	F_LevelRoom_Encounter NewEncounter("Test", false, EnemyFormationsTableRow);
 
-	//	GridTilesArray[FMath::RandRange(0, GridTilesArray.Num() - 1)]->EncountersList.Add(NewEncounter);
-	//}
-
-	//for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
-	//	ABaseClass_GridTile* FoundTile = *Itr;
+	//	//GridTilesArray[FMath::RandRange(0, GridTilesArray.Num() - 1)]->EncountersList.Add(NewEncounter);
 	//}
 
 	// Spawn Player Into a Room at a random tile
@@ -476,9 +485,9 @@ void UBaseClass_Widget_Minimap::GetPlayerNeighbouringTiles(UWidgetComponent_Mini
 			PlayerNeighbouringRoomWidgets.Add(FoundWidget);
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
 		} else if (FoundWidget->X_Coordinate == CurrentRoomWidget->X_Coordinate && FoundWidget->Y_Coordinate == CurrentRoomWidget->Y_Coordinate) {
-			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.67f, 0.67f, 0.67f, 0.67f));
 		} else {
-			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
 		}
 	}
 }

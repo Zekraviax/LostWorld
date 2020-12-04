@@ -12,6 +12,7 @@
 // Forward Declarations
 class UWidgetComponent_MinimapRoom;
 class ABaseClass_GridTile;
+class ABaseClass_EntityInBattle;
 
 
 UCLASS()

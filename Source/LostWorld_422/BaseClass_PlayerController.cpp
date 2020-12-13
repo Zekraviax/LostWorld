@@ -26,6 +26,12 @@ void ABaseClass_PlayerController::SetupInputComponent()
 
 	// Mouse Up event for when players let go of cards
 	InputComponent->BindAction("MouseLeftClicked", IE_Pressed, this, &ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent);
+
+	// Keyboard controls
+	InputComponent->BindAction("MoveNorth", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveNorth);
+	InputComponent->BindAction("MoveEast", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveEast);
+	InputComponent->BindAction("MoveSouth", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveSouth);
+	InputComponent->BindAction("MoveWest", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveWest);
 }
 
 
@@ -87,7 +93,7 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 }
 
 
-// ------------------------- Mouse
+// ------------------------- Controls
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Mouse Button Up"));
@@ -194,6 +200,66 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 }
 
 
+void ABaseClass_PlayerController::PlayerMoveNorth()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move North"));
+
+	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+		ABaseClass_GridTile* FoundTile = *Itr;
+
+		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate + 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
+			MoveToTile(FoundTile);
+			break;
+		}
+	}
+}
+
+
+void ABaseClass_PlayerController::PlayerMoveEast()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move East"));
+
+	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+		ABaseClass_GridTile* FoundTile = *Itr;
+
+		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate + 1) {
+			MoveToTile(FoundTile);
+			break;
+		}
+	}
+}
+
+
+void ABaseClass_PlayerController::PlayerMoveSouth()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move South"));
+
+	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+		ABaseClass_GridTile* FoundTile = *Itr;
+
+		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate - 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
+			MoveToTile(FoundTile);
+			break;
+		}
+	}
+}
+
+
+void ABaseClass_PlayerController::PlayerMoveWest()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move West"));
+
+	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+		ABaseClass_GridTile* FoundTile = *Itr;
+
+		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate - 1) {
+			MoveToTile(FoundTile);
+			break;
+		}
+	}
+}
+
+
 // ------------------------- Gameplay
 void ABaseClass_PlayerController::BeginBattle()
 {
@@ -229,6 +295,7 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
+		CurrentLocationInLevel = TileReference;
 	}
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));

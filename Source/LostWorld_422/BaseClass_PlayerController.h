@@ -43,6 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
 	TArray<FCardBase> CurrentCollection;
 
+	UPROPERTY()
+	ABaseClass_GridTile* CurrentLocationInLevel;
+
 // ------------------------- Technical Variables
 	// Player EntityInBattle class
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
@@ -91,9 +94,21 @@ public:
 	UFUNCTION()
 	void ManualBeginPlay();
 
-// ------------------------- Mouse
+// ------------------------- Controls
 	UFUNCTION(BlueprintCallable)
 	void CustomOnLeftMouseButtonUpEvent();
+
+	UFUNCTION()
+	void PlayerMoveNorth();
+
+	UFUNCTION()
+	void PlayerMoveEast();
+
+	UFUNCTION()
+	void PlayerMoveSouth();
+
+	UFUNCTION()
+	void PlayerMoveWest();
 
 // ------------------------- Gameplay
 	UFUNCTION(BlueprintCallable)

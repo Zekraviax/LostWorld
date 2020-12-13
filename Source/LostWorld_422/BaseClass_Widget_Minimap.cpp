@@ -453,6 +453,8 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Generate Encounters")));
 	FDataTableRowHandle EnemyFormationsTableRow;
 
+
+
 	//for (int i = 0; i < 10; i++) {
 	//	//EnemyFormationsTable->Table = EnemyFormationsTable;
 	//	EnemyFormationsTableRow.DataTable = EnemyFormationsTable;

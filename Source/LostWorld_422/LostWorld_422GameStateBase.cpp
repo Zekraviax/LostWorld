@@ -24,6 +24,9 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 	{
 		SortedTurnOrderList.Empty();
 
+		// Swap between Level HUD and Battle HUD
+		PlayerControllerRef->BeginBattle();
+
 		// Spawn Player's EntityInBattle and add it to the turn order first
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);

@@ -37,7 +37,7 @@ void UBaseClass_HUD_Battle::OpenDeckBuilder()
 
 void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)
 {
-	if (ClearHand)
+	if (ClearHand && CardsInHand_ScrollBox->IsValidLowLevel())
 		CardsInHand_ScrollBox->ClearChildren();
 
 	CardWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), Card_Class);

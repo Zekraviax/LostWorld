@@ -13,6 +13,15 @@
 class UWidgetComponent_MinimapRoom;
 
 
+// Unique Enums
+UENUM(BlueprintType)
+enum class E_GridTile_OnPlayerEnterFunctions: uint8
+{
+	E_None,
+	E_TriggerBattle
+};
+
+
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_GridTile : public AActor
 {
@@ -51,10 +60,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	TArray<F_LevelRoom_Encounter> EncountersList;
 
+	UPROPERTY()
+	E_GridTile_OnPlayerEnterFunctions OnPlayerEnterTileFunction;
+
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void OnMouseBeginHover();
+
+// ------------------------- Tile
+	UFUNCTION()
+	void OnPlayerEnterTile();
 };

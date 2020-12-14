@@ -209,6 +209,7 @@ void ABaseClass_PlayerController::PlayerMoveNorth()
 
 		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate + 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
 			MoveToTile(FoundTile);
+			FoundTile->OnPlayerEnterTile();
 			break;
 		}
 	}
@@ -223,6 +224,7 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 		ABaseClass_GridTile* FoundTile = *Itr;
 
 		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate + 1) {
+			FoundTile->OnPlayerEnterTile();
 			MoveToTile(FoundTile);
 			break;
 		}
@@ -238,6 +240,7 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 		ABaseClass_GridTile* FoundTile = *Itr;
 
 		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate - 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
+			FoundTile->OnPlayerEnterTile();
 			MoveToTile(FoundTile);
 			break;
 		}
@@ -253,6 +256,7 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 		ABaseClass_GridTile* FoundTile = *Itr;
 
 		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate - 1) {
+			FoundTile->OnPlayerEnterTile();
 			MoveToTile(FoundTile);
 			break;
 		}
@@ -271,7 +275,7 @@ void ABaseClass_PlayerController::BeginBattle()
 	if (Battle_HUD_Class) {
 		Battle_HUD_Widget = CreateWidget<UBaseClass_HUD_Battle>(GetWorld(), Battle_HUD_Class);
 		Battle_HUD_Widget->AddToViewport();
-		Battle_HUD_Widget->DebugBeginBattle();
+		//Battle_HUD_Widget->DebugBeginBattle();
 	}
 }
 

@@ -459,15 +459,27 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	EnemyFormationsTableRow.RowName = "Test";
 
 	F_LevelRoom_Encounter NewEncounter("Test", false, EnemyFormationsTableRow);
+	//F_LevelRoom_EnemyFormation NewEnemyEncounter;
 
 	//GridTilesArray[FMath::RandRange(0, GridTilesArray.Num() - 1)]->EncountersList.Add(NewEncounter);
 	//}
 
 	// Room One
+	// Set all tiles in room one to trigger a battle
 	ABaseClass_GridTile* RoomOneSpawnTile = RoomOneGridTiles[FMath::RandRange(0, RoomOneGridTiles.Num() - 1)];
 	RoomOneSpawnTile->EncountersList.Add(NewEncounter);
 	for (int i = 0; i < RoomOneGridTiles.Num(); i++) {
 		RoomOneGridTiles[i]->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+	}
+	// For each enemy in the formation, spawn it into the room at a location based on the center tile
+	for (const TPair<FVector2D, FDataTableRowHandle>& Map : EnemyFormation.EnemiesMap) {
+		for (int j = 0; j < SceneCoordinateComponents.Num(); j++) {
+			if (SceneCoordinateComponents[j]->GridCoordinates.X == Map.Key.X && SceneCoordinateComponents[j]->GridCoordinates.Y == Map.Key.Y) {
+				EntityInBattle_Reference = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, (FVector(SceneCoordinateComponents[j]->GetComponentLocation().X, SceneCoordinateComponents[j]->GetComponentLocation().Y, (SceneCoordinateComponents[j]->GetComponentLocation().Z + 10))), (this->GetActorRotation()));
+				EntityInBattle_Reference->ResetComponentsLocations();
+				break;
+			}
+		}
 	}
 
 	// Spawn Player Into a Room at a random tile

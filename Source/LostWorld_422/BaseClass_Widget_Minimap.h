@@ -42,6 +42,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
 	ABaseClass_GridTile* GridTile_Actor;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
+	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
+	ABaseClass_EntityInBattle* EntityInBattle_Actor;
+
 // ------------------------- References
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	UDataTable* EnemyFormationsTable;

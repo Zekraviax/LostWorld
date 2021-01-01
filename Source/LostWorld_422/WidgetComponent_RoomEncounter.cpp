@@ -27,7 +27,4 @@ void UWidgetComponent_RoomEncounter::SelectedEncounter()
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Not Enough Cards In Deck. Minimum 10."));
 	}
-
-
-
 }

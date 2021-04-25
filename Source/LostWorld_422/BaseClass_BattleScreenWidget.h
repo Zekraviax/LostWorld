@@ -27,6 +27,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidgetOptional))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidgetOptional))
 	UTextBlock* TestText = nullptr;
 };

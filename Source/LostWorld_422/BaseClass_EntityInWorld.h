@@ -43,33 +43,33 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Entity
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEntityBase EntityBaseData;
 
 // ------------------------- Technical Variables
 	// EntityInBattle reference
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* EntityInBattleRef;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
 	// Player Controller
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_PlayerController* PlayerControllerRef;
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* StaticMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCameraComponent* Camera;
 
 	// UI in World Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UTextRenderComponent* HealthText_WorldRender;
 
 // Functions

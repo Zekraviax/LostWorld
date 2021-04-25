@@ -23,17 +23,17 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UImage* BackgroundImage;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UButton* InteractButton;
 
 // ------------------------- References
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_GridTile* GridTileReference;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "References")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_Minimap* MinimapReference;
 
 // ------------------------- Technical Variables

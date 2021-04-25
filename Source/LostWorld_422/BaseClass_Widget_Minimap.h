@@ -25,38 +25,32 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UUniformGridPanel* LevelGrid;
 
 // ------------------------- Widgets
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UWidgetComponent_MinimapRoom> MinimapRoom_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_MinimapRoom* MinimapRoom_Widget;
 
 // ------------------------- Actors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_GridTile> GridTile_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_GridTile* GridTile_Actor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
-	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
-	ABaseClass_EntityInBattle* EntityInBattle_Actor;
-
 // ------------------------- References
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* EnemyFormationsTable;
 
 // ------------------------- Map
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Map")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<ABaseClass_GridTile*> GridTilesArray;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Map")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<UWidgetComponent_MinimapRoom*> PlayerNeighbouringRoomWidgets;
 
 	// Generic Arrays for Groups of MinimapTiles (e.g. Rooms and Corridors)
@@ -89,7 +83,4 @@ public:
 // ------------------------- Map
 	UFUNCTION(BlueprintCallable)
 	void GenerateLevel();
-
-	UFUNCTION()
-	void GetPlayerNeighbouringTiles(UWidgetComponent_MinimapRoom* CurrentRoomWidget);
 };

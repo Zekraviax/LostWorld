@@ -49,24 +49,24 @@ public:
 	UButton* DeckButton;
 
 // ------------------------- Technical Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ALostWorld_422GameStateBase* GameStateRef;
 
 // ------------------------- Widgets
 	// Deck Builder Class
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_Widget_DeckBuilder> DeckBuilder_Class;
 
 	// Deck Builder Instance
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_DeckBuilder* DeckBuilderRef;
 
 	// Card Class
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_CardUserWidget> Card_Class;
 
 	// Card Instance
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CardWidgetRef;
 
 

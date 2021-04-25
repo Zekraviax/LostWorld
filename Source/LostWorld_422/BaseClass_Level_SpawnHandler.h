@@ -30,24 +30,24 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_LevelRoom> TestOne_Room_Class;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<ABaseClass_LevelRoom>> Exit_Room_Classes;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_LevelRoom* Room_Reference;
 
 // ------------------------- Rooms
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Rooms")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<ABaseClass_LevelRoom*> RoomSpawnQueue;
 
 	UPROPERTY()
 	bool HasExitSpawned;
 
 // ------------------------- Level
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	F_Level_Data LevelData;
 
 // Functions

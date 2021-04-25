@@ -32,14 +32,14 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* HealthBar;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ManaBar;
 
 // ------------------------- Entity variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* LinkedEntity;
 	
 };

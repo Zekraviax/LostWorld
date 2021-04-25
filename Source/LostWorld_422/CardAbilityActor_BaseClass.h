@@ -28,10 +28,10 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_DrawCards_Class;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	//ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 // ------------------------- Card
@@ -39,7 +39,7 @@ public:
 	//FCardBase LocalAbilityReference;
 
 // ------------------------- The Stack
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stack")
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	//TArray<FCardBase> StackArray;
 
 // ------------------------- Timers	

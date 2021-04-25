@@ -75,16 +75,6 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 0 && FoundTile->Y_Coordinate == 0) {
-				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Found Grid Tiles"));
-				//MoveToTile(FoundTile);
-
-				for (TObjectIterator<UBaseClass_Widget_Minimap> Itr2; Itr2; ++Itr2) {
-					UBaseClass_Widget_Minimap* FoundWidget = *Itr2;
-					if (FoundWidget->IsValidLowLevel()) {
-						FoundWidget->GetPlayerNeighbouringTiles(FoundTile->MinimapRoomReference);
-					}
-				}
-
 				FoundTile->MinimapRoomReference->SetColour();
 				break;
 			}
@@ -300,8 +290,7 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 		CurrentLocationInLevel = TileReference;
-	}
-	else {
+	} else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
 	}
 
@@ -325,6 +314,13 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 		else {
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
 			FoundWidget->PlayerCanMoveTo = false;
+		}
+
+		// If there's an enemy at any given tile, change its colour.
+		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
+			if (FoundWidget->GridTileReference->EncountersList.Num() > 0) {
+				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
+			}
 		}
 	}
 }

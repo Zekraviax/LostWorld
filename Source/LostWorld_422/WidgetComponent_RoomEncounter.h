@@ -27,7 +27,7 @@ public:
 	UTextBlock* EncounterLabel;
 
 // ------------------------- Encounter
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	F_LevelRoom_Encounter EncounterData;
 
 // Base Variables

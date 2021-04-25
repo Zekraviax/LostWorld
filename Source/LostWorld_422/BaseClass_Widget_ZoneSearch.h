@@ -30,17 +30,17 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CardScrollBox;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* ZoneName;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UButton* Confirm_Button;
 
 // ------------------------- Widgets
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<class UBaseClass_CardUserWidget> CardWidget_Class;
 
 // ------------------------- Function Variables

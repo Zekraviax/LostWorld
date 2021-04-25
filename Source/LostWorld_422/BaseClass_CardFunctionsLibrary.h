@@ -51,12 +51,13 @@ public:
 	FTimerHandle StackTimerHandle;
 
 // ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//TSubclassOf<ABaseClass_LevelRoom> StartingRoom_Class;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 

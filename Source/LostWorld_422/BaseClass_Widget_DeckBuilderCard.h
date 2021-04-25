@@ -57,10 +57,10 @@ public:
 	UBaseClass_Widget_DeckBuilder* DeckBuilderWidgetRef;
 
 // ------------------------- Card
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Card")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FCardBase CardDataRef;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Card")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 QuantityBind;
 
 // Functions

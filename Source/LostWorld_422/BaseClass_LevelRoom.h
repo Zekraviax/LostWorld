@@ -39,44 +39,44 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Room
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//F_LevelRoom_Encounter CurrentEncounterData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_LevelRoom_Encounter> EncountersList;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_LevelRoom_Exit> ExitsList;
 
 	// Previous room exit
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Data")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	F_LevelRoom_Exit PreviousRoomExit;
 
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Room Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<UBaseComponent_Room_Tile*> SceneCoordinateComponents;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Room Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<UBaseComponent_Room_SpawnPoint*> RoomSpawnSceneComponents;
 
 // ------------------------- Constructor Classes (?)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* EntityInBattle_Reference;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UWidgetComponent_RoomEncounter> RoomEncounter_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_RoomEncounter* RoomEncounter_Widget;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UWidgetComponent_RoomExit> RoomExit_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_RoomExit* RoomExit_Widget;
 
 

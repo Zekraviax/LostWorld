@@ -45,47 +45,47 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Entity
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBase EntityBaseData;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInDeck;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInHand;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Entity")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInGraveyard;
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* StaticMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCameraComponent* Camera;
 
 	// UI in World Component
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UWidgetComponent* EntityStats_WidgetComponent;
 
 // ------------------------- Technical Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_PlayerController* PlayerControllerRef;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ALostWorld_422GameModeBase* GameModeRef;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ALostWorld_422GameStateBase* GameStateRef;
 
 // ------------------------- Widgets
-	UPROPERTY(visibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(visibleAnywhere, BlueprintReadOnly)
 	UBaseClass_WidgetComponent_Stats* EntityStats_WidgetComponent_Reference;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_WidgetComponent_Stats> EntityStats_WidgetComponent_Class;
 
 // ------------------------- Timers

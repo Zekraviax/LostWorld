@@ -43,24 +43,24 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneComponent* PlayerRestPointReference;
 
 // ------------------------- Widget
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_MinimapRoom* MinimapRoomReference;
 
 // ------------------------- Data
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int X_Coordinate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical Variables")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Y_Coordinate;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_LevelRoom_Encounter> EncountersList;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	E_GridTile_OnPlayerEnterFunctions OnPlayerEnterTileFunction;
 
 // Functions

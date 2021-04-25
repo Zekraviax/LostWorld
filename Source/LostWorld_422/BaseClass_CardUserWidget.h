@@ -25,16 +25,16 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Technical Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FCardBase CardData;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 IndexInZone;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool IsDragging;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_PlayerController* LocalPlayerControllerRef;
 
 // ------------------------- References

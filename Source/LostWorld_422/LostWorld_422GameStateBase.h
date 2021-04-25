@@ -28,13 +28,13 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Technical Variables
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<ABaseClass_EntityInBattle*> SortedTurnOrderList;
 
 	UPROPERTY()
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> TheStack;
 
 	UPROPERTY()
@@ -48,10 +48,10 @@ public:
 	FTimerHandle StackTimerHandle;
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 // Functions

@@ -24,16 +24,17 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//TSubclassOf<ABaseClass_LevelRoom> StartingRoom_Class;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_LevelRoom> TestOne_Room_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Constructors")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_LevelRoom* Room_Reference;
 
 // ------------------------- Rooms
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Constructors")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//TArray<TSubclassOf<ABaseClass_LevelRoom>> RoomClassesArray;
 
 // Functions

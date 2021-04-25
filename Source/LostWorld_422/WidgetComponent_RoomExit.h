@@ -26,7 +26,7 @@ public:
 	UTextBlock* EncounterLabel;
 
 // ------------------------- Room
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Encounter")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	F_LevelRoom_Exit RoomData;
 
 // Functions

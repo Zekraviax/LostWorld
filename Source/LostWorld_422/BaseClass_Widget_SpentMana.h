@@ -22,16 +22,16 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UButton* AddValueButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UButton* SubtractValueButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UButton* ConfirmValueButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (BindWidget))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UEditableTextBox* Number_EditableBox;
 
 // ------------------------- Mana Value
@@ -43,7 +43,7 @@ public:
 	UBaseClass_CardUserWidget* CardReference;
 
 	// ------------------------- Technical Variables
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical Variables")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_CardUserWidget> CardWidget_Class;
 
 // Functions

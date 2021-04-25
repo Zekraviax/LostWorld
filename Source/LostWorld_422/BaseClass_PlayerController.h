@@ -37,10 +37,10 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Entity
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBase CurrentEntityData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Entity")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCardBase> CurrentCollection;
 
 	UPROPERTY()
@@ -48,45 +48,45 @@ public:
 
 // ------------------------- Technical Variables
 	// Player EntityInBattle class
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class ABaseClass_EntityInBattle* EntityInBattleRef;
 
 	// Player EntityInBattle instance
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_LevelRoom* CurrentRoom;
 
 // ------------------------- Widgets
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UBaseClass_HUD_Level* Level_HUD_Widget;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<class UBaseClass_HUD_Level> Level_HUD_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UBaseClass_HUD_Battle* Battle_HUD_Widget;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<class UBaseClass_HUD_Battle> Battle_HUD_Class;
 
 	// The instance of the DeckBuilderCard 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* Card_Widget;
 
 	// The class that will be used for the DeckBuilderCard
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_CardUserWidget> Card_Class;
 
 	// Dragging Card Widget Reference
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
 
 // Functions

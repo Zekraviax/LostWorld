@@ -34,22 +34,22 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CurrentDeck_ScrollBox;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CurrentCollection_ScrollBox;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_PlayerController* PlayerControllerRef;
 
 // ------------------------- Technical Variables
 	// The instance of the DeckBuilderCard 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Technical")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_DeckBuilderCard* DeckBuilderCard_Widget;
 
 	// The class that will be used for the DeckBuilderCard
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_Widget_DeckBuilderCard> DeckBuilderCard_Class;
 
 	UPROPERTY()

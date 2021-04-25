@@ -24,23 +24,23 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* EncounterList_ScrollBox;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly,  meta = (BindWidget))
 	UScrollBox* ExitList_ScrollBox;
 
 // ------------------------- Widgets
 	// Deck Builder Class
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_Widget_DeckBuilder> DeckBuilder_Class;
 
 	// Deck Builder Instance
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_DeckBuilder* DeckBuilderRef;
 
 // ------------------------- Room Features
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Features")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<E_LevelRoom_EncounterTypes> EncounterList;
 
 // Functions

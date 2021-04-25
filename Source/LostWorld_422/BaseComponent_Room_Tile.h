@@ -26,6 +26,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Tile Grid
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Grid")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector2D GridCoordinates;
 };

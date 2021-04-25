@@ -32,7 +32,7 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Reference
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Reference")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<class ABaseClass_CardFunctionsLibrary> CardFunctionsLibraryClass;
 
 	UPROPERTY()

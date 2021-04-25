@@ -36,8 +36,6 @@ void ABaseClass_GridTile::OnMouseBeginHover()
 
 void ABaseClass_GridTile::OnPlayerEnterTile()
 {
-	//ALostWorld_422GameStateBase* GameStateRef;
-
 	switch (OnPlayerEnterTileFunction) 
 	{
 		case(E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle):

@@ -51,9 +51,6 @@ public:
 	FTimerHandle StackTimerHandle;
 
 // ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<ABaseClass_LevelRoom> StartingRoom_Class;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
 
@@ -65,12 +62,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Card
-	//UFUNCTION()
-	//void SetCardTargets();
-
-	//UFUNCTION()
-	//int32 ReturnIntValueFromRules();
-
 	UFUNCTION()
 	void AddCardFunctionsToTheStack(FCardBase Card);
 
@@ -81,16 +72,13 @@ public:
 
 	// Static Array of X function pointers
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
-	//FunctionPtrType CardAbilityConditions[CARD_ABILITY_CONDITIONS];
 
 	// Executes a function from the CardFuntions Pointer Array
 	// Implementation does not vary in subclasses, so no virtual
 	void ExecuteCardFunctions();
-	//void ExecuteAbilityConditionFunctions();
 
 	// Initialize the array
 	void InitializeCardFunctions();
-	//void InitalizeAbilityConditionFunctions();
 
 	// The Actual Functions which are implemented in subclasses by this class.
 	virtual void CardFunction_Nothing();

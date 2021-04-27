@@ -11,6 +11,7 @@
 
 #include "BaseClass_HUD_Battle.generated.h"
 
+
 // Forward Declarations
 class ALostWorld_422GameStateBase;
 

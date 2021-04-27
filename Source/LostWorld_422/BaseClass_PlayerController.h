@@ -13,8 +13,18 @@
 
 #include "BaseClass_PlayerController.generated.h"
 
+
 // Forward Declarations
 class ABaseClass_GridTile;
+
+
+// Class-Specific Enums
+UENUM(BlueprintType)
+enum class E_Player_ControlMode: uint8
+{
+	E_Move,
+	E_Battle
+};
 
 
 UCLASS()
@@ -28,13 +38,15 @@ protected:
 	// BeginPlay function
 	virtual void BeginPlay() override;
 
-	ABaseClass_PlayerController();
-
 public:
 	virtual void Tick(float DeltaTime) override;
 
 // Base Variables
 // --------------------------------------------------
+
+// ------------------------- Player
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	E_Player_ControlMode ControlMode;
 
 // ------------------------- Entity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

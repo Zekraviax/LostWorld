@@ -19,11 +19,6 @@ class LOSTWORLD_422_API ALostWorld_422GameStateBase : public AGameStateBase
 	GENERATED_BODY()
 	
 public:
-// Initializers
-// --------------------------------------------------
-	//ALostWorld_422GameStateBase();
-
-
 // Base Variables
 // --------------------------------------------------
 

@@ -8,13 +8,6 @@
 #include "Components/SceneComponent.h"
 
 
-
-ABaseClass_PlayerController::ABaseClass_PlayerController()
-{
-
-}
-
-
 void ABaseClass_PlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -32,6 +25,8 @@ void ABaseClass_PlayerController::SetupInputComponent()
 	InputComponent->BindAction("MoveEast", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveEast);
 	InputComponent->BindAction("MoveSouth", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveSouth);
 	InputComponent->BindAction("MoveWest", IE_Pressed, this, &ABaseClass_PlayerController::PlayerMoveWest);
+
+	ControlMode = E_Player_ControlMode::E_Move;
 }
 
 
@@ -56,14 +51,14 @@ void ABaseClass_PlayerController::Tick(float DeltaTime)
 void ABaseClass_PlayerController::ManualBeginPlay()
 {
 	// Create the player EntityInBattle
-	if (!EntityInBattleRef && EntityInBattle_Class) {
-		UWorld* const World = GetWorld(); // get a reference to the world
+	if (EntityInBattle_Class) {
+		UWorld* const World = GetWorld();
 		FActorSpawnParameters SpawnParameters;
+
 		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
 		EntityInBattleRef->EntityBaseData = CurrentEntityData;
 		EntityInBattleRef->PlayerControllerRef = this;
 
-		// 
 		EntityInBattleRef->EntityBaseData.GameOverOnDeath.GameOverOnDeath = true;
 
 		// Set Camera Target
@@ -192,15 +187,17 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 void ABaseClass_PlayerController::PlayerMoveNorth()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move North"));
+	if (ControlMode == E_Player_ControlMode::E_Move) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move North"));
 
-	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
-		ABaseClass_GridTile* FoundTile = *Itr;
+		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+			ABaseClass_GridTile* FoundTile = *Itr;
 
-		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate + 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
-			MoveToTile(FoundTile);
-			FoundTile->OnPlayerEnterTile();
-			break;
+			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate + 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
+				MoveToTile(FoundTile);
+				FoundTile->OnPlayerEnterTile();
+				break;
+			}
 		}
 	}
 }
@@ -208,15 +205,17 @@ void ABaseClass_PlayerController::PlayerMoveNorth()
 
 void ABaseClass_PlayerController::PlayerMoveEast()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move East"));
+	if (ControlMode == E_Player_ControlMode::E_Move) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move East"));
 
-	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
-		ABaseClass_GridTile* FoundTile = *Itr;
+		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+			ABaseClass_GridTile* FoundTile = *Itr;
 
-		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate + 1) {
-			FoundTile->OnPlayerEnterTile();
-			MoveToTile(FoundTile);
-			break;
+			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate + 1) {
+				FoundTile->OnPlayerEnterTile();
+				MoveToTile(FoundTile);
+				break;
+			}
 		}
 	}
 }
@@ -224,15 +223,17 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 
 void ABaseClass_PlayerController::PlayerMoveSouth()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move South"));
+	if (ControlMode == E_Player_ControlMode::E_Move) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move South"));
 
-	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
-		ABaseClass_GridTile* FoundTile = *Itr;
+		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+			ABaseClass_GridTile* FoundTile = *Itr;
 
-		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate - 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
-			FoundTile->OnPlayerEnterTile();
-			MoveToTile(FoundTile);
-			break;
+			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate - 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
+				FoundTile->OnPlayerEnterTile();
+				MoveToTile(FoundTile);
+				break;
+			}
 		}
 	}
 }
@@ -240,15 +241,17 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 
 void ABaseClass_PlayerController::PlayerMoveWest()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move West"));
+	if (ControlMode == E_Player_ControlMode::E_Move) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move West"));
 
-	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
-		ABaseClass_GridTile* FoundTile = *Itr;
+		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
+			ABaseClass_GridTile* FoundTile = *Itr;
 
-		if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate - 1) {
-			FoundTile->OnPlayerEnterTile();
-			MoveToTile(FoundTile);
-			break;
+			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate - 1) {
+				FoundTile->OnPlayerEnterTile();
+				MoveToTile(FoundTile);
+				break;
+			}
 		}
 	}
 }
@@ -265,7 +268,6 @@ void ABaseClass_PlayerController::BeginBattle()
 	if (Battle_HUD_Class) {
 		Battle_HUD_Widget = CreateWidget<UBaseClass_HUD_Battle>(GetWorld(), Battle_HUD_Class);
 		Battle_HUD_Widget->AddToViewport();
-		//Battle_HUD_Widget->DebugBeginBattle();
 	}
 }
 
@@ -303,7 +305,6 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 			FoundWidget->X_Coordinate == TileReference->X_Coordinate - 1 && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate ||
 			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate + 1 ||
 			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate - 1) {
-			//PlayerNeighbouringRoomWidgets.Add(FoundWidget);
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
 			FoundWidget->PlayerCanMoveTo = true;
 		}
@@ -316,7 +317,7 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 			FoundWidget->PlayerCanMoveTo = false;
 		}
 
-		// If there's an enemy at any given tile, change its colour.
+		// If there's an enemy at any given tile, change that tiles colour.
 		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
 			if (FoundWidget->GridTileReference->EncountersList.Num() > 0) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));

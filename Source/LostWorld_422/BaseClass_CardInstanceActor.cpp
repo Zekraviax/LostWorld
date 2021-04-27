@@ -1,5 +1,6 @@
 #include "BaseClass_CardInstanceActor.h"
 
+
 //-------------------- Base Functions --------------------//
 // Sets default values
 ABaseClass_CardInstanceActor::ABaseClass_CardInstanceActor()
@@ -9,12 +10,14 @@ ABaseClass_CardInstanceActor::ABaseClass_CardInstanceActor()
 
 }
 
+
 // Called when the game starts or when spawned
 void ABaseClass_CardInstanceActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
+
 
 // Called every frame
 void ABaseClass_CardInstanceActor::Tick(float DeltaTime)
@@ -23,10 +26,9 @@ void ABaseClass_CardInstanceActor::Tick(float DeltaTime)
 
 }
 
+
 //-------------------- Card Instance --------------------//
 void ABaseClass_CardInstanceActor::ExecuteCardAbility(FCardAbilitiesAndConditions AbilityAndConditions)
 {
 
 }
-
-//-------------------- Card Functions --------------------//

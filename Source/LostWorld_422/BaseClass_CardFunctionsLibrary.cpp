@@ -38,6 +38,7 @@ void ABaseClass_CardFunctionsLibrary::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+
 //-------------------- Function Initializations --------------------//
 void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 {
@@ -57,12 +58,7 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized ability functions."));
 }
 
-//void ABaseClass_CardFunctionsLibrary::InitalizeAbilityConditionFunctions()
-//{
-//	UE_LOG(LogTemp, Warning, TEXT("Initialize ability conditions functions."));
-//
-//	UE_LOG(LogTemp, Warning, TEXT("Successfully initialized ability condition functions."));
-//}
+
 
 //-------------------- Card Functions --------------------//
 void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
@@ -228,13 +224,9 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 	if (!GameStateRef)
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
-	// Set card reference
-	//LocalCardReference = GameStateRef->TheStack[0].Card;
-
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Searching for function to execute."));
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Card Targets: ") + FString::FromInt(LocalCardReference.CurrentTargets.Num())));
 
-	//CardFunctionIndex = (int32)((uint8)LocalCardReference.Functions[0]);
 
 	// Valid range check
 	if (CardFunctionIndex > CARD_FUNCTIONS_COUNT || CardFunctionIndex < 0) {
@@ -245,27 +237,19 @@ void ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions()
 	(this->* (CardFunctions[CardFunctionIndex]))();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Successful Execution"));
 
-	// Update all targets
-	//for (int i = 0; i < LocalCardReference.CurrentTargets.Num(); i++) {
-	//	LocalCardReference.CurrentTargets[i]->Event_CardCastOnThis();
-	//}
-
 	GameStateRef->TheStack.RemoveAt(0);
+
 	if (GameStateRef->TheStack.Num() > 0) {
 		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, 2.f);
 	}
 }
 
-//void ABaseClass_CardFunctionsLibrary::ExecuteAbilityConditionFunctions()
-//{
-//}
 
 void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 {
 	FCardBase NewStackEntry;
 	NewStackEntry.Art = Card.Art;
 	NewStackEntry.Controller = Card.Controller;
-	//NewStackEntry.CurrentTargets = Card.CurrentTargets;
 	NewStackEntry.DisplayName = Card.DisplayName;
 	NewStackEntry.Elements = Card.Elements;
 	NewStackEntry.ManaCost = Card.ManaCost;
@@ -285,42 +269,6 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 
 	// Start timer for the stack
 	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, 2.f);
-
-//	FStackEntry NewStackEntry;
-//
-//
-//	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++)
-//	{
-//		// Add to the stack
-//		NewStackEntry = FStackEntry(Card, 1.f);
-//
-//		// Set targets
-//		// (if target equals CastTarget, do nothing)
-//		// Self
-//		if (NewStackEntry.Card.SimpleTargetsOverride.Contains(E_Card_SetTargets::E_Self)) {
-//			NewStackEntry.Card.CurrentTargets.Empty();
-//			NewStackEntry.Card.CurrentTargets.Add(NewStackEntry.Card.Controller);
-//			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Self"));
-//		}
-//
-//		// All Enemies
-//		else if (NewStackEntry.Card.SimpleTargetsOverride.Contains(E_Card_SetTargets::E_AllEnemies)) {
-//			NewStackEntry.Card.CurrentTargets.Empty();
-//			for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
-//				ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-//
-//				if (FoundEntity->EntityBaseData.IsPlayerControllable != NewStackEntry.Card.Controller->EntityBaseData.IsPlayerControllable) {
-//					NewStackEntry.Card.CurrentTargets.Add(FoundEntity);
-//					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Target: Get All Enemies"));
-//				}
-//			}
-//		}
-//
-//		GameStateRef->TheStack.Add(NewStackEntry);
-//	}
-//
-//	// Start timer for the stack
-//	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ABaseClass_CardFunctionsLibrary::ExecuteCardFunctions, GameStateRef->TheStack[0].Delay);
 }
 
 

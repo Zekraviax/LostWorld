@@ -5,13 +5,6 @@
 #include "BaseClass_PlayerController.h"
 
 
-//-------------------- Base --------------------//
-//ALostWorld_422GameStateBase::ALostWorld_422GameStateBase()
-//{
-//
-//}
-
-
 //-------------------- Battle --------------------//
 void ALostWorld_422GameStateBase::DebugBattleStart()
 {
@@ -24,10 +17,13 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 	{
 		SortedTurnOrderList.Empty();
 
+		// Stop the player from moving normally
+		PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
+
 		// Swap between Level HUD and Battle HUD
 		PlayerControllerRef->BeginBattle();
 
-		// Spawn Player's EntityInBattle and add it to the turn order first
+		// Add the player to the turn order first
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 

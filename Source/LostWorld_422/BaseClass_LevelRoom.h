@@ -89,7 +89,4 @@ public:
 
 	UFUNCTION()
 	void SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyFormation);
-
-	UFUNCTION(BlueprintCallable)
-	void PlayerEnterRoom();
 };

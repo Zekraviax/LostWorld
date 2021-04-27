@@ -25,5 +25,5 @@ void UWidgetComponent_RoomExit::SelectedExit()
 	PlayerControllerRef->EntityInBattleRef->SetActorLocation(PlayerRestPointLocation);
 	PlayerControllerRef->EntityInBattleRef->ResetComponentsLocations();
 
-	RoomData.RoomReference->PlayerEnterRoom();
+	//RoomData.RoomReference->PlayerEnterRoom();
 }

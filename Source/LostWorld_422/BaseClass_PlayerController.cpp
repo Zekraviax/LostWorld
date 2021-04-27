@@ -260,9 +260,8 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 // ------------------------- Gameplay
 void ABaseClass_PlayerController::BeginBattle()
 {
-	if (Level_HUD_Widget) {
+	if (Level_HUD_Widget)
 		Level_HUD_Widget->RemoveFromParent();
-	}
 
 	// Create the Battle HUD widget
 	if (Battle_HUD_Class) {
@@ -274,16 +273,16 @@ void ABaseClass_PlayerController::BeginBattle()
 
 void ABaseClass_PlayerController::ExitBattle()
 {
-	if (Battle_HUD_Widget) {
+	if (Battle_HUD_Widget)
 		Battle_HUD_Widget->RemoveFromParent();
-	}
 
 	// Create the Level HUD widget
 	if (Level_HUD_Class) {
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
-		CurrentRoom->PlayerEnterRoom();
 	}
+
+	ControlMode = E_Player_ControlMode::E_Move;
 }
 
 
@@ -292,9 +291,8 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 		CurrentLocationInLevel = TileReference;
-	} else {
+	} else
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
-	}
 
 	// Get neighbouring tiles
 	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {

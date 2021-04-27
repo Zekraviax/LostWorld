@@ -54,7 +54,7 @@ public:
 
 // ------------------------- Battle
 	UFUNCTION(BlueprintCallable)
-	void DebugBattleStart();
+	void DebugBattleStart(F_LevelRoom_Encounter Battle);
 
 	UFUNCTION()
 	void EntityEndOfTurn();

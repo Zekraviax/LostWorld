@@ -74,17 +74,7 @@ public:
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Debug
-	UFUNCTION(BlueprintCallable)
-	void DebugBeginBattle();
-
-	UFUNCTION(BlueprintCallable)
-	void Test_SetPlayerData();
-
 // ------------------------- Widgets
-	UFUNCTION(BlueprintCallable)
-	void OpenDeckBuilder();
-
 	UFUNCTION()
 	void CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand);
 

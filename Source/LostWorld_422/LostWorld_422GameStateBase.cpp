@@ -6,7 +6,7 @@
 
 
 //-------------------- Battle --------------------//
-void ALostWorld_422GameStateBase::DebugBattleStart()
+void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 {
 	if (!PlayerControllerRef)
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
@@ -27,7 +27,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart()
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
-		// Spawn every other entity's decks
+		// Spawn every other entity
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;

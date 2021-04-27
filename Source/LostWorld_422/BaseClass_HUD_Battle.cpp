@@ -10,30 +10,6 @@ void UBaseClass_HUD_Battle::NativeConstruct() {
 	GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 }
 
-void UBaseClass_HUD_Battle::DebugBeginBattle()
-{
-	GameStateRef->DebugBattleStart();
-}
-
-void UBaseClass_HUD_Battle::Test_SetPlayerData()
-{
-	//if(GameStateRef->PlayerControllerRef)
-	//	GameStateRef->PlayerControllerRef->CurrentEntityData.DisplayName = "Player";
-
-	//if(GameStateRef->PlayerControllerRef->EntityInBattleRef)
-	//	GameStateRef->PlayerControllerRef->EntityInBattleRef->EntityBaseData = GameStateRef->PlayerControllerRef->CurrentEntityData;
-}
-
-void UBaseClass_HUD_Battle::OpenDeckBuilder()
-{
-	//if (DeckBuilder_Class && !DeckBuilderRef)
-	//{
-	//	DeckBuilderRef = CreateWidget<UBaseClass_Widget_DeckBuilder>(GetWorld(), DeckBuilder_Class);
-	//	DeckBuilderRef->HUDRef = this;
-	//	DeckBuilderRef->PopulateScrollBoxes();
-	//	DeckBuilderRef->AddToViewport();
-	//}
-}
 
 void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)
 {
@@ -46,6 +22,7 @@ void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard
 	CardWidgetRef->CardData.ZoneIndex = CardWidgetRef->IndexInZone;
 	CardsInHand_ScrollBox->AddChild(CardWidgetRef);
 }
+
 
 void UBaseClass_HUD_Battle::EndTurn_Function()
 {

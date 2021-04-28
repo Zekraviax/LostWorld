@@ -44,11 +44,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	int RoomFourHalfWidth = 2;
 	int RoomFourHalfHeight = 2;
 
-	//MinimapTileOne = MinimapRoomArrayOne[FMath::RandRange(3, MinimapRoomArrayOne.Num() - 4)];
-
-	//int LeftRoomBound = MinimapTileOne->X_Coordinate - RoomOneHalfWidth;
-	//int RightRoomBound = MinimapTileOne->X_Coordinate + RoomOneHalfHeight;
-
 	// Generate Base Level
 	// Hard-Coded to be no bigger than 20x20
 	// (Need to experiment with a reasonable size limit)
@@ -67,54 +62,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 				y <= (RoomFourCenter.Y + RoomFourHalfHeight) && y >= (RoomFourCenter.Y - RoomFourHalfHeight)) {
 				MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
 			}
-
-			//if (x <= (RoomOneCenter.X + RoomOneHalfWidth) && x >= (RoomOneCenter.X - RoomOneHalfWidth)) {
-			//	MinimapArrayRoomOneCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (y <= (RoomOneCenter.Y + RoomOneHalfHeight) && y >= (RoomOneCenter.Y - RoomOneHalfHeight)) {
-			//	MinimapArrayRoomFiveCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && x >= (RoomTwoCenter.X - RoomTwoHalfWidth)) {
-			//	MinimapArrayRoomTwoCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (y <= (RoomTwoCenter.Y + RoomTwoHalfHeight) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight)) {
-			//	MinimapArrayRoomSixCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && x >= (RoomThreeCenter.X - RoomThreeHalfWidth)) {
-			//	MinimapArrayRoomThreeCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (y <= (RoomThreeCenter.Y + RoomThreeHalfHeight) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight)) {
-			//	MinimapArrayRoomSevenCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (x <= (RoomFourCenter.X + RoomFourHalfWidth) && x >= (RoomFourCenter.X - RoomFourHalfWidth)) {
-			//	MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
-			//}
-			//else if (y <= (RoomFourCenter.Y + RoomFourHalfHeight) && y >= (RoomFourCenter.Y - RoomFourHalfHeight)) {
-			//	MinimapArrayRoomEightCoordinates.Add(FVector2D(x, y));
-			//}
-
-			//if (x <= (RoomOneCenter.X + RoomOneHalfWidth) && y <= (RoomOneCenter.Y + RoomOneHalfHeight) ||
-			//	x >= (RoomOneCenter.X - RoomOneHalfWidth) && y >= (RoomOneCenter.Y - RoomOneHalfHeight) ||
-			//	x <= (RoomOneCenter.X + RoomOneHalfWidth) && y >= (RoomOneCenter.Y - RoomOneHalfHeight) || 
-			//	x >= (RoomOneCenter.X - RoomOneHalfWidth) && y <= (RoomOneCenter.Y + RoomOneHalfHeight)) {
-			//	MinimapArrayRoomOneCoordinates.Add(FVector2D(x, y));
-			//} 
-			//else if (x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && y <= (RoomTwoCenter.Y + RoomTwoHalfHeight) ||
-			//	x >= (RoomTwoCenter.X - RoomTwoHalfWidth) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight) ||
-			//	x <= (RoomTwoCenter.X + RoomTwoHalfWidth) && y >= (RoomTwoCenter.Y - RoomTwoHalfHeight) ||
-			//	x >= (RoomTwoCenter.X - RoomTwoHalfWidth) && y <= (RoomTwoCenter.Y + RoomTwoHalfHeight)) {
-			//	MinimapArrayRoomTwoCoordinates.Add(FVector2D(x, y));
-			//} else if (x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && y <= (RoomThreeCenter.Y + RoomThreeHalfHeight) ||
-			//	x >= (RoomThreeCenter.X - RoomThreeHalfWidth) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight) ||
-			//	x <= (RoomThreeCenter.X + RoomThreeHalfWidth) && y >= (RoomThreeCenter.Y - RoomThreeHalfHeight) ||
-			//	x >= (RoomThreeCenter.X - RoomThreeHalfWidth) && y <= (RoomThreeCenter.Y + RoomThreeHalfHeight)) {
-			//	MinimapArrayRoomThreeCoordinates.Add(FVector2D(x, y));
-			//} else if (x <= (RoomFourCenter.X + RoomFourHalfWidth) && y <= (RoomFourCenter.Y + RoomFourHalfHeight) ||
-			//	x >= (RoomFourCenter.X - RoomFourHalfWidth) && y >= (RoomFourCenter.Y - RoomFourHalfHeight) ||
-			//	x <= (RoomFourCenter.X + RoomFourHalfWidth) && y >= (RoomFourCenter.Y - RoomFourHalfHeight) ||
-			//	x >= (RoomFourCenter.X - RoomFourHalfWidth) && y <= (RoomFourCenter.Y + RoomFourHalfHeight)) {
-			//	MinimapArrayRoomFourCoordinates.Add(FVector2D(x, y));
-			//}
 		}
 	}
 
@@ -310,8 +257,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 		}
 	}
 
-
-
 	// Test Level Generation Progress
 	TArray<FVector2D> FullLevelArrayCoordinates, RoomSetCoordinates, CorridorSetOneCoordinates, CorridorSetTwoCoordinates;
 
@@ -343,26 +288,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorSevenCoordinates);
 	CorridorSetTwoCoordinates.Append(MinimapArrayCorridorEightCoordinates);
 
-	//if (MinimapRoom_Class) {
-	//	for (int i = 0; i < FullLevelArrayCoordinates.Num(); i++) {
-	//		MinimapRoom_Widget = CreateWidget<UWidgetComponent_MinimapRoom>(GetWorld(), MinimapRoom_Class);
-	//		MinimapRoom_Widget->MinimapReference = this;
-
-	//		UUniformGridSlot* MinimapRoom_Slot = LevelGrid->AddChildToUniformGrid(Cast<UWidget>(MinimapRoom_Widget));
-
-	//		MinimapRoom_Slot->SetRow(FullLevelArrayCoordinates[i].Y);
-	//		MinimapRoom_Slot->SetColumn(FullLevelArrayCoordinates[i].X);
-
-	//		MinimapRoom_Widget->X_Coordinate = FullLevelArrayCoordinates[i].Y;
-	//		MinimapRoom_Widget->Y_Coordinate = FullLevelArrayCoordinates[i].X;
-
-	//		MinimapRoom_Slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
-	//		MinimapRoom_Slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
-
-	//		FullMinimapRoomArray.Add(MinimapRoom_Widget);
-	//	}
-	//}
-
 	if (MinimapRoom_Class) {
 		for (int x = 0; x <= 20; x++) {
 			for (int y = 0; y <= 20; y++) {
@@ -379,14 +304,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 				MinimapRoom_Slot->SetHorizontalAlignment(EHorizontalAlignment::HAlign_Fill);
 				MinimapRoom_Slot->SetVerticalAlignment(EVerticalAlignment::VAlign_Fill);
-
-				//if (CorridorSetOneCoordinates.Contains(FVector2D(x, y))) {
-				//	MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
-				//}
-
-				//if (CorridorSetTwoCoordinates.Contains(FVector2D(x, y))) {
-				//	MinimapRoom_Widget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
-				//}
 
 				if (!FullLevelArrayCoordinates.Contains(FVector2D(x, y))) {
 					MinimapRoom_Widget->BackgroundImage->SetVisibility(ESlateVisibility::Hidden);
@@ -415,6 +332,7 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 			GridTilesArray.Add(GridTile_Actor);
 
+			// Cardinal Directions
 			if (MinimapArrayRoomOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				RoomOneGridTiles.Add(GridTile_Actor);
 				PlayerSpawnTiles.Add(GridTile_Actor);
@@ -427,6 +345,7 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 			} else if (MinimapArrayRoomFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				RoomFourGridTiles.Add(GridTile_Actor);
 				PlayerSpawnTiles.Add(GridTile_Actor);
+			// Diagonals
 			} else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				CorridorOneGridTiles.Add(GridTile_Actor);
@@ -451,15 +370,19 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	EnemyFormationsTableRow.RowName = "Test";
 
 	F_LevelRoom_Encounter NewEncounter("Test", false, EnemyFormationsTableRow);
+	NewEncounter.EncounterListEntry.DataTable = EnemyFormationsTable;
+	NewEncounter.EncounterListEntry.RowName = "Test";
 
 	// Room One
 	ABaseClass_GridTile* RoomOneSpawnTile = RoomOneGridTiles[FMath::RandRange(0, RoomOneGridTiles.Num() - 1)];
 	RoomOneSpawnTile->EncountersList.Add(NewEncounter);
+	RoomOneSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
 
-	for (int i = 0; i < RoomOneGridTiles.Num(); i++) {
-		if (RoomOneGridTiles[i]->EncountersList.Num() > 0)
-			RoomOneGridTiles[i]->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
-	}
+	//for (int i = 0; i < RoomOneGridTiles.Num(); i++) {
+	//	if (RoomOneGridTiles[i]->EncountersList.Num() > 0) {
+	//		RoomOneGridTiles[i]->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+	//	}
+	//}
 
 	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());

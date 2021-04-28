@@ -317,7 +317,8 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 
 		// If there's an enemy at any given tile, change that tiles colour.
 		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
-			if (FoundWidget->GridTileReference->EncountersList.Num() > 0) {
+			//if (FoundWidget->GridTileReference->EncountersList.Num() > 0) {
+			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
 			}
 		}

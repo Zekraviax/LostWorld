@@ -1,7 +1,6 @@
 #include "BaseClass_LevelRoom.h"
 
 #include "BaseClass_PlayerController.h"
-#include "BaseClass_Level_SpawnHandler.h"
 
 
 // ------------------------- Initializer
@@ -10,13 +9,6 @@ ABaseClass_LevelRoom::ABaseClass_LevelRoom()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
-	// Construct EntityInBattle
-	static ConstructorHelpers::FObjectFinder<UBlueprint> EntityInBattle_BlueprintConstruct(TEXT("Blueprint'/Game/Blueprint_EntityInBattle.Blueprint_EntityInBattle'"));
-
-	if (EntityInBattle_BlueprintConstruct.Object) {
-		EntityInBattle_Class = (UClass*)EntityInBattle_BlueprintConstruct.Object->GeneratedClass;
-	}
 }
 
 // Called when the game starts or when spawned
@@ -29,102 +21,4 @@ void ABaseClass_LevelRoom::BeginPlay()
 void ABaseClass_LevelRoom::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-}
-
-// ------------------------- Setup
-void ABaseClass_LevelRoom::SpawnAdjacentRoom()
-{
-	FName Name;
-	FVector Location;
-	FRotator Rotation;
-	ABaseClass_Level_SpawnHandler* RoomSpawner = nullptr;
-
-	this->GetComponents<UBaseComponent_Room_SpawnPoint>(RoomSpawnSceneComponents);
-
-	// Find the level's Room SpawnHandler
-	for (TActorIterator<ABaseClass_Level_SpawnHandler> Itr(GetWorld()); Itr; ++Itr) {
-		RoomSpawner = *Itr;
-		break;
-	}
-
-	if (RoomSpawner && RoomSpawnSceneComponents.Num() > 0) {
-		F_LevelRoom_Exit NewExit;
-		ABaseClass_PlayerController* PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-
-		//if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount) {
-			for (int i = 0; i < RoomSpawnSceneComponents.Num(); i++) {
-				if (RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() > 0) {
-
-					GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, FString::Printf(TEXT("Spawn Adjacent Room %d"), RoomSpawner->LevelData.CurrentRoomCount));
-
-					// Choose a valid Room to spawn at random
-					TSubclassOf<ABaseClass_LevelRoom> ChosenRoomType = RoomSpawnSceneComponents[i]->ValidRoomTypes[FMath::RandRange(0, RoomSpawnSceneComponents[i]->ValidRoomTypes.Num() - 1)];
-					RoomSpawnSceneComponents[i]->GetSocketWorldLocationAndRotation(Name, Location, Rotation);
-
-					//NewExit.RoomReference = RoomSpawner->SpawnNewRoom(ChosenRoomType, Location, Rotation, this);
-					NewExit.DisplayName = RoomSpawnSceneComponents[i]->ExitLabel;
-					NewExit.ExitDirection = RoomSpawnSceneComponents[i]->ExitDirection;
-
-					// Set the spawned room's previous room to be this one
-					NewExit.RoomReference->PreviousRoomExit.RoomReference = this;
-
-					switch (NewExit.ExitDirection)
-					{
-					case(E_Room_ExitDirections::E_North):
-						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
-						NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
-						break;
-					case(E_Room_ExitDirections::E_South):
-						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_North;
-						NewExit.RoomReference->PreviousRoomExit.DisplayName = "North";
-						break;
-					case(E_Room_ExitDirections::E_East):
-						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_West;
-						NewExit.RoomReference->PreviousRoomExit.DisplayName = "West";
-						break;
-					case(E_Room_ExitDirections::E_West):
-						NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_East;
-						NewExit.RoomReference->PreviousRoomExit.DisplayName = "East";
-						break;
-					default:
-						//NewExit.RoomReference->PreviousRoomExit.ExitDirection = E_Room_ExitDirections::E_South;
-						//NewExit.RoomReference->PreviousRoomExit.DisplayName = "South";
-						break;
-					}
-
-					ExitsList.Add(NewExit);
-				} else {
-					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No valid room types."));
-				}
-			}
-
-			//if (RoomSpawner->LevelData.CurrentRoomCount <= RoomSpawner->LevelData.MaximumRoomCount && ExitsList.Num() > 0) {
-			if (ExitsList.Num() > 0) {
-				// Add the spawned rooms to a queue for spawning adjacent rooms
-				for (int j = 0; j < ExitsList.Num(); j++) {
-					RoomSpawner->RoomSpawnQueue.Add(ExitsList[j].RoomReference);
-				}
-				//RoomSpawner->ProcessQueue();
-			} 
-		//}
-	}
-}
-
-void ABaseClass_LevelRoom::SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyFormation)
-{
-	FString ContextString;
-
-	// Get all the components first
-	GetComponents<UBaseComponent_Room_Tile>(SceneCoordinateComponents);
-
-	// For each enemy in the formation, find the tile it should spawn on and spawn it
-	for (const TPair<FVector2D, FDataTableRowHandle>& Map : EnemyFormation.EnemiesMap) {
-		for (int j = 0; j < SceneCoordinateComponents.Num(); j++) {
-			if (SceneCoordinateComponents[j]->GridCoordinates.X == Map.Key.X && SceneCoordinateComponents[j]->GridCoordinates.Y == Map.Key.Y) {
-				EntityInBattle_Reference = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, (FVector(SceneCoordinateComponents[j]->GetComponentLocation().X, SceneCoordinateComponents[j]->GetComponentLocation().Y, (SceneCoordinateComponents[j]->GetComponentLocation().Z + 10))), (this->GetActorRotation()));
-				EntityInBattle_Reference->ResetComponentsLocations();
-				break;
-			}
-		}
-	}
 }

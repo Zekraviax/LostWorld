@@ -10,6 +10,10 @@ ABaseClass_GridTile::ABaseClass_GridTile()
 	PrimaryActorTick.bCanEverTick = false;
 
 	OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_None;
+
+	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
+	Tile->SetupAttachment(RootComponent);
+	Tile->SetRelativeTransform(FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(2.f, 2.f, 1.f)));
 }
 
 
@@ -17,6 +21,10 @@ ABaseClass_GridTile::ABaseClass_GridTile()
 void ABaseClass_GridTile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Dynamic Material Instance
+	DynamicMaterial = UMaterialInstanceDynamic::Create(Tile->GetMaterial(0), this);
+	Tile->SetMaterial(0, DynamicMaterial);
 }
 
 
@@ -27,19 +35,12 @@ void ABaseClass_GridTile::Tick(float DeltaTime)
 }
 
 
-// ------------------------- Mouse
-void ABaseClass_GridTile::OnMouseBeginHover()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Mouse Hover Over Begin"));
-}
-
-
+// ------------------------- Grid Tile
 void ABaseClass_GridTile::OnPlayerEnterTile()
 {
 	switch (OnPlayerEnterTileFunction) 
 	{
 		case(E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle):
-			// Get GameState Ref
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
 			break;
 		default:

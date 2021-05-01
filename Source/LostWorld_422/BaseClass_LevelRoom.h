@@ -13,9 +13,6 @@
 
 #include "BaseClass_LevelRoom.generated.h"
 
-// Forward Declarations
-class ABaseClass_Level_SpawnHandler;
-
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_LevelRoom : public AActor
@@ -39,54 +36,25 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Room
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//F_LevelRoom_Encounter CurrentEncounterData;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_LevelRoom_Encounter> EncountersList;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<F_LevelRoom_Exit> ExitsList;
-
-	// Previous room exit
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	F_LevelRoom_Exit PreviousRoomExit;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<ABaseClass_GridTile*> GridTilesInRoom;
 
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<UBaseComponent_Room_Tile*> SceneCoordinateComponents;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<UBaseComponent_Room_SpawnPoint*> RoomSpawnSceneComponents;
-
-// ------------------------- Constructor Classes (?)
+// ------------------------- Constructors
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* EntityInBattle_Reference;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UWidgetComponent_RoomEncounter> RoomEncounter_Class;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UWidgetComponent_RoomEncounter* RoomEncounter_Widget;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UWidgetComponent_RoomExit> RoomExit_Class;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UWidgetComponent_RoomExit* RoomExit_Widget;
-
 
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Setup
-	UFUNCTION(BlueprintCallable)
-	void SpawnAdjacentRoom();
-
-	UFUNCTION()
-	void SpawnEnemyFormation(F_LevelRoom_EnemyFormation EnemyFormation);
 };

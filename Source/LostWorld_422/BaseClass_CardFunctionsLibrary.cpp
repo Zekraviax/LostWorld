@@ -257,7 +257,7 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 	NewStackEntry.Type = Card.Type;
 
 	// Get GameState
-	if (!GameStateRef)
+	if (GameStateRef->IsValidLowLevel())
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {

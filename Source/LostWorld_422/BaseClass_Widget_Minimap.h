@@ -12,6 +12,7 @@
 // Forward Declarations
 class UWidgetComponent_MinimapRoom;
 class ABaseClass_GridTile;
+class ABaseClass_LevelRoom;
 class ABaseClass_EntityInBattle;
 
 
@@ -35,12 +36,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_MinimapRoom* MinimapRoom_Widget;
 
-// ------------------------- Actors
+// ------------------------- Contstructors
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_GridTile> GridTile_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_GridTile* GridTile_Actor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<ABaseClass_LevelRoom> LevelRoom_Class;
 
 // ------------------------- References
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

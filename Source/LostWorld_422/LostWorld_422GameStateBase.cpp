@@ -28,6 +28,17 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
 		// Spawn every other entity
+		FString ContextString;
+		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
+
+		for (int i = 0; i < EnemyList->EnemiesMap.Num(); i++) {
+			ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector(600, 600, 10), FRotator::ZeroRotator);
+
+			//for (int i = 0; i < PlayerControllerRef->CurrentRoom->) {
+
+			//}
+		}
+
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;

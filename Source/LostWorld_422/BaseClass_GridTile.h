@@ -46,6 +46,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneComponent* PlayerRestPointReference;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* Tile;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UMaterialInstanceDynamic* DynamicMaterial;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FLinearColor BaseColour;
+
 // ------------------------- Widget
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent_MinimapRoom* MinimapRoomReference;
@@ -66,11 +75,7 @@ public:
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Mouse
-	UFUNCTION(BlueprintCallable)
-	void OnMouseBeginHover();
-
-// ------------------------- Tile
+// ------------------------- Grid Tile
 	UFUNCTION()
 	void OnPlayerEnterTile();
 };

@@ -16,18 +16,12 @@ void UWidgetComponent_MinimapRoom::SetColour()
 
 void UWidgetComponent_MinimapRoom::OnRoomSelected()
 {
-	//if (MinimapReference->PlayerNeighbouringRoomWidgets.Contains(this)) {
-	//}
-
 	if (PlayerCanMoveTo) {
 		for (TObjectIterator<ABaseClass_EntityInBattle> Itr; Itr; ++Itr) {
 			ABaseClass_EntityInBattle* FoundEntity = *Itr;
 
 			if (FoundEntity->PlayerControllerRef && GridTileReference) {
 				FoundEntity->PlayerControllerRef->MoveToTile(GridTileReference);
-				//BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
-				//MinimapReference->GetPlayerNeighbouringTiles(this);
-
 				break;
 			}
 		}

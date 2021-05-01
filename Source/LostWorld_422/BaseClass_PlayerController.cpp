@@ -17,7 +17,7 @@ void ABaseClass_PlayerController::SetupInputComponent()
 	bShowMouseCursor = true;
 	ClickEventKeys.Add(EKeys::RightMouseButton);
 
-	// Mouse Up event for when players let go of cards
+	// Mouse Up event for when players drag, and then let go of cards
 	InputComponent->BindAction("MouseLeftClicked", IE_Pressed, this, &ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent);
 
 	// Keyboard controls

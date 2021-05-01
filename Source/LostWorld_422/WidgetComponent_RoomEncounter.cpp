@@ -20,14 +20,9 @@ void UWidgetComponent_RoomEncounter::SelectedEncounter()
 				}
 			}
 
-			LocalPlayerControllerRef->CurrentRoom->SpawnEnemyFormation(*EncounterData.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(FName(EncounterData.EncounterListEntry.RowName), ContextString));
 			LocalPlayerControllerRef->BeginBattle();
 		}
 	}
-	else {
+	else 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Not Enough Cards In Deck. Minimum 10."));
-	}
-
-
-
 }

@@ -109,6 +109,7 @@ enum class E_LevelRoom_EncounterTypes : uint8
 	E_Conversation,
 };
 
+
 // Structs
 //--------------------------------------------------
 
@@ -134,6 +135,7 @@ struct LOSTWORLD_422_API FIntVector2D
 	}
 };
 
+
 // ------------------------- Cards and Card Functions
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCardAbilitiesAndConditions
@@ -154,6 +156,7 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 
 	}
 };
+
 
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCardBase : public FTableRowBase
@@ -192,9 +195,6 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	int32 ZoneIndex;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
-	//E_Card_UserSelectModes CurrentSelectMode;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	ABaseClass_EntityInBattle* Owner;
 
@@ -214,7 +214,6 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 		Description = "Blank.";
 		UniqueID = -1;
 		ZoneIndex = -1;
-		//CurrentSelectMode = E_Card_UserSelectModes::E_Cast;
 		Owner = NULL;
 		Controller = NULL;
 	}
@@ -233,6 +232,7 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 		}
 	}
 };
+
 
 // ------------------------- The Stack
 USTRUCT(BlueprintType)
@@ -258,6 +258,7 @@ struct LOSTWORLD_422_API FStackEntry
 	}
 };
 
+
 // ------------------------- Entities
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FEntity_GameOverOnDeath
@@ -277,6 +278,66 @@ struct LOSTWORLD_422_API FEntity_GameOverOnDeath
 	}
 };
 
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API FEntity_BaseStats
+{
+	GENERATED_BODY()
+
+	// Increases damage dealt by physical attacks
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Strength;
+
+	// Increases maximum health
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Constitution;
+
+	// Increases damage dealt by magical attacks
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Intelligence;
+
+	// Increases healing dealt
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Wisdom;
+
+	// Increases position in the turn order
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Dexterity;
+
+	FEntity_BaseStats()
+	{
+		Strength = 1;
+		Constitution = 1;
+		Intelligence = 1;
+		Wisdom = 1;
+		Dexterity = 1;
+	}
+};
+
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API FEntity_ElementalStats
+{
+	GENERATED_BODY()
+
+	// Increases damage dealt by Earth attacks
+	// Decreases damage taken by Earth attacks
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Toughness;
+
+	// Increases damage dealt by Divine attacks
+	// Decreases damage taken by Divine attacks
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Faith;
+
+	FEntity_ElementalStats()
+	{
+		Toughness = 0;
+		Faith = 0;
+	}
+};
+
+
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FEntityBase
 {
@@ -295,7 +356,7 @@ struct LOSTWORLD_422_API FEntityBase
 	bool IsPlayerControllable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
-		FEntity_GameOverOnDeath GameOverOnDeath;
+	FEntity_GameOverOnDeath GameOverOnDeath;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cards")
 	TArray<FCardBase> CurrentDeck;
@@ -308,6 +369,7 @@ struct LOSTWORLD_422_API FEntityBase
 		IsPlayerControllable = false;
 	}
 };
+
 
 // Enemy Database
 USTRUCT(BlueprintType)
@@ -335,6 +397,7 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 	}
 };
 
+
 // ------------------------- Level
 
 // Room Enemy Formations
@@ -355,6 +418,7 @@ struct LOSTWORLD_422_API F_LevelRoom_EnemyFormation : public FTableRowBase
 	}
 };
 
+
 // Treasure Boxes Combinations
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBase
@@ -369,6 +433,7 @@ struct LOSTWORLD_422_API F_LevelRoom_TreasureBoxCombination : public FTableRowBa
 		CombinationName = "Default";
 	}
 };
+
 
 // Exits
 USTRUCT(BlueprintType)
@@ -385,6 +450,7 @@ struct LOSTWORLD_422_API F_LevelRoom_Exits : public FTableRowBase
 	}
 };
 
+
 // Miscellaneous Encounters
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_MiscellaneousEncounters : public FTableRowBase
@@ -399,6 +465,7 @@ struct LOSTWORLD_422_API F_LevelRoom_MiscellaneousEncounters : public FTableRowB
 		EncounterName = "Default";
 	}
 };
+
 
 // Room Encounter
 USTRUCT(BlueprintType)
@@ -430,6 +497,7 @@ struct LOSTWORLD_422_API F_LevelRoom_Encounter : public FTableRowBase
 	}
 };
 
+
 // Room Exit
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API F_LevelRoom_Exit
@@ -451,6 +519,7 @@ struct LOSTWORLD_422_API F_LevelRoom_Exit
 		ExitDirection = E_Room_ExitDirections::E_None;
 	}
 };
+
 
 // Level Data
 USTRUCT(BlueprintType)
@@ -478,6 +547,7 @@ struct LOSTWORLD_422_API F_Level_Data
 		CurrentRoomCount = 0;
 	}
 };
+
 
 // ------------------------- Default
 USTRUCT()

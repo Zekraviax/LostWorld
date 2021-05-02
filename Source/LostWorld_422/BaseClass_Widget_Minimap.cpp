@@ -344,23 +344,27 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 				RoomOneGridTiles.Add(GridTile_Actor);
 				RoomOne->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomOne;
 
 				PlayerSpawnTiles.Add(GridTile_Actor);
 			} else if (MinimapArrayRoomTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
 
 				RoomTwoGridTiles.Add(GridTile_Actor);
-
+				RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomTwo;
 			} else if (MinimapArrayRoomThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
 
 				RoomThreeGridTiles.Add(GridTile_Actor);
 				RoomThree->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomThree;
 			} else if (MinimapArrayRoomFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
 
 				RoomFourGridTiles.Add(GridTile_Actor);
 				RoomFour->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomFour;
 			// Diagonals
 			} else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
@@ -368,24 +372,28 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 				CorridorOneGridTiles.Add(GridTile_Actor);
 				RoomOne->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomOne;
 			} else if (MinimapArrayCorridorThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
 
 				CorridorTwoGridTiles.Add(GridTile_Actor);
 				RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomTwo;
 			} else if (MinimapArrayCorridorFiveCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
 
 				CorridorThreeGridTiles.Add(GridTile_Actor);
 				RoomThree->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomThree;
 			} else if (MinimapArrayCorridorSixCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorEightCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
 
 				CorridorFourGridTiles.Add(GridTile_Actor);
 				RoomFour->GridTilesInRoom.Add(GridTile_Actor);
+				GridTile_Actor->RoomReference = RoomFour;
 			}
 
 			GridTile_Actor->DynamicMaterial->SetVectorParameterValue("Color", GridTile_Actor->BaseColour);

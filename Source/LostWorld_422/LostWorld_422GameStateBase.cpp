@@ -31,12 +31,18 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		FString ContextString;
 		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
 
-		for (int i = 0; i < EnemyList->EnemiesMap.Num(); i++) {
-			ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector(600, 600, 10), FRotator::ZeroRotator);
-
-			//for (int i = 0; i < PlayerControllerRef->CurrentRoom->) {
-
-			//}
+		for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
+				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
+				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
+					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
+					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
+					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2) {
+					// Spawn Enemy Here
+					ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
+					break;
+				}
+			}
 		}
 
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
@@ -132,9 +138,8 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 		if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
 			RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
 		}
-		else {
+		else
 			RepeatCount = 1;
-		}
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 

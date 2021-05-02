@@ -66,6 +66,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Y_Coordinate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ABaseClass_LevelRoom* RoomReference;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_LevelRoom_Encounter> EncountersList;
 

@@ -288,11 +288,16 @@ void ABaseClass_PlayerController::ExitBattle()
 
 void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
+	// Set Player's Entity location
 	if (EntityInBattleRef) {
 		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
+		EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
+		EntityInBattleRef->Y_Coordinate = TileReference->Y_Coordinate;
 		CurrentLocationInLevel = TileReference;
 	} else
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
+
+	CurrentRoom = TileReference->RoomReference;
 
 	// Get neighbouring tiles
 	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {

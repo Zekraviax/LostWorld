@@ -305,12 +305,10 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate - 1) {
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
 			FoundWidget->PlayerCanMoveTo = true;
-		}
-		else if (FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate) {
+		} else if (FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate) {
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.34f, 0.34f, 0.34f, 1.f));
 			FoundWidget->PlayerCanMoveTo = false;
-		}
-		else {
+		} else {
 			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
 			FoundWidget->PlayerCanMoveTo = false;
 		}

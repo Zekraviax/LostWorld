@@ -117,15 +117,15 @@ void ABaseClass_CardFunctionsLibrary::AddCardFunctionsToTheStack(FCardBase Card)
 	NewStackEntry.Owner = Card.Owner;
 	NewStackEntry.Type = Card.Type;
 
-	// Get GameState
-	if (GameStateRef->IsValidLowLevel())
-		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+	// Don't Get GameState
+	//if (GameStateRef->IsValidLowLevel())
+	//	GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
 		NewStackEntry.Description = Card.Description;
 		NewStackEntry.CurrentTargets = Card.CurrentTargets;
 		NewStackEntry.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
-		GameStateRef->TheStack.Add(NewStackEntry);
+		GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->TheStack.Add(NewStackEntry);
 	}
 
 	// Start timer for the stack

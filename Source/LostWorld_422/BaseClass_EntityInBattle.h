@@ -49,6 +49,12 @@ public:
 	FEntityBase EntityBaseData;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int X_Coordinate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int Y_Coordinate;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInDeck;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

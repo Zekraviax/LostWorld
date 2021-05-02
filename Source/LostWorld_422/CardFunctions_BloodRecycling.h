@@ -2,11 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "CardAbilityActor_BaseClass.h"
-#include "CardAbilityActor_DrawCards.generated.h"
+#include "CardFunctions_BloodRecycling.generated.h"
 
 
 UCLASS()
-class LOSTWORLD_422_API ACardAbilityActor_DrawCards : public ACardAbilityActor_BaseClass
+class LOSTWORLD_422_API ACardFunctions_BloodRecycling : public ACardAbilityActor_BaseClass
 {
 	GENERATED_BODY()
 	

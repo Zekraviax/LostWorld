@@ -26,11 +26,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<ABaseClass_EntityInBattle*> SortedTurnOrderList;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> TheStack;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float StackTimer;
 
 	UPROPERTY()
 	ABaseClass_PlayerController* PlayerControllerRef;

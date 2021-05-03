@@ -242,14 +242,12 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Mana Check
-	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
+	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost)
 		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
-	}
-	else {
+	else
 		GameStateRef->EntityEndOfTurn();
-	}
 
-	GameModeRef->CardFunctionLibraryReference->AddCardFunctionsToTheStack(RandCard);
+	GameStateRef->AddCardFunctionsToTheStack(RandCard);
 	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.AbilitiesAndConditions.Num() + 1), false);
 }
 

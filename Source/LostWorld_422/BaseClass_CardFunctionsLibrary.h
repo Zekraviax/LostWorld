@@ -62,8 +62,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Card
-	UFUNCTION()
-	void AddCardFunctionsToTheStack(FCardBase Card);
 
 // ------------------------- Function Library
 	// The Functions Pointer Variable Type
@@ -75,7 +73,6 @@ public:
 
 	// Executes a function from the CardFuntions Pointer Array
 	// Implementation does not vary in subclasses, so no virtual
-	void ExecuteCardFunctions();
 
 	// Initialize the array
 	void InitializeCardFunctions();

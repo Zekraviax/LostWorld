@@ -146,6 +146,8 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	UpdateCardIndicesInAllZones();
 	UpdateCardWidgets();
 
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
+
 	EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
 
 	if (!EntityBaseData.IsPlayerControllable) {

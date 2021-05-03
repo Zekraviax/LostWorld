@@ -99,7 +99,9 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 
 void ALostWorld_422GameStateBase::NewCombatRound()
 {
-	// Player always goes first
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("New Round"));
+
+	// Player always goes first (at this time)
 	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -158,7 +160,7 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 
 	// Start timer for the stack
-	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.f);
 }
 
 
@@ -186,7 +188,7 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 
 	// If there are still Abilities to run, reset the timer for this function
 	if (TheStack.Num() > 0) {
-		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 2.f);
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.f);
 	}
 }
 

@@ -282,7 +282,7 @@ void ABaseClass_PlayerController::ExitBattle()
 		Level_HUD_Widget->AddToViewport();
 	}
 
-	ControlMode = E_Player_ControlMode::E_Move;
+	//ControlMode = E_Player_ControlMode::E_Move;
 }
 
 

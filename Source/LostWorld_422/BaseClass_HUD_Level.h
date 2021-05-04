@@ -7,6 +7,7 @@
 #include "Components/TextBlock.h"
 #include "BaseClass_CardUserWidget.h"
 #include "BaseClass_Widget_DeckBuilder.h"
+#include "BaseClass_Widget_Minimap.h"
 #include "LostWorld_422GameModeBase.h"
 
 #include "BaseClass_HUD_Level.generated.h"
@@ -29,6 +30,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly,  meta = (BindWidget))
 	UScrollBox* ExitList_ScrollBox;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UBaseClass_Widget_Minimap* Minimap;
 
 // ------------------------- Widgets
 	// Deck Builder Class

@@ -418,6 +418,5 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-	LocalPlayerControllerRef->ManualBeginPlay();
 	LocalPlayerControllerRef->MoveToTile(PlayerSpawnTiles[FMath::RandRange(0, PlayerSpawnTiles.Num() - 1)]);
 }

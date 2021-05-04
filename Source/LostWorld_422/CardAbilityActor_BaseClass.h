@@ -28,34 +28,10 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_DrawCards_Class;
-
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	//ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
-
-// ------------------------- Card
-	//UPROPERTY()
-	//FCardBase LocalAbilityReference;
-
-// ------------------------- The Stack
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	//TArray<FCardBase> StackArray;
-
-// ------------------------- Timers	
-	//UPROPERTY()
-	//FTimerHandle StackTimerHandle;
 
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Base Class Functions
-	//UFUNCTION()
-	//void CastCard(FCardBase Card);
-
-	//UFUNCTION()
-	//void SpawnCardAbilityActor(TSubclassOf<ACardAbilityActor_BaseClass> CardAbilityActor_Class);
-
-// ------------------------- Sub Class Functions
 	virtual void RunCardAbilityFunction(FCardBase CardAbility);
 };

@@ -324,6 +324,8 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	// Separate the Minimap Tiles into Rooms and Corridors so we can spawn enemies and events.
 	TArray<ABaseClass_GridTile*> PlayerSpawnTiles, RoomOneGridTiles, RoomTwoGridTiles, RoomThreeGridTiles, RoomFourGridTiles, CorridorOneGridTiles, CorridorTwoGridTiles, CorridorThreeGridTiles, CorridorFourGridTiles;
 
+	// Pick one tile at random to be the Stairs to the next floor.
+
 	// Spawn Minimap tiles into World
 	if (GridTile_Class) {
 		for (int i = 0; i < FullMinimapRoomArray.Num(); i++) {
@@ -419,4 +421,36 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 	LocalPlayerControllerRef->MoveToTile(PlayerSpawnTiles[FMath::RandRange(0, PlayerSpawnTiles.Num() - 1)]);
+}
+
+
+void UBaseClass_Widget_Minimap::UpdateMinimap(ABaseClass_GridTile* CurrentPlayerLocation)
+{
+	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
+		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
+
+		// Get immediate player's neighbours, not including diagonals
+		if (FoundWidget->X_Coordinate == CurrentPlayerLocation->X_Coordinate + 1 && FoundWidget->Y_Coordinate == CurrentPlayerLocation->Y_Coordinate ||
+			FoundWidget->X_Coordinate == CurrentPlayerLocation->X_Coordinate - 1 && FoundWidget->Y_Coordinate == CurrentPlayerLocation->Y_Coordinate ||
+			FoundWidget->X_Coordinate == CurrentPlayerLocation->X_Coordinate && FoundWidget->Y_Coordinate == CurrentPlayerLocation->Y_Coordinate + 1 ||
+			FoundWidget->X_Coordinate == CurrentPlayerLocation->X_Coordinate && FoundWidget->Y_Coordinate == CurrentPlayerLocation->Y_Coordinate - 1) {
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
+			FoundWidget->PlayerCanMoveTo = true;
+		}
+		else if (FoundWidget->X_Coordinate == CurrentPlayerLocation->X_Coordinate && FoundWidget->Y_Coordinate == CurrentPlayerLocation->Y_Coordinate) {
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.34f, 0.34f, 0.34f, 1.f));
+			FoundWidget->PlayerCanMoveTo = false;
+		}
+		else {
+			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
+			FoundWidget->PlayerCanMoveTo = false;
+		}
+
+		// If there's an enemy at any given tile, change that tiles colour.
+		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
+			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle) {
+				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
+			}
+		}
+	}
 }

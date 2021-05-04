@@ -43,6 +43,8 @@ void ABaseClass_GridTile::OnPlayerEnterTile()
 		case(E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle):
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
 			break;
+		case(E_GridTile_OnPlayerEnterFunctions::E_Stairs):
+			break;
 		default:
 			break;
 	}

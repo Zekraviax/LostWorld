@@ -39,6 +39,8 @@ void ABaseClass_PlayerController::BeginPlay()
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
 	}
+
+	ManualBeginPlay();
 }
 
 
@@ -75,6 +77,9 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 			}
 		}
 	}
+
+	// Generate Level
+	Level_HUD_Widget->Minimap->GenerateLevel();
 }
 
 
@@ -261,10 +266,12 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 void ABaseClass_PlayerController::BeginBattle()
 {
 	if (Level_HUD_Widget)
-		Level_HUD_Widget->RemoveFromParent();
+		Level_HUD_Widget->SetVisibility(ESlateVisibility::Collapsed);
 
 	// Create the Battle HUD widget
-	if (Battle_HUD_Class) {
+	if (Battle_HUD_Widget) {
+		Battle_HUD_Widget->SetVisibility(ESlateVisibility::Visible);
+	} else if (Battle_HUD_Class && !Battle_HUD_Widget) {
 		Battle_HUD_Widget = CreateWidget<UBaseClass_HUD_Battle>(GetWorld(), Battle_HUD_Class);
 		Battle_HUD_Widget->AddToViewport();
 	}
@@ -274,15 +281,17 @@ void ABaseClass_PlayerController::BeginBattle()
 void ABaseClass_PlayerController::ExitBattle()
 {
 	if (Battle_HUD_Widget)
-		Battle_HUD_Widget->RemoveFromParent();
+		Battle_HUD_Widget->SetVisibility(ESlateVisibility::Collapsed);
 
 	// Create the Level HUD widget
-	if (Level_HUD_Class) {
+	if (Level_HUD_Widget) {
+		Level_HUD_Widget->SetVisibility(ESlateVisibility::Visible);
+	} else if (Level_HUD_Class && !Level_HUD_Widget) {
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
 	}
 
-	//ControlMode = E_Player_ControlMode::E_Move;
+	ControlMode = E_Player_ControlMode::E_Move;
 }
 
 

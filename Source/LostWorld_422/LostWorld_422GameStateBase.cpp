@@ -202,9 +202,8 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 	// Check if entity that died is the player
 	// If it isn't the player, check if all enemies are dead instead
-	if (DeadEntity->PlayerControllerRef) {
+	if (DeadEntity->PlayerControllerRef)
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Game Over."));
-	}
 	else {
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -219,11 +218,8 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
 
 			// Remove the Encounter from the list
-			for (int i = 0; i < LocalPlayerControllerRef->CurrentRoom->EncountersList.Num(); i++) {
-				if (LocalPlayerControllerRef->CurrentRoom->EncountersList[i].CurrentlyActiveEncounter) {
-					LocalPlayerControllerRef->CurrentRoom->EncountersList.RemoveAt(i);
-				}
-			}
+			LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.RemoveAt(0);
+			LocalPlayerControllerRef->CurrentLocationInLevel->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_None;
 
 			// Return the player to the Room
 			LocalPlayerControllerRef->ExitBattle();

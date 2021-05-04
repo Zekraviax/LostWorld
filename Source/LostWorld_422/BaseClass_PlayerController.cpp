@@ -292,6 +292,7 @@ void ABaseClass_PlayerController::ExitBattle()
 	}
 
 	ControlMode = E_Player_ControlMode::E_Move;
+	Level_HUD_Widget->Minimap->UpdateMinimap(CurrentLocationInLevel);
 }
 
 
@@ -308,31 +309,5 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 
 	CurrentRoom = TileReference->RoomReference;
 
-	// Get neighbouring tiles
-	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
-		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
-
-		// Get immediate neighbours, not including diagonals
-		if (FoundWidget->X_Coordinate == TileReference->X_Coordinate + 1 && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate ||
-			FoundWidget->X_Coordinate == TileReference->X_Coordinate - 1 && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate ||
-			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate + 1 ||
-			FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate - 1) {
-			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 1.f, 0.f, 1.f));
-			FoundWidget->PlayerCanMoveTo = true;
-		} else if (FoundWidget->X_Coordinate == TileReference->X_Coordinate && FoundWidget->Y_Coordinate == TileReference->Y_Coordinate) {
-			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.34f, 0.34f, 0.34f, 1.f));
-			FoundWidget->PlayerCanMoveTo = false;
-		} else {
-			FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
-			FoundWidget->PlayerCanMoveTo = false;
-		}
-
-		// If there's an enemy at any given tile, change that tiles colour.
-		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
-			//if (FoundWidget->GridTileReference->EncountersList.Num() > 0) {
-			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle) {
-				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
-			}
-		}
-	}
+	Level_HUD_Widget->Minimap->UpdateMinimap(TileReference);
 }

@@ -87,4 +87,7 @@ public:
 // ------------------------- Map
 	UFUNCTION(BlueprintCallable)
 	void GenerateLevel();
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateMinimap(ABaseClass_GridTile* CurrentPlayerLocation);
 };

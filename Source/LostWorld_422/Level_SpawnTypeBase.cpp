@@ -1,6 +1,6 @@
 #include "Level_SpawnTypeBase.h"
 
-#include "BaseClass_GridTile.h"
+#include "BaseClass_LevelRoom.h"
 
 
 // Sets default values
@@ -10,9 +10,9 @@ ALevel_SpawnTypeBase::ALevel_SpawnTypeBase()
 	PrimaryActorTick.bCanEverTick = false;
 
 	// Constructors
-	//static ConstructorHelpers::FObjectFinder<ABaseClass_GridTile> GridTile_BlueprintConstruct(TEXT("Blueprint'/Game/Level_GridTile_Blueprint.Level_GridTile_Blueprint'"));
-	//if (GridTile_BlueprintConstruct.Object) {
-	//	GridTile_Class = (UClass*)GridTile_BlueprintConstruct.Object->StaticClass;
+	//static ConstructorHelpers::FObjectFinder<ABaseClass_LevelRoom> LevelRoom_BlueprintConstruct(TEXT("Blueprint'/Game/Level_Room_Blueprint.Level_Room_Blueprint'"));
+	//if (LevelRoom_BlueprintConstruct.Object) {
+	//	LevelRoom_Class = (UClass*)LevelRoom_BlueprintConstruct.Object->StaticClass;
 	//}
 }
 

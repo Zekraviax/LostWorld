@@ -27,10 +27,10 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	// And we can have special events take place in room centers.
 
 	// Create a Level_Room for each room and add tiles to their TArrays
-	ABaseClass_LevelRoom* RoomOne = PlayerMinimapReference->GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
-	ABaseClass_LevelRoom* RoomTwo = PlayerMinimapReference->GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
-	ABaseClass_LevelRoom* RoomThree = PlayerMinimapReference->GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
-	ABaseClass_LevelRoom* RoomFour = PlayerMinimapReference->GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
+	ABaseClass_LevelRoom* RoomOne = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
+	ABaseClass_LevelRoom* RoomTwo = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
+	ABaseClass_LevelRoom* RoomThree = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
+	ABaseClass_LevelRoom* RoomFour = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
 
 	TArray<FVector2D> MinimapArrayRoomOneCoordinates, MinimapArrayRoomTwoCoordinates, MinimapArrayRoomThreeCoordinates, MinimapArrayRoomFourCoordinates, MinimapArrayRoomFiveCoordinates, MinimapArrayRoomSixCoordinates, MinimapArrayRoomSevenCoordinates, MinimapArrayRoomEightCoordinates;
 	TArray<FVector2D> MinimapArrayCorridorOneCoordinates, MinimapArrayCorridorTwoCoordinates, MinimapArrayCorridorThreeCoordinates, MinimapArrayCorridorFourCoordinates, MinimapArrayCorridorFiveCoordinates, MinimapArrayCorridorSixCoordinates, MinimapArrayCorridorSevenCoordinates, MinimapArrayCorridorEightCoordinates;
@@ -336,7 +336,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 		for (int i = 0; i < FullMinimapRoomArray.Num(); i++) {
 			FVector SpawnLocation = FVector((200 * FullMinimapRoomArray[i]->X_Coordinate) - 200, (200 * FullMinimapRoomArray[i]->Y_Coordinate) - 200, 0);
 
-			GridTile_Actor = PlayerMinimapReference->GetWorld()->SpawnActor<ABaseClass_GridTile>(GridTile_Class, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
+			GridTile_Actor = GetWorld()->SpawnActor<ABaseClass_GridTile>(GridTile_Class, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
 			GridTile_Actor->X_Coordinate = FullMinimapRoomArray[i]->X_Coordinate;
 			GridTile_Actor->Y_Coordinate = FullMinimapRoomArray[i]->Y_Coordinate;
 

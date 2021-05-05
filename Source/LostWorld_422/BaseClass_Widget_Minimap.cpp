@@ -7,16 +7,23 @@
 #include "BaseClass_GridTile.h"
 #include "BaseClass_LevelRoom.h"
 #include "BaseClass_PlayerController.h"
+#include "Level_SpawnTypeBase.h"
 #include "Level_SpawnType_FourSquare.h"
 
 
 void UBaseClass_Widget_Minimap::GenerateLevel()
 {
-	ALevel_SpawnTypeBase* LevelGenerator = GetWorld()->SpawnActor<ALevel_SpawnType_FourSquare>();
+	ALevel_SpawnTypeBase* LevelGenerator = nullptr;
+
+	for (TObjectIterator<ALevel_SpawnTypeBase> Itr; Itr; ++Itr) {
+		ALevel_SpawnTypeBase* FoundGenerator = *Itr;
+		LevelGenerator = FoundGenerator;
+	}
 
 	LevelGenerator->PlayerMinimapReference = this;
-	LevelGenerator->GridTile_Class = GridTile_Class;
-	LevelGenerator->MinimapRoom_Class = MinimapRoom_Class;
+	//LevelGenerator->GridTile_Class = GridTile_Class;
+	//LevelGenerator->MinimapRoom_Class = MinimapRoom_Class;
+	//LevelGenerator->LevelRoom_Class = NULL;
 
 	LevelGenerator->RunLevelGeneratorFunction();
 }

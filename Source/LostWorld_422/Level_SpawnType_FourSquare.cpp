@@ -414,7 +414,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 		}
 	}
 
-	// Add an enemy encounter or two to each room
+	// Add an enemy encounter to each room
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Generate Encounters")));
 	FDataTableRowHandle EnemyFormationsTableRow;
 
@@ -425,10 +425,18 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	NewEncounter.EncounterListEntry.DataTable = EnemyFormationsTable;
 	NewEncounter.EncounterListEntry.RowName = "Test";
 
+	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
+		ABaseClass_LevelRoom* FoundRoom = *RoomItr;
+
+		ABaseClass_GridTile* RoomSpawnTile = FoundRoom->GridTilesInRoom[FMath::RandRange(0, FoundRoom->GridTilesInRoom.Num() - 1)];
+		RoomSpawnTile->EncountersList.Add(NewEncounter);
+		RoomSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+	}
+
 	// Room One
-	ABaseClass_GridTile* RoomOneSpawnTile = RoomOneGridTiles[FMath::RandRange(0, RoomOneGridTiles.Num() - 1)];
-	RoomOneSpawnTile->EncountersList.Add(NewEncounter);
-	RoomOneSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+	//ABaseClass_GridTile* RoomOneSpawnTile = RoomOneGridTiles[FMath::RandRange(0, RoomOneGridTiles.Num() - 1)];
+	//RoomOneSpawnTile->EncountersList.Add(NewEncounter);
+	//RoomOneSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
 
 	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());

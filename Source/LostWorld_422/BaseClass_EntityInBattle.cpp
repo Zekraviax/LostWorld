@@ -184,8 +184,7 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		GameStateRef->Event_EntityDied(this);
 	}
 
-	// Check if all entities are/the player is dead
-	// In the GameState class
+	// Check if all entities are/the player is dead in the GameState class
 }
 
 
@@ -215,26 +214,6 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
 	}
-
-	//switch (RandCard.SimpleTargetsOverride) 
-	//{
-	//case(E_Card_SetTargets::E_CastTarget): 
-	//{
-	//	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
-	//		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-	//		RandTargetsArray.Add(FoundEntity);
-
-	//		//if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
-	//		//	RandTargetsArray.Add(FoundEntity);
-	//		//}
-	//	}
-
-	//	RandCard.CurrentTargets.Add(RandTargetsArray[FMath::RandRange(0, RandTargetsArray.Num() - 1)]);
-	//	break;
-	//}
-	//default:
-	//	break;
-	//}
 
 	// Cast card
 	if (!GameModeRef)

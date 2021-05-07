@@ -21,10 +21,6 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 	}
 
 	LevelGenerator->PlayerMinimapReference = this;
-	//LevelGenerator->GridTile_Class = GridTile_Class;
-	//LevelGenerator->MinimapRoom_Class = MinimapRoom_Class;
-	//LevelGenerator->LevelRoom_Class = NULL;
-
 	LevelGenerator->RunLevelGeneratorFunction();
 }
 
@@ -51,10 +47,16 @@ void UBaseClass_Widget_Minimap::UpdateMinimap(ABaseClass_GridTile* CurrentPlayer
 			FoundWidget->PlayerCanMoveTo = false;
 		}
 
-		// If there's an enemy at any given tile, change that tiles colour.
+		
 		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
+			// If there's an enemy at any given tile, change that tiles colour.
 			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
+			}
+
+			// Highlight the stairs
+			else if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_Stairs) {
+				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.6f, 0.f, 1.f, 1.f));
 			}
 		}
 	}

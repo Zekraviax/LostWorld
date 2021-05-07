@@ -3,7 +3,50 @@
 #include "EngineUtils.h"
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
+#include "WidgetComponent_MinimapRoom.h"
+#include "Level_SpawnTypeBase.h"
 
+
+//-------------------- Battle --------------------//
+void ALostWorld_422GameStateBase::RegenerateLevel()
+{
+	if (!PlayerControllerRef)
+		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+
+	PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
+
+	for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
+		ALevel_SpawnTypeBase* FoundGenerator = *SpawnItr;
+		FoundGenerator->Destroy();
+		FoundGenerator->ConditionalBeginDestroy();
+	}
+
+	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
+		ABaseClass_GridTile* FoundTile = *TileItr;
+		FoundTile->Destroy();
+		FoundTile->ConditionalBeginDestroy();
+		FoundTile = nullptr;
+	}
+
+	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
+		ABaseClass_LevelRoom* FoundRoom = *RoomItr;
+		FoundRoom->Destroy();
+		FoundRoom->ConditionalBeginDestroy();
+	}
+
+	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
+		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
+		FoundWidget->RemoveFromParent();
+	}
+
+	GEngine->ForceGarbageCollection();
+
+	// Spawn a random level generator
+	FActorSpawnParameters SpawnParameters;
+	ALevel_SpawnTypeBase* NewLevelGenerator = GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(LevelGenerators[FMath::RandRange(0, LevelGenerators.Num() - 1)]);
+
+	PlayerControllerRef->Level_HUD_Widget->Minimap->GenerateLevel();
+}
 
 //-------------------- Battle --------------------//
 void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
@@ -38,7 +81,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
 					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
-					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate && 
+					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate &&
 					 GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
 					
 					// Spawn Enemy Here

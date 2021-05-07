@@ -23,7 +23,8 @@ UENUM(BlueprintType)
 enum class E_Player_ControlMode: uint8
 {
 	E_Move,
-	E_Battle
+	E_Battle,
+	E_None,
 };
 
 
@@ -45,7 +46,7 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Player
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	E_Player_ControlMode ControlMode;
 
 // ------------------------- Entity
@@ -55,7 +56,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCardBase> CurrentCollection;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_GridTile* CurrentLocationInLevel;
 
 // ------------------------- Technical Variables

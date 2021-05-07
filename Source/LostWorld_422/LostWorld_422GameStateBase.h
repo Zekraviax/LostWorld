@@ -11,6 +11,7 @@
 // Forward Declarations
 class ABaseClass_EntityInBattle;
 class ABaseClass_PlayerController;
+class ALevel_SpawnTypeBase;
 
 
 UCLASS()
@@ -55,8 +56,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
+// ------------------------- Levels
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<ALevel_SpawnTypeBase>> LevelGenerators;
+
 // Functions
 // --------------------------------------------------
+	
+// ------------------------- Level
+	UFUNCTION()
+	void RegenerateLevel();
 
 // ------------------------- Battle
 	UFUNCTION(BlueprintCallable)

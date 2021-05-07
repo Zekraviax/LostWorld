@@ -329,8 +329,6 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	// Separate the Minimap Tiles into Rooms and Corridors so we can spawn enemies and events.
 	TArray<ABaseClass_GridTile*> PlayerSpawnTiles, RoomOneGridTiles, RoomTwoGridTiles, RoomThreeGridTiles, RoomFourGridTiles, CorridorOneGridTiles, CorridorTwoGridTiles, CorridorThreeGridTiles, CorridorFourGridTiles;
 
-	// Pick one tile at random to be the Stairs to the next floor.
-
 	// Spawn Minimap tiles into World
 	if (GridTile_Class) {
 		for (int i = 0; i < FullMinimapRoomArray.Num(); i++) {
@@ -375,39 +373,43 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				RoomFourGridTiles.Add(GridTile_Actor);
 				RoomFour->GridTilesInRoom.Add(GridTile_Actor);
 				GridTile_Actor->RoomReference = RoomFour;
-				// Diagonals
 			}
+			// Diagonals
 			else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 0.5f, 1.f);
+				//GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 0.5f, 1.f);
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				CorridorOneGridTiles.Add(GridTile_Actor);
-				RoomOne->GridTilesInRoom.Add(GridTile_Actor);
-				GridTile_Actor->RoomReference = RoomOne;
+				//CorridorOneGridTiles.Add(GridTile_Actor);
+				//RoomOne->GridTilesInRoom.Add(GridTile_Actor);
+				//GridTile_Actor->RoomReference = RoomOne;
 			}
 			else if (MinimapArrayCorridorThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
+				//GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				CorridorTwoGridTiles.Add(GridTile_Actor);
-				RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
-				GridTile_Actor->RoomReference = RoomTwo;
+				//CorridorTwoGridTiles.Add(GridTile_Actor);
+				//RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
+				//GridTile_Actor->RoomReference = RoomTwo;
 			}
 			else if (MinimapArrayCorridorFiveCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
+				//GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				CorridorThreeGridTiles.Add(GridTile_Actor);
-				RoomThree->GridTilesInRoom.Add(GridTile_Actor);
-				GridTile_Actor->RoomReference = RoomThree;
+				//CorridorThreeGridTiles.Add(GridTile_Actor);
+				//RoomThree->GridTilesInRoom.Add(GridTile_Actor);
+				//GridTile_Actor->RoomReference = RoomThree;
 			}
 			else if (MinimapArrayCorridorSixCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorEightCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
+				//GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				CorridorFourGridTiles.Add(GridTile_Actor);
-				RoomFour->GridTilesInRoom.Add(GridTile_Actor);
-				GridTile_Actor->RoomReference = RoomFour;
+				//CorridorFourGridTiles.Add(GridTile_Actor);
+				//RoomFour->GridTilesInRoom.Add(GridTile_Actor);
+				//GridTile_Actor->RoomReference = RoomFour;
 			}
 
 			GridTile_Actor->DynamicMaterial->SetVectorParameterValue("Color", GridTile_Actor->BaseColour);
@@ -433,12 +435,26 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 		RoomSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
 	}
 
-	// Room One
-	//ABaseClass_GridTile* RoomOneSpawnTile = RoomOneGridTiles[FMath::RandRange(0, RoomOneGridTiles.Num() - 1)];
-	//RoomOneSpawnTile->EncountersList.Add(NewEncounter);
-	//RoomOneSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+	// Pick a random tile to spawn the stairs
+	int TileCount = RoomOne->GridTilesInRoom.Num() + RoomTwo->GridTilesInRoom.Num() + RoomThree->GridTilesInRoom.Num() + RoomFour->GridTilesInRoom.Num();
+	int StairsIndex = FMath::RandRange(0, (TileCount - 1));
+	int StairsCounter = 0;
+
+	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
+		ABaseClass_GridTile* FoundTile = *TileItr;
+		if (FoundTile->RoomReference->IsValidLowLevel()) {
+			StairsCounter++;
+
+			if (StairsCounter >= StairsIndex) {
+				FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_Stairs;
+				break;
+			}
+		}
+	}
 
 	// Spawn Player Into a Room at a random tile
 	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+	LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
+
 	LocalPlayerControllerRef->MoveToTile(PlayerSpawnTiles[FMath::RandRange(0, PlayerSpawnTiles.Num() - 1)]);
 }

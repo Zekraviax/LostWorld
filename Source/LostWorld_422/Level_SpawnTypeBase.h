@@ -36,10 +36,6 @@ public:
 // Base Variables
 // --------------------------------------------------
 
-// ------------------------- Components
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
-	//UUniformGridPanel* LevelGrid;
-
 // ------------------------- Constructors
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_LevelRoom> LevelRoom_Class;

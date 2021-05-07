@@ -71,6 +71,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_LevelRoom* CurrentRoom;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
+
 // ------------------------- Widgets
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class UBaseClass_HUD_Level* Level_HUD_Widget;

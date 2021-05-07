@@ -40,6 +40,22 @@ void ABaseClass_PlayerController::BeginPlay()
 		Level_HUD_Widget->AddToViewport();
 	}
 
+	// Add some cards to the players' collection
+	FString ContextString;
+	FCardBase* Card_Shock = CardsTable->FindRow<FCardBase>("Shock", ContextString, true);
+	FCardBase* Card_SuddenInspiration = CardsTable->FindRow<FCardBase>("SuddenInspiration", ContextString, true);
+	FCardBase* Card_BloodRecycling = CardsTable->FindRow<FCardBase>("BloodRecycling", ContextString, true);
+	FCardBase* Card_Annihilate = CardsTable->FindRow<FCardBase>("Annihilate", ContextString, true);
+
+	for (int i = 0; i < 6; i++) {
+		CurrentCollection.Add(*Card_Shock);
+	}
+	for (int i = 0; i < 2; i++) {
+		CurrentCollection.Add(*Card_SuddenInspiration);
+	}
+	CurrentCollection.Add(*Card_BloodRecycling);
+	CurrentCollection.Add(*Card_Annihilate);
+
 	ManualBeginPlay();
 }
 

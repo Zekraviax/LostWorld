@@ -359,6 +359,8 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				RoomTwoGridTiles.Add(GridTile_Actor);
 				RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
 				GridTile_Actor->RoomReference = RoomTwo;
+
+				PlayerSpawnTiles.Add(GridTile_Actor);
 			}
 			else if (MinimapArrayRoomThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
@@ -366,6 +368,8 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				RoomThreeGridTiles.Add(GridTile_Actor);
 				RoomThree->GridTilesInRoom.Add(GridTile_Actor);
 				GridTile_Actor->RoomReference = RoomThree;
+
+				PlayerSpawnTiles.Add(GridTile_Actor);
 			}
 			else if (MinimapArrayRoomFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
 				GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
@@ -373,6 +377,8 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				RoomFourGridTiles.Add(GridTile_Actor);
 				RoomFour->GridTilesInRoom.Add(GridTile_Actor);
 				GridTile_Actor->RoomReference = RoomFour;
+
+				PlayerSpawnTiles.Add(GridTile_Actor);
 			}
 			// Diagonals
 			else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||

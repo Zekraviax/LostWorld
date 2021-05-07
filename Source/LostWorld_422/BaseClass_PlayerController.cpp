@@ -198,10 +198,12 @@ void ABaseClass_PlayerController::PlayerMoveNorth()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate + 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
-				MoveToTile(FoundTile);
-				FoundTile->OnPlayerEnterTile();
-				break;
+			if (FoundTile->IsValidLowLevel()) {
+				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate + 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
+					MoveToTile(FoundTile);
+					FoundTile->OnPlayerEnterTile();
+					break;
+				}
 			}
 		}
 	}
@@ -216,10 +218,12 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate + 1) {
-				FoundTile->OnPlayerEnterTile();
-				MoveToTile(FoundTile);
-				break;
+			if (FoundTile->IsValidLowLevel()) {
+				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate + 1) {
+					FoundTile->OnPlayerEnterTile();
+					MoveToTile(FoundTile);
+					break;
+				}
 			}
 		}
 	}
@@ -234,10 +238,12 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate - 1 && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate) {
-				FoundTile->OnPlayerEnterTile();
-				MoveToTile(FoundTile);
-				break;
+			if (FoundTile->IsValidLowLevel()) {
+				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate - 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
+					FoundTile->OnPlayerEnterTile();
+					MoveToTile(FoundTile);
+					break;
+				}
 			}
 		}
 	}
@@ -252,10 +258,12 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->X_Coordinate == CurrentLocationInLevel->X_Coordinate && FoundTile->Y_Coordinate == CurrentLocationInLevel->Y_Coordinate - 1) {
-				FoundTile->OnPlayerEnterTile();
-				MoveToTile(FoundTile);
-				break;
+			if (FoundTile->IsValidLowLevel()) {
+				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate - 1) {
+					FoundTile->OnPlayerEnterTile();
+					MoveToTile(FoundTile);
+					break;
+				}
 			}
 		}
 	}
@@ -299,13 +307,13 @@ void ABaseClass_PlayerController::ExitBattle()
 void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
 	// Set Player's Entity location
-	if (EntityInBattleRef) {
-		EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
-		EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
-		EntityInBattleRef->Y_Coordinate = TileReference->Y_Coordinate;
-		CurrentLocationInLevel = TileReference;
-	} else
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
+	//if (EntityInBattleRef) {
+	EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
+	EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
+	EntityInBattleRef->Y_Coordinate = TileReference->Y_Coordinate;
+	CurrentLocationInLevel = TileReference;
+	//} else
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
 
 	CurrentRoom = TileReference->RoomReference;
 

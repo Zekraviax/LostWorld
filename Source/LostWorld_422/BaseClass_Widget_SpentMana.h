@@ -39,8 +39,11 @@ public:
 	int32 CurrentManaValue;
 
 // ------------------------- Card
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CardReference;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ACardAbilityActor_BaseClass* CurrentCardFunctionClass;
 
 	// ------------------------- Technical Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

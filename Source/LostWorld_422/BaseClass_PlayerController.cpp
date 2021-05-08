@@ -46,6 +46,7 @@ void ABaseClass_PlayerController::BeginPlay()
 	FCardBase* Card_SuddenInspiration = CardsTable->FindRow<FCardBase>("SuddenInspiration", ContextString, true);
 	FCardBase* Card_BloodRecycling = CardsTable->FindRow<FCardBase>("BloodRecycling", ContextString, true);
 	FCardBase* Card_Annihilate = CardsTable->FindRow<FCardBase>("Annihilate", ContextString, true);
+	FCardBase* Card_RollingQuake = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
 
 	for (int i = 0; i < 6; i++) {
 		CurrentCollection.Add(*Card_Shock);
@@ -55,6 +56,7 @@ void ABaseClass_PlayerController::BeginPlay()
 	}
 	CurrentCollection.Add(*Card_BloodRecycling);
 	CurrentCollection.Add(*Card_Annihilate);
+	CurrentCollection.Add(*Card_RollingQuake);
 
 	ManualBeginPlay();
 }
@@ -314,6 +316,9 @@ void ABaseClass_PlayerController::ExitBattle()
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
 	}
+
+	// Restore the players' MP, but not HP
+
 
 	ControlMode = E_Player_ControlMode::E_Move;
 	Level_HUD_Widget->Minimap->UpdateMinimap(CurrentLocationInLevel);

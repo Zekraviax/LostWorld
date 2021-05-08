@@ -60,6 +60,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<ALevel_SpawnTypeBase>> LevelGenerators;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentFloorNumber;
+
 // Functions
 // --------------------------------------------------
 	

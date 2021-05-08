@@ -30,3 +30,10 @@ void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FCardBase CardAbility)
 {
 
 }
+
+
+// ------------------------- Widget Functions
+void ACardAbilityActor_BaseClass::WidgetFunction_SpendMana()
+{
+
+}

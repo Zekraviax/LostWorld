@@ -40,21 +40,34 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 	DuplicateCard->CardData.Controller->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
 
 	// Alter Values Based On Casting Cost
-	for (int i = 0; i < DuplicateCard->CardData.AbilitiesAndConditions.Num(); i++) {
-		DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.GetKeys(ConditionsArray);
+	//for (int i = 0; i < DuplicateCard->CardData.AbilitiesAndConditions.Num(); i++) {
+	//	DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.GetKeys(ConditionsArray);
 
-		for (int j = 0; j < ConditionsArray.Num(); j++) {
-			if (ConditionsArray[j] == E_Card_AbilityConditions::E_NextAbility_CastingCost) {
-				j++;
+	//	for (int j = 0; j < ConditionsArray.Num(); j++) {
+	//		if (ConditionsArray[j] == E_Card_AbilityConditions::E_NextAbility_CastingCost) {
+	//			j++;
 
-				E_Card_AbilityConditions FoundCondition = ConditionsArray[j];
-				DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Remove(ConditionsArray[j]);
-				DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Add(FoundCondition, DuplicateCard->CardData.ManaCost);
-			}
-		}
+	//			E_Card_AbilityConditions FoundCondition = ConditionsArray[j];
+	//			DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Remove(ConditionsArray[j]);
+	//			DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Add(FoundCondition, DuplicateCard->CardData.ManaCost);
+	//		}
+	//	}
+	//}
+
+	//DuplicateCard->CastCard();
+
+	FCardBase NewStackEntry;
+
+	for (int r = 0; r < CurrentManaValue; r++) {
+		//NewStackEntry.Description = DuplicateCard.AbilitiesAndConditions[0].AbilityDescription;
+		//NewStackEntry.CurrentTargets = DuplicateCard.CurrentTargets;
+
+		//NewStackEntry.AbilitiesAndConditions.Empty();
+		//NewStackEntry.AbilitiesAndConditions.Add(DuplicateCard.AbilitiesAndConditions[0]);
+
+		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Add(NewStackEntry);
 	}
 
-	DuplicateCard->CastCard();
-
-	this->RemoveFromParent();
+	//this->RemoveFromParent();
+	this->SetVisibility(ESlateVisibility::Collapsed);
 }

@@ -48,6 +48,7 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 	PlayerControllerRef->Level_HUD_Widget->Minimap->GenerateLevel();
 }
 
+
 //-------------------- Battle --------------------//
 void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 {
@@ -185,11 +186,11 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	for (int i = 0; i < Card.AbilitiesAndConditions.Num(); i++) {
 
 		// If this card has Repeat, then add multiple copies of the following ability to the stack
-		if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
-			RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
-		}
-		else
-			RepeatCount = 1;
+		//if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
+		//	RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
+		//}
+		//else
+		RepeatCount = 1;
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 

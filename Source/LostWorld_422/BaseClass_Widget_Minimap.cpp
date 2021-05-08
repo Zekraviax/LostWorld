@@ -22,6 +22,8 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 	LevelGenerator->PlayerMinimapReference = this;
 	LevelGenerator->RunLevelGeneratorFunction();
+
+	Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->CurrentFloorNumber++;
 }
 
 

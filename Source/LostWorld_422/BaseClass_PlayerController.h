@@ -103,7 +103,7 @@ public:
 	TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
+		UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
 
 // Functions
 // --------------------------------------------------

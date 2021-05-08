@@ -34,4 +34,7 @@ public:
 
 // ------------------------- Base Class Functions
 	virtual void RunCardAbilityFunction(FCardBase CardAbility);
+
+// ------------------------- Widget Functions
+	virtual void WidgetFunction_SpendMana();
 };

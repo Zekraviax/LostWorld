@@ -2,6 +2,7 @@
 
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_Widget_SpentMana.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 
 ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
@@ -23,33 +24,41 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 // ------------------------- Base Class Functions
 void ACardFunctions_RollingQuake::RunCardAbilityFunction(FCardBase CardAbility)
 {
-	if (!SpentManaWidget_Reference->IsValidLowLevel()) {
-		if (SpentManaWidget_Class) {
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Spend Mana)"));
+	TArray<UUserWidget*> FoundSpentManaWidgets;
+	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(), FoundSpentManaWidgets, UBaseClass_Widget_SpentMana::StaticClass(), true);
 
-			SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
-			SpentManaWidget_Reference->AddToViewport();
-		}
-	}
+	//SpentMana_Widget Check
+	if (FoundSpentManaWidgets.Num() <= 0)
+		WidgetFunction_SpendMana();
 	else {
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
 
 		int32 OldHealthValue = CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
 		CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= 2;
 
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + CardAbility.CurrentTargets[0]->EntityBaseData.DisplayName)));
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(2) + "  /  New Health Value: " + FString::FromInt(CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + CardAbility.CurrentTargets[0]->EntityBaseData.DisplayName)));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(2) + "  /  New Health Value: " + FString::FromInt(CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
 		
 		if (Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Num() <= 0) {
-			SpentManaWidget_Reference->RemoveFromParent();
-			SpentManaWidget_Reference = nullptr;
+			for (int i = 0; i < FoundSpentManaWidgets.Num(); i++) {
+				FoundSpentManaWidgets[i]->RemoveFromParent();
+				FoundSpentManaWidgets[i]->ConditionalBeginDestroy();
+				FoundSpentManaWidgets[i] = NULL;
+
+				GetWorld()->ForceGarbageCollection(true);
+			}
 		}
 	}
 }
 
 
 // ------------------------- Widget Functions
-//void ACardFunctions_RollingQuake::WidgetFunction_SpendMana()
-//{
-//
-//}
+void ACardFunctions_RollingQuake::WidgetFunction_SpendMana()
+{
+	if (SpentManaWidget_Class) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Spend Mana)"));
+
+		SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
+		SpentManaWidget_Reference->AddToViewport();
+	}
+}

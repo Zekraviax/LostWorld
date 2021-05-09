@@ -33,6 +33,5 @@ public:
 	virtual void RunCardAbilityFunction(FCardBase CardAbility);
 
 // ------------------------- Widget Functions
-	//virtual void WidgetFunction_SpendMana();
-
+	virtual void WidgetFunction_SpendMana();
 };

@@ -160,16 +160,18 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			//}
 
 			if (CurrentDragCardRef->CardData.AbilitiesAndConditions[0].AbilityConditions.Contains(E_Card_AbilityConditions::E_CastingCost_X)) {
-				if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
-					SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
+				//if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
+				//	SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
 
-					SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
-					SpendManaWidget_Reference->OnWidgetCreated();
-					SpendManaWidget_Reference->AddToViewport();
-				}
+				//	SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
+				//	SpendManaWidget_Reference->OnWidgetCreated();
+				//	SpendManaWidget_Reference->AddToViewport();
+				//}
 			} else {
 				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
-					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+					if (CurrentDragCardRef->CardData.ManaCost >= 1) {
+						EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
+					}
 				} else {
 					CurrentDragCardRef->RemoveFromParent();
 					CurrentDragCardRef = NULL;
@@ -238,8 +240,8 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate + 1) {
-					FoundTile->OnPlayerEnterTile();
 					MoveToTile(FoundTile);
+					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -258,8 +260,8 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate - 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
-					FoundTile->OnPlayerEnterTile();
 					MoveToTile(FoundTile);
+					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -278,8 +280,8 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate - 1) {
-					FoundTile->OnPlayerEnterTile();
 					MoveToTile(FoundTile);
+					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -328,13 +330,10 @@ void ABaseClass_PlayerController::ExitBattle()
 void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
 	// Set Player's Entity location
-	//if (EntityInBattleRef) {
 	EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 	EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
 	EntityInBattleRef->Y_Coordinate = TileReference->Y_Coordinate;
 	CurrentLocationInLevel = TileReference;
-	//} else
-	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("EntityInBattle Ref Not Valid"));
 
 	CurrentRoom = TileReference->RoomReference;
 

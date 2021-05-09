@@ -208,7 +208,7 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FCardBase Card)
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 
 	// Start timer for the stack
-	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.f);
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.5f);
 }
 
 
@@ -236,7 +236,7 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 
 	// If there are still Abilities to run, reset the timer for this function
 	if (TheStack.Num() > 0) {
-		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.f);
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.5f);
 	}
 }
 

@@ -36,7 +36,6 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	TArray<FVector2D> MinimapArrayCorridorOneCoordinates, MinimapArrayCorridorTwoCoordinates, MinimapArrayCorridorThreeCoordinates, MinimapArrayCorridorFourCoordinates, MinimapArrayCorridorFiveCoordinates, MinimapArrayCorridorSixCoordinates, MinimapArrayCorridorSevenCoordinates, MinimapArrayCorridorEightCoordinates;
 
 	FVector2D RoomOneCenter = FVector2D(FMath::RandRange(3, 6), FMath::RandRange(3, 6));
-	//int RoomOneHalfWidth = FMath::RandRange(1, 3);
 	int RoomOneHalfWidth = 2;
 	int RoomOneHalfHeight = 2;
 
@@ -383,39 +382,23 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 			// Diagonals
 			else if (MinimapArrayCorridorOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				//GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 0.5f, 1.f);
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				//CorridorOneGridTiles.Add(GridTile_Actor);
-				//RoomOne->GridTilesInRoom.Add(GridTile_Actor);
-				//GridTile_Actor->RoomReference = RoomOne;
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 			}
 			else if (MinimapArrayCorridorThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				//GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				//CorridorTwoGridTiles.Add(GridTile_Actor);
-				//RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
-				//GridTile_Actor->RoomReference = RoomTwo;
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 			}
 			else if (MinimapArrayCorridorFiveCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorSevenCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				//GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				//CorridorThreeGridTiles.Add(GridTile_Actor);
-				//RoomThree->GridTilesInRoom.Add(GridTile_Actor);
-				//GridTile_Actor->RoomReference = RoomThree;
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 			}
 			else if (MinimapArrayCorridorSixCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate)) ||
 				MinimapArrayCorridorEightCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-				//GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
-				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 
-				//CorridorFourGridTiles.Add(GridTile_Actor);
-				//RoomFour->GridTilesInRoom.Add(GridTile_Actor);
-				//GridTile_Actor->RoomReference = RoomFour;
+				GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 1.f, 1.f);
 			}
 
 			GridTile_Actor->DynamicMaterial->SetVectorParameterValue("Color", GridTile_Actor->BaseColour);
@@ -423,7 +406,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	}
 
 	// Add an enemy encounter to each room
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Generate Encounters")));
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Generate Encounters")));
 	FDataTableRowHandle EnemyFormationsTableRow;
 
 	EnemyFormationsTableRow.DataTable = EnemyFormationsTable;

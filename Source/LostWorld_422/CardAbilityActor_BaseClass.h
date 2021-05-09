@@ -28,6 +28,8 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
 
 // Functions
 // --------------------------------------------------

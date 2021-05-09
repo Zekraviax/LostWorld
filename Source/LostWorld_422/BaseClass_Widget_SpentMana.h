@@ -49,6 +49,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_CardUserWidget> CardWidget_Class;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
+
+
 // Functions
 // --------------------------------------------------
 

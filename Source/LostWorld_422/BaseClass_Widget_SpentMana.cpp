@@ -33,39 +33,33 @@ void UBaseClass_Widget_SpentMana::CheckInputText(FText Text)
 void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 {
 	TArray<E_Card_AbilityConditions> ConditionsArray;
-	UBaseClass_CardUserWidget* DuplicateCard = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
-	DuplicateCard->CardData = CardReference->CardData;
+	UBaseClass_CardUserWidget* DuplicateCardWidget = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
+	DuplicateCardWidget->CardData = CardReference->CardData;
 
-	DuplicateCard->CardData.ManaCost = CurrentManaValue;
-	DuplicateCard->CardData.Controller->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
+	DuplicateCardWidget->CardData.ManaCost = CurrentManaValue;
+	DuplicateCardWidget->CardData.Controller->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
 
-	// Alter Values Based On Casting Cost
-	//for (int i = 0; i < DuplicateCard->CardData.AbilitiesAndConditions.Num(); i++) {
-	//	DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.GetKeys(ConditionsArray);
+	FString ContextString;
+	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
+	TArray<ABaseClass_EntityInBattle*> ValidTargets;
 
-	//	for (int j = 0; j < ConditionsArray.Num(); j++) {
-	//		if (ConditionsArray[j] == E_Card_AbilityConditions::E_NextAbility_CastingCost) {
-	//			j++;
+	// Get Random Targets
+	for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
+	{
+		ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
-	//			E_Card_AbilityConditions FoundCondition = ConditionsArray[j];
-	//			DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Remove(ConditionsArray[j]);
-	//			DuplicateCard->CardData.AbilitiesAndConditions[i].AbilityConditions.Add(FoundCondition, DuplicateCard->CardData.ManaCost);
-	//		}
-	//	}
-	//}
+		if (!BattleEntity->EntityBaseData.IsPlayerControllable) {
+			ValidTargets.Add(BattleEntity);
+		}
+	}
 
-	//DuplicateCard->CastCard();
-
-	FCardBase NewStackEntry;
 
 	for (int r = 0; r < CurrentManaValue; r++) {
-		//NewStackEntry.Description = DuplicateCard.AbilitiesAndConditions[0].AbilityDescription;
-		//NewStackEntry.CurrentTargets = DuplicateCard.CurrentTargets;
+		// Get random targets
+		DuplicateCard->CurrentTargets.Empty();
+		DuplicateCard->CurrentTargets.Add(ValidTargets[FMath::RandRange(0, (ValidTargets.Num() - 1))]);
 
-		//NewStackEntry.AbilitiesAndConditions.Empty();
-		//NewStackEntry.AbilitiesAndConditions.Add(DuplicateCard.AbilitiesAndConditions[0]);
-
-		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Add(NewStackEntry);
+		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Add(*DuplicateCard);
 	}
 
 	//this->RemoveFromParent();

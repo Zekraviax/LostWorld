@@ -22,22 +22,22 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 
 
 // ------------------------- Base Class Functions
-void ACardFunctions_RollingQuake::RunCardAbilityFunction(FCardBase CardAbility)
+void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 {
 	TArray<UUserWidget*> FoundSpentManaWidgets;
 	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(), FoundSpentManaWidgets, UBaseClass_Widget_SpentMana::StaticClass(), true);
 
 	//SpentMana_Widget Check
-	if (FoundSpentManaWidgets.Num() <= 0)
+	if (StackEntry.RunWidgetFunction)
 		WidgetFunction_SpendMana();
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
 
-		int32 OldHealthValue = CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
-		CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= 2;
+		int32 OldHealthValue = StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
+		StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= 2;
 
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + CardAbility.CurrentTargets[0]->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(2) + "  /  New Health Value: " + FString::FromInt(CardAbility.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + StackEntry.Card.CurrentTargets[0]->EntityBaseData.DisplayName)));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(2) + "  /  New Health Value: " + FString::FromInt(StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
 		
 		if (Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Num() <= 0) {
 			for (int i = 0; i < FoundSpentManaWidgets.Num(); i++) {
@@ -45,7 +45,7 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FCardBase CardAbility)
 				FoundSpentManaWidgets[i]->ConditionalBeginDestroy();
 				FoundSpentManaWidgets[i] = NULL;
 
-				GetWorld()->ForceGarbageCollection(true);
+				//GetWorld()->ForceGarbageCollection(true);
 			}
 		}
 	}

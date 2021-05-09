@@ -228,8 +228,11 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	else
 		GameStateRef->EntityEndOfTurn();
 
-	GameStateRef->AddCardFunctionsToTheStack(RandCard);
-	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (RandCard.AbilitiesAndConditions.Num() + 1), false);
+	FStackEntry NewStackEntry;
+	NewStackEntry.Card = RandCard;
+
+	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);
+	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (NewStackEntry.Card.AbilitiesAndConditions.Num() + 1), false);
 }
 
 

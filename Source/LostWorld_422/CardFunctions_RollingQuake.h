@@ -30,7 +30,7 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Base Class Functions
-	virtual void RunCardAbilityFunction(FCardBase CardAbility);
+	virtual void RunCardAbilityFunction(FStackEntry StackEntry) override;
 
 // ------------------------- Widget Functions
 	virtual void WidgetFunction_SpendMana();

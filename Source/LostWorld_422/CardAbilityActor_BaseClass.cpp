@@ -26,7 +26,7 @@ void ACardAbilityActor_BaseClass::Tick(float DeltaTime)
 
 
 // ------------------------- Base Class Functions
-void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FCardBase CardAbility)
+void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FStackEntry StackEntry)
 {
 
 }

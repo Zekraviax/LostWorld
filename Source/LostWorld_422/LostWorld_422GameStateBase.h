@@ -31,7 +31,7 @@ public:
 	TArray<ABaseClass_EntityInBattle*> CurrentTurnOrderList;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCardBase> TheStack;
+	TArray<FStackEntry> TheStack;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float StackTimer;
@@ -50,8 +50,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
@@ -85,7 +85,7 @@ public:
 
 // ------------------------- Combat Functions
 	UFUNCTION()
-	void AddCardFunctionsToTheStack(FCardBase Card);
+	void AddCardFunctionsToTheStack(FStackEntry StackEntry);
 
 	UFUNCTION()
 	void ExecuteCardFunctions();

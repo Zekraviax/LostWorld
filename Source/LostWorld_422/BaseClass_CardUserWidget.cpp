@@ -63,9 +63,13 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 
 void UBaseClass_CardUserWidget::CastCard()
 {
+	FStackEntry NewStackEntry;
+
 	if (!GameStateRef) {
 		GameStateRef = Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState());
 	}
 
-	GameStateRef->AddCardFunctionsToTheStack(CardData);
+	NewStackEntry.Card = CardData;
+
+	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);
 }

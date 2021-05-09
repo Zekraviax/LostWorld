@@ -246,15 +246,20 @@ struct LOSTWORLD_422_API FStackEntry
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Delay;
 
-	FStackEntry(FCardBase NewCard, float SetDelay)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool RunWidgetFunction;
+
+	FStackEntry(FCardBase NewCard, float SetDelay, bool SetRunWidgetFunction)
 	{
 		Card = NewCard;
 		Delay = SetDelay;
+		RunWidgetFunction = SetRunWidgetFunction;
 	}
 
 	FStackEntry()
 	{
-
+		Delay = 1.5f;
+		RunWidgetFunction = true;
 	}
 };
 

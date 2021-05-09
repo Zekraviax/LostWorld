@@ -31,11 +31,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* CardsTable;
 
+// ------------------------- Widgets
+
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Base Class Functions
-	virtual void RunCardAbilityFunction(FCardBase CardAbility);
+	virtual void RunCardAbilityFunction(FStackEntry StackEntry);
 
 // ------------------------- Widget Functions
 	virtual void WidgetFunction_SpendMana();

@@ -16,5 +16,5 @@ public:
 
 // Functions
 // --------------------------------------------------
-	virtual void RunCardAbilityFunction(FCardBase CardAbility) override;
+	virtual void RunCardAbilityFunction(FStackEntry StackEntry) override;
 };

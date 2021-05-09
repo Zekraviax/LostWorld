@@ -35,6 +35,7 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 	FString ContextString;
 	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
 	TArray<ABaseClass_EntityInBattle*> ValidTargets;
+	FStackEntry DuplicateCardStackEntry;
 
 	// Get Random Targets
 	for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
@@ -55,7 +56,10 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 		DuplicateCard->CurrentTargets.Empty();
 		DuplicateCard->CurrentTargets.Add(ValidTargets[FMath::RandRange(0, (ValidTargets.Num() - 1))]);
 
-		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(*DuplicateCard);
+		DuplicateCardStackEntry.Card = *DuplicateCard;
+		DuplicateCardStackEntry.RunWidgetFunction = false;
+
+		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(DuplicateCardStackEntry);
 	}
 
 	//this->RemoveFromParent();

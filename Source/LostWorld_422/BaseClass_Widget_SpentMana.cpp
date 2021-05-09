@@ -32,13 +32,6 @@ void UBaseClass_Widget_SpentMana::CheckInputText(FText Text)
 
 void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 {
-	TArray<E_Card_AbilityConditions> ConditionsArray;
-	UBaseClass_CardUserWidget* DuplicateCardWidget = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
-	DuplicateCardWidget->CardData = CardReference->CardData;
-
-	DuplicateCardWidget->CardData.ManaCost = CurrentManaValue;
-	DuplicateCardWidget->CardData.Controller->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
-
 	FString ContextString;
 	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
 	TArray<ABaseClass_EntityInBattle*> ValidTargets;
@@ -51,6 +44,9 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 		if (!BattleEntity->EntityBaseData.IsPlayerControllable) {
 			ValidTargets.Add(BattleEntity);
 		}
+		else {
+			BattleEntity->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
+		}
 	}
 
 
@@ -59,7 +55,7 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 		DuplicateCard->CurrentTargets.Empty();
 		DuplicateCard->CurrentTargets.Add(ValidTargets[FMath::RandRange(0, (ValidTargets.Num() - 1))]);
 
-		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Add(*DuplicateCard);
+		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(*DuplicateCard);
 	}
 
 	//this->RemoveFromParent();

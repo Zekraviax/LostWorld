@@ -18,6 +18,7 @@ UENUM(BlueprintType)
 enum class E_GridTile_OnPlayerEnterFunctions: uint8
 {
 	E_None,
+	E_PlayerSpawn,
 	E_TriggerBattle,
 	E_Stairs
 };

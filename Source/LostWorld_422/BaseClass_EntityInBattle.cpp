@@ -51,13 +51,6 @@ void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-
-void ABaseClass_EntityInBattle::CustomOnBeginMouseOverEvent(UPrimitiveComponent * TouchedComponent)
-{
-
-}
-
-
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
 	for (int i = 0; i < 10; i++)
@@ -65,7 +58,6 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 		ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
 		FString ContextString;
 		TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
-		//CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[FMath::RandRange(0, RowNames.Num() - 1)], ContextString));
 		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;
@@ -73,13 +65,6 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 		CardsInDeck[i].ZoneIndex = i;
 	}
 }
-
-
-//void ABaseClass_EntityInBattle::ResetStatsWidget()
-//{
-//	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));
-//	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Reset entity stats widget location."));
-//}
 
 
 void ABaseClass_EntityInBattle::ResetComponentsLocations()
@@ -146,12 +131,11 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	UpdateCardIndicesInAllZones();
 	UpdateCardWidgets();
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
 	EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
 
 	if (!EntityBaseData.IsPlayerControllable) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("IsPlayerControllable: False"));
 		AI_CastRandomCard();
 	}
 }
@@ -183,7 +167,6 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		// BattleEvent_EntityDied();
 		GameStateRef->Event_EntityDied(this);
 	}
-
 	// Check if all entities are/the player is dead in the GameState class
 }
 
@@ -195,7 +178,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
 
 	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
@@ -203,7 +186,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
 
 			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
 				TargetsArray.Add(FoundEntity);
@@ -212,7 +195,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 
 		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
 
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
 	}
 
 	// Cast card

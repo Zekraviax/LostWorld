@@ -102,8 +102,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Mouse
-	UFUNCTION(BlueprintCallable)
-	void CustomOnBeginMouseOverEvent(UPrimitiveComponent* TouchedComponent);
 
 // ------------------------- Deck
 	UFUNCTION()

@@ -48,7 +48,7 @@ void ABaseClass_PlayerController::BeginPlay()
 	FCardBase* Card_Annihilate = CardsTable->FindRow<FCardBase>("Annihilate", ContextString, true);
 	FCardBase* Card_RollingQuake = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
 
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 5; i++) {
 		CurrentCollection.Add(*Card_Shock);
 	}
 	for (int i = 0; i < 2; i++) {
@@ -136,37 +136,10 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		}
 
 		if (!CurrentDragCardRef->CardData.Controller) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: No Controller"));
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: No Controller"));
 		} else {
-			//// Mana Check
-			//if (CurrentDragCardRef->CardData.ManaCost != -255) {
-			//	if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
-			//		EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
-			//	} else {
-			//		CurrentDragCardRef->RemoveFromParent();
-			//		CurrentDragCardRef = NULL;
-			//		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
-			//		return;
-			//	}
-			//	CurrentDragCardRef->CastCard();
-			//} else {
-			//	if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
-			//		SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
-
-			//		SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
-			//		SpendManaWidget_Reference->OnWidgetCreated();
-			//		SpendManaWidget_Reference->AddToViewport();
-			//	}
-			//}
-
 			if (CurrentDragCardRef->CardData.AbilitiesAndConditions[0].AbilityConditions.Contains(E_Card_AbilityConditions::E_CastingCost_X)) {
-				//if (!SpendManaWidget_Reference && SpendManaWidget_Class) {
-				//	SpendManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpendManaWidget_Class);
 
-				//	SpendManaWidget_Reference->CardReference = CurrentDragCardRef;
-				//	SpendManaWidget_Reference->OnWidgetCreated();
-				//	SpendManaWidget_Reference->AddToViewport();
-				//}
 			} else {
 				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
 					if (CurrentDragCardRef->CardData.ManaCost >= 1) {
@@ -175,7 +148,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 				} else {
 					CurrentDragCardRef->RemoveFromParent();
 					CurrentDragCardRef = NULL;
-					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Error: Failed to cast card"));
+					GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: Failed to cast card"));
 					return;
 				}
 				CurrentDragCardRef->CastCard();
@@ -184,7 +157,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
+				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
 
 				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
@@ -213,15 +186,12 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 void ABaseClass_PlayerController::PlayerMoveNorth()
 {
 	if (ControlMode == E_Player_ControlMode::E_Move) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move North"));
-
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate + 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
 					MoveToTile(FoundTile);
-					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -233,15 +203,12 @@ void ABaseClass_PlayerController::PlayerMoveNorth()
 void ABaseClass_PlayerController::PlayerMoveEast()
 {
 	if (ControlMode == E_Player_ControlMode::E_Move) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move East"));
-
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate + 1) {
 					MoveToTile(FoundTile);
-					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -253,15 +220,12 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 void ABaseClass_PlayerController::PlayerMoveSouth()
 {
 	if (ControlMode == E_Player_ControlMode::E_Move) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move South"));
-
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate - 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
 					MoveToTile(FoundTile);
-					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -273,15 +237,12 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 void ABaseClass_PlayerController::PlayerMoveWest()
 {
 	if (ControlMode == E_Player_ControlMode::E_Move) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Move West"));
-
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
 			if (FoundTile->IsValidLowLevel()) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate - 1) {
 					MoveToTile(FoundTile);
-					FoundTile->OnPlayerEnterTile();
 					break;
 				}
 			}
@@ -321,6 +282,8 @@ void ABaseClass_PlayerController::ExitBattle()
 
 	// Restore the players' MP, but not HP
 
+	// Remove all cards from the Hand and Deck,
+	// and make sure they end up in the Collection
 
 	ControlMode = E_Player_ControlMode::E_Move;
 	Level_HUD_Widget->Minimap->UpdateMinimap(CurrentLocationInLevel);
@@ -336,6 +299,8 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 	CurrentLocationInLevel = TileReference;
 
 	CurrentRoom = TileReference->RoomReference;
-
 	Level_HUD_Widget->Minimap->UpdateMinimap(TileReference);
+
+	// Run OnTileEnter Functions
+	TileReference->OnPlayerEnterTile();
 }

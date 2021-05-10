@@ -32,6 +32,7 @@ enum class E_Card_Types : uint8
 UENUM(BlueprintType)
 enum class E_Card_Elements : uint8
 {
+	E_NonElemental		UMETA(DisplayName = "Non-Elemental"),
 	E_Fire				UMETA(DisplayName = "Fire"),
 	E_Water				UMETA(DisplayName = "Water"),
 	E_Air				UMETA(DisplayName = "Air"),
@@ -40,6 +41,14 @@ enum class E_Card_Elements : uint8
 	E_Arcane			UMETA(DisplayName = "Arcane"),
 	E_Cosmic			UMETA(DisplayName = "Cosmic"),
 	E_Divine			UMETA(DisplayName = "Divine")
+};
+
+UENUM(BlueprintType)
+enum class E_Card_DamageTypes : uint8
+{
+	E_Physical,
+	E_Elemental,
+	E_Other
 };
 
 UENUM(BlueprintType)
@@ -194,6 +203,9 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	TArray<FCardAbilitiesAndConditions> AbilitiesAndConditions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
+	float Delay;
 
 	// Use this for spells that only have one target or set of targets.
 	// For complicated spells, use a target variable for each ability.

@@ -34,30 +34,12 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 
 	UBaseClass_CardUserWidget* CardDragWidgetRef;
 
-	//if (CardData.CurrentSelectMode == E_Card_UserSelectModes::E_Cast) {
 	CardDragWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), this->GetClass());
 	CardDragWidgetRef->CardData = CardData;
 	CardDragWidgetRef->IsDragging = true;
 
 	CardDragWidgetRef->AddToViewport();
 	LocalPlayerControllerRef->CurrentDragCardRef = CardDragWidgetRef;
-
-	//}
-	//else if (CardData.CurrentSelectMode == E_Card_UserSelectModes::E_Select) {
-	//	UBaseClass_Widget_ZoneSearch* FoundWidget = NULL;
-	//	for (TObjectIterator<UBaseClass_Widget_ZoneSearch> Itr; Itr; ++Itr) {
-	//		FoundWidget = *Itr;
-	//	}
-	//	if (FoundWidget->ChosenCards.Contains(CardData)) {
-	//		FoundWidget->ChosenCards.Remove(CardData);
-	//	}
-	//	else if (!FoundWidget->ChosenCards.Contains(CardData) && FoundWidget->ChosenCards.Num() < FoundWidget->CurrentMaxCardSelectCount) {
-	//		FoundWidget->ChosenCards.Add(CardData);
-	//	}
-	//	else if (FoundWidget->ChosenCards.Num() >= FoundWidget->CurrentMaxCardSelectCount) {
-	//		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Max number of choosable cards reached."));
-	//	}
-	//}
 }
 
 

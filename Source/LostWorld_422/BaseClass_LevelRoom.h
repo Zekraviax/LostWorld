@@ -8,7 +8,6 @@
 #include "BaseComponent_Room_Tile.h"
 #include "BaseComponent_Room_SpawnPoint.h"
 #include "WidgetComponent_RoomEncounter.h"
-#include "WidgetComponent_RoomExit.h"
 #include "Lostworld_422GameInstanceBase.h"
 
 #include "BaseClass_LevelRoom.generated.h"
@@ -47,14 +46,6 @@ public:
 	TArray<UBaseComponent_Room_Tile*> SceneCoordinateComponents;
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* EntityInBattle_Reference;
-
-
-// Functions
-// --------------------------------------------------
-
 };

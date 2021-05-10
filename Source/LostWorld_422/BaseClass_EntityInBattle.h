@@ -133,6 +133,9 @@ public:
 	UFUNCTION()
 	void Event_CardCastOnThis();
 
+	UFUNCTION()
+	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);
+
 // ------------------------- AI
 	UFUNCTION()
 	void AI_CastRandomCard();

@@ -77,6 +77,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	E_GridTile_OnPlayerEnterTileFunctions_Enum OnPlayerEnterTileFunction;
 
+// ------------------------- Widget
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ABaseClass_EntityInBattle* OccupyingEntity;
+
 // Functions
 // --------------------------------------------------
 

@@ -24,8 +24,7 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 // ------------------------- Base Class Functions
 void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	TArray<UUserWidget*> FoundSpentManaWidgets;
-	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(), FoundSpentManaWidgets, UBaseClass_Widget_SpentMana::StaticClass(), true);
+	int DamageValue = 2;
 
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction)
@@ -34,20 +33,9 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
 
 		int32 OldHealthValue = StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
-		StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value -= 2;
+		StackEntry.Card.CurrentTargets[0]->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Elemental);
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + StackEntry.Card.CurrentTargets[0]->EntityBaseData.DisplayName)));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Damage: " + FString::FromInt(2) + "  /  New Health Value: " + FString::FromInt(StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value) + "  /  Old Health Value: " + FString::FromInt(OldHealthValue))));
-		
-		if (Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->TheStack.Num() <= 0) {
-			for (int i = 0; i < FoundSpentManaWidgets.Num(); i++) {
-				FoundSpentManaWidgets[i]->RemoveFromParent();
-				FoundSpentManaWidgets[i]->ConditionalBeginDestroy();
-				FoundSpentManaWidgets[i] = NULL;
-
-				//GetWorld()->ForceGarbageCollection(true);
-			}
-		}
 	}
 }
 

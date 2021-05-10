@@ -4,7 +4,6 @@
 #include "GameFramework/GameStateBase.h"
 
 #include "CardAbilityActor_BaseClass.h"
-#include "CardAbilityActor_DrawCards.h"
 
 #include "LostWorld_422GameStateBase.generated.h"
 

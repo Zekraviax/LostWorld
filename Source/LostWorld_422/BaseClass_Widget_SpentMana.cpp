@@ -62,6 +62,6 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(DuplicateCardStackEntry);
 	}
 
-	//this->RemoveFromParent();
-	this->SetVisibility(ESlateVisibility::Collapsed);
+	this->RemoveFromParent();
+	//this->SetVisibility(ESlateVisibility::Collapsed);
 }

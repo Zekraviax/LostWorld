@@ -51,6 +51,7 @@ void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
 	for (int i = 0; i < 10; i++)
@@ -168,6 +169,14 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		GameStateRef->Event_EntityDied(this);
 	}
 	// Check if all entities are/the player is dead in the GameState class
+}
+
+
+void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType)
+{
+	int DamageValue = IncomingDamage;
+
+	EntityBaseData.HealthValues.X_Value -= DamageValue;
 }
 
 

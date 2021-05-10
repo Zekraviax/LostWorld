@@ -41,7 +41,10 @@ void ABaseClass_PlayerController::BeginPlay()
 	}
 
 	// Add some cards to the players' collection
+	// (Add the same amount of each card because it's easier and more fun this way)
 	FString ContextString;
+	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
+
 	FCardBase* Card_Shock = CardsTable->FindRow<FCardBase>("Shock", ContextString, true);
 	FCardBase* Card_SuddenInspiration = CardsTable->FindRow<FCardBase>("SuddenInspiration", ContextString, true);
 	FCardBase* Card_BloodRecycling = CardsTable->FindRow<FCardBase>("BloodRecycling", ContextString, true);
@@ -281,9 +284,12 @@ void ABaseClass_PlayerController::ExitBattle()
 	}
 
 	// Restore the players' MP, but not HP
+	EntityInBattleRef->EntityBaseData.ManaValues.X_Value = EntityInBattleRef->EntityBaseData.ManaValues.Y_Value;
 
 	// Remove all cards from the Hand and Deck,
 	// and make sure they end up in the Collection
+	EntityInBattleRef->CardsInGraveyard.Empty();
+	EntityInBattleRef->CardsInHand.Empty();
 
 	ControlMode = E_Player_ControlMode::E_Move;
 	Level_HUD_Widget->Minimap->UpdateMinimap(CurrentLocationInLevel);

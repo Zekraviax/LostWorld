@@ -25,7 +25,7 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 		ABaseClass_GridTile* FoundTile = *TileItr;
 		FoundTile->Destroy();
 		FoundTile->ConditionalBeginDestroy();
-		FoundTile = nullptr;
+		//FoundTile = nullptr;
 	}
 
 	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
@@ -75,20 +75,21 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		FString ContextString;
 		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
 
-		for (int j = 0; j < 1; j++) {
+		for (int j = 0; j < EnemyList->EnemiesMap.Num(); j++) {
 			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
 				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
 				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
 					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
 					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
-					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate &&
-					 GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
+					GridTileReference->OccupyingEntity == nullptr) {
 					
 					// Spawn Enemy Here
 					ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
 					NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
 					NewEnemy->GameStateRef = this;
+					
+					GridTileReference->OccupyingEntity = NewEnemy;
 					break;
 				}
 			}
@@ -158,7 +159,7 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 		}
 	}
 
-	// Enemies move after the player
+	// Enemies move after the player (at this time)
 	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -175,42 +176,19 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 {
 	int RepeatCount = 1;
 	FCardBase NewStackEntryCard;
-	//NewStackEntryCard.Art = Card.Art;
-	//NewStackEntryCard.Controller = Card.Controller;
-	//NewStackEntryCard.DisplayName = Card.DisplayName;
-	//NewStackEntryCard.Elements = Card.Elements;
-	//NewStackEntryCard.ManaCost = Card.ManaCost;
-	//NewStackEntryCard.Owner = Card.Owner;
-	//NewStackEntryCard.Type = Card.Type;
 
-	for (int i = 0; i < StackEntry.Card.AbilitiesAndConditions.Num(); i++) {
-
-		// If this card has Repeat, then add multiple copies of the following ability to the stack
-		//if (Card.AbilitiesAndConditions[i].AbilityConditions.Contains(E_Card_AbilityConditions::E_Repeat)) {
-		//	RepeatCount = *Card.AbilitiesAndConditions[i].AbilityConditions.Find(E_Card_AbilityConditions::E_Repeat);
-		//}
-		//else
-		//RepeatCount = 1;
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
-
-		//for (int r = 0; r < RepeatCount; r++) {
-		NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[i].AbilityDescription;
-		NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
-
-		//NewStackEntryCard.AbilitiesAndConditions.Empty();
-		//NewStackEntryCard.AbilitiesAndConditions.Add(Card.AbilitiesAndConditions[i]);
-
-		//NewStackEntry.Card = NewStackEntryCard;
-
-		TheStack.Add(StackEntry);
-		//}
-	}
-
+	//for (int i = 0; i < StackEntry.Card.AbilitiesAndConditions.Num(); i++) {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 
+	//for (int r = 0; r < RepeatCount; r++) {
+	NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[0].AbilityDescription;
+	NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
+
+	TheStack.Add(StackEntry);
+	//}
+
 	// Start timer for the stack
-	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.5f);
+	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, StackEntry.Card.Delay);
 }
 
 
@@ -238,7 +216,7 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 
 	// If there are still Abilities to run, reset the timer for this function
 	if (TheStack.Num() > 0) {
-		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, 1.5f);
+		GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, TheStack[0].Card.Delay);
 	}
 }
 

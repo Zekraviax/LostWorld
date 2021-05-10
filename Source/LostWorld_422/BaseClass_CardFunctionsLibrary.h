@@ -7,7 +7,6 @@
 #include "EngineUtils.h"
 #include "BaseClass_Widget_ZoneSearch.h"
 #include "CardAbilityActor_BaseClass.h"
-#include "CardAbilityActor_DrawCards.h"
 
 #include "BaseClass_CardFunctionsLibrary.generated.h"
 
@@ -51,8 +50,8 @@ public:
 	FTimerHandle StackTimerHandle;
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;

@@ -26,12 +26,6 @@ public:
 
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	UScrollBox* EncounterList_ScrollBox;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly,  meta = (BindWidget))
-	UScrollBox* ExitList_ScrollBox;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UBaseClass_Widget_Minimap* Minimap;
 
 // ------------------------- Widgets

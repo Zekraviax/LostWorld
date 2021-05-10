@@ -421,7 +421,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 
 		ABaseClass_GridTile* RoomSpawnTile = FoundRoom->GridTilesInRoom[FMath::RandRange(0, FoundRoom->GridTilesInRoom.Num() - 1)];
 		RoomSpawnTile->EncountersList.Add(NewEncounter);
-		RoomSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle;
+		RoomSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle;
 	}
 
 	// Pick a random tile to spawn the stairs
@@ -435,7 +435,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 			StairsCounter++;
 
 			if (StairsCounter >= StairsIndex) {
-				FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_Stairs;
+				FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs;
 				break;
 			}
 		}

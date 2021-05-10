@@ -9,7 +9,7 @@ ABaseClass_GridTile::ABaseClass_GridTile()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-	OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterFunctions::E_None;
+	OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None;
 
 	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
 	Tile->SetupAttachment(RootComponent);
@@ -40,10 +40,10 @@ void ABaseClass_GridTile::OnPlayerEnterTile()
 {
 	switch (OnPlayerEnterTileFunction) 
 	{
-		case(E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle):
+		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle):
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
 			break;
-		case(E_GridTile_OnPlayerEnterFunctions::E_Stairs):
+		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs):
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->RegenerateLevel();
 			break;
 		default:

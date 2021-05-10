@@ -19,6 +19,7 @@ class ACardAbilityActor_BaseClass;
 // Enums
 //--------------------------------------------------
 
+
 // Card Base Variables
 UENUM(BlueprintType)
 enum class E_Card_Types : uint8
@@ -89,6 +90,16 @@ enum class E_Card_Zones : uint8
 	E_Deck,
 	E_Graveyard
 };
+
+
+// Items
+UENUM(BlueprintType)
+enum class E_Item_Types : uint8
+{
+	E_Equipment,
+	E_Inventory,
+};
+
 
 // Level Rooms
 UENUM(BlueprintType)
@@ -234,6 +245,22 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 };
 
 
+// ------------------------- Items and Item Functions
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	FString DisplayName;
+
+	F_Item_Base()
+	{
+		DisplayName = "Default";
+	}
+};
+
+
 // ------------------------- The Stack
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FStackEntry
@@ -309,6 +336,16 @@ struct LOSTWORLD_422_API FEntity_BaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Dexterity;
 
+	FEntity_BaseStats(int SetStrength, int SetConstitution, int SetIntelligence, int SetWisdom, int SetDexterity)
+	{
+		Strength = SetStrength;
+		Constitution = SetConstitution;
+		Intelligence = SetIntelligence;
+		Wisdom = SetWisdom;
+		Dexterity = SetDexterity;
+	}
+
+	// Default Constructor
 	FEntity_BaseStats()
 	{
 		Strength = 1;
@@ -356,6 +393,9 @@ struct LOSTWORLD_422_API FEntityBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FIntVector2D ManaValues;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	FEntity_BaseStats CoreStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	bool IsPlayerControllable;
@@ -416,6 +456,9 @@ struct LOSTWORLD_422_API F_LevelRoom_EnemyFormation : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemies")
 	TMap<FVector2D, FDataTableRowHandle> EnemiesMap;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemies")
+	TArray<FVector2D> PossibleSpawnLocationsRelativeToPlayer;
 
 	F_LevelRoom_EnemyFormation()
 	{
@@ -579,7 +622,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
 	ABaseClass_CardFunctionsLibrary* CardFunctionLibraryReference;
 
-// ------------------------- Classes
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
-	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class;
+//// ------------------------- Classes
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
+//	TSubclassOf<class UBaseClass_Widget_ZoneSearch> ZoneSearchWidget_Class;
 };

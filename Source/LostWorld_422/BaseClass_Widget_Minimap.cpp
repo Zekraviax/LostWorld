@@ -52,12 +52,12 @@ void UBaseClass_Widget_Minimap::UpdateMinimap(ABaseClass_GridTile* CurrentPlayer
 		
 		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
 			// If there's an enemy at any given tile, change that tiles colour.
-			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_TriggerBattle) {
+			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));
 			}
 
 			// Highlight the stairs
-			else if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterFunctions::E_Stairs) {
+			else if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(0.6f, 0.f, 1.f, 1.f));
 			}
 		}

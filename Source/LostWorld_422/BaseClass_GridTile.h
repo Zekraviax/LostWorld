@@ -15,7 +15,7 @@ class UWidgetComponent_MinimapRoom;
 
 // Unique Enums
 UENUM(BlueprintType)
-enum class E_GridTile_OnPlayerEnterFunctions: uint8
+enum class E_GridTile_OnPlayerEnterTileFunctions_Enum: uint8
 {
 	E_None,
 	E_PlayerSpawn,
@@ -75,7 +75,7 @@ public:
 	TArray<F_LevelRoom_Encounter> EncountersList;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	E_GridTile_OnPlayerEnterFunctions OnPlayerEnterTileFunction;
+	E_GridTile_OnPlayerEnterTileFunctions_Enum OnPlayerEnterTileFunction;
 
 // Functions
 // --------------------------------------------------

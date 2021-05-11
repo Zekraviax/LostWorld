@@ -2,6 +2,7 @@
 
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_GridTile.h"
+#include "ItemFunctions_BaseClass.h"
 #include "LostWorld_422GameStateBase.h"
 
 
@@ -54,11 +55,12 @@ void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
+	ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
+	FString ContextString;
+	TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
+
 	for (int i = 0; i < 10; i++)
 	{
-		ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
-		FString ContextString;
-		TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
 		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;
@@ -134,7 +136,22 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
-	EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
+	//EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
+
+	if (EquippedItems.Num() > 0) {
+		// Spawn ability actor
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.bNoFail = true;
+		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+		for (int i = 0; i < EquippedItems.Num(); i++) {
+			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[0].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn();
+
+			ItemAbilityActor_Reference->ConditionalBeginDestroy();
+		}
+	}
 
 	if (!EntityBaseData.IsPlayerControllable) {
 		AI_CastRandomCard();

@@ -177,15 +177,12 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 	int RepeatCount = 1;
 	FCardBase NewStackEntryCard;
 
-	//for (int i = 0; i < StackEntry.Card.AbilitiesAndConditions.Num(); i++) {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
 
-	//for (int r = 0; r < RepeatCount; r++) {
 	NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[0].AbilityDescription;
 	NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
 
 	TheStack.Add(StackEntry);
-	//}
 
 	// Start timer for the stack
 	GetWorldTimerManager().SetTimer(StackTimerHandle, this, &ALostWorld_422GameStateBase::ExecuteCardFunctions, StackEntry.Card.Delay);

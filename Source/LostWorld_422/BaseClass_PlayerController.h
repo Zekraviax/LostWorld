@@ -63,11 +63,9 @@ public:
 	ABaseClass_GridTile* CurrentLocationInLevel;
 
 // ------------------------- Technical Variables
-	// Player EntityInBattle class
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class ABaseClass_EntityInBattle* EntityInBattleRef;
+	ABaseClass_EntityInBattle* EntityInBattleRef;
 
-	// Player EntityInBattle instance
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
@@ -101,12 +99,6 @@ public:
 	// Dragging Card Widget Reference
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
-
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	//UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
 
 // Functions
 // --------------------------------------------------

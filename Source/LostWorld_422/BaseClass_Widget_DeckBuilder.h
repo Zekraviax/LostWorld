@@ -25,12 +25,8 @@ class LOSTWORLD_422_API UBaseClass_Widget_DeckBuilder : public UUserWidget
 public:
 	virtual void NativeConstruct();
 
-	//virtual TSharedRef<SWidget> RebuildWidget();
-
-protected:
-
 public:
-// Base Variables
+// Variables
 // --------------------------------------------------
 
 // ------------------------- Components

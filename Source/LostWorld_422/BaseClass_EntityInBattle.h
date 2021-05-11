@@ -63,6 +63,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInGraveyard;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<F_Item_Base> EquippedItem;
+
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* StaticMesh;

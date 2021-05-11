@@ -49,6 +49,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	E_Player_ControlMode ControlMode;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentExperiencePoints;
+
 // ------------------------- Entity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBase CurrentEntityData;
@@ -99,11 +102,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<UBaseClass_Widget_SpentMana> SpendManaWidget_Class;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	//UBaseClass_Widget_SpentMana* SpendManaWidget_Reference;
 
 // Functions
 // --------------------------------------------------

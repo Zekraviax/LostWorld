@@ -1,9 +1,8 @@
-#include "CardAbilityActor_BaseClass.h"
+#include "ItmeFunctions_BaseClass.h"
 
 
-//-------------------- Base Functions --------------------//
 // Sets default values
-ACardAbilityActor_BaseClass::ACardAbilityActor_BaseClass()
+AItmeFunctions_BaseClass::AItmeFunctions_BaseClass()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
@@ -11,29 +10,39 @@ ACardAbilityActor_BaseClass::ACardAbilityActor_BaseClass()
 }
 
 // Called when the game starts or when spawned
-void ACardAbilityActor_BaseClass::BeginPlay()
+void AItmeFunctions_BaseClass::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void ACardAbilityActor_BaseClass::Tick(float DeltaTime)
+void AItmeFunctions_BaseClass::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
 
+
 // ------------------------- Base Class Functions ------------------------- //
-void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FStackEntry StackEntry)
+void AItmeFunctions_BaseClass::RunItemAbilityFunction()
 {
 
 }
 
 
 // ------------------------- Widget Functions ------------------------- //
-void ACardAbilityActor_BaseClass::WidgetFunction_SpendMana()
+
+
+// ------------------------- Triggered Functions ------------------------- //
+void AItmeFunctions_BaseClass::TriggeredFunction_OnItemEquipped()
+{
+
+}
+
+
+void AItmeFunctions_BaseClass::TriggeredFunction_StarterOfWearerTurn()
 {
 
 }

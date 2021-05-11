@@ -14,6 +14,7 @@ class ABaseClass_CardFunctionsLibrary;
 class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 class ACardAbilityActor_BaseClass;
+class AItemFunctions_BaseClass;
 
 
 // Enums
@@ -47,7 +48,7 @@ UENUM(BlueprintType)
 enum class E_Card_DamageTypes : uint8
 {
 	E_Physical,
-	E_Elemental,
+	E_Magical,
 	E_Other
 };
 
@@ -266,9 +267,16 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
 	FString DisplayName;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	FString Description;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	//TSubclassOf<AItmeFunctions_BaseClass> Functions;
+
 	F_Item_Base()
 	{
 		DisplayName = "Default";
+		Description = "Default";
 	}
 };
 
@@ -422,7 +430,7 @@ struct LOSTWORLD_422_API FEntityBase
 	{
 		DisplayName = "Default";
 		HealthValues = FIntVector2D(10, 10);
-		ManaValues = FIntVector2D(5, 5);
+		ManaValues = FIntVector2D(10, 10);
 		IsPlayerControllable = false;
 	}
 };
@@ -446,11 +454,15 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cards")
 	TArray<FDataTableRowHandle> Cards;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+		float BaseExperiencePointsRate;
+
 	F_NonPlayerEntity_DatabaseEntry()
 	{
 		DisplayName = "Default";
 		MaximumHealthPoints = 10;
-		MaximumManaPoints = 5;
+		MaximumManaPoints = 10;
+		BaseExperiencePointsRate = 1;
 	}
 };
 

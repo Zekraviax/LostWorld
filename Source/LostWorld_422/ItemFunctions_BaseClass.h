@@ -1,10 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ItemFunctions_BaseClass.generated.h"
+
 
 UCLASS()
 class LOSTWORLD_422_API AItemFunctions_BaseClass : public AActor
@@ -23,4 +22,25 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+// Base Variables
+// --------------------------------------------------
+
+// ------------------------- Constructors
+
+
+// ------------------------- Widgets
+
+// Functions
+// --------------------------------------------------
+
+// ------------------------- Base Class Functions
+	virtual void RunItemAbilityFunction();
+
+// ------------------------- Widget Functions
+
+
+// ------------------------- Triggered Functions
+	virtual void TriggeredFunction_OnItemEquipped();
+	virtual void TriggeredFunction_StarterOfWearerTurn();
 };

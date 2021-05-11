@@ -1,13 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ItemFunctions_BaseClass.h"
+
 
 // Sets default values
 AItemFunctions_BaseClass::AItemFunctions_BaseClass()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 }
 
@@ -25,3 +23,25 @@ void AItemFunctions_BaseClass::Tick(float DeltaTime)
 
 }
 
+
+// ------------------------- Base Class Functions ------------------------- //
+void AItemFunctions_BaseClass::RunItemAbilityFunction()
+{
+
+}
+
+
+// ------------------------- Widget Functions ------------------------- //
+
+
+// ------------------------- Triggered Functions ------------------------- //
+void AItemFunctions_BaseClass::TriggeredFunction_OnItemEquipped()
+{
+
+}
+
+
+void AItemFunctions_BaseClass::TriggeredFunction_StarterOfWearerTurn()
+{
+
+}

@@ -22,7 +22,6 @@ class ALostWorld_422GameStateBase;
 // Entity In Battle:
 // A class that handles the functions of an entity in battle.
 // Handles entity variables such as health and mana, current cards, etc.
-// Represented in the world by an EntityInWorld actor.	
 
 UCLASS()
 class LOSTWORLD_422_API ABaseClass_EntityInBattle : public AActor
@@ -63,8 +62,23 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInGraveyard;
 
+	// Slots:
+	// 0 - Head
+	// 1 - Earrings
+	// 2 - Neck
+	// 3 - Torso
+	// 4 - Left Glove
+	// 5 - Right Glove
+	// 6 to 11 - Left Hand Rings
+	// 12 to 16 - Right Hand Rings
+	// 17 - Belt
+	// 18 - Legs
+	// 19 - Left Shoe
+	// 20 - Right Shoe
+	// 21 - Left-hand Weapon
+	// 22 - Right-hand Weapon
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<F_Item_Base> EquippedItem;
+	TArray<F_Item_Base> EquippedItems;
 
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

@@ -264,19 +264,39 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString DisplayName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Description;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
-	//TSubclassOf<AItmeFunctions_BaseClass> Functions;
+	// Slots:
+	// -1 if not equippable
+	// 0 - Head
+	// 1 - Earrings
+	// 2 - Neck
+	// 3 - Torso
+	// 4 - Left Glove
+	// 5 - Right Glove
+	// 6 to 10 - Left Hand Rings
+	// 11 to 15 - Right Hand Rings
+	// 17 - Belt
+	// 18 - Legs
+	// 19 - Left Shoe
+	// 20 - Right Shoe
+	// 21 - Left-hand Weapon
+	// 22 - Right-hand Weapon
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int EquipSlot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AItemFunctions_BaseClass> Functions;
 
 	F_Item_Base()
 	{
 		DisplayName = "Default";
 		Description = "Default";
+		EquipSlot = -1;
 	}
 };
 
@@ -455,7 +475,7 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 	TArray<FDataTableRowHandle> Cards;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
-		float BaseExperiencePointsRate;
+	float BaseExperiencePointsRate;
 
 	F_NonPlayerEntity_DatabaseEntry()
 	{

@@ -1,6 +1,9 @@
 #include "ItemFunctions_BaseClass.h"
 
 
+#include "BaseClass_EntityInBattle.h"
+
+
 // Sets default values
 AItemFunctions_BaseClass::AItemFunctions_BaseClass()
 {
@@ -35,13 +38,13 @@ void AItemFunctions_BaseClass::RunItemAbilityFunction()
 
 
 // ------------------------- Triggered Functions ------------------------- //
-void AItemFunctions_BaseClass::TriggeredFunction_OnItemEquipped()
+void AItemFunctions_BaseClass::TriggeredFunction_OnItemEquipped(ABaseClass_EntityInBattle* EquippedEntity)
 {
 
 }
 
 
-void AItemFunctions_BaseClass::TriggeredFunction_StarterOfWearerTurn()
+void AItemFunctions_BaseClass::TriggeredFunction_StarterOfWearerTurn(ABaseClass_EntityInBattle* EquippedEntity)
 {
 
 }

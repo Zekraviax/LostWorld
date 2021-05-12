@@ -110,6 +110,41 @@ enum class E_Item_Types : uint8
 	E_Inventory,
 };
 
+UENUM(BlueprintType)
+enum class E_Item_EquipSlots : uint8
+{
+	// Slots:
+	// Head
+	// 5 Left-ear Earrings/Piercings
+	// 5 Right-ear Earrings/Piercings
+	// Neck
+	// Torso
+	// Left Glove
+	// Right Glove
+	// 5 Left Hand Rings
+	// 5 Right Hand Rings
+	// Belt
+	// Legs (Pant)
+	// Left Shoe
+	// Right Shoe
+	// Left-hand Weapon
+	// Right-hand Weapon
+	E_NotEquippable,
+	E_Head,
+	E_LeftEar,
+	E_RightEar,
+	E_Neck,
+	E_Torso,
+	E_LeftHand,
+	E_RightHand,
+	E_LeftFinger,
+	E_RightFinger,
+	E_Waist,
+	E_Legs,
+	E_LeftFoot,
+	E_RightFoot
+};
+
 
 // Level Rooms
 UENUM(BlueprintType)
@@ -270,24 +305,8 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Description;
 
-	// Slots:
-	// -1 if not equippable
-	// 0 - Head
-	// 1 - Earrings
-	// 2 - Neck
-	// 3 - Torso
-	// 4 - Left Glove
-	// 5 - Right Glove
-	// 6 to 10 - Left Hand Rings
-	// 11 to 15 - Right Hand Rings
-	// 17 - Belt
-	// 18 - Legs
-	// 19 - Left Shoe
-	// 20 - Right Shoe
-	// 21 - Left-hand Weapon
-	// 22 - Right-hand Weapon
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int EquipSlot;
+	TArray<E_Item_EquipSlots> EquipSlots;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AItemFunctions_BaseClass> Functions;
@@ -296,7 +315,6 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	{
 		DisplayName = "Default";
 		Description = "Default";
-		EquipSlot = -1;
 	}
 };
 

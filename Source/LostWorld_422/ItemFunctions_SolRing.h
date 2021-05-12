@@ -4,6 +4,9 @@
 #include "ItemFunctions_BaseClass.h"
 #include "ItemFunctions_SolRing.generated.h"
 
+// Forward Declarations
+class ABaseClass_EntityInBattle;
+
 
 UCLASS()
 class LOSTWORLD_422_API AItemFunctions_SolRing : public AItemFunctions_BaseClass
@@ -12,6 +15,6 @@ class LOSTWORLD_422_API AItemFunctions_SolRing : public AItemFunctions_BaseClass
 	
 
 // ------------------------- Triggered Functions
-	virtual void TriggeredFunction_OnItemEquipped();
-	virtual void TriggeredFunction_StarterOfWearerTurn();
+	virtual void TriggeredFunction_OnItemEquipped(ABaseClass_EntityInBattle* EquippedEntity);
+	virtual void TriggeredFunction_StarterOfWearerTurn(ABaseClass_EntityInBattle* EquippedEntity);
 };

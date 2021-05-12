@@ -147,7 +147,7 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		for (int i = 0; i < EquippedItems.Num(); i++) {
 			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[0].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
-			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn();
+			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
 
 			ItemAbilityActor_Reference->ConditionalBeginDestroy();
 		}

@@ -4,6 +4,9 @@
 #include "GameFramework/Actor.h"
 #include "ItemFunctions_BaseClass.generated.h"
 
+// Forward Declarations
+class ABaseClass_EntityInBattle;
+
 
 UCLASS()
 class LOSTWORLD_422_API AItemFunctions_BaseClass : public AActor
@@ -41,6 +44,6 @@ public:
 
 
 // ------------------------- Triggered Functions
-	virtual void TriggeredFunction_OnItemEquipped();
-	virtual void TriggeredFunction_StarterOfWearerTurn();
+	virtual void TriggeredFunction_OnItemEquipped(ABaseClass_EntityInBattle* EquippedEntity);
+	virtual void TriggeredFunction_StarterOfWearerTurn(ABaseClass_EntityInBattle* EquippedEntity);
 };

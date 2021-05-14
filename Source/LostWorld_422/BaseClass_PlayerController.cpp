@@ -4,6 +4,7 @@
 #include "BaseClass_DefaultPawn.h"
 #include "BaseClass_GridTile.h"
 #include "BaseClass_Widget_Minimap.h"
+#include "ItemFunctions_BaseClass.h"
 #include "WidgetComponent_MinimapRoom.h"
 #include "Components/SceneComponent.h"
 
@@ -44,22 +45,30 @@ void ABaseClass_PlayerController::BeginPlay()
 	// (Add the same amount of each card because it's easier and more fun this way)
 	FString ContextString;
 	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
+	FCardBase* Card;
 
-	FCardBase* Card_Shock = CardsTable->FindRow<FCardBase>("Shock", ContextString, true);
-	FCardBase* Card_SuddenInspiration = CardsTable->FindRow<FCardBase>("SuddenInspiration", ContextString, true);
-	FCardBase* Card_BloodRecycling = CardsTable->FindRow<FCardBase>("BloodRecycling", ContextString, true);
-	FCardBase* Card_Annihilate = CardsTable->FindRow<FCardBase>("Annihilate", ContextString, true);
-	FCardBase* Card_RollingQuake = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
+	for (int i = 0; i < Card_ListNames.Num(); i++) {
+		Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
 
-	for (int i = 0; i < 5; i++) {
-		CurrentCollection.Add(*Card_Shock);
+		// DOn't add any cards that aren't done yet
+		if (Card->AbilitiesAndConditions.Num() > 0) {
+			for (int x = 0; x < 2; x++) {
+				CurrentCollection.Add(*Card);
+			}
+		}
 	}
-	for (int i = 0; i < 2; i++) {
-		CurrentCollection.Add(*Card_SuddenInspiration);
+
+	// Add one of each item to the player's inventory
+	TArray<FName> Item_ListNames = ItemsTable->GetRowNames();
+	F_Item_Base* Item;
+
+	for (int i = 0; i < Item_ListNames.Num(); i++) {
+		Item = ItemsTable->FindRow<F_Item_Base>(Item_ListNames[i], ContextString, true);
+
+		if (Item->Functions > 0) {
+			PlayerInventory.Add(*Item);
+		}
 	}
-	CurrentCollection.Add(*Card_BloodRecycling);
-	CurrentCollection.Add(*Card_Annihilate);
-	CurrentCollection.Add(*Card_RollingQuake);
 
 	ManualBeginPlay();
 }

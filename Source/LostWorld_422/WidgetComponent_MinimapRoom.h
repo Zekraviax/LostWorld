@@ -37,13 +37,13 @@ public:
 	UBaseClass_Widget_Minimap* MinimapReference;
 
 // ------------------------- Technical Variables
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int X_Coordinate;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Y_Coordinate;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool PlayerCanMoveTo;
 
 // Functions

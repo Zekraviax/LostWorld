@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -12,10 +10,12 @@
 
 #include "BaseClass_Widget_DeckBuilder.generated.h"
 
+
 // Forward Declaration
 class ABaseClass_PlayerController;
 class UBaseClass_HUD_Battle;
 class UBaseClass_HUD_Level;
+
 
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_Widget_DeckBuilder : public UUserWidget

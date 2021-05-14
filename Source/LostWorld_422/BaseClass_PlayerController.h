@@ -52,6 +52,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CurrentExperiencePoints;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<F_Item_Base> PlayerInventory;
+
 // ------------------------- Entity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBase CurrentEntityData;
@@ -74,6 +77,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* CardsTable;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* ItemsTable;
 
 // ------------------------- Widgets
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

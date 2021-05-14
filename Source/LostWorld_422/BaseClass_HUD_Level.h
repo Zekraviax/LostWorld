@@ -13,6 +13,10 @@
 #include "BaseClass_HUD_Level.generated.h"
 
 
+// Forward Declarations
+class UWidget_Inventory_Base;
+
+
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_HUD_Level : public UUserWidget
 {
@@ -37,6 +41,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_DeckBuilder* DeckBuilderRef;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_Inventory_Base> InventoryWidget_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_Inventory_Base* InventoryWidget_Reference;
+
 // ------------------------- Room Features
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<E_LevelRoom_EncounterTypes> EncounterList;
@@ -47,4 +57,7 @@ public:
 // ------------------------- Widgets
 	UFUNCTION(BlueprintCallable)
 	void OpenDeckBuilder();
+
+	UFUNCTION(BlueprintCallable)
+	void OpenInventory();
 };

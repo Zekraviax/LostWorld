@@ -8,7 +8,7 @@
 ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 {
 	// SpentMana Widget
-	static ConstructorHelpers::FClassFinder<UUserWidget> SpentManaWidget_ClassFinder(TEXT("WidgetBlueprint'/Game/Blueprint_Widget_SpentMana.Blueprint_Widget_SpentMana_C'"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> SpentManaWidget_ClassFinder(TEXT("WidgetBlueprint'/Game/Widget_SpentMana_Blueprint.Widget_SpentMana_Blueprint_C'"));
 	if (SpentManaWidget_ClassFinder.Class) {
 		SpentManaWidget_Class = SpentManaWidget_ClassFinder.Class;
 	}
@@ -33,7 +33,6 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
 
 		// Get random targets here so that we avoid hitting an entity that's already dead
-
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -41,12 +40,16 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 				StackEntry.Card.CurrentTargets.Add(FoundEntity);
 			}
 		}
+		for (int i = StackEntry.Card.CurrentTargets.Num() - 1; i >= 0; i--) {
+			if (StackEntry.Card.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value <= 0) {
+				StackEntry.Card.CurrentTargets.RemoveAt(i);
+			}
+		}
 
 		ABaseClass_EntityInBattle* RandEnemy = StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)];
 
 		int32 OldHealthValue = StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
 		StackEntry.Card.CurrentTargets[0]->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
-		StackEntry.Card.CurrentTargets[0]->Event_CardCastOnThis();
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + StackEntry.Card.CurrentTargets[0]->EntityBaseData.DisplayName)));
 	}

@@ -5,6 +5,7 @@
 
 #include "Engine/UserDefinedStruct.h"
 #include "Engine/DataTable.h"
+#include "ItemFunctions_BaseClass.h"
 
 #include "LostWorld_422GameModeBase.generated.h"
 
@@ -14,7 +15,6 @@ class ABaseClass_CardFunctionsLibrary;
 class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 class ACardAbilityActor_BaseClass;
-class AItemFunctions_BaseClass;
 
 
 // Enums
@@ -315,6 +315,19 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	{
 		DisplayName = "Default";
 		Description = "Default";
+	}
+
+
+	FORCEINLINE bool operator==(const F_Item_Base& OtherItem) const
+	{
+		if (DisplayName == OtherItem.DisplayName &&
+			Description == OtherItem.Description &&
+			EquipSlots == OtherItem.EquipSlots &&
+			Functions == OtherItem.Functions) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 };
 

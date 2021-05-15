@@ -20,14 +20,14 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	UButton* ItemEquipButton;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UButton* ItemEquipButtonWidget = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	UTextBlock* ItemEquipText;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTextBlock* ItemEquipTextWidget = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	UTextBlock* ItemNameText;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTextBlock* ItemNameTextWIdget = nullptr;
 
 // ------------------------- Widget
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -48,6 +48,6 @@ public:
 	void OnEquipButtonPressed();
 
 // ------------------------- Widget
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void UpdateWidget();
 };

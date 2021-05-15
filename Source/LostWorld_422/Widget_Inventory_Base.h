@@ -48,5 +48,5 @@ public:
 
 // ------------------------- Widget
 	UFUNCTION()
-	void OnInventoryOpened(ABaseClass_PlayerController* PlayerController);
+	void OnInventoryOpened(ABaseClass_PlayerController* PlayerController = nullptr);
 };

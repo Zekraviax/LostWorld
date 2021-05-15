@@ -8,7 +8,12 @@
 // ------------------------- Widget
 void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* PlayerController)
 {
-	PlayerControllerReference = PlayerController;
+	if (!PlayerController->IsValidLowLevel())
+		PlayerControllerReference = PlayerController;
+
+	if (!PlayerControllerReference->IsValidLowLevel()) {
+		PlayerControllerReference = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+	}
 
 	// Get all equipped items and add them to the EquippedItemsScrollBox
 	for (int i = 0; i < PlayerControllerReference->EntityInBattleRef->EquippedItems.Num(); i++) {
@@ -29,6 +34,9 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 	}
 
 	// Get all unequipped items and add them to the UnequippedItemsScrollBox
+	if (InventoryItem_Class)
+		UnequippedItemsScrollBox->ClearChildren();
+
 	for (int i = 0; i < PlayerControllerReference->PlayerInventory.Num(); i++) {
 		if (InventoryItem_Class->IsValidLowLevel()) {
 			InventoryItem_Reference = CreateWidget<UWidgetComponent_Inventory_Item_Base>(GetWorld(), InventoryItem_Class);

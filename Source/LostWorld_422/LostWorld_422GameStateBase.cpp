@@ -241,7 +241,9 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
 
 			// Remove the Encounter from the list
-			LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.RemoveAt(0);
+			if (LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.Num() > 0)
+				LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.RemoveAt(0);
+
 			LocalPlayerControllerRef->CurrentLocationInLevel->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None;
 
 			// Return the player to the Room

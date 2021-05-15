@@ -433,20 +433,42 @@ struct LOSTWORLD_422_API FEntity_ElementalStats
 {
 	GENERATED_BODY()
 
+	// Increases damage dealt by Fire attacks
+	// Decreases damage taken by Fire attacks
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Fervor;
+
+	// Flexibility?
+
+	// Increases damage dealt by Air attacks
+	// Decreases damage taken by Air attacks
+	int Exuberance;
+
 	// Increases damage dealt by Earth attacks
 	// Decreases damage taken by Earth attacks
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Toughness;
 
+	// Dynamism
+
+	// Mysteriousness?
+
+	// Increases damage dealt by Light attacks
+	// Decreases damage taken by Light attacks
+	int Radiance;
+
 	// Increases damage dealt by Divine attacks
 	// Decreases damage taken by Divine attacks
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Faith;
+	int Loyalty;
 
 	FEntity_ElementalStats()
 	{
+		Fervor = 0;
+		Exuberance = 0;
 		Toughness = 0;
-		Faith = 0;
+		Radiance = 0;
+		Loyalty = 0;
 	}
 };
 
@@ -466,6 +488,12 @@ struct LOSTWORLD_422_API FEntityBase
 	FIntVector2D ManaValues;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int HealthRegenPerTurn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int ManaRegenPerTurn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FEntity_BaseStats CoreStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
@@ -480,6 +508,8 @@ struct LOSTWORLD_422_API FEntityBase
 	FEntityBase()
 	{
 		DisplayName = "Default";
+		HealthRegenPerTurn = 0;
+		ManaRegenPerTurn = 3;
 		HealthValues = FIntVector2D(10, 10);
 		ManaValues = FIntVector2D(10, 10);
 		IsPlayerControllable = false;

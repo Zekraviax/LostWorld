@@ -136,8 +136,6 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
-	//EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
-
 	if (EquippedItems.Num() > 0) {
 		// Spawn ability actor
 		FActorSpawnParameters SpawnParameters;

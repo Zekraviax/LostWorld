@@ -36,9 +36,14 @@ void AItemFunctions_BaseClass::RunItemAbilityFunction()
 
 // ------------------------- Widget Functions ------------------------- //
 
-
 // ------------------------- Triggered Functions ------------------------- //
 void AItemFunctions_BaseClass::TriggeredFunction_OnItemEquipped(ABaseClass_EntityInBattle* EquippedEntity)
+{
+
+}
+
+
+void AItemFunctions_BaseClass::TriggeredFunction_OnItemUnequipped(ABaseClass_EntityInBattle * EquippedEntity)
 {
 
 }

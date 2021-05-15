@@ -16,5 +16,6 @@ class LOSTWORLD_422_API AItemFunctions_SolRing : public AItemFunctions_BaseClass
 
 // ------------------------- Triggered Functions
 	virtual void TriggeredFunction_OnItemEquipped(ABaseClass_EntityInBattle* EquippedEntity);
+	virtual void TriggeredFunction_OnItemUnequipped(ABaseClass_EntityInBattle* EquippedEntity);
 	virtual void TriggeredFunction_StarterOfWearerTurn(ABaseClass_EntityInBattle* EquippedEntity);
 };

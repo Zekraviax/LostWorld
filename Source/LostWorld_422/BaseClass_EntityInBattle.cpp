@@ -136,6 +136,19 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
+	// Draw cards to hand size
+	if (CardsInHand.Num() < EntityBaseData.HandSize) {
+		for (int i = CardsInHand.Num(); i < EntityBaseData.HandSize; i++) {
+			Event_DrawCard();
+		}
+	}
+
+	// Regenerate mana
+	EntityBaseData.ManaValues.X_Value += EntityBaseData.ManaRegenPerTurn;
+	if (EntityBaseData.ManaValues.X_Value > EntityBaseData.ManaValues.Y_Value) {
+		EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
+	}
+
 	if (EquippedItems.Num() > 0) {
 		// Spawn ability actor
 		FActorSpawnParameters SpawnParameters;
@@ -167,6 +180,29 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 
 	for (int k = 0; k < CardsInDeck.Num(); k++)
 		CardsInDeck[k].ZoneIndex = k;
+}
+
+
+void ABaseClass_EntityInBattle::Event_DrawCard()
+{
+	// Check if there are any cards in deck
+	// If not, shuffle the graveyard into the deck
+	if (CardsInDeck.Num() <= 0) {
+		if (CardsInGraveyard.Num() > 0) {
+			for (int i = 0; i < CardsInGraveyard.Num(); i++) {
+				CardsInDeck.Add(CardsInGraveyard[i]);
+			}
+
+			CardsInGraveyard.Empty();
+			ShuffleCardsInDeck_BP();
+		}
+	}
+
+	CardsInHand.Add(CardsInDeck[0]);
+	CardsInDeck.RemoveAt(0);
+
+	UpdateCardIndicesInAllZones();
+	UpdateCardWidgets();
 }
 
 

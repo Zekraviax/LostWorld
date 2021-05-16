@@ -33,10 +33,7 @@ class LOSTWORLD_422_API UBaseClass_HUD_Battle : public UUserWidget
 public:
 	virtual void NativeConstruct();
 
-protected:
-
-public:
-// Base Variables
+// Variables
 // --------------------------------------------------
 
 // ------------------------- Components

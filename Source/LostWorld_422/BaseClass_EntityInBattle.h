@@ -148,6 +148,9 @@ public:
 	void UpdateCardIndicesInAllZones();
 
 	UFUNCTION()
+	void Event_DrawCard();
+
+	UFUNCTION()
 	void Event_CardCastOnThis();
 
 	UFUNCTION()

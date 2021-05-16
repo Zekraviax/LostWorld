@@ -494,6 +494,9 @@ struct LOSTWORLD_422_API FEntityBase
 	int ManaRegenPerTurn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int HandSize;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FEntity_BaseStats CoreStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
@@ -510,6 +513,7 @@ struct LOSTWORLD_422_API FEntityBase
 		DisplayName = "Default";
 		HealthRegenPerTurn = 0;
 		ManaRegenPerTurn = 3;
+		HandSize = 7;
 		HealthValues = FIntVector2D(10, 10);
 		ManaValues = FIntVector2D(10, 10);
 		IsPlayerControllable = false;

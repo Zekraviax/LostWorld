@@ -2,19 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "CardAbilityActor_BaseClass.h"
-#include "CardFunctions_RollingQuake.generated.h"
+#include "CardFunctions_LayOnHands.generated.h"
 
 // Forward Declarations
 class UBaseClass_Widget_SpentMana;
 
 
 UCLASS()
-class LOSTWORLD_422_API ACardFunctions_RollingQuake : public ACardAbilityActor_BaseClass
+class LOSTWORLD_422_API ACardFunctions_LayOnHands : public ACardAbilityActor_BaseClass
 {
 	GENERATED_BODY()
 
-	ACardFunctions_RollingQuake();
-	
+	ACardFunctions_LayOnHands();
+
 public:
 
 // Variables

@@ -187,6 +187,8 @@ void ABaseClass_EntityInBattle::Event_DrawCard()
 {
 	// Check if there are any cards in deck
 	// If not, shuffle the graveyard into the deck
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Cards in Deck: %d"), CardsInDeck.Num()));
+
 	if (CardsInDeck.Num() <= 0) {
 		if (CardsInGraveyard.Num() > 0) {
 			for (int i = 0; i < CardsInGraveyard.Num(); i++) {

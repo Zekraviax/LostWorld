@@ -49,6 +49,7 @@ enum class E_Card_DamageTypes : uint8
 {
 	E_Physical,
 	E_Magical,
+	E_LifeLoss,
 	E_Other
 };
 
@@ -206,6 +207,15 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString AbilityDescription;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 BaseDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 BaseHealing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 BaseDraw;
 
 	FCardAbilitiesAndConditions()
 	{
@@ -500,6 +510,9 @@ struct LOSTWORLD_422_API FEntityBase
 	FEntity_BaseStats CoreStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
+	bool IsPlayer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	bool IsPlayerControllable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
@@ -517,6 +530,7 @@ struct LOSTWORLD_422_API FEntityBase
 		HealthValues = FIntVector2D(10, 10);
 		ManaValues = FIntVector2D(10, 10);
 		IsPlayerControllable = false;
+		IsPlayer = false;
 	}
 };
 
@@ -528,26 +542,28 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
-	FString DisplayName;
+	FEntityBase EntityBaseData;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-	int32 MaximumHealthPoints;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	FString Description;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-	int32 MaximumManaPoints;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Base")
+	UTexture2D* Image;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cards")
 	TArray<FDataTableRowHandle> Cards;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
-	float BaseExperiencePointsRate;
+	float BaseExperiencePoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	float BaseMoney;
 
 	F_NonPlayerEntity_DatabaseEntry()
 	{
-		DisplayName = "Default";
-		MaximumHealthPoints = 10;
-		MaximumManaPoints = 10;
-		BaseExperiencePointsRate = 1;
+		Description = "Default";
+		BaseExperiencePoints = 1;
+		BaseMoney = 1;
 	}
 };
 

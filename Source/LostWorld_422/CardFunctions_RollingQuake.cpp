@@ -24,7 +24,7 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 // ------------------------- Base Class Functions
 void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	int DamageValue = 2;
+	int DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
 
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction)

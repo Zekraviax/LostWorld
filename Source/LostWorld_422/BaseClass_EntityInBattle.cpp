@@ -230,6 +230,7 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 	int DamageValue = IncomingDamage;
 
 	EntityBaseData.HealthValues.X_Value -= DamageValue;
+	Event_CardCastOnThis();
 }
 
 

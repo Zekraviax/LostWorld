@@ -418,10 +418,24 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 
 	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
 		ABaseClass_LevelRoom* FoundRoom = *RoomItr;
-
 		ABaseClass_GridTile* RoomSpawnTile = FoundRoom->GridTilesInRoom[FMath::RandRange(0, FoundRoom->GridTilesInRoom.Num() - 1)];
 		RoomSpawnTile->EncountersList.Add(NewEncounter);
 		RoomSpawnTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle;
+	}
+
+	// Spawn Player Into a Room at a random tile
+	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
+		ABaseClass_GridTile* FoundTile = *TileItr;
+		if (FoundTile->RoomReference->IsValidLowLevel()) {
+			if (FoundTile->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None) {
+				ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+				LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
+
+				LocalPlayerControllerRef->MoveToTile(FoundTile);
+				//FoundTile->OccupyingEntity = LocalPlayerControllerRef->EntityInBattleRef;
+				break;
+			}
+		}
 	}
 
 	// Pick a random tile to spawn the stairs
@@ -440,10 +454,4 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 			}
 		}
 	}
-
-	// Spawn Player Into a Room at a random tile
-	ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
-	LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
-
-	LocalPlayerControllerRef->MoveToTile(PlayerSpawnTiles[FMath::RandRange(0, PlayerSpawnTiles.Num() - 1)]);
 }

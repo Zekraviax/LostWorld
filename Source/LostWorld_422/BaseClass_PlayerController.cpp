@@ -92,6 +92,8 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		EntityInBattleRef->PlayerControllerRef = this;
 
 		EntityInBattleRef->EntityBaseData.GameOverOnDeath.GameOverOnDeath = true;
+		EntityInBattleRef->EntityBaseData.IsPlayerControllable = true;
+		EntityInBattleRef->EntityBaseData.IsPlayer = true;
 
 		// Set Camera Target
 		FViewTargetTransitionParams Params;

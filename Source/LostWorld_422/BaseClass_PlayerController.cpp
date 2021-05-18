@@ -137,13 +137,18 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		// Set rudimentary targets based on cast mode
 		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget)
 		{
+			// Any Single (Entity) Target
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
 			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
-
 		} else if (CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_Self) {
+			// Self Target
 			CurrentDragCardRef->CardData.CurrentTargets.Add(CurrentDragCardRef->CardData.Controller);
 
+		} else if (Cast<ABaseClass_GridTile>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_UnoccupiedGridTile) {
+			// Any Unoccupied Tile
+
 		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
+			// Stop the spell from being cast if the player hit an invalid target
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;
 			return;
@@ -152,22 +157,18 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 		if (!CurrentDragCardRef->CardData.Controller) {
 			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: No Controller"));
 		} else {
-			if (CurrentDragCardRef->CardData.AbilitiesAndConditions[0].AbilityConditions.Contains(E_Card_AbilityConditions::E_CastingCost_X)) {
-
-			} else {
-				if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
-					if (CurrentDragCardRef->CardData.ManaCost >= 1) {
-						EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
-					}
-				} else {
-					CurrentDragCardRef->RemoveFromParent();
-					CurrentDragCardRef = NULL;
-					GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: Failed to cast card"));
-					return;
+			if (EntityInBattleRef->EntityBaseData.ManaValues.X_Value >= CurrentDragCardRef->CardData.ManaCost) {
+				if (CurrentDragCardRef->CardData.ManaCost >= 1) {
+					EntityInBattleRef->EntityBaseData.ManaValues.X_Value -= CurrentDragCardRef->CardData.ManaCost;
 				}
-				CurrentDragCardRef->CastCard();
+			} else {
+				CurrentDragCardRef->RemoveFromParent();
+				CurrentDragCardRef = NULL;
+				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: Failed to cast card"));
+				return;
 			}
-
+			CurrentDragCardRef->CastCard();
+			
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{

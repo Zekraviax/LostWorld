@@ -10,6 +10,6 @@ void ACardFunctions_SuddenInspiration::RunCardAbilityFunction(FStackEntry StackE
 	int DrawValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDraw;
 
 	for (int i = 0; i < DrawValue; i++) {
-		StackEntry.Card.CurrentTargets[0]->Event_DrawCard();
+		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DrawCard();
 	}
 }

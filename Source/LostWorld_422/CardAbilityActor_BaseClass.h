@@ -41,4 +41,7 @@ public:
 
 // ------------------------- Widget Functions
 	virtual void WidgetFunction_SpendMana();
+
+// ------------------------- Technical Functions
+	virtual AActor* TechnicalFunction_SimpleGetTarget();
 };

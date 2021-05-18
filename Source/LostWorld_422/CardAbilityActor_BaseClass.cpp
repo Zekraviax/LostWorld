@@ -37,3 +37,10 @@ void ACardAbilityActor_BaseClass::WidgetFunction_SpendMana()
 {
 
 }
+
+
+// ------------------------- Technical Functions
+AActor* ACardAbilityActor_BaseClass::TechnicalFunction_SimpleGetTarget()
+{
+	return nullptr;
+}

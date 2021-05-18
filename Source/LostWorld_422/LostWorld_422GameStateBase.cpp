@@ -219,9 +219,9 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
 
 		//	Update all targets
-		for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
-			TheStack[0].Card.CurrentTargets[i]->Event_CardCastOnThis();
-		}
+		//for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
+		//	Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+		//}
 
 		// Remove ability from the stack once done
 		TheStack.RemoveAt(0);

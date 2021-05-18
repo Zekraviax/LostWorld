@@ -80,7 +80,8 @@ enum class E_Card_SetTargets : uint8
 	E_Self,
 	E_AllEnemies,
 	E_AnyTarget,
-	E_CastTarget
+	E_CastTarget,
+	E_UnoccupiedGridTile,
 };
 
 // Modes for casting on a target, not specifically the spells' target
@@ -271,7 +272,7 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	ABaseClass_EntityInBattle* Controller;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
-	TArray<ABaseClass_EntityInBattle*> CurrentTargets;
+	TArray<AActor*> CurrentTargets;
 
 	FCardBase()
 	{

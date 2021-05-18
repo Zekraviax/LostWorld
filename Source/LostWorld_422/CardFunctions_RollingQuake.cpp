@@ -36,22 +36,24 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-			if (!FoundEntity->EntityBaseData.IsPlayerControllable && FoundEntity->EntityBaseData.HealthValues.X_Value > 0) {
+
+			if (!FoundEntity->EntityBaseData.IsPlayerControllable && FoundEntity->EntityBaseData.HealthValues.X_Value > 0)
 				StackEntry.Card.CurrentTargets.Add(FoundEntity);
-			}
-		}
-		for (int i = StackEntry.Card.CurrentTargets.Num() - 1; i >= 0; i--) {
-			if (StackEntry.Card.CurrentTargets[i]->EntityBaseData.HealthValues.X_Value <= 0) {
-				StackEntry.Card.CurrentTargets.RemoveAt(i);
-			}
 		}
 
-		ABaseClass_EntityInBattle* RandEnemy = StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)];
+		if (StackEntry.Card.CurrentTargets.Num() > 0) {
+			for (int i = StackEntry.Card.CurrentTargets.Num() - 1; i >= 0; i--) {
+				if (Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[i])->EntityBaseData.HealthValues.X_Value <= 0)
+					StackEntry.Card.CurrentTargets.RemoveAt(i);
+			}
 
-		int32 OldHealthValue = StackEntry.Card.CurrentTargets[0]->EntityBaseData.HealthValues.X_Value;
-		StackEntry.Card.CurrentTargets[0]->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
+			ABaseClass_EntityInBattle* RandEnemy = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)]);
 
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + StackEntry.Card.CurrentTargets[0]->EntityBaseData.DisplayName)));
+			int32 OldHealthValue = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.HealthValues.X_Value;
+			Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
+
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.DisplayName)));
+		}
 	}
 }
 

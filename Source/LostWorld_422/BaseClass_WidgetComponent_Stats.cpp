@@ -19,5 +19,9 @@ void UBaseClass_WidgetComponent_Stats::NativeTick(const FGeometry& MyGeometry, f
 		float ManaPercentValue = FMath::FInterpTo(ManaBar->Percent, ManaValue, DeltaTime, 5.f);
 		HealthBar->SetPercent(HealthPercentValue);
 		ManaBar->SetPercent(ManaPercentValue);
+
+		if (NameText->GetText().ToString() != LinkedEntity->EntityBaseData.DisplayName) {
+			NameText->SetText(FText::FromString(LinkedEntity->EntityBaseData.DisplayName));
+		}
 	}
 }

@@ -146,7 +146,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 		} else if (Cast<ABaseClass_GridTile>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_UnoccupiedGridTile) {
 			// Any Unoccupied Tile
-
+			CurrentDragCardRef->CardData.CurrentTargets.Add(HitResult.GetActor());
 		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 			// Stop the spell from being cast if the player hit an invalid target
 			CurrentDragCardRef->RemoveFromParent();
@@ -316,7 +316,6 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 			CurrentLocationInLevel->OccupyingEntity = nullptr;
 		}
 	}
-
 
 	// Set Player's Entity location
 	EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());

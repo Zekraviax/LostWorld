@@ -40,7 +40,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-// Base Variables
+// Variables
 // --------------------------------------------------
 
 // ------------------------- Entity

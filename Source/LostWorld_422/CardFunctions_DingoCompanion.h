@@ -5,6 +5,10 @@
 #include "CardFunctions_DingoCompanion.generated.h"
 
 
+// Forward Declarations
+class ABaseClass_EntityInBattle;
+
+
 UCLASS()
 class LOSTWORLD_422_API ACardFunctions_DingoCompanion : public ACardAbilityActor_BaseClass
 {
@@ -17,8 +21,11 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY()
 	UDataTable* SummonsTable;
+
+	UPROPERTY()
+	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_BlueprintClass;
 
 // Functions
 // --------------------------------------------------

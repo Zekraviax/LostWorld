@@ -116,10 +116,8 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 	if (!GameStateRef)
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
-	if (EntityBaseData.IsPlayerControllable && GameStateRef->SortedTurnOrderList[0] == this)
-	{
-		for (int i = 0; i < CardsInHand.Num(); i++)
-		{
+	if (EntityBaseData.IsPlayerControllable && GameStateRef->SortedTurnOrderList[0] == this) {
+		for (int i = 0; i < CardsInHand.Num(); i++) {
 			if (i == 0)
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);
 			else
@@ -164,7 +162,14 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		}
 	}
 
-	if (!EntityBaseData.IsPlayerControllable) {
+	// Set camera to focus on this entity?
+
+	// If player controllable, take control of the entity
+	// Else, cast a random card
+	if (EntityBaseData.IsPlayerControllable) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->EntityInBattleRef = this;
+		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+	} else {
 		AI_CastRandomCard();
 	}
 }
@@ -221,6 +226,7 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		// BattleEvent_EntityDied();
 		GameStateRef->Event_EntityDied(this);
 	}
+
 	// Check if all entities are/the player is dead in the GameState class
 }
 

@@ -12,28 +12,48 @@ ACardFunctions_LayOnHands::ACardFunctions_LayOnHands()
 	if (SpentManaWidget_ClassFinder.Class) {
 		SpentManaWidget_Class = SpentManaWidget_ClassFinder.Class;
 	}
+
+	// Cards DataTable
+	static ConstructorHelpers::FObjectFinder<UDataTable> CardsDataTable_Object(TEXT("DataTable'/Game/DataTables/Cards_List.Cards_List'"));
+	if (CardsDataTable_Object.Succeeded()) {
+		CardsTable = CardsDataTable_Object.Object;
+	}
 }
 
 
 // ------------------------- Base Class Functions
 void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	//SpentMana_Widget Check
-	if (StackEntry.RunWidgetFunction)
-		WidgetFunction_SpendMana();
-	else {
+	int HealingValue = StackEntry.Card.AbilitiesAndConditions[0].BaseHealing;
 
+	//SpentMana_Widget Check
+	if (StackEntry.RunWidgetFunction) {
+		if (SpentManaWidget_Class) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Lay on Hands (Spend Mana)"));
+
+			SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
+			SpentManaWidget_Reference->CardsTableRowName = "LayOnHands";
+			SpentManaWidget_Reference->StackEntry = StackEntry;
+			SpentManaWidget_Reference->AddToViewport();
+		}
+	} else {
+		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_HealingIncoming(HealingValue);
+
+		StackEntry.Card.Controller->Event_DrawCard();
 	}
 }
 
 
 // ------------------------- Widget Functions
-void ACardFunctions_LayOnHands::WidgetFunction_SpendMana()
+void ACardFunctions_LayOnHands::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
-	if (SpentManaWidget_Class) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Lay on Hands (Spend Mana)"));
+	StackEntry.Card.AbilitiesAndConditions[0].BaseHealing = ManaSpent;
+	StackEntry.RunWidgetFunction = false;
 
-		SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
-		SpentManaWidget_Reference->AddToViewport();
-	}
+	Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(StackEntry);
+
+	// Subtract mana
+	StackEntry.Card.Controller->EntityBaseData.ManaValues.X_Value -= ManaSpent;
+
+	ConditionalBeginDestroy();
 }

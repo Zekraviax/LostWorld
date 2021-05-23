@@ -78,9 +78,11 @@ enum class E_Card_SetTargets : uint8
 {
 	E_None,
 	E_Self,
+	E_AnyENemy,
 	E_AllEnemies,
 	E_AnyTarget,
 	E_CastTarget,
+	E_AllTargets,
 	E_UnoccupiedGridTile,
 };
 

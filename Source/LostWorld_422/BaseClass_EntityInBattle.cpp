@@ -240,6 +240,15 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 }
 
 
+void ABaseClass_EntityInBattle::Event_HealingIncoming(int IncomingHealing)
+{
+	int HealingValue = IncomingHealing;
+
+	EntityBaseData.HealthValues.X_Value += HealingValue;
+	Event_CardCastOnThis();
+}
+
+
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand

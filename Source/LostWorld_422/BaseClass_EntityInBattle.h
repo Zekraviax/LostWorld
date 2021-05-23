@@ -156,6 +156,9 @@ public:
 	UFUNCTION()
 	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);
 
+	UFUNCTION()
+	void Event_HealingIncoming(int IncomingHealing);
+
 // ------------------------- AI
 	UFUNCTION()
 	void AI_CastRandomCard();

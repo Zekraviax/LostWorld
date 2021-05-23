@@ -28,8 +28,6 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Constructors
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UDataTable* CardsTable;
 
 // ------------------------- Widgets
 
@@ -40,7 +38,7 @@ public:
 	virtual void RunCardAbilityFunction(FStackEntry StackEntry);
 
 // ------------------------- Widget Functions
-	virtual void WidgetFunction_SpendMana();
+	virtual void WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry);
 
 // ------------------------- Technical Functions
 	virtual AActor* TechnicalFunction_SimpleGetTarget();

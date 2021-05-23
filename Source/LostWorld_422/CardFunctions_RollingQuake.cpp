@@ -14,10 +14,10 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 	}
 
 	// Cards DataTable
-	//static ConstructorHelpers::FObjectFinder<UDataTable> CardsDataTable_Object(TEXT("DataTable'/Game/DataTables/Card_List.Card_List'"));
-	//if (CardsDataTable_Object.Succeeded()) {
-	//	CardsTable = CardsDataTable_Object.Object;
-	//}
+	static ConstructorHelpers::FObjectFinder<UDataTable> CardsDataTable_Object(TEXT("DataTable'/Game/DataTables/Cards_List.Cards_List'"));
+	if (CardsDataTable_Object.Succeeded()) {
+		CardsTable = CardsDataTable_Object.Object;
+	}
 }
 
 
@@ -27,18 +27,27 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 	int DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
 
 	//SpentMana_Widget Check
-	if (StackEntry.RunWidgetFunction)
-		WidgetFunction_SpendMana();
-	else {
+	if (StackEntry.RunWidgetFunction) {
+		if (SpentManaWidget_Class) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Spend Mana)"));
+
+			SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
+			SpentManaWidget_Reference->CardsTableRowName = "RollingQuake";
+			SpentManaWidget_Reference->StackEntry = StackEntry;
+			SpentManaWidget_Reference->AddToViewport();
+		}
+	} else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
 
 		// Get random targets here so that we avoid hitting an entity that's already dead
+		StackEntry.Card.CurrentTargets.Empty();
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
-			if (!FoundEntity->EntityBaseData.IsPlayerControllable && FoundEntity->EntityBaseData.HealthValues.X_Value > 0)
-				StackEntry.Card.CurrentTargets.Add(FoundEntity);
+			if (FoundEntity->IsValidLowLevel())
+				if (!FoundEntity->EntityBaseData.IsPlayerControllable && FoundEntity->EntityBaseData.HealthValues.X_Value > 0)
+					StackEntry.Card.CurrentTargets.Add(FoundEntity);
 		}
 
 		if (StackEntry.Card.CurrentTargets.Num() > 0) {
@@ -49,22 +58,27 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 
 			ABaseClass_EntityInBattle* RandEnemy = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)]);
 
-			int32 OldHealthValue = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.HealthValues.X_Value;
-			Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
-
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, (TEXT("Target: " + Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.DisplayName)));
+			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
 		}
 	}
 }
 
 
 // ------------------------- Widget Functions
-void ACardFunctions_RollingQuake::WidgetFunction_SpendMana()
+void ACardFunctions_RollingQuake::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
-	if (SpentManaWidget_Class) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Spend Mana)"));
+	FString ContextString;
+	FStackEntry DuplicateCardStackEntry = StackEntry;
 
-		SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
-		SpentManaWidget_Reference->AddToViewport();
+	for (int r = 0; r < ManaSpent; r++) {
+		DuplicateCardStackEntry.Card = *CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
+		DuplicateCardStackEntry.RunWidgetFunction = false;
+
+		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(DuplicateCardStackEntry);
 	}
+
+	// Subtract mana
+	StackEntry.Card.Controller->EntityBaseData.ManaValues.X_Value -= ManaSpent;
+
+	ConditionalBeginDestroy();
 }

@@ -25,6 +25,9 @@ void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 		FString ContextString;
 
 		F_StatusEffect_Base* PoisonData = StatusEffectsTable->FindRow<F_StatusEffect_Base>(FName("Poison"), ContextString);
-		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->StatusEffects.Add(*PoisonData);
+		PoisonData->Source = StackEntry.Card.Controller;
+		
+		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_StatusEffectIncoming(*PoisonData);
+		//Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->StatusEffects.Add(*PoisonData);
 	}
 }

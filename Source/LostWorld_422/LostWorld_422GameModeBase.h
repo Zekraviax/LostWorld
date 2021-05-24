@@ -121,6 +121,28 @@ enum class E_Item_Types : uint8
 };
 
 
+// Status Effects
+UENUM(BlueprintType)
+enum class E_StatusEffect_TickDownConditions : uint8
+{
+	E_None,
+	E_BeginningOfAffectedEntityTurn,
+	E_BeginningOfAnyEntityTurn,
+	E_CastCard,
+};
+
+
+// A general categorization for how the game should treat a status effect
+UENUM(BlueprintType)
+enum class E_StatusEffect_Considerations : uint8
+{
+	E_Positive,
+	E_Negative,
+	E_Mixed,
+	E_NotApplicable,
+};
+
+
 UENUM(BlueprintType)
 enum class E_Item_EquipSlots : uint8
 {
@@ -368,7 +390,16 @@ struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
 	FIntVector2D CounterValues;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_StatusEffect_TickDownConditions TickDownCondition;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_StatusEffect_Considerations Consideration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AStatusFunctions_BaseClass> StatusFunctions;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical Variables")
+	ABaseClass_EntityInBattle* Source;
 
 	F_StatusEffect_Base()
 	{

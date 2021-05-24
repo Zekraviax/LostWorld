@@ -150,11 +150,15 @@ public:
 	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
 
+// ------------------------- Events
 	UFUNCTION()
 	void Event_DrawCard();
 
 	UFUNCTION()
 	void Event_CardCastOnThis();
+
+	UFUNCTION()
+	void Event_StatusEffectIncoming(F_StatusEffect_Base IncomingStatusEffect);
 
 	UFUNCTION()
 	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);

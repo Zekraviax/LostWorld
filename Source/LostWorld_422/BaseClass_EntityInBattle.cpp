@@ -192,6 +192,7 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 }
 
 
+// ------------------------- Events
 void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 {
 	for (int i = 0; i < CardsInHand.Num(); i++)
@@ -245,6 +246,12 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 	}
 
 	// Check if all entities are/the player is dead in the GameState class
+}
+
+
+void ABaseClass_EntityInBattle::Event_StatusEffectIncoming(F_StatusEffect_Base IncomingStatusEffect)
+{
+	StatusEffects.Add(IncomingStatusEffect);
 }
 
 

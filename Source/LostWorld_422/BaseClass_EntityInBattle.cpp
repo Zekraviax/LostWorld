@@ -130,7 +130,7 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 
 void ABaseClass_EntityInBattle::Begin_Turn()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
 	// Draw cards to hand size
 	if (CardsInHand.Num() < EntityBaseData.HandSize) {
@@ -152,7 +152,7 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 		for (int i = 0; i < EquippedItems.Num(); i++) {
-			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[0].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[i].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
 			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
 
@@ -163,10 +163,18 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	// Set camera to focus on this entity?
 
 	// Activate all Status Effect StartOfTurn Functions
-	TArray<UActorComponent*> StatusFunctionComponents = GetComponentsByClass(UStatusFunctions_BaseClass::StaticClass());
-	for (int i = 0; i < StatusFunctionComponents.Num(); i++) {
-		Cast<UStatusFunctions_BaseClass>(StatusFunctionComponents[i])->TriggeredFunction_StarterOfEntityTurn(this);
+	if (StatusEffects.Num() > 0) {
+		FActorSpawnParameters SpawnParameters;
+
+		for (int i = StatusEffects.Num() - 1; i >= 0; i--) {
+			AStatusFunctions_BaseClass* StatusEffectActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+			StatusEffectActor_Reference->TriggeredFunction_StarterOfEntityTurn(this);
+
+			StatusEffectActor_Reference->ConditionalBeginDestroy();
+		}
 	}
+
 
 	// If player controllable, take control of the entity
 	// Else, cast a random card

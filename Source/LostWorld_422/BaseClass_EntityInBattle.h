@@ -80,6 +80,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_Item_Base> EquippedItems;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<F_StatusEffect_Base> StatusEffects;
+
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* StaticMesh;

@@ -1,13 +1,16 @@
 #include "CardFunctions_TwinFangs.h"
 
 #include "BaseClass_EntityInBattle.h"
-#include "StatusFunctions_Poison.h"
+#include "LostWorld_422GameModeBase.h"
 
 
 ACardFunctions_TwinFangs::ACardFunctions_TwinFangs()
 {
-	//PoisonAttachment = CreateDefaultSubobject<UStatusFunctions_Poison>(TEXT("StatusEffect_Poison"));
-	//PoisonAttachment->RegisterComponent();
+	// Get Status Effects DataTable
+	static ConstructorHelpers::FObjectFinder<UDataTable> StatusEffectsDataTable_Object(TEXT("DataTable'/Game/DataTables/StatusEffects_List.StatusEffects_List'"));
+	if (StatusEffectsDataTable_Object.Succeeded()) {
+		StatusEffectsTable = StatusEffectsDataTable_Object.Object;
+	}
 }
 
 
@@ -18,11 +21,10 @@ void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 	int32 DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
 	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
 
-	//StackEntry.Card.CurrentTargets[0]
-	//PoisonAttachment->Add
+	if (StatusEffectsTable) {
+		FString ContextString;
 
-	//PoisonAttachment = StackEntry.Card.CurrentTargets[0]->CreateDefaultSubobject<UStatusFunctions_Poison>(TEXT("StatusEffect_Poison"));
-	//PoisonAttachment->RegisterComponent();
-
-	//PoisonAttachment->AttachStatusFunctionToEntity(Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0]));
+		F_StatusEffect_Base* PoisonData = StatusEffectsTable->FindRow<F_StatusEffect_Base>(FName("Poison"), ContextString);
+		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->StatusEffects.Add(*PoisonData);
+	}
 }

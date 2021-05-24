@@ -19,8 +19,10 @@ class LOSTWORLD_422_API ACardFunctions_TwinFangs : public ACardAbilityActor_Base
 public:
 // Variables
 // --------------------------------------------------
+
+// ------------------------- Constructors
 	UPROPERTY()
-	UStatusFunctions_Poison* PoisonAttachment;
+	UDataTable* StatusEffectsTable;
 
 // Functions
 // --------------------------------------------------

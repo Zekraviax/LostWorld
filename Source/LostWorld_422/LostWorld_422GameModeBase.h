@@ -15,7 +15,7 @@ class ABaseClass_CardFunctionsLibrary;
 class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 class ACardAbilityActor_BaseClass;
-class UStatusFunctions_BaseClass;
+class AStatusFunctions_BaseClass;
 
 
 // Enums
@@ -368,7 +368,7 @@ struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
 	FIntVector2D CounterValues;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UStatusFunctions_BaseClass> StatusFunctions;
+	TSubclassOf<AStatusFunctions_BaseClass> StatusFunctions;
 
 	F_StatusEffect_Base()
 	{

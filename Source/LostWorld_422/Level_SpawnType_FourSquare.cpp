@@ -430,7 +430,7 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
-		if (FoundTile->RoomReference->IsValidLowLevel()) {
+		if (FoundTile) {
 			StairsCounter++;
 
 			if (StairsCounter >= StairsIndex) {

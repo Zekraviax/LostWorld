@@ -15,6 +15,7 @@ class ABaseClass_CardFunctionsLibrary;
 class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 class ACardAbilityActor_BaseClass;
+class UStatusFunctions_BaseClass;
 
 
 // Enums
@@ -30,6 +31,7 @@ enum class E_Card_Types : uint8
 	E_Technique			UMETA(DisplayName = "Technique"),
 };
 
+
 UENUM(BlueprintType)
 enum class E_Card_Elements : uint8
 {
@@ -44,6 +46,7 @@ enum class E_Card_Elements : uint8
 	E_Divine			UMETA(DisplayName = "Divine")
 };
 
+
 UENUM(BlueprintType)
 enum class E_Card_DamageTypes : uint8
 {
@@ -53,24 +56,25 @@ enum class E_Card_DamageTypes : uint8
 	E_Other
 };
 
-UENUM(BlueprintType)
-enum class E_Card_AbilityConditions : uint8
-{
-	E_Default								UMETA(DisplayName = "Default"),
-// Basic Functions
-	E_ManaCost								UMETA(DisplayName = "Mana Cost: X"),
-	E_Damage								UMETA(DisplayName = "Damage: X"),
-	E_NumberOfCards							UMETA(DisplayName = "Number of Cards: X"),
-// Keywords
-	E_Repeat								UMETA(DisplayName = "Repeat: X"),
-// Alternate Card Cost
-	E_CastingCost_X							UMETA(DisplayName = "Casting Cost: X"),
-// Target Overrides
-	//E_ValidTargets_Monsters				UMETA(DisplayName = "ValidTargets: Monsters"),
-	E_TargetOverride_SingleEnemy_Random		UMETA(DisplayName = "Target Override: Random Single Enemy"),
-// Alter Other Abilities' Values
-	E_NextAbility_CastingCost				UMETA(DisplayName = "Next Ability Equals Casting Cost"),
-};
+
+//UENUM(BlueprintType)
+//enum class E_Card_AbilityConditions : uint8
+//{
+//	E_Default								UMETA(DisplayName = "Default"),
+//// Basic Functions
+//	E_ManaCost								UMETA(DisplayName = "Mana Cost: X"),
+//	E_Damage								UMETA(DisplayName = "Damage: X"),
+//	E_NumberOfCards							UMETA(DisplayName = "Number of Cards: X"),
+//// Keywords
+//	E_Repeat								UMETA(DisplayName = "Repeat: X"),
+//// Alternate Card Cost
+//	E_CastingCost_X							UMETA(DisplayName = "Casting Cost: X"),
+//// Target Overrides
+//	//E_ValidTargets_Monsters				UMETA(DisplayName = "ValidTargets: Monsters"),
+//	E_TargetOverride_SingleEnemy_Random		UMETA(DisplayName = "Target Override: Random Single Enemy"),
+//// Alter Other Abilities' Values
+//	E_NextAbility_CastingCost				UMETA(DisplayName = "Next Ability Equals Casting Cost"),
+//};
 
 
 UENUM(BlueprintType)
@@ -78,7 +82,7 @@ enum class E_Card_SetTargets : uint8
 {
 	E_None,
 	E_Self,
-	E_AnyENemy,
+	E_AnyEnemy,
 	E_AllEnemies,
 	E_AnyTarget,
 	E_CastTarget,
@@ -86,16 +90,18 @@ enum class E_Card_SetTargets : uint8
 	E_UnoccupiedGridTile,
 };
 
-// Modes for casting on a target, not specifically the spells' target
-UENUM(BlueprintType)
-enum class E_Card_TargetModes : uint8
-{
-	E_Self,
-	E_SingleEntity,
-	E_AllEntities,
-	E_SingleEnemy,
-	E_AllEnemies,
-};
+
+// Modes for dragging the card onto a target, not specifically the spells' target
+//UENUM(BlueprintType)
+//enum class E_Card_TargetModes : uint8
+//{
+//	E_Self,
+//	E_SingleEntity,
+//	E_AllEntities,
+//	E_SingleEnemy,
+//	E_AllEnemies,
+//};
+
 
 UENUM(BlueprintType)
 enum class E_Card_Zones : uint8
@@ -113,6 +119,7 @@ enum class E_Item_Types : uint8
 	E_Equipment,
 	E_Inventory,
 };
+
 
 UENUM(BlueprintType)
 enum class E_Item_EquipSlots : uint8
@@ -161,6 +168,7 @@ enum class E_Room_ExitDirections : uint8
 	E_West
 };
 
+
 UENUM(BlueprintType)
 enum class E_LevelRoom_EncounterTypes : uint8
 {
@@ -205,8 +213,8 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ACardAbilityActor_BaseClass> Ability;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TMap<E_Card_AbilityConditions, int> AbilityConditions;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TMap<E_Card_AbilityConditions, int> AbilityConditions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString AbilityDescription;
@@ -257,7 +265,7 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	float Delay;
 
 	// Use this for spells that only have one target or set of targets.
-	// For complicated spells, use a target variable for each ability.
+	// For complicated spells, the target(s) must be found using code.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	E_Card_SetTargets SimpleTargetsOverride;
 
@@ -342,6 +350,31 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 			return false;
 		}
 	}
+};
+
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTexture2D* Icon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FIntVector2D CounterValues;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UStatusFunctions_BaseClass> StatusFunctions;
+
+	F_StatusEffect_Base()
+	{
+		DisplayName = "Default";
+	}
+
 };
 
 

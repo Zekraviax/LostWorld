@@ -1,6 +1,8 @@
 #include "BaseClass_HUD_Battle.h"
 
+
 #include "LostWorld_422GameStateBase.h"
+#include "BaseClass_EntityInBattle.h"
 
 
 void UBaseClass_HUD_Battle::NativeConstruct() {
@@ -13,7 +15,7 @@ void UBaseClass_HUD_Battle::NativeConstruct() {
 
 void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)
 {
-	if (ClearHand && CardsInHand_ScrollBox->IsValidLowLevel())
+	if (ClearHand && CardsInHand_ScrollBox)
 		CardsInHand_ScrollBox->ClearChildren();
 
 	CardWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), Card_Class);

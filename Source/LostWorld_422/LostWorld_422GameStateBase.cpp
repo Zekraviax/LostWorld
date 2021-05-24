@@ -221,9 +221,12 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 		// Update all targets
 		// Remove ability from the stack once done
 		for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
-			if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
-				Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+			if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i]) != nullptr) {
+				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
+					Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+				}
 			}
+
 		}
 
 		TheStack.RemoveAt(0);

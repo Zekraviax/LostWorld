@@ -50,6 +50,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ALostWorld_422GameStateBase* GameStateRef;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ABaseClass_EntityInBattle* CurrentControlledEntityReference;
+
 // ------------------------- Widgets
 	// Deck Builder Class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

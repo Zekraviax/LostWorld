@@ -12,8 +12,10 @@ ABaseClass_GridTile::ABaseClass_GridTile()
 	OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None;
 
 	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
-	Tile->SetupAttachment(RootComponent);
+	//Tile->SetupAttachment(RootComponent);
 	Tile->SetRelativeTransform(FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(2.f, 2.f, 1.f)));
+
+	RootComponent = Tile;
 }
 
 

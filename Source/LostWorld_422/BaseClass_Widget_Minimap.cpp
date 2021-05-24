@@ -50,7 +50,7 @@ void UBaseClass_Widget_Minimap::UpdateMinimap(ABaseClass_GridTile* CurrentPlayer
 		}
 
 		
-		if (FoundWidget->GridTileReference->IsValidLowLevel()) {
+		if (FoundWidget->GridTileReference) {
 			// If there's an enemy at any given tile, change that tiles colour.
 			if (FoundWidget->GridTileReference->OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle) {
 				FoundWidget->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.6f, 0.f, 1.f));

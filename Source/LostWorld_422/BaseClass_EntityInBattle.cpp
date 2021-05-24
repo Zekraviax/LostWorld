@@ -3,6 +3,7 @@
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_GridTile.h"
 #include "ItemFunctions_BaseClass.h"
+#include "StatusFunctions_BaseClass.h"
 #include "LostWorld_422GameStateBase.h"
 
 
@@ -129,9 +130,6 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 
 void ABaseClass_EntityInBattle::Begin_Turn()
 {
-	UpdateCardIndicesInAllZones();
-	UpdateCardWidgets();
-
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
 
 	// Draw cards to hand size
@@ -164,14 +162,25 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 
 	// Set camera to focus on this entity?
 
+	// Activate all Status Effect StartOfTurn Functions
+	TArray<UActorComponent*> StatusFunctionComponents = GetComponentsByClass(UStatusFunctions_BaseClass::StaticClass());
+	for (int i = 0; i < StatusFunctionComponents.Num(); i++) {
+		Cast<UStatusFunctions_BaseClass>(StatusFunctionComponents[i])->TriggeredFunction_StarterOfEntityTurn(this);
+	}
+
 	// If player controllable, take control of the entity
 	// Else, cast a random card
 	if (EntityBaseData.IsPlayerControllable) {
 		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->EntityInBattleRef = this;
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+
+		PlayerControllerRef->Battle_HUD_Widget->CurrentControlledEntityReference = this;
 	} else {
 		AI_CastRandomCard();
 	}
+
+	UpdateCardIndicesInAllZones();
+	UpdateCardWidgets();
 }
 
 

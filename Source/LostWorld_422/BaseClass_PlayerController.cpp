@@ -204,7 +204,7 @@ void ABaseClass_PlayerController::PlayerMoveNorth()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->IsValidLowLevel()) {
+			if (FoundTile) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate + 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
 					MoveToTile(FoundTile);
 					break;
@@ -221,7 +221,7 @@ void ABaseClass_PlayerController::PlayerMoveEast()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->IsValidLowLevel()) {
+			if (FoundTile) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate + 1) {
 					MoveToTile(FoundTile);
 					break;
@@ -238,7 +238,7 @@ void ABaseClass_PlayerController::PlayerMoveSouth()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->IsValidLowLevel()) {
+			if (FoundTile) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate - 1 && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate) {
 					MoveToTile(FoundTile);
 					break;
@@ -255,7 +255,7 @@ void ABaseClass_PlayerController::PlayerMoveWest()
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 
-			if (FoundTile->IsValidLowLevel()) {
+			if (FoundTile) {
 				if (FoundTile->X_Coordinate == EntityInBattleRef->X_Coordinate && FoundTile->Y_Coordinate == EntityInBattleRef->Y_Coordinate - 1) {
 					MoveToTile(FoundTile);
 					break;
@@ -311,7 +311,7 @@ void ABaseClass_PlayerController::ExitBattle()
 void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
 	// Clear occupying tile
-	if (CurrentLocationInLevel->IsValidLowLevel()) {
+	if (CurrentLocationInLevel) {
 		if (CurrentLocationInLevel->OccupyingEntity == EntityInBattleRef) {
 			CurrentLocationInLevel->OccupyingEntity = nullptr;
 		}

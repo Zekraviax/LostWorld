@@ -57,26 +57,6 @@ enum class E_Card_DamageTypes : uint8
 };
 
 
-//UENUM(BlueprintType)
-//enum class E_Card_AbilityConditions : uint8
-//{
-//	E_Default								UMETA(DisplayName = "Default"),
-//// Basic Functions
-//	E_ManaCost								UMETA(DisplayName = "Mana Cost: X"),
-//	E_Damage								UMETA(DisplayName = "Damage: X"),
-//	E_NumberOfCards							UMETA(DisplayName = "Number of Cards: X"),
-//// Keywords
-//	E_Repeat								UMETA(DisplayName = "Repeat: X"),
-//// Alternate Card Cost
-//	E_CastingCost_X							UMETA(DisplayName = "Casting Cost: X"),
-//// Target Overrides
-//	//E_ValidTargets_Monsters				UMETA(DisplayName = "ValidTargets: Monsters"),
-//	E_TargetOverride_SingleEnemy_Random		UMETA(DisplayName = "Target Override: Random Single Enemy"),
-//// Alter Other Abilities' Values
-//	E_NextAbility_CastingCost				UMETA(DisplayName = "Next Ability Equals Casting Cost"),
-//};
-
-
 UENUM(BlueprintType)
 enum class E_Card_SetTargets : uint8
 {
@@ -88,19 +68,8 @@ enum class E_Card_SetTargets : uint8
 	E_CastTarget,
 	E_AllTargets,
 	E_UnoccupiedGridTile,
+	E_Special,	// Use this when the targetting is too complex, and write a function in the Cards Class file.
 };
-
-
-// Modes for dragging the card onto a target, not specifically the spells' target
-//UENUM(BlueprintType)
-//enum class E_Card_TargetModes : uint8
-//{
-//	E_Self,
-//	E_SingleEntity,
-//	E_AllEntities,
-//	E_SingleEnemy,
-//	E_AllEnemies,
-//};
 
 
 UENUM(BlueprintType)
@@ -384,6 +353,9 @@ struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
 	FString DisplayName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Description;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* Icon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -404,8 +376,8 @@ struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
 	F_StatusEffect_Base()
 	{
 		DisplayName = "Default";
+		Description = "Default";
 	}
-
 };
 
 

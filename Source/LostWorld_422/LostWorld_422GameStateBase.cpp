@@ -79,20 +79,6 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
 				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
 
-				//if (EnemyList->PossibleSpawnLocationsRelativeToPlayer.Num() > 0) {
-				//	for (int k = 0; k < EnemyList->PossibleSpawnLocationsRelativeToPlayer.Num(); i++) {
-				//		if (GridTileReference->OccupyingEntity == nullptr) {
-				//			ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
-				//			NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
-				//			NewEnemy->GameStateRef = this;
-
-				//			GridTileReference->OccupyingEntity = NewEnemy;
-				//			break;
-				//		}
-				//	}
-				//} else {
-					//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Nowhere for enemies to spawn!"));
-
 				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
 					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&

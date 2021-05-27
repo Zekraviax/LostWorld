@@ -112,6 +112,12 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 }
 
 
+void ABaseClass_EntityInBattle::UpdateCardVariables()
+{
+
+}
+
+
 void ABaseClass_EntityInBattle::UpdateCardWidgets()
 {
 	if (!GameStateRef)
@@ -192,12 +198,11 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 }
 
 
-// ------------------------- Events
 void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 {
 	for (int i = 0; i < CardsInHand.Num(); i++)
 		CardsInHand[i].ZoneIndex = i;
-	
+
 	for (int j = 0; j < CardsInGraveyard.Num(); j++)
 		CardsInGraveyard[j].ZoneIndex = j;
 
@@ -206,6 +211,7 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 }
 
 
+// ------------------------- Events
 void ABaseClass_EntityInBattle::Event_DrawCard()
 {
 	// Check if there are any cards in deck

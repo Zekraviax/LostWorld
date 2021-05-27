@@ -3,16 +3,18 @@
 
 #include "LostWorld_422GameStateBase.h"
 #include "BaseClass_EntityInBattle.h"
+#include "Widget_Inventory_Base.h"
 
 
-void UBaseClass_HUD_Battle::NativeConstruct() {
-
+void UBaseClass_HUD_Battle::NativeConstruct() 
+{
 	Super::NativeConstruct();
 
 	GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 }
 
 
+// ------------------------- Widgets
 void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)
 {
 	if (ClearHand && CardsInHand_ScrollBox)
@@ -26,6 +28,16 @@ void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard
 }
 
 
+void UBaseClass_HUD_Battle::OpenInventoryWidget()
+{
+	if (Inventory_Class) {
+		Inventory_Reference = CreateWidget<UWidget_Inventory_Base>(GetWorld(), Inventory_Class);
+		Inventory_Reference->AddToViewport();
+	}
+}
+
+
+// ------------------------- Battle
 void UBaseClass_HUD_Battle::EndTurn_Function()
 {
 	if (GameStateRef) {

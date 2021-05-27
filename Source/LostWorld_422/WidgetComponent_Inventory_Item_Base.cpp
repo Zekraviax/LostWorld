@@ -48,6 +48,9 @@ void UWidgetComponent_Inventory_Item_Base::OnEquipButtonPressed()
 		ItemData = F_Item_Base();
 		UpdateWidget();
 	}
+	else if (ItemEquipTextWidget->GetText().ToString() == "Activate") {
+
+	}
 
 	for (TObjectIterator<UWidget_Inventory_Base> Itr; Itr; ++Itr) {
 		UWidget_Inventory_Base* FoundWidget = *Itr;

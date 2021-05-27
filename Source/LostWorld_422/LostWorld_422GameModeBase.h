@@ -29,6 +29,14 @@ enum class E_Card_Types : uint8
 	E_Summon			UMETA(DisplayName = "Summon"),
 	E_Spell				UMETA(DisplayName = "Spell"),
 	E_Technique			UMETA(DisplayName = "Technique"),
+	E_Command			UMETA(DisplayName = "Command"),
+};
+
+
+UENUM(BlueprintType)
+enum class E_Card_Subypes : uint8
+{
+	E_Miracle			UMETA(DisplayName = "Miracle"),
 };
 
 
@@ -62,6 +70,8 @@ enum class E_Card_SetTargets : uint8
 {
 	E_None,
 	E_Self,
+	E_AnyAlly,
+	E_AllAllies,
 	E_AnyEnemy,
 	E_AllEnemies,
 	E_AnyTarget,

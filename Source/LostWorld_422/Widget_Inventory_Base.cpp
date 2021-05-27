@@ -8,6 +8,12 @@
 // ------------------------- Widget
 void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* PlayerController)
 {
+	// Check if the Battle HUD exists.
+	// If true, set the Inventory to Battle Mode.
+	//if () {
+
+	//}
+
 	if (!PlayerController->IsValidLowLevel())
 		PlayerControllerReference = PlayerController;
 

@@ -144,6 +144,10 @@ public:
 	UFUNCTION()
 	void Begin_Turn();
 
+	// Update card widgets with entity Core Stats, Status Effects, and others
+	UFUNCTION()
+	void UpdateCardVariables();
+
 	UFUNCTION()
 	void UpdateCardWidgets();
 

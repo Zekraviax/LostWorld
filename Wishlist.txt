@@ -4,6 +4,8 @@ Names:
 	* First sound
 	* second sound
 	* final sound
+		* Some sounds can go in any slot
+		* Some sounds can only go in one slot
 
 Sounds:
 * Axa

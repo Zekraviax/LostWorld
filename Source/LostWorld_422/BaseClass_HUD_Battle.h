@@ -14,6 +14,7 @@
 
 // Forward Declarations
 class ALostWorld_422GameStateBase;
+class UWidget_Inventory_Base;
 
 
 // Class-Specific Enums
@@ -70,6 +71,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CardWidgetRef;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_Inventory_Base> Inventory_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_Inventory_Base* Inventory_Reference;
+
 
 // Functions
 // --------------------------------------------------
@@ -77,6 +84,9 @@ public:
 // ------------------------- Widgets
 	UFUNCTION()
 	void CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand);
+
+	UFUNCTION(BlueprintCallable)
+	void OpenInventoryWidget();
 
 // ------------------------- Battle
 	UFUNCTION(BlueprintCallable)

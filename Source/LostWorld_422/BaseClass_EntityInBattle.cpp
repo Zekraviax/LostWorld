@@ -98,10 +98,10 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 		CardsInHand[i].ZoneIndex = i;
 
 		// Set Ownership
-		if (!CardsInHand[i].Controller) {
+		if (CardsInHand[i].Controller != this) {
 			CardsInHand[i].Controller = this;
 		}
-		if (!CardsInHand[i].Owner == NULL) {
+		if (CardsInHand[i].Owner != this) {
 			CardsInHand[i].Owner = this;
 		}
 
@@ -109,12 +109,33 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	}
 
 	UpdateCardIndicesInAllZones();
+	UpdateCardVariables();
 }
 
 
 void ABaseClass_EntityInBattle::UpdateCardVariables()
 {
+	TArray<FCardBase> AllCards;
+	AllCards.Append(CardsInGraveyard);
+	AllCards.Append(CardsInHand);
 
+	for (int d = 0; d < CardsInDeck.Num(); d++) {
+		AllCards.Add_GetRef(CardsInDeck[d]);
+	}
+
+	for (int i = 0; i < CardsInHand.Num(); i++) {
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedDraw = CardsInHand[i].AbilitiesAndConditions[0].BaseDraw;
+
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedHealing = CardsInHand[i].AbilitiesAndConditions[0].BaseHealing + EntityBaseData.CoreStats.Wisdom;
+
+		if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Physical) {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = (EntityBaseData.CoreStats.Strength + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage);
+		} else if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Magical) {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage += EntityBaseData.CoreStats.Intelligence + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
+		} else {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
+		}
+	}
 }
 
 
@@ -194,7 +215,10 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	}
 
 	UpdateCardIndicesInAllZones();
+
 	UpdateCardWidgets();
+
+	UpdateCardVariables();
 }
 
 
@@ -212,6 +236,14 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 
 
 // ------------------------- Events
+void ABaseClass_EntityInBattle::Event_EntitySpawnedInWorld()
+{
+	// Add Constitution to HP
+	EntityBaseData.HealthValues.Y_Value += EntityBaseData.CoreStats.Constitution;
+	EntityBaseData.HealthValues.X_Value = EntityBaseData.HealthValues.Y_Value;
+}
+
+
 void ABaseClass_EntityInBattle::Event_DrawCard()
 {
 	// Check if there are any cards in deck
@@ -251,7 +283,7 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		GameStateRef->Event_EntityDied(this);
 	}
 
-	// Check if all entities are/the player is dead in the GameState class
+	// Check if all entities are/or the player is dead in the GameState class
 }
 
 
@@ -279,6 +311,13 @@ void ABaseClass_EntityInBattle::Event_HealingIncoming(int IncomingHealing)
 }
 
 
+void ABaseClass_EntityInBattle::Event_StatsChanged()
+{
+	UpdateCardVariables();
+}
+
+
+// ------------------------- AI
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand
@@ -286,7 +325,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
 
 	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
@@ -294,7 +333,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
+			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
 
 			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
 				TargetsArray.Add(FoundEntity);
@@ -303,7 +342,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 
 		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
 
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
+		//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
 	}
 
 	// Cast card

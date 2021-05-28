@@ -14,5 +14,5 @@ void ACardFunctions_BloodRecycling::RunCardAbilityFunction(FStackEntry StackEntr
 		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DrawCard();
 	}
 
-	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Other);
+	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
 }

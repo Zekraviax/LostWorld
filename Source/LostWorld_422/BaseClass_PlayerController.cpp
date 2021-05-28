@@ -91,9 +91,12 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		EntityInBattleRef->EntityBaseData = CurrentEntityData;
 		EntityInBattleRef->PlayerControllerRef = this;
 
+		// Variables
 		EntityInBattleRef->EntityBaseData.GameOverOnDeath.GameOverOnDeath = true;
 		EntityInBattleRef->EntityBaseData.IsPlayerControllable = true;
 		EntityInBattleRef->EntityBaseData.IsPlayer = true;
+
+		EntityInBattleRef->Event_EntitySpawnedInWorld();
 
 		// Set Camera Target
 		FViewTargetTransitionParams Params;
@@ -119,6 +122,8 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Mouse Button Up"));
+
+	EntityInBattleRef->UpdateCardVariables();
 
 	// Get any actors under cursor
 	FHitResult HitResult(ForceInit);

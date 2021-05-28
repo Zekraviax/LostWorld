@@ -18,8 +18,8 @@ void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Execute Card Function: Twin Fangs"));
 
-	int32 DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
-	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
+	int32 DamageValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
+	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
 
 	if (StatusEffectsTable) {
 		FString ContextString;
@@ -28,6 +28,5 @@ void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 		PoisonData->Source = StackEntry.Card.Controller;
 		
 		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_StatusEffectIncoming(*PoisonData);
-		//Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->StatusEffects.Add(*PoisonData);
 	}
 }

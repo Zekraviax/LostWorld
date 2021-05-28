@@ -92,6 +92,8 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 						NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
 						NewEnemy->GameStateRef = this;
 
+						NewEnemy->Event_EntitySpawnedInWorld();
+
 						break;
 					}
 				}

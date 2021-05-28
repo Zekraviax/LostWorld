@@ -27,6 +27,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 
+// ------------------------- Passive Functions
+	virtual void PassiveFunction_OnStatusEffectBegin(ABaseClass_EntityInBattle* AffectedEntity);
+	virtual void PassiveFunction_OnStatusEffectEnd(ABaseClass_EntityInBattle* AffectedEntity);
+
 // ------------------------- Triggered Functions
 	virtual void TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity);
 };

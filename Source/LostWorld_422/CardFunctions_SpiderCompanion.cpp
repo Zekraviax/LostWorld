@@ -40,6 +40,8 @@ void ACardFunctions_SpiderCompanion::RunCardAbilityFunction(FStackEntry StackEnt
 			}
 
 			SpiderCompanionActor_Reference->PlayerControllerRef = StackEntry.Card.Controller->PlayerControllerRef;
+
+			SpiderCompanionActor_Reference->Event_EntitySpawnedInWorld();
 			SpiderCompanionActor_Reference->Begin_Battle();
 
 			// Add to turn queue

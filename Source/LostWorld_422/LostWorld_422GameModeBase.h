@@ -56,12 +56,22 @@ enum class E_Card_Elements : uint8
 
 
 UENUM(BlueprintType)
+enum class E_Card_Traits : uint8
+{
+	E_CastsWhenDrawn		UMETA(DisplayName = "Auto-Cast"),
+	E_Lifesteal				UMETA(DisplayName = "Life Drain"),
+};
+
+
+
+UENUM(BlueprintType)
 enum class E_Card_DamageTypes : uint8
 {
 	E_Physical,
 	E_Magical,
 	E_LifeLoss,
-	E_Other
+	E_Other,
+	E_NotApplicable,
 };
 
 
@@ -91,12 +101,57 @@ enum class E_Card_Zones : uint8
 };
 
 
+UENUM(BlueprintType)
+enum class E_Entity_Traits : uint8
+{
+	E_CastsWhenDrawn		UMETA(DisplayName = "Auto-Cast")
+};
+
+
 // Items
 UENUM(BlueprintType)
 enum class E_Item_Types : uint8
 {
 	E_Equipment,
 	E_Inventory,
+};
+
+
+UENUM(BlueprintType)
+enum class E_Item_EquipSlots : uint8
+{
+	// Slots:
+	// Head									(Helmets, Hats)
+	// 5 Left-ear Earrings/Piercings		(Earrings, Piercings, Industrial Bars)
+	// 5 Right-ear Earrings/Piercings
+	// Neck									(Capes, Amulets, Chokers, Cloaks)
+	// Torso								(Shirts, Breastplates, Robes, Corsets)
+	// Left Glove							(Gloves)
+	// Right Glove
+	// 5 Left Hand Rings					(Rings)
+	// 5 Right Hand Rings
+	// Belt									(Belts)
+	// Legs (Pant)							(Pants, Greaves)
+	// Left Shoe							(Shoes, Boots)
+	// Right Shoe
+	// Left-hand Weapon						(Swords, Axes, Staves, Bows, Maces, Rods, Wands, )
+	// Right-hand Weapon
+	E_NotEquippable			UMETA(DisplayName = "N/A"),
+	E_Head					UMETA(DisplayName = "Head"),
+	E_LeftEar				UMETA(DisplayName = "Left Ear"),
+	E_RightEar				UMETA(DisplayName = "Right Ear"),
+	E_Neck					UMETA(DisplayName = "Neck"),
+	E_Torso					UMETA(DisplayName = "Torso"),
+	E_LeftHand				UMETA(DisplayName = "Left Hand"),
+	E_RightHand				UMETA(DisplayName = "Right Hand"),
+	E_LeftFinger			UMETA(DisplayName = "Left Finger"),
+	E_RightFinger			UMETA(DisplayName = "Right Finger"),
+	E_Waist					UMETA(DisplayName = "Waist"),
+	E_Legs					UMETA(DisplayName = "Legs"),
+	E_LeftFoot				UMETA(DisplayName = "Left Foot"),
+	E_RightFoot				UMETA(DisplayName = "Right Foot"),
+	E_LeftHandWeapon		UMETA(DisplayName = "Left-Hand Weapon"),
+	E_RightHandWeapon		UMETA(DisplayName = "Right-Hand Weapon"),
 };
 
 
@@ -119,42 +174,6 @@ enum class E_StatusEffect_Considerations : uint8
 	E_Negative,
 	E_Mixed,
 	E_NotApplicable,
-};
-
-
-UENUM(BlueprintType)
-enum class E_Item_EquipSlots : uint8
-{
-	// Slots:
-	// Head
-	// 5 Left-ear Earrings/Piercings
-	// 5 Right-ear Earrings/Piercings
-	// Neck
-	// Torso
-	// Left Glove
-	// Right Glove
-	// 5 Left Hand Rings
-	// 5 Right Hand Rings
-	// Belt
-	// Legs (Pant)
-	// Left Shoe
-	// Right Shoe
-	// Left-hand Weapon
-	// Right-hand Weapon
-	E_NotEquippable,
-	E_Head,
-	E_LeftEar,
-	E_RightEar,
-	E_Neck,
-	E_Torso,
-	E_LeftHand,
-	E_RightHand,
-	E_LeftFinger,
-	E_RightFinger,
-	E_Waist,
-	E_Legs,
-	E_LeftFoot,
-	E_RightFoot
 };
 
 
@@ -218,16 +237,28 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 	//TMap<E_Card_AbilityConditions, int> AbilityConditions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_Card_DamageTypes DamageType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString AbilityDescription;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 BaseDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CalculatedDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 BaseHealing;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CalculatedHealing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 BaseDraw;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CalculatedDraw;
 
 	FCardAbilitiesAndConditions()
 	{
@@ -264,6 +295,8 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	float Delay;
+
+	// Traits
 
 	// Use this for spells that only have one target or set of targets.
 	// For complicated spells, the target(s) must be found using code.
@@ -563,6 +596,8 @@ struct LOSTWORLD_422_API FEntityBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	bool IsPlayerControllable;
+
+	// Traits
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	FEntity_GameOverOnDeath GameOverOnDeath;

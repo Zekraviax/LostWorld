@@ -24,7 +24,7 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 // ------------------------- Base Class Functions
 void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	int DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
+	int DamageValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
 
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction) {
@@ -58,7 +58,7 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 
 			ABaseClass_EntityInBattle* RandEnemy = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)]);
 
-			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Magical);
+			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
 		}
 	}
 }

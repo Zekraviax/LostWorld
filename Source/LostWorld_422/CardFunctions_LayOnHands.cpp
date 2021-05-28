@@ -24,7 +24,7 @@ ACardFunctions_LayOnHands::ACardFunctions_LayOnHands()
 // ------------------------- Base Class Functions
 void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	int HealingValue = StackEntry.Card.AbilitiesAndConditions[0].BaseHealing;
+	int HealingValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing;
 
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction) {
@@ -40,6 +40,7 @@ void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_HealingIncoming(HealingValue);
 
 		StackEntry.Card.Controller->Event_DrawCard();
+		StackEntry.Card.Controller->UpdateCardVariables();
 	}
 }
 
@@ -47,7 +48,7 @@ void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 // ------------------------- Widget Functions
 void ACardFunctions_LayOnHands::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
-	StackEntry.Card.AbilitiesAndConditions[0].BaseHealing = ManaSpent;
+	StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing = StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing + ManaSpent;
 	StackEntry.RunWidgetFunction = false;
 
 	Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(StackEntry);

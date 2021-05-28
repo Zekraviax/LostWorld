@@ -156,6 +156,9 @@ public:
 
 // ------------------------- Events
 	UFUNCTION()
+	void Event_EntitySpawnedInWorld();
+
+	UFUNCTION()
 	void Event_DrawCard();
 
 	UFUNCTION()
@@ -169,6 +172,9 @@ public:
 
 	UFUNCTION()
 	void Event_HealingIncoming(int IncomingHealing);
+
+	UFUNCTION()
+	void Event_StatsChanged();
 
 // ------------------------- AI
 	UFUNCTION()

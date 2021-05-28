@@ -40,6 +40,8 @@ void ACardFunctions_DingoCompanion::RunCardAbilityFunction(FStackEntry StackEntr
 			}
 
 			DingoCompanionActor_Reference->PlayerControllerRef = StackEntry.Card.Controller->PlayerControllerRef;
+
+			DingoCompanionActor_Reference->Event_EntitySpawnedInWorld();
 			DingoCompanionActor_Reference->Begin_Battle();
 
 			// Add to turn queue

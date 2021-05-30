@@ -25,20 +25,26 @@ void AStatusFunctions_BaseClass::Tick(float DeltaTime)
 
 
 // ------------------------- Passive Functions
-void AStatusFunctions_BaseClass::PassiveFunction_OnStatusEffectBegin(ABaseClass_EntityInBattle * AffectedEntity)
+void AStatusFunctions_BaseClass::PassiveFunction_OnStatusEffectBegin(ABaseClass_EntityInBattle* AffectedEntity)
 {
 
 }
 
 
-void AStatusFunctions_BaseClass::PassiveFunction_OnStatusEffectEnd(ABaseClass_EntityInBattle * AffectedEntity)
+void AStatusFunctions_BaseClass::PassiveFunction_OnStatusEffectEnd(ABaseClass_EntityInBattle* AffectedEntity)
 {
 
 }
 
 
 // ------------------------- Triggered Functions
-void AStatusFunctions_BaseClass::TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle * AffectedEntity)
+void AStatusFunctions_BaseClass::TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity)
 {
 
+}
+
+
+int AStatusFunctions_BaseClass::TriggeredFunction_EntityAboutToTakeDamage(ABaseClass_EntityInBattle* AffectedEntity, int IncomingDamage)
+{
+	return 0;
 }

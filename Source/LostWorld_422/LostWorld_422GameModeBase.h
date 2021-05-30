@@ -97,7 +97,8 @@ enum class E_Card_Zones : uint8
 {
 	E_Hand,
 	E_Deck,
-	E_Graveyard
+	E_Graveyard,
+	E_Void,
 };
 
 

@@ -297,6 +297,13 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 {
 	int DamageValue = IncomingDamage;
 
+	if (StatusEffects.Num() > 0) {
+		for (int i = 0; i < StatusEffects.Num(); i++) {
+
+		}
+	}
+
+	// Apply damage
 	EntityBaseData.HealthValues.X_Value -= DamageValue;
 	Event_CardCastOnThis();
 }
@@ -353,16 +360,18 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Mana Check
-	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost)
+	// If this entity still has mana, cast another spell
+	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
 		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
-	else
+	} else {
 		GameStateRef->EntityEndOfTurn();
+	}
 
 	FStackEntry NewStackEntry;
 	NewStackEntry.Card = RandCard;
 
 	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);
-	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (NewStackEntry.Card.AbilitiesAndConditions.Num() + 1), false);
+	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, 1.f, false);
 }
 
 

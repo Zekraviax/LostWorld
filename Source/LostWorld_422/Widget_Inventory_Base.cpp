@@ -2,6 +2,7 @@
 
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
+#include "BaseClass_HUD_Battle.h"
 #include "WidgetComponent_Inventory_Item_Base.h"
 
 
@@ -59,4 +60,12 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 
 	// Clean up?
 	InventoryItem_Reference = nullptr;
+
+	// In-Battle Mode: Change all of the Equip buttons to Activate buttons for items that have activated abilities
+	// Remove all others 
+	if (InBattleMode) {
+		for (int i = 0; i < EquippedItemsScrollBox->GetAllChildren().Num(); i++) {
+
+		}
+	}
 }

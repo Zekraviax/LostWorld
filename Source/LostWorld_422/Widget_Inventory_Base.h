@@ -29,7 +29,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* UnequippedItemsScrollBox;
 
-// ------------------------- Widget
+// ------------------------- Constructors
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UWidgetComponent_Inventory_Item_Base> InventoryItem_Class;
 
@@ -42,6 +42,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_PlayerController* PlayerControllerReference;
+
+// ------------------------- Widget
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool InBattleMode;
 
 // Functions
 // --------------------------------------------------

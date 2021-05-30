@@ -44,3 +44,15 @@ void UBaseClass_HUD_Battle::EndTurn_Function()
 		GameStateRef->EntityEndOfTurn();
 	}
 }
+
+
+void UBaseClass_HUD_Battle::ViewCardsInZone(E_Card_Zones Zone)
+{
+	//switch (Zone)
+	//{
+	//	case(E_Card_Zones::E_Deck):
+	//		break;
+	//	default:
+	//		break;
+	//}
+}

@@ -62,6 +62,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInGraveyard;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FCardBase> CardsInVoid;
+
 	// Slots:
 	// 0 - Head
 	// 1 - Earrings

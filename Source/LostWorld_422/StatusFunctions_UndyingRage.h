@@ -13,5 +13,5 @@ class LOSTWORLD_422_API AStatusFunctions_UndyingRage : public AStatusFunctions_B
 
 public:
 // ------------------------- Triggered Functions
-	virtual void TriggeredFunction_EntityAboutToTakeDamage(ABaseClass_EntityInBattle* AffectedEntity, int IncomingDamage);
+	virtual int TriggeredFunction_EntityAboutToTakeDamage(ABaseClass_EntityInBattle* AffectedEntity, int IncomingDamage);
 };

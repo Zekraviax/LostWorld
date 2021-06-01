@@ -298,14 +298,38 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 	int DamageValue = IncomingDamage;
 
 	if (StatusEffects.Num() > 0) {
-		for (int i = 0; i < StatusEffects.Num(); i++) {
+		FActorSpawnParameters SpawnParameters;
 
+		for (int i = 0; i < StatusEffects.Num(); i++) {
+			AStatusFunctions_BaseClass* StatusFunctionActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+			
+			DamageValue = StatusFunctionActor_Reference->TriggeredFunction_EntityAboutToTakeDamage(this, DamageValue);
+
+			StatusFunctionActor_Reference->ConditionalBeginDestroy();
 		}
 	}
 
 	// Apply damage
 	EntityBaseData.HealthValues.X_Value -= DamageValue;
-	Event_CardCastOnThis();
+	Event_HealthChanged();
+}
+
+
+void ABaseClass_EntityInBattle::Event_HealthChanged()
+{
+	// Check if entity is dead
+	if (EntityBaseData.HealthValues.X_Value <= 0) {
+		Destroy();
+
+		// Get GameState
+		if (!GameStateRef)
+			GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+		// BattleEvent_EntityDied();
+		GameStateRef->Event_EntityDied(this);
+	}
+
+	// Check if all entities are/or the player is dead in the GameState class
 }
 
 

@@ -174,6 +174,9 @@ public:
 	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);
 
 	UFUNCTION()
+	void Event_HealthChanged();
+
+	UFUNCTION()
 	void Event_HealingIncoming(int IncomingHealing);
 
 	UFUNCTION()

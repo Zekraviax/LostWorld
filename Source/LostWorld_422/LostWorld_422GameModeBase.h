@@ -261,6 +261,12 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 CalculatedDraw;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 BaseBarrier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CalculatedBarrier;
+
 	FCardAbilitiesAndConditions()
 	{
 
@@ -581,6 +587,9 @@ struct LOSTWORLD_422_API FEntityBase
 	FIntVector2D ManaValues;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int Barrier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	int HealthRegenPerTurn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
@@ -637,6 +646,12 @@ struct LOSTWORLD_422_API F_NonPlayerEntity_DatabaseEntry : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cards")
 	TArray<FDataTableRowHandle> Cards;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	FEntity_BaseStats MinimumBaseStats;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	FEntity_BaseStats MaximumBaseStats;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	float BaseExperiencePoints;

@@ -124,17 +124,20 @@ void ABaseClass_EntityInBattle::UpdateCardVariables()
 	}
 
 	for (int i = 0; i < CardsInHand.Num(); i++) {
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedBarrier = CardsInHand[i].AbilitiesAndConditions[0].BaseBarrier;
 		CardsInHand[i].AbilitiesAndConditions[0].CalculatedDraw = CardsInHand[i].AbilitiesAndConditions[0].BaseDraw;
-
 		CardsInHand[i].AbilitiesAndConditions[0].CalculatedHealing = CardsInHand[i].AbilitiesAndConditions[0].BaseHealing + EntityBaseData.CoreStats.Wisdom;
 
 		if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Physical) {
 			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = (EntityBaseData.CoreStats.Strength + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage);
 		} else if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Magical) {
-			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage += EntityBaseData.CoreStats.Intelligence + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = EntityBaseData.CoreStats.Intelligence + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
 		} else {
 			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
 		}
+
+		if (CardsInHand[i].Controller->EntityBaseData.DisplayName == "Player")
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s damage: %d"), *CardsInHand[i].DisplayName, CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage));
 	}
 }
 
@@ -310,8 +313,23 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 	}
 
 	// Apply damage
-	EntityBaseData.HealthValues.X_Value -= DamageValue;
-	Event_HealthChanged();
+
+	// Barrier
+	if (EntityBaseData.Barrier > 0) {
+		int TemporaryBarrierVariable = EntityBaseData.Barrier;
+
+		for (int i = 0; i < TemporaryBarrierVariable; i++) {
+			if (EntityBaseData.Barrier > 0 && DamageValue > 0) {
+				EntityBaseData.Barrier--;
+				DamageValue--;
+			}
+		}
+	}
+
+	if (DamageValue > 0) {
+		EntityBaseData.HealthValues.X_Value -= DamageValue;
+		Event_HealthChanged();
+	}
 }
 
 
@@ -338,6 +356,15 @@ void ABaseClass_EntityInBattle::Event_HealingIncoming(int IncomingHealing)
 	int HealingValue = IncomingHealing;
 
 	EntityBaseData.HealthValues.X_Value += HealingValue;
+	Event_CardCastOnThis();
+}
+
+
+void ABaseClass_EntityInBattle::Event_BarrierIncoming(int IncomingBarrier)
+{
+	int BarrierValue = IncomingBarrier;
+
+	EntityBaseData.Barrier += IncomingBarrier;
 	Event_CardCastOnThis();
 }
 

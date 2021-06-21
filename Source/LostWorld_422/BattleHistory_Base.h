@@ -1,10 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BattleHistory_Base.generated.h"
+
 
 UCLASS()
 class LOSTWORLD_422_API ABattleHistory_Base : public AActor

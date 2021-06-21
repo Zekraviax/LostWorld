@@ -40,6 +40,9 @@ public:
 	UProgressBar* ManaBar;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UProgressBar* BarrierBar;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* NameText;
 
 // ------------------------- Entity variables

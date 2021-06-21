@@ -56,6 +56,8 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 					StackEntry.Card.CurrentTargets.RemoveAt(i);
 			}
 
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Rolling Quake Damage: %d"), DamageValue));
+
 			ABaseClass_EntityInBattle* RandEnemy = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)]);
 
 			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);

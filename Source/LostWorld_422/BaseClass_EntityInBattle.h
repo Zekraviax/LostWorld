@@ -180,6 +180,9 @@ public:
 	void Event_HealingIncoming(int IncomingHealing);
 
 	UFUNCTION()
+	void Event_BarrierIncoming(int IncomingBarrier);
+
+	UFUNCTION()
 	void Event_StatsChanged();
 
 // ------------------------- AI

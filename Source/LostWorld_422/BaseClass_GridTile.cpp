@@ -1,6 +1,7 @@
 #include "BaseClass_GridTile.h"
 
 #include "LostWorld_422GameStateBase.h"
+#include "BaseClass_PlayerController.h"
 
 
 // Sets default values
@@ -38,17 +39,28 @@ void ABaseClass_GridTile::Tick(float DeltaTime)
 
 
 // ------------------------- Grid Tile
-void ABaseClass_GridTile::OnPlayerEnterTile()
+void ABaseClass_GridTile::OnPlayerEnterTile(ABaseClass_PlayerController* PlayerControllerReference)
 {
-	switch (OnPlayerEnterTileFunction) 
+	if (OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle) {
+		// Stop the player from moving normally
+		PlayerControllerReference->ControlMode = E_Player_ControlMode::E_Battle;
+	}
+
+	GetWorldTimerManager().SetTimer(TileFunctionsTimerHandle, this, &ABaseClass_GridTile::RunTileFunctions, 0.2f, false);
+}
+
+
+void ABaseClass_GridTile::RunTileFunctions()
+{
+	switch (OnPlayerEnterTileFunction)
 	{
-		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle):
-			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
-			break;
-		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs):
-			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->RegenerateLevel();
-			break;
-		default:
-			break;
+	case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle):
+		GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
+		break;
+	case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs):
+		GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->RegenerateLevel();
+		break;
+	default:
+		break;
 	}
 }

@@ -38,7 +38,7 @@ void AStatusFunctions_BaseClass::PassiveFunction_OnStatusEffectEnd(ABaseClass_En
 
 
 // ------------------------- Triggered Functions
-void AStatusFunctions_BaseClass::TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity)
+void AStatusFunctions_BaseClass::TriggeredFunction_StartOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity)
 {
 
 }

@@ -56,8 +56,6 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 					StackEntry.Card.CurrentTargets.RemoveAt(i);
 			}
 
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Rolling Quake Damage: %d"), DamageValue));
-
 			ABaseClass_EntityInBattle* RandEnemy = Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[FMath::RandRange(0, StackEntry.Card.CurrentTargets.Num() - 1)]);
 
 			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
@@ -70,11 +68,13 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 void ACardFunctions_RollingQuake::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
 	FString ContextString;
-	FStackEntry DuplicateCardStackEntry = StackEntry;
+	FStackEntry DuplicateCardStackEntry;
 
 	for (int r = 0; r < ManaSpent; r++) {
 		DuplicateCardStackEntry.Card = *CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
 		DuplicateCardStackEntry.RunWidgetFunction = false;
+
+		DuplicateCardStackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
 
 		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(DuplicateCardStackEntry);
 	}

@@ -14,5 +14,5 @@ class LOSTWORLD_422_API AStatusFunctions_Poison : public AStatusFunctions_BaseCl
 public:
 
 // ------------------------- Triggered Functions
-	virtual void TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity);
+	virtual void TriggeredFunction_StartOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity);
 };

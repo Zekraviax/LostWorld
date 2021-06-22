@@ -32,6 +32,6 @@ public:
 	virtual void PassiveFunction_OnStatusEffectEnd(ABaseClass_EntityInBattle* AffectedEntity);		// Undo status effect changes
 
 // ------------------------- Triggered Functions
-	virtual void TriggeredFunction_StarterOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity);
+	virtual void TriggeredFunction_StartOfEntityTurn(ABaseClass_EntityInBattle* AffectedEntity);
 	virtual int TriggeredFunction_EntityAboutToTakeDamage(ABaseClass_EntityInBattle* AffectedEntity, int IncomingDamate);		// Triggeres when the entity is *about to* take damage
 };

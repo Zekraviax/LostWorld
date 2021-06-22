@@ -315,24 +315,25 @@ void ABaseClass_PlayerController::ExitBattle()
 
 void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 {
-	// Clear occupying tile
+	// Clear the previous occupying tile
 	if (CurrentLocationInLevel) {
 		if (CurrentLocationInLevel->OccupyingEntity == EntityInBattleRef) {
 			CurrentLocationInLevel->OccupyingEntity = nullptr;
 		}
 	}
 
+	// Set new occupying tile
+	CurrentLocationInLevel = TileReference;
+	CurrentLocationInLevel->OccupyingEntity = EntityInBattleRef;
+
 	// Set Player's Entity location
 	EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 	EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
 	EntityInBattleRef->Y_Coordinate = TileReference->Y_Coordinate;
 
-	CurrentLocationInLevel = TileReference;
-	CurrentLocationInLevel->OccupyingEntity = EntityInBattleRef;
-
 	CurrentRoom = TileReference->RoomReference;
 	Level_HUD_Widget->Minimap->UpdateMinimap(TileReference);
 
 	// Run OnTileEnter Functions
-	TileReference->OnPlayerEnterTile();
+	TileReference->OnPlayerEnterTile(this);
 }

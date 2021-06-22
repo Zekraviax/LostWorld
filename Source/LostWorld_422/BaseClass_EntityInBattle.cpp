@@ -136,8 +136,8 @@ void ABaseClass_EntityInBattle::UpdateCardVariables()
 			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
 		}
 
-		if (CardsInHand[i].Controller->EntityBaseData.DisplayName == "Player")
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s damage: %d"), *CardsInHand[i].DisplayName, CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage));
+		//if (CardsInHand[i].Controller->EntityBaseData.DisplayName == "Player")
+		//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s damage: %d"), *CardsInHand[i].DisplayName, CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage));
 	}
 }
 
@@ -199,7 +199,7 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		for (int i = StatusEffects.Num() - 1; i >= 0; i--) {
 			AStatusFunctions_BaseClass* StatusEffectActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
-			StatusEffectActor_Reference->TriggeredFunction_StarterOfEntityTurn(this);
+			StatusEffectActor_Reference->TriggeredFunction_StartOfEntityTurn(this);
 
 			StatusEffectActor_Reference->ConditionalBeginDestroy();
 		}

@@ -7,7 +7,7 @@
 #include "Level_SpawnTypeBase.h"
 
 
-//-------------------- Battle --------------------//
+//-------------------- Level --------------------//
 void ALostWorld_422GameStateBase::RegenerateLevel()
 {
 	if (!PlayerControllerRef)
@@ -122,6 +122,12 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
 			BattleEntity->ShuffleCardsInDeck_BP();
+
+			// Activate start-of-battle Traits
+			//if (BattleEntity->EntityBaseData) {
+
+			//}
+
 			BattleEntity->Begin_Battle();
 		}
 

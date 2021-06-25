@@ -16,6 +16,7 @@ class ABaseClass_LevelRoom;
 class UBaseClass_Widget_ZoneSearch;
 class ACardAbilityActor_BaseClass;
 class AStatusFunctions_BaseClass;
+class ATraitFunctions_BaseClass;
 
 
 // Enums
@@ -431,6 +432,24 @@ struct LOSTWORLD_422_API F_StatusEffect_Base : public FTableRowBase
 };
 
 
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API F_Trait_Base : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<ATraitFunctions_BaseClass> TraitFunctions;
+
+	F_Trait_Base()
+	{
+		DisplayName = "Default";
+	}
+};
+
+
 // ------------------------- The Stack
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FStackEntry
@@ -601,13 +620,15 @@ struct LOSTWORLD_422_API FEntityBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FEntity_BaseStats CoreStats;
 
+	// Traits
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Battle")
+	TArray<FDataTableRowHandle> Traits;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	bool IsPlayer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	bool IsPlayerControllable;
-
-	// Traits
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	FEntity_GameOverOnDeath GameOverOnDeath;

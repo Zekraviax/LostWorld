@@ -1,8 +1,8 @@
-#include "TraitsFunctions_BaseClass.h"
+#include "TraitFunctions_BaseClass.h"
 
 
 // Sets default values
-ATraitsFunctions_BaseClass::ATraitsFunctions_BaseClass()
+ATraitFunctions_BaseClass::ATraitFunctions_BaseClass()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
@@ -10,14 +10,14 @@ ATraitsFunctions_BaseClass::ATraitsFunctions_BaseClass()
 }
 
 // Called when the game starts or when spawned
-void ATraitsFunctions_BaseClass::BeginPlay()
+void ATraitFunctions_BaseClass::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void ATraitsFunctions_BaseClass::Tick(float DeltaTime)
+void ATraitFunctions_BaseClass::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -25,7 +25,7 @@ void ATraitsFunctions_BaseClass::Tick(float DeltaTime)
 
 
 // ------------------------- Triggered Functions
-void ATraitsFunctions_BaseClass::TriggeredFunction_StartOfBattle(ABaseClass_EntityInBattle* Entity)
+void ATraitFunctions_BaseClass::TriggeredFunction_StartOfBattle(ABaseClass_EntityInBattle* Entity)
 {
 
 }

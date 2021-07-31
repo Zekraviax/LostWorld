@@ -45,6 +45,7 @@ void ABaseClass_PlayerController::BeginPlay()
 	// Create the Custom Console widget
 	if (!CustomConsole_Reference && CustomConsole_Class) {
 		CustomConsole_Reference = CreateWidget<UWidget_CustomConsole_Base>(GetWorld(), CustomConsole_Class);
+		CustomConsole_Reference->AddToViewport();
 	}
 
 	// Add some cards to the players' collection
@@ -201,6 +202,10 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 			CurrentDragCardRef->CardData.Controller->UpdateCardIndicesInAllZones();
 			CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
+
+			if (CustomConsole_Reference) {
+				CustomConsole_Reference->AddEntry(EntityInBattleRef->EntityBaseData.DisplayName + " casts: " + CurrentDragCardRef->CardData.DisplayName);
+			}
 
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;

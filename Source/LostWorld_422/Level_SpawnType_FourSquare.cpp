@@ -407,7 +407,6 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	}
 
 	// Add an enemy encounter to each room
-	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Generate Encounters")));
 	if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
 		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Generated enemy encounters.");
 	}

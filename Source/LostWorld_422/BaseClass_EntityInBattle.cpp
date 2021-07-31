@@ -2,6 +2,7 @@
 
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_GridTile.h"
+#include "Widget_CustomConsole_Base.h"
 #include "ItemFunctions_BaseClass.h"
 #include "StatusFunctions_BaseClass.h"
 #include "LostWorld_422GameStateBase.h"
@@ -160,7 +161,9 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 
 void ABaseClass_EntityInBattle::Begin_Turn()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
+	if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(EntityBaseData.DisplayName + "'s turn begins.");
+	}
 
 	// Draw cards to hand size
 	if (CardsInHand.Num() < EntityBaseData.HandSize) {

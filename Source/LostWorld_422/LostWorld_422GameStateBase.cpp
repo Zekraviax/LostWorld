@@ -4,6 +4,7 @@
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 #include "Level_SpawnTypeBase.h"
 
 
@@ -59,6 +60,10 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		GEngine->AddOnScreenDebugMessage(-1, 2.5f, FColor::Cyan, TEXT("Error: Not Enough Cards In Deck"));
 	else
 	{
+		if (PlayerControllerRef->CustomConsole_Reference->IsValidLowLevel()) {
+			PlayerControllerRef->CustomConsole_Reference->AddEntry("Begin battle!");
+		}
+
 		SortedTurnOrderList.Empty();
 
 		// Stop the player from moving normally

@@ -1,6 +1,7 @@
 #include "Level_SpawnType_FourSquare.h"
 
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 #include "Components/SceneComponent.h"
 #include "Components/UniformGridSlot.h"
 #include "Components/GridSlot.h"
@@ -406,7 +407,11 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	}
 
 	// Add an enemy encounter to each room
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Generate Encounters")));
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Generate Encounters")));
+	if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Generated enemy encounters.");
+	}
+
 	FDataTableRowHandle EnemyFormationsTableRow;
 
 	EnemyFormationsTableRow.DataTable = EnemyFormationsTable;

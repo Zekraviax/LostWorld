@@ -16,6 +16,7 @@
 
 // Forward Declarations
 class ABaseClass_GridTile;
+class UWidget_CustomConsole_Base;
 
 
 // Class-Specific Enums
@@ -105,6 +106,13 @@ public:
 	// Dragging Card Widget Reference
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CurrentDragCardRef;
+
+	// Custom Console
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_CustomConsole_Base> CustomConsole_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_CustomConsole_Base* CustomConsole_Reference;
 
 // Functions
 // --------------------------------------------------

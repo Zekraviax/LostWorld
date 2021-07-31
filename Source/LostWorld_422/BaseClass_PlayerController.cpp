@@ -6,6 +6,7 @@
 #include "BaseClass_Widget_Minimap.h"
 #include "ItemFunctions_BaseClass.h"
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 #include "Components/SceneComponent.h"
 
 
@@ -39,6 +40,11 @@ void ABaseClass_PlayerController::BeginPlay()
 	if (!Level_HUD_Widget && Level_HUD_Class) {
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
 		Level_HUD_Widget->AddToViewport();
+	}
+
+	// Create the Custom Console widget
+	if (!CustomConsole_Reference && CustomConsole_Class) {
+		CustomConsole_Reference = CreateWidget<UWidget_CustomConsole_Base>(GetWorld(), CustomConsole_Class);
 	}
 
 	// Add some cards to the players' collection

@@ -21,13 +21,13 @@ void ALevel_SpawnType_BossDen::RunLevelGeneratorFunction()
 	ABaseClass_LevelRoom* RoomOne = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(LevelRoom_Class);
 
 	for (int x = 5; x < 10; x++) {
-		for (int y = 5; y < 10; y++) {
+		for (int y = 0; y < 10; y++) {
 			FullLevelArrayCoordinates.Add(FVector2D(x, y));
 		}
 	}
 
 	for (int i = 0; i <= 5; i++) {
-		FullLevelArrayCoordinates.AddUnique(FVector2D(i, 5));
+		FullLevelArrayCoordinates.AddUnique(FVector2D(i, 2));
 	}
 
 	// Spawn minimap tiles
@@ -71,46 +71,6 @@ void ALevel_SpawnType_BossDen::RunLevelGeneratorFunction()
 			GridTile_Actor->MinimapRoomReference = FullMinimapRoomArray[i];
 
 			GridTilesArray.Add(GridTile_Actor);
-
-			// Cardinal Directions
-			//if (MinimapArrayRoomOneCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-			//	GridTile_Actor->BaseColour = FLinearColor(1.f, 1.f, 0.5f, 1.f);
-
-			//	RoomOneGridTiles.Add(GridTile_Actor);
-			//	RoomOne->GridTilesInRoom.Add(GridTile_Actor);
-			//	GridTile_Actor->RoomReference = RoomOne;
-
-			//	PlayerSpawnTiles.Add(GridTile_Actor);
-			//}
-			//else if (MinimapArrayRoomTwoCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-			//	GridTile_Actor->BaseColour = FLinearColor(1.f, 0.5f, 0.5f, 1.f);
-
-			//	RoomTwoGridTiles.Add(GridTile_Actor);
-			//	RoomTwo->GridTilesInRoom.Add(GridTile_Actor);
-			//	GridTile_Actor->RoomReference = RoomTwo;
-
-			//	PlayerSpawnTiles.Add(GridTile_Actor);
-			//}
-			//else if (MinimapArrayRoomThreeCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-			//	GridTile_Actor->BaseColour = FLinearColor(0.5f, 0.5f, 1.f, 1.f);
-
-			//	RoomThreeGridTiles.Add(GridTile_Actor);
-			//	RoomThree->GridTilesInRoom.Add(GridTile_Actor);
-			//	GridTile_Actor->RoomReference = RoomThree;
-
-			//	PlayerSpawnTiles.Add(GridTile_Actor);
-			//}
-			//else if (MinimapArrayRoomFourCoordinates.Contains(FVector2D(GridTile_Actor->X_Coordinate, GridTile_Actor->Y_Coordinate))) {
-			//	GridTile_Actor->BaseColour = FLinearColor(0.5f, 1.f, 0.5f, 1.f);
-
-			//	RoomFourGridTiles.Add(GridTile_Actor);
-			//	RoomFour->GridTilesInRoom.Add(GridTile_Actor);
-			//	GridTile_Actor->RoomReference = RoomFour;
-
-			//	PlayerSpawnTiles.Add(GridTile_Actor);
-			//}
-
-			//GridTile_Actor->DynamicMaterial->SetVectorParameterValue("Color", GridTile_Actor->BaseColour);
 		}
 	}
 
@@ -128,12 +88,13 @@ void ALevel_SpawnType_BossDen::RunLevelGeneratorFunction()
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
 
-		if (FoundTile->X_Coordinate == 9 &&
-			FoundTile->Y_Coordinate == 5) {
+		if (FoundTile->X_Coordinate == 7 &&
+			FoundTile->Y_Coordinate == 7) {
 
 			FoundTile->EncountersList.Add(NewEncounter);
+			FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle;
 		} else if (FoundTile->X_Coordinate == 0 &&
-			FoundTile->Y_Coordinate == 5) {
+			FoundTile->Y_Coordinate == 2) {
 
 			ABaseClass_PlayerController* LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 			LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;

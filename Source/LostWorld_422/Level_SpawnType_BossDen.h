@@ -10,6 +10,10 @@ class LOSTWORLD_422_API ALevel_SpawnType_BossDen : public ALevel_SpawnTypeBase
 {
 	GENERATED_BODY()
 	
+
+// Functions
+// --------------------------------------------------
+
 // ------------------------- Base Class Functions
 	virtual void RunLevelGeneratorFunction();
 };

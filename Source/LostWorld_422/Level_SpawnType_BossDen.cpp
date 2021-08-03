@@ -5,6 +5,7 @@
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_Widget_Minimap.h"
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 #include "Components/UniformGridSlot.h"
 
 
@@ -75,7 +76,10 @@ void ALevel_SpawnType_BossDen::RunLevelGeneratorFunction()
 	}
 
 	// Add a boss encounter
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, FString::Printf(TEXT("Generate Boss Encounter")));
+	if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Generated boss encounter.");
+	}
+
 	FDataTableRowHandle EnemyFormationsTableRow;
 
 	EnemyFormationsTableRow.DataTable = EnemyFormationsTable;

@@ -166,8 +166,6 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 
 void ALostWorld_422GameStateBase::NewCombatRound()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("New Round"));
-
 	// Player always goes first (at this time)
 	// Player's Summons go second
 	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
@@ -196,8 +194,6 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 	int RepeatCount = 1;
 	FCardBase NewStackEntryCard;
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
-
 	NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[0].AbilityDescription;
 	NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
 
@@ -216,8 +212,12 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	if (GetWorld()) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Run Ability: " + TheStack[0].Card.Description));
 		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].Card.AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->
+				AddEntry(TheStack[0].Card.Controller->EntityBaseData.DisplayName + " casts " + TheStack[0].Card.DisplayName + ".");
+		}
 
 		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
 
@@ -249,9 +249,11 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 	// Check if entity that died is the player
 	// If it isn't the player, check if all enemies are dead instead
-	if (DeadEntity->PlayerControllerRef)
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Game Over."));
-	else {
+	if (DeadEntity->PlayerControllerRef) {
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Game Over.");
+		}
+	} else {
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
@@ -262,7 +264,10 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 		// If all enemies are dead, end the battle
 		if (CurrentAliveEnemyEntities.Num() <= 0) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
+
+			if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+				Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("All enemies defeated.");
+			}
 
 			// Remove the Encounter from the list
 			if (LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.Num() > 0)

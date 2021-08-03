@@ -5,8 +5,6 @@
 
 void ACardFunctions_BloodRecycling::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Execute Card Function: Blood Recycling"));
-
 	int32 DamageValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDamage;
 	int32 DrawValue = StackEntry.Card.AbilitiesAndConditions[0].BaseDraw;
 

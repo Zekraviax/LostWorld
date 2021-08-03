@@ -29,16 +29,12 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction) {
 		if (SpentManaWidget_Class) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Spend Mana)"));
-
 			SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
 			SpentManaWidget_Reference->CardsTableRowName = "RollingQuake";
 			SpentManaWidget_Reference->StackEntry = StackEntry;
 			SpentManaWidget_Reference->AddToViewport();
 		}
 	} else {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Rolling Quake (Deal Damage)"));
-
 		// Get random targets here so that we avoid hitting an entity that's already dead
 		StackEntry.Card.CurrentTargets.Empty();
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)

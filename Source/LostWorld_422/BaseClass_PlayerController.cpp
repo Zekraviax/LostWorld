@@ -128,29 +128,19 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 // ------------------------- Controls
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Mouse Button Up"));
-
 	EntityInBattleRef->UpdateCardVariables();
 
 	// Get any actors under cursor
 	FHitResult HitResult(ForceInit);
 	GetHitResultUnderCursor(ECollisionChannel::ECC_WorldDynamic, false, HitResult);
 
-	if (HitResult.GetActor())
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Hit Actor: " + HitResult.GetActor()->GetName()));
-
 	// Delete CardDrag widget
 	if (CurrentDragCardRef && Battle_HUD_Widget)
 	{
-		//CurrentDragCardRef->RemoveFromParent();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Card Widget Destroyed: " + CurrentDragCardRef->CardData.DisplayName));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Find Target"));
-
 		// Set rudimentary targets based on cast mode
 		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget)
 		{
 			// Any Single (Entity) Target
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("Cast Card: " + CurrentDragCardRef->CardData.DisplayName + " on Target: " + HitResult.GetActor()->GetName()));
 			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
 		} else if (CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_Self) {
 			// Self Target
@@ -184,8 +174,6 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, (TEXT("CardInHand Index: " + FString::FromInt(CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex) + "  /  Cast Card Index: " + FString::FromInt(CurrentDragCardRef->CardData.ZoneIndex))));
-
 				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
 					CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
@@ -202,10 +190,6 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 
 			CurrentDragCardRef->CardData.Controller->UpdateCardIndicesInAllZones();
 			CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
-
-			if (CustomConsole_Reference) {
-				CustomConsole_Reference->AddEntry(EntityInBattleRef->EntityBaseData.DisplayName + " casts: " + CurrentDragCardRef->CardData.DisplayName);
-			}
 
 			CurrentDragCardRef->RemoveFromParent();
 			CurrentDragCardRef = NULL;

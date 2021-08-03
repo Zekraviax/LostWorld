@@ -136,9 +136,6 @@ void ABaseClass_EntityInBattle::UpdateCardVariables()
 		} else {
 			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
 		}
-
-		//if (CardsInHand[i].Controller->EntityBaseData.DisplayName == "Player")
-		//	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("%s damage: %d"), *CardsInHand[i].DisplayName, CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage));
 	}
 }
 
@@ -254,8 +251,6 @@ void ABaseClass_EntityInBattle::Event_DrawCard()
 {
 	// Check if there are any cards in deck
 	// If not, shuffle the graveyard into the deck
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Cards in Deck: %d"), CardsInDeck.Num()));
-
 	if (CardsInDeck.Num() <= 0) {
 		if (CardsInGraveyard.Num() > 0) {
 			for (int i = 0; i < CardsInGraveyard.Num(); i++) {
@@ -331,6 +326,11 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 
 	if (DamageValue > 0) {
 		EntityBaseData.HealthValues.X_Value -= DamageValue;
+
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(EntityBaseData.DisplayName + " takes " + FString::FromInt(DamageValue) + " damage.");
+		}
+
 		Event_HealthChanged();
 	}
 }
@@ -386,15 +386,11 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
-
 	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
 
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-
-			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
 
 			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
 				TargetsArray.Add(FoundEntity);
@@ -402,8 +398,6 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		}
 
 		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
-
-		//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
 	}
 
 	// Cast card

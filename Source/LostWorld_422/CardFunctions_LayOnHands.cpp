@@ -29,8 +29,6 @@ void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 	//SpentMana_Widget Check
 	if (StackEntry.RunWidgetFunction) {
 		if (SpentManaWidget_Class) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Execute Card Function: Lay on Hands (Spend Mana)"));
-
 			SpentManaWidget_Reference = CreateWidget<UBaseClass_Widget_SpentMana>(GetWorld(), SpentManaWidget_Class);
 			SpentManaWidget_Reference->CardsTableRowName = "LayOnHands";
 			SpentManaWidget_Reference->StackEntry = StackEntry;

@@ -27,4 +27,12 @@ public:
 // ------------------------- Widget
 	UFUNCTION(BlueprintCallable)
 	void AddEntry(FString text);
+
+
+/* TO-DO:
+ * Added types of Custom Console entries
+ * Add different colours of entries
+ * Change the name of the function to include 'CustomConsole'.
+ * Added Show/Hide function.
+ */
 };

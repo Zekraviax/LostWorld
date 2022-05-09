@@ -453,7 +453,6 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
 
 				LocalPlayerControllerRef->MoveToTile(FoundTile);
-				//FoundTile->OccupyingEntity = LocalPlayerControllerRef->EntityInBattleRef;
 				break;
 			}
 		}

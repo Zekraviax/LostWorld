@@ -30,9 +30,10 @@ public:
 
 
 /* TO-DO:
- * Added types of Custom Console entries
- * Add different colours of entries
+ * Add types of Custom Console entries
+ * Add different colours for text entries
  * Change the name of the function to include 'CustomConsole'.
  * Added Show/Hide function.
+ * Create easily accessed instance of this widget for add entries to the console scroll box
  */
 };

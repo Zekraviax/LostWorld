@@ -61,7 +61,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 	else
 	{
 		if (PlayerControllerRef->CustomConsole_Reference->IsValidLowLevel()) {
-			PlayerControllerRef->CustomConsole_Reference->AddEntry("Begin battle!");
+			PlayerControllerRef->CustomConsole_Reference->AddEntry("Battle begins!");
 		}
 
 		SortedTurnOrderList.Empty();
@@ -84,6 +84,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
 				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
 
+				// Spawn each enemy within 2 tiles of the player, but make sure that they don't spawn on an occupied tile
 				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
 					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
@@ -127,12 +128,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
 			BattleEntity->ShuffleCardsInDeck_BP();
-
-			// Activate start-of-battle Traits
-			//if (BattleEntity->EntityBaseData) {
-
-			//}
-
+			
 			BattleEntity->Begin_Battle();
 		}
 
@@ -264,7 +260,6 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 		// If all enemies are dead, end the battle
 		if (CurrentAliveEnemyEntities.Num() <= 0) {
-
 			if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
 				Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("All enemies defeated.");
 			}

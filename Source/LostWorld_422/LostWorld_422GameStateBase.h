@@ -49,9 +49,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 

@@ -169,23 +169,23 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: Failed to cast card"));
 				return;
 			}
+
 			CurrentDragCardRef->CastCard();
 			
 			// Remove card from hand and add to graveyard
-			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++)
-			{
+			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++) {
 				if (CurrentDragCardRef->CardData.Controller->CardsInHand.IsValidIndex(i) && CurrentDragCardRef->CardData.Controller->CardsInHand[i].ZoneIndex == CurrentDragCardRef->CardData.ZoneIndex) {
 					CurrentDragCardRef->CardData.Controller->CardsInHand.RemoveAt(i);
 					CurrentDragCardRef->CardData.Controller->CardsInGraveyard.Add(CurrentDragCardRef->CardData);
 				}
 			}
 
-			for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num() - 1; j++)
-			{
-				if (j == 0)
+			for (int j = 0; j < CurrentDragCardRef->CardData.Controller->CardsInHand.Num() - 1; j++) {
+				if (j == 0) {
 					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
-				else
+				} else {
 					Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(false, CurrentDragCardRef->CardData.Controller->CardsInHand[j]);
+				}
 			}
 
 			CurrentDragCardRef->CardData.Controller->UpdateCardIndicesInAllZones();
@@ -321,6 +321,8 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 	CurrentLocationInLevel = TileReference;
 	CurrentLocationInLevel->OccupyingEntity = EntityInBattleRef;
 
+	UE_LOG(LogTemp, Warning, TEXT("CurrentLocationInLevel coordinates: %d / %d"), CurrentLocationInLevel->X_Coordinate, CurrentLocationInLevel->Y_Coordinate);
+
 	// Set Player's Entity location
 	EntityInBattleRef->SetActorLocation(TileReference->PlayerRestPointReference->GetComponentLocation());
 	EntityInBattleRef->X_Coordinate = TileReference->X_Coordinate;
@@ -331,4 +333,13 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 
 	// Run OnTileEnter Functions
 	TileReference->OnPlayerEnterTile(this);
+}
+
+
+bool ABaseClass_PlayerController::ValidDeckCheck()
+{
+	if (CurrentEntityData.CurrentDeck.Num() < 1)
+		return false;
+
+	return true;
 }

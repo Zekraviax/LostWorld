@@ -144,4 +144,7 @@ public:
 
 	UFUNCTION()
 	void MoveToTile(ABaseClass_GridTile* TileReference);
+
+	UFUNCTION()
+	bool ValidDeckCheck();
 };

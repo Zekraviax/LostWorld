@@ -61,8 +61,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 	FString ContextString;
 	TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
 
-	for (int i = 0; i < 10; i++)
-	{
+	for (int i = 0; i < 10; i++) {
 		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;

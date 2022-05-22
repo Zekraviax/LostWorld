@@ -116,7 +116,6 @@ void ALevel_SpawnType_BossDen::RunLevelGeneratorFunction()
 				LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
 
 				LocalPlayerControllerRef->MoveToTile(FoundTile);
-				//FoundTile->OccupyingEntity = LocalPlayerControllerRef->EntityInBattleRef;
 				break;
 			}
 		}

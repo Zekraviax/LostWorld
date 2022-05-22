@@ -18,7 +18,6 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 	bool FoundCardWidget;
 	UBaseClass_Widget_DeckBuilderCard* LocalCardWidgetRef;
 
-
 	// Collection
 	if (CurrentCollection_ScrollBox)
 	{
@@ -27,34 +26,27 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 		if (TestUnlimitedCardsMode)
 			Test_Activate_UnlimitedCards();
 
-		else
-		{
-			for (int i = 0; i < PlayerControllerRef->CurrentCollection.Num(); i++)
-			{
+		else {
+			for (int i = 0; i < PlayerControllerRef->CurrentCollection.Num(); i++) {
 				FoundCardWidget = false;
 				DeckBuilderCard_Widget = nullptr;
 
-				for (int j = 0; j < CurrentCollection_ScrollBox->GetChildrenCount(); j++)
-				{
+				for (int j = 0; j < CurrentCollection_ScrollBox->GetChildrenCount(); j++) {
 					LocalCardWidgetRef = Cast<UBaseClass_Widget_DeckBuilderCard>(CurrentCollection_ScrollBox->GetChildAt(j));
 
-					if (LocalCardWidgetRef->CardDataRef.DisplayName == PlayerControllerRef->CurrentCollection[i].DisplayName)
-					{
+					if (LocalCardWidgetRef->CardDataRef.DisplayName == PlayerControllerRef->CurrentCollection[i].DisplayName) {
 						FoundCardWidget = true;
 						DeckBuilderCard_Widget = LocalCardWidgetRef;
 						break;
 					}
 				}
 
-				if (DeckBuilderCard_Widget)
-				{
+				if (DeckBuilderCard_Widget) {
 					DeckBuilderCard_Widget->QuantityBind++;
 
 					if(DeckBuilderCard_Widget->DeckBuilderZone != E_DeckBuilder_Zone::E_Collection)
 						DeckBuilderCard_Widget->DeckBuilderZone = E_DeckBuilder_Zone::E_Collection;
-				}
-				else
-				{
+				} else {
 					DeckBuilderCard_Widget = CreateWidget<UBaseClass_Widget_DeckBuilderCard>(GetWorld(), DeckBuilderCard_Class);
 
 					DeckBuilderCard_Widget->CardDataRef = PlayerControllerRef->CurrentCollection[i];
@@ -69,39 +61,34 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 	}
 
 	// Deck
-	if (CurrentDeck_ScrollBox)
-	{
+	if (CurrentDeck_ScrollBox) {
 		CurrentDeck_ScrollBox->ClearChildren();
 
-		for (int i = 0; i < PlayerControllerRef->CurrentEntityData.CurrentDeck.Num(); i++)
-		{
+		for (int i = 0; i < PlayerControllerRef->CurrentEntityData.CurrentDeck.Num(); i++) {
 			FoundCardWidget = false;
 			DeckBuilderCard_Widget = nullptr;
 
-			for (int j = 0; j < CurrentDeck_ScrollBox->GetChildrenCount(); j++)
-			{
+			for (int j = 0; j < CurrentDeck_ScrollBox->GetChildrenCount(); j++) {
 				LocalCardWidgetRef = Cast<UBaseClass_Widget_DeckBuilderCard>(CurrentDeck_ScrollBox->GetChildAt(j));
 
-				if (LocalCardWidgetRef->CardDataRef.DisplayName == PlayerControllerRef->CurrentEntityData.CurrentDeck[i].DisplayName && !FoundCardWidget)
-				{
+				if (LocalCardWidgetRef->CardDataRef.DisplayName == PlayerControllerRef->CurrentEntityData.CurrentDeck[i].DisplayName && !FoundCardWidget) {
 					FoundCardWidget = true;
 					DeckBuilderCard_Widget = LocalCardWidgetRef;
 				}
 			}
 
-			if (DeckBuilderCard_Widget)
-			{
+			if (DeckBuilderCard_Widget) {
 				DeckBuilderCard_Widget->QuantityBind++;
 				DeckBuilderCard_Widget->BindInfo();
-			}
-			else
-			{
+			} else {
 				DeckBuilderCard_Widget = CreateWidget<UBaseClass_Widget_DeckBuilderCard>(GetWorld(), DeckBuilderCard_Class);
+
 				DeckBuilderCard_Widget->CardDataRef = PlayerControllerRef->CurrentEntityData.CurrentDeck[i];
 				DeckBuilderCard_Widget->DeckBuilderZone = E_DeckBuilder_Zone::E_Deck;
 				DeckBuilderCard_Widget->PlayerControllerRef = PlayerControllerRef;
 				DeckBuilderCard_Widget->DeckBuilderWidgetRef = this;
 				DeckBuilderCard_Widget->QuantityBind = 1;
+
 				CurrentDeck_ScrollBox->AddChild(DeckBuilderCard_Widget);
 			}
 		}

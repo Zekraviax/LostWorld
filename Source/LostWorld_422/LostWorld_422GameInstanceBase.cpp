@@ -4,20 +4,6 @@
 #include "GameFramework/Actor.h"
 
 
-// ------------------------- Initializer
-//ULostWorld_422GameInstanceBase::ULostWorld_422GameInstanceBase(const FObjectInitializer& ObjectInitializer)
-//{
-//	// Construct all Room Blueprints
-//	static ConstructorHelpers::FObjectFinder<UBlueprint> TestOne_Room_BlueprintConstruct(TEXT("Blueprint'/Game/RoomLayouts/BlueprintChild_Room_TestOne.BlueprintChild_Room_TestOne'"));
-//
-//	if (TestOne_Room_BlueprintConstruct.Object) {
-//		TestOne_Room_Class = (UClass*)TestOne_Room_BlueprintConstruct.Object->GeneratedClass;
-//	}
-//
-//	UE_LOG(LogTemp, Warning, TEXT("GameInstance Constructed"));
-//}
-
-
 void ULostWorld_422GameInstanceBase::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation)
 {
 	FActorSpawnParameters SpawnParameters;

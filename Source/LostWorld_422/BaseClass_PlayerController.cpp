@@ -1,13 +1,14 @@
 #include "BaseClass_PlayerController.h"
 
-#include "EngineUtils.h"
 #include "BaseClass_DefaultPawn.h"
 #include "BaseClass_GridTile.h"
 #include "BaseClass_Widget_Minimap.h"
+#include "Components/SceneComponent.h"
+#include "EngineUtils.h"
 #include "ItemFunctions_BaseClass.h"
+#include "Kismet/GameplayStatics.h"
 #include "WidgetComponent_MinimapRoom.h"
 #include "Widget_CustomConsole_Base.h"
-#include "Components/SceneComponent.h"
 
 
 void ABaseClass_PlayerController::SetupInputComponent()
@@ -36,6 +37,8 @@ void ABaseClass_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	FString ContextString;
+
 	// Create the Level HUD widget
 	if (!Level_HUD_Widget && Level_HUD_Class) {
 		Level_HUD_Widget = CreateWidget<UBaseClass_HUD_Level>(GetWorld(), Level_HUD_Class);
@@ -46,23 +49,6 @@ void ABaseClass_PlayerController::BeginPlay()
 	if (!CustomConsole_Reference && CustomConsole_Class) {
 		CustomConsole_Reference = CreateWidget<UWidget_CustomConsole_Base>(GetWorld(), CustomConsole_Class);
 		CustomConsole_Reference->AddToViewport();
-	}
-
-	// Add some cards to the players' collection
-	// (Add the same amount of each card because it's easier and more fun this way)
-	FString ContextString;
-	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
-	FCardBase* Card;
-
-	for (int i = 0; i < Card_ListNames.Num(); i++) {
-		Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
-
-		// DOn't add any cards that aren't done yet
-		if (Card->AbilitiesAndConditions.Num() > 0) {
-			for (int x = 0; x < 2; x++) {
-				CurrentCollection.Add(*Card);
-			}
-		}
 	}
 
 	// Add one of each item to the player's inventory
@@ -89,6 +75,32 @@ void ABaseClass_PlayerController::Tick(float DeltaTime)
 
 void ABaseClass_PlayerController::ManualBeginPlay()
 {
+	// Add some cards to the players' collection
+	// (Add the same amount of each card because it's easier and more fun this way)
+	FString ContextString;
+	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
+	FCardBase* Card;
+	UWorld* World = GetWorld();
+	ULostWorld_422GameInstanceBase* GameInstanceReference = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(World));
+
+	for (int i = 0; i < Card_ListNames.Num(); i++) {
+		Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
+
+		// Don't add any cards that aren't done yet
+		if (Card->AbilitiesAndConditions.Num() > 0) {
+			// Add some cards to the deck instead of the collection
+			if (i < 5) {
+				for (int x = 0; x < 2; x++) {
+					CurrentEntityData.CurrentDeck.Add(*Card);
+				}
+			} else {
+				for (int x = 0; x < 2; x++) {
+					CurrentCollection.Add(*Card);
+				}
+			}
+		}
+	}
+
 	// Create the player EntityInBattle
 	if (EntityInBattle_Class) {
 		UWorld* const World = GetWorld();
@@ -110,11 +122,17 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		SetViewTarget(EntityInBattleRef, Params);
 		EntityInBattleRef->Camera->SetActive(true);
 
-		// Move player to first tile
+		// Move player to first tile (?)
 		for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 			ABaseClass_GridTile* FoundTile = *Itr;
 			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 0 && FoundTile->Y_Coordinate == 0) {
-				FoundTile->MinimapRoomReference->SetColour();
+				if (IsValid(FoundTile->MinimapRoomReference)) {
+					FoundTile->MinimapRoomReference->SetColour();
+				} else {
+					// TO-DO: Set minimap room reference, then set its colour
+					FoundTile->MinimapRoomReference->SetColour();
+				}
+
 				break;
 			}
 		}

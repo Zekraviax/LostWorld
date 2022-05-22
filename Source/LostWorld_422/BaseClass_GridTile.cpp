@@ -46,10 +46,8 @@ void ABaseClass_GridTile::OnPlayerEnterTile(ABaseClass_PlayerController* PlayerC
 			// Stop the player from moving normally
 			PlayerControllerReference->ControlMode = E_Player_ControlMode::E_Battle;
 			GetWorldTimerManager().SetTimer(TileFunctionsTimerHandle, this, &ABaseClass_GridTile::RunTileFunctions, 0.2f, false);
-
 		}
-	}
-	else {
+	} else {
 		GetWorldTimerManager().SetTimer(TileFunctionsTimerHandle, this, &ABaseClass_GridTile::RunTileFunctions, 0.2f, false);
 	}
 }
@@ -64,7 +62,7 @@ void ABaseClass_GridTile::RunTileFunctions()
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
 			break;
 		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs):
-			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Move to next floor.");
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Moved to next floor.");
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->RegenerateLevel();
 			break;
 		default:

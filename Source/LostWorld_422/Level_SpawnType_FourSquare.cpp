@@ -1,13 +1,13 @@
 #include "Level_SpawnType_FourSquare.h"
 
-#include "WidgetComponent_MinimapRoom.h"
-#include "Widget_CustomConsole_Base.h"
-#include "Components/SceneComponent.h"
-#include "Components/UniformGridSlot.h"
-#include "Components/GridSlot.h"
 #include "BaseClass_LevelRoom.h"
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_Widget_Minimap.h"
+#include "Components/SceneComponent.h"
+#include "Components/UniformGridSlot.h"
+#include "Components/GridSlot.h"
+#include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 
 
 // ------------------------- Base Class Functions
@@ -15,6 +15,10 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 {
 	FActorSpawnParameters SpawnParameters;
 	TArray<USceneComponent*> GridTileSceneComponents;
+
+	// Set up
+	GridTilesArray.Empty();
+	FullMinimapRoomArray.Empty();
 
 	// Test Room Formation: Four Square
 	// Divide the map into four equal quadrants,
@@ -435,11 +439,15 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
 		if (FoundTile) {
-			StairsCounter++;
+			if (FoundTile->RoomReference != nullptr) {
+				StairsCounter++;
 
-			if (StairsCounter >= StairsIndex) {
-				FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs;
-				break;
+				if (StairsCounter >= StairsIndex) {
+					FoundTile->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs;
+					break;
+				}
+			} else {
+				StairsIndex--;
 			}
 		}
 	}
@@ -453,8 +461,11 @@ void ALevel_SpawnType_FourSquare::RunLevelGeneratorFunction()
 				LocalPlayerControllerRef->ControlMode = E_Player_ControlMode::E_Move;
 
 				LocalPlayerControllerRef->MoveToTile(FoundTile);
-				break;
+				//break;
 			}
+
+			// Set tile colour
+			FoundTile->DynamicMaterial->SetVectorParameterValue("Color", FoundTile->BaseColour);
 		}
 	}
 }

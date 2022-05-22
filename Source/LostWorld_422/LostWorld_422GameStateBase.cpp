@@ -15,18 +15,18 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
 	PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
+	ALevel_SpawnTypeBase* FoundGenerator = nullptr;
 
 	for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
-		ALevel_SpawnTypeBase* FoundGenerator = *SpawnItr;
-		FoundGenerator->Destroy();
-		FoundGenerator->ConditionalBeginDestroy();
+		FoundGenerator = *SpawnItr;
+		//FoundGenerator->Destroy();
+		//FoundGenerator->ConditionalBeginDestroy();
 	}
 
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
 		FoundTile->Destroy();
 		FoundTile->ConditionalBeginDestroy();
-		//FoundTile = nullptr;
 	}
 
 	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
@@ -44,7 +44,23 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 
 	// Spawn a random level generator
 	FActorSpawnParameters SpawnParameters;
-	ALevel_SpawnTypeBase* NewLevelGenerator = GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(LevelGenerators[FMath::RandRange(0, LevelGenerators.Num() - 1)]);
+
+	// Check for Boss Den thresholds
+	FoundGenerator->CurrentFloor++;
+	if (FoundGenerator->CurrentFloor >= FoundGenerator->FloorsRequiredForBoss) {
+		for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
+			FoundGenerator = *SpawnItr;
+			FoundGenerator->Destroy();
+			FoundGenerator->ConditionalBeginDestroy();
+		}
+
+		GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(BossDen_LevelGenerator_Class);
+	} 
+	/*
+	else {
+		GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(LevelGenerators[FMath::RandRange(0, LevelGenerators.Num() - 1)]);
+	}
+	*/
 
 	PlayerControllerRef->Level_HUD_Widget->Minimap->GenerateLevel();
 }
@@ -108,8 +124,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			}
 		}
 
-		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-		{
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
 			if (FoundEntity != PlayerControllerRef->EntityInBattleRef) {
@@ -123,12 +138,10 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			}
 		}
 
-		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
-		{
+		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr) {
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
 			BattleEntity->ShuffleCardsInDeck_BP();
-			
 			BattleEntity->Begin_Battle();
 		}
 

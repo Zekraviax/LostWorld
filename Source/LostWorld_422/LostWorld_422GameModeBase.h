@@ -374,6 +374,9 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AItemFunctions_BaseClass> Functions;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<FString, int> SpecialValues;
+
 	F_Item_Base()
 	{
 		DisplayName = "Default";
@@ -570,6 +573,10 @@ struct LOSTWORLD_422_API FEntity_ElementalStats
 	// Dynamism
 
 	// Mysteriousness?
+	// Otherworldlyness?
+	// Endlessness?
+	// Cosmicity?
+	// Unearthliness?
 
 	// Increases damage dealt by Light attacks
 	// Decreases damage taken by Light attacks

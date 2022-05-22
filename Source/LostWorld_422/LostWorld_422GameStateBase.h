@@ -57,6 +57,9 @@ public:
 	TArray<TSubclassOf<ALevel_SpawnTypeBase>> LevelGenerators;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<ALevel_SpawnTypeBase> BossDen_LevelGenerator_Class;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CurrentFloorNumber;
 
 // Functions

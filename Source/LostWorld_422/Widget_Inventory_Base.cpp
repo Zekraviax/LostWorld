@@ -9,12 +9,6 @@
 // ------------------------- Widget
 void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* PlayerController)
 {
-	// Check if the Battle HUD exists.
-	// If true, set the Inventory to Battle Mode.
-	//if () {
-
-	//}
-
 	if (!PlayerController->IsValidLowLevel())
 		PlayerControllerReference = PlayerController;
 
@@ -23,7 +17,11 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 	}
 
 	// Get all equipped items and add them to the EquippedItemsScrollBox
+	bool BreakOutOfLoop = false;
 	for (int x = 0; x < EquippedItemsScrollBox->GetChildrenCount(); x++) {
+		if (BreakOutOfLoop)
+			break;
+
 		if (Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x))) {
 			InventoryItem_Reference = Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x));
 			InventoryItem_Reference->ItemData = F_Item_Base(); // Fixes that annoying auto-equipping Sol Ring
@@ -33,6 +31,7 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 					if (InventoryItem_Reference->StaticEquipmentSlot) { 
 						if (PlayerControllerReference->EntityInBattleRef->EquippedItems[i].EquipSlots.Contains(InventoryItem_Reference->StaticEquipmentSlotType)) {
 							InventoryItem_Reference->ItemData = PlayerControllerReference->EntityInBattleRef->EquippedItems[i];
+							BreakOutOfLoop = true;
 							break;
 						}
 					}

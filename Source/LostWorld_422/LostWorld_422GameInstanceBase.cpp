@@ -14,3 +14,16 @@ void ULostWorld_422GameInstanceBase::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRo
 		Room_Reference = GetWorld()->SpawnActor<ABaseClass_LevelRoom>(TestOne_Room_Class, WorldLocation, WorldRotation, SpawnParameters);
 	}
 }
+
+
+// ------------------------- Inventory
+UWidget_Inventory_Base* ULostWorld_422GameInstanceBase::GetInventory()
+{
+	UWorld* World = GEngine->GameViewport->GetWorld();
+
+	if (!IsValid(Inventory_Reference)) {
+		Inventory_Reference = CreateWidget<UWidget_Inventory_Base>(World, Inventory_Class);
+	}
+
+	return Inventory_Reference;
+}

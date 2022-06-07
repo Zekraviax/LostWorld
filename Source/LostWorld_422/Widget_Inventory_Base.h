@@ -52,5 +52,5 @@ public:
 
 // ------------------------- Widget
 	UFUNCTION()
-	void OnInventoryOpened(ABaseClass_PlayerController* PlayerController = nullptr);
+	void OnInventoryOpened(ABaseClass_PlayerController* PlayerController = nullptr, bool SetInBattleMode = false);
 };

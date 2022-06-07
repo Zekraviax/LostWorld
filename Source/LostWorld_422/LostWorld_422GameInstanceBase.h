@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 
+#include "Widget_Inventory_Base.h"
+
 #include "LostWorld_422GameInstanceBase.generated.h"
 
 
@@ -36,4 +38,16 @@ public:
 // --------------------------------------------------
 	UFUNCTION()
 	void SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation);
+
+
+
+// Inventory
+// --------------------------------------------------
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_Inventory_Base> Inventory_Class;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_Inventory_Base* Inventory_Reference;
+
+	UFUNCTION(BlueprintCallable)
+	UWidget_Inventory_Base* GetInventory();
 };

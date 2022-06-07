@@ -377,10 +377,14 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<FString, int> SpecialValues;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool HasInBattleFunction;
+
 	F_Item_Base()
 	{
 		DisplayName = "Default";
 		Description = "Default";
+		HasInBattleFunction = false;
 	}
 
 

@@ -14,36 +14,25 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 	if (!PlayerController->IsValidLowLevel())
 		PlayerControllerReference = PlayerController;
 
+	for (int i = 0; i < PlayerController->EntityInBattleRef->EquippedItems.Num(); i++) {
+		for (int x = 0; x < EquippedItemsScrollBox->GetChildrenCount(); x++) {
+			if (Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x))) {
+				InventoryItem_Reference = Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x));
+				InventoryItem_Reference->ItemData = F_Item_Base(); // Fixes that annoying auto-equipping Sol Ring
 
-	// Get all equipped items and add them to the EquippedItemsScrollBox
-	bool BreakOutOfLoop = false;
-	for (int x = 0; x < EquippedItemsScrollBox->GetChildrenCount(); x++) {
-		//if (BreakOutOfLoop)
-		//	break;
-
-		if (Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x))) {
-			InventoryItem_Reference = Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(x));
-			InventoryItem_Reference->ItemData = F_Item_Base(); // Fixes that annoying auto-equipping Sol Ring
-
-			// Make sure that all children widgets are visible
-			if (InventoryItem_Reference->GetVisibility() != ESlateVisibility::Visible) {
-				InventoryItem_Reference->SetVisibility(ESlateVisibility::Visible);
-			}
-
-			if (!BreakOutOfLoop) {
-				for (int i = 0; i < PlayerController->EntityInBattleRef->EquippedItems.Num(); i++) {
-					if (InventoryItem_Reference->IsValidLowLevel()) {
-						if (InventoryItem_Reference->StaticEquipmentSlot) {
-							if (PlayerController->EntityInBattleRef->EquippedItems[i].EquipSlots.Contains(InventoryItem_Reference->StaticEquipmentSlotType)) {
-								InventoryItem_Reference->ItemData = PlayerController->EntityInBattleRef->EquippedItems[i];
-								BreakOutOfLoop = true;
-								break;
-							}
-						}
-					}
+				// Make sure that all children widgets are visible
+				if (InventoryItem_Reference->GetVisibility() != ESlateVisibility::Visible) {
+					InventoryItem_Reference->SetVisibility(ESlateVisibility::Visible);
 				}
 
-				InventoryItem_Reference->UpdateWidget();
+				if (InventoryItem_Reference->StaticEquipmentSlot) {
+					if (PlayerController->EntityInBattleRef->EquippedItems[i].EquipSlots.Contains(InventoryItem_Reference->StaticEquipmentSlotType)) {
+						InventoryItem_Reference->ItemData = PlayerController->EntityInBattleRef->EquippedItems[i];
+						InventoryItem_Reference->UpdateWidget();
+
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -63,8 +52,8 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 
 			// Don't let players change equipment in the middle of battle(?)
 			if (InBattleMode) {
-				if (InventoryItem_Reference->ItemEquipButtonWidget->IsValidLowLevel()) {
-					InventoryItem_Reference->ItemEquipButtonWidget->bIsEnabled = false;
+				if (InventoryItem_Reference->ItemEquipButton->IsValidLowLevel()) {
+					InventoryItem_Reference->ItemEquipButton->bIsEnabled = false;
 				}
 			}
 		}
@@ -78,19 +67,28 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 			if (Cast<UTextBlock>(EquippedItemsScrollBox->GetChildAt(i))) {
 				EquippedItemsScrollBox->GetChildAt(i)->SetVisibility(ESlateVisibility::Collapsed);
 			}
+
 			// Hide all equipped items that don't have in-battle functions
 			else if (Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(i))) {
 				UWidgetComponent_Inventory_Item_Base* ChildItem = Cast<UWidgetComponent_Inventory_Item_Base>(EquippedItemsScrollBox->GetChildAt(i));
 
 				if (!ChildItem->ItemData.HasInBattleFunction) {
-					ChildItem->SetVisibility(ESlateVisibility::Collapsed);
+					if (ChildItem->ItemData.DisplayName != "Default") {
+						ChildItem->ItemEquipButton->bIsEnabled = false;
+					} else {
+						ChildItem->SetVisibility(ESlateVisibility::Collapsed);
+					}
 				} else {
-					//InventoryItem_Reference->ItemEquipButtonWidget.Text
+					if (ChildItem->ItemEquipText->IsValidLowLevel()) {
+						ChildItem->ItemEquipText->SetText(FText::FromString("Activate"));
+						ChildItem->UpdateWidget();
+					}
 				}
 			}
 		}
+
 	}
 
 	// Clean up?
-	InventoryItem_Reference = nullptr;
+	//InventoryItem_Reference = nullptr;
 }

@@ -20,14 +20,14 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UButton* ItemEquipButtonWidget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* ItemEquipButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTextBlock* ItemEquipTextWidget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* ItemEquipText;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTextBlock* ItemNameTextWIdget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* ItemNameText;
 
 // ------------------------- Widget
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

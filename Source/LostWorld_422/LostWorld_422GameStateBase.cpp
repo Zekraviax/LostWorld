@@ -92,6 +92,10 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
+		// Make sure the player's coordinates are accurate
+		PlayerControllerRef->EntityInBattleRef->X_Coordinate = PlayerControllerRef->EntityInBattleRef->GetActorLocation().X / 200;
+		PlayerControllerRef->EntityInBattleRef->Y_Coordinate = PlayerControllerRef->EntityInBattleRef->GetActorLocation().Y / 200;
+
 		// Spawn every other entity
 		FString ContextString;
 		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
@@ -106,20 +110,21 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
 					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
 					GridTileReference->OccupyingEntity == nullptr &&
-					GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate &&
-					GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate) {
+					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate || GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
+						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / GridTileReference Coordinates: %d, %d"), GridTileReference->X_Coordinate, GridTileReference->Y_Coordinate);
+						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / Player Coordinates: %d, %d"), PlayerControllerRef->EntityInBattleRef->X_Coordinate, PlayerControllerRef->EntityInBattleRef->Y_Coordinate);
 
-					// Spawn Enemy Here
-					ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);	
-					NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
-					NewEnemy->GameStateRef = this;
+						// Spawn Enemy Here
+						ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);	
+						NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
+						NewEnemy->GameStateRef = this;
 
-					NewEnemy->Event_EntitySpawnedInWorld();
+						NewEnemy->Event_EntitySpawnedInWorld();
 
-					// Set occupied tile
-					GridTileReference->OccupyingEntity = NewEnemy;
+						// Set occupied tile
+						GridTileReference->OccupyingEntity = NewEnemy;
 
-					break;
+						break;
 				}
 			}
 		}

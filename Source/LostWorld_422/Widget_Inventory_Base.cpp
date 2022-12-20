@@ -81,7 +81,7 @@ void UWidget_Inventory_Base::OnInventoryOpened(ABaseClass_PlayerController* Play
 				} else {
 					if (ChildItem->ItemEquipText->IsValidLowLevel()) {
 						ChildItem->ItemEquipText->SetText(FText::FromString("Activate"));
-						ChildItem->UpdateWidget();
+						//ChildItem->UpdateWidget();
 					}
 				}
 			}

@@ -10,6 +10,7 @@
 #include "Level_SpawnTypeBase.h"
 #include "Level_SpawnType_FourSquare.h"
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 
 
 void UBaseClass_Widget_Minimap::GenerateLevel()
@@ -22,6 +23,10 @@ void UBaseClass_Widget_Minimap::GenerateLevel()
 
 	LevelGenerator->PlayerMinimapReference = this;
 	LevelGenerator->RunLevelGeneratorFunction();
+
+	//LevelGenerator->CurrentFloor++;
+	FString CustomConsoleMessage = "Current Floor: " + FString::FromInt(LevelGenerator->CurrentFloor) + "F.";
+	Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(CustomConsoleMessage);
 }
 
 

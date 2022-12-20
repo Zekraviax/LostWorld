@@ -33,12 +33,6 @@ void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard
 
 void UBaseClass_HUD_Battle::OpenInventoryWidget()
 {
-	/*
-	if (Inventory_Class && !Inventory_Reference) {
-		Inventory_Reference = CreateWidget<UWidget_Inventory_Base>(GetWorld(), Inventory_Class);
-	}
-	*/
-
 	Inventory_Reference = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(GetWorld()))->GetInventory();
 
 	Inventory_Reference->OnInventoryOpened(Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController()), true);

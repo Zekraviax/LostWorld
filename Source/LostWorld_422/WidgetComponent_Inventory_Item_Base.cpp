@@ -18,11 +18,6 @@ void UWidgetComponent_Inventory_Item_Base::OnEquipButtonPressed()
 
 			if (ItemData.EquipSlots.Contains(FoundWidget->StaticEquipmentSlotType)) {
 				// Unequip the currently equipped item, if there is one equipped
-				/*
-				if (FoundWidget->ItemData.DisplayName != "Default")
-					Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->PlayerInventory.Add(FoundWidget->ItemData);
-				*/
-
 				FoundWidget->ItemData = ItemData;
 				CurrentPlayerController->PlayerInventory.Remove(ItemData);
 				CurrentPlayerController->EntityInBattleRef->EquippedItems.Add(ItemData);
@@ -50,6 +45,8 @@ void UWidgetComponent_Inventory_Item_Base::OnEquipButtonPressed()
 
 		ItemData = F_Item_Base();
 		UpdateWidget();
+	} else if (ItemEquipText->GetText().ToString() == "Activate") {
+
 	}
 
 	for (TObjectIterator<UWidget_Inventory_Base> Itr; Itr; ++Itr) {
@@ -65,8 +62,11 @@ void UWidgetComponent_Inventory_Item_Base::UpdateWidget()
 {
 	// Static Equipment Widgets
 	if (StaticEquipmentSlot) {
-		if (ItemEquipText->IsValidLowLevel())
-			ItemEquipText->SetText(FText::FromString("Unequip"));
+		if (ItemEquipText->IsValidLowLevel()) {
+			if (!ItemEquipText->GetText().EqualTo(FText::FromString("Activate"))) {
+				ItemEquipText->SetText(FText::FromString("Unequip"));
+			}
+		}
 
 		if (ItemData.DisplayName == "Default") {
 			if (ItemEquipButton->IsValidLowLevel())

@@ -17,24 +17,26 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 	PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
 	ALevel_SpawnTypeBase* FoundGenerator = nullptr;
 
+	// Find the leve generator
 	for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
 		FoundGenerator = *SpawnItr;
-		//FoundGenerator->Destroy();
-		//FoundGenerator->ConditionalBeginDestroy();
 	}
 
+	// Destroy all tiles
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
 		FoundTile->Destroy();
 		FoundTile->ConditionalBeginDestroy();
 	}
 
+	// Destroy all room actors
 	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
 		ABaseClass_LevelRoom* FoundRoom = *RoomItr;
 		FoundRoom->Destroy();
 		FoundRoom->ConditionalBeginDestroy();
 	}
 
+	// ?
 	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
 		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
 		FoundWidget->RemoveFromParent();
@@ -42,11 +44,9 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 
 	GEngine->ForceGarbageCollection();
 
-	// Spawn a random level generator
-	FActorSpawnParameters SpawnParameters;
-
 	// Check for Boss Den thresholds
 	FoundGenerator->CurrentFloor++;
+
 	if (FoundGenerator->CurrentFloor >= FoundGenerator->FloorsRequiredForBoss) {
 		for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
 			FoundGenerator = *SpawnItr;
@@ -56,13 +56,12 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 
 		GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(BossDen_LevelGenerator_Class);
 	} 
-	/*
-	else {
-		GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(LevelGenerators[FMath::RandRange(0, LevelGenerators.Num() - 1)]);
-	}
-	*/
 
 	PlayerControllerRef->Level_HUD_Widget->Minimap->GenerateLevel();
+
+	// Send a message with the current floor number to the Custom Console
+	//FString CustomConsoleMessage = "Current Floor: " + FString::FromInt(FoundGenerator->CurrentFloor) + "F";
+	//Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(CustomConsoleMessage);
 }
 
 
@@ -110,7 +109,8 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
 					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
 					GridTileReference->OccupyingEntity == nullptr &&
-					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate || GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
+					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate || 
+					GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
 						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / GridTileReference Coordinates: %d, %d"), GridTileReference->X_Coordinate, GridTileReference->Y_Coordinate);
 						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / Player Coordinates: %d, %d"), PlayerControllerRef->EntityInBattleRef->X_Coordinate, PlayerControllerRef->EntityInBattleRef->Y_Coordinate);
 

@@ -69,7 +69,7 @@ public:
 
 // ------------------------- Gameplay
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int CurrentFloor;
+	int CurrentFloor = 1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int FloorsRequiredForBoss;

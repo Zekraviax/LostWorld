@@ -1,6 +1,8 @@
 #include "WidgetComponent_Inventory_Item_Base.h"
 
 #include "BaseClass_PlayerController.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
+#include "WidgetComponent_Description.h"
 #include "Widget_Inventory_Base.h"
 
 
@@ -16,6 +18,7 @@ void UWidgetComponent_Inventory_Item_Base::OnEquipButtonPressed()
 		for (TObjectIterator<UWidgetComponent_Inventory_Item_Base> Itr; Itr; ++Itr) {
 			UWidgetComponent_Inventory_Item_Base* FoundWidget = *Itr;
 
+			// If a valid equip slot has been found...
 			if (ItemData.EquipSlots.Contains(FoundWidget->StaticEquipmentSlotType)) {
 				// Unequip the currently equipped item, if there is one equipped
 				FoundWidget->ItemData = ItemData;
@@ -69,17 +72,21 @@ void UWidgetComponent_Inventory_Item_Base::UpdateWidget()
 		}
 
 		if (ItemData.DisplayName == "Default") {
-			if (ItemEquipButton->IsValidLowLevel())
+			if (ItemEquipButton->IsValidLowLevel()) {
 				ItemEquipButton->SetIsEnabled(false);
+			}
 
-			if (ItemNameText->IsValidLowLevel())
+			if (ItemNameText->IsValidLowLevel()) {
 				ItemNameText->SetText(FText::FromString("Nothing"));
-		}
-		else {
-			if (ItemNameText->IsValidLowLevel())
+			}
+		} else {
+			if (ItemNameText->IsValidLowLevel()) {
 				ItemNameText->SetText(FText::FromString(ItemData.DisplayName));
-			if (ItemEquipButton->IsValidLowLevel())
+			}
+
+			if (ItemEquipButton->IsValidLowLevel()) {
 				ItemEquipButton->SetIsEnabled(true);
+			}
 		}
 	// Unequipped Item Widgets
 	} else {
@@ -89,5 +96,55 @@ void UWidgetComponent_Inventory_Item_Base::UpdateWidget()
 			if (ItemNameText->IsValidLowLevel())
 				ItemNameText->SetText(FText::FromString(ItemData.DisplayName));
 		}
+	}
+
+	// Hide description widgets
+	OnMouseHoverOverEnd();
+}
+
+
+void UWidgetComponent_Inventory_Item_Base::OnMouseHoverOverBegin()
+{
+	// Put together the description text
+	FString DescriptionTextAsString;
+
+	DescriptionTextAsString.Append("Name: " + ItemData.DisplayName + "\n");
+	DescriptionTextAsString.Append("Description: " + ItemData.Description.Replace(TEXT("/n"), TEXT("\n")));
+
+	// Find a pre-existing description widget
+	// If there is none, create one
+	TArray<UUserWidget*> DescriptionWidgets;
+	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(), DescriptionWidgets, UWidgetComponent_Description::StaticClass(), false);
+	UWidgetComponent_Description* DescriptionWidget = nullptr;
+
+	if (DescriptionWidgets.Num() < 1) {
+		if (DescriptionWidgetBlueprintClass) {
+			DescriptionWidget = CreateWidget<UWidgetComponent_Description>(GetWorld(), DescriptionWidgetBlueprintClass);
+
+			DescriptionWidget->AddToViewport();
+		} else {
+			UE_LOG(LogTemp, Warning, TEXT("UWidgetComponent_Inventory_Item_Base / OnMouseHoverOverBegin / Error: DescriptionWidgetBlueprintClass is not valid."));
+		}
+	} else {
+		DescriptionWidget = Cast<UWidgetComponent_Description>(DescriptionWidgets[0]);
+
+		DescriptionWidget->SetVisibility(ESlateVisibility::HitTestInvisible);
+	}
+
+	if (DescriptionWidget) {
+		DescriptionWidget->SetDescriptionText(DescriptionTextAsString);
+	} else {
+		UE_LOG(LogTemp, Warning, TEXT("UWidgetComponent_Inventory_Item_Base / OnMouseHoverOverBegin / Error: DescriptionWidget is not valid."));
+	}
+}
+
+
+void UWidgetComponent_Inventory_Item_Base::OnMouseHoverOverEnd()
+{
+	TArray<UUserWidget*> DescriptionWidgets;
+	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(), DescriptionWidgets, UWidgetComponent_Description::StaticClass(), false);
+
+	if (DescriptionWidgets.Num() > 0) {
+		DescriptionWidgets[0]->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }

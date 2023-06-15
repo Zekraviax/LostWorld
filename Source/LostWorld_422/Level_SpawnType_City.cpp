@@ -14,6 +14,23 @@ void ALevel_SpawnType_City::RunLevelGeneratorFunction()
 	for (TObjectIterator<ABaseClass_GridTile> Itr; Itr; ++Itr) {
 		ABaseClass_GridTile* FoundTile = *Itr;
 		FullLevelArrayCoordinates.Add(FVector2D(FoundTile->GetActorLocation().X / 200, FoundTile->GetActorLocation().Y / 200));
+
+		// Make sure each tile has coordinates
+		FoundTile->X_Coordinate = FoundTile->GetActorLocation().X / 200;
+		FoundTile->Y_Coordinate = FoundTile->GetActorLocation().Y / 200;
+
+		if (!FoundTile->PlayerRestPointReference) {
+			// Get all child components of the tile
+			TArray<UActorComponent*> Components;
+			FoundTile->GetComponents<UActorComponent>(Components);
+
+			for (auto& Component : Components) {
+				// To-Do: Make sure each tile has a player rest point reference, if one isn't found
+				if (Component->GetName().Contains("PlayerRestPoint")) {
+					FoundTile->PlayerRestPointReference = Cast<USceneComponent>(Component);
+				}
+			}
+		}
 	}
 
 	// Populate minimap widget with tiles
@@ -37,9 +54,9 @@ void ALevel_SpawnType_City::RunLevelGeneratorFunction()
 				if (!FullLevelArrayCoordinates.Contains(FVector2D(x, y))) {
 					MinimapRoom_Widget->BackgroundImage->SetVisibility(ESlateVisibility::Hidden);
 					MinimapRoom_Widget->InteractButton->SetVisibility(ESlateVisibility::Collapsed);
-				}
-				else
+				} else {
 					FullMinimapRoomArray.Add(MinimapRoom_Widget);
+				}
 			}
 		}
 	}

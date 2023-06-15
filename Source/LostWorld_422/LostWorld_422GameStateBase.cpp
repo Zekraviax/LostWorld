@@ -99,23 +99,24 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		FString ContextString;
 		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
 
-		for (int j = 0; j < EnemyList->EnemiesMap.Num(); j++) {
-			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
-				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
+		if (EnemyList) {
+			for (int j = 0; j < EnemyList->EnemiesMap.Num(); j++) {
+				for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
+					ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
 
-				// Spawn each enemy within 2 tiles of the player, but make sure that they don't spawn on an occupied tile
-				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
-					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
-					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
-					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
-					GridTileReference->OccupyingEntity == nullptr &&
-					(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate || 
-					GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
+					// Spawn each enemy within 2 tiles of the player, but make sure that they don't spawn on an occupied tile
+					if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
+						GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
+						GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
+						GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
+						GridTileReference->OccupyingEntity == nullptr &&
+						(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate ||
+							GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
 						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / GridTileReference Coordinates: %d, %d"), GridTileReference->X_Coordinate, GridTileReference->Y_Coordinate);
 						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / Player Coordinates: %d, %d"), PlayerControllerRef->EntityInBattleRef->X_Coordinate, PlayerControllerRef->EntityInBattleRef->Y_Coordinate);
 
 						// Spawn Enemy Here
-						ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);	
+						ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
 						NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
 						NewEnemy->GameStateRef = this;
 
@@ -125,9 +126,13 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 						GridTileReference->OccupyingEntity = NewEnemy;
 
 						break;
+					}
 				}
 			}
+		} else {
+			UE_LOG(LogTemp, Warning, TEXT("ALostWorld_422GameStateBase / DebugBattleStart / Error: EnemyList is not valid."));
 		}
+
 
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -237,16 +242,18 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 
 		// Update all targets
 		// Remove ability from the stack once done
-		for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
-			if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i]) != nullptr) {
-				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
-					Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+		if (TheStack.Num() > 0) {
+			for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
+				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i]) != nullptr) {
+					if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
+						Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+					}
 				}
+
 			}
 
+			TheStack.RemoveAt(0);
 		}
-
-		TheStack.RemoveAt(0);
 	}
 
 	// If there are still Abilities to run, reset the timer for this function

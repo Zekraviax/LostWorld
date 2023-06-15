@@ -127,10 +127,10 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 			ABaseClass_GridTile* FoundTile = *Itr;
 			if (FoundTile->PlayerRestPointReference && FoundTile->X_Coordinate == 0 && FoundTile->Y_Coordinate == 0) {
 				if (IsValid(FoundTile->MinimapRoomReference)) {
-					FoundTile->MinimapRoomReference->SetColour();
-				} else {
 					// TO-DO: Set minimap room reference, then set its colour
 					FoundTile->MinimapRoomReference->SetColour();
+				} else {
+					//FoundTile->MinimapRoomReference->SetColour();
 				}
 
 				break;
@@ -302,8 +302,9 @@ void ABaseClass_PlayerController::BeginBattle()
 
 void ABaseClass_PlayerController::ExitBattle()
 {
-	if (Battle_HUD_Widget)
+	if (Battle_HUD_Widget) {
 		Battle_HUD_Widget->SetVisibility(ESlateVisibility::Collapsed);
+	}
 
 	// Create the Level HUD widget
 	if (Level_HUD_Widget) {
@@ -356,8 +357,9 @@ void ABaseClass_PlayerController::MoveToTile(ABaseClass_GridTile* TileReference)
 
 bool ABaseClass_PlayerController::ValidDeckCheck()
 {
-	if (CurrentEntityData.CurrentDeck.Num() < 1)
+	if (CurrentEntityData.CurrentDeck.Num() < 1) {
 		return false;
+	}
 
 	return true;
 }

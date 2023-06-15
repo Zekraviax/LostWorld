@@ -1,0 +1,60 @@
+[
+	{
+		"Name": "JuiceOfLife",
+		"DisplayName": "Juice of Life",
+		"Description": "Charges: 1 Pay 1 Charge: Restore all of your health.",
+		"EquipSlots": [
+			"E_RightHandWeapon",
+			"E_LeftHandWeapon"
+		],
+		"Functions": "Class'/Script/LostWorld_422.ItemFunctions_JuiceOfLife'",
+		"SpecialValues":
+		{
+			"Charges": 1,
+			"MaxCharges": 1
+		},
+		"HasInBattleFunction": true
+	},
+	{
+		"Name": "JasperRing",
+		"DisplayName": "Jasper Ring",
+		"Description": "When you summon an Entity, double its health.\\nYour maximum health is reduced by 5.",
+		"EquipSlots": [
+			"E_LeftFinger",
+			"E_RightFinger"
+		],
+		"Functions": "None",
+		"SpecialValues":
+		{
+		},
+		"HasInBattleFunction": false
+	},
+	{
+		"Name": "ShortSword",
+		"DisplayName": "Short Sword",
+		"Description": "Your physical attacks deal +1 damage.",
+		"EquipSlots": [
+			"E_RightHandWeapon",
+			"E_LeftHandWeapon"
+		],
+		"Functions": "None",
+		"SpecialValues":
+		{
+		},
+		"HasInBattleFunction": false
+	},
+	{
+		"Name": "NewRow",
+		"DisplayName": "Sol Ring",
+		"Description": "Your Maximum MP is reduced by 1. At the start of your turn, restore 2 MP.",
+		"EquipSlots": [
+			"E_LeftFinger",
+			"E_RightFinger"
+		],
+		"Functions": "Class'/Script/LostWorld_422.ItemFunctions_SolRing'",
+		"SpecialValues":
+		{
+		},
+		"HasInBattleFunction": true
+	}
+]

@@ -5,6 +5,9 @@
 #include "Widget_HUD_City_Base.generated.h"
 
 
+class UWidget_LevelSelectScreen;
+
+
 UCLASS()
 class LOSTWORLD_422_API UWidget_HUD_City_Base : public UUserWidget
 {
@@ -14,10 +17,14 @@ public:
 // Variables
 // --------------------------------------------------
 
-// ------------------------- Components
+// ------------------------- Widgets
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_LevelSelectScreen> LevelSelectWidgetBlueprintClass;
 
 // Functions
 // --------------------------------------------------
 
-// ------------------------- Widgets
+// ------------------------- Widget Functions
+	UFUNCTION(BlueprintCallable)
+	void OnLeaveCityButtonPressed();
 };

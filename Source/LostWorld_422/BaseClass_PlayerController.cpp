@@ -51,6 +51,7 @@ void ABaseClass_PlayerController::BeginPlay()
 		CustomConsole_Reference->AddToViewport();
 	}
 
+	// To-Do: Clean up this debug function one day
 	// Add one of each item to the player's inventory
 	TArray<FName> Item_ListNames = ItemsTable->GetRowNames();
 	F_Item_Base* Item;
@@ -58,7 +59,7 @@ void ABaseClass_PlayerController::BeginPlay()
 	for (int i = 0; i < Item_ListNames.Num(); i++) {
 		Item = ItemsTable->FindRow<F_Item_Base>(Item_ListNames[i], ContextString, true);
 
-		if (Item->Functions > 0) {
+		if (Item->Functions > 0 || Item->CardsGivenAtBattleStart.Num() > 0) {
 			PlayerInventory.Add(*Item);
 		}
 	}
@@ -302,6 +303,8 @@ void ABaseClass_PlayerController::BeginBattle()
 
 void ABaseClass_PlayerController::ExitBattle()
 {
+	// To-Do: Put all the functions that run at the end of a battle here
+
 	if (Battle_HUD_Widget) {
 		Battle_HUD_Widget->SetVisibility(ESlateVisibility::Collapsed);
 	}
@@ -318,7 +321,9 @@ void ABaseClass_PlayerController::ExitBattle()
 	EntityInBattleRef->EntityBaseData.ManaValues.X_Value = EntityInBattleRef->EntityBaseData.ManaValues.Y_Value;
 
 	// Remove all cards from the Hand and Deck,
-	// and make sure they end up in the Collection
+	// and make sure they end up in the Collection (?)
+	// except for cards that were generated at the start of the battle
+	// and during the battle 
 	EntityInBattleRef->CardsInGraveyard.Empty();
 	EntityInBattleRef->CardsInHand.Empty();
 

@@ -16,6 +16,12 @@ void ULostWorld_422GameInstanceBase::SpawnNewRoom(TSubclassOf<ABaseClass_LevelRo
 }
 
 
+UDataTable* ULostWorld_422GameInstanceBase::ReturnCardsTable()
+{
+	return CardsTable;
+}
+
+
 // ------------------------- Inventory
 UWidget_Inventory_Base* ULostWorld_422GameInstanceBase::GetInventory()
 {

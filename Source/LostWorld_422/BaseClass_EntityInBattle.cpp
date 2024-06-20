@@ -4,6 +4,7 @@
 #include "BaseClass_GridTile.h"
 #include "Widget_CustomConsole_Base.h"
 #include "ItemFunctions_BaseClass.h"
+#include "Kismet/GameplayStatics.h"
 #include "StatusFunctions_BaseClass.h"
 #include "LostWorld_422GameStateBase.h"
 
@@ -81,6 +82,20 @@ void ABaseClass_EntityInBattle::ResetComponentsLocations()
 void ABaseClass_EntityInBattle::Begin_Battle()
 {
 	int32 RandIndex;
+	FString ContextString;
+	UDataTable* CardsTable = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(GetWorld()))->ReturnCardsTable();
+
+	// Check all equipped items for cards they will add to the deck at the start of a battle
+	for (int i = 0; i < EquippedItems.Num(); i++) {
+		if (EquippedItems[i].CardsGivenAtBattleStart.Num() > 0) {
+			for (int c = 0; c < EquippedItems[i].CardsGivenAtBattleStart.Num(); c++) {
+				FCardBase Card = *CardsTable->FindRow<FCardBase>(EquippedItems[i].CardsGivenAtBattleStart[c], ContextString, true);
+				Card.WasGeneratedByEquippedItem = true;
+
+				CardsInDeck.Add(Card);
+			}
+		}
+	}
 
 	// Set ownership of all cards
 	for (int i = 0; i < CardsInDeck.Num(); i++) {
@@ -183,12 +198,14 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		for (int i = 0; i < EquippedItems.Num(); i++) {
 			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[i].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
-			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
-
-			ItemAbilityActor_Reference->ConditionalBeginDestroy();
+			if (ItemAbilityActor_Reference) {
+				ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
+				ItemAbilityActor_Reference->ConditionalBeginDestroy();
+			}
 		}
 	}
 
+	// To-Do: (Figure this out)
 	// Set camera to focus on this entity?
 
 	// Activate all Status Effect StartOfTurn Functions
@@ -197,10 +214,11 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 
 		for (int i = StatusEffects.Num() - 1; i >= 0; i--) {
 			AStatusFunctions_BaseClass* StatusEffectActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
-
-			StatusEffectActor_Reference->TriggeredFunction_StartOfEntityTurn(this);
-
-			StatusEffectActor_Reference->ConditionalBeginDestroy();
+			
+			if (StatusEffectActor_Reference) {
+				StatusEffectActor_Reference->TriggeredFunction_StartOfEntityTurn(this);
+				StatusEffectActor_Reference->ConditionalBeginDestroy();
+			}
 		}
 	}
 
@@ -217,9 +235,7 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 	}
 
 	UpdateCardIndicesInAllZones();
-
 	UpdateCardWidgets();
-
 	UpdateCardVariables();
 }
 

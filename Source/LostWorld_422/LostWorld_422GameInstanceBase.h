@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 
+#include "Engine/DataTable.h"
 #include "Widget_Inventory_Base.h"
 
 #include "LostWorld_422GameInstanceBase.generated.h"
@@ -17,6 +18,9 @@ class LOSTWORLD_422_API ULostWorld_422GameInstanceBase : public UGameInstance
 {
 	GENERATED_BODY()
 
+// Keep a reference to things like blueprints and databases here
+
+
 public:
 // Base Variables
 // --------------------------------------------------
@@ -27,6 +31,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_LevelRoom* Room_Reference;
+
+
+// ------------------------- Persistent Variables and Blueprints
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
+
 
 // ------------------------- Technical Variables
 	// Dev Mode
@@ -39,6 +49,7 @@ public:
 	UFUNCTION()
 	void SpawnNewRoom(TSubclassOf<ABaseClass_LevelRoom> RoomToSpawnClass, FVector WorldLocation, FRotator WorldRotation);
 
+	UDataTable* ReturnCardsTable();
 
 
 // Inventory

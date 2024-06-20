@@ -275,6 +275,7 @@ struct LOSTWORLD_422_API FCardAbilitiesAndConditions
 };
 
 
+// To-Do: Give cards flavour text.
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 {
@@ -301,8 +302,15 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	TArray<FCardAbilitiesAndConditions> AbilitiesAndConditions;
 
+	// To-Do: Explain this
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	float Delay;
+
+	// Use this to keep track of which items were added to a deck a the start of a fight
+	// due to an equipped item
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
+	bool WasGeneratedByEquippedItem;
+
 
 	// Traits
 
@@ -379,6 +387,11 @@ struct LOSTWORLD_422_API F_Item_Base : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool HasInBattleFunction;
+
+	// This is an array of card names, so that we can
+	// fetch them from the database
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> CardsGivenAtBattleStart;
 
 	F_Item_Base()
 	{

@@ -27,8 +27,11 @@ void UWidgetComponent_Inventory_Item_Base::OnEquipButtonPressed()
 
 				// Run item equip function
 				AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(ItemData.Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
-				ItemAbilityActor_Reference->TriggeredFunction_OnItemEquipped(CurrentPlayerController->EntityInBattleRef);
-				ItemAbilityActor_Reference->ConditionalBeginDestroy();
+				
+				if (ItemAbilityActor_Reference) {
+					ItemAbilityActor_Reference->TriggeredFunction_OnItemEquipped(CurrentPlayerController->EntityInBattleRef);
+					ItemAbilityActor_Reference->ConditionalBeginDestroy();
+				}
 
 				break;
 			}

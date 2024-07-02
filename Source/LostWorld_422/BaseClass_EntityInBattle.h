@@ -155,37 +155,18 @@ public:
 	void UpdateCardIndicesInAllZones();
 
 // ------------------------- Events
-	UFUNCTION()
 	void Event_EntitySpawnedInWorld();
-
-	UFUNCTION()
 	void Event_DrawCard();
-
-	UFUNCTION()
 	void Event_CardCastOnThis();
-
-	UFUNCTION()
+	
 	void Event_StatusEffectIncoming(F_StatusEffect_Base IncomingStatusEffect);
-
-	UFUNCTION()
 	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);
-
-	UFUNCTION()
 	void Event_HealthChanged();
-
-	UFUNCTION()
 	void Event_HealingIncoming(int IncomingHealing);
-
-	UFUNCTION()
 	void Event_BarrierIncoming(int IncomingBarrier);
-
-	UFUNCTION()
 	void Event_StatsChanged();
 
 // ------------------------- AI
-	UFUNCTION()
 	void AI_CastRandomCard();
-
-	UFUNCTION()
 	void AI_EndTurnDelay();
 };

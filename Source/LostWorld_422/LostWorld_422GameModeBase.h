@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 
-#include "Engine/UserDefinedStruct.h"
 #include "Engine/DataTable.h"
 #include "ItemFunctions_BaseClass.h"
 
@@ -359,9 +358,8 @@ struct LOSTWORLD_422_API FCardBase : public FTableRowBase
 			return true;
 			//&& Functions == OtherCard.Functions
 		}
-		else {
-			return false;
-		}
+		
+		return false;
 	}
 };
 

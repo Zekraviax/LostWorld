@@ -44,9 +44,9 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Initialize ability functions."));
 
-	CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::CardFunction_Nothing;
-	CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards;
-	CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage;
+	CardFunctions[NOTHING] = &ABaseClass_CardFunctionsLibrary::Nothing;
+	CardFunctions[DRAW_CARDS] = &ABaseClass_CardFunctionsLibrary::DrawCards;
+	CardFunctions[DEAL_DAMAGE] = &ABaseClass_CardFunctionsLibrary::DealDamage;
 	//CardFunctions[GUN_DOWN] = &ABaseClass_CardFunctionsLibrary::Gun_Down;
 	//CardFunctions[SHOCKWAVE] = &ABaseClass_CardFunctionsLibrary::Shockwave;
 	//CardFunctions[SUDDEN_INSPIRATION] = &ABaseClass_CardFunctionsLibrary::Sudden_Inspiration;
@@ -59,21 +59,22 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 }
 
 
+//-------------------- Execute Functions --------------------//
+
+
 
 //-------------------- Card Functions --------------------//
-void ABaseClass_CardFunctionsLibrary::CardFunction_Nothing()
+void ABaseClass_CardFunctionsLibrary::Nothing()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Nothing"));
 }
 
-void ABaseClass_CardFunctionsLibrary::CardFunction_DrawCards()
+void ABaseClass_CardFunctionsLibrary::DrawCards()
 {
 	
 }
 
-void ABaseClass_CardFunctionsLibrary::CardFunction_DealDamage()
+void ABaseClass_CardFunctionsLibrary::DealDamage()
 {
 
 }
-
-//-------------------- Execute Functions --------------------//

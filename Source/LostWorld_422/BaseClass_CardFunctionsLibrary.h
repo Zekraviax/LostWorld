@@ -35,51 +35,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-// Base Variables
-// --------------------------------------------------
 
-// ------------------------- References
-	UPROPERTY()
-	FCardBase LocalCardReference;
+// Functions --------------------------------------------------
 
-	UPROPERTY()
-	ALostWorld_422GameStateBase* GameStateRef;
-
-// ------------------------- Timers	
-	UPROPERTY()
-	FTimerHandle StackTimerHandle;
-
-// ------------------------- Constructors
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
-
-
-// Functions
-// --------------------------------------------------
-
-// ------------------------- Card
-
-// ------------------------- Function Library
+// -------------------------------------------------- Function Library
 	// The Functions Pointer Variable Type
 	// Functions take 0 parameters and return void
 	typedef void(ABaseClass_CardFunctionsLibrary::*FunctionPtrType)();
 
 	// Static Array of X function pointers
+	// where X = CARD_FUNCTIONS_COUNT
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
-
-	// Executes a function from the CardFuntions Pointer Array
-	// Implementation does not vary in subclasses, so no virtual
 
 	// Initialize the array
 	void InitializeCardFunctions();
 
-	// The Actual Functions which are implemented in subclasses by this class.
-	virtual void CardFunction_Nothing();
-	virtual void CardFunction_DrawCards();
-	virtual void CardFunction_DealDamage();
+	// Executes a function from the CardFunctions Pointer Array
+
+	// The Actual Functions which are implemented in subclasses of this class.
+	virtual void Nothing();
+	virtual void DrawCards();
+	virtual void DealDamage();
 	//virtual void Gun_Down();
 	//virtual void Shockwave();
 	//virtual void Sudden_Inspiration();

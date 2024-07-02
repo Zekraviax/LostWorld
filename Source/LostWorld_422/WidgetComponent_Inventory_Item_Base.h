@@ -10,6 +10,10 @@
 #include "WidgetComponent_Inventory_Item_Base.generated.h"
 
 
+// Forward Declarations
+class UWidgetComponent_Description;
+
+
 UCLASS()
 class LOSTWORLD_422_API UWidgetComponent_Inventory_Item_Base : public UUserWidget
 {
@@ -20,23 +24,26 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Components
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UButton* ItemEquipButtonWidget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UButton* ItemEquipButton;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTextBlock* ItemEquipTextWidget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* ItemEquipText;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTextBlock* ItemNameTextWIdget = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* ItemNameText;
 
-// ------------------------- Widget
+// ------------------------- Widgets
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetComponent_Description> DescriptionWidgetBlueprintClass;
+
+// ------------------------- Item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool StaticEquipmentSlot;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	E_Item_EquipSlots StaticEquipmentSlotType;
 
-// ------------------------- Item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	F_Item_Base ItemData;
 
@@ -50,4 +57,10 @@ public:
 // ------------------------- Widget
 	UFUNCTION(BlueprintCallable)
 	void UpdateWidget();
+
+	UFUNCTION(BlueprintCallable)
+	void OnMouseHoverOverBegin();
+
+	UFUNCTION(BlueprintCallable)
+	void OnMouseHoverOverEnd();
 };

@@ -10,6 +10,8 @@ void UWidgetComponent_MinimapRoom::SetColour()
 	if (GridTileReference->EncountersList.Num() > 0) {
 		BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 1.f, 1.f));
 		return;
+	} else {
+		// No encounters in room
 	}
 }
 

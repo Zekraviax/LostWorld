@@ -49,15 +49,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<ACardAbilityActor_DrawCards> DrawCards_Class;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CardAbilityActor_Reference;
 
 // ------------------------- Levels
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<ALevel_SpawnTypeBase>> LevelGenerators;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<ALevel_SpawnTypeBase> BossDen_LevelGenerator_Class;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CurrentFloorNumber;

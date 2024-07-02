@@ -15,6 +15,7 @@
 
 // Forward Declarations
 class UWidget_Inventory_Base;
+class UWidget_CharacterScreen;
 
 
 UCLASS()
@@ -47,6 +48,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidget_Inventory_Base* InventoryWidget_Reference;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_CharacterScreen> CharacterScreen_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_CharacterScreen* CharacterScreen_Reference;
+
 // ------------------------- Room Features
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<E_LevelRoom_EncounterTypes> EncounterList;
@@ -60,4 +67,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OpenInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void OpenCharacterSheet();
 };

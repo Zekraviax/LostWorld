@@ -40,7 +40,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-// Base Variables
+// Variables
 // --------------------------------------------------
 
 // ------------------------- Entity
@@ -62,6 +62,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCardBase> CardsInGraveyard;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FCardBase> CardsInVoid;
+
 	// Slots:
 	// 0 - Head
 	// 1 - Earrings
@@ -79,6 +82,9 @@ public:
 	// 22 - Right-hand Weapon
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<F_Item_Base> EquippedItems;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<F_StatusEffect_Base> StatusEffects;
 
 // ------------------------- Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -141,17 +147,43 @@ public:
 	UFUNCTION()
 	void Begin_Turn();
 
+	// Update card widgets with entity Core Stats, Status Effects, and others
+	UFUNCTION()
+	void UpdateCardVariables();
+
 	UFUNCTION()
 	void UpdateCardWidgets();
 
 	UFUNCTION()
 	void UpdateCardIndicesInAllZones();
 
+// ------------------------- Events
+	UFUNCTION()
+	void Event_EntitySpawnedInWorld();
+
+	UFUNCTION()
+	void Event_DrawCard();
+
 	UFUNCTION()
 	void Event_CardCastOnThis();
 
 	UFUNCTION()
+	void Event_StatusEffectIncoming(F_StatusEffect_Base IncomingStatusEffect);
+
+	UFUNCTION()
 	void Event_DamageIncoming(int IncomingDamage, E_Card_Elements ElementType, E_Card_DamageTypes DamageType);
+
+	UFUNCTION()
+	void Event_HealthChanged();
+
+	UFUNCTION()
+	void Event_HealingIncoming(int IncomingHealing);
+
+	UFUNCTION()
+	void Event_BarrierIncoming(int IncomingBarrier);
+
+	UFUNCTION()
+	void Event_StatsChanged();
 
 // ------------------------- AI
 	UFUNCTION()

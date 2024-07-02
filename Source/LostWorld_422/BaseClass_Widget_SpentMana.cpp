@@ -33,35 +33,14 @@ void UBaseClass_Widget_SpentMana::CheckInputText(FText Text)
 void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 {
 	FString ContextString;
-	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
-	TArray<ABaseClass_EntityInBattle*> ValidTargets;
-	FStackEntry DuplicateCardStackEntry;
+	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>(FName(*CardsTableRowName), ContextString, true);
 
-	// Get Random Targets
-	for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
-	{
-		ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
+	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.bNoFail = true;
+	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-		if (!BattleEntity->EntityBaseData.IsPlayerControllable) {
-			ValidTargets.Add(BattleEntity);
-		}
-		else {
-			BattleEntity->EntityBaseData.ManaValues.X_Value -= CurrentManaValue;
-		}
-	}
-
-
-	for (int r = 0; r < CurrentManaValue; r++) {
-		// Get random targets
-		DuplicateCard->CurrentTargets.Empty();
-		DuplicateCard->CurrentTargets.Add(ValidTargets[FMath::RandRange(0, (ValidTargets.Num() - 1))]);
-
-		DuplicateCardStackEntry.Card = *DuplicateCard;
-		DuplicateCardStackEntry.RunWidgetFunction = false;
-
-		Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->AddCardFunctionsToTheStack(DuplicateCardStackEntry);
-	}
+	ACardAbilityActor_BaseClass* CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(DuplicateCard->AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+	CardAbilityActor_Reference->WidgetFunction_SpendMana(CurrentManaValue, StackEntry);
 
 	this->RemoveFromParent();
-	//this->SetVisibility(ESlateVisibility::Collapsed);
 }

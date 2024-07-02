@@ -48,4 +48,7 @@ public:
 	virtual void TriggeredFunction_OnItemUnequipped(ABaseClass_EntityInBattle* EquippedEntity);
 
 	virtual void TriggeredFunction_StarterOfWearerTurn(ABaseClass_EntityInBattle* EquippedEntity);
+
+// ------------------------- Activated Functions
+	virtual void ActivatedFunction(ABaseClass_EntityInBattle* EquippedEntity);
 };

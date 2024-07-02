@@ -1,6 +1,7 @@
 #include "BaseClass_GridTile.h"
 
-#include "LostWorld_422GameStateBase.h"
+#include "BaseClass_PlayerController.h"
+#include "Widget_CustomConsole_Base.h"
 
 
 // Sets default values
@@ -12,8 +13,9 @@ ABaseClass_GridTile::ABaseClass_GridTile()
 	OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None;
 
 	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
-	Tile->SetupAttachment(RootComponent);
 	Tile->SetRelativeTransform(FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(2.f, 2.f, 1.f)));
+
+	RootComponent = Tile;
 }
 
 
@@ -36,14 +38,31 @@ void ABaseClass_GridTile::Tick(float DeltaTime)
 
 
 // ------------------------- Grid Tile
-void ABaseClass_GridTile::OnPlayerEnterTile()
+void ABaseClass_GridTile::OnPlayerEnterTile(ABaseClass_PlayerController* PlayerControllerReference)
 {
-	switch (OnPlayerEnterTileFunction) 
+	if (OnPlayerEnterTileFunction == E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle) {
+		// Check that the player has a valid deck
+		if (PlayerControllerReference->ValidDeckCheck()) {
+			// Stop the player from moving normally
+			PlayerControllerReference->ControlMode = E_Player_ControlMode::E_Battle;
+			GetWorldTimerManager().SetTimer(TileFunctionsTimerHandle, this, &ABaseClass_GridTile::RunTileFunctions, 0.2f, false);
+		}
+	} else {
+		GetWorldTimerManager().SetTimer(TileFunctionsTimerHandle, this, &ABaseClass_GridTile::RunTileFunctions, 0.2f, false);
+	}
+}
+
+
+void ABaseClass_GridTile::RunTileFunctions()
+{
+	switch (OnPlayerEnterTileFunction)
 	{
 		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_TriggerBattle):
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Encountered an enemy!");
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->DebugBattleStart(EncountersList[0]);
 			break;
 		case(E_GridTile_OnPlayerEnterTileFunctions_Enum::E_Stairs):
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Moved to next floor.");
 			GetWorld()->GetGameState<ALostWorld_422GameStateBase>()->RegenerateLevel();
 			break;
 		default:

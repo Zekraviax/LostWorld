@@ -21,19 +21,23 @@ void ACardAbilityActor_BaseClass::BeginPlay()
 void ACardAbilityActor_BaseClass::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 
 // ------------------------- Base Class Functions ------------------------- //
 void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-
 }
 
 
 // ------------------------- Widget Functions ------------------------- //
-void ACardAbilityActor_BaseClass::WidgetFunction_SpendMana()
+void ACardAbilityActor_BaseClass::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
+}
 
+
+// ------------------------- Technical Functions
+AActor* ACardAbilityActor_BaseClass::TechnicalFunction_SimpleGetTarget()
+{
+	return nullptr;
 }

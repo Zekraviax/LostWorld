@@ -14,6 +14,8 @@
 
 // Forward Declarations
 class ALostWorld_422GameStateBase;
+class UWidget_Inventory_Base;
+class UWidget_CardsInZoneViewer_Base;
 
 
 // Class-Specific Enums
@@ -33,10 +35,7 @@ class LOSTWORLD_422_API UBaseClass_HUD_Battle : public UUserWidget
 public:
 	virtual void NativeConstruct();
 
-protected:
-
-public:
-// Base Variables
+// Variables
 // --------------------------------------------------
 
 // ------------------------- Components
@@ -53,22 +52,33 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ALostWorld_422GameStateBase* GameStateRef;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ABaseClass_EntityInBattle* CurrentControlledEntityReference;
+
 // ------------------------- Widgets
-	// Deck Builder Class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_Widget_DeckBuilder> DeckBuilder_Class;
 
-	// Deck Builder Instance
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_DeckBuilder* DeckBuilderRef;
 
-	// Card Class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UBaseClass_CardUserWidget> Card_Class;
 
-	// Card Instance
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_CardUserWidget* CardWidgetRef;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_Inventory_Base> Inventory_Class;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget_Inventory_Base* Inventory_Reference;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidget_CardsInZoneViewer_Base> CardsInZoneViewer_Class;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UWidget_CardsInZoneViewer_Base* CardsInZoneViewer_Reference;
 
 
 // Functions
@@ -78,7 +88,13 @@ public:
 	UFUNCTION()
 	void CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand);
 
+	UFUNCTION(BlueprintCallable)
+	void OpenInventoryWidget();
+
 // ------------------------- Battle
 	UFUNCTION(BlueprintCallable)
 	void EndTurn_Function();
+
+	UFUNCTION(BlueprintCallable)
+	void ViewCardsInZone(E_Card_Zones Zone);
 };

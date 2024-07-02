@@ -67,6 +67,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<UWidgetComponent_MinimapRoom*> FullMinimapRoomArray;
 
+// ------------------------- Gameplay
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentFloor = 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int FloorsRequiredForBoss;
+
 // Functions
 // --------------------------------------------------
 

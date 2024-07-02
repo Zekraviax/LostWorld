@@ -9,5 +9,13 @@ UCLASS()
 class LOSTWORLD_422_API ACardFunctions_NormalPunch : public ACardAbilityActor_BaseClass
 {
 	GENERATED_BODY()
-	
+
+public:
+// Variables
+// --------------------------------------------------
+
+// Functions
+// --------------------------------------------------
+	virtual void RunCardAbilityFunction(FStackEntry StackEntry) override;
+
 };

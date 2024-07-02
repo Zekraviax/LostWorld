@@ -40,7 +40,13 @@ public:
 
 // ------------------------- Card
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	UBaseClass_CardUserWidget* CardReference;
+	FStackEntry StackEntry;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FString CardsTableRowName;
+
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	//UBaseClass_CardUserWidget* CardReference;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ACardAbilityActor_BaseClass* CurrentCardFunctionClass;

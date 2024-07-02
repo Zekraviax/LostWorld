@@ -2,7 +2,10 @@
 
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_GridTile.h"
+#include "Widget_CustomConsole_Base.h"
 #include "ItemFunctions_BaseClass.h"
+#include "Kismet/GameplayStatics.h"
+#include "StatusFunctions_BaseClass.h"
 #include "LostWorld_422GameStateBase.h"
 
 
@@ -59,8 +62,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 	FString ContextString;
 	TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
 
-	for (int i = 0; i < 10; i++)
-	{
+	for (int i = 0; i < 10; i++) {
 		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;
@@ -80,6 +82,20 @@ void ABaseClass_EntityInBattle::ResetComponentsLocations()
 void ABaseClass_EntityInBattle::Begin_Battle()
 {
 	int32 RandIndex;
+	FString ContextString;
+	UDataTable* CardsTable = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(GetWorld()))->ReturnCardsTable();
+
+	// Check all equipped items for cards they will add to the deck at the start of a battle
+	for (int i = 0; i < EquippedItems.Num(); i++) {
+		if (EquippedItems[i].CardsGivenAtBattleStart.Num() > 0) {
+			for (int c = 0; c < EquippedItems[i].CardsGivenAtBattleStart.Num(); c++) {
+				FCardBase Card = *CardsTable->FindRow<FCardBase>(EquippedItems[i].CardsGivenAtBattleStart[c], ContextString, true);
+				Card.WasGeneratedByEquippedItem = true;
+
+				CardsInDeck.Add(Card);
+			}
+		}
+	}
 
 	// Set ownership of all cards
 	for (int i = 0; i < CardsInDeck.Num(); i++) {
@@ -97,10 +113,10 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 		CardsInHand[i].ZoneIndex = i;
 
 		// Set Ownership
-		if (!CardsInHand[i].Controller) {
+		if (CardsInHand[i].Controller != this) {
 			CardsInHand[i].Controller = this;
 		}
-		if (!CardsInHand[i].Owner == NULL) {
+		if (CardsInHand[i].Owner != this) {
 			CardsInHand[i].Owner = this;
 		}
 
@@ -108,6 +124,33 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	}
 
 	UpdateCardIndicesInAllZones();
+	UpdateCardVariables();
+}
+
+
+void ABaseClass_EntityInBattle::UpdateCardVariables()
+{
+	TArray<FCardBase> AllCards;
+	AllCards.Append(CardsInGraveyard);
+	AllCards.Append(CardsInHand);
+
+	for (int d = 0; d < CardsInDeck.Num(); d++) {
+		AllCards.Add_GetRef(CardsInDeck[d]);
+	}
+
+	for (int i = 0; i < CardsInHand.Num(); i++) {
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedBarrier = CardsInHand[i].AbilitiesAndConditions[0].BaseBarrier;
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedDraw = CardsInHand[i].AbilitiesAndConditions[0].BaseDraw;
+		CardsInHand[i].AbilitiesAndConditions[0].CalculatedHealing = CardsInHand[i].AbilitiesAndConditions[0].BaseHealing + EntityBaseData.CoreStats.Wisdom;
+
+		if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Physical) {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = (EntityBaseData.CoreStats.Strength + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage);
+		} else if (CardsInHand[i].AbilitiesAndConditions[0].DamageType == E_Card_DamageTypes::E_Magical) {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = EntityBaseData.CoreStats.Intelligence + CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
+		} else {
+			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
+		}
+	}
 }
 
 
@@ -116,10 +159,8 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 	if (!GameStateRef)
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
-	if (EntityBaseData.IsPlayerControllable && GameStateRef->SortedTurnOrderList[0] == this)
-	{
-		for (int i = 0; i < CardsInHand.Num(); i++)
-		{
+	if (EntityBaseData.IsPlayerControllable && GameStateRef->SortedTurnOrderList[0] == this) {
+		for (int i = 0; i < CardsInHand.Num(); i++) {
 			if (i == 0)
 				PlayerControllerRef->Battle_HUD_Widget->CreatePlayerCardsInHandWidgets(true, CardsInHand[i]);
 			else
@@ -131,10 +172,22 @@ void ABaseClass_EntityInBattle::UpdateCardWidgets()
 
 void ABaseClass_EntityInBattle::Begin_Turn()
 {
-	UpdateCardIndicesInAllZones();
-	UpdateCardWidgets();
+	if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(EntityBaseData.DisplayName + "'s turn begins.");
+	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("%s's turn begins."), *EntityBaseData.DisplayName));
+	// Draw cards to hand size
+	if (CardsInHand.Num() < EntityBaseData.HandSize) {
+		for (int i = CardsInHand.Num(); i < EntityBaseData.HandSize; i++) {
+			Event_DrawCard();
+		}
+	}
+
+	// Regenerate mana
+	EntityBaseData.ManaValues.X_Value += EntityBaseData.ManaRegenPerTurn;
+	if (EntityBaseData.ManaValues.X_Value > EntityBaseData.ManaValues.Y_Value) {
+		EntityBaseData.ManaValues.X_Value = EntityBaseData.ManaValues.Y_Value;
+	}
 
 	if (EquippedItems.Num() > 0) {
 		// Spawn ability actor
@@ -143,17 +196,47 @@ void ABaseClass_EntityInBattle::Begin_Turn()
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 		for (int i = 0; i < EquippedItems.Num(); i++) {
-			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[0].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+			AItemFunctions_BaseClass* ItemAbilityActor_Reference = GetWorld()->SpawnActor<AItemFunctions_BaseClass>(EquippedItems[i].Functions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
-			ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
-
-			ItemAbilityActor_Reference->ConditionalBeginDestroy();
+			if (ItemAbilityActor_Reference) {
+				ItemAbilityActor_Reference->TriggeredFunction_StarterOfWearerTurn(this);
+				ItemAbilityActor_Reference->ConditionalBeginDestroy();
+			}
 		}
 	}
 
-	if (!EntityBaseData.IsPlayerControllable) {
+	// To-Do: (Figure this out)
+	// Set camera to focus on this entity?
+
+	// Activate all Status Effect StartOfTurn Functions
+	if (StatusEffects.Num() > 0) {
+		FActorSpawnParameters SpawnParameters;
+
+		for (int i = StatusEffects.Num() - 1; i >= 0; i--) {
+			AStatusFunctions_BaseClass* StatusEffectActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+			
+			if (StatusEffectActor_Reference) {
+				StatusEffectActor_Reference->TriggeredFunction_StartOfEntityTurn(this);
+				StatusEffectActor_Reference->ConditionalBeginDestroy();
+			}
+		}
+	}
+
+
+	// If player controllable, take control of the entity
+	// Else, cast a random card
+	if (EntityBaseData.IsPlayerControllable) {
+		Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->EntityInBattleRef = this;
+		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
+
+		PlayerControllerRef->Battle_HUD_Widget->CurrentControlledEntityReference = this;
+	} else {
 		AI_CastRandomCard();
 	}
+
+	UpdateCardIndicesInAllZones();
+	UpdateCardWidgets();
+	UpdateCardVariables();
 }
 
 
@@ -161,12 +244,44 @@ void ABaseClass_EntityInBattle::UpdateCardIndicesInAllZones()
 {
 	for (int i = 0; i < CardsInHand.Num(); i++)
 		CardsInHand[i].ZoneIndex = i;
-	
+
 	for (int j = 0; j < CardsInGraveyard.Num(); j++)
 		CardsInGraveyard[j].ZoneIndex = j;
 
 	for (int k = 0; k < CardsInDeck.Num(); k++)
 		CardsInDeck[k].ZoneIndex = k;
+}
+
+
+// ------------------------- Events
+void ABaseClass_EntityInBattle::Event_EntitySpawnedInWorld()
+{
+	// Add Constitution to HP
+	EntityBaseData.HealthValues.Y_Value += EntityBaseData.CoreStats.Constitution;
+	EntityBaseData.HealthValues.X_Value = EntityBaseData.HealthValues.Y_Value;
+}
+
+
+void ABaseClass_EntityInBattle::Event_DrawCard()
+{
+	// Check if there are any cards in deck
+	// If not, shuffle the graveyard into the deck
+	if (CardsInDeck.Num() <= 0) {
+		if (CardsInGraveyard.Num() > 0) {
+			for (int i = 0; i < CardsInGraveyard.Num(); i++) {
+				CardsInDeck.Add(CardsInGraveyard[i]);
+			}
+
+			CardsInGraveyard.Empty();
+			ShuffleCardsInDeck_BP();
+		}
+	}
+
+	CardsInHand.Add(CardsInDeck[0]);
+	CardsInDeck.RemoveAt(0);
+
+	UpdateCardIndicesInAllZones();
+	UpdateCardWidgets();
 }
 
 
@@ -183,7 +298,14 @@ void ABaseClass_EntityInBattle::Event_CardCastOnThis()
 		// BattleEvent_EntityDied();
 		GameStateRef->Event_EntityDied(this);
 	}
-	// Check if all entities are/the player is dead in the GameState class
+
+	// Check if all entities are/or the player is dead in the GameState class
+}
+
+
+void ABaseClass_EntityInBattle::Event_StatusEffectIncoming(F_StatusEffect_Base IncomingStatusEffect)
+{
+	StatusEffects.Add(IncomingStatusEffect);
 }
 
 
@@ -191,10 +313,87 @@ void ABaseClass_EntityInBattle::Event_DamageIncoming(int IncomingDamage, E_Card_
 {
 	int DamageValue = IncomingDamage;
 
-	EntityBaseData.HealthValues.X_Value -= DamageValue;
+	if (StatusEffects.Num() > 0) {
+		FActorSpawnParameters SpawnParameters;
+
+		for (int i = 0; i < StatusEffects.Num(); i++) {
+			AStatusFunctions_BaseClass* StatusFunctionActor_Reference = GetWorld()->SpawnActor<AStatusFunctions_BaseClass>(StatusEffects[i].StatusFunctions, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+			
+			DamageValue = StatusFunctionActor_Reference->TriggeredFunction_EntityAboutToTakeDamage(this, DamageValue);
+
+			StatusFunctionActor_Reference->ConditionalBeginDestroy();
+		}
+	}
+
+	// Apply damage
+
+	// Barrier
+	if (EntityBaseData.Barrier > 0) {
+		int TemporaryBarrierVariable = EntityBaseData.Barrier;
+
+		for (int i = 0; i < TemporaryBarrierVariable; i++) {
+			if (EntityBaseData.Barrier > 0 && DamageValue > 0) {
+				EntityBaseData.Barrier--;
+				DamageValue--;
+			}
+		}
+	}
+
+	if (DamageValue > 0) {
+		EntityBaseData.HealthValues.X_Value -= DamageValue;
+
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(EntityBaseData.DisplayName + " takes " + FString::FromInt(DamageValue) + " damage.");
+		}
+
+		Event_HealthChanged();
+	}
 }
 
 
+void ABaseClass_EntityInBattle::Event_HealthChanged()
+{
+	// Check if entity is dead
+	if (EntityBaseData.HealthValues.X_Value <= 0) {
+		Destroy();
+
+		// Get GameState
+		if (!GameStateRef)
+			GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
+
+		// BattleEvent_EntityDied();
+		GameStateRef->Event_EntityDied(this);
+	}
+
+	// Check if all entities are/or the player is dead in the GameState class
+}
+
+
+void ABaseClass_EntityInBattle::Event_HealingIncoming(int IncomingHealing)
+{
+	int HealingValue = IncomingHealing;
+
+	EntityBaseData.HealthValues.X_Value += HealingValue;
+	Event_CardCastOnThis();
+}
+
+
+void ABaseClass_EntityInBattle::Event_BarrierIncoming(int IncomingBarrier)
+{
+	int BarrierValue = IncomingBarrier;
+
+	EntityBaseData.Barrier += IncomingBarrier;
+	Event_CardCastOnThis();
+}
+
+
+void ABaseClass_EntityInBattle::Event_StatsChanged()
+{
+	UpdateCardVariables();
+}
+
+
+// ------------------------- AI
 void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand
@@ -202,15 +401,11 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	FCardBase RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Chosen Card: %s"), *RandCard.DisplayName));
-
 	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
 
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
-
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("Found Entity: %s"), *FoundEntity->EntityBaseData.DisplayName));
 
 			if (FoundEntity->EntityBaseData.IsPlayerControllable != this->EntityBaseData.IsPlayerControllable) {
 				TargetsArray.Add(FoundEntity);
@@ -218,8 +413,6 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		}
 
 		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
-
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("Targets: " + FString::FromInt(RandCard.CurrentTargets.Num())));
 	}
 
 	// Cast card
@@ -230,16 +423,18 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 		GameStateRef = GetWorld()->GetGameState<ALostWorld_422GameStateBase>();
 
 	// Mana Check
-	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost)
+	// If this entity still has mana, cast another spell
+	if (EntityBaseData.ManaValues.X_Value >= RandCard.ManaCost) {
 		EntityBaseData.ManaValues.X_Value -= RandCard.ManaCost;
-	else
+	} else {
 		GameStateRef->EntityEndOfTurn();
+	}
 
 	FStackEntry NewStackEntry;
 	NewStackEntry.Card = RandCard;
 
 	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);
-	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, (NewStackEntry.Card.AbilitiesAndConditions.Num() + 1), false);
+	GetWorldTimerManager().SetTimer(EndTurn_TimerHandle, this, &ABaseClass_EntityInBattle::AI_EndTurnDelay, 1.f, false);
 }
 
 

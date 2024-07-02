@@ -4,36 +4,39 @@
 #include "BaseClass_EntityInBattle.h"
 #include "BaseClass_PlayerController.h"
 #include "WidgetComponent_MinimapRoom.h"
+#include "Widget_CustomConsole_Base.h"
 #include "Level_SpawnTypeBase.h"
 
 
-//-------------------- Battle --------------------//
+//-------------------- Level --------------------//
 void ALostWorld_422GameStateBase::RegenerateLevel()
 {
 	if (!PlayerControllerRef)
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
 	PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
+	ALevel_SpawnTypeBase* FoundGenerator = nullptr;
 
+	// Find the leve generator
 	for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
-		ALevel_SpawnTypeBase* FoundGenerator = *SpawnItr;
-		FoundGenerator->Destroy();
-		FoundGenerator->ConditionalBeginDestroy();
+		FoundGenerator = *SpawnItr;
 	}
 
+	// Destroy all tiles
 	for (TActorIterator<ABaseClass_GridTile> TileItr(GetWorld()); TileItr; ++TileItr) {
 		ABaseClass_GridTile* FoundTile = *TileItr;
 		FoundTile->Destroy();
 		FoundTile->ConditionalBeginDestroy();
-		//FoundTile = nullptr;
 	}
 
+	// Destroy all room actors
 	for (TActorIterator<ABaseClass_LevelRoom> RoomItr(GetWorld()); RoomItr; ++RoomItr) {
 		ABaseClass_LevelRoom* FoundRoom = *RoomItr;
 		FoundRoom->Destroy();
 		FoundRoom->ConditionalBeginDestroy();
 	}
 
+	// ?
 	for (TObjectIterator<UWidgetComponent_MinimapRoom> Itr; Itr; ++Itr) {
 		UWidgetComponent_MinimapRoom* FoundWidget = *Itr;
 		FoundWidget->RemoveFromParent();
@@ -41,11 +44,24 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 
 	GEngine->ForceGarbageCollection();
 
-	// Spawn a random level generator
-	FActorSpawnParameters SpawnParameters;
-	ALevel_SpawnTypeBase* NewLevelGenerator = GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(LevelGenerators[FMath::RandRange(0, LevelGenerators.Num() - 1)]);
+	// Check for Boss Den thresholds
+	FoundGenerator->CurrentFloor++;
+
+	if (FoundGenerator->CurrentFloor >= FoundGenerator->FloorsRequiredForBoss) {
+		for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
+			FoundGenerator = *SpawnItr;
+			FoundGenerator->Destroy();
+			FoundGenerator->ConditionalBeginDestroy();
+		}
+
+		GetWorld()->SpawnActor<ALevel_SpawnTypeBase>(BossDen_LevelGenerator_Class);
+	} 
 
 	PlayerControllerRef->Level_HUD_Widget->Minimap->GenerateLevel();
+
+	// Send a message with the current floor number to the Custom Console
+	//FString CustomConsoleMessage = "Current Floor: " + FString::FromInt(FoundGenerator->CurrentFloor) + "F";
+	//Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry(CustomConsoleMessage);
 }
 
 
@@ -59,6 +75,10 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		GEngine->AddOnScreenDebugMessage(-1, 2.5f, FColor::Cyan, TEXT("Error: Not Enough Cards In Deck"));
 	else
 	{
+		if (PlayerControllerRef->CustomConsole_Reference->IsValidLowLevel()) {
+			PlayerControllerRef->CustomConsole_Reference->AddEntry("Battle begins!");
+		}
+
 		SortedTurnOrderList.Empty();
 
 		// Stop the player from moving normally
@@ -71,32 +91,50 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		PlayerControllerRef->EntityInBattleRef->CardsInDeck = PlayerControllerRef->CurrentEntityData.CurrentDeck;
 		SortedTurnOrderList.Add(PlayerControllerRef->EntityInBattleRef);
 
+		// Make sure the player's coordinates are accurate
+		PlayerControllerRef->EntityInBattleRef->X_Coordinate = PlayerControllerRef->EntityInBattleRef->GetActorLocation().X / 200;
+		PlayerControllerRef->EntityInBattleRef->Y_Coordinate = PlayerControllerRef->EntityInBattleRef->GetActorLocation().Y / 200;
+
 		// Spawn every other entity
 		FString ContextString;
 		F_LevelRoom_EnemyFormation* EnemyList = Battle.EncounterListEntry.DataTable->FindRow<F_LevelRoom_EnemyFormation>(Battle.EncounterListEntry.RowName, ContextString, true);
 
-		for (int j = 0; j < EnemyList->EnemiesMap.Num(); j++) {
-			for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
-				ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
-				if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
-					GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
-					GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
-					GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
-					GridTileReference->OccupyingEntity == nullptr) {
-					
-					// Spawn Enemy Here
-					ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
-					NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
-					NewEnemy->GameStateRef = this;
-					
-					GridTileReference->OccupyingEntity = NewEnemy;
-					break;
+		if (EnemyList) {
+			for (int j = 0; j < EnemyList->EnemiesMap.Num(); j++) {
+				for (int i = 0; i < PlayerControllerRef->CurrentRoom->GridTilesInRoom.Num(); i++) {
+					ABaseClass_GridTile* GridTileReference = PlayerControllerRef->CurrentRoom->GridTilesInRoom[i];
+
+					// Spawn each enemy within 2 tiles of the player, but make sure that they don't spawn on an occupied tile
+					if (GridTileReference->X_Coordinate <= PlayerControllerRef->EntityInBattleRef->X_Coordinate + 2 &&
+						GridTileReference->X_Coordinate >= PlayerControllerRef->EntityInBattleRef->X_Coordinate - 2 &&
+						GridTileReference->Y_Coordinate <= PlayerControllerRef->EntityInBattleRef->Y_Coordinate + 2 &&
+						GridTileReference->Y_Coordinate >= PlayerControllerRef->EntityInBattleRef->Y_Coordinate - 2 &&
+						GridTileReference->OccupyingEntity == nullptr &&
+						(GridTileReference->X_Coordinate != PlayerControllerRef->EntityInBattleRef->X_Coordinate ||
+							GridTileReference->Y_Coordinate != PlayerControllerRef->EntityInBattleRef->Y_Coordinate)) {
+						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / GridTileReference Coordinates: %d, %d"), GridTileReference->X_Coordinate, GridTileReference->Y_Coordinate);
+						UE_LOG(LogTemp, Warning, TEXT("DebugBattleStart / Player Coordinates: %d, %d"), PlayerControllerRef->EntityInBattleRef->X_Coordinate, PlayerControllerRef->EntityInBattleRef->Y_Coordinate);
+
+						// Spawn Enemy Here
+						ABaseClass_EntityInBattle* NewEnemy = GetWorld()->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, FVector((GridTileReference->X_Coordinate * 200), (GridTileReference->Y_Coordinate * 200), 10), FRotator::ZeroRotator);
+						NewEnemy->EntityBaseData.DisplayName = ("Test Enemy " + FString::FromInt(j + 1));
+						NewEnemy->GameStateRef = this;
+
+						NewEnemy->Event_EntitySpawnedInWorld();
+
+						// Set occupied tile
+						GridTileReference->OccupyingEntity = NewEnemy;
+
+						break;
+					}
 				}
 			}
+		} else {
+			UE_LOG(LogTemp, Warning, TEXT("ALostWorld_422GameStateBase / DebugBattleStart / Error: EnemyList is not valid."));
 		}
 
-		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-		{
+
+		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
 			if (FoundEntity != PlayerControllerRef->EntityInBattleRef) {
@@ -110,8 +148,7 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			}
 		}
 
-		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr)
-		{
+		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr) {
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
 			BattleEntity->ShuffleCardsInDeck_BP();
@@ -148,9 +185,8 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 
 void ALostWorld_422GameStateBase::NewCombatRound()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("New Round"));
-
 	// Player always goes first (at this time)
+	// Player's Summons go second
 	for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
@@ -177,8 +213,6 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 	int RepeatCount = 1;
 	FCardBase NewStackEntryCard;
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Abilities on The Stack: " + FString::FromInt(TheStack.Num())));
-
 	NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[0].AbilityDescription;
 	NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
 
@@ -197,18 +231,29 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	if (GetWorld()) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Run Ability: " + TheStack[0].Card.Description));
 		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].Card.AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->
+				AddEntry(TheStack[0].Card.Controller->EntityBaseData.DisplayName + " casts " + TheStack[0].Card.DisplayName + ".");
+		}
 
 		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
 
-		//	Update all targets
-		for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
-			TheStack[0].Card.CurrentTargets[i]->Event_CardCastOnThis();
-		}
-
+		// Update all targets
 		// Remove ability from the stack once done
-		TheStack.RemoveAt(0);
+		if (TheStack.Num() > 0) {
+			for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
+				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i]) != nullptr) {
+					if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
+						Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+					}
+				}
+
+			}
+
+			TheStack.RemoveAt(0);
+		}
 	}
 
 	// If there are still Abilities to run, reset the timer for this function
@@ -225,9 +270,11 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 	// Check if entity that died is the player
 	// If it isn't the player, check if all enemies are dead instead
-	if (DeadEntity->PlayerControllerRef)
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Game Over."));
-	else {
+	if (DeadEntity->PlayerControllerRef) {
+		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("Game Over.");
+		}
+	} else {
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
@@ -238,10 +285,14 @@ void ALostWorld_422GameStateBase::Event_EntityDied(ABaseClass_EntityInBattle* De
 
 		// If all enemies are dead, end the battle
 		if (CurrentAliveEnemyEntities.Num() <= 0) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("All Enemies Defeated."));
+			if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
+				Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->AddEntry("All enemies defeated.");
+			}
 
 			// Remove the Encounter from the list
-			LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.RemoveAt(0);
+			if (LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.Num() > 0)
+				LocalPlayerControllerRef->CurrentLocationInLevel->EncountersList.RemoveAt(0);
+
 			LocalPlayerControllerRef->CurrentLocationInLevel->OnPlayerEnterTileFunction = E_GridTile_OnPlayerEnterTileFunctions_Enum::E_None;
 
 			// Return the player to the Room

@@ -81,10 +81,17 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_EntityInBattle* OccupyingEntity;
 
+// ------------------------- Timers	
+	UPROPERTY()
+	FTimerHandle TileFunctionsTimerHandle;
+
 // Functions
 // --------------------------------------------------
 
 // ------------------------- Grid Tile
 	UFUNCTION()
-	void OnPlayerEnterTile();
+	void OnPlayerEnterTile(ABaseClass_PlayerController* PlayerControllerReference);
+
+	UFUNCTION()
+	void RunTileFunctions();
 };

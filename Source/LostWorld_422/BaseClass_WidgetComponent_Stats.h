@@ -1,11 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
 #include "Components/PanelWidget.h"
 #include "Components/CanvasPanel.h"
 #include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
@@ -13,8 +12,10 @@
 
 #include "BaseClass_WidgetComponent_Stats.generated.h"
 
+
 // Forward Declarations
 class ABaseClass_EntityInBattle;
+
 
 UCLASS()
 class LOSTWORLD_422_API UBaseClass_WidgetComponent_Stats : public UUserWidget
@@ -37,6 +38,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ManaBar;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UProgressBar* BarrierBar;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* NameText;
 
 // ------------------------- Entity variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

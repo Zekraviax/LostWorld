@@ -53,3 +53,9 @@ void AItemFunctions_BaseClass::TriggeredFunction_StarterOfWearerTurn(ABaseClass_
 {
 
 }
+
+// ------------------------- Activated Functions ------------------------- //
+void AItemFunctions_BaseClass::ActivatedFunction(ABaseClass_EntityInBattle * EquippedEntity)
+{
+
+}

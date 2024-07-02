@@ -16,6 +16,7 @@ class LOSTWORLD_422_API ACardFunctions_RollingQuake : public ACardAbilityActor_B
 	ACardFunctions_RollingQuake();
 	
 public:
+
 // Variables
 // --------------------------------------------------
 
@@ -26,6 +27,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UBaseClass_Widget_SpentMana* SpentManaWidget_Reference;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
+
 // Functions
 // --------------------------------------------------
 
@@ -33,5 +37,5 @@ public:
 	virtual void RunCardAbilityFunction(FStackEntry StackEntry) override;
 
 // ------------------------- Widget Functions
-	virtual void WidgetFunction_SpendMana();
+	virtual void WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry);
 };

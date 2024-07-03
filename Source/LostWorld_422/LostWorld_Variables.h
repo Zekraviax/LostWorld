@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "LostWorld_422GameModeBase.h"
 
+#include "Engine/DataTable.h"
+
 #include "LostWorld_Variables.generated.h"
 
 
@@ -33,14 +35,17 @@ struct LOSTWORLD_422_API FCard : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
 	FString FlavourText;
 
+	// The functions should be added to the array in the intended order of execution
+	// Left int for the function, right int for its value. (e.g. base damage dealt)
+	// Some functions will ignore the value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	TArray<FCardAbilitiesAndConditions> AbilitiesAndConditions;
+	TMap<int, int> CardFunctionsAndValues;
 
 	// To-Do: Explain this
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	float Delay;
 
-	// Use this to keep track of which items were added to a deck at the start of a fight due to an equipped item
+	// Use this to keep track of which items were added to a deck at the start of a fight due to an equipped item.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
 	bool WasGeneratedByEquippedItem;
 	
@@ -100,11 +105,12 @@ struct LOSTWORLD_422_API FCardOnStack
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FCardBase Card;
 
+	// Use this as the 'key' to fetch the value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CardFunctionIndex;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Delay;
+	float DelayBeforeExecution;
 
 	// To-Do: Explain this
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -119,13 +125,13 @@ struct LOSTWORLD_422_API FCardOnStack
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	TArray<AActor*> Targets;
 
-	FCardOnStack(const FCardBase& InCard, const int InCardFunctionIndex, const float InDelay, const bool InRunWidgetFunction,
+	FCardOnStack(const FCardBase& InCard, const int InCardFunctionIndex, const float InDelayBeforeExecution, const bool InRunWidgetFunction,
 		ABaseClass_EntityInBattle* InOwner = nullptr, ABaseClass_EntityInBattle* InController = nullptr,
 		const TArray<AActor*>& InTargets = {})
 	{
 		Card = InCard;
 		CardFunctionIndex = InCardFunctionIndex;
-		Delay = InDelay;
+		DelayBeforeExecution = InDelayBeforeExecution;
 		RunWidgetFunction = InRunWidgetFunction;
 		Owner = InOwner;
 		Controller = InController;
@@ -135,7 +141,7 @@ struct LOSTWORLD_422_API FCardOnStack
 	FCardOnStack()
 	{
 		CardFunctionIndex = 0;
-		Delay = 1.5f;
+		DelayBeforeExecution = 1.5f;
 		RunWidgetFunction = true;
 		Owner = nullptr;
 		Controller = nullptr;
@@ -148,4 +154,10 @@ class LOSTWORLD_422_API LostWorld_Variables
 public:
 	LostWorld_Variables();
 	~LostWorld_Variables();
+
+public:
+	// Global variables
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsTable;
+	
 };

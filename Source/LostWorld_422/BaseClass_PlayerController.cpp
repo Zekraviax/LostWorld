@@ -80,12 +80,11 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 	// (Add the same amount of each card because it's easier and more fun this way)
 	FString ContextString;
 	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
-	FCardBase* Card;
 	UWorld* World = GetWorld();
 	ULostWorld_422GameInstanceBase* GameInstanceReference = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(World));
 
 	for (int i = 0; i < Card_ListNames.Num(); i++) {
-		Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
+		FCardBase* Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
 
 		// Don't add any cards that aren't done yet
 		if (Card->AbilitiesAndConditions.Num() > 0) {
@@ -104,8 +103,7 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 
 	// Create the player EntityInBattle
 	if (EntityInBattle_Class) {
-		UWorld* const World = GetWorld();
-		FActorSpawnParameters SpawnParameters;
+		const FActorSpawnParameters SpawnParameters;
 
 		EntityInBattleRef = World->SpawnActor<ABaseClass_EntityInBattle>(EntityInBattle_Class, SpawnParameters);
 		EntityInBattleRef->EntityBaseData = CurrentEntityData;

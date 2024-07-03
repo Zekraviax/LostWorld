@@ -5,6 +5,7 @@ LostWorld_Variables::LostWorld_Variables()
 {
 }
 
+
 LostWorld_Variables::~LostWorld_Variables()
 {
 }

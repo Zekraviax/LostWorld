@@ -9,7 +9,8 @@
 #define CARD_FUNCTIONS_COUNT 3
 
 
-class LOSTWORLD_422_API Library_CardFunctions
+// ReSharper disable once CppUE4CodingStandardNamingViolationWarning
+class LOSTWORLD_422_API Library_CardFunctions final
 {
 public:
 	Library_CardFunctions();
@@ -24,6 +25,7 @@ public:
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
 
 	UPROPERTY()
+	// ReSharper disable once CppUPropertyMacroCallHasNoEffect
 	FCardOnStack CurrentCardOnStack;
 
 // Functions --------------------------------------------------
@@ -34,7 +36,7 @@ public:
 	void ExecuteCardFunction(int CardFunctionIndex, const FCardOnStack& StackEntry);
 
 	// The card functions
-	virtual void Nothing();
-	virtual void DrawCards();
-	virtual void DealDamage();
+	void Nothing();
+	void DrawCards();
+	void DealDamage();
 };

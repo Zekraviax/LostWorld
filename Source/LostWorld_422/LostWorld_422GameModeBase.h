@@ -44,7 +44,7 @@ enum class E_Card_Subypes : uint8
 UENUM(BlueprintType)
 enum class E_Card_Elements : uint8
 {
-	E_NonElemental				UMETA(DisplayName = "Non-Elemental"),
+	E_NonElemental			UMETA(DisplayName = "Non-Elemental"),
 	E_Fire					UMETA(DisplayName = "Fire"),
 	E_Water					UMETA(DisplayName = "Water"),
 	E_Air					UMETA(DisplayName = "Air"),

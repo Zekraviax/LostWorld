@@ -49,7 +49,7 @@ public:
 
 // ------------------------- Cards
 	UPROPERTY()
-	TArray<FCardBase> ChosenCards;
+	TArray<FCard> ChosenCards;
 
 	UPROPERTY()
 	int32 CurrentMaxCardSelectCount;
@@ -57,8 +57,8 @@ public:
 // Functions
 // --------------------------------------------------
 	UFUNCTION()
-	void PopulateWidget(TArray<FCardBase> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone);
+	void PopulateWidget(TArray<FCard> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone);
 
 	UFUNCTION(BlueprintCallable)
-	void ConfirmButton_Function(TArray<FCardBase> &ReturnChosenCards);
+	void ConfirmButton_Function(TArray<FCard> &ReturnChosenCards);
 };

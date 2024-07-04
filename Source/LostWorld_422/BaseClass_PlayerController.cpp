@@ -84,10 +84,10 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 	ULostWorld_422GameInstanceBase* GameInstanceReference = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(World));
 
 	for (int i = 0; i < Card_ListNames.Num(); i++) {
-		FCardBase* Card = CardsTable->FindRow<FCardBase>(Card_ListNames[i], ContextString, true);
+		FCard* Card = CardsTable->FindRow<FCard>(Card_ListNames[i], ContextString, true);
 
 		// Don't add any cards that aren't done yet
-		if (Card->AbilitiesAndConditions.Num() > 0) {
+		if (Card->CardFunctionsAndValues.Num() > 0) {
 			// Add some cards to the deck instead of the collection
 			if (i < 5) {
 				for (int x = 0; x < 2; x++) {
@@ -145,6 +145,7 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 // ------------------------- Controls
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
+	/*
 	EntityInBattleRef->UpdateCardVariables();
 
 	// Get any actors under cursor
@@ -212,6 +213,7 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			CurrentDragCardRef = NULL;
 		}
 	}
+	*/
 }
 
 

@@ -3,7 +3,7 @@
 #include "BaseClass_EntityInBattle.h"
 
 
-void UBaseClass_Widget_ZoneSearch::PopulateWidget(TArray<FCardBase> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone)
+void UBaseClass_Widget_ZoneSearch::PopulateWidget(TArray<FCard> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone)
 {
 	UBaseClass_CardUserWidget* CardWidget_Reference;
 	CurrentMaxCardSelectCount = MaxCardSelectCount;
@@ -16,8 +16,9 @@ void UBaseClass_Widget_ZoneSearch::PopulateWidget(TArray<FCardBase> Cards, int32
 }
 
 
-void UBaseClass_Widget_ZoneSearch::ConfirmButton_Function(TArray<FCardBase> &ReturnChosenCards)
+void UBaseClass_Widget_ZoneSearch::ConfirmButton_Function(TArray<FCard> &ReturnChosenCards)
 {
+	/*
 	if (ChosenCards.Num() > 0) {
 		switch (Function) {
 		case(E_ZoneSearch_Functions::E_DrawCards):
@@ -39,8 +40,8 @@ void UBaseClass_Widget_ZoneSearch::ConfirmButton_Function(TArray<FCardBase> &Ret
 			this->RemoveFromParent();
 			break;
 		}
-	}
-	else {
+	} else {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("No Cards Selected."));
 	}
+	*/
 }

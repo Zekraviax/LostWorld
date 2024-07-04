@@ -61,7 +61,7 @@ public:
 	FEntityBase CurrentEntityData;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FCardBase> CurrentCollection;
+	TArray<FCard> CurrentCollection;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ABaseClass_GridTile* CurrentLocationInLevel;

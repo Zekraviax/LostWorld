@@ -24,6 +24,7 @@ ACardFunctions_RollingQuake::ACardFunctions_RollingQuake()
 // ------------------------- Base Class Functions
 void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 {
+	/*
 	int DamageValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
 
 	//SpentMana_Widget Check
@@ -57,17 +58,19 @@ void ACardFunctions_RollingQuake::RunCardAbilityFunction(FStackEntry StackEntry)
 			RandEnemy->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
 		}
 	}
+	*/
 }
 
 
 // ------------------------- Widget Functions
 void ACardFunctions_RollingQuake::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
+	/*
 	FString ContextString;
 	FStackEntry DuplicateCardStackEntry;
 
 	for (int r = 0; r < ManaSpent; r++) {
-		DuplicateCardStackEntry.Card = *CardsTable->FindRow<FCardBase>("RollingQuake", ContextString, true);
+		DuplicateCardStackEntry.Card = *CardsTable->FindRow<FCard>("RollingQuake", ContextString, true);
 		DuplicateCardStackEntry.RunWidgetFunction = false;
 
 		DuplicateCardStackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
@@ -79,4 +82,5 @@ void ACardFunctions_RollingQuake::WidgetFunction_SpendMana(int ManaSpent, FStack
 	StackEntry.Card.Controller->EntityBaseData.ManaValues.X_Value -= ManaSpent;
 
 	ConditionalBeginDestroy();
+	*/
 }

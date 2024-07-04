@@ -16,6 +16,7 @@ ACardFunctions_TwinFangs::ACardFunctions_TwinFangs()
 
 void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 {
+	/*
 	int32 DamageValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedDamage;
 	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], StackEntry.Card.AbilitiesAndConditions[0].DamageType);
 
@@ -27,4 +28,5 @@ void ACardFunctions_TwinFangs::RunCardAbilityFunction(FStackEntry StackEntry)
 		
 		Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->Event_StatusEffectIncoming(*PoisonData);
 	}
+	*/
 }

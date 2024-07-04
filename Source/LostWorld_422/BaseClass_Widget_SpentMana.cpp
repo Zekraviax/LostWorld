@@ -32,8 +32,9 @@ void UBaseClass_Widget_SpentMana::CheckInputText(FText Text)
 
 void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 {
+	/*
 	FString ContextString;
-	FCardBase* DuplicateCard = CardsTable->FindRow<FCardBase>(FName(*CardsTableRowName), ContextString, true);
+	FCard* DuplicateCard = CardsTable->FindRow<FCard>(FName(*CardsTableRowName), ContextString, true);
 
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.bNoFail = true;
@@ -43,4 +44,5 @@ void UBaseClass_Widget_SpentMana::ConfirmManaValue()
 	CardAbilityActor_Reference->WidgetFunction_SpendMana(CurrentManaValue, StackEntry);
 
 	this->RemoveFromParent();
+	*/
 }

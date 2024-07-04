@@ -65,7 +65,7 @@ public:
 	void PopulateScrollBoxes();
 
 	UFUNCTION(BlueprintCallable)
-	void AddSingleCardToZone(FCardBase ChosenCard, E_DeckBuilder_Zone ChosenZone);
+	void AddSingleCardToZone(FCard ChosenCard, E_DeckBuilder_Zone ChosenZone);
 
 // ------------------------- Debug
 	UFUNCTION(BlueprintCallable)

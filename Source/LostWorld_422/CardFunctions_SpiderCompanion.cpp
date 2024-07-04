@@ -21,8 +21,10 @@ ACardFunctions_SpiderCompanion::ACardFunctions_SpiderCompanion()
 
 
 // ------------------------- Base Class Functions
+
 void ACardFunctions_SpiderCompanion::RunCardAbilityFunction(FStackEntry StackEntry)
 {
+	/*
 	if (SummonsTable) {
 		if (Cast<ABaseClass_GridTile>(StackEntry.Card.CurrentTargets[0])) {
 			FString ContextString;
@@ -35,7 +37,7 @@ void ACardFunctions_SpiderCompanion::RunCardAbilityFunction(FStackEntry StackEnt
 			// Set cards in deck
 			SpiderCompanionActor_Reference->CardsInDeck.Empty();
 			for (int i = 0; i < SpiderData->Cards.Num(); i++) {
-				FCardBase Card = *SpiderData->Cards[i].DataTable->FindRow<FCardBase>(FName(SpiderData->Cards[i].RowName), ContextString);
+				FCard Card = *SpiderData->Cards[i].DataTable->FindRow<FCard>(FName(SpiderData->Cards[i].RowName), ContextString);
 				SpiderCompanionActor_Reference->CardsInDeck.Add(Card);
 			}
 
@@ -48,4 +50,5 @@ void ACardFunctions_SpiderCompanion::RunCardAbilityFunction(FStackEntry StackEnt
 			Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->SortedTurnOrderList.Add(SpiderCompanionActor_Reference);
 		}
 	}
+*/
 }

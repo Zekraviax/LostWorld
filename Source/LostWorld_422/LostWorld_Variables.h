@@ -1,14 +1,57 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LostWorld_422GameModeBase.h"
 
 #include "Engine/DataTable.h"
 
 #include "LostWorld_Variables.generated.h"
 
 
-// To-Do: Give cards flavour text.
+// Enums --------------------------------------------------
+UENUM(BlueprintType)
+enum class E_Card_Types : uint8
+{
+	E_Summon				UMETA(DisplayName = "Summon"),
+	E_Spell					UMETA(DisplayName = "Spell"),
+	E_Technique				UMETA(DisplayName = "Technique"),
+	E_Command				UMETA(DisplayName = "Command"),
+	E_Shout					UMETA(DisplayName = "Shout"),
+};
+
+
+UENUM(BlueprintType)
+enum class E_Card_Elements : uint8
+{
+	E_NonElemental			UMETA(DisplayName = "Non-Elemental"),
+	E_Fire					UMETA(DisplayName = "Fire"),
+	E_Water					UMETA(DisplayName = "Water"),
+	E_Air					UMETA(DisplayName = "Air"),
+	E_Earth					UMETA(DisplayName = "Earth"),
+	E_Light					UMETA(DisplayName = "Light"),
+	E_Arcane				UMETA(DisplayName = "Arcane"),
+	E_Cosmic				UMETA(DisplayName = "Cosmic"),
+	E_Divine				UMETA(DisplayName = "Divine")
+};
+
+
+UENUM(BlueprintType)
+enum class E_Card_SetTargets : uint8
+{
+	E_None,
+	E_Self,
+	E_AnyAlly,
+	E_AllAllies,
+	E_AnyEnemy,
+	E_AllEnemies,
+	E_AnyTarget,
+	E_CastTarget,
+	E_AllTargets,
+	E_UnoccupiedGridTile,
+	E_Special,	// Use this when the targetting is too complex, and write a function in the Cards Class file.
+};
+
+
+// Structs --------------------------------------------------
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCard : public FTableRowBase
 {
@@ -51,6 +94,12 @@ struct LOSTWORLD_422_API FCard : public FTableRowBase
 	
 	// To-Do: Add card Traits
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
+	ABaseClass_EntityInBattle* Owner;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
+	ABaseClass_EntityInBattle* Controller;
+
 	// Use this for spells that only have one target or set of targets.
 	// For complicated spells, the target(s) must be found using code.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
@@ -75,6 +124,8 @@ struct LOSTWORLD_422_API FCard : public FTableRowBase
 		Description = "Blank.";
 		Delay = 1.5f;
 		WasGeneratedByEquippedItem = false;
+		Owner = nullptr;
+		Controller = nullptr;
 		SimpleTargetsOverride = E_Card_SetTargets::E_None;
 		UniqueID = -1;
 		ZoneIndex = -1;
@@ -98,12 +149,12 @@ struct LOSTWORLD_422_API FCard : public FTableRowBase
 
 // ------------------------- The Stack
 USTRUCT(BlueprintType)
-struct LOSTWORLD_422_API FCardOnStack
+struct LOSTWORLD_422_API FStackEntry
 {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FCardBase Card;
+	FCard Card;
 
 	// Use this as the 'key' to fetch the value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -125,7 +176,7 @@ struct LOSTWORLD_422_API FCardOnStack
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Technical")
 	TArray<AActor*> Targets;
 
-	FCardOnStack(const FCardBase& InCard, const int InCardFunctionIndex, const float InDelayBeforeExecution, const bool InRunWidgetFunction,
+	FStackEntry(const FCard& InCard, const int InCardFunctionIndex, const float InDelayBeforeExecution, const bool InRunWidgetFunction,
 		ABaseClass_EntityInBattle* InOwner = nullptr, ABaseClass_EntityInBattle* InController = nullptr,
 		const TArray<AActor*>& InTargets = {})
 	{
@@ -138,7 +189,7 @@ struct LOSTWORLD_422_API FCardOnStack
 		Targets = InTargets;
 	}
 
-	FCardOnStack()
+	FStackEntry()
 	{
 		CardFunctionIndex = 0;
 		DelayBeforeExecution = 1.5f;

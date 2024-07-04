@@ -26,7 +26,7 @@ public:
 
 // ------------------------- Technical Variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FCardBase CardData;
+	FCard CardData;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 IndexInZone;

@@ -5,5 +5,5 @@
 
 void ACardFunctions_Annihilate::RunCardAbilityFunction(FStackEntry StackEntry)
 {
-	Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.HealthValues.X_Value = 0;
+	//Cast<ABaseClass_EntityInBattle>(StackEntry.Card.CurrentTargets[0])->EntityBaseData.HealthValues.X_Value = 0;
 }

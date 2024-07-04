@@ -57,7 +57,7 @@ public:
 
 // ------------------------- Card
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FCardBase CardDataRef;
+	FCard CardDataRef;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int32 QuantityBind;

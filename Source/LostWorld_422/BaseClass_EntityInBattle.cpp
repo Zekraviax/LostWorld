@@ -63,7 +63,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 	TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
 
 	for (int i = 0; i < 10; i++) {
-		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(RowNames[1], ContextString));
+		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCard>(RowNames[1], ContextString));
 
 		CardsInDeck[i].Controller = this;
 		CardsInDeck[i].Owner = this;
@@ -89,7 +89,7 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	for (int i = 0; i < EquippedItems.Num(); i++) {
 		if (EquippedItems[i].CardsGivenAtBattleStart.Num() > 0) {
 			for (int c = 0; c < EquippedItems[i].CardsGivenAtBattleStart.Num(); c++) {
-				FCardBase Card = *CardsTable->FindRow<FCardBase>(EquippedItems[i].CardsGivenAtBattleStart[c], ContextString, true);
+				FCard Card = *CardsTable->FindRow<FCard>(EquippedItems[i].CardsGivenAtBattleStart[c], ContextString, true);
 				Card.WasGeneratedByEquippedItem = true;
 
 				CardsInDeck.Add(Card);
@@ -98,10 +98,12 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 	}
 
 	// Set ownership of all cards
+	/*
 	for (int i = 0; i < CardsInDeck.Num(); i++) {
 		CardsInDeck[i].Owner = this;
 		CardsInDeck[i].Controller = this;
 	}
+	*/
 
 	// Draw seven cards at random
 	for (int i = 0; i < 7; i++)
@@ -113,12 +115,14 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 		CardsInHand[i].ZoneIndex = i;
 
 		// Set Ownership
+		/*
 		if (CardsInHand[i].Controller != this) {
 			CardsInHand[i].Controller = this;
 		}
 		if (CardsInHand[i].Owner != this) {
 			CardsInHand[i].Owner = this;
 		}
+		*/
 
 		CardsInDeck.RemoveAt(RandIndex);
 	}
@@ -130,7 +134,7 @@ void ABaseClass_EntityInBattle::Begin_Battle()
 
 void ABaseClass_EntityInBattle::UpdateCardVariables()
 {
-	TArray<FCardBase> AllCards;
+	TArray<FCard> AllCards;
 	AllCards.Append(CardsInGraveyard);
 	AllCards.Append(CardsInHand);
 
@@ -138,7 +142,8 @@ void ABaseClass_EntityInBattle::UpdateCardVariables()
 		AllCards.Add_GetRef(CardsInDeck[d]);
 	}
 
-	for (int i = 0; i < CardsInHand.Num(); i++) {
+	/*
+	for (int i = 0; i < CardsInHand.Num(); i++) { 
 		CardsInHand[i].AbilitiesAndConditions[0].CalculatedBarrier = CardsInHand[i].AbilitiesAndConditions[0].BaseBarrier;
 		CardsInHand[i].AbilitiesAndConditions[0].CalculatedDraw = CardsInHand[i].AbilitiesAndConditions[0].BaseDraw;
 		CardsInHand[i].AbilitiesAndConditions[0].CalculatedHealing = CardsInHand[i].AbilitiesAndConditions[0].BaseHealing + EntityBaseData.CoreStats.Wisdom;
@@ -151,6 +156,7 @@ void ABaseClass_EntityInBattle::UpdateCardVariables()
 			CardsInHand[i].AbilitiesAndConditions[0].CalculatedDamage = CardsInHand[i].AbilitiesAndConditions[0].BaseDamage;
 		}
 	}
+	*/
 }
 
 
@@ -398,8 +404,9 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 {
 	// Get random card in hand
 	int32 RandCardIndex = FMath::RandRange(0, CardsInHand.Num() - 1);
-	FCardBase RandCard = CardsInHand[RandCardIndex];
+	FCard RandCard = CardsInHand[RandCardIndex];
 	TArray<ABaseClass_EntityInBattle*> RandTargetsArray;
+	FStackEntry NewStackEntry;
 
 	if (RandCard.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 		TArray<ABaseClass_EntityInBattle*> TargetsArray;
@@ -412,7 +419,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 			}
 		}
 
-		RandCard.CurrentTargets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
+		NewStackEntry.Targets.Add(TargetsArray[FMath::RandRange(0, TargetsArray.Num() - 1)]);
 	}
 
 	// Cast card
@@ -429,8 +436,7 @@ void ABaseClass_EntityInBattle::AI_CastRandomCard()
 	} else {
 		GameStateRef->EntityEndOfTurn();
 	}
-
-	FStackEntry NewStackEntry;
+	
 	NewStackEntry.Card = RandCard;
 
 	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);

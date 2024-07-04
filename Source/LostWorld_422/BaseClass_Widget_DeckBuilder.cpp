@@ -95,7 +95,7 @@ void UBaseClass_Widget_DeckBuilder::PopulateScrollBoxes()
 	}
 }
 
-void UBaseClass_Widget_DeckBuilder::AddSingleCardToZone(FCardBase ChosenCard, E_DeckBuilder_Zone ChosenZone)
+void UBaseClass_Widget_DeckBuilder::AddSingleCardToZone(FCard ChosenCard, E_DeckBuilder_Zone ChosenZone)
 {
 	if (!PlayerControllerRef)
 		PlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
@@ -103,7 +103,7 @@ void UBaseClass_Widget_DeckBuilder::AddSingleCardToZone(FCardBase ChosenCard, E_
 	FString ContextString;
 
 	DeckBuilderCard_Widget = CreateWidget<UBaseClass_Widget_DeckBuilderCard>(GetWorld(), DeckBuilderCard_Class);
-	DeckBuilderCard_Widget->CardDataRef = *GameModeRef->CardDataTableRef->FindRow<FCardBase>(FName(*ChosenCard.DisplayName), ContextString);
+	DeckBuilderCard_Widget->CardDataRef = *GameModeRef->CardDataTableRef->FindRow<FCard>(FName(*ChosenCard.DisplayName), ContextString);
 	DeckBuilderCard_Widget->PlayerControllerRef = PlayerControllerRef;
 	DeckBuilderCard_Widget->DeckBuilderWidgetRef = this;
 	DeckBuilderCard_Widget->QuantityBind = 1;
@@ -151,7 +151,7 @@ void UBaseClass_Widget_DeckBuilder::Test_Activate_UnlimitedCards()
 			for (int i = 0; i < CardRowNames.Num(); i++)
 			{
 				DeckBuilderCard_Widget = CreateWidget<UBaseClass_Widget_DeckBuilderCard>(GetWorld(), DeckBuilderCard_Class);
-				DeckBuilderCard_Widget->CardDataRef = *LocalGameModeRef->CardDataTableRef->FindRow<FCardBase>(CardRowNames[i], ContextString);
+				DeckBuilderCard_Widget->CardDataRef = *LocalGameModeRef->CardDataTableRef->FindRow<FCard>(CardRowNames[i], ContextString);
 				DeckBuilderCard_Widget->DeckBuilderZone = E_DeckBuilder_Zone::E_Collection;
 				DeckBuilderCard_Widget->PlayerControllerRef = PlayerControllerRef;
 				DeckBuilderCard_Widget->DeckBuilderWidgetRef = this;

@@ -51,16 +51,16 @@ public:
 	int Y_Coordinate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCardBase> CardsInDeck;
+	TArray<FCard> CardsInDeck;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCardBase> CardsInHand;
+	TArray<FCard> CardsInHand;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCardBase> CardsInGraveyard;
+	TArray<FCard> CardsInGraveyard;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCardBase> CardsInVoid;
+	TArray<FCard> CardsInVoid;
 
 	// Slots:
 	// 0 - Head

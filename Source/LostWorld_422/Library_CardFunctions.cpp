@@ -42,7 +42,7 @@ void Library_CardFunctions::InitializeCardFunctions()
 }
 
 
-void Library_CardFunctions::ExecuteCardFunction(int CardFunctionIndex, const FCardOnStack& StackEntry)
+void Library_CardFunctions::ExecuteCardFunction(int CardFunctionIndex, const FStackEntry& StackEntry)
 {
 	if (CardFunctionIndex < 0 || CardFunctionIndex > CARD_FUNCTIONS_COUNT) {
 		return;

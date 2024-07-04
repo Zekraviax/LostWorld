@@ -211,10 +211,9 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEntry)
 {
 	int RepeatCount = 1;
-	FCardBase NewStackEntryCard;
+	FCard NewStackEntryCard;
 
-	NewStackEntryCard.Description = StackEntry.Card.AbilitiesAndConditions[0].AbilityDescription;
-	NewStackEntryCard.CurrentTargets = StackEntry.Card.CurrentTargets;
+	NewStackEntryCard.Description = StackEntry.Card.Description;
 
 	TheStack.Add(StackEntry);
 
@@ -225,13 +224,8 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 
 void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 {
-	// Spawn ability actor
-	FActorSpawnParameters SpawnParameters;
-	SpawnParameters.bNoFail = true;
-	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
 	if (GetWorld()) {
-		CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].Card.AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
+		//CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].Card.AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
 
 		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
 			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->
@@ -243,10 +237,10 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 		// Update all targets
 		// Remove ability from the stack once done
 		if (TheStack.Num() > 0) {
-			for (int i = 0; i < TheStack[0].Card.CurrentTargets.Num(); i++) {
-				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i]) != nullptr) {
-					if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->IsValidLowLevel()) {
-						Cast<ABaseClass_EntityInBattle>(TheStack[0].Card.CurrentTargets[i])->Event_CardCastOnThis();
+			for (int i = 0; i < TheStack[0].Targets.Num(); i++) {
+				if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Targets[i]) != nullptr) {
+					if (Cast<ABaseClass_EntityInBattle>(TheStack[0].Targets[i])->IsValidLowLevel()) {
+						Cast<ABaseClass_EntityInBattle>(TheStack[0].Targets[i])->Event_CardCastOnThis();
 					}
 				}
 

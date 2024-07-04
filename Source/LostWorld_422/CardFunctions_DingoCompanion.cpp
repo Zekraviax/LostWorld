@@ -23,6 +23,7 @@ ACardFunctions_DingoCompanion::ACardFunctions_DingoCompanion()
 // ------------------------- Base Class Functions
 void ACardFunctions_DingoCompanion::RunCardAbilityFunction(FStackEntry StackEntry)
 {
+	/*
 	if (SummonsTable) {
 		if (Cast<ABaseClass_GridTile>(StackEntry.Card.CurrentTargets[0])) {
 			FString ContextString;
@@ -35,7 +36,7 @@ void ACardFunctions_DingoCompanion::RunCardAbilityFunction(FStackEntry StackEntr
 			// Set cards in deck
 			DingoCompanionActor_Reference->CardsInDeck.Empty();
 			for (int i = 0; i < DingoData->Cards.Num(); i++) {
-				FCardBase Card = *DingoData->Cards[i].DataTable->FindRow<FCardBase>(FName(DingoData->Cards[i].RowName), ContextString);
+				FCard Card = *DingoData->Cards[i].DataTable->FindRow<FCard>(FName(DingoData->Cards[i].RowName), ContextString);
 				DingoCompanionActor_Reference->CardsInDeck.Add(Card);
 			}
 
@@ -48,4 +49,5 @@ void ACardFunctions_DingoCompanion::RunCardAbilityFunction(FStackEntry StackEntr
 			Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState())->SortedTurnOrderList.Add(DingoCompanionActor_Reference);
 		}
 	}
+	*/
 }

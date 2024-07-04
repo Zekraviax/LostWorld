@@ -17,7 +17,7 @@ void UBaseClass_HUD_Battle::NativeConstruct()
 
 
 // ------------------------- Widgets
-void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand)
+void UBaseClass_HUD_Battle::CreatePlayerCardsInHandWidgets(bool ClearHand, FCard CardInHand)
 {
 	if (ClearHand && CardsInHand_ScrollBox)
 		CardsInHand_ScrollBox->ClearChildren();

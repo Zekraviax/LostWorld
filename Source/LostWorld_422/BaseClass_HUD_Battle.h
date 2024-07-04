@@ -86,7 +86,7 @@ public:
 
 // ------------------------- Widgets
 	UFUNCTION()
-	void CreatePlayerCardsInHandWidgets(bool ClearHand, FCardBase CardInHand);
+	void CreatePlayerCardsInHandWidgets(bool ClearHand, FCard CardInHand);
 
 	UFUNCTION(BlueprintCallable)
 	void OpenInventoryWidget();

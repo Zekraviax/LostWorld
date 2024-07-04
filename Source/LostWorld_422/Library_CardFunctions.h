@@ -26,14 +26,14 @@ public:
 
 	UPROPERTY()
 	// ReSharper disable once CppUPropertyMacroCallHasNoEffect
-	FCardOnStack CurrentCardOnStack;
+	FStackEntry CurrentCardOnStack;
 
 // Functions --------------------------------------------------
 	// Required set up for the card functions
 	void InitializeCardFunctions();
 
 	// Used to execute the card functions
-	void ExecuteCardFunction(int CardFunctionIndex, const FCardOnStack& StackEntry);
+	void ExecuteCardFunction(int CardFunctionIndex, const FStackEntry& StackEntry);
 
 	// The card functions
 	void Nothing();

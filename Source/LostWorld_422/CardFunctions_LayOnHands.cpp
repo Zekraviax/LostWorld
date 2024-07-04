@@ -24,6 +24,7 @@ ACardFunctions_LayOnHands::ACardFunctions_LayOnHands()
 // ------------------------- Base Class Functions
 void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 {
+	/*
 	int HealingValue = StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing;
 
 	//SpentMana_Widget Check
@@ -40,12 +41,14 @@ void ACardFunctions_LayOnHands::RunCardAbilityFunction(FStackEntry StackEntry)
 		StackEntry.Card.Controller->Event_DrawCard();
 		StackEntry.Card.Controller->UpdateCardVariables();
 	}
+	*/
 }
 
 
 // ------------------------- Widget Functions
 void ACardFunctions_LayOnHands::WidgetFunction_SpendMana(int ManaSpent, FStackEntry StackEntry)
 {
+	/*
 	StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing = StackEntry.Card.AbilitiesAndConditions[0].CalculatedHealing + ManaSpent;
 	StackEntry.RunWidgetFunction = false;
 
@@ -55,4 +58,5 @@ void ACardFunctions_LayOnHands::WidgetFunction_SpendMana(int ManaSpent, FStackEn
 	StackEntry.Card.Controller->EntityBaseData.ManaValues.X_Value -= ManaSpent;
 
 	ConditionalBeginDestroy();
+	*/
 }

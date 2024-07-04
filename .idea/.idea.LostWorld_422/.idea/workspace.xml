@@ -10,36 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d7dffe97-b975-44d6-9794-5c710ad56665" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LostWorld_422/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LostWorld_422/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardUserWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardUserWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_HUD_Battle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_HUD_Battle.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_HUD_Battle.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_HUD_Battle.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_PlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_PlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_PlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_PlayerController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilder.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilderCard.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_DeckBuilderCard.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_SpentMana.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_SpentMana.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_DealDamage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_DealDamage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_GainBarrier.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_GainBarrier.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Annihilate.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Annihilate.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_BloodRecycling.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_BloodRecycling.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_DingoCompanion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_DingoCompanion.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_LayOnHands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_LayOnHands.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_NormalPunch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_NormalPunch.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_RollingQuake.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_RollingQuake.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Shock.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Shock.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SpiderCompanion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SpiderCompanion.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SuddenInspiration.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SuddenInspiration.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_TwinFangs.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_TwinFangs.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_Variables.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_Variables.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,15 +21,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LostWorld_422/LostWorld_Variables.gen.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/LostWorld_Variables.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -486,7 +456,8 @@
       <workItem from="1719962301938" duration="493000" />
       <workItem from="1719963592650" duration="10229000" />
       <workItem from="1720082080715" duration="3981000" />
-      <workItem from="1720086409020" duration="3254000" />
+      <workItem from="1720086409020" duration="3671000" />
+      <workItem from="1720091567564" duration="169000" />
     </task>
     <servers />
   </component>

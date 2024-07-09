@@ -58,12 +58,12 @@ void ABaseClass_EntityInBattle::Tick(float DeltaTime)
 
 void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 {
-	ALostWorld_422GameModeBase* LocalGameModeRef = (ALostWorld_422GameModeBase*)GetWorld()->GetAuthGameMode();
-	FString ContextString;
+	ALostWorld_422GameModeBase* LocalGameModeRef = static_cast<ALostWorld_422GameModeBase*>(GetWorld()->GetAuthGameMode());
 	TArray<FName> RowNames = LocalGameModeRef->CardDataTableRef->GetRowNames();
 
 	for (int i = 0; i < 10; i++) {
-		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCard>(RowNames[1], ContextString));
+		FString ContextString;
+		CardsInDeck.Add(*LocalGameModeRef->CardDataTableRef->FindRow<FCard>(RowNames[0], ContextString));
 
 		CardsInDeck[i].Controller = this;
 		CardsInDeck[i].Owner = this;
@@ -72,7 +72,7 @@ void ABaseClass_EntityInBattle::Debug_CreateDefaultDeck()
 }
 
 
-void ABaseClass_EntityInBattle::ResetComponentsLocations()
+void ABaseClass_EntityInBattle::ResetComponentsLocations() const
 {
 	SpringArm->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z));
 	EntityStats_WidgetComponent->SetWorldLocation(FVector(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z + 150));

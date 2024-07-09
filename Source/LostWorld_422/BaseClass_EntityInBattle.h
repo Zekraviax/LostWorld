@@ -135,7 +135,7 @@ public:
 	//void ResetStatsWidget();
 
 	UFUNCTION()
-	void ResetComponentsLocations();
+	void ResetComponentsLocations() const;
 
 // ------------------------- Battle
 	UFUNCTION()

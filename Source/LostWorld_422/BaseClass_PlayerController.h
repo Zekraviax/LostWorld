@@ -84,16 +84,16 @@ public:
 
 // ------------------------- Widgets
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class UBaseClass_HUD_Level* Level_HUD_Widget;
+	UBaseClass_HUD_Level* Level_HUD_Widget;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<class UBaseClass_HUD_Level> Level_HUD_Class;
+	TSubclassOf<UBaseClass_HUD_Level> Level_HUD_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	class UBaseClass_HUD_Battle* Battle_HUD_Widget;
+	UBaseClass_HUD_Battle* Battle_HUD_Widget;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<class UBaseClass_HUD_Battle> Battle_HUD_Class;
+	TSubclassOf<UBaseClass_HUD_Battle> Battle_HUD_Class;
 
 	// The instance of the DeckBuilderCard 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -116,23 +116,15 @@ public:
 
 // Functions
 // --------------------------------------------------
-	UFUNCTION()
 	void ManualBeginPlay();
 
 // ------------------------- Controls
 	UFUNCTION(BlueprintCallable)
 	void CustomOnLeftMouseButtonUpEvent();
-
-	UFUNCTION()
+	
 	void PlayerMoveNorth();
-
-	UFUNCTION()
 	void PlayerMoveEast();
-
-	UFUNCTION()
 	void PlayerMoveSouth();
-
-	UFUNCTION()
 	void PlayerMoveWest();
 
 // ------------------------- Gameplay
@@ -142,9 +134,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ExitBattle();
 
-	UFUNCTION()
 	void MoveToTile(ABaseClass_GridTile* TileReference);
-
-	UFUNCTION()
 	bool ValidDeckCheck();
 };

@@ -60,7 +60,10 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 
 
 //-------------------- Execute Functions --------------------//
-
+void ABaseClass_CardFunctionsLibrary::ExecuteFunction(int32 FunctionIndex)
+{
+	(this->* (CardFunctions[FunctionIndex]))();
+}
 
 
 //-------------------- Card Functions --------------------//
@@ -76,5 +79,9 @@ void ABaseClass_CardFunctionsLibrary::DrawCards()
 
 void ABaseClass_CardFunctionsLibrary::DealDamage()
 {
+	int32 DamageValue = StackEntry.Card.CardFunctionsAndValues[0];
 
+	for (int i = 0; i < StackEntry.Targets.Num(); i++) {
+		Cast<ABaseClass_EntityInBattle>(StackEntry.Targets[i])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Other);
+	}
 }

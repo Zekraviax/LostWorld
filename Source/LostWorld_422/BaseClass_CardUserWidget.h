@@ -50,7 +50,6 @@ public:
 // ------------------------- Mouse
 	UFUNCTION(BlueprintCallable)
 	void OnMouseButtonDownEvent(UBaseClass_CardUserWidget* CardDragWidgetInstance);
-
-	UFUNCTION()
-	void CastCard();
+	
+	void CastCard(const FStackEntry& NewStackEntry);
 };

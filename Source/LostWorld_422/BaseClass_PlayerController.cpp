@@ -81,25 +81,6 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 	FString ContextString;
 	TArray<FName> Card_ListNames = CardsTable->GetRowNames();
 	UWorld* World = GetWorld();
-	ULostWorld_422GameInstanceBase* GameInstanceReference = Cast<ULostWorld_422GameInstanceBase>(UGameplayStatics::GetGameInstance(World));
-
-	for (int i = 0; i < Card_ListNames.Num(); i++) {
-		FCard* Card = CardsTable->FindRow<FCard>(Card_ListNames[i], ContextString, true);
-
-		// Don't add any cards that aren't done yet
-		if (Card->CardFunctionsAndValues.Num() > 0) {
-			// Add some cards to the deck instead of the collection
-			if (i < 5) {
-				for (int x = 0; x < 2; x++) {
-					CurrentEntityData.CurrentDeck.Add(*Card);
-				}
-			} else {
-				for (int x = 0; x < 2; x++) {
-					CurrentCollection.Add(*Card);
-				}
-			}
-		}
-	}
 
 	// Create the player EntityInBattle
 	if (EntityInBattle_Class) {
@@ -137,6 +118,27 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 		}
 	}
 
+	for (int i = 0; i < Card_ListNames.Num(); i++) {
+		FCard* Card = CardsTable->FindRow<FCard>(Card_ListNames[i], ContextString, true);
+
+		// Don't add any cards that aren't done yet
+		if (Card) {
+			if (Card->CardFunctionsAndValues.Num() > 0) {
+				// Add some cards to the deck instead of the collection
+				if (i < 5) {
+					for (int x = 0; x < 10; x++) {
+						Card->Controller = EntityInBattleRef;
+						CurrentEntityData.CurrentDeck.Add(*Card);
+					}
+				} else {
+					for (int x = 0; x < 2; x++) {
+						CurrentCollection.Add(*Card);
+					}
+				}
+			}
+		}
+	}
+
 	// Generate Level
 	Level_HUD_Widget->Minimap->GenerateLevel();
 }
@@ -145,7 +147,6 @@ void ABaseClass_PlayerController::ManualBeginPlay()
 // ------------------------- Controls
 void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 {
-	/*
 	EntityInBattleRef->UpdateCardVariables();
 
 	// Get any actors under cursor
@@ -155,22 +156,25 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 	// Delete CardDrag widget
 	if (CurrentDragCardRef && Battle_HUD_Widget)
 	{
+		FStackEntry NewStackEntry;
+		NewStackEntry.Card = CurrentDragCardRef->CardData;
+		
 		// Set rudimentary targets based on cast mode
 		if (Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget)
 		{
 			// Any Single (Entity) Target
-			CurrentDragCardRef->CardData.CurrentTargets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
+			NewStackEntry.Targets.Add(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor()));
 		} else if (CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_Self) {
 			// Self Target
-			CurrentDragCardRef->CardData.CurrentTargets.Add(CurrentDragCardRef->CardData.Controller);
+			NewStackEntry.Targets.Add(CurrentDragCardRef->CardData.Controller);
 
 		} else if (Cast<ABaseClass_GridTile>(HitResult.GetActor()) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_UnoccupiedGridTile) {
 			// Any Unoccupied Tile
-			CurrentDragCardRef->CardData.CurrentTargets.Add(HitResult.GetActor());
+			NewStackEntry.Targets.Add(HitResult.GetActor());
 		} else if (!(Cast<ABaseClass_EntityInBattle>(HitResult.GetActor())) && CurrentDragCardRef->CardData.SimpleTargetsOverride == E_Card_SetTargets::E_AnyTarget) {
 			// Stop the spell from being cast if the player hit an invalid target
 			CurrentDragCardRef->RemoveFromParent();
-			CurrentDragCardRef = NULL;
+			CurrentDragCardRef = nullptr;
 			return;
 		}
 
@@ -183,12 +187,12 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 				}
 			} else {
 				CurrentDragCardRef->RemoveFromParent();
-				CurrentDragCardRef = NULL;
+				CurrentDragCardRef = nullptr;
 				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Error: Failed to cast card"));
 				return;
 			}
 
-			CurrentDragCardRef->CastCard();
+			CurrentDragCardRef->CastCard(NewStackEntry);
 			
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++) {
@@ -210,10 +214,9 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 			CurrentDragCardRef->CardData.Controller->UpdateCardWidgets();
 
 			CurrentDragCardRef->RemoveFromParent();
-			CurrentDragCardRef = NULL;
+			CurrentDragCardRef = nullptr;
 		}
 	}
-	*/
 }
 
 

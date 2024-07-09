@@ -225,15 +225,19 @@ void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEn
 void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 {
 	if (GetWorld()) {
-		//CardAbilityActor_Reference = GetWorld()->SpawnActor<ACardAbilityActor_BaseClass>(TheStack[0].Card.AbilitiesAndConditions[0].Ability, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParameters);
-
+		if (!CardAbilityActor_Reference) {
+			FActorSpawnParameters SpawnInfo;
+			CardAbilityActor_Reference = GetWorld()->SpawnActor<ABaseClass_CardFunctionsLibrary>(FVector::ZeroVector, FRotator::ZeroRotator, SpawnInfo);
+		}
+		
 		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {
 			Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->
 				AddEntry(TheStack[0].Card.Controller->EntityBaseData.DisplayName + " casts " + TheStack[0].Card.DisplayName + ".");
 		}
 
-		CardAbilityActor_Reference->RunCardAbilityFunction(TheStack[0]);
+		CardAbilityActor_Reference->ExecuteFunction(TheStack[0].CardFunctionIndex);
 
+		
 		// Update all targets
 		// Remove ability from the stack once done
 		if (TheStack.Num() > 0) {

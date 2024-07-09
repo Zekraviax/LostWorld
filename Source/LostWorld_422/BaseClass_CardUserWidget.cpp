@@ -32,9 +32,7 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 	if (!LocalPlayerControllerRef)
 		LocalPlayerControllerRef = Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController());
 
-	UBaseClass_CardUserWidget* CardDragWidgetRef;
-
-	CardDragWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), this->GetClass());
+	UBaseClass_CardUserWidget* CardDragWidgetRef = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), this->GetClass());
 	CardDragWidgetRef->CardData = CardData;
 	CardDragWidgetRef->IsDragging = true;
 
@@ -43,15 +41,12 @@ void UBaseClass_CardUserWidget::OnMouseButtonDownEvent(UBaseClass_CardUserWidget
 }
 
 
-void UBaseClass_CardUserWidget::CastCard()
+void UBaseClass_CardUserWidget::CastCard(const FStackEntry& NewStackEntry)
 {
-	FStackEntry NewStackEntry;
-
 	if (!GameStateRef) {
 		GameStateRef = Cast<ALostWorld_422GameStateBase>(GetWorld()->GetGameState());
 	}
 
-	NewStackEntry.Card = CardData;
-
+	//NewStackEntry.Card = CardData;
 	GameStateRef->AddCardFunctionsToTheStack(NewStackEntry);
 }

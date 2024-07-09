@@ -33,8 +33,8 @@ public:
 
 // ------------------------- Reference
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<class ABaseClass_CardFunctionsLibrary> CardFunctionsLibraryClass;
+	TSubclassOf<class ALibrary_CardFunctions> CardFunctionsLibraryClass;
 
 	UPROPERTY()
-	ABaseClass_CardFunctionsLibrary* CardFunctionsLibraryActorRef;
+	ALibrary_CardFunctions* CardFunctionsLibraryActorRef;
 };

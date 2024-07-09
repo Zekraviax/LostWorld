@@ -2,6 +2,7 @@
 
 #include "BaseClass_PlayerController.h"
 #include "BaseClass_GridTile.h"
+#include "EngineUtils.h"
 #include "Widget_CustomConsole_Base.h"
 #include "ItemFunctions_BaseClass.h"
 #include "Kismet/GameplayStatics.h"

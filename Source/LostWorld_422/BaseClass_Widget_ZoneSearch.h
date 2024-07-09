@@ -3,11 +3,12 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 
-#include "LostWorld_422GameModeBase.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
 #include "BaseClass_CardUserWidget.h"
+#include "LostWorld_422GameModeBase.h"
+#include "LostWorld_Variables.h"
 
 #include "BaseClass_Widget_ZoneSearch.generated.h"
 

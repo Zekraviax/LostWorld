@@ -10,6 +10,16 @@
 
 // Enums --------------------------------------------------
 UENUM(BlueprintType)
+enum class E_Card_Zones : uint8
+{
+	E_Hand,
+	E_Deck,
+	E_Graveyard,
+	E_Void,
+};
+
+
+UENUM(BlueprintType)
 enum class E_Card_Types : uint8
 {
 	E_Summon				UMETA(DisplayName = "Summon"),

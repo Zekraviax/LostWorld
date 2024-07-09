@@ -50,7 +50,7 @@ public:
 	TSubclassOf<ABaseClass_EntityInBattle> EntityInBattle_Class;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	ABaseClass_CardFunctionsLibrary* CardAbilityActor_Reference;
+	ALibrary_CardFunctions* CardAbilityActor_Reference;
 
 // ------------------------- Levels
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

@@ -5,6 +5,7 @@
 
 #include "Engine/DataTable.h"
 #include "ItemFunctions_BaseClass.h"
+#include "Library_CardFunctions.h"
 #include "LostWorld_Variables.h"
 
 #include "LostWorld_422GameModeBase.generated.h"
@@ -34,16 +35,6 @@ enum class E_Card_Traits : uint8
 {
 	E_CastsWhenDrawn			UMETA(DisplayName = "Auto-Cast"),
 	E_Lifesteal					UMETA(DisplayName = "Life Drain"),
-};
-
-
-UENUM(BlueprintType)
-enum class E_Card_Zones : uint8
-{
-	E_Hand,
-	E_Deck,
-	E_Graveyard,
-	E_Void,
 };
 
 
@@ -668,7 +659,7 @@ public:
 	UDataTable* CardDataTableRef;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")
-	ABaseClass_CardFunctionsLibrary* CardFunctionLibraryReference;
+	ALibrary_CardFunctions* CardFunctionLibraryReference;
 
 //// ------------------------- Classes
 //	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References")

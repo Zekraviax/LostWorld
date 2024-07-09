@@ -60,9 +60,10 @@ void ABaseClass_CardFunctionsLibrary::InitializeCardFunctions()
 
 
 //-------------------- Execute Functions --------------------//
-void ABaseClass_CardFunctionsLibrary::ExecuteFunction(int32 FunctionIndex)
+void ABaseClass_CardFunctionsLibrary::ExecuteFunction(const FStackEntry& InStackEntry)
 {
-	(this->* (CardFunctions[FunctionIndex]))();
+	StackEntry = InStackEntry;
+	(this->* (CardFunctions[StackEntry.Card.CardFunctionsAndValues[0].CardFunctionIndex]))();
 }
 
 
@@ -74,12 +75,18 @@ void ABaseClass_CardFunctionsLibrary::Nothing()
 
 void ABaseClass_CardFunctionsLibrary::DrawCards()
 {
-	
+	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Draw Cards"));
+
+	// To-Do: Make this use the StackEntry's target, rather than the controller.
+	for (int i = 0; i < StackEntry.Card.CardFunctionsAndValues[0].FunctionBaseValue; i++) {
+		StackEntry.Controller->Event_DrawCard();
+	}
 }
 
 void ABaseClass_CardFunctionsLibrary::DealDamage()
 {
-	int32 DamageValue = StackEntry.Card.CardFunctionsAndValues[0];
+	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Deal Damage"));
+	int32 DamageValue = StackEntry.Card.CardFunctionsAndValues[0].FunctionBaseValue;
 
 	for (int i = 0; i < StackEntry.Targets.Num(); i++) {
 		Cast<ABaseClass_EntityInBattle>(StackEntry.Targets[i])->Event_DamageIncoming(DamageValue, StackEntry.Card.Elements[0], E_Card_DamageTypes::E_Other);

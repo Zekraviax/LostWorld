@@ -53,7 +53,7 @@ public:
 	void InitializeCardFunctions();
 
 	// Executes a function from the CardFunctions Pointer Array
-	void ExecuteFunction(int32 FunctionIndex);
+	void ExecuteFunction(const FStackEntry& InStackEntry);
 
 	// The Actual Functions which are implemented in subclasses of this class.
 	virtual void Nothing();

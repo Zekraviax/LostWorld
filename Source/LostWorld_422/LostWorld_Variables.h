@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "LostWorld_422GameModeBase.h"
 
 #include "Engine/DataTable.h"
 
@@ -35,6 +36,17 @@ enum class E_Card_Elements : uint8
 
 
 UENUM(BlueprintType)
+enum class E_Card_DamageTypes : uint8
+{
+	E_Physical,
+	E_Magical,
+	E_LifeLoss,	// Use this for cards that require health as a cost or payment, so things like resistances are not factored in
+	E_Other,
+	E_NotApplicable,
+};
+
+
+UENUM(BlueprintType)
 enum class E_Card_SetTargets : uint8
 {
 	E_None,
@@ -52,6 +64,41 @@ enum class E_Card_SetTargets : uint8
 
 
 // Structs --------------------------------------------------
+USTRUCT(BlueprintType)
+struct LOSTWORLD_422_API FCardFunction : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CardFunctionIndex;
+
+	// The base value of functions like damage dealt.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int FunctionBaseValue;
+
+	// Use the N/A value for functions that don't deal damage (e.g. card draw.)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<E_Card_DamageTypes> DamageTypesOverride;
+
+	// Use this for things like cards that deal multiple different damage instances.
+	// Otherwise, leave blank.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<E_Card_Elements> ElementsOverride;
+
+	// Use this for cards that affect different targets with different functions.
+	// E.g. a card that damages an enemy and draws you a card.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	E_Card_SetTargets TargetsOverride;
+
+	// To-Do: Add a description variable here, and make a function that
+	// combines all descriptions in order.
+	
+	FCardFunction(): CardFunctionIndex(0), FunctionBaseValue(0), TargetsOverride()
+	{
+	}
+};
+
+
 USTRUCT(BlueprintType)
 struct LOSTWORLD_422_API FCard : public FTableRowBase
 {
@@ -82,7 +129,7 @@ struct LOSTWORLD_422_API FCard : public FTableRowBase
 	// Left int for the function, right int for its value. (e.g. base damage dealt)
 	// Some functions will ignore the value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")
-	TMap<int, int> CardFunctionsAndValues;
+	TArray<FCardFunction> CardFunctionsAndValues;
 
 	// To-Do: Explain this
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Functions")

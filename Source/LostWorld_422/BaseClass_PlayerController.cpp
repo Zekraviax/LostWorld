@@ -192,7 +192,12 @@ void ABaseClass_PlayerController::CustomOnLeftMouseButtonUpEvent()
 				return;
 			}
 
-			CurrentDragCardRef->CastCard(NewStackEntry);
+			for (int i = 0; i < CurrentDragCardRef->CardData.CardFunctionsAndValues.Num(); i++) {
+				NewStackEntry.Card.CardFunctionsAndValues.Empty();
+				NewStackEntry.Card.CardFunctionsAndValues.Add(CurrentDragCardRef->CardData.CardFunctionsAndValues[i]);
+				
+				CurrentDragCardRef->CastCard(NewStackEntry);
+			}
 			
 			// Remove card from hand and add to graveyard
 			for (int i = 0; i < CurrentDragCardRef->CardData.Controller->CardsInHand.Num(); i++) {

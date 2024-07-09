@@ -84,7 +84,7 @@ public:
 
 // ------------------------- Combat Functions
 	UFUNCTION()
-	void AddCardFunctionsToTheStack(FStackEntry StackEntry);
+	void AddCardFunctionsToTheStack(const FStackEntry& StackEntry);
 
 	UFUNCTION()
 	void ExecuteCardFunctions();

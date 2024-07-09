@@ -208,7 +208,7 @@ void ALostWorld_422GameStateBase::NewCombatRound()
 }
 
 
-void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(FStackEntry StackEntry)
+void ALostWorld_422GameStateBase::AddCardFunctionsToTheStack(const FStackEntry& StackEntry)
 {
 	int RepeatCount = 1;
 	FCard NewStackEntryCard;
@@ -235,8 +235,7 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 				AddEntry(TheStack[0].Card.Controller->EntityBaseData.DisplayName + " casts " + TheStack[0].Card.DisplayName + ".");
 		}
 
-		CardAbilityActor_Reference->ExecuteFunction(TheStack[0].CardFunctionIndex);
-
+		CardAbilityActor_Reference->ExecuteFunction(TheStack[0]);
 		
 		// Update all targets
 		// Remove ability from the stack once done

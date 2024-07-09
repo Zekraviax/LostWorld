@@ -33,19 +33,7 @@ UENUM(BlueprintType)
 enum class E_Card_Traits : uint8
 {
 	E_CastsWhenDrawn			UMETA(DisplayName = "Auto-Cast"),
-	E_Lifesteal				UMETA(DisplayName = "Life Drain"),
-};
-
-
-
-UENUM(BlueprintType)
-enum class E_Card_DamageTypes : uint8
-{
-	E_Physical,
-	E_Magical,
-	E_LifeLoss,	// Use this for cards that require health as a cost or payment, so things like resistances are not factored in
-	E_Other,
-	E_NotApplicable,
+	E_Lifesteal					UMETA(DisplayName = "Life Drain"),
 };
 
 

@@ -227,7 +227,7 @@ void ALostWorld_422GameStateBase::ExecuteCardFunctions()
 	if (GetWorld()) {
 		if (!CardAbilityActor_Reference) {
 			FActorSpawnParameters SpawnInfo;
-			CardAbilityActor_Reference = GetWorld()->SpawnActor<ABaseClass_CardFunctionsLibrary>(FVector::ZeroVector, FRotator::ZeroRotator, SpawnInfo);
+			CardAbilityActor_Reference = GetWorld()->SpawnActor<ALibrary_CardFunctions>(FVector::ZeroVector, FRotator::ZeroRotator, SpawnInfo);
 		}
 		
 		if (Cast<ABaseClass_PlayerController>(GetWorld()->GetFirstPlayerController())->CustomConsole_Reference->IsValidLowLevel()) {

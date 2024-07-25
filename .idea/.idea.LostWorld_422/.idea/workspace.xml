@@ -10,17 +10,44 @@
   <component name="ChangeListManager">
     <list default="true" id="d7dffe97-b975-44d6-9794-5c710ad56665" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LostWorld_422/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LostWorld_422/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardFunctionsLibrary.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardFunctionsLibrary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardUserWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_CardUserWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_DefaultPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_DefaultPawn.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_DefaultPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_DefaultPawn.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/BaseClass_Widget_ZoneSearch.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardAbilityActor_BaseClass.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardAbilityActor_BaseClass.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardAbilityActor_BaseClass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/CardAbilityActor_BaseClass.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_DealDamage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_DealDamage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_GainBarrier.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_GainBarrier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_RestoreHealth.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_RestoreHealth.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_RestoreMana.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunction_Generic_RestoreMana.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Annihilate.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Annihilate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_BloodRecycling.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_BloodRecycling.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_DingoCompanion.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_DingoCompanion.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_LayOnHands.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_LayOnHands.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_NormalPunch.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_NormalPunch.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_RollingQuake.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_RollingQuake.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Shock.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_Shock.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SpiderCompanion.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SpiderCompanion.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SuddenInspiration.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_SuddenInspiration.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_TwinFangs.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/CardFunctions_TwinFangs.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/Library_CardFunctions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameStateBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_Variables.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/LostWorld_422/LostWorld_Variables.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,100 +58,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://15" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LostWorld_422/LostWorld_422GameStateBase.gen.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LostWorld_422/LostWorld_422GameStateBase.gen.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UE4Editor/Inc/LostWorld_422/LostWorld_Variables.gen.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/BaseClass_EntityInBattle.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/LostWorld_422/LostWorld_422GameModeBase.h" root0="FORCE_HIGHLIGHTING" />
@@ -145,27 +79,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C++ Project.LostWorld_422.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Refactor&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C++ Project.LostWorld_422.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Refactor",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\zekra\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\zekra\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\zekra\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\zekra\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\zekra\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\zekra\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C++ Project.LostWorld_422">
     <configuration name="LostWorld_422" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -567,6 +501,9 @@
       <workItem from="1720491646331" duration="11208000" />
       <workItem from="1720507769557" duration="1104000" />
       <workItem from="1720514616489" duration="5982000" />
+      <workItem from="1720521351635" duration="1320000" />
+      <workItem from="1720522844648" duration="213000" />
+      <workItem from="1720523136619" duration="340000" />
     </task>
     <servers />
   </component>

@@ -24,6 +24,7 @@ void ACardAbilityActor_BaseClass::Tick(float DeltaTime)
 }
 
 
+/*
 // ------------------------- Base Class Functions ------------------------- //
 void ACardAbilityActor_BaseClass::RunCardAbilityFunction(FStackEntry StackEntry)
 {
@@ -41,3 +42,4 @@ AActor* ACardAbilityActor_BaseClass::TechnicalFunction_SimpleGetTarget()
 {
 	return nullptr;
 }
+*/

@@ -38,7 +38,8 @@ public:
 	FunctionPtrType CardFunctions[CARD_FUNCTIONS_COUNT];
 
 	void BeginPlay();
-	
+	void Tick(float DeltaTime);
+
 	// Initialize the array
 	void InitializeCardFunctions();
 
@@ -46,7 +47,7 @@ public:
 	void ExecuteFunction(const FStackEntry& InStackEntry);
 
 	// The card functions
-	void Nothing() const;
+	void Nothing();
 	void DrawCards();
 	void DealDamage();
 };

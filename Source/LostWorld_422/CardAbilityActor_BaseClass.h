@@ -35,6 +35,7 @@ public:
 // --------------------------------------------------
 
 // ------------------------- Base Class Functions
+	/*
 	virtual void RunCardAbilityFunction(FStackEntry StackEntry);
 
 // ------------------------- Widget Functions
@@ -42,4 +43,5 @@ public:
 
 // ------------------------- Technical Functions
 	virtual AActor* TechnicalFunction_SimpleGetTarget();
+	*/
 };

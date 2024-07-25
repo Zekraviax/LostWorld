@@ -17,8 +17,7 @@
 
 
 //-------------------- Base Functions --------------------//
-// Sets default values
-ALibrary_CardFunctions::ALibrary_CardFunctions(): CardFunctions{}
+ALibrary_CardFunctions::ALibrary_CardFunctions()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
@@ -68,7 +67,7 @@ void ALibrary_CardFunctions::ExecuteFunction(const FStackEntry& InStackEntry)
 
 
 //-------------------- Card Functions --------------------//
-void ALibrary_CardFunctions::Nothing() const
+void ALibrary_CardFunctions::Nothing()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Execute Function: Nothing"));
 }

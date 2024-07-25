@@ -2,8 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-
-#include "BaseClass_CardFunctionsLibrary.h"
+#include "Library_CardFunctions.h"
 
 #include "BaseClass_DefaultPawn.generated.h"
 
@@ -33,7 +32,7 @@ public:
 
 // ------------------------- Reference
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<class ALibrary_CardFunctions> CardFunctionsLibraryClass;
+	TSubclassOf<ALibrary_CardFunctions> CardFunctionsLibraryClass;
 
 	UPROPERTY()
 	ALibrary_CardFunctions* CardFunctionsLibraryActorRef;

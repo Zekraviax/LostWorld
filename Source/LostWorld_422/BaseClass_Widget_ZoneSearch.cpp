@@ -5,11 +5,10 @@
 
 void UBaseClass_Widget_ZoneSearch::PopulateWidget(TArray<FCard> Cards, int32 MaxCardSelectCount, E_ZoneSearch_Functions ConfirmButtonFunction, E_Card_Zones SearchZone)
 {
-	UBaseClass_CardUserWidget* CardWidget_Reference;
 	CurrentMaxCardSelectCount = MaxCardSelectCount;
 
 	for (int i = 0; i < Cards.Num(); i++) {
-		CardWidget_Reference = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
+		UBaseClass_CardUserWidget* CardWidget_Reference = CreateWidget<UBaseClass_CardUserWidget>(GetWorld(), CardWidget_Class);
 		CardWidget_Reference->CardData = Cards[i];
 		CardScrollBox->AddChild(CardWidget_Reference);
 	}

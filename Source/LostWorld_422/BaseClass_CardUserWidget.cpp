@@ -1,10 +1,7 @@
 #include "BaseClass_CardUserWidget.h"
 
 #include "BaseClass_PlayerController.h"
-#include "BaseClass_CardFunctionsLibrary.h"
-#include "BaseClass_Widget_ZoneSearch.h"
 #include "LostWorld_422GameStateBase.h"
-#include "CardAbilityActor_BaseClass.h"
 
 
 void UBaseClass_CardUserWidget::NativeTick(const FGeometry& MyGeometry, float DeltaTime)

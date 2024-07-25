@@ -1,5 +1,7 @@
 #include "BaseClass_DefaultPawn.h"
 
+#include "LostWorld_422GameModeBase.h"
+
 
 // Sets default values
 ABaseClass_DefaultPawn::ABaseClass_DefaultPawn()
@@ -18,7 +20,7 @@ void ABaseClass_DefaultPawn::BeginPlay()
 	{
 		UWorld* const World = GetWorld(); // get a reference to the world
 		FActorSpawnParameters SpawnParameters;
-		CardFunctionsLibraryActorRef= World->SpawnActor<ABaseClass_CardFunctionsLibrary>(CardFunctionsLibraryClass, SpawnParameters);
+		CardFunctionsLibraryActorRef= World->SpawnActor<ALibrary_CardFunctions>(CardFunctionsLibraryClass, SpawnParameters);
 
 		if (CardFunctionsLibraryActorRef)
 			Cast<ALostWorld_422GameModeBase>(GetWorld()->GetAuthGameMode())->CardFunctionLibraryReference = CardFunctionsLibraryActorRef;

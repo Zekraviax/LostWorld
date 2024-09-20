@@ -17,7 +17,7 @@ void ALostWorld_422GameStateBase::RegenerateLevel()
 	PlayerControllerRef->ControlMode = E_Player_ControlMode::E_Battle;
 	ALevel_SpawnTypeBase* FoundGenerator = nullptr;
 
-	// Find the leve generator
+	// Find the level generator
 	for (TActorIterator<ALevel_SpawnTypeBase> SpawnItr(GetWorld()); SpawnItr; ++SpawnItr) {
 		FoundGenerator = *SpawnItr;
 	}
@@ -132,8 +132,9 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 		} else {
 			UE_LOG(LogTemp, Warning, TEXT("ALostWorld_422GameStateBase / DebugBattleStart / Error: EnemyList is not valid."));
 		}
-
-
+		
+		// For each entity, if they don't have any cards in their deck
+		// create a default deck for them
 		for (TActorIterator<ABaseClass_EntityInBattle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
 			ABaseClass_EntityInBattle* FoundEntity = *ActorItr;
 
@@ -148,6 +149,9 @@ void ALostWorld_422GameStateBase::DebugBattleStart(F_LevelRoom_Encounter Battle)
 			}
 		}
 
+		// Tell each entity to shuffle their decks
+		// Then, run all pre-battle functions:
+		// Draw hands of 7 cards
 		for (TActorIterator<ABaseClass_EntityInBattle> EntityItr(GetWorld()); EntityItr; ++EntityItr) {
 			ABaseClass_EntityInBattle* BattleEntity = *EntityItr;
 
@@ -176,10 +180,11 @@ void ALostWorld_422GameStateBase::EntityEndOfTurn()
 		FoundActor->Destroy();
 	}
 
-	if (SortedTurnOrderList.Num() <= 0)
+	if (SortedTurnOrderList.Num() <= 0) {
 		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::NewCombatRound, 0.5f, false);
-	else
+	} else {
 		GetWorldTimerManager().SetTimer(BeginTurnTimerHandle, this, &ALostWorld_422GameStateBase::EntityBeginTurn_Delay, 1.f, false);
+	}
 }
 
 

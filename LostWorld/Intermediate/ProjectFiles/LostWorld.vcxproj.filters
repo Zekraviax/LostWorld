@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\LostWorld.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{DD79369F-D9E9-458C-953A-287244203F22}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\LostWorld.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\LostWorldEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{B331E961-72B0-469B-BF8A-26E2309B8961}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\LostWorld">
+      <UniqueIdentifier>{9FF0F4A9-9AD9-4536-890F-CB5D22217497}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\LostWorld\ActorEntity.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\ActorEntity.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\ActorGridTile.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\ActorGridTile.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\LostWorld\LostWorld.Build.cs">
+      <Filter>Source\LostWorld</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorld.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorld.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldGameInstanceBase.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldGameInstanceBase.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldGameModeBase.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldGameModeBase.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldGameModeBattle.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldGameModeBattle.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldGameStateBase.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldGameStateBase.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldPlayerControllerBase.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldPlayerControllerBase.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\LostWorldPlayerStateBase.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\LostWorldPlayerStateBase.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\SaveGameDeveloperSettings.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\SaveGameDeveloperSettings.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LostWorld\Variables.cpp">
+      <Filter>Source\LostWorld</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LostWorld\Variables.h">
+      <Filter>Source\LostWorld</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

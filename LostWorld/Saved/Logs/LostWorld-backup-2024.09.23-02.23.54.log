@@ -1,0 +1,1109 @@
+﻿Log file open, 09/23/24 12:19:31
+LogInit: Display: Running engine for game: LostWorld
+LogPlatformFile: Not using cached read wrapper
+LogTaskGraph: Started task graph with 5 named threads and 20 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.187815
+LogD3D11RHI: Loaded GFSDK_Aftermath_Lib.x64.dll
+LogICUInternationalization: ICU TimeZone Detection - Raw Offset: +10:00, Platform Override: ''
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin AISupport
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin CameraShakePreviewer
+LogPluginManager: Mounting plugin ActorLayerUtilities
+LogPluginManager: Mounting plugin AnimationSharing
+LogPluginManager: Mounting plugin CLionSourceCodeAccess
+LogPluginManager: Mounting plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin NullSourceCodeAccess
+LogPluginManager: Mounting plugin PerforceSourceControl
+LogPluginManager: Mounting plugin PlasticSourceControl
+LogPluginManager: Mounting plugin RiderLink
+LogPluginManager: Mounting plugin RiderSourceCodeAccess
+LogPluginManager: Mounting plugin SubversionSourceControl
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin CryptoKeys
+LogPluginManager: Mounting plugin CurveEditorTools
+LogPluginManager: Mounting plugin DataValidation
+LogPluginManager: Mounting plugin EditorScriptingUtilities
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin GeometryMode
+LogPluginManager: Mounting plugin MacGraphicsSwitching
+LogPluginManager: Mounting plugin MaterialAnalyzer
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin SpeedTreeImporter
+LogPluginManager: Mounting plugin DatasmithContent
+LogPluginManager: Mounting plugin VariantManagerContent
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin AutomationUtils
+LogPluginManager: Mounting plugin BackChannel
+LogPluginManager: Mounting plugin ChaosCloth
+LogPluginManager: Mounting plugin ChaosClothEditor
+LogPluginManager: Mounting plugin ChaosEditor
+LogPluginManager: Mounting plugin ChaosNiagara
+LogPluginManager: Mounting plugin ChaosSolverPlugin
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin GeometryCache
+LogPluginManager: Mounting plugin GeometryCollectionPlugin
+LogPluginManager: Mounting plugin GeometryProcessing
+LogPluginManager: Mounting plugin PlanarCut
+LogPluginManager: Mounting plugin PlatformCrypto
+LogPluginManager: Mounting plugin ProxyLODPlugin
+LogPluginManager: Mounting plugin SkeletalReduction
+LogPluginManager: Mounting plugin Niagara
+LogPluginManager: Mounting plugin MagicLeap
+LogPluginManager: Mounting plugin MagicLeapLightEstimation
+LogPluginManager: Mounting plugin MagicLeapMedia
+LogPluginManager: Mounting plugin MagicLeapPassableWorld
+LogPluginManager: Mounting plugin MLSDK
+LogPluginManager: Mounting plugin AutoSizeComments
+LogPluginManager: Mounting plugin ConsoleEnhanced
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin WebMMedia
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin MeshPainting
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin MovieRenderPipeline
+LogPluginManager: Mounting plugin TemplateSequence
+LogPluginManager: Mounting plugin NetcodeUnitTest
+LogPluginManager: Mounting plugin NUTUnrealEngine4
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin LauncherChunkInstaller
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleImageUtils
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin AssetTags
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin EditableMesh
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin GooglePAD
+LogPluginManager: Mounting plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin PostSplashScreen
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin SignificanceManager
+LogPluginManager: Mounting plugin SoundFields
+LogPluginManager: Mounting plugin SteamVR
+LogPluginManager: Mounting plugin Synthesis
+LogPluginManager: Mounting plugin WebMMoviePlayer
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogPluginManager: Mounting plugin ScreenshotTools
+LogInit: Using libcurl 7.55.1-DEV
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.1.1
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = true  - Libcurl will verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+LogInit:  - LocalHostAddr = Default
+LogInit:  - BufferSize = 65536
+LogOnline: OSS: Creating online subsystem instance for: NULL
+LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+LogInit: Build: ++UE4+Release-4.25-CL-14469661
+LogInit: Engine Version: 4.25.4-14469661+++UE4+Release-4.25
+LogInit: Compatible Engine Version: 4.25.0-13144385+++UE4+Release-4.25
+LogInit: Net CL: 13144385
+LogInit: OS: Windows 10 (Release 2009) (), CPU: Intel(R) Core(TM) i5-9600K CPU @ 3.70GHz, GPU: NVIDIA GeForce GTX 1660 Ti
+LogInit: Compiled (64-bit): Oct 11 2020 08:10:49
+LogInit: Compiled with Visual C++: 19.24.28315.00
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.25
+LogInit: Command Line:  -skipcompile
+LogInit: Base Directory: C:/Users/zekra/Documents/UE/UE_4.25/Engine/Binaries/Win64/
+LogInit: Allocator: TBB
+LogInit: Installed Engine Build: 1
+LogDevObjectVersion: Number of dev versions registered: 26
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 4
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 38
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 37
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 2
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 4
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 43
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 12
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 3
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 3
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 17
+LogDevObjectVersion:   Dev-Anim (AF43A65D-7FD3-4947-9873-3E8ED9C1BB05): 7
+LogDevObjectVersion:   Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+LogDevObjectVersion:   Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+LogDevObjectVersion:   FortniteMain (601D1886-AC64-4F84-AA16-D3DE0DEAC7D6): 31
+LogDevObjectVersion:   Dev-Enterprise (9DFFBCD6-494F-0158-E221-12823C92A888): 10
+LogDevObjectVersion:   Dev-Niagara (F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC): 1
+LogDevObjectVersion:   Dev-Destruction (174F1F0B-B4C6-45A5-B13F-2EE8D0FB917D): 10
+LogDevObjectVersion:   Dev-Physics-Ext (35F94A83-E258-406C-A318-09F59610247C): 37
+LogDevObjectVersion:   Dev-PhysicsMaterial-Chaos (B68FC16E-8B1B-42E2-B453-215C058844FE): 1
+LogDevObjectVersion:   Dev-CineCamera (B2E18506-4273-CFC2-A54E-F4BB758BBA07): 1
+LogInit: Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
+LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
+LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
+LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
+LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
+LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
+LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
+LogInit: Object subsystem initialized
+LogConfig: Setting CVar [[con.DebugEarlyDefault:1]]
+LogConfig: Setting CVar [[r.setres:1280x720]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VSync:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.RHICmdBypass:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.GPUCrashDebugging:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Mobile.DisableVertexFog:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxMobileCascades:2]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.MobileMSAA:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Mobile.UseLegacyShadingModel:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Mobile.AllowDitheredLODTransition:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Mobile.AllowSoftwareOcclusion:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.Mobile.VirtualTextures:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.DiscardUnusedQuality:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.AllowOcclusionQueries:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.MinScreenRadiusForLights:0.030000]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.MinScreenRadiusForDepthPrepass:0.030000]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.MinScreenRadiusForCSMDepth:0.010000]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.PrecomputedVisibilityWarning:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.TextureStreaming:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[Compat.UseDXT5NormalMaps:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VirtualTextures:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VirtualTexturedLightmaps:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VT.TileSize:128]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VT.TileBorderSize:4]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.vt.FeedbackFactor:16]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VT.EnableCompressZlib:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VT.EnableCompressCrunch:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.ClearCoatNormal:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.AnisotropicBRDF:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.ReflectionCaptureResolution:128]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.ReflectionEnvironmentLightmapMixBasedOnRoughness:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.ForwardShading:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.VertexFoggingForOpaque:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.AllowStaticLighting:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.NormalMapsForStaticLighting:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.GenerateMeshDistanceFields:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.DistanceFieldBuild.EightBit:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.GenerateLandscapeGIData:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.DistanceFieldBuild.Compress:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.TessellationAdaptivePixelsPerTriangle:48.000000]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.SeparateTranslucency:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.TranslucentSortPolicy:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.CustomDepth:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.CustomDepthTemporalAAJitter:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.PostProcessing.PropagateAlpha:0]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.DefaultFeature.Bloom:1]]
+[2024.09.23-02.19.31:478][  0]LogConfig: Setting CVar [[r.DefaultFeature.AmbientOcclusion:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AmbientOcclusionStaticFraction:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AutoExposure:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AutoExposure.Method:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AutoExposure.Bias:1.000000]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.UsePreExposure:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.EyeAdaptation.EditorOnly:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.MotionBlur:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.LensFlare:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.TemporalAA.Upsampling:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SSGI.Enable:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.AntiAliasing:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultFeature.LightUnits:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DefaultBackBufferPixelFormat:4]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Shadow.UnbuiltPreviewInGame:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.StencilForLODDither:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.EarlyZPass:3]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.EarlyZPassOnlyMaterialMasking:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.DBuffer:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.ClearSceneMethod:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.BasePassOutputsVelocity:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.VertexDeformationOutputsVelocity:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SelectiveBasePassOutputs:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[fx.GPUSimulationTextureSizeX:1024]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[fx.GPUSimulationTextureSizeY:1024]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.AllowGlobalClipPlane:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.GBufferFormat:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.MorphTarget.Mode:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[vr.InstancedStereo:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.MobileHDR:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[vr.MobileMultiView:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.UseHWsRGBEncoding:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[vr.RoundRobinOcclusion:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[vr.ODSCapture:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.MeshStreaming:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.WireframeCullThreshold:5.000000]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.RayTracing:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.RayTracing.UseTextureLod:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportStationarySkylight:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportLowQualityLightmaps:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportPointLightWholeSceneShadows:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportAtmosphericFog:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportSkyAtmosphere:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportSkyAtmosphereAffectsHeightFog:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SkinCache.CompileShaders:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SkinCache.DefaultBehavior:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SkinCache.SceneMemoryLimitInMB:128.000000]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.EnableStaticAndCSMShadowReceivers:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.EnableMovableLightCSMShaderCulling:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.AllowDistanceFieldShadows:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.AllowMovableDirectionalLights:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.MobileNumDynamicPointLights:4]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.MobileDynamicPointLightsUseStaticBranch:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.Mobile.EnableMovableSpotlights:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.GPUSkin.Support16BitBoneIndex:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.GPUSkin.Limit2BoneInfluences:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportDepthOnlyIndexBuffers:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportReversedIndexBuffers:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.SupportMaterialLayers:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[r.LightPropagationVolume:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:479][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.SizeOfPermanentObjectPool:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.FlushStreamingOnGC:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.NumRetriesBeforeForcingGC:10]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.AllowParallelGC:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.MaxObjectsInEditor:25165824]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.CreateGCClusters:1]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.MinGCClusterSize:5]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.ActorClusteringEnabled:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.BlueprintClusteringEnabled:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Setting CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
+[2024.09.23-02.19.31:479][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:479][  0]LogConfig: Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:484][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.DeepShadow.SuperSampling:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.VisibilityPPLL:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.RasterizationScale:0.5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.HairStrands.VelocityRasterizationScale:1]]
+[2024.09.23-02.19.31:485][  0]LogInit: Selected Device Profile: [Windows]
+[2024.09.23-02.19.31:485][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2024.09.23-02.19.31:485][  0]LogHAL: Display: Platform has ~ 32 GB [34275143680 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2024.09.23-02.19.31:485][  0]LogInit: Going up to parent DeviceProfile []
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2024.09.23-02.19.31:485][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Scalability.ini]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.DeepShadow.SuperSampling:0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.VisibilityPPLL:0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.RasterizationScale:0.5]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[r.HairStrands.VelocityRasterizationScale:1]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[net.UseAdaptiveNetUpdateFrequency:0]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Setting CVar [[fx.SkipVectorVMBackendOptimizations:1]]
+[2024.09.23-02.19.31:486][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Config/Windows/Engine.ini]
+[2024.09.23-02.19.31:486][  0]LogInit: Computer: DESKTOP-VS0096S
+[2024.09.23-02.19.31:486][  0]LogInit: User: Val
+[2024.09.23-02.19.31:486][  0]LogInit: CPU Page size=4096, Cores=6
+[2024.09.23-02.19.31:486][  0]LogInit: High frequency timer resolution =10.000000 MHz
+[2024.09.23-02.19.31:486][  0]LogMemory: Memory total: Physical=31.9GB (32GB approx)
+[2024.09.23-02.19.31:486][  0]LogMemory: Platform Memory Stats for Windows
+[2024.09.23-02.19.31:486][  0]LogMemory: Process Physical Memory: 115.87 MB used, 115.87 MB peak
+[2024.09.23-02.19.31:486][  0]LogMemory: Process Virtual Memory: 96.53 MB used, 96.53 MB peak
+[2024.09.23-02.19.31:486][  0]LogMemory: Physical Memory: 21547.65 MB used,  11139.68 MB free, 32687.32 MB total
+[2024.09.23-02.19.31:486][  0]LogMemory: Virtual Memory: 5140.59 MB used,  134212584.00 MB free, 134217728.00 MB total
+[2024.09.23-02.19.31:492][  0]LogWindows: WindowsPlatformFeatures enabled
+[2024.09.23-02.19.31:575][  0]LogInit: Physics initialised using underlying interface: PhysX
+[2024.09.23-02.19.31:576][  0]LogInit: Using OS detected language (en-GB).
+[2024.09.23-02.19.31:576][  0]LogInit: Using OS detected locale (en-AU).
+[2024.09.23-02.19.31:581][  0]LogTextLocalizationManager: No specific localization for 'en-GB' exists, so the 'en' localization will be used.
+[2024.09.23-02.19.31:734][  0]LogInit: Setting process to per monitor DPI aware
+[2024.09.23-02.19.31:763][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
+[2024.09.23-02.19.31:763][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
+[2024.09.23-02.19.31:883][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2024.09.23-02.19.31:883][  0]LogD3D11RHI: D3D11 min allowed feature level: 11_0
+[2024.09.23-02.19.31:883][  0]LogD3D11RHI: D3D11 max allowed feature level: 11_0
+[2024.09.23-02.19.31:883][  0]LogD3D11RHI: D3D11 adapters:
+[2024.09.23-02.19.32:105][  0]LogD3D11RHI:    0. 'NVIDIA GeForce GTX 1660 Ti' (Feature Level 11_0)
+[2024.09.23-02.19.32:105][  0]LogD3D11RHI:       5979/0/16343 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:2, VendorId:0x10de
+[2024.09.23-02.19.32:108][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2024.09.23-02.19.32:108][  0]LogD3D11RHI:       0/0/16343 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2024.09.23-02.19.32:108][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2024.09.23-02.19.32:114][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2024.09.23-02.19.32:114][  0]LogD3D11RHI:     GPU DeviceId: 0x2182 (for the marketing name, search the web for "GPU Device Id")
+[2024.09.23-02.19.32:114][  0]LogWindows: EnumDisplayDevices:
+[2024.09.23-02.19.32:114][  0]LogWindows:    0. 'NVIDIA GeForce GTX 1660 Ti' (P:1 D:1)
+[2024.09.23-02.19.32:114][  0]LogWindows:    1. 'NVIDIA GeForce GTX 1660 Ti' (P:0 D:1)
+[2024.09.23-02.19.32:114][  0]LogWindows:    2. 'NVIDIA GeForce GTX 1660 Ti' (P:0 D:0)
+[2024.09.23-02.19.32:115][  0]LogWindows:    3. 'NVIDIA GeForce GTX 1660 Ti' (P:0 D:0)
+[2024.09.23-02.19.32:115][  0]LogWindows: DebugString: FoundDriverCount:4 
+[2024.09.23-02.19.32:115][  0]LogD3D11RHI:     Adapter Name: NVIDIA GeForce GTX 1660 Ti
+[2024.09.23-02.19.32:115][  0]LogD3D11RHI:   Driver Version: 536.23 (internal:31.0.15.3623, unified:536.23)
+[2024.09.23-02.19.32:115][  0]LogD3D11RHI:      Driver Date: 6-8-2023
+[2024.09.23-02.19.32:115][  0]LogRHI: Texture pool is 4185 MB (70% of 5979 MB)
+[2024.09.23-02.19.32:211][  0]LogD3D11RHI: RHI has support for 64 bit atomics
+[2024.09.23-02.19.32:211][  0]LogD3D11RHI: Async texture creation enabled
+[2024.09.23-02.19.32:211][  0]LogD3D11RHI: Array index from any shader is supported
+[2024.09.23-02.19.32:228][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 1)
+[2024.09.23-02.19.32:508][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AllDesktop'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTC'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXT'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AndroidClient'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTCClient'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXTClient'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2Client'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_Multi'
+[2024.09.23-02.19.32:530][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_MultiClient'
+[2024.09.23-02.19.32:558][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOSClient'
+[2024.09.23-02.19.32:558][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOS'
+[2024.09.23-02.19.32:571][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Linux'
+[2024.09.23-02.19.32:582][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxNoEditor'
+[2024.09.23-02.19.32:592][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
+[2024.09.23-02.19.32:602][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
+[2024.09.23-02.19.32:613][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64NoEditor'
+[2024.09.23-02.19.32:624][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Client'
+[2024.09.23-02.19.32:635][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Server'
+[2024.09.23-02.19.32:660][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Lumin'
+[2024.09.23-02.19.32:660][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LuminClient'
+[2024.09.23-02.19.32:676][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOSClient'
+[2024.09.23-02.19.32:676][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOS'
+[2024.09.23-02.19.32:686][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsNoEditor'
+[2024.09.23-02.19.32:697][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2024.09.23-02.19.32:708][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2024.09.23-02.19.32:718][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2024.09.23-02.19.32:718][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2024.09.23-02.19.32:736][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2024.09.23-02.19.32:833][  0]LogShaderCompilers: Guid format shader working directory is 15 characters bigger than the processId version (../../../../Projects/LostWorld/Intermediate/Shaders/WorkingDirectory/21764/).
+[2024.09.23-02.19.32:833][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/zekra/AppData/Local/Temp/UnrealShaderWorkingDir/D12F938241F3A26EBA11CD8FD9076406/'.
+[2024.09.23-02.19.32:834][  0]LogXGEController: Cleaning working directory: C:/Users/zekra/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2024.09.23-02.19.32:834][  0]LogXGEController: Cannot use XGE Controller as Incredibuild is not installed on this machine.
+[2024.09.23-02.19.32:834][  0]LogShaderCompilers: Cannot use XGE Shader Compiler as Incredibuild is not installed on this machine.
+[2024.09.23-02.19.32:834][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2024.09.23-02.19.33:459][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: Loaded boot cache 0.05s 75MB C:/Users/zekra/AppData/Local/UnrealEngine/4.25/DerivedDataCache/Boot.ddc.
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/zekra/AppData/Local/UnrealEngine/4.25/DerivedDataCache/Boot.ddc
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../Projects/LostWorld/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../Projects/LostWorld/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2024.09.23-02.19.33:509][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2024.09.23-02.19.33:517][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2024.09.23-02.19.33:517][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2024.09.23-02.19.33:518][  0]LogDerivedDataCache: Unable to find inner node EnterprisePak for hierarchical cache Hierarchy.
+[2024.09.23-02.19.33:519][  0]LogDerivedDataCache: Using Local data cache path C:/Users/zekra/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2024.09.23-02.19.33:519][  0]LogDerivedDataCache: Shared data cache path not found in *engine.ini, will not use an Shared cache.
+[2024.09.23-02.19.33:519][  0]LogDerivedDataCache: Unable to find inner node Shared for hierarchical cache Hierarchy.
+[2024.09.23-02.19.33:559][  0]LogSlate: Using FreeType 2.10.0
+[2024.09.23-02.19.33:560][  0]LogSlate: SlateFontServices - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2024.09.23-02.19.33:607][  0]LogAssetRegistry: FAssetRegistry took 0.0020 seconds to start up
+[2024.09.23-02.19.33:789][  0]LogInit: Selected Device Profile: [Windows]
+[2024.09.23-02.19.33:904][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2024.09.23-02.19.33:904][  0]LogMeshReduction: Using SimplygonMeshReduction for automatic skeletal mesh reduction
+[2024.09.23-02.19.33:904][  0]LogMeshReduction: Using ProxyLODMeshReduction for automatic mesh merging
+[2024.09.23-02.19.33:904][  0]LogMeshReduction: No distributed automatic mesh merging module available
+[2024.09.23-02.19.33:904][  0]LogMeshMerging: No distributed automatic mesh merging module available
+[2024.09.23-02.19.33:921][  0]LogNetVersion: LostWorld 1.0.0, NetCL: 13144385, EngineNetVer: 14, GameNetVer: 0 (Checksum: 3618218532)
+[2024.09.23-02.19.34:260][  0]LogAISub: UAISubsystem::UAISubsystem AISubsystem (000001EE06C54340), frame # 0
+[2024.09.23-02.19.34:260][  0]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EE06B7BC40), frame # 0
+[2024.09.23-02.19.34:261][  0]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE06BD5E00), frame # 0
+[2024.09.23-02.19.34:301][  0]LogPackageLocalizationCache: Processed 19 localized package path(s) for 1 prioritized culture(s) in 0.034583 seconds
+[2024.09.23-02.19.34:306][  0]LogUObjectArray: 15917 objects as part of root set at end of initial load.
+[2024.09.23-02.19.34:306][  0]LogUObjectAllocator: 3965568 out of 0 bytes used by permanent object pool.
+[2024.09.23-02.19.34:306][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2024.09.23-02.19.34:894][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2024.09.23-02.19.34:900][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2024.09.23-02.19.35:041][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.35:041][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.35:057][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.35:062][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.35:087][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.35:482][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2024.09.23-02.19.35:516][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2024.09.23-02.19.35:516][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2024.09.23-02.19.35:581][  0]LogOcInput: OculusInput pre-init called
+[2024.09.23-02.19.35:597][  0]LogWindows: Failed to load 'OVRPlugin.dll' (GetLastError=126)
+[2024.09.23-02.19.35:597][  0]LogWindows: File 'OVRPlugin.dll' does not exist
+[2024.09.23-02.19.35:664][  0]LogEngine: Initializing Engine...
+[2024.09.23-02.19.35:666][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2024.09.23-02.19.35:666][  0]LogMagicLeap: Warning: VR disabled because ZI is not enabled.  To enable, in the editor, Edit -> Project Settings -> Plugins -> Magic Leap Plugin -> Enable Zero Iteration
+[2024.09.23-02.19.35:667][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.000 s
+[2024.09.23-02.19.35:777][  0]LogInit: Initializing FReadOnlyCVARCache
+[2024.09.23-02.19.35:801][  0]LogAIModule: Creating AISystem for world Untitled
+[2024.09.23-02.19.35:801][  0]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE0AD5FC00), frame # 0
+[2024.09.23-02.19.35:801][  0]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EE0ADDCF40), frame # 0
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.09.23-02.19.35:810][  0]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2024.09.23-02.19.35:810][  0]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.09.23-02.19.35:811][  0]LogAudio: Display: Using built-in audio occlusion.
+[2024.09.23-02.19.35:811][  0]LogAudioMixer: Display: Initializing audio mixer.
+[2024.09.23-02.19.35:840][  0]LogAudioMixer: Display: 0: FrontLeft
+[2024.09.23-02.19.35:840][  0]LogAudioMixer: Display: 1: FrontRight
+[2024.09.23-02.19.35:893][  0]LogAudioMixer: Display: Using Audio Device Speakers (Realtek(R) Audio)
+[2024.09.23-02.19.35:896][  0]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.09.23-02.19.35:898][  0]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.09.23-02.19.35:898][  0]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.09.23-02.19.35:898][  0]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2024.09.23-02.19.35:899][  0]LogInit: FAudioDevice initialized.
+[2024.09.23-02.19.35:900][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+[2024.09.23-02.19.35:943][  0]LogDerivedDataCache: Saved boot cache 0.04s 75MB C:/Users/zekra/AppData/Local/UnrealEngine/4.25/DerivedDataCache/Boot.ddc.
+[2024.09.23-02.19.35:943][  0]LogInit: Texture streaming: Enabled
+[2024.09.23-02.19.35:969][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2024.09.23-02.19.35:969][  0]LogEditorSessionSummary: Verbose: Initializing EditorSessionSummaryWriter for editor session tracking
+[2024.09.23-02.19.35:971][  0]LogEditorSessionSummary: EditorSessionSummaryWriter initialized
+[2024.09.23-02.19.36:017][  0]LogInit: Transaction tracking system initialized
+[2024.09.23-02.19.36:057][  0]BlueprintLog: New page: Editor Load
+[2024.09.23-02.19.36:208][  0]LocalizationService: Localization service is disabled
+[2024.09.23-02.19.36:647][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2024.09.23-02.19.36:647][  0]LogCook: Display: Mobile HDR setting 1
+[2024.09.23-02.19.36:647][  0]LogAutoSizeComments: Startup AutoSizeComments
+[2024.09.23-02.19.37:125][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zekra/Documents/UE/Projects/LostWorld/Content/' took 0.01s
+[2024.09.23-02.19.37:587][  0]SourceControl: Source control is disabled
+[2024.09.23-02.19.37:587][  0]LogUnrealEdMisc: Loading editor; pre map load, took 7.411
+[2024.09.23-02.19.37:588][  0]Cmd: MAP LOAD FILE="../../../../Projects/LostWorld/Content/StarterContent/Maps/Minimal_Default.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2024.09.23-02.19.37:588][  0]LightingResults: New page: Lighting Build
+[2024.09.23-02.19.37:589][  0]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.19.37:589][  0]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.19.37:589][  0]MapCheck: New page: Map Check
+[2024.09.23-02.19.37:589][  0]LightingResults: New page: Lighting Build
+[2024.09.23-02.19.37:597][  0]LogAISub: UAISubsystem::~UAISubsystem EnvQueryManager (000001EE0AD5FC00), frame # 0
+[2024.09.23-02.19.37:597][  0]LogAISub: UAISubsystem::~UAISubsystem AIPerceptionSystem (000001EE0ADDCF40), frame # 0
+[2024.09.23-02.19.37:598][  0]LogUObjectHash: Compacting FUObjectHashTables data took   0.64ms
+[2024.09.23-02.19.37:739][  0]LogAIModule: Creating AISystem for world Minimal_Default
+[2024.09.23-02.19.37:739][  0]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE141C0200), frame # 0
+[2024.09.23-02.19.37:739][  0]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EE1402D6C0), frame # 0
+[2024.09.23-02.19.37:744][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2024.09.23-02.19.37:764][  0]LogUObjectHash: Compacting FUObjectHashTables data took   0.70ms
+[2024.09.23-02.19.37:765][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2024.09.23-02.19.37:765][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.227ms to complete.
+[2024.09.23-02.19.37:765][  0]LogFileHelpers: Loading map 'Minimal_Default' took 0.178
+[2024.09.23-02.19.37:768][  0]LogUnrealEdMisc: Total Editor Startup Time, took 7.591
+[2024.09.23-02.19.37:918][  0]LogSlate: Took 0.000333 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2024.09.23-02.19.38:747][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.19.38:754][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.19.38:760][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.19.38:766][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.19.38:775][  0]LogCollectionManager: Loaded 0 collections in 0.002049 seconds
+[2024.09.23-02.19.38:791][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zekra/Documents/UE/Projects/LostWorld/Saved/Collections/' took 0.00s
+[2024.09.23-02.19.38:791][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zekra/Documents/UE/Projects/LostWorld/Content/Developers/Val/Collections/' took 0.00s
+[2024.09.23-02.19.38:791][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zekra/Documents/UE/Projects/LostWorld/Content/Collections/' took 0.00s
+[2024.09.23-02.19.38:791][  0]LogContentBrowser: Native class hierarchy populated in 0.0083 seconds. Added 3438 classes and 829 folders.
+[2024.09.23-02.19.38:794][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0004 seconds. Added 0 classes and 0 folders.
+[2024.09.23-02.19.38:845][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0004 seconds. Added 0 classes and 0 folders.
+[2024.09.23-02.19.38:846][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0004 seconds. Added 2 classes and 0 folders.
+[2024.09.23-02.19.38:856][  0]LogContentBrowser: Native class hierarchy updated for 'WorldBrowser' in 0.0005 seconds. Added 2 classes and 3 folders.
+[2024.09.23-02.19.38:935][  0]LogSlate: Took 0.000216 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2024.09.23-02.19.38:936][  0]LogSlate: Took 0.000116 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2024.09.23-02.19.38:987][  0]LogRenderer: Reallocating scene render targets to support 1432x600 Format 10 NumSamples 1 (Frame:1).
+[2024.09.23-02.19.39:101][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0005 seconds. Added 0 classes and 0 folders.
+[2024.09.23-02.19.39:101][  0]LogLoad: (Engine Initialization) Total time: 8.92 seconds
+[2024.09.23-02.19.39:101][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2024.09.23-02.19.39:569][  0]LogAssetRegistry: Asset discovery search completed in 5.9620 seconds
+[2024.09.23-02.19.39:569][  0]LogAutoSizeComments: Loaded auto size comments cache: ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json
+[2024.09.23-02.19.39:573][  0]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000002 seconds (updated 0 objects)
+[2024.09.23-02.19.39:574][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2024.09.23-02.19.39:602][  0]LogSlate: Took 0.000200 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2024.09.23-02.20.04:242][395]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/StarterContent/Maps/Minimal_Default" FILE="../../../../Projects/LostWorld/Content/StarterContent/Maps/Minimal_Default.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2024.09.23-02.20.04:252][395]LogUObjectHash: Compacting FUObjectHashTables data took   0.61ms
+[2024.09.23-02.20.04:267][395]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/Minimal_DefaultB66B0B9C47F77D8B4114208A6264AAAC.tmp' to '../../../../Projects/LostWorld/Content/StarterContent/Maps/Minimal_Default.umap'
+[2024.09.23-02.20.04:281][395]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/StarterContent/Maps/Minimal_Default_BuiltData" FILE="../../../../Projects/LostWorld/Content/StarterContent/Maps/Minimal_Default_BuiltData.uasset" SILENT=true
+[2024.09.23-02.20.04:316][395]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/Minimal_Default_BuiltDataDC913A1E4C2B41CB7118DAB4351A0169.tmp' to '../../../../Projects/LostWorld/Content/StarterContent/Maps/Minimal_Default_BuiltData.uasset'
+[2024.09.23-02.20.04:336][395]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.38ms
+[2024.09.23-02.20.04:340][395]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.20.04:340][395]LogContentValidation: Display: Validating World /Game/StarterContent/Maps/Minimal_Default.Minimal_Default
+[2024.09.23-02.20.04:340][395]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/StarterContent/Maps/Minimal_Default_BuiltData.Minimal_Default_BuiltData
+[2024.09.23-02.20.19:241][845]LogUObjectHash: Compacting FUObjectHashTables data took   0.59ms
+[2024.09.23-02.20.22:646][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.09.23-02.20.22:648][ 19]LogMetaData: Removing '/Game/Levels/Minimal_Default1.SKEL_Minimal_Default1_C' ref from Metadata '/Game/StarterContent/Maps/Minimal_Default1.PackageMetaData'
+[2024.09.23-02.20.22:648][ 19]LogMetaData: Removing '/Game/Levels/Minimal_Default1.Minimal_Default1_C' ref from Metadata '/Game/StarterContent/Maps/Minimal_Default1.PackageMetaData'
+[2024.09.23-02.20.22:723][ 19]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Levels/Minimal_Default1" FILE="../../../../Projects/LostWorld/Content/Levels/Minimal_Default1.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2024.09.23-02.20.22:735][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2024.09.23-02.20.22:750][ 19]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/Minimal_Default1E940BB9C41A2D7BA5948B5AFB2680DC5.tmp' to '../../../../Projects/LostWorld/Content/Levels/Minimal_Default1.umap'
+[2024.09.23-02.20.22:753][ 19]LogFileHelpers: Saving map 'Minimal_Default1' took 0.031
+[2024.09.23-02.20.22:827][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.34ms
+[2024.09.23-02.20.22:843][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
+[2024.09.23-02.20.22:852][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.22ms
+[2024.09.23-02.20.22:868][ 19]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.31ms
+[2024.09.23-02.20.22:870][ 19]AssetCheck: New page: Asset Save: Minimal_Default1
+[2024.09.23-02.20.22:870][ 19]LogContentValidation: Display: Validating World /Game/Levels/Minimal_Default1.Minimal_Default1
+[2024.09.23-02.20.29:898][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.54ms
+[2024.09.23-02.20.29:900][808]LogMetaData: Removing '/Game/Levels/MinimalDefaultCopy.MinimalDefaultCopy_C' ref from Metadata '/Game/Levels/Minimal_Default1.PackageMetaData'
+[2024.09.23-02.20.29:900][808]LogMetaData: Removing '/Game/Levels/MinimalDefaultCopy.SKEL_MinimalDefaultCopy_C' ref from Metadata '/Game/Levels/Minimal_Default1.PackageMetaData'
+[2024.09.23-02.20.29:924][808]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Levels/MinimalDefaultCopy" FILE="../../../../Projects/LostWorld/Content/Levels/MinimalDefaultCopy.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2024.09.23-02.20.29:936][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.57ms
+[2024.09.23-02.20.29:951][808]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/MinimalDefaultCopyE90E9D794A11D3C27DB33998EAED4FAC.tmp' to '../../../../Projects/LostWorld/Content/Levels/MinimalDefaultCopy.umap'
+[2024.09.23-02.20.29:954][808]LogFileHelpers: Saving map 'MinimalDefaultCopy' took 0.030
+[2024.09.23-02.20.30:052][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.36ms
+[2024.09.23-02.20.30:078][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2024.09.23-02.20.30:086][808]LogUObjectHash: Compacting FUObjectHashTables data took   0.21ms
+[2024.09.23-02.20.30:102][808]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.30ms
+[2024.09.23-02.20.30:104][808]AssetCheck: New page: Asset Save: MinimalDefaultCopy
+[2024.09.23-02.20.30:104][808]LogContentValidation: Display: Validating World /Game/Levels/MinimalDefaultCopy.MinimalDefaultCopy
+[2024.09.23-02.20.41:349][  2]LogAssetEditorSubsystem: Opening Asset editor for World /Game/Levels/Test.Test
+[2024.09.23-02.20.41:356][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.24ms
+[2024.09.23-02.20.41:358][  2]Cmd: MAP LOAD FILE="../../../../Projects/LostWorld/Content/Levels/Test.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2024.09.23-02.20.41:358][  2]LightingResults: New page: Lighting Build
+[2024.09.23-02.20.41:358][  2]LoadErrors: New page: Loading map: Test.umap
+[2024.09.23-02.20.41:359][  2]LogWorld: UWorld::CleanupWorld for Minimal_Default, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.20.41:359][  2]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.20.41:359][  2]MapCheck: New page: Map Check
+[2024.09.23-02.20.41:359][  2]LightingResults: New page: Lighting Build
+[2024.09.23-02.20.41:367][  2]LogAISub: UAISubsystem::~UAISubsystem EnvQueryManager (000001EE141C0200), frame # 6002
+[2024.09.23-02.20.41:367][  2]LogAISub: UAISubsystem::~UAISubsystem AIPerceptionSystem (000001EE1402D6C0), frame # 6002
+[2024.09.23-02.20.41:368][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.56ms
+[2024.09.23-02.20.41:377][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2024.09.23-02.20.41:384][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2024.09.23-02.20.41:423][  2]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2024.09.23-02.20.41:423][  2]LogAIModule: Creating AISystem for world Test
+[2024.09.23-02.20.41:423][  2]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE2F496800), frame # 6002
+[2024.09.23-02.20.41:423][  2]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EE72FADF80), frame # 6002
+[2024.09.23-02.20.41:434][  2]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2024.09.23-02.20.41:445][  2]Cmd: MAP CHECKDEP NOCLEARLOG
+[2024.09.23-02.20.41:446][  2]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.108ms to complete.
+[2024.09.23-02.20.41:446][  2]LogFileHelpers: Loading map 'Test' took 0.089
+[2024.09.23-02.20.49:134][843]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2024.09.23-02.21.02:216][249]LogUObjectHash: Compacting FUObjectHashTables data took   0.64ms
+[2024.09.23-02.21.02:217][249]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBase.PackageMetaData'
+[2024.09.23-02.21.02:217][249]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBase.PackageMetaData'
+[2024.09.23-02.21.02:217][249]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldGameModeBase.PackageMetaData'
+[2024.09.23-02.21.02:217][249]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBase.PackageMetaData'
+[2024.09.23-02.21.02:217][249]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.SKEL_LostWorldGameModeBaseBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBase.PackageMetaData'
+[2024.09.23-02.21.02:240][249]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBaseBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset" SILENT=true
+[2024.09.23-02.21.02:245][249]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBaseBp82E5570F4CE3006B8D74D5857033EC86.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset'
+[2024.09.23-02.21.02:246][249]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBase" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset" SILENT=true
+[2024.09.23-02.21.02:249][249]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBaseB19F47FF453FE830C34063A9E4E16C1B.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset'
+[2024.09.23-02.21.02:270][249]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.30ms
+[2024.09.23-02.21.02:276][249]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.02:276][249]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp
+[2024.09.23-02.21.02:276][249]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase
+[2024.09.23-02.21.02:276][249]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase_C
+[2024.09.23-02.21.06:271][677]LogUObjectHash: Compacting FUObjectHashTables data took   0.56ms
+[2024.09.23-02.21.06:272][677]LogMetaData: Removing '/Game/Blueprints/LostWorldGameInstanceBp.LostWorldGameInstanceBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameInstance.PackageMetaData'
+[2024.09.23-02.21.06:273][677]LogMetaData: Removing '/Game/Blueprints/LostWorldGameInstanceBp.SKEL_LostWorldGameInstanceBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameInstance.PackageMetaData'
+[2024.09.23-02.21.06:310][677]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameInstanceBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameInstanceBp.uasset" SILENT=true
+[2024.09.23-02.21.06:312][677]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameInstanceBp2538B7DC45DE63E625D8AC8DD3DD4A4C.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameInstanceBp.uasset'
+[2024.09.23-02.21.06:397][677]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
+[2024.09.23-02.21.06:411][677]LogUObjectHash: Compacting FUObjectHashTables data took   0.50ms
+[2024.09.23-02.21.06:419][677]LogUObjectHash: Compacting FUObjectHashTables data took   0.20ms
+[2024.09.23-02.21.06:431][677]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.31ms
+[2024.09.23-02.21.06:434][677]AssetCheck: New page: Asset Save: LostWorldGameInstanceBp
+[2024.09.23-02.21.06:434][677]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameInstanceBp.LostWorldGameInstanceBp
+[2024.09.23-02.21.12:546][238]LogUObjectHash: Compacting FUObjectHashTables data took   0.58ms
+[2024.09.23-02.21.12:547][238]LogMetaData: Removing '/Game/Blueprints/LostWorldGameStateBp.LostWorldGameStateBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldGameState.PackageMetaData'
+[2024.09.23-02.21.12:547][238]LogMetaData: Removing '/Game/Blueprints/LostWorldGameStateBp.LostWorldGameStateBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameState.PackageMetaData'
+[2024.09.23-02.21.12:547][238]LogMetaData: Removing '/Game/Blueprints/LostWorldGameStateBp.LostWorldGameStateBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldGameState.PackageMetaData'
+[2024.09.23-02.21.12:547][238]LogMetaData: Removing '/Game/Blueprints/LostWorldGameStateBp.LostWorldGameStateBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldGameState.PackageMetaData'
+[2024.09.23-02.21.12:547][238]LogMetaData: Removing '/Game/Blueprints/LostWorldGameStateBp.SKEL_LostWorldGameStateBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameState.PackageMetaData'
+[2024.09.23-02.21.12:571][238]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameStateBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameStateBp.uasset" SILENT=true
+[2024.09.23-02.21.12:575][238]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameStateBp66F0ACC54B5E8A1A774B1CAD8A2A08E7.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameStateBp.uasset'
+[2024.09.23-02.21.12:661][238]LogUObjectHash: Compacting FUObjectHashTables data took   0.46ms
+[2024.09.23-02.21.12:674][238]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
+[2024.09.23-02.21.12:683][238]LogUObjectHash: Compacting FUObjectHashTables data took   0.22ms
+[2024.09.23-02.21.12:717][238]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBaseBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset" SILENT=true
+[2024.09.23-02.21.12:722][238]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBaseBpC4FEDED44F200F47A23CDA91ABABF621.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset'
+[2024.09.23-02.21.12:744][238]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.28ms
+[2024.09.23-02.21.12:749][238]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.12:749][238]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameStateBp.LostWorldGameStateBp
+[2024.09.23-02.21.12:750][238]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp
+[2024.09.23-02.21.17:995][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.58ms
+[2024.09.23-02.21.17:996][770]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerControllerBp.LostWorldPlayerControllerBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldPlayerController.PackageMetaData'
+[2024.09.23-02.21.17:997][770]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerControllerBp.LostWorldPlayerControllerBp_C' ref from Metadata '/Game/Blueprints/LostWorldPlayerController.PackageMetaData'
+[2024.09.23-02.21.17:997][770]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerControllerBp.LostWorldPlayerControllerBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldPlayerController.PackageMetaData'
+[2024.09.23-02.21.17:997][770]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerControllerBp.LostWorldPlayerControllerBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldPlayerController.PackageMetaData'
+[2024.09.23-02.21.17:997][770]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerControllerBp.SKEL_LostWorldPlayerControllerBp_C' ref from Metadata '/Game/Blueprints/LostWorldPlayerController.PackageMetaData'
+[2024.09.23-02.21.18:020][770]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldPlayerControllerBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldPlayerControllerBp.uasset" SILENT=true
+[2024.09.23-02.21.18:025][770]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldPlayerControllerBp107047FF465CCC52CFA3008A204581E4.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldPlayerControllerBp.uasset'
+[2024.09.23-02.21.18:110][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2024.09.23-02.21.18:125][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2024.09.23-02.21.18:133][770]LogUObjectHash: Compacting FUObjectHashTables data took   0.23ms
+[2024.09.23-02.21.18:154][770]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBaseBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset" SILENT=true
+[2024.09.23-02.21.18:159][770]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBaseBp8B7330184DD979A2F8CE78BD7A6DC89D.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset'
+[2024.09.23-02.21.18:179][770]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.33ms
+[2024.09.23-02.21.18:184][770]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.18:184][770]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldPlayerControllerBp.LostWorldPlayerControllerBp
+[2024.09.23-02.21.18:184][770]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp
+[2024.09.23-02.21.25:314][528]LogUObjectHash: Compacting FUObjectHashTables data took   0.58ms
+[2024.09.23-02.21.25:315][528]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBaseBp.PackageMetaData'
+[2024.09.23-02.21.25:315][528]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBp.SKEL_LostWorldGameModeBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBaseBp.PackageMetaData'
+[2024.09.23-02.21.25:316][528]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBaseBp.PackageMetaData'
+[2024.09.23-02.21.25:316][528]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldGameModeBaseBp.PackageMetaData'
+[2024.09.23-02.21.25:316][528]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBaseBp.PackageMetaData'
+[2024.09.23-02.21.25:338][528]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBp.uasset" SILENT=true
+[2024.09.23-02.21.25:343][528]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBp95DD859A45D91407F504C292FFF40388.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBp.uasset'
+[2024.09.23-02.21.25:427][528]LogUObjectHash: Compacting FUObjectHashTables data took   0.47ms
+[2024.09.23-02.21.25:440][528]LogUObjectHash: Compacting FUObjectHashTables data took   0.48ms
+[2024.09.23-02.21.25:448][528]LogUObjectHash: Compacting FUObjectHashTables data took   0.20ms
+[2024.09.23-02.21.25:484][528]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBase" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset" SILENT=true
+[2024.09.23-02.21.25:486][528]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBase2294977841708197139E1A9BF5FA42C7.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset'
+[2024.09.23-02.21.25:512][528]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.34ms
+[2024.09.23-02.21.25:518][528]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.25:518][528]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp
+[2024.09.23-02.21.25:518][528]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase
+[2024.09.23-02.21.25:518][528]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase_C
+[2024.09.23-02.21.33:013][251]LogUObjectHash: Compacting FUObjectHashTables data took   0.69ms
+[2024.09.23-02.21.33:015][251]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerStateBp.LostWorldPlayerStateBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldPlayerState.PackageMetaData'
+[2024.09.23-02.21.33:015][251]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerStateBp.LostWorldPlayerStateBp_C' ref from Metadata '/Game/Blueprints/LostWorldPlayerState.PackageMetaData'
+[2024.09.23-02.21.33:015][251]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerStateBp.LostWorldPlayerStateBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldPlayerState.PackageMetaData'
+[2024.09.23-02.21.33:015][251]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerStateBp.LostWorldPlayerStateBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldPlayerState.PackageMetaData'
+[2024.09.23-02.21.33:015][251]LogMetaData: Removing '/Game/Blueprints/LostWorldPlayerStateBp.SKEL_LostWorldPlayerStateBp_C' ref from Metadata '/Game/Blueprints/LostWorldPlayerState.PackageMetaData'
+[2024.09.23-02.21.33:038][251]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldPlayerStateBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldPlayerStateBp.uasset" SILENT=true
+[2024.09.23-02.21.33:043][251]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldPlayerStateBp235B26E74F52EA73D9D2019C942DA549.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldPlayerStateBp.uasset'
+[2024.09.23-02.21.33:127][251]LogUObjectHash: Compacting FUObjectHashTables data took   0.51ms
+[2024.09.23-02.21.33:141][251]LogUObjectHash: Compacting FUObjectHashTables data took   0.53ms
+[2024.09.23-02.21.33:149][251]LogUObjectHash: Compacting FUObjectHashTables data took   0.22ms
+[2024.09.23-02.21.33:170][251]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBp.uasset" SILENT=true
+[2024.09.23-02.21.33:175][251]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBp670E24834FACD19FE542848CA5D67915.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBp.uasset'
+[2024.09.23-02.21.33:196][251]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.32ms
+[2024.09.23-02.21.33:201][251]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.33:201][251]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldPlayerStateBp.LostWorldPlayerStateBp
+[2024.09.23-02.21.33:201][251]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBp.LostWorldGameModeBp
+[2024.09.23-02.21.39:723][891]LogSlate: WidgetSwitcher ('None') active index changed to -1
+[2024.09.23-02.21.39:723][891]LogSlate: WidgetSwitcher ('None') active index changed to 1
+[2024.09.23-02.21.39:771][891]LogSlate: Took 0.000172 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2024.09.23-02.21.46:581][662]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/LostWorldGameModeBattleBp.LostWorldGameModeBattleBp
+[2024.09.23-02.21.46:746][662]LogContentBrowser: Native class hierarchy updated for 'BlueprintGraph' in 0.0006 seconds. Added 125 classes and 0 folders.
+[2024.09.23-02.21.47:453][662]LogSlate: Window 'Add Blueprint Class' being destroyed
+[2024.09.23-02.21.51:846][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   1.48ms
+[2024.09.23-02.21.51:848][ 17]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBp.PackageMetaData'
+[2024.09.23-02.21.51:848][ 17]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.SKEL_LostWorldGameModeBaseBp_C' ref from Metadata '/Game/Blueprints/LostWorldGameModeBp.PackageMetaData'
+[2024.09.23-02.21.51:848][ 17]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBp.PackageMetaData'
+[2024.09.23-02.21.51:848][ 17]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Blueprints/LostWorldGameModeBp.PackageMetaData'
+[2024.09.23-02.21.51:848][ 17]LogMetaData: Removing '/Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp:UserConstructionScript.K2Node_FunctionEntry_0' ref from Metadata '/Game/Blueprints/LostWorldGameModeBp.PackageMetaData'
+[2024.09.23-02.21.51:904][ 17]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBaseBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset" SILENT=true
+[2024.09.23-02.21.51:908][ 17]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBaseBp262E98874638020BB39E428971B6B9D5.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBaseBp.uasset'
+[2024.09.23-02.21.52:049][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   1.98ms
+[2024.09.23-02.21.52:072][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   1.16ms
+[2024.09.23-02.21.52:089][ 17]LogUObjectHash: Compacting FUObjectHashTables data took   0.37ms
+[2024.09.23-02.21.52:104][ 17]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBase" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset" SILENT=true
+[2024.09.23-02.21.52:107][ 17]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBase73FFBB294D184BA1DF47E697169FEC2C.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBase.uasset'
+[2024.09.23-02.21.52:128][ 17]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.31ms
+[2024.09.23-02.21.52:136][ 17]AssetCheck: New page: Asset Save: multiple assets
+[2024.09.23-02.21.52:136][ 17]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBaseBp.LostWorldGameModeBaseBp
+[2024.09.23-02.21.52:136][ 17]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase
+[2024.09.23-02.21.52:136][ 17]LogContentValidation: Display: Validating ObjectRedirector /Game/Blueprints/LostWorldGameModeBase.LostWorldGameModeBase_C
+[2024.09.23-02.21.53:505][128]BlueprintLog: New page: Compile LostWorldGameModeBattleBp
+[2024.09.23-02.21.53:684][128]LogUObjectHash: Compacting FUObjectHashTables data took   1.45ms
+[2024.09.23-02.21.54:118][163]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBattleBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset" SILENT=true
+[2024.09.23-02.21.54:122][163]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBattleBp8188A7EA481BC41ED13EA9BD5415BCB6.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset'
+[2024.09.23-02.21.54:131][163]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.33ms
+[2024.09.23-02.21.54:136][163]AssetCheck: New page: Asset Save: LostWorldGameModeBattleBp
+[2024.09.23-02.21.54:136][163]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBattleBp.LostWorldGameModeBattleBp
+[2024.09.23-02.21.55:437][307]LogSlate: Window 'LostWorldGameModeBattleBp' being destroyed
+[2024.09.23-02.21.55:440][307]LogSlate: Window 'LostWorldGameModeBattleBp' being destroyed
+[2024.09.23-02.21.55:447][307]LogWorld: UWorld::CleanupWorld for World_1, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.21.55:447][307]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.21.58:906][699]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2024.09.23-02.22.02:521][ 62]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Levels/Test" FILE="../../../../Projects/LostWorld/Content/Levels/Test.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2024.09.23-02.22.02:537][ 62]LogUObjectHash: Compacting FUObjectHashTables data took   1.52ms
+[2024.09.23-02.22.02:557][ 62]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/Test39726E804F468F6461A035BE4B064273.tmp' to '../../../../Projects/LostWorld/Content/Levels/Test.umap'
+[2024.09.23-02.22.02:578][ 62]AssetCheck: New page: Asset Save: Test
+[2024.09.23-02.22.02:578][ 62]LogContentValidation: Display: Validating World /Game/Levels/Test.Test
+[2024.09.23-02.22.28:151][ 37]LogTemp: Repeating last play command: Selected Viewport
+[2024.09.23-02.22.28:159][ 37]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.09.23-02.22.28:160][ 37]PIE: New page: PIE session: Test (23 Sep 2024, 10:22:28 pm)
+[2024.09.23-02.22.28:161][ 37]LogOnline: OSS: Creating online subsystem instance for: NULL
+[2024.09.23-02.22.28:162][ 37]LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+[2024.09.23-02.22.28:163][ 37]LogLinker: Warning: Failed to load '/Game/Blueprints/LostWorldGameInstance': Can't find file.
+[2024.09.23-02.22.28:163][ 37]LogLinker: Warning: Failed to load '/Game/Blueprints/LostWorldGameInstance': Can't find file.
+[2024.09.23-02.22.28:163][ 37]LogUObjectGlobals: Warning: Failed to find object 'Class /Game/Blueprints/LostWorldGameInstance.LostWorldGameInstance_C'
+[2024.09.23-02.22.28:163][ 37]LogPlayLevel: Creating play world package: /Game/Levels/UEDPIE_0_Test
+[2024.09.23-02.22.28:164][ 37]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000585s)
+[2024.09.23-02.22.28:164][ 37]LogAIModule: Creating AISystem for world Test
+[2024.09.23-02.22.28:165][ 37]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE7B72F600), frame # 16037
+[2024.09.23-02.22.28:165][ 37]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EEB4185BC0), frame # 16037
+[2024.09.23-02.22.28:165][ 37]LogPlayLevel: PIE: World Init took: (0.001030s)
+[2024.09.23-02.22.28:165][ 37]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Levels/Test.Test to /Game/Levels/UEDPIE_0_Test.Test (0.001758s)
+[2024.09.23-02.22.28:178][ 37]LogUObjectHash: Compacting FUObjectHashTables data took   1.30ms
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2024.09.23-02.22.28:181][ 37]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.09.23-02.22.28:181][ 37]LogAudio: Display: Using built-in audio occlusion.
+[2024.09.23-02.22.28:181][ 37]LogAudioMixer: Display: Initializing audio mixer.
+[2024.09.23-02.22.28:187][ 37]LogAudioMixer: Display: 0: FrontLeft
+[2024.09.23-02.22.28:187][ 37]LogAudioMixer: Display: 1: FrontRight
+[2024.09.23-02.22.28:214][ 37]LogAudioMixer: Display: Using Audio Device Speakers (Realtek(R) Audio)
+[2024.09.23-02.22.28:214][ 37]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.09.23-02.22.28:214][ 37]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.09.23-02.22.28:214][ 37]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.09.23-02.22.28:214][ 37]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2024.09.23-02.22.28:227][ 37]LogInit: FAudioDevice initialized.
+[2024.09.23-02.22.28:235][ 37]LogLoad: Game class is 'LostWorldGameModeBattleBp_C'
+[2024.09.23-02.22.28:236][ 37]LogWorld: Bringing World /Game/Levels/UEDPIE_0_Test.Test up for play (max tick rate 0) at 2024.09.23-12.22.28
+[2024.09.23-02.22.28:236][ 37]LogWorld: Bringing up level for play took: 0.000352
+[2024.09.23-02.22.28:236][ 37]LogOnline: OSS: Creating online subsystem instance for: :Context_3
+[2024.09.23-02.22.28:240][ 37]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0004 seconds. Added 20 classes and 0 folders.
+[2024.09.23-02.22.28:242][ 37]PIE: Server logged in
+[2024.09.23-02.22.28:243][ 37]PIE: Play in editor total start time 0.084 seconds.
+[2024.09.23-02.22.30:962][293]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.22.30:962][293]LogWorld: BeginTearingDown for /Game/Levels/UEDPIE_0_Test
+[2024.09.23-02.22.30:962][293]LogWorld: UWorld::CleanupWorld for Test, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.22.30:962][293]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.22.30:972][293]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.09.23-02.22.30:976][293]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.22.31:002][293]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.22.31:049][293]LogAISub: UAISubsystem::~UAISubsystem AIPerceptionSystem (000001EEB4185BC0), frame # 16293
+[2024.09.23-02.22.31:049][293]LogAISub: UAISubsystem::~UAISubsystem EnvQueryManager (000001EE7B72F600), frame # 16293
+[2024.09.23-02.22.31:051][293]LogUObjectHash: Compacting FUObjectHashTables data took   2.38ms
+[2024.09.23-02.22.31:068][294]LogPlayLevel: Display: Destroying online subsystem :Context_3
+[2024.09.23-02.22.34:521][683]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/LostWorldGameModeBattleBp.LostWorldGameModeBattleBp
+[2024.09.23-02.22.36:583][854]LogSlate: Window 'LostWorldGameModeBattleBp' being destroyed
+[2024.09.23-02.22.37:356][941]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2024.09.23-02.23.05:147][533]BlueprintLog: New page: Compile LostWorldGameModeBattleBp
+[2024.09.23-02.23.05:220][533]LogUObjectHash: Compacting FUObjectHashTables data took   2.29ms
+[2024.09.23-02.23.05:717][568]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBattleBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset" SILENT=true
+[2024.09.23-02.23.05:722][568]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBattleBp983AC5FE4D4B3E87B7437EB6F4A00FCE.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset'
+[2024.09.23-02.23.05:729][568]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.32ms
+[2024.09.23-02.23.05:733][568]AssetCheck: New page: Asset Save: LostWorldGameModeBattleBp
+[2024.09.23-02.23.05:733][568]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBattleBp.LostWorldGameModeBattleBp
+[2024.09.23-02.23.07:087][699]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Blueprints/LostWorldGameModeBattleBp" FILE="../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset" SILENT=true
+[2024.09.23-02.23.07:093][699]LogSavePackage: Moving '../../../../Projects/LostWorld/Saved/LostWorldGameModeBattleBpE951E4C24225E154556A04BD99343175.tmp' to '../../../../Projects/LostWorld/Content/Blueprints/LostWorldGameModeBattleBp.uasset'
+[2024.09.23-02.23.07:100][699]LogAutoSizeComments: Saved node cache to ../../../Engine/Plugins/Marketplace/AutoSizeComments/ASCCache/7D4A53564EE1015E902C29B8F812ED99.json took   0.32ms
+[2024.09.23-02.23.07:104][699]AssetCheck: New page: Asset Save: LostWorldGameModeBattleBp
+[2024.09.23-02.23.07:104][699]LogContentValidation: Display: Validating Blueprint /Game/Blueprints/LostWorldGameModeBattleBp.LostWorldGameModeBattleBp
+[2024.09.23-02.23.08:780][862]LogTemp: Repeating last play command: Selected Viewport
+[2024.09.23-02.23.08:792][862]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.09.23-02.23.08:792][862]PIE: New page: PIE session: Test (23 Sep 2024, 10:23:08 pm)
+[2024.09.23-02.23.08:792][862]LogPlayLevel: Creating play world package: /Game/Levels/UEDPIE_0_Test
+[2024.09.23-02.23.08:793][862]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000522s)
+[2024.09.23-02.23.08:794][862]LogAIModule: Creating AISystem for world Test
+[2024.09.23-02.23.08:794][862]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EEB1818400), frame # 19862
+[2024.09.23-02.23.08:794][862]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EE28B35A80), frame # 19862
+[2024.09.23-02.23.08:794][862]LogPlayLevel: PIE: World Init took: (0.001039s)
+[2024.09.23-02.23.08:794][862]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Levels/Test.Test to /Game/Levels/UEDPIE_0_Test.Test (0.001701s)
+[2024.09.23-02.23.08:810][862]LogUObjectHash: Compacting FUObjectHashTables data took   1.63ms
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2024.09.23-02.23.08:811][862]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.09.23-02.23.08:811][862]LogAudio: Display: Using built-in audio occlusion.
+[2024.09.23-02.23.08:811][862]LogAudioMixer: Display: Initializing audio mixer.
+[2024.09.23-02.23.08:818][862]LogAudioMixer: Display: 0: FrontLeft
+[2024.09.23-02.23.08:818][862]LogAudioMixer: Display: 1: FrontRight
+[2024.09.23-02.23.08:866][862]LogAudioMixer: Display: Using Audio Device Speakers (Realtek(R) Audio)
+[2024.09.23-02.23.08:866][862]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.09.23-02.23.08:866][862]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.09.23-02.23.08:866][862]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.09.23-02.23.08:866][862]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2024.09.23-02.23.08:875][862]LogInit: FAudioDevice initialized.
+[2024.09.23-02.23.08:885][862]LogLoad: Game class is 'LostWorldGameModeBattleBp_C'
+[2024.09.23-02.23.08:885][862]LogWorld: Bringing World /Game/Levels/UEDPIE_0_Test.Test up for play (max tick rate 0) at 2024.09.23-12.23.08
+[2024.09.23-02.23.08:886][862]LogGameState: Error: Mixing AGameState with AGameModeBase is not compatible. Change AGameModeBase subclass (LostWorldGameModeBattleBp_C) to derive from AGameMode, or make both derive from Base
+[2024.09.23-02.23.08:886][862]LogWorld: Bringing up level for play took: 0.000391
+[2024.09.23-02.23.08:886][862]LogOnline: OSS: Creating online subsystem instance for: :Context_5
+[2024.09.23-02.23.08:888][862]PIE: Server logged in
+[2024.09.23-02.23.08:888][862]PIE: Play in editor total start time 0.097 seconds.
+[2024.09.23-02.23.13:872][382]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.23.13:872][382]LogWorld: BeginTearingDown for /Game/Levels/UEDPIE_0_Test
+[2024.09.23-02.23.13:872][382]LogWorld: UWorld::CleanupWorld for Test, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.23.13:872][382]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.23.13:883][382]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2024.09.23-02.23.13:885][382]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.23.13:901][382]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2024.09.23-02.23.13:918][382]LogAISub: UAISubsystem::~UAISubsystem AIPerceptionSystem (000001EE28B35A80), frame # 20382
+[2024.09.23-02.23.13:918][382]LogAISub: UAISubsystem::~UAISubsystem EnvQueryManager (000001EEB1818400), frame # 20382
+[2024.09.23-02.23.13:919][382]LogUObjectHash: Compacting FUObjectHashTables data took   1.41ms
+[2024.09.23-02.23.13:937][383]LogPlayLevel: Display: Destroying online subsystem :Context_5
+[2024.09.23-02.23.18:200][823]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/LostWorldGameInstanceBp.LostWorldGameInstanceBp
+[2024.09.23-02.23.21:156][128]LogWorld: UWorld::CleanupWorld for World_3, bSessionEnded=true, bCleanupResources=true
+[2024.09.23-02.23.21:156][128]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2024.09.23-02.23.21:214][128]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/Blueprints/LostWorldGameInstanceBp.LostWorldGameInstanceBp
+[2024.09.23-02.23.23:229][296]LogTemp: Repeating last play command: Selected Viewport
+[2024.09.23-02.23.23:254][296]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2024.09.23-02.23.23:254][296]PIE: New page: PIE session: Test (23 Sep 2024, 10:23:23 pm)
+[2024.09.23-02.23.23:255][296]LogPlayLevel: Creating play world package: /Game/Levels/UEDPIE_0_Test
+[2024.09.23-02.23.23:255][296]LogPlayLevel: PIE: StaticDuplicateObject took: (0.000533s)
+[2024.09.23-02.23.23:256][296]LogAIModule: Creating AISystem for world Test
+[2024.09.23-02.23.23:256][296]LogAISub: UAISubsystem::UAISubsystem EnvQueryManager (000001EE747FD200), frame # 21296
+[2024.09.23-02.23.23:256][296]LogAISub: UAISubsystem::UAISubsystem AIPerceptionSystem (000001EEB4208400), frame # 21296
+[2024.09.23-02.23.23:256][296]LogPlayLevel: PIE: World Init took: (0.001086s)
+[2024.09.23-02.23.23:256][296]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Levels/Test.Test to /Game/Levels/UEDPIE_0_Test.Test (0.001765s)
+[2024.09.23-02.23.23:276][296]LogUObjectHash: Compacting FUObjectHashTables data took   1.35ms
+[2024.09.23-02.23.23:277][296]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2024.09.23-02.23.23:278][296]LogAudio: Display: AudioDevice MaxSources: 32
+[2024.09.23-02.23.23:278][296]LogAudio: Display: Using built-in audio occlusion.
+[2024.09.23-02.23.23:278][296]LogAudioMixer: Display: Initializing audio mixer.
+[2024.09.23-02.23.23:286][296]LogAudioMixer: Display: 0: FrontLeft
+[2024.09.23-02.23.23:286][296]LogAudioMixer: Display: 1: FrontRight
+[2024.09.23-02.23.23:317][296]LogAudioMixer: Display: Using Audio Device Speakers (Realtek(R) Audio)
+[2024.09.23-02.23.23:317][296]LogAudioMixer: Display: Initializing Sound Submixes...
+[2024.09.23-02.23.23:317][296]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2024.09.23-02.23.23:317][296]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2024.09.23-02.23.23:318][296]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2024.09.23-02.23.23:328][296]LogInit: FAudioDevice initialized.
+[2024.09.23-02.23.23:334][296]LogLoad: Game class is 'LostWorldGameModeBattleBp_C'
+[2024.09.23-02.23.23:335][296]LogWorld: Bringing World /Game/Levels/UEDPIE_0_Test.Test up for play (max tick rate 0) at 2024.09.23-12.23.23
+[2024.09.23-02.23.23:335][296]LogGameState: Error: Mixing AGameState with AGameModeBase is not compatible. Change AGameModeBase subclass (LostWorldGameModeBattleBp_C) to derive from AGameMode, or make both derive from Base
+[2024.09.23-02.23.23:335][296]LogWorld: Bringing up level for play took: 0.000422
+[2024.09.23-02.23.23:335][296]LogOnline: OSS: Creating online subsystem instance for: :Context_8
+[2024.09.23-02.23.23:337][296]PIE: Server logged in
+[2024.09.23-02.23.23:338][296]PIE: Play in editor total start time 0.085 seconds.
+[2024.09.23-02.23.54:311][619]LogAudioMixer: Display: Audio Buffer Underrun detected.
+[2024.09.23-02.23.54:311][619]LogAudioMixer: Display: Audio Buffer Underrun detected.

@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "LostWorld",
+			"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "LostWorldEditor",
+			"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorldEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

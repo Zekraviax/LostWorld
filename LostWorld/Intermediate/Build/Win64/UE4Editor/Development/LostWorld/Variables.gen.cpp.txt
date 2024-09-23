@@ -1,5 +1,5 @@
-C:\Users\zekra\Documents\UE\Projects\LostWorld\Intermediate\Build\Win64\UE4Editor\Development\LostWorld\Definitions.LostWorld.h
+C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Development\LostWorld\Definitions.LostWorld.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-C:\Users\zekra\Documents\UE\Projects\LostWorld\Source\LostWorld/Variables.h
-c:\users\zekra\documents\ue\projects\lostworld\intermediate\build\win64\ue4editor\inc\lostworld\Variables.generated.h
+C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Source\LostWorld/Variables.h
+c:\users\zekra\documents\ue\projects\lost_world\lostworld\intermediate\build\win64\ue4editor\inc\lostworld\Variables.generated.h

@@ -2,8 +2,8 @@
 	"Name": "LostWorldEditor",
 	"Configuration": "Development",
 	"Platform": "Win64",
-	"TargetFile": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorldEditor.Target.cs",
-	"ProjectFile": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\LostWorld.uproject",
+	"TargetFile": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorldEditor.Target.cs",
+	"ProjectFile": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\LostWorld.uproject",
 	"ToolchainInfo": 
 	{
 		"CppStandard": "Default",
@@ -1403,7 +1403,7 @@
 			]
 		},
 		{
-			"File": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Binaries\\Win64\\UE4Editor-LostWorld.dll",
+			"File": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Binaries\\Win64\\UE4Editor-LostWorld.dll",
 			"Type": "DynamicLinkLibrary",
 			"Modules": [
 				"LostWorld"
@@ -15273,7 +15273,7 @@
 			"ShouldAddLegacyPublicIncludePaths": false,
 			"RuntimeDependencies": [
 				{
-					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld/Config/SteamVRBindings/...",
+					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld/Config/SteamVRBindings/...",
 					"Type": "NonUFS"
 				}
 			],
@@ -15864,8 +15864,8 @@
 		"LostWorld": 
 		{
 			"Name": "LostWorld",
-			"Directory": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld",
-			"Rules": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld\\LostWorld.Build.cs",
+			"Directory": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorld",
+			"Rules": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorld\\LostWorld.Build.cs",
 			"PCHUsage": "UseExplicitOrSharedPCHs",
 			"PublicDependencyModules": [
 				"Core",
@@ -15879,10 +15879,10 @@
 				"Engine"
 			],
 			"PublicIncludePaths": [
-				"C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source"
+				"C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source"
 			],
 			"LegacyPublicIncludePaths": [
-				"C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld"
+				"C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorld"
 			],
 			"PublicDelayLoadDLLs": [
 				"d3d12.dll"
@@ -15895,7 +15895,7 @@
 				"LOSTWORLD_API="
 			],
 			"ShouldAddLegacyPublicIncludePaths": false,
-			"GeneratedCodeDirectory": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Intermediate\\Build\\Win64\\UE4Editor\\Inc\\LostWorld",
+			"GeneratedCodeDirectory": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Intermediate\\Build\\Win64\\UE4Editor\\Inc\\LostWorld",
 			"ToolchainInfo": 
 			{
 				"bIsBuildingDLL": true,
@@ -16433,11 +16433,11 @@
 					"Type": "DebugNonUFS"
 				},
 				{
-					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld/Content/Slate/...",
+					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld/Content/Slate/...",
 					"Type": "UFS"
 				},
 				{
-					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld/Content/SlateDebug/...",
+					"Path": "C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld/Content/SlateDebug/...",
 					"Type": "DebugNonUFS"
 				}
 			],

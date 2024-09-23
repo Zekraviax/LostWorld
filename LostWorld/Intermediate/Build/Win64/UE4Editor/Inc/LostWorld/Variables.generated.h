@@ -13,40 +13,40 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LOSTWORLD_Variables_generated_h
 
-#define LostWorld_Source_LostWorld_Variables_h_105_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_143_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FCard_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FCard>();
 
-#define LostWorld_Source_LostWorld_Variables_h_87_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_125_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEntityBaseStats_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FEntityBaseStats>();
 
-#define LostWorld_Source_LostWorld_Variables_h_79_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics; \
+#define LostWorld_Source_LostWorld_Variables_h_103_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
-template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FRoomDataAsStruct>();
+template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FLevelDataAsStruct>();
 
-#define LostWorld_Source_LostWorld_Variables_h_48_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_65_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FFloorDataAsStruct>();
 
-#define LostWorld_Source_LostWorld_Variables_h_30_GENERATED_BODY \
-	friend struct Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics; \
+#define LostWorld_Source_LostWorld_Variables_h_36_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
-template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FLevelDataAsStruct>();
+template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FRoomDataAsStruct>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID LostWorld_Source_LostWorld_Variables_h
@@ -61,5 +61,11 @@ template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FLevelDataAsStruct>(
 
 enum class ECardTypes : uint8;
 template<> LOSTWORLD_API UEnum* StaticEnum<ECardTypes>();
+
+#define FOREACH_ENUM_EFLOORLAYOUTS(op) \
+	op(EFloorLayouts::FourSquares) 
+
+enum class EFloorLayouts : uint8;
+template<> LOSTWORLD_API UEnum* StaticEnum<EFloorLayouts>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

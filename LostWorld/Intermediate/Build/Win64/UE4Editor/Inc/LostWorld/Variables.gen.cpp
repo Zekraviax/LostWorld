@@ -15,11 +15,12 @@ void EmptyLinkFunctionForGeneratedCodeVariables() {}
 // Cross Module References
 	LOSTWORLD_API UEnum* Z_Construct_UEnum_LostWorld_ECardTypes();
 	UPackage* Z_Construct_UPackage__Script_LostWorld();
+	LOSTWORLD_API UEnum* Z_Construct_UEnum_LostWorld_EFloorLayouts();
 	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FCard();
 	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FEntityBaseStats();
-	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FRoomDataAsStruct();
-	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FFloorDataAsStruct();
 	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FLevelDataAsStruct();
+	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FFloorDataAsStruct();
+	LOSTWORLD_API UScriptStruct* Z_Construct_UScriptStruct_FRoomDataAsStruct();
 // End Cross Module References
 	static UEnum* ECardTypes_StaticEnum()
 	{
@@ -71,6 +72,59 @@ void EmptyLinkFunctionForGeneratedCodeVariables() {}
 				nullptr,
 				"ECardTypes",
 				"ECardTypes",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
+	static UEnum* EFloorLayouts_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_LostWorld_EFloorLayouts, Z_Construct_UPackage__Script_LostWorld(), TEXT("EFloorLayouts"));
+		}
+		return Singleton;
+	}
+	template<> LOSTWORLD_API UEnum* StaticEnum<EFloorLayouts>()
+	{
+		return EFloorLayouts_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EFloorLayouts(EFloorLayouts_StaticEnum, TEXT("/Script/LostWorld"), TEXT("EFloorLayouts"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_LostWorld_EFloorLayouts_Hash() { return 300005076U; }
+	UEnum* Z_Construct_UEnum_LostWorld_EFloorLayouts()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_LostWorld();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EFloorLayouts"), 0, Get_Z_Construct_UEnum_LostWorld_EFloorLayouts_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "EFloorLayouts::FourSquares", (int64)EFloorLayouts::FourSquares },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "Comment", "// -------------------------------- Levels\n" },
+				{ "FourSquares.Name", "EFloorLayouts::FourSquares" },
+				{ "ModuleRelativePath", "Variables.h" },
+				{ "ToolTip", "-------------------------------- Levels" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_LostWorld,
+				nullptr,
+				"EFloorLayouts",
+				"EFloorLayouts",
 				Enumerators,
 				UE_ARRAY_COUNT(Enumerators),
 				RF_Public|RF_Transient|RF_MarkAsNative,
@@ -302,75 +356,109 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFEntityBaseStats
 		return ReturnStruct;
 	}
 	uint32 Get_Z_Construct_UScriptStruct_FEntityBaseStats_Hash() { return 3585053802U; }
-class UScriptStruct* FRoomDataAsStruct::StaticStruct()
+class UScriptStruct* FLevelDataAsStruct::StaticStruct()
 {
 	static class UScriptStruct* Singleton = NULL;
 	if (!Singleton)
 	{
-		extern LOSTWORLD_API uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FRoomDataAsStruct, Z_Construct_UPackage__Script_LostWorld(), TEXT("RoomDataAsStruct"), sizeof(FRoomDataAsStruct), Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash());
+		extern LOSTWORLD_API uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FLevelDataAsStruct, Z_Construct_UPackage__Script_LostWorld(), TEXT("LevelDataAsStruct"), sizeof(FLevelDataAsStruct), Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash());
 	}
 	return Singleton;
 }
-template<> LOSTWORLD_API UScriptStruct* StaticStruct<FRoomDataAsStruct>()
+template<> LOSTWORLD_API UScriptStruct* StaticStruct<FLevelDataAsStruct>()
 {
-	return FRoomDataAsStruct::StaticStruct();
+	return FLevelDataAsStruct::StaticStruct();
 }
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FRoomDataAsStruct(FRoomDataAsStruct::StaticStruct, TEXT("/Script/LostWorld"), TEXT("RoomDataAsStruct"), false, nullptr, nullptr);
-static struct FScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FLevelDataAsStruct(FLevelDataAsStruct::StaticStruct, TEXT("/Script/LostWorld"), TEXT("LevelDataAsStruct"), false, nullptr, nullptr);
+static struct FScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct
 {
-	FScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct()
+	FScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct()
 	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("RoomDataAsStruct")),new UScriptStruct::TCppStructOps<FRoomDataAsStruct>);
+		UScriptStruct::DeferCppStructOps(FName(TEXT("LevelDataAsStruct")),new UScriptStruct::TCppStructOps<FLevelDataAsStruct>);
 	}
-} ScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct;
-	struct Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics
+} ScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct;
+	struct Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics
 	{
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
 #endif
 		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FloorDataAsStruct_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_FloorDataAsStruct;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StairsGoUp_MetaData[];
+#endif
+		static void NewProp_StairsGoUp_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_StairsGoUp;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
 	};
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
 		{ "ModuleRelativePath", "Variables.h" },
 	};
 #endif
-	void* Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewStructOps()
+	void* Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewStructOps()
 	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FRoomDataAsStruct>();
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FLevelDataAsStruct>();
 	}
-	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::ReturnStructParams = {
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_FloorDataAsStruct_MetaData[] = {
+		{ "Category", "LevelDataAsStruct" },
+		{ "ModuleRelativePath", "Variables.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_FloorDataAsStruct = { "FloorDataAsStruct", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FLevelDataAsStruct, FloorDataAsStruct), Z_Construct_UScriptStruct_FFloorDataAsStruct, METADATA_PARAMS(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_FloorDataAsStruct_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_FloorDataAsStruct_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData[] = {
+		{ "Category", "LevelDataAsStruct" },
+		{ "Comment", "// If true, the floor count will increment by +1 and\n// the stairs will appear to climb upward.\n// If false, then the reverse will be the case.\n" },
+		{ "ModuleRelativePath", "Variables.h" },
+		{ "ToolTip", "If true, the floor count will increment by +1 and\nthe stairs will appear to climb upward.\nIf false, then the reverse will be the case." },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_SetBit(void* Obj)
+	{
+		((FLevelDataAsStruct*)Obj)->StairsGoUp = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp = { "StairsGoUp", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FLevelDataAsStruct), &Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_FloorDataAsStruct,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::ReturnStructParams = {
 		(UObject* (*)())Z_Construct_UPackage__Script_LostWorld,
 		nullptr,
 		&NewStructOps,
-		"RoomDataAsStruct",
-		sizeof(FRoomDataAsStruct),
-		alignof(FRoomDataAsStruct),
-		nullptr,
-		0,
+		"LevelDataAsStruct",
+		sizeof(FLevelDataAsStruct),
+		alignof(FLevelDataAsStruct),
+		Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers),
 		RF_Public|RF_Transient|RF_MarkAsNative,
 		EStructFlags(0x00000201),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams))
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams))
 	};
-	UScriptStruct* Z_Construct_UScriptStruct_FRoomDataAsStruct()
+	UScriptStruct* Z_Construct_UScriptStruct_FLevelDataAsStruct()
 	{
 #if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash();
+		extern uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash();
 		UPackage* Outer = Z_Construct_UPackage__Script_LostWorld();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("RoomDataAsStruct"), sizeof(FRoomDataAsStruct), Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash(), false);
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("LevelDataAsStruct"), sizeof(FLevelDataAsStruct), Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash(), false);
 #else
 		static UScriptStruct* ReturnStruct = nullptr;
 #endif
 		if (!ReturnStruct)
 		{
-			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::ReturnStructParams);
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::ReturnStructParams);
 		}
 		return ReturnStruct;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash() { return 2613336404U; }
+	uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash() { return 173081500U; }
 class UScriptStruct* FFloorDataAsStruct::StaticStruct()
 {
 	static class UScriptStruct* Singleton = NULL;
@@ -399,6 +487,16 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFFloorDataAsStruct
 		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
 #endif
 		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomDataAsStructsArray_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_RoomDataAsStructsArray;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_RoomDataAsStructsArray_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Layout_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_Layout;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_Layout_Underlying;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaximumWidth_MetaData[];
 #endif
@@ -429,6 +527,22 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFFloorDataAsStruct
 		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FFloorDataAsStruct>();
 	}
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray_MetaData[] = {
+		{ "Category", "FloorDataAsStruct" },
+		{ "ModuleRelativePath", "Variables.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray = { "RoomDataAsStructsArray", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FFloorDataAsStruct, RoomDataAsStructsArray), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray_Inner = { "RoomDataAsStructsArray", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FRoomDataAsStruct, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout_MetaData[] = {
+		{ "Category", "FloorDataAsStruct" },
+		{ "ModuleRelativePath", "Variables.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout = { "Layout", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FFloorDataAsStruct, Layout), Z_Construct_UEnum_LostWorld_EFloorLayouts, METADATA_PARAMS(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumWidth_MetaData[] = {
 		{ "Category", "FloorDataAsStruct" },
 		{ "ModuleRelativePath", "Variables.h" },
@@ -438,9 +552,9 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFFloorDataAsStruct
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumLength_MetaData[] = {
 		{ "Category", "FloorDataAsStruct" },
-		{ "Comment", "// This is the maximum size of the map in tiles\n" },
+		{ "Comment", "// This is the maximum size of the map in tiles.\n" },
 		{ "ModuleRelativePath", "Variables.h" },
-		{ "ToolTip", "This is the maximum size of the map in tiles" },
+		{ "ToolTip", "This is the maximum size of the map in tiles." },
 	};
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumLength = { "MaximumLength", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FFloorDataAsStruct, MaximumLength), METADATA_PARAMS(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumLength_MetaData)) };
@@ -456,13 +570,17 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFFloorDataAsStruct
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MinimumLength_MetaData[] = {
 		{ "Category", "FloorDataAsStruct" },
-		{ "Comment", "// The north-south dimension will be called 'Length' and 'X'.\n// This is the minimum size of the map in tiles\n" },
+		{ "Comment", "// The north-south dimension will be called 'Length' and 'X'.\n// This is the minimum size of the map in tiles.\n" },
 		{ "ModuleRelativePath", "Variables.h" },
-		{ "ToolTip", "The north-south dimension will be called 'Length' and 'X'.\nThis is the minimum size of the map in tiles" },
+		{ "ToolTip", "The north-south dimension will be called 'Length' and 'X'.\nThis is the minimum size of the map in tiles." },
 	};
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MinimumLength = { "MinimumLength", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FFloorDataAsStruct, MinimumLength), METADATA_PARAMS(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MinimumLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MinimumLength_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_RoomDataAsStructsArray_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_Layout_Underlying,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumWidth,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MaximumLength,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics::NewProp_MinimumWidth,
@@ -496,100 +614,131 @@ static struct FScriptStruct_LostWorld_StaticRegisterNativesFFloorDataAsStruct
 		}
 		return ReturnStruct;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FFloorDataAsStruct_Hash() { return 1029477844U; }
-class UScriptStruct* FLevelDataAsStruct::StaticStruct()
+	uint32 Get_Z_Construct_UScriptStruct_FFloorDataAsStruct_Hash() { return 3567713791U; }
+class UScriptStruct* FRoomDataAsStruct::StaticStruct()
 {
 	static class UScriptStruct* Singleton = NULL;
 	if (!Singleton)
 	{
-		extern LOSTWORLD_API uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash();
-		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FLevelDataAsStruct, Z_Construct_UPackage__Script_LostWorld(), TEXT("LevelDataAsStruct"), sizeof(FLevelDataAsStruct), Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash());
+		extern LOSTWORLD_API uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FRoomDataAsStruct, Z_Construct_UPackage__Script_LostWorld(), TEXT("RoomDataAsStruct"), sizeof(FRoomDataAsStruct), Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash());
 	}
 	return Singleton;
 }
-template<> LOSTWORLD_API UScriptStruct* StaticStruct<FLevelDataAsStruct>()
+template<> LOSTWORLD_API UScriptStruct* StaticStruct<FRoomDataAsStruct>()
 {
-	return FLevelDataAsStruct::StaticStruct();
+	return FRoomDataAsStruct::StaticStruct();
 }
-static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FLevelDataAsStruct(FLevelDataAsStruct::StaticStruct, TEXT("/Script/LostWorld"), TEXT("LevelDataAsStruct"), false, nullptr, nullptr);
-static struct FScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FRoomDataAsStruct(FRoomDataAsStruct::StaticStruct, TEXT("/Script/LostWorld"), TEXT("RoomDataAsStruct"), false, nullptr, nullptr);
+static struct FScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct
 {
-	FScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct()
+	FScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct()
 	{
-		UScriptStruct::DeferCppStructOps(FName(TEXT("LevelDataAsStruct")),new UScriptStruct::TCppStructOps<FLevelDataAsStruct>);
+		UScriptStruct::DeferCppStructOps(FName(TEXT("RoomDataAsStruct")),new UScriptStruct::TCppStructOps<FRoomDataAsStruct>);
 	}
-} ScriptStruct_LostWorld_StaticRegisterNativesFLevelDataAsStruct;
-	struct Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics
+} ScriptStruct_LostWorld_StaticRegisterNativesFRoomDataAsStruct;
+	struct Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics
 	{
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
 #endif
 		static void* NewStructOps();
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StairsGoUp_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaximumWidth_MetaData[];
 #endif
-		static void NewProp_StairsGoUp_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_StairsGoUp;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MaximumWidth;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaximumLength_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MaximumLength;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MinimumWidth_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MinimumWidth;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MinimumLength_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MinimumLength;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
 	};
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
 		{ "Comment", "// -------------------------------- Levels\n" },
 		{ "ModuleRelativePath", "Variables.h" },
 		{ "ToolTip", "-------------------------------- Levels" },
 	};
 #endif
-	void* Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewStructOps()
+	void* Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewStructOps()
 	{
-		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FLevelDataAsStruct>();
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FRoomDataAsStruct>();
 	}
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData[] = {
-		{ "Category", "LevelDataAsStruct" },
-		{ "Comment", "// If true, the floor count will increment by +1 and\n// the stairs will appear to climb upward.\n// If false, then the reverse will be the case\n" },
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumWidth_MetaData[] = {
+		{ "Category", "RoomDataAsStruct" },
 		{ "ModuleRelativePath", "Variables.h" },
-		{ "ToolTip", "If true, the floor count will increment by +1 and\nthe stairs will appear to climb upward.\nIf false, then the reverse will be the case" },
 	};
 #endif
-	void Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_SetBit(void* Obj)
-	{
-		((FLevelDataAsStruct*)Obj)->StairsGoUp = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp = { "StairsGoUp", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FLevelDataAsStruct), &Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp_MetaData)) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::NewProp_StairsGoUp,
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumWidth = { "MaximumWidth", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FRoomDataAsStruct, MaximumWidth), METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumWidth_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumWidth_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumLength_MetaData[] = {
+		{ "Category", "RoomDataAsStruct" },
+		{ "ModuleRelativePath", "Variables.h" },
 	};
-	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::ReturnStructParams = {
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumLength = { "MaximumLength", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FRoomDataAsStruct, MaximumLength), METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumLength_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumWidth_MetaData[] = {
+		{ "Category", "RoomDataAsStruct" },
+		{ "ModuleRelativePath", "Variables.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumWidth = { "MinimumWidth", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FRoomDataAsStruct, MinimumWidth), METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumWidth_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumWidth_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumLength_MetaData[] = {
+		{ "Category", "RoomDataAsStruct" },
+		{ "Comment", "// The lengths and widths should not exceed the dimensions of the floor.\n// These values are the minimum and maximum possible sizes of a room (not the coordinates.)\n" },
+		{ "ModuleRelativePath", "Variables.h" },
+		{ "ToolTip", "The lengths and widths should not exceed the dimensions of the floor.\nThese values are the minimum and maximum possible sizes of a room (not the coordinates.)" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumLength = { "MinimumLength", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FRoomDataAsStruct, MinimumLength), METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumLength_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumWidth,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MaximumLength,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumWidth,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::NewProp_MinimumLength,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::ReturnStructParams = {
 		(UObject* (*)())Z_Construct_UPackage__Script_LostWorld,
 		nullptr,
 		&NewStructOps,
-		"LevelDataAsStruct",
-		sizeof(FLevelDataAsStruct),
-		alignof(FLevelDataAsStruct),
-		Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers,
-		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::PropPointers),
+		"RoomDataAsStruct",
+		sizeof(FRoomDataAsStruct),
+		alignof(FRoomDataAsStruct),
+		Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::PropPointers),
 		RF_Public|RF_Transient|RF_MarkAsNative,
 		EStructFlags(0x00000201),
-		METADATA_PARAMS(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::Struct_MetaDataParams))
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::Struct_MetaDataParams))
 	};
-	UScriptStruct* Z_Construct_UScriptStruct_FLevelDataAsStruct()
+	UScriptStruct* Z_Construct_UScriptStruct_FRoomDataAsStruct()
 	{
 #if WITH_HOT_RELOAD
-		extern uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash();
+		extern uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash();
 		UPackage* Outer = Z_Construct_UPackage__Script_LostWorld();
-		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("LevelDataAsStruct"), sizeof(FLevelDataAsStruct), Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash(), false);
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("RoomDataAsStruct"), sizeof(FRoomDataAsStruct), Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash(), false);
 #else
 		static UScriptStruct* ReturnStruct = nullptr;
 #endif
 		if (!ReturnStruct)
 		{
-			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics::ReturnStructParams);
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FRoomDataAsStruct_Statics::ReturnStructParams);
 		}
 		return ReturnStruct;
 	}
-	uint32 Get_Z_Construct_UScriptStruct_FLevelDataAsStruct_Hash() { return 1950019508U; }
+	uint32 Get_Z_Construct_UScriptStruct_FRoomDataAsStruct_Hash() { return 2617143355U; }
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 #ifdef _MSC_VER
 #pragma warning (pop)

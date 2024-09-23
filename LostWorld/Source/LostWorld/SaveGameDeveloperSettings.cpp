@@ -15,8 +15,8 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 	SavePath.Append(SaveGamesFolderPathAppend);
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *SavePath);
 
-	FString DevSettingsJson;
-	FJsonObjectConverter::UStructToJsonObjectString(DeveloperSettingsAsStruct, DevSettingsJson, 0, 0);
+	FString DeveloperSettingsAsJson;
+	FJsonObjectConverter::UStructToJsonObjectString(DeveloperSettingsAsStruct, DeveloperSettingsAsJson, 0, 0);
 
 	// Before we save the json file, we need to check if the player's save data folder exists.
 	// If it doesn't, we make it first.
@@ -35,7 +35,7 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 		FString FileName = SavePath.Append("DeveloperSettings.json");
 		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's save data file name: %s"), *FileName);
 
-		if (FFileHelper::SaveStringToFile(DevSettingsJson, *FileName)) {
+		if (FFileHelper::SaveStringToFile(DeveloperSettingsAsJson, *FileName)) {
 			UE_LOG(LogTemp, Warning, TEXT("Player's data saves successfully."));
 		} else {
 			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Player's data."));
@@ -54,10 +54,7 @@ void USaveGameDeveloperSettings::LoadDeveloperSettingsFromJson()
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
 	PlayerDataSaveFilePath.Append(PlayerSaveDataFileName);
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *PlayerDataSaveFilePath);
-
-	//FString FileName = PlayerDataSaveFilePath.Append("/Player.json");
-	//UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data File: %s"), *FileName);
-
+	
 	if (!FileManager.FileExists(*PlayerDataSaveFilePath)) {
 		UE_LOG(LogTemp, Error, TEXT("Error: Could not find Player's data."));
 		return;

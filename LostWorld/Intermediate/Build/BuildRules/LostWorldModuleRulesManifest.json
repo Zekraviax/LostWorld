@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld\\LostWorld.Build.cs",
-		"C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorld.Target.cs",
-		"C:\\Users\\zekra\\Documents\\UE\\Projects\\LostWorld\\Source\\LostWorldEditor.Target.cs"
+		"C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorld\\LostWorld.Build.cs",
+		"C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorld.Target.cs",
+		"C:\\Users\\zekra\\Documents\\UE\\Projects\\Lost_World\\LostWorld\\Source\\LostWorldEditor.Target.cs"
 	],
 	"EngineVersion": "4.25.4"
 }

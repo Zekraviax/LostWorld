@@ -1,6 +1,6 @@
-C:\Users\zekra\Documents\UE\Projects\LostWorld\Intermediate\Build\Win64\UE4Editor\Development\LostWorld\Definitions.LostWorld.h
-c:\users\zekra\documents\ue\projects\lostworld\source\lostworld\LostWorldGameInstanceBase.h
-C:\Users\zekra\Documents\UE\Projects\LostWorld\Intermediate\Build\Win64\UE4Editor\Inc\LostWorld\LostWorldGameInstanceBase.generated.h
+C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Development\LostWorld\Definitions.LostWorld.h
+c:\users\zekra\documents\ue\projects\lost_world\lostworld\source\lostworld\LostWorldGameInstanceBase.h
+C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Inc\LostWorld\LostWorldGameInstanceBase.generated.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
@@ -12,7 +12,7 @@ C:\Users\zekra\Documents\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\In
 c:\users\zekra\documents\ue\ue_4.25\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
-c:\users\zekra\documents\ue\projects\lostworld\source\lostworld\SaveGameDeveloperSettings.h
+c:\users\zekra\documents\ue\projects\lost_world\lostworld\source\lostworld\SaveGameDeveloperSettings.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/SaveGame.h
 C:\Users\zekra\Documents\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SaveGame.generated.h
-C:\Users\zekra\Documents\UE\Projects\LostWorld\Intermediate\Build\Win64\UE4Editor\Inc\LostWorld\SaveGameDeveloperSettings.generated.h
+C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Inc\LostWorld\SaveGameDeveloperSettings.generated.h

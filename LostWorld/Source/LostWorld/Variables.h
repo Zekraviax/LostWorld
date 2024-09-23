@@ -8,6 +8,12 @@
 // ---------------------------------------- Enums ---------------------------------------- //
 
 // -------------------------------- Levels
+UENUM(BlueprintType)
+enum class EFloorLayouts : uint8
+{
+	FourSquares
+};
+
 
 // -------------------------------- Cards
 UENUM(BlueprintType)
@@ -25,19 +31,30 @@ enum class ECardTypes : uint8
 
 // -------------------------------- Levels
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FLevelDataAsStruct
+struct LOSTWORLD_API FRoomDataAsStruct
 {
 	GENERATED_BODY()
 
-	// If true, the floor count will increment by +1 and
-	// the stairs will appear to climb upward.
-	// If false, then the reverse will be the case
+	// The lengths and widths should not exceed the dimensions of the floor.
+	// These values are the minimum and maximum possible sizes of a room (not the coordinates.)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool StairsGoUp;
+	int MinimumLength;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MinimumWidth;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaximumLength;
 
-	FLevelDataAsStruct()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaximumWidth;
+
+	FRoomDataAsStruct()
 	{
-		StairsGoUp = true;
+		MinimumLength = 2;
+		MinimumWidth = 2;
+		MaximumLength = 4;
+		MaximumWidth = 4;
 	}
 };
 
@@ -48,7 +65,7 @@ struct LOSTWORLD_API FFloorDataAsStruct
 	GENERATED_BODY()
 
 	// The north-south dimension will be called 'Length' and 'X'.
-	// This is the minimum size of the map in tiles
+	// This is the minimum size of the map in tiles.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumLength;
 
@@ -56,12 +73,18 @@ struct LOSTWORLD_API FFloorDataAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumWidth;
 
-	// This is the maximum size of the map in tiles
+	// This is the maximum size of the map in tiles.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumLength;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumWidth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EFloorLayouts Layout;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FRoomDataAsStruct> RoomDataAsStructsArray;
 
 	FFloorDataAsStruct()
 	{
@@ -69,14 +92,29 @@ struct LOSTWORLD_API FFloorDataAsStruct
 		MinimumWidth = 20;
 		MaximumLength = 40;
 		MaximumWidth = 40;
+		Layout = EFloorLayouts::FourSquares;
 	}
 };
 
 
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FRoomDataAsStruct
+struct LOSTWORLD_API FLevelDataAsStruct
 {
 	GENERATED_BODY()
+
+	// If true, the floor count will increment by +1 and
+	// the stairs will appear to climb upward.
+	// If false, then the reverse will be the case.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool StairsGoUp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FFloorDataAsStruct FloorDataAsStruct;
+
+	FLevelDataAsStruct()
+	{
+		StairsGoUp = true;
+	}
 };
 
 

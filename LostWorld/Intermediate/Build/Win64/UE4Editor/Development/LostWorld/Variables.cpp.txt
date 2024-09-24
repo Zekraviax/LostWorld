@@ -1,3 +1,0 @@
-C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Development\LostWorld\Definitions.LostWorld.h
-c:\users\zekra\documents\ue\projects\lost_world\lostworld\source\lostworld\Variables.h
-C:\Users\zekra\Documents\UE\Projects\Lost_World\LostWorld\Intermediate\Build\Win64\UE4Editor\Inc\LostWorld\Variables.generated.h

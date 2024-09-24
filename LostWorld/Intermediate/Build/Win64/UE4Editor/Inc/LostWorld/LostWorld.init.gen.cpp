@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeLostWorld_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x93FAE731,
+				0xC9653C42,
 				0xD7A24D48,
 				METADATA_PARAMS(nullptr, 0)
 			};

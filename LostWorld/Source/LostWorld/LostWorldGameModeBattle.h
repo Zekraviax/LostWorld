@@ -6,10 +6,22 @@
 #include "LostWorldGameModeBattle.generated.h"
 
 
+// Forward declarations
+class USaveGameLevelData;
+
+
 UCLASS()
 class LOSTWORLD_API ALostWorldGameModeBattle : public ALostWorldGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	// ---------------------------------------- Variables ---------------------------------------- //
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	USaveGameLevelData* LevelDataSaveGameReference;
+
+	// ---------------------------------------- Functions ---------------------------------------- //
+	
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.
 		// It will also handle as much input as possible:
 			// For example, the player tells the game mode when they want to play a card,
@@ -26,6 +38,8 @@ class LOSTWORLD_API ALostWorldGameModeBattle : public ALostWorldGameModeBase
 			// Whichever Entity is first in the turn order starts their turn.
 		// Post-Battle functions:
 			// Clean up all Actors that were spawned.
+			// Reward the player with the spoils of their battle.
+	
 	void PreBattleShuffleDecks();
 
 	
@@ -47,5 +61,6 @@ class LOSTWORLD_API ALostWorldGameModeBattle : public ALostWorldGameModeBase
 		// The north-south dimension will be called 'Length' and 'X'.
 		// The east-west dimension will be called 'Width' and 'Y'.
 
-	void GetLevelDataFromJson();
+	UFUNCTION(BlueprintCallable)
+	void LoadLevelData();
 };

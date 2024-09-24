@@ -13,18 +13,20 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LOSTWORLD_SaveGameLevelData_generated_h
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_SPARSE_DATA
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_RPC_WRAPPERS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_SPARSE_DATA
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execLoadLevelDataFromJson); \
 	DECLARE_FUNCTION(execSaveLevelDataToJson);
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execLoadLevelDataFromJson); \
 	DECLARE_FUNCTION(execSaveLevelDataToJson);
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_INCLASS_NO_PURE_DECLS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUSaveGameLevelData(); \
 	friend struct Z_Construct_UClass_USaveGameLevelData_Statics; \
@@ -33,7 +35,7 @@ public: \
 	DECLARE_SERIALIZER(USaveGameLevelData)
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_INCLASS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesUSaveGameLevelData(); \
 	friend struct Z_Construct_UClass_USaveGameLevelData_Statics; \
@@ -42,7 +44,7 @@ public: \
 	DECLARE_SERIALIZER(USaveGameLevelData)
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_STANDARD_CONSTRUCTORS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API USaveGameLevelData(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USaveGameLevelData) \
@@ -55,7 +57,7 @@ private: \
 public:
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_ENHANCED_CONSTRUCTORS \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API USaveGameLevelData(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -68,28 +70,28 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USaveGameLevelData); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USaveGameLevelData)
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_PRIVATE_PROPERTY_OFFSET
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_9_PROLOG
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_GENERATED_BODY_LEGACY \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_PRIVATE_PROPERTY_OFFSET
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_10_PROLOG
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_PRIVATE_PROPERTY_OFFSET \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_SPARSE_DATA \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_RPC_WRAPPERS \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_INCLASS \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_STANDARD_CONSTRUCTORS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_PRIVATE_PROPERTY_OFFSET \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_SPARSE_DATA \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_RPC_WRAPPERS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_INCLASS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define LostWorld_Source_LostWorld_SaveGameLevelData_h_12_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_SaveGameLevelData_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_PRIVATE_PROPERTY_OFFSET \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_SPARSE_DATA \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_INCLASS_NO_PURE_DECLS \
-	LostWorld_Source_LostWorld_SaveGameLevelData_h_12_ENHANCED_CONSTRUCTORS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_PRIVATE_PROPERTY_OFFSET \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_SPARSE_DATA \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_INCLASS_NO_PURE_DECLS \
+	LostWorld_Source_LostWorld_SaveGameLevelData_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

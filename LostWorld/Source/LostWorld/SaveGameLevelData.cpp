@@ -15,7 +15,7 @@ void USaveGameLevelData::SaveLevelDataToJson()
 	SavePath = FPaths::ProjectSavedDir();
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: ProjectSavedDir: %s"), *SavePath);
 	SavePath.Append(SaveGamesFolderPathAppend);
-	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *SavePath);
+	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Level Save Data Folder: %s"), *SavePath);
 
 	FString LevelDataAsJson;
 	FJsonObjectConverter::UStructToJsonObjectString(TestLevelData, LevelDataAsJson, 0, 0);
@@ -27,23 +27,23 @@ void USaveGameLevelData::SaveLevelDataToJson()
 
 	if (!FileManager.DirectoryExists(*SavePath)) {
 		if (FileManager.CreateDirectory(*SavePath)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player's save data folder did not exist but was created successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Save data folder did not exist but was created successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Player's save data folder does not exist and could not be created."));
+			UE_LOG(LogTemp, Error, TEXT("Save data folder does not exist and could not be created."));
 		}
 	}
 
 	if (FileManager.DirectoryExists(*SavePath)) {
 		FString FileName = SavePath.Append("TestLevelData.json");
-		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's save data file name: %s"), *FileName);
+		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Level save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(LevelDataAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player's data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Level data saves successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Player's data."));
+			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Level data."));
 		}
 	} else {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not save Player's data."));
+		UE_LOG(LogTemp, Error, TEXT("Error: Could not save Level data."));
 	}
 }
 
@@ -51,15 +51,16 @@ void USaveGameLevelData::SaveLevelDataToJson()
 void USaveGameLevelData::LoadLevelDataFromJson()
 {
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
-	FString PlayerSaveDataFileName = "SaveGames/DeveloperSettings.json";
+	FString PlayerSaveDataFileName = "SaveGames/TestLevelData.json";
 
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
 	PlayerDataSaveFilePath.Append(PlayerSaveDataFileName);
-	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *PlayerDataSaveFilePath);
+	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Save Data Folder: %s"), *PlayerDataSaveFilePath);
 	
 	if (!FileManager.FileExists(*PlayerDataSaveFilePath)) {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not find Player's data."));
-		return;
+		UE_LOG(LogTemp, Error, TEXT("Error: Could not load data. Attempting to create default data."));
+
+		SaveLevelDataToJson();
 	}
 
 	FString PlayerDataAsJson;
@@ -69,5 +70,5 @@ void USaveGameLevelData::LoadLevelDataFromJson()
 	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &LevelDataAsStruct, 0, 0);
 
 	// Apply level data
-	//DeveloperSettingsAsStruct = PlayerDataAsStruct;
+	LevelData = LevelDataAsStruct;
 }

@@ -13,28 +13,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LOSTWORLD_Variables_generated_h
 
-#define LostWorld_Source_LostWorld_Variables_h_143_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_167_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FCard_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FCard>();
 
-#define LostWorld_Source_LostWorld_Variables_h_125_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_149_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FEntityBaseStats_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FEntityBaseStats>();
 
-#define LostWorld_Source_LostWorld_Variables_h_103_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_121_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FLevelDataAsStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> LOSTWORLD_API UScriptStruct* StaticStruct<struct FLevelDataAsStruct>();
 
-#define LostWorld_Source_LostWorld_Variables_h_65_GENERATED_BODY \
+#define LostWorld_Source_LostWorld_Variables_h_73_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FFloorDataAsStruct_Statics; \
 	static class UScriptStruct* StaticStruct();
 

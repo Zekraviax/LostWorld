@@ -56,6 +56,14 @@ struct LOSTWORLD_API FRoomDataAsStruct
 		MaximumLength = 4;
 		MaximumWidth = 4;
 	}
+
+	FORCEINLINE bool operator==(const FRoomDataAsStruct& OtherStruct) const
+	{
+		return this->MinimumLength == OtherStruct.MinimumLength &&
+			this->MinimumWidth == OtherStruct.MinimumWidth &&
+			this->MaximumLength == OtherStruct.MaximumLength &&
+			this->MaximumWidth == OtherStruct.MaximumWidth;
+	}
 };
 
 
@@ -94,6 +102,16 @@ struct LOSTWORLD_API FFloorDataAsStruct
 		MaximumWidth = 40;
 		Layout = EFloorLayouts::FourSquares;
 	}
+
+	FORCEINLINE bool operator==(const FFloorDataAsStruct& OtherStruct) const
+	{
+		return this->MinimumLength == OtherStruct.MinimumLength &&
+			this->MinimumWidth == OtherStruct.MinimumWidth &&
+			this->MaximumLength == OtherStruct.MaximumLength &&
+			this->MaximumWidth == OtherStruct.MaximumWidth &&
+			this->Layout == OtherStruct.Layout &&
+			this->RoomDataAsStructsArray == OtherStruct.RoomDataAsStructsArray;
+	}
 };
 
 
@@ -114,6 +132,12 @@ struct LOSTWORLD_API FLevelDataAsStruct
 	FLevelDataAsStruct()
 	{
 		StairsGoUp = true;
+	}
+
+	FORCEINLINE bool operator==(const FLevelDataAsStruct& OtherStruct) const
+	{
+		return this->StairsGoUp == OtherStruct.StairsGoUp &&
+			this->FloorDataAsStruct == OtherStruct.FloorDataAsStruct;
 	}
 };
 

@@ -1,0 +1,12 @@
+{
+	"stairsGoUp": true,
+	"floorDataAsStruct":
+	{
+		"minimumLength": 20,
+		"minimumWidth": 20,
+		"maximumLength": 40,
+		"maximumWidth": 40,
+		"layout": "FourSquares",
+		"roomDataAsStructsArray": []
+	}
+}

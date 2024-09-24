@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "Variables.h"
 #include "SaveGameLevelData.generated.h"
 
 
@@ -13,6 +14,8 @@ class LOSTWORLD_API USaveGameLevelData : public USaveGame
 
 public:
 	// ---------------------------------------- Variables ---------------------------------------- //
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FLevelDataAsStruct LevelData;
 	
 	// ---------------------------------------- Functions ---------------------------------------- //
 	// Fallback function.

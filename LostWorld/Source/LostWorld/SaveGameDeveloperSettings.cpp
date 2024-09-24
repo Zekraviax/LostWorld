@@ -53,11 +53,11 @@ void USaveGameDeveloperSettings::LoadDeveloperSettingsFromJson()
 
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
 	PlayerDataSaveFilePath.Append(PlayerSaveDataFileName);
-	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *PlayerDataSaveFilePath);
+	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Save Data Folder: %s"), *PlayerDataSaveFilePath);
 	
 	if (!FileManager.FileExists(*PlayerDataSaveFilePath)) {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not find Player's data."));
-		return;
+		UE_LOG(LogTemp, Error, TEXT("Error: Could not find Developer Settings. Attempting to create data now."));
+		SaveDeveloperSettingsToJson();
 	}
 
 	FString PlayerDataAsJson;

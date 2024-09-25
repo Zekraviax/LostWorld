@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "LostWorldGameModeBase.h"
+#include "Variables.h"
 #include "LostWorldGameModeBattle.generated.h"
 
 
@@ -17,15 +18,23 @@ class LOSTWORLD_API ALostWorldGameModeBattle : public ALostWorldGameModeBase
 
 public:
 	// ---------------------------------------- Variables ---------------------------------------- //
+	// Keep a reference to the SaveGame so it only needs to be spawned once per level.
+	// Shouldn't be kept alive for an entire play session because players might visit
+	// multiple levels in a single session.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameLevelData* LevelDataSaveGameReference;
+
+	// This is the temporary copy of the level data JSON.
+	// Variables rolled during level generated will be stored in this copy of the JSON-as-Struct variable.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FLevelDataAsStruct LevelDataCopy;
 
 	// ---------------------------------------- Functions ---------------------------------------- //
 	
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.
 		// It will also handle as much input as possible:
 			// For example, the player tells the game mode when they want to play a card,
-			// and the game mode will handle the rest
+			// and the game mode will handle the rest.
 		// The GameModeBattle will also handle level generation since the game will transition seamlessly,
 		// between level exploration and battles.
 
@@ -61,6 +70,10 @@ public:
 		// The north-south dimension will be called 'Length' and 'X'.
 		// The east-west dimension will be called 'Width' and 'Y'.
 
+	// Step Zero: Get the level JSON.
 	UFUNCTION(BlueprintCallable)
 	void LoadLevelData();
+
+	// From Step One, each level Layout will have their own function.
+	void GenerateLevelLayoutFourSquares();
 };

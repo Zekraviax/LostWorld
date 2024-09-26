@@ -5,6 +5,10 @@
 #include "Variables.generated.h"
 
 
+// Forward declarations
+class AActorGridTile;
+
+
 // ---------------------------------------- Enums ---------------------------------------- //
 
 // -------------------------------- Levels

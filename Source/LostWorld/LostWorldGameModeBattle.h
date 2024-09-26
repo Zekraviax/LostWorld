@@ -8,6 +8,7 @@
 
 
 // Forward declarations
+class AActorGridTile;
 class USaveGameLevelData;
 
 
@@ -29,8 +30,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FLevelDataAsStruct LevelDataCopy;
 
+	// Must be assigned in the editor first.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AActorGridTile> ActorGridTileBlueprintClass;
+
 	// ---------------------------------------- Functions ---------------------------------------- //
-	
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.
 		// It will also handle as much input as possible:
 			// For example, the player tells the game mode when they want to play a card,

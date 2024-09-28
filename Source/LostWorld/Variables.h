@@ -67,6 +67,22 @@ struct LOSTWORLD_API FIntVector2D
 
 // -------------------------------- Levels
 USTRUCT(BlueprintType)
+struct LOSTWORLD_API FCorridorDataAsStruct
+{
+	GENERATED_BODY()
+
+	// Each corridor grid tile coordinate.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FIntVector2D> GridTileCoordinates;
+
+	FORCEINLINE bool operator==(const FCorridorDataAsStruct& OtherStruct) const
+	{
+		return this->GridTileCoordinates == OtherStruct.GridTileCoordinates;
+	}
+};
+
+
+USTRUCT(BlueprintType)
 struct LOSTWORLD_API FRoomDataAsStruct
 {
 	GENERATED_BODY()
@@ -102,8 +118,8 @@ struct LOSTWORLD_API FRoomDataAsStruct
 
 	FRoomDataAsStruct()
 	{
-		MinimumLength = 2;
-		MinimumWidth = 2;
+		MinimumLength = 3;
+		MinimumWidth = 3;
 		MaximumLength = 4;
 		MaximumWidth = 4;
 		BottomLeftBoundary = FIntVector2D(1, 1);
@@ -168,18 +184,25 @@ struct LOSTWORLD_API FFloorDataAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FRoomDataAsStruct> RoomDataAsStructsArray;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCorridorDataAsStruct> CorridorDataAsStructsArray;
+
 	FFloorDataAsStruct()
 	{
-		MinimumLength = 20;
-		MinimumWidth = 20;
-		MaximumLength = 40;
-		MaximumWidth = 40;
+		MinimumLength = 18;
+		MinimumWidth = 18;
+		MaximumLength = 28;
+		MaximumWidth = 28;
 		BottomLeftBoundary = FIntVector2D(1, 1);
 		BottomRightBoundary = FIntVector2D(1, 1);
 		TopLeftBoundary = FIntVector2D(1, 1);
 		TopRightBoundary = FIntVector2D(1, 1);
 		Layout = EFloorLayouts::FourSquares;
 		RoomDataAsStructsArray.Add(FRoomDataAsStruct());
+		CorridorDataAsStructsArray = { FCorridorDataAsStruct(),
+									FCorridorDataAsStruct(),
+									FCorridorDataAsStruct(),
+									FCorridorDataAsStruct(), };
 	}
 
 	FORCEINLINE bool operator==(const FFloorDataAsStruct& OtherStruct) const
@@ -193,7 +216,8 @@ struct LOSTWORLD_API FFloorDataAsStruct
 			this->TopLeftBoundary == OtherStruct.TopLeftBoundary &&
 			this->TopRightBoundary == OtherStruct.TopRightBoundary &&
 			this->Layout == OtherStruct.Layout &&
-			this->RoomDataAsStructsArray == OtherStruct.RoomDataAsStructsArray;
+			this->RoomDataAsStructsArray == OtherStruct.RoomDataAsStructsArray &&
+			this->CorridorDataAsStructsArray == OtherStruct.CorridorDataAsStructsArray;
 	}
 };
 
@@ -253,7 +277,7 @@ struct LOSTWORLD_API FCard
 	FString DisplayName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
-	int BaseCost; // Use a different variable for the total cost (after any changes to the base cost)
+	int BaseCost; // Use a different variable for the total cost (the cost after any changes to the base cost.)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	TArray<ECardTypes> CardTypes; // Should be added to the array in the order that they're written on the card.

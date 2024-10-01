@@ -94,6 +94,11 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 		// Currently, there aren't any checks that the rooms are generated outside of the level boundaries.
 		// We can 'assign' rooms to quadrants by putting the top-right corner into a quadrant
 		// and calculating the other boundaries using the top-right corner.
+
+		// Room 3 is the room in the top-right quadrant.
+		// Room 2 is the room in the top-left quadrant.
+		// Room 1 is the room in the bottom-right quadrant.
+		// Room 0 is the room in the bottom-left quadrant.
 		if (RoomCount == 3) {
 			LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.X =
 				FMath::RandRange(FMath::CeilToInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.X / 2) + 2 + CalculatedLengthAndWidth, LevelDataCopy.FloorDataAsStruct.TopRightBoundary.X);
@@ -153,6 +158,110 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				WidthCount++) {
 				GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
 					FVector(LengthCount * 200, WidthCount * 200, 0),
+					FRotator::ZeroRotator,
+					SpawnParameters);
+			}
+		}
+	}
+
+	// Generate four corridors that connect the four rooms.
+	for (int CorridorCount = 0; CorridorCount < LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray.Num(); CorridorCount++) {
+		// Corridors will be listed and generated in clockwise order.
+		// Corridor 0 = Bridge between the top two rooms.
+		// Corridor 1 = Bridge between the right two rooms.
+		// Corridor 2 = Bridge between the bottom two rooms.
+		// Corridor 3 = Bridge between the left two rooms.
+		FIntVector2D CorridorFirstHalfStartingPoint;
+		FIntVector2D CorridorSecondHalfStartingPoint;
+
+		// The distance between rooms should not include room tiles.
+		int YAxisDistanceBetweenRooms = 0;
+		int XAxisDistanceBetweenRooms = 0;
+		
+		if (CorridorCount == 0) {
+			// Get the boundaries of the two rooms that the corridor should be spawned between in order to get the corridor starting points.
+			// RoomDataAsStructsArray[2] = Top-left Quadrant Room
+			// The Top-Right.X coordinate and Bottom-Right.X coordinates are the same.
+			// Get a random integer for the Right.Y coordinate.
+			CorridorFirstHalfStartingPoint.X = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[2].BottomRightBoundary.X;
+			CorridorFirstHalfStartingPoint.Y = FMath::RandRange(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[2].BottomRightBoundary.Y,
+				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[2].TopRightBoundary.Y);
+
+			// RoomDataAsStructsArray[3] = Top-right Quadrant Room
+			// The Top-Left.X coordinate and Bottom-Left.X coordinates are the same.
+			// Get a random integer for the Left.Y coordinate.
+			CorridorSecondHalfStartingPoint.X = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[3].BottomLeftBoundary.X;
+			CorridorSecondHalfStartingPoint.Y = FMath::RandRange(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[3].BottomLeftBoundary.Y,
+				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[3].TopLeftBoundary.Y);
+
+			DualLog("Corridor " + FString::FromInt(CorridorCount) + " first half starting point " +
+				FString::FromInt(CorridorFirstHalfStartingPoint.X) + ", " +
+				FString::FromInt(CorridorFirstHalfStartingPoint.Y));
+
+			DualLog("Corridor " + FString::FromInt(CorridorCount) + " second half starting point " +
+				FString::FromInt(CorridorSecondHalfStartingPoint.X) + ", " +
+				FString::FromInt(CorridorSecondHalfStartingPoint.Y));
+
+			// Calculate the distance between rooms.
+			// For the top and bottom corridors, use the Y axis first.
+			// Use absolute values to avoid adding complexity.
+			XAxisDistanceBetweenRooms = abs(CorridorFirstHalfStartingPoint.Y - CorridorSecondHalfStartingPoint.Y);
+			DualLog("X-Axis distance between rooms: " + FString::FromInt(XAxisDistanceBetweenRooms));
+
+			// If the distance between rooms is zero, do nothing.
+			// If the distance between rooms is one, just spawn a single tile in the corridor.
+			// If the distance between rooms is two or more, spawn tiles alternatively between either side of the corridor
+			// until they meet on one axis, then spawn tiles on the other axis until they meet properly and can be traversed.
+			if (XAxisDistanceBetweenRooms == 1) {
+				CorridorFirstHalfStartingPoint.Y++;
+				LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+					CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+			} else if (XAxisDistanceBetweenRooms > 1) {
+				// First half of the corridor generation:
+				// Spawn two separate halves of the corridor that meet on one axis, but not both axes.
+				while (XAxisDistanceBetweenRooms > 0) {
+					if (XAxisDistanceBetweenRooms % 2 == 0) {
+						CorridorFirstHalfStartingPoint.Y++;
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+							CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+					} else {
+						CorridorSecondHalfStartingPoint.Y--;
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+							CorridorSecondHalfStartingPoint.X, CorridorSecondHalfStartingPoint.Y));
+					}
+					
+					XAxisDistanceBetweenRooms--;
+				}
+
+				// Second half of the corridor generation:
+				// Bridging the gap between the two halves of the corridor, if there is a gap
+				YAxisDistanceBetweenRooms = abs(CorridorFirstHalfStartingPoint.X - CorridorSecondHalfStartingPoint.X);
+				DualLog("Y-Axis distance between rooms: " + FString::FromInt(XAxisDistanceBetweenRooms));
+
+				if (YAxisDistanceBetweenRooms == 1) {
+					CorridorFirstHalfStartingPoint.X++;
+					LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+						CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+				} else if (YAxisDistanceBetweenRooms > 1) {
+					while (YAxisDistanceBetweenRooms > 0) {
+						if (YAxisDistanceBetweenRooms % 2 == 0) {
+							CorridorFirstHalfStartingPoint.X--;
+							LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+								CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+						} else {
+							CorridorSecondHalfStartingPoint.X++;
+							LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.Add(FIntVector2D(
+								CorridorSecondHalfStartingPoint.X, CorridorSecondHalfStartingPoint.Y));
+						}
+					
+						YAxisDistanceBetweenRooms--;
+					}
+				}
+			}
+
+			for (FIntVector2D Coordinate : LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates) {
+				GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
+					FVector(Coordinate.X * 200, Coordinate.Y * 200, 0),
 					FRotator::ZeroRotator,
 					SpawnParameters);
 			}

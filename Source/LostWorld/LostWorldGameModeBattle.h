@@ -74,6 +74,11 @@ public:
 		// The north-south dimension will be called 'Length' and 'X'.
 		// The east-west dimension will be called 'Width' and 'Y'.
 
+		// 2024/10/01 Addendum:
+		// In Unreal Engine 4, the X axis runs top-bottom from a birds-eye view of the level
+		// The Y axis runs left-right.
+		// And the Z axis is up-down.
+
 	// Step Zero: Get the level JSON.
 	UFUNCTION(BlueprintCallable)
 	void LoadLevelData();

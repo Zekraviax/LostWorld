@@ -1,0 +1,151 @@
+{
+	"stairsGoUp": true,
+	"floorDataAsStruct":
+	{
+		"minimumLength": 12,
+		"minimumWidth": 12,
+		"maximumLength": 20,
+		"maximumWidth": 20,
+		"bottomLeftBoundary":
+		{
+			"x": 1,
+			"y": 1
+		},
+		"bottomRightBoundary":
+		{
+			"x": 1,
+			"y": 1
+		},
+		"topLeftBoundary":
+		{
+			"x": 1,
+			"y": 1
+		},
+		"topRightBoundary":
+		{
+			"x": 1,
+			"y": 1
+		},
+		"layout": "FourSquares",
+		"roomDataAsStructsArray": [
+			{
+				"minimumLength": 3,
+				"minimumWidth": 3,
+				"maximumLength": 4,
+				"maximumWidth": 4,
+				"bottomLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"bottomRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				}
+			},
+			{
+				"minimumLength": 3,
+				"minimumWidth": 3,
+				"maximumLength": 4,
+				"maximumWidth": 4,
+				"bottomLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"bottomRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				}
+			},
+			{
+				"minimumLength": 3,
+				"minimumWidth": 3,
+				"maximumLength": 4,
+				"maximumWidth": 4,
+				"bottomLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"bottomRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				}
+			},
+			{
+				"minimumLength": 3,
+				"minimumWidth": 3,
+				"maximumLength": 4,
+				"maximumWidth": 4,
+				"bottomLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"bottomRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topLeftBoundary":
+				{
+					"x": 1,
+					"y": 1
+				},
+				"topRightBoundary":
+				{
+					"x": 1,
+					"y": 1
+				}
+			}
+		],
+		"corridorDataAsStructsArray": [
+			{
+				"gridTileCoordinates": []
+			},
+			{
+				"gridTileCoordinates": []
+			},
+			{
+				"gridTileCoordinates": []
+			},
+			{
+				"gridTileCoordinates": []
+			}
+		]
+	}
+}

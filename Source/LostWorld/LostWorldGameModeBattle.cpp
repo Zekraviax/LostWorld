@@ -25,7 +25,7 @@ void ALostWorldGameModeBattle::LoadLevelData()
 		LevelDataSaveGameReference->LoadLevelDataFromJson();
 	}
 
-	// Create a copy of the LevelData variable for editing and assigining variables.
+	// Create a copy of the LevelData variable for editing and assigning variables.
 	LevelDataCopy = LevelDataSaveGameReference->LevelData;
 
 	// Randomly generate the boundaries of the level.

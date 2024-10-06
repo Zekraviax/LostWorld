@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Variables.h"
 #include "ActorEntityBase.generated.h"
 
 
@@ -24,4 +25,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+// ---------------------------------------- Variables ---------------------------------------- //
+
+// -------------------------------- Cards & Deck
+	UPROPERTY()
+	TArray<FCard> Deck;
 };

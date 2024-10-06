@@ -16,11 +16,11 @@ class LOSTWORLD_API ULostWorldGameInstanceBase : public UGameInstance
 	GENERATED_BODY()
 
 public:
-	// ---------------------------------------- Variables ---------------------------------------- //
+// ---------------------------------------- Variables ---------------------------------------- //
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameDeveloperSettings* DeveloperSettingsSaveGame;
 
 
-	// ---------------------------------------- Functions ---------------------------------------- //
+// ---------------------------------------- Functions ---------------------------------------- //
 	virtual void Init() override;
 };

@@ -8,6 +8,7 @@
 
 
 // Forward declarations
+class AActorEntityPlayer;
 class AActorGridTile;
 class USaveGameLevelData;
 
@@ -18,7 +19,7 @@ class LOSTWORLD_API ALostWorldGameModeBattle : public ALostWorldGameModeBase
 	GENERATED_BODY()
 
 public:
-	// ---------------------------------------- Variables ---------------------------------------- //
+// ---------------------------------------- Variables ---------------------------------------- //
 	// Keep a reference to the SaveGame so it only needs to be spawned once per level.
 	// Shouldn't be kept alive for an entire play session because players might visit
 	// multiple levels in a single session.
@@ -34,7 +35,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AActorGridTile> ActorGridTileBlueprintClass;
 
-	// ---------------------------------------- Functions ---------------------------------------- //
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AActorEntityPlayer> ActorEntityPlayerBlueprintClass;
+
+// ---------------------------------------- Functions ---------------------------------------- //
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.
 		// It will also handle as much input as possible:
 			// For example, the player tells the game mode when they want to play a card,
@@ -81,7 +85,7 @@ public:
 
 	// Step Zero: Get the level JSON.
 	UFUNCTION(BlueprintCallable)
-	void LoadLevelData();
+	void GenerateLevelAndSpawnEverything();
 
 	// From Step One, each level Layout will have their own function.
 	void GenerateLevelLayoutFourSquares();

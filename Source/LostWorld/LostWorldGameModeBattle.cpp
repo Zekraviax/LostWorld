@@ -1,8 +1,10 @@
 #include "LostWorldGameModeBattle.h"
 
 
+#include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
 #include "Kismet/GameplayStatics.h"
+#include "LostWorldPlayerControllerBase.h"
 #include "SaveGameLevelData.h"
 
 
@@ -14,7 +16,7 @@ void ALostWorldGameModeBattle::PreBattleShuffleDecks()
 
 
 // -------------------------------- Level Generation
-void ALostWorldGameModeBattle::LoadLevelData()
+void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 {
 	if (!LevelDataSaveGameReference) {
 		LevelDataSaveGameReference = Cast<USaveGameLevelData>(UGameplayStatics::CreateSaveGameObject(USaveGameLevelData::StaticClass()));
@@ -42,7 +44,7 @@ void ALostWorldGameModeBattle::LoadLevelData()
 	DualLog("Level top right boundary: " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.X) +
 		", " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.Y));
 
-	// The rest of the level generation depends on the layout.
+	// Generate the layout of the rooms and corridors.
 	switch (LevelDataCopy.FloorDataAsStruct.Layout)
 	{
 		case EFloorLayouts::FourSquares:
@@ -52,6 +54,59 @@ void ALostWorldGameModeBattle::LoadLevelData()
 			// The FourSquares layout will be used as the default.
 			GenerateLevelLayoutFourSquares();
 			break;
+	}
+	
+	// Once all of the GridTiles are spawned, we can spawn everything else, including but not limited to:
+	// The player, enemies, the stairs, treasure chests.
+
+	// Get all of the room GridTiles and add them to an array.
+	// When something is spawned, remove that GridTile from the array,
+	// so that everything can be spawned on a unique tile.
+	TArray<AActorGridTile*> ValidSpawnTilesArray;
+	const FActorSpawnParameters SpawnParameters;
+	
+	for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
+		for (int TileCount = 0; TileCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Num(); TileCount++) {
+			ValidSpawnTilesArray.Add(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom[TileCount]);
+		}
+	}
+
+	for (int CorridorCount = 0; CorridorCount < LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray.Num(); CorridorCount++) {
+		for (int TileCount = 0; TileCount < LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor.Num(); TileCount++) {
+			ValidSpawnTilesArray.Add(LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor[TileCount]);
+		}
+	}
+
+	// List of things to spawn and their indices;
+	// (Use only one index for things that come in multiples (e.g. enemies))
+	// 0 = The Player
+	// 1 = The Stairs
+	for (int SpawnIndex = 0; SpawnIndex < 1; SpawnIndex++) {
+		int RandomArrayIndex = FMath::RandRange(0, ValidSpawnTilesArray.Num() - 1);
+		AActorGridTile* RandomGridTile = ValidSpawnTilesArray[RandomArrayIndex];
+
+		switch (SpawnIndex)
+		{
+			case 0:
+			{
+				AActorEntityPlayer* PlayerEntityReference = GetWorld()->SpawnActor<AActorEntityPlayer>(ActorEntityPlayerBlueprintClass,
+				FVector(RandomGridTile->GetActorLocation().X, RandomGridTile->GetActorLocation().Y, 0),
+				FRotator::ZeroRotator,
+				SpawnParameters);
+
+				// Set Camera Target
+				FViewTargetTransitionParams Params;
+				GetWorld()->GetFirstPlayerController()->SetViewTarget(PlayerEntityReference, Params); // This line isn't multiplayer safe
+				PlayerEntityReference->Camera->SetActive(true);
+
+				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
+				break;
+			}
+			default:
+				break;
+		}
+
+		ValidSpawnTilesArray.RemoveAt(RandomArrayIndex);
 	}
 }
 
@@ -158,10 +213,12 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			for (int WidthCount = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y;
 				WidthCount <= LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y;
 				WidthCount++) {
-				GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
+				
+				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Add(
+					GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
 					FVector(LengthCount * 200, WidthCount * 200, 0),
 					FRotator::ZeroRotator,
-					SpawnParameters);
+					SpawnParameters));
 				}
 			}
 	}
@@ -180,8 +237,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 		FIntVector2D CorridorSecondHalfStartingPoint;
 
 		// The distance between rooms should not include room tiles.
-		int YAxisDistanceBetweenRooms = 0;
-		int XAxisDistanceBetweenRooms = 0;
+		int YAxisDistanceBetweenRooms, XAxisDistanceBetweenRooms;
 		
 		if (CorridorCount == 0) {
 			// Get the boundaries of the two rooms that the corridor should be spawned between in order to get the corridor starting points.
@@ -242,13 +298,13 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[2].TopLeftBoundary.Y);
 		}
 
-		/*DualLog("Corridor " + FString::FromInt(CorridorCount) + " first half starting point " +
+		DualLog("Corridor " + FString::FromInt(CorridorCount) + " first half starting point " +
 			FString::FromInt(CorridorFirstHalfStartingPoint.X) + ", " +
 			FString::FromInt(CorridorFirstHalfStartingPoint.Y));
 
 		DualLog("Corridor " + FString::FromInt(CorridorCount) + " second half starting point " +
 			FString::FromInt(CorridorSecondHalfStartingPoint.X) + ", " +
-			FString::FromInt(CorridorSecondHalfStartingPoint.Y));*/
+			FString::FromInt(CorridorSecondHalfStartingPoint.Y));
 
 		// Calculate the distance between rooms.
 		if (CorridorCount == 0 || CorridorCount == 2) {
@@ -328,7 +384,8 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 					FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
 				}
 			}
-		} else if (CorridorCount == 1 || CorridorCount == 3) {
+		}
+		/*else if (CorridorCount == 1 || CorridorCount == 3) {
 			// Calculate the distance between rooms.
 			// For the left and right corridors, use the X axis first.
 			
@@ -350,8 +407,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				CorridorFirstHalfStartingPoint.X++;
 				LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
 					FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
-			} else if (XAxisDistanceBetweenRooms > 1)
-			{
+			} else if (XAxisDistanceBetweenRooms > 1) {
 				// If the distance is greater than one, alternate between calculating the next set of coordinates starting
 				// from the first half starting point and the second half starting point.
 				while (XAxisDistanceBetweenRooms >= 0) {
@@ -410,10 +466,10 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			
 		// For each set of coordinates in the corridor, spawn a GridTile actor there.
 		for (FIntVector2D Coordinate : LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates) {
-			GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
+			LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor.Add(GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
 				FVector(Coordinate.X * 200, Coordinate.Y * 200, 0),
 				FRotator::ZeroRotator,
-				SpawnParameters);
-		}
+				SpawnParameters));
+		}*/
 	}
 }

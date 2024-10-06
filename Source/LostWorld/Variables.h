@@ -75,9 +75,13 @@ struct LOSTWORLD_API FCorridorDataAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FIntVector2D> GridTileCoordinates;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<AActorGridTile*> GridTilesInCorridor;
+
 	FORCEINLINE bool operator==(const FCorridorDataAsStruct& OtherStruct) const
 	{
-		return this->GridTileCoordinates == OtherStruct.GridTileCoordinates;
+		return this->GridTileCoordinates == OtherStruct.GridTileCoordinates &&
+				this->GridTilesInCorridor == OtherStruct.GridTilesInCorridor;
 	}
 };
 
@@ -116,6 +120,9 @@ struct LOSTWORLD_API FRoomDataAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FIntVector2D TopRightBoundary;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<AActorGridTile*> GridTilesInRoom;
+
 	FRoomDataAsStruct()
 	{
 		MinimumLength = 3;
@@ -137,7 +144,8 @@ struct LOSTWORLD_API FRoomDataAsStruct
 			this->BottomLeftBoundary == OtherStruct.BottomLeftBoundary &&
 			this->BottomRightBoundary == OtherStruct.BottomRightBoundary &&
 			this->TopLeftBoundary == OtherStruct.TopLeftBoundary &&
-			this->TopRightBoundary == OtherStruct.TopRightBoundary;
+			this->TopRightBoundary == OtherStruct.TopRightBoundary &&
+			this->GridTilesInRoom == OtherStruct.GridTilesInRoom;
 	}
 };
 
@@ -302,7 +310,7 @@ public:
 	Variables();
 	~Variables();
 
-	// ---------------------------------------- Constants ---------------------------------------- //
+// ---------------------------------------- Constants ---------------------------------------- //
 	// The size of a GridTile in Unreal Engine units.
 	int GridTileWidth = 100;
 	int GridTileLength = 100;

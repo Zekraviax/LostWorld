@@ -71,12 +71,6 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 		}
 	}
 
-	for (int CorridorCount = 0; CorridorCount < LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray.Num(); CorridorCount++) {
-		for (int TileCount = 0; TileCount < LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor.Num(); TileCount++) {
-			ValidSpawnTilesArray.Add(LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor[TileCount]);
-		}
-	}
-
 	// List of things to spawn and their indices;
 	// (Use only one index for things that come in multiples (e.g. enemies))
 	// 0 = The Player
@@ -371,21 +365,25 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
 				FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
 			} else if (XAxisDistanceBetweenRooms > 1 || XAxisDistanceBetweenRooms < -1) {
-				while (XAxisDistanceBetweenRooms != 0) {
-					if (XAxisDistanceBetweenRooms > 1) {
-						XAxisDistanceBetweenRooms--;
+				if (XAxisDistanceBetweenRooms > 1) {
+					for (int XLoop = XAxisDistanceBetweenRooms; XLoop > 0; XLoop--) {
+						//XAxisDistanceBetweenRooms--;
 						CorridorFirstHalfStartingPoint.X--;
-					} else {
-						XAxisDistanceBetweenRooms++;
-						CorridorFirstHalfStartingPoint.X++;
+						
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
+						FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
 					}
+				} else {
+					for (int XLoop = XAxisDistanceBetweenRooms; XLoop < 0; XLoop++) {
+						//XAxisDistanceBetweenRooms++;
+						CorridorFirstHalfStartingPoint.X++;
 
-					LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
-					FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
+						FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+					}
 				}
 			}
-		}
-		/*else if (CorridorCount == 1 || CorridorCount == 3) {
+		} else if (CorridorCount == 1 || CorridorCount == 3) {
 			// Calculate the distance between rooms.
 			// For the left and right corridors, use the X axis first.
 			
@@ -449,7 +447,25 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
 				FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
 			} else if (YAxisDistanceBetweenRooms > 1 || YAxisDistanceBetweenRooms < -1) {
-				while (YAxisDistanceBetweenRooms != 0) {
+				if (YAxisDistanceBetweenRooms > 1) {
+					for (int YLoop = YAxisDistanceBetweenRooms; YLoop > 0; YLoop--) {
+						//YAxisDistanceBetweenRooms--;
+						CorridorFirstHalfStartingPoint.Y--;
+						
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
+						FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+					}
+				} else {
+					for (int YLoop = YAxisDistanceBetweenRooms; YLoop < 0; YLoop++) {
+						//YAxisDistanceBetweenRooms++;
+						CorridorFirstHalfStartingPoint.Y++;
+
+						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
+						FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
+					}
+				}
+				
+				/*while (YAxisDistanceBetweenRooms != 0) {
 					if (YAxisDistanceBetweenRooms > 1) {
 						YAxisDistanceBetweenRooms--;
 						CorridorFirstHalfStartingPoint.Y--;
@@ -460,7 +476,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 
 					LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
 					FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
-				}
+				}*/
 			}
 		}
 			
@@ -470,6 +486,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				FVector(Coordinate.X * 200, Coordinate.Y * 200, 0),
 				FRotator::ZeroRotator,
 				SpawnParameters));
-		}*/
+		}
 	}
 }

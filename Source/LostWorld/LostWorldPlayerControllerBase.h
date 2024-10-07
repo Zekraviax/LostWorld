@@ -28,5 +28,8 @@ protected:
 
 public:
 // -------------------------------- Basic movement
-	void PlayerMoveNorth();	
+	void PlayerMoveNorth();
+	void PlayerMoveSouth();
+	void PlayerMoveEast();
+	void PlayerMoveWest();
 };

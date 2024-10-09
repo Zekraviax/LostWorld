@@ -18,6 +18,7 @@ void ALostWorldGameModeBattle::PreBattleShuffleDecks()
 // -------------------------------- Level Generation
 void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 {
+	// If the Level data doesn't exist, create it (with default values.)
 	if (!LevelDataSaveGameReference) {
 		LevelDataSaveGameReference = Cast<USaveGameLevelData>(UGameplayStatics::CreateSaveGameObject(USaveGameLevelData::StaticClass()));
 	}
@@ -102,7 +103,10 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 			case 2:
 				for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
 					for (int EncounterCount = 0; EncounterCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].EnemyEncounterRowNames.Num(); EncounterCount++) {
-						
+						RandomArrayIndex = FMath::RandRange(0, ValidSpawnTilesArray.Num() - 1);
+						RandomGridTile = ValidSpawnTilesArray[RandomArrayIndex];
+						RandomGridTile->Encounter = *EncounterDataTable->FindRow<FEncounter>(
+							LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].EnemyEncounterRowNames[EncounterCount], "");
 					}
 				}
 				break;

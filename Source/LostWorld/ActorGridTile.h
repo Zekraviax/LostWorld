@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Variables.h"
 #include "ActorGridTile.generated.h"
 
 
@@ -23,4 +24,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	
+// ---------------------------------------- Variables ---------------------------------------- //
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FEncounter Encounter;
+
+
+// ---------------------------------------- Functions ---------------------------------------- //
+	// void SetGridTileColour();
 };

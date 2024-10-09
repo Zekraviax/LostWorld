@@ -26,6 +26,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameLevelData* LevelDataSaveGameReference;
 
+	// TSharedPtrs can't have UPROPERTYs
+	TSharedPtr<FJsonObject> LevelDataAsJson;
+	
 	// This is the temporary copy of the level data JSON.
 	// Variables rolled during level generated will be stored in this copy of the JSON-as-Struct variable.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

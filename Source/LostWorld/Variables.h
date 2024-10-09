@@ -225,7 +225,10 @@ struct LOSTWORLD_API FFloorDataAsStruct
 		TopLeftBoundary = FIntVector2D(1, 1);
 		TopRightBoundary = FIntVector2D(1, 1);
 		Layout = EFloorLayouts::FourSquares;
-		RoomDataAsStructsArray.Add(FRoomDataAsStruct());
+		RoomDataAsStructsArray = { FRoomDataAsStruct(),
+									FRoomDataAsStruct(),
+									FRoomDataAsStruct(),
+									FRoomDataAsStruct() };
 		CorridorDataAsStructsArray = { FCorridorDataAsStruct(),
 									FCorridorDataAsStruct(),
 									FCorridorDataAsStruct(),

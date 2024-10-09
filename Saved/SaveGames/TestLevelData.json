@@ -2,10 +2,10 @@
 	"stairsGoUp": true,
 	"floorDataAsStruct":
 	{
-		"minimumLength": 12,
-		"minimumWidth": 12,
-		"maximumLength": 20,
-		"maximumWidth": 20,
+		"minimumLength": 18,
+		"minimumWidth": 18,
+		"maximumLength": 28,
+		"maximumWidth": 28,
 		"bottomLeftBoundary":
 		{
 			"x": 1,
@@ -52,7 +52,9 @@
 				{
 					"x": 1,
 					"y": 1
-				}
+				},
+				"gridTilesInRoom": [],
+				"enemyEncounterRowNames": []
 			},
 			{
 				"minimumLength": 3,
@@ -78,7 +80,9 @@
 				{
 					"x": 1,
 					"y": 1
-				}
+				},
+				"gridTilesInRoom": [],
+				"enemyEncounterRowNames": []
 			},
 			{
 				"minimumLength": 3,
@@ -104,7 +108,9 @@
 				{
 					"x": 1,
 					"y": 1
-				}
+				},
+				"gridTilesInRoom": [],
+				"enemyEncounterRowNames": []
 			},
 			{
 				"minimumLength": 3,
@@ -130,21 +136,27 @@
 				{
 					"x": 1,
 					"y": 1
-				}
+				},
+				"gridTilesInRoom": [],
+				"enemyEncounterRowNames": []
 			}
 		],
 		"corridorDataAsStructsArray": [
 			{
-				"gridTileCoordinates": []
+				"gridTileCoordinates": [],
+				"gridTilesInCorridor": []
 			},
 			{
-				"gridTileCoordinates": []
+				"gridTileCoordinates": [],
+				"gridTilesInCorridor": []
 			},
 			{
-				"gridTileCoordinates": []
+				"gridTileCoordinates": [],
+				"gridTilesInCorridor": []
 			},
 			{
-				"gridTileCoordinates": []
+				"gridTileCoordinates": [],
+				"gridTilesInCorridor": []
 			}
 		]
 	}

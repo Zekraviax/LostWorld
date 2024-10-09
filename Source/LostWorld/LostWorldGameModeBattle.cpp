@@ -63,6 +63,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 	// When something is spawned, remove that GridTile from the array,
 	// so that everything can be spawned on a unique tile.
 	TArray<AActorGridTile*> ValidSpawnTilesArray;
+	// ReSharper disable once CppTooWideScope
 	const FActorSpawnParameters SpawnParameters;
 	
 	for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
@@ -75,6 +76,8 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 	// (Use only one index for things that come in multiples (e.g. enemies))
 	// 0 = The Player
 	// 1 = The Stairs
+	// 2 = Enemy encounters
+	// 3 = Treasure chests
 	for (int SpawnIndex = 0; SpawnIndex < 1; SpawnIndex++) {
 		int RandomArrayIndex = FMath::RandRange(0, ValidSpawnTilesArray.Num() - 1);
 		AActorGridTile* RandomGridTile = ValidSpawnTilesArray[RandomArrayIndex];
@@ -96,6 +99,13 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
 				break;
 			}
+			case 2:
+				for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
+					for (int EncounterCount = 0; EncounterCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].EnemyEncounterRowNames.Num(); EncounterCount++) {
+						
+					}
+				}
+				break;
 			default:
 				break;
 		}

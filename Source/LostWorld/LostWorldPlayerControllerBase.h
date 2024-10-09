@@ -22,14 +22,5 @@ public:
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 
-// -------------------------------- Player input
-protected:
-	virtual void SetupInputComponent() override;
 
-public:
-// -------------------------------- Basic movement
-	void PlayerMoveNorth();
-	void PlayerMoveSouth();
-	void PlayerMoveEast();
-	void PlayerMoveWest();
 };

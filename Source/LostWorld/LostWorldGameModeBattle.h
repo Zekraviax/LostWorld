@@ -30,13 +30,19 @@ public:
 	// Variables rolled during level generated will be stored in this copy of the JSON-as-Struct variable.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FLevelDataAsStruct LevelDataCopy;
-
+	
 	// Must be assigned in the editor first.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AActorGridTile> ActorGridTileBlueprintClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AActorEntityPlayer> ActorEntityPlayerBlueprintClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* EncounterDataTable;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* EnemyDataTable;
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.

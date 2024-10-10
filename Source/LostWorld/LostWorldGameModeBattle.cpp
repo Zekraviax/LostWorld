@@ -72,14 +72,14 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 			ValidSpawnTilesArray.Add(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom[TileCount]);
 		}
 	}
-
+	
 	// List of things to spawn and their indices;
 	// (Use only one index for things that come in multiples (e.g. enemies))
 	// 0 = The Player
 	// 1 = The Stairs
 	// 2 = Enemy encounters
 	// 3 = Treasure chests
-	for (int SpawnIndex = 0; SpawnIndex < 1; SpawnIndex++) {
+	for (int SpawnIndex = 0; SpawnIndex < 3; SpawnIndex++) {
 		int RandomArrayIndex = FMath::RandRange(0, ValidSpawnTilesArray.Num() - 1);
 		AActorGridTile* RandomGridTile = ValidSpawnTilesArray[RandomArrayIndex];
 
@@ -101,15 +101,54 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				break;
 			}
 			case 2:
+			{
+				int NumberOfEncounters = 0;
+				FRoomDataAsStruct RandomRoom;
+				bool CoinFlip = true;
+					
+				// Use this Array to randomly generate encounters in randomly chosen rooms,
+				// except for the first randomly chosen room, which will always have an encounter.
+				TArray<int> RoomIndicesArray;	
+				TArray<int> ShuffledRoomIndicesArray = {};
+				
+				// Get all of the room indices in order.
 				for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
-					for (int EncounterCount = 0; EncounterCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].EnemyEncounterRowNames.Num(); EncounterCount++) {
-						RandomArrayIndex = FMath::RandRange(0, ValidSpawnTilesArray.Num() - 1);
-						RandomGridTile = ValidSpawnTilesArray[RandomArrayIndex];
-						RandomGridTile->Encounter = *EncounterDataTable->FindRow<FEncounter>(
-							LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].EnemyEncounterRowNames[EncounterCount], "");
-					}
+					RoomIndicesArray.Add(RoomCount);
 				}
+					
+				// Shuffle up the room integers array into a second array.
+				for (int RandomRoomCount = 0; RandomRoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RandomRoomCount++) {
+					int RandomIndex = RoomIndicesArray[FMath::RandRange(0, RoomIndicesArray.Num() - 1)];
+
+					ShuffledRoomIndicesArray.Add(RandomIndex);
+					RoomIndicesArray.Remove(RandomIndex);
+				}
+
+				// Guarantee at least one encounter in one room.
+				// Use the shuffled room indices array to get the room that the encounter will be spawned in to.
+				// For each other room, randomly decide whether or not to spawn an encounter.
+				for (int EncounterCount = 0; EncounterCount <= ShuffledRoomIndicesArray.Num(); EncounterCount++) {
+					if (NumberOfEncounters > 0) {
+						CoinFlip = FMath::RandBool();
+					}
+
+					if (NumberOfEncounters == 0 || CoinFlip) {
+						RandomRoom = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[ShuffledRoomIndicesArray[0]];
+						RandomArrayIndex = FMath::RandRange(0, RandomRoom.GridTilesInRoom.Num() - 1);
+						RandomGridTile = RandomRoom.GridTilesInRoom[RandomArrayIndex];
+
+						// To-Do: Choose an encounter from the levels' list of possible encounters,
+						// factoring in the current floor and the encounters' minimum and maximum levels.
+						RandomGridTile->Encounter = LevelDataCopy.Encounters[0];
+					}
+
+					// Cap the number of encounters generated to be equal to the number of rooms in the level.
+					ShuffledRoomIndicesArray.RemoveAt(0);
+					NumberOfEncounters++;
+				}
+			
 				break;
+			}
 			default:
 				break;
 		}

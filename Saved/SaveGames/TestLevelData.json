@@ -1,5 +1,12 @@
 {
 	"stairsGoUp": true,
+	"encounters": [
+		{
+			"enemyDataTableRowName": "TestEncounterOne",
+			"minimumFloor": 1,
+			"maximumFloor": 1
+		}
+	],
 	"floorDataAsStruct":
 	{
 		"minimumLength": 18,
@@ -53,8 +60,7 @@
 					"x": 1,
 					"y": 1
 				},
-				"gridTilesInRoom": [],
-				"enemyEncounterRowNames": []
+				"gridTilesInRoom": []
 			},
 			{
 				"minimumLength": 3,
@@ -81,8 +87,7 @@
 					"x": 1,
 					"y": 1
 				},
-				"gridTilesInRoom": [],
-				"enemyEncounterRowNames": []
+				"gridTilesInRoom": []
 			},
 			{
 				"minimumLength": 3,
@@ -109,8 +114,7 @@
 					"x": 1,
 					"y": 1
 				},
-				"gridTilesInRoom": [],
-				"enemyEncounterRowNames": []
+				"gridTilesInRoom": []
 			},
 			{
 				"minimumLength": 3,
@@ -137,8 +141,7 @@
 					"x": 1,
 					"y": 1
 				},
-				"gridTilesInRoom": [],
-				"enemyEncounterRowNames": []
+				"gridTilesInRoom": []
 			}
 		],
 		"corridorDataAsStructsArray": [

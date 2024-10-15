@@ -26,16 +26,18 @@ void ALostWorldPlayerControllerBattle::SetupInputComponent()
 void ALostWorldPlayerControllerBattle::PlayerMoveNorth()
 {
 	if (ControlledPlayerEntity) {
-		int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X + 200;
-		int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y;
+		if (ControlMode == EPlayerControlModes::LevelExploration) {
+			int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X + 200;
+			int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y;
 		
-		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-			AActorGridTile* FoundTile = *Itr;
+			for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+				AActorGridTile* FoundTile = *Itr;
 
-			if (FoundTile) {
-				if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
-					ControlledPlayerEntity->SetActorLocation(FVector(ExpectedXCoordinate, ExpectedYCoordinate, ControlledPlayerEntity->GetActorLocation().Z));
-					break;
+				if (FoundTile) {
+					if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
+						FoundTile->MoveEntityToTile(ControlledPlayerEntity);
+						break;
+					}
 				}
 			}
 		}
@@ -47,16 +49,18 @@ void ALostWorldPlayerControllerBattle::PlayerMoveNorth()
 void ALostWorldPlayerControllerBattle::PlayerMoveSouth()
 {
 	if (ControlledPlayerEntity) {
-		int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X - 200;
-		int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y;
+		if (ControlMode == EPlayerControlModes::LevelExploration) {
+			int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X - 200;
+			int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y;
 		
-		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-			AActorGridTile* FoundTile = *Itr;
+			for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+				AActorGridTile* FoundTile = *Itr;
 
-			if (FoundTile) {
-				if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
-					ControlledPlayerEntity->SetActorLocation(FVector(ExpectedXCoordinate, ExpectedYCoordinate, ControlledPlayerEntity->GetActorLocation().Z));
-					break;
+				if (FoundTile) {
+					if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
+						FoundTile->MoveEntityToTile(ControlledPlayerEntity);
+						break;
+					}
 				}
 			}
 		}
@@ -68,16 +72,18 @@ void ALostWorldPlayerControllerBattle::PlayerMoveSouth()
 void ALostWorldPlayerControllerBattle::PlayerMoveEast()
 {
 	if (ControlledPlayerEntity) {
-		int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X;
-		int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y + 200;
+		if (ControlMode == EPlayerControlModes::LevelExploration) {
+			int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X;
+			int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y + 200;
 		
-		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-			AActorGridTile* FoundTile = *Itr;
+			for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+				AActorGridTile* FoundTile = *Itr;
 
-			if (FoundTile) {
-				if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
-					ControlledPlayerEntity->SetActorLocation(FVector(ExpectedXCoordinate, ExpectedYCoordinate, ControlledPlayerEntity->GetActorLocation().Z));
-					break;
+				if (FoundTile) {
+					if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
+						FoundTile->MoveEntityToTile(ControlledPlayerEntity);
+						break;
+					}
 				}
 			}
 		}
@@ -89,16 +95,18 @@ void ALostWorldPlayerControllerBattle::PlayerMoveEast()
 void ALostWorldPlayerControllerBattle::PlayerMoveWest()
 {
 	if (ControlledPlayerEntity) {
-		int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X;
-		int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y - 200;
+		if (ControlMode == EPlayerControlModes::LevelExploration) {
+			int ExpectedXCoordinate = ControlledPlayerEntity->GetActorLocation().X;
+			int ExpectedYCoordinate = ControlledPlayerEntity->GetActorLocation().Y - 200;
 		
-		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-			AActorGridTile* FoundTile = *Itr;
+			for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+				AActorGridTile* FoundTile = *Itr;
 
-			if (FoundTile) {
-				if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
-					ControlledPlayerEntity->SetActorLocation(FVector(ExpectedXCoordinate, ExpectedYCoordinate, ControlledPlayerEntity->GetActorLocation().Z));
-					break;
+				if (FoundTile) {
+					if (FoundTile->GetActorLocation().X == ExpectedXCoordinate && FoundTile->GetActorLocation().Y == ExpectedYCoordinate) {
+						FoundTile->MoveEntityToTile(ControlledPlayerEntity);
+						break;
+					}
 				}
 			}
 		}

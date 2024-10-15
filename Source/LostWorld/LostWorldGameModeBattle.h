@@ -8,6 +8,7 @@
 
 
 // Forward declarations
+class AActorEntityBase;
 class AActorEntityPlayer;
 class AActorGridTile;
 class USaveGameLevelData;
@@ -42,6 +43,9 @@ public:
 	TSubclassOf<AActorEntityPlayer> ActorEntityPlayerBlueprintClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AActorEntityBase> ActorEntityEnemyBlueprintClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* EncounterDataTable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -55,6 +59,8 @@ public:
 		// The GameModeBattle will also handle level generation since the game will transition seamlessly,
 		// between level exploration and battles.
 
+	// This transition will handle the technical things such as spawning enemies into the world.
+	void TransitionToBattle(const FEncounter& EnemyEncounter);
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:

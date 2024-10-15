@@ -20,6 +20,14 @@ enum class EFloorLayouts : uint8
 };
 
 
+UENUM(BlueprintType)
+enum class EEncounterTypes : uint8
+{
+	None,
+	Enemy
+};
+
+
 // -------------------------------- Cards
 UENUM(BlueprintType)
 enum class ECardTypes : uint8
@@ -44,6 +52,16 @@ enum class ECardFunctions : uint8
 {
 	TestFunctionOne,
 };
+
+
+// -------------------------------- Player
+UENUM(BlueprintType)
+enum class EPlayerControlModes : uint8
+{
+	LevelExploration,
+	Battle
+};
+
 
 
 // ---------------------------------------- Structs ---------------------------------------- //
@@ -192,7 +210,10 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName EnemyDataTableRowName;
+	EEncounterTypes EncounterType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> EnemyDataTableRowNames;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumFloor;
@@ -202,14 +223,16 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 
 	FEncounter()
 	{
-		EnemyDataTableRowName = "TestEncounterOne";
+		EncounterType = EEncounterTypes::None;
+		EnemyDataTableRowNames = {"TestEnemyOne", "TestEnemyOne"};
 		MinimumFloor = 1;
 		MaximumFloor = 1;
 	}
 
 	FORCEINLINE bool operator==(const FEncounter& OtherStruct) const
 	{
-		return this->EnemyDataTableRowName == OtherStruct.EnemyDataTableRowName &&
+		return this->EncounterType == OtherStruct.EncounterType &&
+				this->EnemyDataTableRowNames == OtherStruct.EnemyDataTableRowNames &&
 				this->MinimumFloor == OtherStruct.MinimumFloor &&
 				this->MaximumFloor == OtherStruct.MaximumFloor;
 	}
@@ -405,6 +428,7 @@ struct LOSTWORLD_API FLevelDataAsStruct
 	{
 		StairsGoUp = true;
 		Encounters.Add(FEncounter());
+		Encounters[0].EncounterType = EEncounterTypes::Enemy;
 	}
 
 	FORCEINLINE bool operator==(const FLevelDataAsStruct& OtherStruct) const

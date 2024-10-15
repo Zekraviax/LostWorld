@@ -2,7 +2,11 @@
 	"stairsGoUp": true,
 	"encounters": [
 		{
-			"enemyDataTableRowName": "TestEncounterOne",
+			"encounterType": "Enemy",
+			"enemyDataTableRowNames": [
+				"TestEnemyOne",
+				"TestEnemyOne"
+			],
 			"minimumFloor": 1,
 			"maximumFloor": 1
 		}

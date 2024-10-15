@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Variables.h"
 #include "LostWorldPlayerControllerBase.generated.h"
 
 
@@ -19,6 +20,9 @@ class LOSTWORLD_API ALostWorldPlayerControllerBase : public APlayerController
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	AActorEntityPlayer* ControlledPlayerEntity;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	EPlayerControlModes ControlMode = EPlayerControlModes::LevelExploration;
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 

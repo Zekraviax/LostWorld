@@ -5,7 +5,63 @@
 #include "ActorGridTile.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBase.h"
+#include "LostWorldPlayerControllerBattle.h"
 #include "SaveGameLevelData.h"
+
+
+void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncounter)
+{
+	// List of things that need to happen before any pre-battle functions can be run:
+	// Add the Battle UI to the players' HUD
+	// Spawn enemy entities in to the level
+	// Disable player movement
+
+	// To-Do: Swap out the level UI for the battle UI.
+
+	// Get the Enemy data table row names from the Encounter data table.
+	if (EncounterDataTable && EnemyDataTable) {
+		FString ContextString;
+		TArray<FName> EnemyRowNames = EnemyEncounter.EnemyDataTableRowNames;
+		TArray<AActorGridTile*> ValidEnemySpawnTiles;
+		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->GetActorLocation();
+		
+		// Get all tiles within 2 tiles of the player that are empty.
+		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+			AActorGridTile* FoundTile = *Itr;
+			// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
+			if (FoundTile->Encounter.EncounterType == EEncounterTypes::Enemy ||
+				FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
+				// Second, check if the tile is within 2 tiles of the player, and isn't 'behind' the player
+				// because the UI might obscure the enemy.
+				if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
+					(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
+					// Third, make sure the tile isn't in a corridor.
+					if (FoundTile->CorridorIndex == -1) {
+						// Fourth, make sure the player isn't occupying the tile.
+						ValidEnemySpawnTiles.Add(FoundTile);
+					}
+				}
+			}
+		}
+
+		// Spawn enemies at valid tiles
+		// ReSharper disable once CppTooWideScope
+		const FActorSpawnParameters SpawnParameters;
+		for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
+			AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
+
+			GetWorld()->SpawnActor<AActorEntityBase>(ActorEntityEnemyBlueprintClass,
+				FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
+				FRotator::ZeroRotator,
+				SpawnParameters);
+			
+			ValidEnemySpawnTiles.Remove(RandomTile);
+		}
+
+		// Change the players' control mode so they can't walk away
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
+	}
+}
 
 
 // -------------------------------- Battle 
@@ -140,6 +196,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 						// To-Do: Choose an encounter from the levels' list of possible encounters,
 						// factoring in the current floor and the encounters' minimum and maximum levels.
 						RandomGridTile->Encounter = LevelDataCopy.Encounters[0];
+						RandomGridTile->SetTileColour(FLinearColor(0.25f, 0.f, 0.f));
 					}
 
 					// Cap the number of encounters generated to be equal to the number of rooms in the level.
@@ -266,8 +323,12 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 					FVector(LengthCount * 200, WidthCount * 200, 0),
 					FRotator::ZeroRotator,
 					SpawnParameters));
-				}
+				
+				// Assign variables to the tile here.
+				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Last()->RoomIndex = RoomCount;
+				
 			}
+		}
 	}
 
 	// Generate four corridors that connect the four rooms.
@@ -517,19 +578,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 						FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
 					}
 				}
-				
-				/*while (YAxisDistanceBetweenRooms != 0) {
-					if (YAxisDistanceBetweenRooms > 1) {
-						YAxisDistanceBetweenRooms--;
-						CorridorFirstHalfStartingPoint.Y--;
-					} else {
-						YAxisDistanceBetweenRooms++;
-						CorridorFirstHalfStartingPoint.Y++;
-					}
-
-					LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
-					FIntVector2D(CorridorFirstHalfStartingPoint.X, CorridorFirstHalfStartingPoint.Y));
-				}*/
 			}
 		}
 			
@@ -539,6 +587,8 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 				FVector(Coordinate.X * 200, Coordinate.Y * 200, 0),
 				FRotator::ZeroRotator,
 				SpawnParameters));
+
+			LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor.Last()->CorridorIndex = CorridorCount;
 		}
 	}
 }

@@ -4,20 +4,9 @@
 		"EntityData":
 		{
 			"DisplayName": "Default Jim",
-			"Deck": [
-				{
-					"DisplayName": "Default Card",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"Description": "This is a default description.",
-					"StackEntries":
-					{
-						"TestFunctionOne": "AnySingleEntity"
-					},
-					"TotalCost": 1
-				}
+			"CardsInDeckRowNames": [
+				"Default Card",
+				"Default Card"
 			]
 		},
 		"ExperiencePoints": 1

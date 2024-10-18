@@ -1,6 +1,7 @@
 #include "LostWorldGameModeBattle.h"
 
 
+#include "ActorEntityEnemy.h"
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
 #include "Kismet/GameplayStatics.h"
@@ -14,14 +15,13 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// List of things that need to happen before any pre-battle functions can be run:
 	// Add the Battle UI to the players' HUD
 	// Spawn enemy entities in to the level
+	// Change the player's controls to Battle mode
 	// Disable player movement
-
-	// To-Do: Swap out the level UI for the battle UI.
 
 	// Get the Enemy data table row names from the Encounter data table.
 	if (EncounterDataTable && EnemyDataTable) {
 		FString ContextString;
-		TArray<FName> EnemyRowNames = EnemyEncounter.EnemyDataTableRowNames;
+		TArray<FName> EnemyRowNames = EnemyEncounter.EnemiesRowNames;
 		TArray<AActorGridTile*> ValidEnemySpawnTiles;
 		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->GetActorLocation();
 		
@@ -31,14 +31,16 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
 			if (FoundTile->Encounter.EncounterType == EEncounterTypes::Enemy ||
 				FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
-				// Second, check if the tile is within 2 tiles of the player, and isn't 'behind' the player
+				// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
 				// because the UI might obscure the enemy.
 				if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
 					(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
 					// Third, make sure the tile isn't in a corridor.
 					if (FoundTile->CorridorIndex == -1) {
 						// Fourth, make sure the player isn't occupying the tile.
-						ValidEnemySpawnTiles.Add(FoundTile);
+						if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
+							ValidEnemySpawnTiles.Add(FoundTile);
+						}
 					}
 				}
 			}
@@ -50,7 +52,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
 			AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
 
-			GetWorld()->SpawnActor<AActorEntityBase>(ActorEntityEnemyBlueprintClass,
+			GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
 				FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
 				FRotator::ZeroRotator,
 				SpawnParameters);
@@ -60,14 +62,25 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 		// Change the players' control mode so they can't walk away
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
+
+		// To-Do: Swap out the level exploration UI for the battle UI.
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
 	}
 }
 
 
 // -------------------------------- Battle 
-void ALostWorldGameModeBattle::PreBattleShuffleDecks()
+void ALostWorldGameModeBattle::PreBattleTurnZero()
 {
+	// List of things that need to happen during 'Turn Zero':
+	// Calculate the turn order
+	// Shuffle everyone's decks
+	// Each entity draws a hand of cards
 	
+	// Lazy turn order calculation:
+	// The player goes first
+	// then their allies, in whatever order the game finds them
+	// then the enemies, in whatever order the game finds them
 }
 
 
@@ -153,6 +166,10 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				GetWorld()->GetFirstPlayerController()->SetViewTarget(PlayerEntityReference, Params); // This line isn't multiplayer safe
 				PlayerEntityReference->Camera->SetActive(true);
 
+				// Add the level HUD to the player's screen
+				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
+					
+				// Take control of the entity	
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
 				break;
 			}

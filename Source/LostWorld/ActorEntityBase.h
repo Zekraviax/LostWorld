@@ -25,7 +25,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	
 // ---------------------------------------- Variables ---------------------------------------- //
+
+// -------------------------------- Actor Components
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* StaticMesh;
 
 // -------------------------------- Cards & Deck
 	UPROPERTY()

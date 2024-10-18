@@ -35,12 +35,12 @@ class LOSTWORLD_API USaveGameDeveloperSettings : public USaveGame
 	GENERATED_BODY()
 
 public:
-	// ---------------------------------------- Variables ---------------------------------------- //
+// ---------------------------------------- Variables ---------------------------------------- //
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FDeveloperSettingsAsStruct DeveloperSettingsAsStruct;
 
 
-	// ---------------------------------------- Functions ---------------------------------------- //
+// ---------------------------------------- Functions ---------------------------------------- //
 	UFUNCTION(BlueprintCallable)
 	void SaveDeveloperSettingsToJson();
 

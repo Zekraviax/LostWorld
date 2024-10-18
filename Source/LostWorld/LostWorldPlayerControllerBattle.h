@@ -18,7 +18,7 @@ protected:
 	virtual void SetupInputComponent() override;
 
 public:
-	// -------------------------------- Basic movement
+// -------------------------------- Basic movement
 	void PlayerMoveNorth();
 	void PlayerMoveSouth();
 	void PlayerMoveEast();

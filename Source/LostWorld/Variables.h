@@ -44,6 +44,7 @@ UENUM(BlueprintType)
 enum class ECardTargets : uint8
 {
 	AnySingleEntity,
+	AllEntities
 };
 
 
@@ -51,6 +52,7 @@ UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
 	TestFunctionOne,
+	TestFunctionTwo
 };
 
 
@@ -101,7 +103,7 @@ struct LOSTWORLD_API FIntVector2D
 
 // -------------------------------- Cards
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FCard
+struct LOSTWORLD_API FCard : public FTableRowBase
 {
 	GENERATED_BODY()
 
@@ -144,7 +146,13 @@ struct LOSTWORLD_API FEntityBaseStats
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentHealthPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumHealthPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentManaPoints;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumManaPoints;
@@ -156,7 +164,9 @@ struct LOSTWORLD_API FEntityBaseStats
 	// Default constructor
 	FEntityBaseStats()
 	{
+		CurrentHealthPoints = 10;
 		MaximumHealthPoints = 10;
+		CurrentManaPoints = 10;
 		MaximumManaPoints = 10;
 		Strength = 1;
 	}
@@ -173,14 +183,17 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString DisplayName;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FEntityBaseStats Stats;
+
 	// All entities will have a Deck variable, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FCard> Deck;
+	TArray<FName> CardsInDeckRowNames;
 
 	FEntity()
 	{
 		DisplayName = "Default Jim";
-		Deck.Add(FCard());
+		CardsInDeckRowNames = { "Default Card", "Default Card" };
 	}
 };
 
@@ -213,7 +226,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	EEncounterTypes EncounterType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> EnemyDataTableRowNames;
+	TArray<FName> EnemiesRowNames;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumFloor;
@@ -224,7 +237,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FEncounter()
 	{
 		EncounterType = EEncounterTypes::None;
-		EnemyDataTableRowNames = {"TestEnemyOne", "TestEnemyOne"};
+		EnemiesRowNames = { "TestEnemyOne", "TestEnemyOne" };
 		MinimumFloor = 1;
 		MaximumFloor = 1;
 	}
@@ -232,7 +245,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FORCEINLINE bool operator==(const FEncounter& OtherStruct) const
 	{
 		return this->EncounterType == OtherStruct.EncounterType &&
-				this->EnemyDataTableRowNames == OtherStruct.EnemyDataTableRowNames &&
+				this->EnemiesRowNames == OtherStruct.EnemiesRowNames &&
 				this->MinimumFloor == OtherStruct.MinimumFloor &&
 				this->MaximumFloor == OtherStruct.MaximumFloor;
 	}

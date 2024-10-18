@@ -1,9 +1,12 @@
 [
 	{
 		"Name": "TestEncounterOne",
-		"EnemyDataTableRowNames": [
+		"EncounterType": "Enemy",
+		"EnemiesRowNames": [
 			"TestEnemyOne",
 			"TestEnemyOne"
-		]
+		],
+		"MinimumFloor": 1,
+		"MaximumFloor": 1
 	}
 ]

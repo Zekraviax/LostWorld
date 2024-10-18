@@ -71,8 +71,10 @@ public:
 		// Post-Battle functions:
 			// Clean up all Actors that were spawned.
 			// Reward the player with the spoils of their battle.
-	
-	void PreBattleShuffleDecks();
+
+	// This function will handle all of the functions that occur at the start of the battle
+	// that can also happen during battle e.g. drawing cards.
+	void PreBattleTurnZero();
 
 	
 	// Structure of a Turn:

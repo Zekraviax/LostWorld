@@ -9,6 +9,8 @@
 
 // Forward Declarations
 class AActorEntityPlayer;
+class UWidgetHudBattle;
+class UWidgetHudLevelExploration;
 
 
 UCLASS()
@@ -23,8 +25,21 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	EPlayerControlModes ControlMode = EPlayerControlModes::LevelExploration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetHudLevelExploration> LevelHudWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetHudLevelExploration* LevelHudWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetHudBattle> BattleHudWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetHudBattle* BattleHudWidget;
 	
 // ---------------------------------------- Functions ---------------------------------------- //
-
+	void AddBattleHudToViewport();
+	void AddLevelHudToViewport();
 
 };

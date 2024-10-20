@@ -25,6 +25,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		TArray<AActorGridTile*> ValidEnemySpawnTiles;
 		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->GetActorLocation();
 		
+		// Clear the entities in battle array
+		EntitiesInBattleArray.Empty();
+
 		// Get all tiles within 2 tiles of the player that are empty.
 		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
 			AActorGridTile* FoundTile = *Itr;
@@ -46,31 +49,45 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			}
 		}
 
-		// Spawn enemies at valid tiles
+		// Spawn enemies at random valid tiles
 		// ReSharper disable once CppTooWideScope
 		const FActorSpawnParameters SpawnParameters;
 		for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
 			AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
 
-			GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
+			EntitiesInBattleArray.Add(GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
 				FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
 				FRotator::ZeroRotator,
-				SpawnParameters);
+				SpawnParameters));
 			
 			ValidEnemySpawnTiles.Remove(RandomTile);
+
+			// Get the entity's cards from the cards json and add them to their deck.
+			FEnemyEntity* EnemyEntityData = EnemyDataTable->FindRow<FEnemyEntity>(EnemyRowNames[RowCount], ContextString);
+			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
+				FCard* Card = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
+				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*Card);
+			}
 		}
 
-		// Change the players' control mode so they can't walk away
+		// Add the player's entity to the array last.
+		// The player's deck can be fetched from the GameInstance.
+		EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
+		
+		// Change the players' control mode so they can't walk away.
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
 
 		// To-Do: Swap out the level exploration UI for the battle UI.
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
+
+		// Once everything is done, begin Turn Zero.
+		PreBattleTurnZero(EnemyEncounter);
 	}
 }
 
 
 // -------------------------------- Battle 
-void ALostWorldGameModeBattle::PreBattleTurnZero()
+void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounter)
 {
 	// List of things that need to happen during 'Turn Zero':
 	// Calculate the turn order
@@ -81,6 +98,15 @@ void ALostWorldGameModeBattle::PreBattleTurnZero()
 	// The player goes first
 	// then their allies, in whatever order the game finds them
 	// then the enemies, in whatever order the game finds them
+
+	// Shuffle up.
+	for (auto& Entity : EntitiesInBattleArray) {
+		if (Cast<AActorEntityEnemy>(Entity)) {
+			Entity->Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->Deck);
+		} else if (Cast<AActorEntityPlayer>(Entity)) {
+			Entity->Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->Deck);
+		}
+	}
 }
 
 
@@ -498,7 +524,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			} else if (XAxisDistanceBetweenRooms > 1 || XAxisDistanceBetweenRooms < -1) {
 				if (XAxisDistanceBetweenRooms > 1) {
 					for (int XLoop = XAxisDistanceBetweenRooms; XLoop > 0; XLoop--) {
-						//XAxisDistanceBetweenRooms--;
 						CorridorFirstHalfStartingPoint.X--;
 						
 						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
@@ -506,7 +531,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 					}
 				} else {
 					for (int XLoop = XAxisDistanceBetweenRooms; XLoop < 0; XLoop++) {
-						//XAxisDistanceBetweenRooms++;
 						CorridorFirstHalfStartingPoint.X++;
 
 						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
@@ -580,7 +604,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			} else if (YAxisDistanceBetweenRooms > 1 || YAxisDistanceBetweenRooms < -1) {
 				if (YAxisDistanceBetweenRooms > 1) {
 					for (int YLoop = YAxisDistanceBetweenRooms; YLoop > 0; YLoop--) {
-						//YAxisDistanceBetweenRooms--;
 						CorridorFirstHalfStartingPoint.Y--;
 						
 						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(
@@ -588,7 +611,6 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 					}
 				} else {
 					for (int YLoop = YAxisDistanceBetweenRooms; YLoop < 0; YLoop++) {
-						//YAxisDistanceBetweenRooms++;
 						CorridorFirstHalfStartingPoint.Y++;
 
 						LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTileCoordinates.AddUnique(

@@ -20,6 +20,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameDeveloperSettings* DeveloperSettingsSaveGame;
 
+	
+
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	virtual void Init() override;

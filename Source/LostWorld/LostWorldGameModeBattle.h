@@ -34,6 +34,11 @@ public:
 	// Variables rolled during level generated will be stored in this copy of the JSON-as-Struct variable.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FLevelDataAsStruct LevelDataCopy;
+
+	// We're adding all the entites in a battle into an array, just in case there
+	// are other entities on the floor that aren't in the battle.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<AActorEntityBase*> EntitiesInBattleArray;
 	
 	// Must be assigned in the editor first.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -45,6 +50,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AActorEntityBase> ActorEntityEnemyBlueprintClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* CardsDataTable;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* EncounterDataTable;
 
@@ -74,7 +82,7 @@ public:
 
 	// This function will handle all of the functions that occur at the start of the battle
 	// that can also happen during battle e.g. drawing cards.
-	void PreBattleTurnZero();
+	void PreBattleTurnZero(const FEncounter& EnemyEncounter);
 
 	
 	// Structure of a Turn:

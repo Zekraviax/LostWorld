@@ -1,0 +1,30 @@
+[
+	{
+		"Name": "TestCardOne",
+		"DisplayName": "Test Card One",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"Description": "This is a default description.",
+		"StackEntries":
+		{
+			"TestFunctionOne": "AnySingleEntity"
+		},
+		"TotalCost": 1
+	},
+	{
+		"Name": "TestCardTwo",
+		"DisplayName": "Test Card Two",
+		"BaseCost": 4,
+		"CardTypes": [
+			"Spell"
+		],
+		"Description": "This is a default description.",
+		"StackEntries":
+		{
+			"TestFunctionOne": "AnySingleEntity"
+		},
+		"TotalCost": 1
+	}
+]

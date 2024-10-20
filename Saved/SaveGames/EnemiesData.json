@@ -4,9 +4,25 @@
 		"EntityData":
 		{
 			"DisplayName": "Default Jim",
+			"Stats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"Strength": 1
+			},
 			"CardsInDeckRowNames": [
-				"Default Card",
-				"Default Card"
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo"
 			]
 		},
 		"ExperiencePoints": 1

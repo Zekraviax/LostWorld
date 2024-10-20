@@ -16,3 +16,23 @@ AActorEntityPlayer::AActorEntityPlayer()
 	SpringArm->SetupAttachment(RootComponent);
 	Camera->SetupAttachment(SpringArm);
 }
+
+
+bool AActorEntityPlayer::OverrideDeck(TArray<FCard> InDeck)
+{
+	Deck = InDeck;
+	return true;
+}
+
+bool AActorEntityPlayer::AddCardToDeck(FCard InCard)
+{
+	Deck.Add(InCard);
+	return true;
+}
+
+
+TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
+{
+	return IInterfaceBattle::ShuffleDeck(Deck);
+}
+

@@ -33,6 +33,15 @@ public:
 	UStaticMeshComponent* StaticMesh;
 
 // -------------------------------- Cards & Deck
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCard> Deck;
+
+
+// ---------------------------------------- Functions ---------------------------------------- //
+
+// -------------------------------- Child actor functions
+// The Enemy entity and Player entity will implement their own versions of the following interface functions separately.
+// This is so that the Player entity can receive data from and send data to the Players' GameInstance, which persists
+// between battles.
+	//virtual void AddCardToDeck(FCard InCard);
 };

@@ -27,3 +27,11 @@ TArray<FCard> AActorEntityEnemy::ShuffleDeck(TArray<FCard> InDeck)
 	// so we can just use the default one.
 	return IInterfaceBattle::ShuffleDeck(Deck);
 }
+
+bool AActorEntityEnemy::DrawCard()
+{
+	// Shift the top card of the deck into the hand
+	Hand.Add(Deck[0]);
+	Deck.Pop();
+	return true;
+}

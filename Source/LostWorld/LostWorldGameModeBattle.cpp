@@ -4,6 +4,7 @@
 #include "ActorEntityEnemy.h"
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
+#include "LostWorldGameInstanceBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBase.h"
 #include "LostWorldPlayerControllerBattle.h"
@@ -65,19 +66,26 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			// Get the entity's cards from the cards json and add them to their deck.
 			FEnemyEntity* EnemyEntityData = EnemyDataTable->FindRow<FEnemyEntity>(EnemyRowNames[RowCount], ContextString);
 			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
-				FCard* Card = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
-				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*Card);
+				FCard* InCard = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
+				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
 			}
+		}
+		
+		// The player's deck can be fetched from the GameInstance.
+		TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckRowNames;
+		for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
+			FCard* InCard = CardsDataTable->FindRow<FCard>(PlayerCardsInDeckRowNames[CardCount], ContextString);
+			Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->AddCardToDeck(*InCard);
 		}
 
 		// Add the player's entity to the array last.
-		// The player's deck can be fetched from the GameInstance.
 		EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
 		
 		// Change the players' control mode so they can't walk away.
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
 
-		// To-Do: Swap out the level exploration UI for the battle UI.
+		// Swap out the level exploration UI for the battle UI.
+		// Make sure it's a "clean slate"/
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
 
 		// Once everything is done, begin Turn Zero.
@@ -105,6 +113,19 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 			Entity->Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
 			Entity->Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->Deck);
+		}
+	}
+
+	// Draw a full grip.
+	for (auto& Entity : EntitiesInBattleArray) {
+		if (Cast<AActorEntityEnemy>(Entity)) {
+			for (int DrawCount = 0; DrawCount < Entity->EntityData.StartOfBattleHandSize; DrawCount++) {
+				Cast<AActorEntityEnemy>(Entity)->DrawCard();
+			}
+		} else if (Cast<AActorEntityPlayer>(Entity)) {
+			for (int DrawCount = 0; DrawCount < Entity->EntityData.StartOfBattleHandSize; DrawCount++) {
+				Cast<AActorEntityPlayer>(Entity)->DrawCard();
+			}
 		}
 	}
 }

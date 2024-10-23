@@ -28,3 +28,9 @@ TArray<FCard> IInterfaceBattle::ShuffleDeck(TArray<FCard> InDeck)
 	
 	return ShuffledDeck;
 }
+
+
+bool IInterfaceBattle::DrawCard()
+{
+	return true;
+}

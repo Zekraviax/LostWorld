@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "Variables.h"
 #include "LostWorldGameInstanceBase.generated.h"
 
 
@@ -20,9 +21,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameDeveloperSettings* DeveloperSettingsSaveGame;
 
-	
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FPlayerSave CurrentPlayerSave;
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	virtual void Init() override;
+	
+	void LoadPlayerSaveJson();
+	FString LoadFileFromJson(const FString& FileName) const;
 };

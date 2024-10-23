@@ -23,4 +23,5 @@ public:
 	virtual bool OverrideDeck(TArray<FCard> InDeck) override;
 	virtual bool AddCardToDeck(FCard InCard) override;
 	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck) override;
+	virtual bool DrawCard() override;
 };

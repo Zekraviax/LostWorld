@@ -38,6 +38,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetHudBattle* BattleHudWidget;
 	
+	
 // ---------------------------------------- Functions ---------------------------------------- //
 	void AddBattleHudToViewport();
 	void AddLevelHudToViewport();

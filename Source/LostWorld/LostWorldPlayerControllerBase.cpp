@@ -17,6 +17,7 @@ void ALostWorldPlayerControllerBase::AddBattleHudToViewport()
 	}
 
 	if (BattleHudWidget) {
+		BattleHudWidget->CardsInHandScrollBox->ClearChildren();
 		BattleHudWidget->AddToViewport();
 	}
 }

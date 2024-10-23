@@ -34,7 +34,13 @@ public:
 
 // -------------------------------- Cards & Deck
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FEntity EntityData;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCard> Deck;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FCard> Hand;
 
 
 // ---------------------------------------- Functions ---------------------------------------- //

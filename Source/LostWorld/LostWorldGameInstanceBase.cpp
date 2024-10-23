@@ -1,6 +1,7 @@
 #include "LostWorldGameInstanceBase.h"
 
 
+#include "JsonObjectConverter.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGameDeveloperSettings.h"
 
@@ -18,4 +19,34 @@ void ULostWorldGameInstanceBase::Init()
 	if (DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.EnableDeveloperSettingsOverride) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.PrintMessageOnGameStart);
 	}
+
+	// Temporary code:
+	// Automatically lode the players' save data
+	LoadPlayerSaveJson();
+}
+
+
+void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
+{
+	FString PlayerDataAsJson = LoadFileFromJson("PlayerSaveTest");
+	FPlayerSave PlayerDataAsStruct;
+	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataAsStruct, 0, 0);
+	
+	// Apply player data
+	CurrentPlayerSave = PlayerDataAsStruct;
+}
+
+
+FString ULostWorldGameInstanceBase::LoadFileFromJson(const FString& FileName) const
+{
+	FString SaveGamesFilePathAndName = "SaveGames/" + FileName + ".json";
+	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
+	
+	PlayerDataSaveFilePath.Append(SaveGamesFilePathAndName);
+	UE_LOG(LogTemp, Warning, TEXT("File Path: %s"), *PlayerDataSaveFilePath);
+
+	FString JsonFileAsString;
+	FFileHelper::LoadFileToString(JsonFileAsString, *PlayerDataSaveFilePath);
+
+	return JsonFileAsString;
 }

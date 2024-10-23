@@ -190,10 +190,15 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckRowNames;
 
+	// How many cards should this entity draw at the start of a battle?
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int StartOfBattleHandSize;
+
 	FEntity()
 	{
 		DisplayName = "Default Jim";
-		CardsInDeckRowNames = { "Default Card", "Default Card" };
+		CardsInDeckRowNames = { "TestCardOne", "TestCardOne" };
+		StartOfBattleHandSize = 5;
 	}
 };
 
@@ -217,6 +222,23 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 };
 
 
+// -------------------------------- Player
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FPlayerSave : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FEntity EntityData;
+	
+	FPlayerSave()
+	{
+		
+	}
+};
+
+
+// -------------------------------- Level
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FEncounter : public FTableRowBase
 {

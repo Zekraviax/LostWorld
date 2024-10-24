@@ -28,6 +28,7 @@ bool AActorEntityPlayer::OverrideDeck(TArray<FCard> InDeck)
 	return true;
 }
 
+
 bool AActorEntityPlayer::AddCardToDeck(FCard InCard)
 {
 	Deck.Add(InCard);
@@ -40,15 +41,16 @@ TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
 	return IInterfaceBattle::ShuffleDeck(Deck);
 }
 
+
 bool AActorEntityPlayer::DrawCard()
 {
 	// Shift the top card of the deck into the hand
 	Hand.Add(Deck[0]);
 
 	// Create a card widget for the card and add it to the players' HUD.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Deck[0]);
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
 
-	Deck.Pop();
+	Deck.RemoveAt(0);
 	return true;
 }
 

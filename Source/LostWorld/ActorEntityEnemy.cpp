@@ -32,6 +32,6 @@ bool AActorEntityEnemy::DrawCard()
 {
 	// Shift the top card of the deck into the hand
 	Hand.Add(Deck[0]);
-	Deck.Pop();
+	Deck.RemoveAt(0);
 	return true;
 }

@@ -94,7 +94,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 }
 
 
-// -------------------------------- Battle 
+// -------------------------------- Pre-battle 
 void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounter)
 {
 	// List of things that need to happen during 'Turn Zero':
@@ -128,6 +128,12 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 			}
 		}
 	}
+}
+
+
+// -------------------------------- Battle
+void ALostWorldGameModeBattle::CastCard(FCard InCard)
+{
 }
 
 

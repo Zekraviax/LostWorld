@@ -28,8 +28,9 @@ public:
 // ---------------------------------------- Functions ---------------------------------------- //
 protected:
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
+	virtual bool NativeOnDragOver(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
 public:
-	void CreateCardWidgetInHand(FCard InCard);
+	void CreateCardWidgetInHand(const FCard& InCard) const;
 	
 };

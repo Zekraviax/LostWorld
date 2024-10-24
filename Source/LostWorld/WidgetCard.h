@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
+#include "Variables.h"
 #include "WidgetCard.generated.h"
 
 
@@ -18,4 +19,9 @@ public:
 // -------------------------------- Widget components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* CardNameText;
+
+	
+// ---------------------------------------- Functions ---------------------------------------- //
+	void UpdateComponentsFromPassedCard(FCard InCard);
+	
 };

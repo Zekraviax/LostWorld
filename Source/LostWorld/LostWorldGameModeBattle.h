@@ -69,6 +69,7 @@ public:
 
 	// This transition will handle the technical things such as spawning enemies into the world.
 	void TransitionToBattle(const FEncounter& EnemyEncounter);
+
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:
@@ -93,6 +94,7 @@ public:
 			// Entity draws a card.
 		// Main phase:
 			// Entity can play cards and take special actions like consuming items.
+	void CastCard(FCard InCard);
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.
 			// Effects that last until the end of the turn are cleaned up here, second.

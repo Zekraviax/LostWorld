@@ -2,6 +2,7 @@
 
 
 #include "LostWorldGameModeBase.h"
+#include "WidgetCard.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 
 
@@ -9,18 +10,19 @@ void UDragDropOperationCard::Dragged_Implementation(const FPointerEvent& Pointer
 {
 	Super::Dragged_Implementation(PointerEvent);
 
-	ScreenSpacePosition = PointerEvent.GetScreenSpacePosition();
-	FVector2D ViewportPosition, AbsolutePosition, PixelPosition, AtoVPosition, ViewportDimensions;
-	USlateBlueprintLibrary::ScreenToViewport(Payload, ScreenSpacePosition, ViewportPosition);
-	USlateBlueprintLibrary::ScreenToWidgetAbsolute(Payload, ScreenSpacePosition, AbsolutePosition, false);
+	// Ignore the AtoVPosition.
+	// It's only there because the AbsoluteToViewport function needs it.
+	FVector2D PixelPosition, AtoVPosition, ViewportDimensions;
+	FVector2D ScreenSpacePosition = PointerEvent.GetScreenSpacePosition();
 	USlateBlueprintLibrary::AbsoluteToViewport(Payload, ScreenSpacePosition, PixelPosition, AtoVPosition);
 	GEngine->GameViewport->GetViewportSize(ViewportDimensions);
+
+	CursorPositionAsPercentage.X = PixelPosition.X / ViewportDimensions.X;
+	CursorPositionAsPercentage.Y = PixelPosition.Y / ViewportDimensions.Y;
 	
-	ALostWorldGameModeBase::DualLog("Viewport Dimension " + FString::SanitizeFloat(ViewportDimensions.Y));
-	
-	ALostWorldGameModeBase::DualLog("Screen " + FString::SanitizeFloat(ScreenSpacePosition.Y));
-	ALostWorldGameModeBase::DualLog("Absolute: " + FString::SanitizeFloat(AbsolutePosition.Y));
-	ALostWorldGameModeBase::DualLog("Viewport " + FString::SanitizeFloat(ViewportPosition.Y));
-	ALostWorldGameModeBase::DualLog("Pixel " + FString::SanitizeFloat(PixelPosition.Y));  // THIS ONE!
-	ALostWorldGameModeBase::DualLog("A to V " + FString::SanitizeFloat(AtoVPosition.Y));
+	if (CursorPositionAsPercentage.Y > 0.749) {
+		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 0.f, 1.f));
+	} else {
+		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.5f, 0.f, 1.f));
+	}
 }

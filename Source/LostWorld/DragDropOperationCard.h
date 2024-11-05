@@ -14,7 +14,7 @@ class LOSTWORLD_API UDragDropOperationCard : public UDragDropOperation
 // ---------------------------------------- Variables ---------------------------------------- //
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FVector2D ScreenSpacePosition;
+	FVector2D CursorPositionAsPercentage;
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //

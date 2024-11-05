@@ -131,7 +131,18 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 }
 
 
-// -------------------------------- Battle
+// -------------------------------- Battle: Main Phase
+void ALostWorldGameModeBattle::GetTargetsForCard()
+{
+	// Get a reference to the card in the player's hand.
+	// Don't pass a copy of the FCard struct.
+
+	// The stack entry will keep track of the target(s).
+
+
+}
+
+
 void ALostWorldGameModeBattle::CastCard(FCard InCard)
 {
 }

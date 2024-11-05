@@ -7,6 +7,7 @@
 
 
 // Forward declarations
+class AActorEntityBase;
 class AActorGridTile;
 
 
@@ -61,7 +62,8 @@ UENUM(BlueprintType)
 enum class EPlayerControlModes : uint8
 {
 	LevelExploration,
-	Battle
+	Battle,
+	TargetSelectionSingleEntity,
 };
 
 
@@ -101,6 +103,22 @@ struct LOSTWORLD_API FIntVector2D
 };
 
 
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FStackEntry
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ECardFunctions Function;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ECardTargets TargetingMode;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<AActorEntityBase*> SelectedTargets;
+};
+
+
 // -------------------------------- Cards
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FCard : public FTableRowBase
@@ -121,7 +139,7 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 
 	// For each function that requires different targets, the game will add an entry to the stack.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
-	TMap<ECardFunctions, ECardTargets> StackEntries;
+	TMap<ECardFunctions, ECardTargets> FunctionsAndTargets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
 	int TotalCost;
@@ -134,7 +152,7 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 		CardTypes.Add(ECardTypes::Spell);
 		Description = "This is a default description.";
 		TotalCost = 1;
-		StackEntries.Add(ECardFunctions::TestFunctionOne, ECardTargets::AnySingleEntity);
+		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::AnySingleEntity);
 	}
 };
 

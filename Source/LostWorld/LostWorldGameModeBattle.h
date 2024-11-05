@@ -39,6 +39,10 @@ public:
 	// are other entities on the floor that aren't in the battle.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> EntitiesInBattleArray;
+
+	// Cards with multiple functions should add each function to the stack as a separate
+	// index in the array.
+	// TArray<FCard> TheStack
 	
 	// Must be assigned in the editor first.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -94,6 +98,7 @@ public:
 			// Entity draws a card.
 		// Main phase:
 			// Entity can play cards and take special actions like consuming items.
+	void GetTargetsForCard();
 	void CastCard(FCard InCard);
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.

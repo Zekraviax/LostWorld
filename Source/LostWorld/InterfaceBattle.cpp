@@ -34,3 +34,15 @@ bool IInterfaceBattle::DrawCard()
 {
 	return true;
 }
+
+
+bool IInterfaceBattle::TakeDamage(float Damage)
+{
+	return true;
+}
+
+
+bool IInterfaceBattle::EntityDefeated()
+{
+	return true;
+}

@@ -4,6 +4,7 @@
 #include "ActorEntityEnemy.h"
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
+#include "FunctionLibraryCards.h"
 #include "LostWorldGameInstanceBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBase.h"
@@ -132,19 +133,44 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 
 // -------------------------------- Battle: Main Phase
-void ALostWorldGameModeBattle::GetTargetsForCard()
+void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 {
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
-
 	// The stack entry will keep track of the target(s).
+	
+	ALostWorldPlayerControllerBattle* LocalPlayerController = Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+	FCard CardToCast = LocalPlayerController->ControlledPlayerEntity->Hand[CardIndexInHandArray - 1];
 
+	TArray<ECardFunctions> CardFunctions;
+	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 
+	// Rest the temp stack entry
+	TempStackEntry.Function = CardFunctions[0];
+	TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
+	TempStackEntry.SelectedTargets.Empty();
+	
+	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
+		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+	}
 }
 
 
-void ALostWorldGameModeBattle::CastCard(FCard InCard)
+void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
+	TheStack.Add(TempStackEntry);
+
+	CastCard();
+}
+
+
+void ALostWorldGameModeBattle::CastCard()
+{
+	if (!FunctionLibraryCardsInstance) {
+		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
+	}
+	
+	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 }
 
 

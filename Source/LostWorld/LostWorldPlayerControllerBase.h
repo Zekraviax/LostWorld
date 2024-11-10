@@ -40,7 +40,18 @@ public:
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
+
+// -------------------------------- Player input
+protected:
+	virtual void SetupInputComponent() override;
+
+// -------------------------------- Player controls
+public:
+	void OnLeftMouseButtonClick();
+	
+	void SetControlMode(EPlayerControlModes InControlMode);
+
+// -------------------------------- Widgets
 	void AddBattleHudToViewport();
 	void AddLevelHudToViewport();
-
 };

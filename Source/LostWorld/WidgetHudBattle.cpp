@@ -1,6 +1,8 @@
 #include "WidgetHudBattle.h"
 
 
+#include "DragDropOperationCard.h"
+#include "LostWorldGameModeBattle.h"
 #include "WidgetCard.h"
 
 
@@ -10,11 +12,11 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 	
 	// Calculate the drop position, scaled down between 0.0 and 1.0
 	// In the context of the viewport, the Y axis is the up-down axis.
-	float DropPositionY = InGeometry.AbsoluteToLocal(InDragDropEvent.GetScreenSpacePosition()).Y / GSystemResolution.ResY;
+	float DropPositionY = Cast<UDragDropOperationCard>(InOperation)->CursorPositionAsPercentage.Y;
 	
-	if (DropPositionY < 0.71) {
+	if (DropPositionY < 0.75) {
 		// CAST THAT CARD BABYYYYY
-		//InOperation->Payload
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->GetTargetsForCard(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
 	}
 	// Otherwise, the drag and drop operation will cancel.
 	

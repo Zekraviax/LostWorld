@@ -12,7 +12,7 @@ void ALostWorldPlayerControllerBattle::SetupInputComponent()
 	// Setup proper mouse controls
 	SetInputMode(FInputModeGameAndUI());
 	bShowMouseCursor = true;
-	ClickEventKeys.Add(EKeys::RightMouseButton);
+	ClickEventKeys.Add(EKeys::LeftMouseButton);
 
 	// Bind keys to functions
 	InputComponent->BindAction("PlayerMoveNorth", IE_Pressed, this, &ALostWorldPlayerControllerBattle::PlayerMoveNorth);

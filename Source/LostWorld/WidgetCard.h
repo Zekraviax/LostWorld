@@ -17,7 +17,7 @@ class LOSTWORLD_API UWidgetCard : public UUserWidget
 public:
 // ---------------------------------------- Variables ---------------------------------------- //
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	int IndexInHandArray;
+	int IndexInHandArray; // this int points to the card in the player's hand
 
 // -------------------------------- Widget components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))

@@ -35,3 +35,22 @@ bool AActorEntityEnemy::DrawCard()
 	Deck.RemoveAt(0);
 	return true;
 }
+
+bool AActorEntityEnemy::TakeDamage(float Damage)
+{
+	EntityData.Stats.CurrentHealthPoints -= Damage;
+
+	if (EntityData.Stats.CurrentHealthPoints <= 0) {
+		EntityDefeated();
+	}
+	
+	return true;
+}
+
+
+bool AActorEntityEnemy::EntityDefeated()
+{
+	BeginDestroy();
+
+	return true;
+}

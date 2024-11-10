@@ -1,6 +1,7 @@
 #include "ActorEntityPlayer.h"
 
 
+#include "LostWorldGameModeBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
 #include "WidgetHudBattle.h"
@@ -51,9 +52,29 @@ bool AActorEntityPlayer::DrawCard()
 	// Create a card widget for the card and add it to the players' HUD.
 	UWidgetCard* LocalCardReference = Cast<ALostWorldPlayerControllerBattle>(
 		GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
+	
 	LocalCardReference->IndexInHandArray = Hand.Num();
 	
 	Deck.RemoveAt(0);
+	return true;
+}
+
+bool AActorEntityPlayer::TakeDamage(float Damage)
+{
+	EntityData.Stats.CurrentHealthPoints -= Damage;
+
+	if (EntityData.Stats.CurrentHealthPoints <= 0) {
+		EntityDefeated();
+	}
+	
+	return true;
+}
+
+
+bool AActorEntityPlayer::EntityDefeated()
+{
+	ALostWorldGameModeBase::DualLog("Game Over");
+	
 	return true;
 }
 

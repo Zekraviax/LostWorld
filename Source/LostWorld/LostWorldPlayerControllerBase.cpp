@@ -1,7 +1,43 @@
 #include "LostWorldPlayerControllerBase.h"
 
+#include "ActorEntityBase.h"
+#include "LostWorldGameModeBase.h"
+#include "LostWorldGameModeBattle.h"
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
+
+
+void ALostWorldPlayerControllerBase::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+	InputComponent->BindAction("LeftMouseButtonClick", IE_Released, this, &ALostWorldPlayerControllerBase::OnLeftMouseButtonClick);
+}
+
+
+void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
+{
+	FHitResult Hit;
+	
+	switch (ControlMode)
+	{
+		case (EPlayerControlModes::TargetSelectionSingleEntity):
+			GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
+			ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName());
+
+			if (Cast<AActorEntityBase>(Hit.GetActor())) {
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));
+
+				// Execute the first stack entry
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+
+				ControlMode = EPlayerControlModes::Battle;
+			}
+			break;
+		default:
+			break;
+	}
+}
 
 
 void ALostWorldPlayerControllerBase::AddBattleHudToViewport()
@@ -38,4 +74,12 @@ void ALostWorldPlayerControllerBase::AddLevelHudToViewport()
 	if (LevelHudWidget) {
 		LevelHudWidget->AddToViewport();
 	}
+}
+
+
+void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InControlMode)
+{
+	ControlMode = InControlMode;
+
+	ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString());
 }

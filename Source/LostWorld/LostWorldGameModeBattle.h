@@ -11,6 +11,7 @@
 class AActorEntityBase;
 class AActorEntityPlayer;
 class AActorGridTile;
+class AFunctionLibraryCards;
 class USaveGameLevelData;
 
 
@@ -27,7 +28,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameLevelData* LevelDataSaveGameReference;
 
-	// TSharedPtrs can't have UPROPERTYs
+	// TSharedPtrs can't have UPROPERTYs.
 	TSharedPtr<FJsonObject> LevelDataAsJson;
 	
 	// This is the temporary copy of the level data JSON.
@@ -40,9 +41,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> EntitiesInBattleArray;
 
-	// Cards with multiple functions should add each function to the stack as a separate
-	// index in the array.
-	// TArray<FCard> TheStack
+	// Temporary stack entry used only for getting the targets
+	// before being added to the stack properly.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FStackEntry TempStackEntry;
+
+	// Cards with multiple functions should add each function to the stack
+	// as a separate item in the array.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FStackEntry> TheStack;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	AFunctionLibraryCards* FunctionLibraryCardsInstance;
 	
 	// Must be assigned in the editor first.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -98,8 +108,9 @@ public:
 			// Entity draws a card.
 		// Main phase:
 			// Entity can play cards and take special actions like consuming items.
-	void GetTargetsForCard();
-	void CastCard(FCard InCard);
+	void GetTargetsForCard(int CardIndexInHandArray);
+	void FinishedGettingTargetsForCard();
+	void CastCard();
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.
 			// Effects that last until the end of the turn are cleaned up here, second.

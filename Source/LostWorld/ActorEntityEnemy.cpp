@@ -50,7 +50,7 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 
 bool AActorEntityEnemy::EntityDefeated()
 {
-	BeginDestroy();
+	Destroy();
 
 	return true;
 }

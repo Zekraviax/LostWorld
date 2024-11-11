@@ -15,5 +15,6 @@ class LOSTWORLD_API AFunctionLibraryCards : public AActor
 public:
 	void ExecuteFunction(ECardFunctions InFunction);
 	
-	void TestCardOne();
+	void TestCardOne() const;
+	void TestCardTwo() const;
 };

@@ -7,7 +7,7 @@
 			"Spell"
 		],
 		"Description": "This is a default description.",
-		"StackEntries":
+		"FunctionsAndTargets":
 		{
 			"TestFunctionOne": "AnySingleEntity"
 		},
@@ -21,7 +21,7 @@
 			"Spell"
 		],
 		"Description": "This is a default description.",
-		"StackEntries":
+		"FunctionsAndTargets":
 		{
 			"TestFunctionOne": "AnySingleEntity"
 		},

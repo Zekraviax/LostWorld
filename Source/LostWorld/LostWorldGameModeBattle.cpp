@@ -152,6 +152,17 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEntities) {
+		TArray<AActor*> FoundActors;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
+
+		for (AActor* Actor : FoundActors) {
+			if (Cast<AActorEntityBase>(Actor)) {
+				TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Actor));
+			}
+		}
+
+		FinishedGettingTargetsForCard();
 	}
 }
 
@@ -171,6 +182,8 @@ void ALostWorldGameModeBattle::CastCard()
 	}
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
+
+	TheStack.RemoveAt(0);
 }
 
 

@@ -23,7 +23,15 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction)
 
 void AFunctionLibraryCards::TestCardOne() const
 {
-	Cast<AActorEntityEnemy>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0])->TakeDamage(10);
+	// Damage formula
+	// Step1 = ((Strength * Attack) / 2) * Rand(0.95, 1.1)
+	// Step2 = Step1 / (Defence * Rand(0.95 * 1.05)
+	// Step3 = RoundUp(Step2)
+
+	//AActorEntityBase* Attacker;
+	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
+	
+	Cast<AActorEntityEnemy>(Defender)->TakeDamage(10);
 }
 
 

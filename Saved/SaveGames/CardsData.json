@@ -3,6 +3,8 @@
 		"Name": "TestCardOne",
 		"DisplayName": "Test Card One",
 		"BaseCost": 1,
+		"BaseDamage": 10,
+		"BaseHealing": 0,
 		"CardTypes": [
 			"Spell"
 		],
@@ -11,20 +13,26 @@
 		{
 			"TestFunctionOne": "AnySingleEntity"
 		},
-		"TotalCost": 1
+		"TotalCost": 1,
+		"TotalDamage": 10,
+		"TotalHealing": 0
 	},
 	{
 		"Name": "TestCardTwo",
 		"DisplayName": "Test Card Two",
 		"BaseCost": 4,
+		"BaseDamage": 5,
+		"BaseHealing": 0,
 		"CardTypes": [
 			"Spell"
 		],
 		"Description": "This is a default description.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "AnySingleEntity"
+			"TestFunctionTwo": "AllEntities"
 		},
-		"TotalCost": 1
+		"TotalCost": 1,
+		"TotalDamage": 5,
+		"TotalHealing": 0
 	}
 ]

@@ -1,26 +1,32 @@
-{
-	"EntityData":
+[
 	{
-		"DisplayName": "Default Player",
-		"Stats":
+		"Name": "NewRow",
+		"EntityData":
 		{
-			"CurrentHealthPoints": 10,
-			"MaximumHealthPoints": 10,
-			"CurrentManaPoints": 10,
-			"MaximumManaPoints": 10,
-			"Strength": 1
-		},
-		"CardsInDeckRowNames": [
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardTwo"
-		]
+			"DisplayName": "Default Jim",
+			"Stats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"Strength": 10,
+				"Toughness": 10,
+				"Agility": 10
+			},
+			"CardsInDeckRowNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo"
+			],
+			"StartOfBattleHandSize": 5
+		}
 	}
-}
+]

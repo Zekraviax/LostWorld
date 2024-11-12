@@ -10,7 +10,9 @@
 				"MaximumHealthPoints": 10,
 				"CurrentManaPoints": 10,
 				"MaximumManaPoints": 10,
-				"Strength": 1
+				"Strength": 5,
+				"Toughness": 5,
+				"Agility": 5
 			},
 			"CardsInDeckRowNames": [
 				"TestCardOne",
@@ -23,7 +25,8 @@
 				"TestCardTwo",
 				"TestCardTwo",
 				"TestCardTwo"
-			]
+			],
+			"StartOfBattleHandSize": 5
 		},
 		"ExperiencePoints": 1
 	}

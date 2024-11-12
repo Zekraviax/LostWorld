@@ -41,6 +41,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> EntitiesInBattleArray;
 
+	// Each entity in turn queue (CTB style)
+	TArray<AActorEntityBase*> TurnQueue;
+
 	// Temporary stack entry used only for getting the targets
 	// before being added to the stack properly.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

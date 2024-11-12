@@ -132,6 +132,12 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	int BaseCost; // Use a different variable for the total cost (the cost after any changes to the base cost.)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
+	int BaseDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
+	int BaseHealing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	TArray<ECardTypes> CardTypes; // Card types should be added to the array in the order that they're written on the card.
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
@@ -143,6 +149,12 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
 	int TotalCost;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
+	int TotalDamage;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
+	int TotalHealing;
 
 	// Default constructor
 	FCard()
@@ -179,6 +191,14 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Strength;
 
+	// Reduces damage taken from physical attacks.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Toughness;
+
+	// Allows the entity to take more turns in battle.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Agility;
+
 	// Default constructor
 	FEntityBaseStats()
 	{
@@ -187,6 +207,8 @@ struct LOSTWORLD_API FEntityBaseStats
 		CurrentManaPoints = 10;
 		MaximumManaPoints = 10;
 		Strength = 1;
+		Toughness = 1;
+		Agility = 1;
 	}
 };
 

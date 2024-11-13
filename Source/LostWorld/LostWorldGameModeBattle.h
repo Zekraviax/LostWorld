@@ -41,7 +41,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> EntitiesInBattleArray;
 
-	// Each entity in turn queue (CTB style)
+	// Each entity in turn queue. (CTB style)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> TurnQueue;
 
 	// Temporary stack entry used only for getting the targets
@@ -101,6 +102,7 @@ public:
 	// This function will handle all of the functions that occur at the start of the battle
 	// that can also happen during battle e.g. drawing cards.
 	void PreBattleTurnZero(const FEncounter& EnemyEncounter);
+	void AddMaxNumberOfEntitiesToTurnQueue();
 
 	
 	// Structure of a Turn:

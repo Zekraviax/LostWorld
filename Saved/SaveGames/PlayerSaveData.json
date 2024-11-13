@@ -1,0 +1,31 @@
+{
+	"Name": "NewRow",
+	"EntityData":
+	{
+		"DisplayName": "Default Jim",
+		"Stats":
+		{
+			"CurrentHealthPoints": 12,
+			"MaximumHealthPoints": 12,
+			"CurrentManaPoints": 10,
+			"MaximumManaPoints": 10,
+			"Strength": 10,
+			"Toughness": 10,
+			"Agility": 10,
+			"Readiness": 0
+		},
+		"CardsInDeckRowNames": [
+			"TestCardOne",
+			"TestCardOne",
+			"TestCardOne",
+			"TestCardOne",
+			"TestCardOne",
+			"TestCardTwo",
+			"TestCardTwo",
+			"TestCardTwo",
+			"TestCardTwo",
+			"TestCardTwo"
+		],
+		"StartOfBattleHandSize": 5
+	}
+}

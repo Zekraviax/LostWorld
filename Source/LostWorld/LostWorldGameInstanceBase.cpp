@@ -28,7 +28,7 @@ void ULostWorldGameInstanceBase::Init()
 
 void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
 {
-	FString PlayerDataAsJson = LoadFileFromJson("PlayerSaveTest");
+	FString PlayerDataAsJson = LoadFileFromJson("PlayerSaveData");
 	FPlayerSave PlayerDataAsStruct;
 	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataAsStruct, 0, 0);
 	

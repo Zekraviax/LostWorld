@@ -11,6 +11,15 @@ class AActorEntityBase;
 class AActorGridTile;
 
 
+// ---------------------------------------- Constants ---------------------------------------- //
+// The size of a GridTile in Unreal Engine units.
+//int GlobalGridTileWidth = 100;
+//int GlobalGridTileLength = 100;
+
+// The maximum number of entities that can be added to the turn queue.
+//int TurnQueueMaxSize = 15;
+
+
 // ---------------------------------------- Enums ---------------------------------------- //
 
 // -------------------------------- Levels
@@ -195,9 +204,12 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Toughness;
 
-	// Allows the entity to take more turns in battle.
+	// Hastens the rate at which their readiness increases.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Agility;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Readiness;
 
 	// Default constructor
 	FEntityBaseStats()
@@ -209,6 +221,7 @@ struct LOSTWORLD_API FEntityBaseStats
 		Strength = 1;
 		Toughness = 1;
 		Agility = 1;
+		Readiness = 0;
 	}
 };
 
@@ -521,9 +534,4 @@ class LOSTWORLD_API Variables
 public:
 	Variables();
 	~Variables();
-
-// ---------------------------------------- Constants ---------------------------------------- //
-	// The size of a GridTile in Unreal Engine units.
-	int GridTileWidth = 100;
-	int GridTileLength = 100;
 };

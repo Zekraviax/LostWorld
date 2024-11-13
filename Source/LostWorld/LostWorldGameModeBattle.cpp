@@ -5,6 +5,7 @@
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
 #include "FunctionLibraryCards.h"
+#include "JsonObjectConverter.h"
 #include "LostWorldGameInstanceBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBase.h"
@@ -86,7 +87,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
 
 		// Swap out the level exploration UI for the battle UI.
-		// Make sure it's a "clean slate"/
+		// Make sure it's a "clean slate".
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
 
 		// Once everything is done, begin Turn Zero.
@@ -99,14 +100,17 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounter)
 {
 	// List of things that need to happen during 'Turn Zero':
-	// Calculate the turn order
-	// Shuffle everyone's decks
-	// Each entity draws a hand of cards
+	// Calculate the turn order.
+	// Shuffle everyone's decks.
+	// Each entity draws a hand of cards.
 	
 	// Lazy turn order calculation:
-	// The player goes first
-	// then their allies, in whatever order the game finds them
-	// then the enemies, in whatever order the game finds them
+	// The player goes first.
+	// then their allies, in whatever order the game finds them.
+	// then the enemies, in whatever order the game finds them.
+
+	// Calculate turn order.
+	AddMaxNumberOfEntitiesToTurnQueue();
 
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
@@ -126,6 +130,43 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
 			for (int DrawCount = 0; DrawCount < Entity->EntityData.StartOfBattleHandSize; DrawCount++) {
 				Cast<AActorEntityPlayer>(Entity)->DrawCard();
+			}
+		}
+	}
+}
+
+
+void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
+{
+	// Each entity in battle has a 'readiness' value.
+	// When an entity's readiness value reaches 1000, add it to the turn queue,
+	// and reset the value.
+
+	// To-Do: Reset the readiness value to a random integer between 0 and the entity's Agility.
+	TArray<AActor*> ActorsInBattle;
+	TArray<AActorEntityBase*> Entities;
+
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), ActorsInBattle);
+	for (AActor* Actor : ActorsInBattle) {
+		if (Cast<AActorEntityEnemy>(Actor)) {
+			Entities.Add(Cast<AActorEntityEnemy>(Actor));
+		} else if (Cast<AActorEntityPlayer>(Actor)) {
+			Entities.Add(Cast<AActorEntityPlayer>(Actor));
+		}
+	}
+
+	for (int EntityCount = 0; EntityCount < 15 - EntitiesInBattleArray.Num(); EntityCount++) {
+		for (AActorEntityBase* Entity : Entities) {
+			// Declaraing these floats to avoid 'ambiguous call to overloaded function' error
+			float IncrementMinimum = Entity->EntityData.Stats.Agility * 0.9;
+			float IncrementMaximum = Entity->EntityData.Stats.Agility * 1.1;
+			
+			float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
+			Entity->EntityData.Stats.Readiness += ReadinessIncrement;
+
+			if (Entity->EntityData.Stats.Readiness >= 1000) {
+				Entity->EntityData.Stats.Readiness -= 1000;
+				EntitiesInBattleArray.Add(Entity);
 			}
 		}
 	}
@@ -271,6 +312,16 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 
 				// Add the level HUD to the player's screen
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
+
+				// Player data loading is handled in the GameInstanceBase.
+				// Here, we just fetch it from the game instance.
+				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
+				/*FJsonObjectConverter::JsonObjectStringToUStruct(
+					Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->LoadFileFromJson("PlayerSaveTest2"),
+					&PlayerEntityReference->EntityData,
+					false,
+					false
+					);*/
 					
 				// Take control of the entity	
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
@@ -305,7 +356,8 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				// For each other room, randomly decide whether or not to spawn an encounter.
 				for (int EncounterCount = 0; EncounterCount <= ShuffledRoomIndicesArray.Num(); EncounterCount++) {
 					if (NumberOfEncounters > 0) {
-						CoinFlip = FMath::RandBool();
+						//CoinFlip = FMath::RandBool();
+						CoinFlip = true;
 					}
 
 					if (NumberOfEncounters == 0 || CoinFlip) {

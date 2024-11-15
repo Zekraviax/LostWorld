@@ -155,18 +155,25 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 		}
 	}
 
-	for (int EntityCount = 0; EntityCount < 15 - EntitiesInBattleArray.Num(); EntityCount++) {
-		for (AActorEntityBase* Entity : Entities) {
-			// Declaraing these floats to avoid 'ambiguous call to overloaded function' error
-			float IncrementMinimum = Entity->EntityData.Stats.Agility * 0.9;
-			float IncrementMaximum = Entity->EntityData.Stats.Agility * 1.1;
-			
-			float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
-			Entity->EntityData.Stats.Readiness += ReadinessIncrement;
+	int TurnQueueSize = TurnQueue.Num();
 
-			if (Entity->EntityData.Stats.Readiness >= 1000) {
-				Entity->EntityData.Stats.Readiness -= 1000;
-				EntitiesInBattleArray.Add(Entity);
+	for (int EntityCount = 0; EntityCount < 15 - TurnQueueSize; EntityCount++) {
+		bool EntityHasReachedThreshold = false;
+
+		while (!EntityHasReachedThreshold) {
+			for (AActorEntityBase* Entity : Entities) {
+				// Declaring these floats here to avoid 'ambiguous call to overloaded function' error
+				float IncrementMinimum = Entity->EntityData.Stats.Agility * 0.9;
+				float IncrementMaximum = Entity->EntityData.Stats.Agility * 1.1;
+			
+				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
+				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
+
+				if (Entity->EntityData.Stats.Readiness >= 1000) {
+					Entity->EntityData.Stats.Readiness -= 1000;
+					EntityHasReachedThreshold = true;
+					TurnQueue.Add(Entity);
+				}
 			}
 		}
 	}

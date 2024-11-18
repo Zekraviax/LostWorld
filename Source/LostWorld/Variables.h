@@ -124,6 +124,9 @@ struct LOSTWORLD_API FStackEntry
 	ECardTargets TargetingMode;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActorEntityBase* Controller;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActorEntityBase*> SelectedTargets;
 };
 

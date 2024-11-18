@@ -163,8 +163,8 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 		while (!EntityHasReachedThreshold) {
 			for (AActorEntityBase* Entity : Entities) {
 				// Declaring these floats here to avoid 'ambiguous call to overloaded function' error
-				float IncrementMinimum = Entity->EntityData.Stats.Agility * 0.9;
-				float IncrementMaximum = Entity->EntityData.Stats.Agility * 1.1;
+				float IncrementMinimum = ((Entity->EntityData.Stats.Agility / 100) + 1) + Entity->EntityData.Stats.Agility * 0.9;
+				float IncrementMaximum = ((Entity->EntityData.Stats.Agility / 100) + 1) + Entity->EntityData.Stats.Agility * 1.1;
 			
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
@@ -196,6 +196,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Rest the temp stack entry
 	TempStackEntry.Function = CardFunctions[0];
 	TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
+	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {

@@ -11,6 +11,7 @@
 #include "LostWorldPlayerControllerBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "SaveGameLevelData.h"
+#include "WidgetHudBattle.h"
 
 
 void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncounter)
@@ -200,7 +201,10 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.SelectedTargets.Empty();
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
-		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+			BattleHudWidget->PlayerStartCastingCard(CardToCast, TempStackEntry.Function, TempStackEntry.SelectedTargets.Num());
 	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEntities) {
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
@@ -218,6 +222,10 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
+	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
+		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->BattleHudWidget->PlayerFinishCastingCard();
+	}	
+	
 	TheStack.Add(TempStackEntry);
 
 	CastCard();

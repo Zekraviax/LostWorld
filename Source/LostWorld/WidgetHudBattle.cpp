@@ -29,8 +29,36 @@ UWidgetCard* UWidgetHudBattle::CreateCardWidgetInHand(const FCard& InCard) const
 	UWidgetCard* NewCardWidget = CreateWidget<UWidgetCard>(GetWorld(), CardWidgetBlueprintClass);
 
 	// Set card UI components
-	NewCardWidget->CardNameText->SetText(FText::FromString(InCard.DisplayName));
+	NewCardWidget->UpdateComponentsFromPassedCard(InCard);
 	CardsInHandScrollBox->AddChild(NewCardWidget);
 
 	return NewCardWidget;
+}
+
+
+void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const
+{
+	// Display a copy of the card the player is in the middle of casting
+	CurrentCardBeingCast->SetVisibility(ESlateVisibility::HitTestInvisible);
+	CurrentCardBeingCast->UpdateComponentsFromPassedCard(InCard);
+	
+	// Update the helper text that tells the player which entities they can select
+	// and how many entities they're already selected (if the card allows selecting more than one.)
+	switch (CurrentFunction) {
+		case ECardFunctions::TestFunctionOne:
+			CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
+			CardTargetText->SetText(FText::FromString("Select 1 Enemy"));
+			break;
+		case ECardFunctions::TestFunctionTwo:
+			break;
+		default:
+			break;
+	}
+}
+
+
+void UWidgetHudBattle::PlayerFinishCastingCard() const
+{
+	CurrentCardBeingCast->SetVisibility(ESlateVisibility::Collapsed);
+	CardTargetText->SetVisibility(ESlateVisibility::Collapsed);
 }

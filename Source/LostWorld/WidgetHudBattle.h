@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ScrollBox.h"
+#include "Components/TextBlock.h"
 #include "Variables.h"
 #include "WidgetHudBattle.generated.h"
 
@@ -25,10 +26,19 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CardsInHandScrollBox;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UTextBlock* CardTargetText;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UWidgetCard* CurrentCardBeingCast;
+
 // ---------------------------------------- Functions ---------------------------------------- //
 protected:
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
 public:
 	UWidgetCard* CreateCardWidgetInHand(const FCard& InCard) const;
+
+	void PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const;
+	void PlayerFinishCastingCard() const;	// Also triggers if the player cancels casting a card
 };

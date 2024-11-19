@@ -7,7 +7,7 @@ bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 }
 
 
-void UWidgetCard::UpdateComponentsFromPassedCard(FCard InCard)
+void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 {
-	
+	CardNameText->SetText(FText::FromString(InCard.DisplayName));
 }

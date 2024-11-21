@@ -1,5 +1,7 @@
 #include "ActorEntityEnemy.h"
 
+#include "LostWorldGameModeBattle.h"
+
 
 AActorEntityEnemy::AActorEntityEnemy()
 {
@@ -60,6 +62,8 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 bool AActorEntityEnemy::EntityDefeated()
 {
 	Destroy();
+	
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfBattleCheck();
 
 	return true;
 }

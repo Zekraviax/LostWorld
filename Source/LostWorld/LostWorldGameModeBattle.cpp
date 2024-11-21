@@ -73,8 +73,13 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
 			}
 		}
+
+		// Reset all of the players' card arrays.
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Deck.Empty();
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
 		
-		// The player's deck can be fetched from the GameInstance.
+		// The players' deck can be fetched from the GameInstance.
 		TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckRowNames;
 		for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
 			FCard* InCard = CardsDataTable->FindRow<FCard>(PlayerCardsInDeckRowNames[CardCount], ContextString);
@@ -94,6 +99,28 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		// Once everything is done, begin Turn Zero.
 		PreBattleTurnZero(EnemyEncounter);
 	}
+}
+
+
+void ALostWorldGameModeBattle::EndOfBattleCheck() const
+{
+	TArray<AActor*> FoundAllies, FoundEnemies;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityEnemy::StaticClass(), FoundEnemies);
+
+	if (FoundEnemies.Num() < 1) {
+		// Player victory.
+		PlayerVictory();
+	}
+}
+
+
+void ALostWorldGameModeBattle::PlayerVictory() const
+{
+	// Change the players' control mode so they can walk again.
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::LevelExploration;
+
+	// Swap out the battle UI for the level UI.
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 }
 
 

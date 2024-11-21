@@ -87,7 +87,9 @@ public:
 
 	// This transition will handle the technical things such as spawning enemies into the world.
 	void TransitionToBattle(const FEncounter& EnemyEncounter);
-
+	// Check if either the player, or all enemies, have been wiped out.
+	void EndOfBattleCheck() const;
+	void PlayerVictory() const;
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:

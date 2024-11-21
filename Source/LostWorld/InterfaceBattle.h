@@ -25,6 +25,7 @@ public:
 	virtual bool AddCardToDeck(FCard InCard);
 	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck);
 	virtual bool DrawCard();
+	virtual bool DiscardCard(int IndexInHand);
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();

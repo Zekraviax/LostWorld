@@ -42,6 +42,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCard> Hand;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FCard> Discard;
+	
 
 // ---------------------------------------- Functions ---------------------------------------- //
 

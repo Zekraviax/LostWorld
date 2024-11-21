@@ -5,6 +5,7 @@
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
 #include "WidgetHudBattle.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -58,6 +59,19 @@ bool AActorEntityPlayer::DrawCard()
 	Deck.RemoveAt(0);
 	return true;
 }
+
+
+bool AActorEntityPlayer::DiscardCard(int IndexInHand)
+{
+	Discard.Add(Hand[IndexInHand - 1]);
+	Hand.RemoveAt(IndexInHand - 1);
+
+	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+		BattleHudWidget->PlayerFinishCastingCard(IndexInHand);
+	
+	return true;
+}
+
 
 bool AActorEntityPlayer::TakeDamage(float Damage)
 {

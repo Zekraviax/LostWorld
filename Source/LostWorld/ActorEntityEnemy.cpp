@@ -36,6 +36,15 @@ bool AActorEntityEnemy::DrawCard()
 	return true;
 }
 
+bool AActorEntityEnemy::DiscardCard(int IndexInHand)
+{
+	Discard.Add(Hand[IndexInHand - 1]);
+	Hand.RemoveAt(IndexInHand - 1);
+	
+	return true;
+}
+
+
 bool AActorEntityEnemy::TakeDamage(float Damage)
 {
 	EntityData.Stats.CurrentHealthPoints -= Damage;

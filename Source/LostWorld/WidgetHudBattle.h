@@ -40,5 +40,5 @@ public:
 	UWidgetCard* CreateCardWidgetInHand(const FCard& InCard) const;
 
 	void PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const;
-	void PlayerFinishCastingCard() const;	// Also triggers if the player cancels casting a card
+	void PlayerFinishCastingCard(int IndexInHand) const;	// Also triggers if the player cancels casting a card
 };

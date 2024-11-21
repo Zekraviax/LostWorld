@@ -128,6 +128,9 @@ struct LOSTWORLD_API FStackEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActorEntityBase*> SelectedTargets;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int IndexInHandArray;
 };
 
 

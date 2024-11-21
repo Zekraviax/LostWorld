@@ -199,6 +199,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
 	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
+	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
@@ -223,7 +224,8 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
 	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
-		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->BattleHudWidget->PlayerFinishCastingCard();
+		// Remove the card from the players' hand array and their HUD.
+		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	}	
 	
 	TheStack.Add(TempStackEntry);

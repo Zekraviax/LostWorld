@@ -57,8 +57,11 @@ void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, ECardFunction
 }
 
 
-void UWidgetHudBattle::PlayerFinishCastingCard() const
+void UWidgetHudBattle::PlayerFinishCastingCard(int IndexInHand) const
 {
 	CurrentCardBeingCast->SetVisibility(ESlateVisibility::Collapsed);
 	CardTargetText->SetVisibility(ESlateVisibility::Collapsed);
+
+	// Remove the card from the HUD.
+	CardsInHandScrollBox->RemoveChildAt(IndexInHand - 1);
 }

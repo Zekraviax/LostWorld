@@ -108,7 +108,6 @@ void ALostWorldGameModeBattle::EndOfBattleCheck() const
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityEnemy::StaticClass(), FoundEnemies);
 
 	if (FoundEnemies.Num() < 1) {
-		// Player victory.
 		PlayerVictory();
 	}
 }
@@ -190,9 +189,9 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 
 		while (!EntityHasReachedThreshold) {
 			for (AActorEntityBase* Entity : Entities) {
-				// Declaring these floats here to avoid 'ambiguous call to overloaded function' error
-				float IncrementMinimum = ((Entity->EntityData.Stats.Agility / 100) + 1) + Entity->EntityData.Stats.Agility * 0.9;
-				float IncrementMaximum = ((Entity->EntityData.Stats.Agility / 100) + 1) + Entity->EntityData.Stats.Agility * 1.1;
+				// Declaring these floats here to avoid 'ambiguous call to overloaded function' errors.
+				float IncrementMinimum = ((Entity->EntityData.Stats.Agility / 120) + 1) + Entity->EntityData.Stats.Agility * 0.9;
+				float IncrementMaximum = ((Entity->EntityData.Stats.Agility / 120) + 1) + Entity->EntityData.Stats.Agility * 1.1;
 			
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
@@ -214,19 +213,19 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
-	
 	ALostWorldPlayerControllerBattle* LocalPlayerController = Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 	FCard CardToCast = LocalPlayerController->ControlledPlayerEntity->Hand[CardIndexInHandArray - 1];
 
 	TArray<ECardFunctions> CardFunctions;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 
-	// Rest the temp stack entry
+	// Rest the temp stack entry.
 	TempStackEntry.Function = CardFunctions[0];
 	TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
 	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
@@ -251,7 +250,6 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
 	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
-		// Remove the card from the players' hand array and their HUD.
 		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	}	
 	
@@ -350,12 +348,12 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				FRotator::ZeroRotator,
 				SpawnParameters);
 
-				// Set Camera Target
+				// Set Camera Target.
 				FViewTargetTransitionParams Params;
 				GetWorld()->GetFirstPlayerController()->SetViewTarget(PlayerEntityReference, Params); // This line isn't multiplayer safe
 				PlayerEntityReference->Camera->SetActive(true);
 
-				// Add the level HUD to the player's screen
+				// Add the level HUD to the player's screen.
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 
 				// Player data loading is handled in the GameInstanceBase.
@@ -399,7 +397,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				// Guarantee at least one encounter in one room.
 				// Use the shuffled room indices array to get the room that the encounter will be spawned in to.
 				// For each other room, randomly decide whether or not to spawn an encounter.
-				for (int EncounterCount = 0; EncounterCount <= ShuffledRoomIndicesArray.Num(); EncounterCount++) {
+				while (ShuffledRoomIndicesArray.Num() > 0) {
 					if (NumberOfEncounters > 0) {
 						//CoinFlip = FMath::RandBool();
 						CoinFlip = true;
@@ -418,16 +416,13 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 
 					// Cap the number of encounters generated to be equal to the number of rooms in the level.
 					ShuffledRoomIndicesArray.RemoveAt(0);
-					NumberOfEncounters++;
 				}
 			
 				break;
 			}
-			default:
-				break;
 		}
 
-		ValidSpawnTilesArray.RemoveAt(RandomArrayIndex);
+		ValidSpawnTilesArray.Remove(RandomGridTile);
 	}
 }
 

@@ -51,6 +51,20 @@ enum class ECardTypes : uint8
 
 
 UENUM(BlueprintType)
+enum class ECardElements : uint8
+{
+	Fire,
+	Water,
+	Air,
+	Earth,
+	Light,
+	Cosmic,
+	Arcane,
+	Divine
+};
+
+
+UENUM(BlueprintType)
 enum class ECardTargets : uint8
 {
 	AnySingleEntity,
@@ -147,13 +161,16 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	int BaseCost; // Use a different variable for the total cost (the cost after any changes to the base cost.)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
+	TArray<ECardTypes> CardTypes; // Card types should be added to the array in the order that they're written on the card.
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
+	TArray<ECardElements> CardElements; // Elements should be added to the array in the order that they're written on the card.
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	int BaseDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	int BaseHealing;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
-	TArray<ECardTypes> CardTypes; // Card types should be added to the array in the order that they're written on the card.
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
 	FString Description; // Describes the cards functions to the player.

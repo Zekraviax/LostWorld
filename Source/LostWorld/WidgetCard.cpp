@@ -1,5 +1,9 @@
 #include "WidgetCard.h"
 
+#include <string>
+
+#include "LostWorldGameModeBase.h"
+
 
 bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
@@ -23,6 +27,6 @@ void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 		CardElementsAsString.Append(UEnum::GetValueAsString(Element).RightChop(15) + " ");
 	}
 	ElementsText->SetText(FText::FromString(CardElementsAsString));
-
-	DescriptionText->SetText(FText::FromString(InCard.Description));
+	
+	DescriptionText->SetText(FText::FromString(ALostWorldGameModeBase::ParseVariablesInText(InCard, InCard.Description)));
 }

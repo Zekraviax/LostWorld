@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Variables.h"
 #include "LostWorldGameModeBase.generated.h"
 
 
@@ -17,4 +18,8 @@ public:
 	// Since it's in the GameModeBase, it can be accessed via any child GameMode, and therefore
 	// from anywhere in the game.
 	static void DualLog(const FString& PreBuiltString);
+
+	// Parse variables within written texts.
+	// E.g. ${BasePower} should be replaced with the power of the card.
+	static FString ParseVariablesInText(const FCard& InCard, const FString& InString);
 };

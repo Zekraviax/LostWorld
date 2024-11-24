@@ -1,10 +1,14 @@
 #pragma once
 
 
+#include "Components/WidgetComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Variables.h"
 #include "ActorEntityBase.generated.h"
+
+
+class UWidgetEntityBillboard;
 
 
 // The base Entity class that all subtypes of Entities will inherit from, including the player.
@@ -32,6 +36,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* StaticMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetEntityBillboard> EntityBillboardWidgetClass;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetComponent* EntityBillboard;
+
+
 // -------------------------------- Cards & Deck
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEntity EntityData;
@@ -47,6 +58,7 @@ public:
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //
+	void ResetEntityBillboardPositionAndRotation() const;
 
 // -------------------------------- Child actor functions
 // The Enemy entity and Player entity will implement their own versions of the following interface functions separately.

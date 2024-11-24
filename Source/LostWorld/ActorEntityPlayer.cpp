@@ -1,11 +1,12 @@
 #include "ActorEntityPlayer.h"
 
 
+#include "Kismet/GameplayStatics.h"
 #include "LostWorldGameModeBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
+#include "WidgetEntityBillboard.h"
 #include "WidgetHudBattle.h"
-#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -18,10 +19,13 @@ AActorEntityPlayer::AActorEntityPlayer()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	EntityBillboard = CreateDefaultSubobject<UWidgetComponent>("EntityBillboard");
 
 	SetRootComponent(StaticMesh);
 	SpringArm->SetupAttachment(RootComponent);
 	Camera->SetupAttachment(SpringArm);
+	EntityBillboard->SetupAttachment(StaticMesh);
+	EntityBillboard->SetPivot(FVector2D(0.1f, 0.f));
 }
 
 
@@ -79,6 +83,8 @@ bool AActorEntityPlayer::TakeDamage(float Damage)
 
 	if (EntityData.Stats.CurrentHealthPoints <= 0) {
 		EntityDefeated();
+	} else {
+		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	}
 	
 	return true;

@@ -67,8 +67,8 @@ enum class ECardElements : uint8
 UENUM(BlueprintType)
 enum class ECardTargets : uint8
 {
-	AnySingleEntity,
-	AllEntities
+	OneEnemy,
+	AllEnemies
 };
 
 
@@ -196,7 +196,7 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 		CardTypes.Add(ECardTypes::Spell);
 		Description = "This is a default description.";
 		TotalCost = 1;
-		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::AnySingleEntity);
+		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::OneEnemy);
 	}
 };
 

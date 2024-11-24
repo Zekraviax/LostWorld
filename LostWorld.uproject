@@ -10,10 +10,9 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine",
-				"UMG"
+				"UMG",
+				"UMGEditor"
 			]
 		}
-	],
-	"Plugins": [
 	]
 }

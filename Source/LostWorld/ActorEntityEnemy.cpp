@@ -1,11 +1,18 @@
 #include "ActorEntityEnemy.h"
 
+
 #include "LostWorldGameModeBattle.h"
+#include "WidgetEntityBillboard.h"
 
 
 AActorEntityEnemy::AActorEntityEnemy()
 {
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
+	EntityBillboard = CreateDefaultSubobject<UWidgetComponent>("EntityBillboard");
+
+	EntityBillboard->SetupAttachment(StaticMesh);
+	EntityBillboard->SetPivot(FVector2D(0.1f, 0.f));
+	EntityBillboard->SetWorldLocation(GetActorLocation());
 }
 
 
@@ -53,6 +60,8 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 
 	if (EntityData.Stats.CurrentHealthPoints <= 0) {
 		EntityDefeated();
+	} else {
+		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	}
 	
 	return true;

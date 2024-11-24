@@ -5,12 +5,12 @@
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
 #include "FunctionLibraryCards.h"
-#include "JsonObjectConverter.h"
-#include "LostWorldGameInstanceBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "LostWorldGameInstanceBase.h"
 #include "LostWorldPlayerControllerBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "SaveGameLevelData.h"
+#include "WidgetEntityBillboard.h"
 #include "WidgetHudBattle.h"
 
 
@@ -160,6 +160,12 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 			}
 		}
 	}
+
+	// Initialize each entity's billboard.
+	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
+		Entity->ResetEntityBillboardPositionAndRotation();
+		Cast<UWidgetEntityBillboard>(Entity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(Entity->EntityData);
+	}
 }
 
 
@@ -227,12 +233,12 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
 
 	
-	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnySingleEntity) {
+	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			BattleHudWidget->PlayerStartCastingCard(CardToCast, TempStackEntry.Function, TempStackEntry.SelectedTargets.Num());
-	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEntities) {
+	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEnemies) {
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
 

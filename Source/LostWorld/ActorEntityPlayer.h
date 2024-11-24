@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "CoreMinimal.h"
 #include "ActorEntityBase.h"
-#include "InterfaceBattle.h"
 #include "Camera/CameraComponent.h"
+#include "CoreMinimal.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "InterfaceBattle.h"
 #include "ActorEntityPlayer.generated.h"
 
 
@@ -25,7 +25,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCameraComponent* Camera;
-
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 

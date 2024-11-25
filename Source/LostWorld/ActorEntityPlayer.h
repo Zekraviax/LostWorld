@@ -34,6 +34,7 @@ public:
 	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck) override;
 	virtual bool DrawCard() override;
 	virtual bool DiscardCard(int IndexInHand) override;
+	virtual bool PayCostsForCard(int IndexInHand) override;
 
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;

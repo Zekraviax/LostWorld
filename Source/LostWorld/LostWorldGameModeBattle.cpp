@@ -219,9 +219,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
-	ALostWorldPlayerControllerBattle* LocalPlayerController = Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
-	FCard CardToCast = LocalPlayerController->ControlledPlayerEntity->Hand[CardIndexInHandArray - 1];
-
+	FCard CardToCast = TurnQueue[0]->Hand[CardIndexInHandArray - 1];
 	TArray<ECardFunctions> CardFunctions;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 
@@ -231,7 +229,6 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
-
 	
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
@@ -255,9 +252,18 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
+	// Pay the cost for casting the card.
+	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
+		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
+	} else if (Cast<AActorEntityEnemy>(TempStackEntry.Controller)) {
+		Cast<AActorEntityEnemy>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
+	}
+
 	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
 		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
-	}	
+	} else if (Cast<AActorEntityEnemy>(TempStackEntry.Controller)) {
+		Cast<AActorEntityEnemy>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
+	}
 	
 	TheStack.Add(TempStackEntry);
 

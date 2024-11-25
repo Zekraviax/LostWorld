@@ -42,6 +42,12 @@ bool IInterfaceBattle::DiscardCard(int IndexInHand)
 }
 
 
+bool IInterfaceBattle::PayCostsForCard(int IndexInHand)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::TakeDamage(float Damage)
 {
 	return true;

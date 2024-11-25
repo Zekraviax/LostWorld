@@ -77,6 +77,15 @@ bool AActorEntityPlayer::DiscardCard(int IndexInHand)
 }
 
 
+bool AActorEntityPlayer::PayCostsForCard(int IndexInHand)
+{
+	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand - 1].TotalCost;
+	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
+	
+	return true;
+}
+
+
 bool AActorEntityPlayer::TakeDamage(float Damage)
 {
 	EntityData.Stats.CurrentHealthPoints -= Damage;

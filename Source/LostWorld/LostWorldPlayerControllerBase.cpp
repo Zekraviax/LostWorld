@@ -28,10 +28,10 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 			if (Cast<AActorEntityBase>(Hit.GetActor())) {
 				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));
 
+				SetControlMode(EPlayerControlModes::Battle);
+				
 				// Execute the first stack entry
 				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
-
-				ControlMode = EPlayerControlModes::Battle;
 			}
 			break;
 		default:

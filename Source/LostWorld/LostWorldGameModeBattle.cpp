@@ -27,7 +27,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		FString ContextString;
 		TArray<FName> EnemyRowNames = EnemyEncounter.EnemiesRowNames;
 		TArray<AActorGridTile*> ValidEnemySpawnTiles;
-		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->GetActorLocation();
+		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
+			ControlledPlayerEntity->GetActorLocation();
 		
 		// Clear the entities in battle array
 		EntitiesInBattleArray.Empty();
@@ -90,12 +91,12 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
 		
 		// Change the players' control mode so they can't walk away.
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::Battle;
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->SetControlMode(EPlayerControlModes::Battle);
 
 		// Swap out the level exploration UI for the battle UI.
 		// Make sure it's a "clean slate".
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
-
+		
 		// Once everything is done, begin Turn Zero.
 		PreBattleTurnZero(EnemyEncounter);
 	}
@@ -116,7 +117,7 @@ void ALostWorldGameModeBattle::EndOfBattleCheck() const
 void ALostWorldGameModeBattle::PlayerVictory() const
 {
 	// Change the players' control mode so they can walk again.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::LevelExploration;
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->SetControlMode(EPlayerControlModes::LevelExploration);
 
 	// Swap out the battle UI for the level UI.
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
@@ -371,13 +372,11 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				// Player data loading is handled in the GameInstanceBase.
 				// Here, we just fetch it from the game instance.
 				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
-				/*FJsonObjectConverter::JsonObjectStringToUStruct(
-					Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->LoadFileFromJson("PlayerSaveTest2"),
-					&PlayerEntityReference->EntityData,
-					false,
-					false
-					);*/
-					
+
+				// Players' first time billboard setup.
+				Cast<UWidgetEntityBillboard>(PlayerEntityReference->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(PlayerEntityReference->EntityData);
+				PlayerEntityReference->ResetEntityBillboardPositionAndRotation();
+
 				// Take control of the entity	
 				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
 				break;

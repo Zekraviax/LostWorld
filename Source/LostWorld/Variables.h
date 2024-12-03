@@ -84,6 +84,7 @@ enum class ECardFunctions : uint8
 UENUM(BlueprintType)
 enum class EPlayerControlModes : uint8
 {
+	None,
 	LevelExploration,
 	Battle,
 	TargetSelectionSingleEntity,

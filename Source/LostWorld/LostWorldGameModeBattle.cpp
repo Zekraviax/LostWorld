@@ -4,6 +4,7 @@
 #include "ActorEntityEnemy.h"
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
+#include "AiBrainBase.h"
 #include "FunctionLibraryCards.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldGameInstanceBase.h"
@@ -167,6 +168,13 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 		Entity->ResetEntityBillboardPositionAndRotation();
 		Cast<UWidgetEntityBillboard>(Entity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(Entity->EntityData);
 	}
+
+	// Begin the turn for the first entity in the turn array.
+	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
+		//TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->BeginTurn();
+	} else {
+		
+	}
 }
 
 
@@ -196,13 +204,16 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 
 		while (!EntityHasReachedThreshold) {
 			for (AActorEntityBase* Entity : Entities) {
+				float EntityAgility = Entity->EntityData.Stats.Agility;
 				// Declaring these floats here to avoid 'ambiguous call to overloaded function' errors.
-				float IncrementMinimum = ((Entity->EntityData.Stats.Agility / 120) + 1) + Entity->EntityData.Stats.Agility * 0.9;
-				float IncrementMaximum = ((Entity->EntityData.Stats.Agility / 120) + 1) + Entity->EntityData.Stats.Agility * 1.1;
-			
+				float IncrementMinimum = ((EntityAgility / 100) + 1) * 0.9;
+				float IncrementMaximum = ((EntityAgility / 100) + 1) * 1.1;
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
-				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
 
+				//DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum));
+				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness));
+				
+				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
 				if (Entity->EntityData.Stats.Readiness >= 1000) {
 					Entity->EntityData.Stats.Readiness -= 1000;
 					EntityHasReachedThreshold = true;
@@ -230,7 +241,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
-	
+
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
@@ -248,6 +259,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 
 		FinishedGettingTargetsForCard();
 	}
+	//}
 }
 
 

@@ -233,7 +233,7 @@ struct LOSTWORLD_API FEntityBaseStats
 	int Agility;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Readiness;
+	float Readiness;
 
 	// Default constructor
 	FEntityBaseStats()

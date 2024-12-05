@@ -38,4 +38,6 @@ public:
 
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;
+
+	virtual bool StartTurn() override;
 };

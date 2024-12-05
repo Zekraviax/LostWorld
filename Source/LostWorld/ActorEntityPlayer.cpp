@@ -107,3 +107,12 @@ bool AActorEntityPlayer::EntityDefeated()
 	return true;
 }
 
+
+bool AActorEntityPlayer::StartTurn()
+{
+	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+		SetControlMode(EPlayerControlModes::Battle);
+		
+	return true;
+}
+

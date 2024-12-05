@@ -30,4 +30,7 @@ public:
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();
+
+	virtual bool StartTurn();
+	virtual bool EndTurn();
 };

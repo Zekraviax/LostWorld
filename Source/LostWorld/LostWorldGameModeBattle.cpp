@@ -191,8 +191,10 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), ActorsInBattle);
 	for (AActor* Actor : ActorsInBattle) {
 		if (Cast<AActorEntityEnemy>(Actor)) {
+			Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Agility);
 			Entities.Add(Cast<AActorEntityEnemy>(Actor));
 		} else if (Cast<AActorEntityPlayer>(Actor)) {
+			Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
 			Entities.Add(Cast<AActorEntityPlayer>(Actor));
 		}
 	}
@@ -206,8 +208,8 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 			for (AActorEntityBase* Entity : Entities) {
 				float EntityAgility = Entity->EntityData.Stats.Agility;
 				// Declaring these floats here to avoid 'ambiguous call to overloaded function' errors.
-				float IncrementMinimum = ((EntityAgility / 100) + 1) * 0.9;
-				float IncrementMaximum = ((EntityAgility / 100) + 1) * 1.1;
+				float IncrementMinimum = ((EntityAgility / 64) * 0.9) + 10;
+				float IncrementMaximum = ((EntityAgility / 64) * 1.1) + 10;
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 
 				//DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum));
@@ -426,7 +428,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 						CoinFlip = true;
 					}
 
-					if (NumberOfEncounters == 0 || CoinFlip) {
+					if (CoinFlip) {
 						RandomRoom = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[ShuffledRoomIndicesArray[0]];
 						RandomArrayIndex = FMath::RandRange(0, RandomRoom.GridTilesInRoom.Num() - 1);
 						RandomGridTile = RandomRoom.GridTilesInRoom[RandomArrayIndex];

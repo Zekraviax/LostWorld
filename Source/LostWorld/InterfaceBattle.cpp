@@ -58,3 +58,15 @@ bool IInterfaceBattle::EntityDefeated()
 {
 	return true;
 }
+
+
+bool IInterfaceBattle::StartTurn()
+{
+	return true;
+}
+
+
+bool IInterfaceBattle::EndTurn()
+{
+	return true;
+}

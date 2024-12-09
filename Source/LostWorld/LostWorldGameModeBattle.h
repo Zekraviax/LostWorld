@@ -104,15 +104,17 @@ public:
 	// This function will handle all of the functions that occur at the start of the battle
 	// that can also happen during battle e.g. drawing cards.
 	void PreBattleTurnZero(const FEncounter& EnemyEncounter);
-	void AddMaxNumberOfEntitiesToTurnQueue();
+	void AddMaxNumberOfEntitiesToTurnQueue(bool OverrideReadiness);
 
 	
 	// Structure of a Turn:
 		// Beginning phase:
 			// Effects that trigger at the start of a turn trigger here, first.
 			// Effects that last until the start of the turn are cleaned up here, second.
+	void StartOfTurn();
 		// Draw phase:
 			// Entity draws a card.
+	void DrawPhaseDrawCard();
 		// Main phase:
 			// Entity can play cards and take special actions like consuming items.
 	void GetTargetsForCard(int CardIndexInHandArray);
@@ -121,6 +123,7 @@ public:
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.
 			// Effects that last until the end of the turn are cleaned up here, second.
+	void EndOfTurn();
 
 	
 	// Level Generation:

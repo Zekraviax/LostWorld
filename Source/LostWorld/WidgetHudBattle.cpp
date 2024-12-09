@@ -74,3 +74,10 @@ void UWidgetHudBattle::PlayerFinishCastingCard(int IndexInHand) const
 	// Remove the card from the HUD.
 	CardsInHandScrollBox->RemoveChildAt(IndexInHand - 1);
 }
+
+
+void UWidgetHudBattle::PlayerClickedEndTurn()
+{
+	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+		ControlledPlayerEntity->EndTurn();
+}

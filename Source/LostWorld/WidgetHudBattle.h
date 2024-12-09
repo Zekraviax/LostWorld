@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "Components/ScrollBox.h"
 #include "Components/TextBlock.h"
 #include "Variables.h"
@@ -24,6 +25,9 @@ public:
 
 // -------------------------------- Widget components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UButton* EndTurnButton;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CardsInHandScrollBox;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
@@ -41,4 +45,7 @@ public:
 
 	void PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const;
 	void PlayerFinishCastingCard(int IndexInHand) const;	// Also triggers if the player cancels casting a card
+
+	UFUNCTION(BlueprintCallable)
+	void PlayerClickedEndTurn();
 };

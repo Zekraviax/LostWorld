@@ -66,6 +66,11 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				FRotator::ZeroRotator,
 				SpawnParameters));
 			
+			// Attach an AI brain component
+			UAiBrainBase* AiBrainComponent = NewObject<UAiBrainBase>(EntitiesInBattleArray.Last());
+			EntitiesInBattleArray.Last()->AddComponent(
+				"", false, FTransform(FVector::ZeroVector), AiBrainComponent);
+			
 			ValidEnemySpawnTiles.Remove(RandomTile);
 
 			// Get the entity's cards from the cards json and add them to their deck.
@@ -139,7 +144,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// then the enemies, in whatever order the game finds them.
 
 	// Calculate turn order.
-	AddMaxNumberOfEntitiesToTurnQueue();
+	AddMaxNumberOfEntitiesToTurnQueue(true);
 
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
@@ -171,14 +176,39 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 	// Begin the turn for the first entity in the turn array.
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
-		//TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->BeginTurn();
-	} else {
-		
+		TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->BeginTurn();
+	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
+		Cast<AActorEntityPlayer>(TurnQueue[0])->StartTurn();
 	}
 }
 
 
-void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
+// -------------------------------- Battle: Beginning Phase
+void ALostWorldGameModeBattle::StartOfTurn()
+{
+	if (TurnQueue.Num() < 15) {
+		AddMaxNumberOfEntitiesToTurnQueue(false);
+	}
+	
+	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
+		Cast<AActorEntityEnemy>(TurnQueue[0])->StartTurn();
+	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
+		Cast<AActorEntityPlayer>(TurnQueue[0])->StartTurn();
+	}
+}
+
+
+void ALostWorldGameModeBattle::DrawPhaseDrawCard()
+{
+	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
+		Cast<AActorEntityEnemy>(TurnQueue[0])->DrawCard();
+	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
+		Cast<AActorEntityPlayer>(TurnQueue[0])->DrawCard();
+	}
+}
+
+
+void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideReadiness)
 {
 	// Each entity in battle has a 'readiness' value.
 	// When an entity's readiness value reaches 1000, add it to the turn queue,
@@ -189,13 +219,16 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue()
 	TArray<AActorEntityBase*> Entities;
 
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), ActorsInBattle);
-	for (AActor* Actor : ActorsInBattle) {
-		if (Cast<AActorEntityEnemy>(Actor)) {
-			Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Agility);
-			Entities.Add(Cast<AActorEntityEnemy>(Actor));
-		} else if (Cast<AActorEntityPlayer>(Actor)) {
-			Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
-			Entities.Add(Cast<AActorEntityPlayer>(Actor));
+
+	if (OverrideReadiness) {
+		for (AActor* Actor : ActorsInBattle) {
+			if (Cast<AActorEntityEnemy>(Actor)) {
+				Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Agility);
+				Entities.Add(Cast<AActorEntityEnemy>(Actor));
+			} else if (Cast<AActorEntityPlayer>(Actor)) {
+				Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
+				Entities.Add(Cast<AActorEntityPlayer>(Actor));
+			}
 		}
 	}
 
@@ -261,7 +294,6 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 
 		FinishedGettingTargetsForCard();
 	}
-	//}
 }
 
 
@@ -295,6 +327,15 @@ void ALostWorldGameModeBattle::CastCard()
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 
 	TheStack.RemoveAt(0);
+}
+
+
+// -------------------------------- Battle: Ending Phase
+void ALostWorldGameModeBattle::EndOfTurn()
+{
+	TurnQueue.RemoveAt(0);
+
+	StartOfTurn();
 }
 
 

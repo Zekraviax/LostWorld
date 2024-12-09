@@ -1,6 +1,8 @@
 #include "ActorEntityEnemy.h"
 
 
+#include "AiBrainBase.h"
+#include "AiBrainTestEnemyOne.h"
 #include "LostWorldGameModeBattle.h"
 #include "WidgetEntityBillboard.h"
 
@@ -82,5 +84,12 @@ bool AActorEntityEnemy::EntityDefeated()
 	
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfBattleCheck();
 
+	return true;
+}
+
+
+bool AActorEntityEnemy::StartTurn()
+{
+	
 	return true;
 }

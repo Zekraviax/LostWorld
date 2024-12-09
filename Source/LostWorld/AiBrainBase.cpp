@@ -30,6 +30,7 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UAiBrainBase::BeginTurn()
 {
+	
 }
 
 

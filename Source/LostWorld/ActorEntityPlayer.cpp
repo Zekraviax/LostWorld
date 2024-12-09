@@ -3,6 +3,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldGameModeBase.h"
+#include "LostWorldGameModeBattle.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
 #include "WidgetEntityBillboard.h"
@@ -113,6 +114,17 @@ bool AActorEntityPlayer::StartTurn()
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::Battle);
 		
+	return true;
+}
+
+
+bool AActorEntityPlayer::EndTurn()
+{
+	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+		SetControlMode(EPlayerControlModes::None);
+
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
+	
 	return true;
 }
 

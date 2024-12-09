@@ -11,6 +11,7 @@ class LOSTWORLD_API UAiBrainTestEnemyOne : public UAiBrainBase
 {
 	GENERATED_BODY()
 
+public:
 	virtual void BeginTurn() override;
 	virtual void SelectCardToCast() override;
 };

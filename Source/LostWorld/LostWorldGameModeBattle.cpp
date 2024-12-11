@@ -67,14 +67,15 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				SpawnParameters));
 			
 			// Attach an AI brain component
-			UAiBrainBase* AiBrainComponent = NewObject<UAiBrainBase>(EntitiesInBattleArray.Last());
-			EntitiesInBattleArray.Last()->AddComponent(
-				"", false, FTransform(FVector::ZeroVector), AiBrainComponent);
-			
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
+
 			ValidEnemySpawnTiles.Remove(RandomTile);
 
-			// Get the entity's cards from the cards json and add them to their deck.
+			// Assign the enemy's data to their actor.
+			// Then get the entity's cards from the cards json and add them to their deck.
 			FEnemyEntity* EnemyEntityData = EnemyDataTable->FindRow<FEnemyEntity>(EnemyRowNames[RowCount], ContextString);
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = *EnemyEntityData;
+			
 			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
 				FCard* InCard = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
 				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
@@ -176,14 +177,14 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 	// Begin the turn for the first entity in the turn array.
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
-		TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->BeginTurn();
+		TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->StartTurn();
 	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
 		Cast<AActorEntityPlayer>(TurnQueue[0])->StartTurn();
 	}
 }
 
 
-// -------------------------------- Battle: Beginning Phase
+// -------------------------------- Battle: Starting Phase
 void ALostWorldGameModeBattle::StartOfTurn()
 {
 	if (TurnQueue.Num() < 15) {
@@ -245,8 +246,9 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 				float IncrementMaximum = ((EntityAgility / 64) * 1.1) + 10;
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 
+				// To-Do: Clean up DualLog statements.
 				//DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum));
-				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness));
+				//DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness));
 				
 				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
 				if (Entity->EntityData.Stats.Readiness >= 1000) {
@@ -306,6 +308,7 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 		Cast<AActorEntityEnemy>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
 	}
 
+	// To-Do: Test if these interface functions can be called without casting to the Actor class.
 	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
 		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	} else if (Cast<AActorEntityEnemy>(TempStackEntry.Controller)) {

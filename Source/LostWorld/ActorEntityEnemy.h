@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "ActorEntityBase.h"
+#include "AiBrainBase.h"
 #include "InterfaceBattle.h"
 #include "ActorEntityEnemy.generated.h"
 
@@ -15,9 +16,21 @@ class LOSTWORLD_API AActorEntityEnemy : public AActorEntityBase, public IInterfa
 public:
 	AActorEntityEnemy();
 
+
+// ---------------------------------------- Variables ---------------------------------------- //
+
+// -------------------------------- Enemy-exclusive variables
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FEnemyEntity EnemyData;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UAiBrainBase* AiBrainComponent;
+
+	
 // ---------------------------------------- Functions ---------------------------------------- //
 
 // -------------------------------- Enemy-exclusive functions
+	void CreateAiBrainComponent();
 
 // -------------------------------- Battle Interface functions
 	virtual bool OverrideDeck(TArray<FCard> InDeck) override;

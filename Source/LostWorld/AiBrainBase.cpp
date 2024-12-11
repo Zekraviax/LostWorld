@@ -28,7 +28,7 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 }
 
 
-void UAiBrainBase::BeginTurn()
+void UAiBrainBase::StartTurn()
 {
 	
 }
@@ -36,7 +36,7 @@ void UAiBrainBase::BeginTurn()
 
 int UAiBrainBase::FindCardInHand(FString InCardDisplayName)
 {
-	AActorEntityBase* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
 
 	for (int HandCount = 0; HandCount < OwnerAsEnemy->Hand.Num(); HandCount++) {
 		if (OwnerAsEnemy->Hand[HandCount].DisplayName.Equals(InCardDisplayName)) {
@@ -53,7 +53,12 @@ void UAiBrainBase::SelectCardToCast()
 }
 
 
+void UAiBrainBase::GetTargetsForCard(int IndexInHand)
+{
+}
+
+
 void UAiBrainBase::CastCardWithDelay()
 {
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+	//Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
 }

@@ -108,7 +108,7 @@ public:
 
 	
 	// Structure of a Turn:
-		// Beginning phase:
+		// Starting phase:
 			// Effects that trigger at the start of a turn trigger here, first.
 			// Effects that last until the start of the turn are cleaned up here, second.
 	void StartOfTurn();

@@ -6,6 +6,9 @@
 #include "AiBrainBase.generated.h"
 
 
+class AActorEntityEnemy;
+
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class LOSTWORLD_API UAiBrainBase : public UActorComponent
 {
@@ -28,7 +31,7 @@ public:
 	FTimerHandle CastCardTimerHandle;
 
 // ---------------------------------------- Functions ---------------------------------------- //
-	virtual void BeginTurn();
+	virtual void StartTurn();
 
 	// When the enemy finds the card they want to cast,
 	// add an image of it to the players' HUD and get the targets for it.
@@ -38,5 +41,6 @@ public:
 	// Otherwise, returns the index of the card in the hand array.
 	virtual int FindCardInHand(FString InCardDisplayName);
 	virtual void SelectCardToCast();
+	virtual void GetTargetsForCard(int IndexInHand);
 	virtual void CastCardWithDelay();
 };

@@ -286,6 +286,9 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString EnemyType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntity EntityData;
 
 	// Experience points given to the player when defeated.
@@ -294,6 +297,7 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 
 	FEnemyEntity()
 	{
+		EnemyType = "TestEnemyOne";
 		ExperiencePoints = 1;
 	}
 };

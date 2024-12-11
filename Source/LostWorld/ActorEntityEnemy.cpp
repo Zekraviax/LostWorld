@@ -18,6 +18,15 @@ AActorEntityEnemy::AActorEntityEnemy()
 }
 
 
+void AActorEntityEnemy::CreateAiBrainComponent()
+{
+	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType);
+	if (EnemyData.EnemyType.Contains("TestEnemyOne")) {
+		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
+	}
+}
+
+
 bool AActorEntityEnemy::OverrideDeck(TArray<FCard> InDeck)
 {
 	Deck = InDeck;
@@ -90,6 +99,7 @@ bool AActorEntityEnemy::EntityDefeated()
 
 bool AActorEntityEnemy::StartTurn()
 {
+	AiBrainComponent->StartTurn();
 	
 	return true;
 }

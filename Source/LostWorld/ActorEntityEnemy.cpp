@@ -58,15 +58,15 @@ bool AActorEntityEnemy::DrawCard()
 
 bool AActorEntityEnemy::DiscardCard(int IndexInHand)
 {
-	Discard.Add(Hand[IndexInHand - 1]);
-	Hand.RemoveAt(IndexInHand - 1);
+	Discard.Add(Hand[IndexInHand]);
+	Hand.RemoveAt(IndexInHand);
 	
 	return true;
 }
 
 bool AActorEntityEnemy::PayCostsForCard(int IndexInHand)
 {
-	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand - 1].TotalCost;
+	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return true;

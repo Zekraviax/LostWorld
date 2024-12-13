@@ -2,6 +2,7 @@
 
 
 #include "ActorEntityEnemy.h"
+#include "InterfaceBattle.h"
 #include "LostWorldGameModeBattle.h"
 
 
@@ -43,7 +44,7 @@ void AFunctionLibraryCards::TestCardOne() const
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 	
-	Cast<AActorEntityEnemy>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, 10));
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, 10));
 }
 
 

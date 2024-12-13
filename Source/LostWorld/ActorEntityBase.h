@@ -65,4 +65,5 @@ public:
 // This is so that the Player entity can receive data from and send data to the Players' GameInstance, which persists
 // between battles.
 	//virtual void AddCardToDeck(FCard InCard);
+	
 };

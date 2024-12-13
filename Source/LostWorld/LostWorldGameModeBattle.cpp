@@ -96,10 +96,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 		// Add the player's entity to the array last.
 		EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
-		
-		// Change the players' control mode so they can't walk away.
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->SetControlMode(EPlayerControlModes::Battle);
 
+		// Don't need to change the players' control mode here, because it will be set at the start of each turn.
 		// Swap out the level exploration UI for the battle UI.
 		// Make sure it's a "clean slate".
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
@@ -302,18 +300,10 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
 	// Pay the cost for casting the card.
-	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
-		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
-	} else if (Cast<AActorEntityEnemy>(TempStackEntry.Controller)) {
-		Cast<AActorEntityEnemy>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
-	}
+	Cast<IInterfaceBattle>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
 
-	// To-Do: Test if these interface functions can be called without casting to the Actor class.
-	if (Cast<AActorEntityPlayer>(TempStackEntry.Controller)) {
-		Cast<AActorEntityPlayer>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
-	} else if (Cast<AActorEntityEnemy>(TempStackEntry.Controller)) {
-		Cast<AActorEntityEnemy>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
-	}
+	// To-Do: Replace all of these redundant casts to the actor, with casts to the interface.
+	Cast<IInterfaceBattle>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	
 	TheStack.Add(TempStackEntry);
 

@@ -30,6 +30,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FTimerHandle CastCardTimerHandle;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FTimerHandle EndTurnTimerHandle;
+
 // ---------------------------------------- Functions ---------------------------------------- //
 	virtual void StartTurn();
 
@@ -43,4 +46,5 @@ public:
 	virtual void SelectCardToCast();
 	virtual void GetTargetsForCard(int IndexInHand);
 	virtual void CastCardWithDelay();
+	virtual void EndTurn();
 };

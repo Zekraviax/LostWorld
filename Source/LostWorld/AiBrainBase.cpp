@@ -30,7 +30,6 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UAiBrainBase::StartTurn()
 {
-	
 }
 
 
@@ -60,5 +59,11 @@ void UAiBrainBase::GetTargetsForCard(int IndexInHand)
 
 void UAiBrainBase::CastCardWithDelay()
 {
-	//Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+}
+
+
+void UAiBrainBase::EndTurn()
+{
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 }

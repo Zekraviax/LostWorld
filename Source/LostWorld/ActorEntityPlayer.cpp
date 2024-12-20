@@ -103,7 +103,7 @@ bool AActorEntityPlayer::TakeDamage(float Damage)
 
 bool AActorEntityPlayer::EntityDefeated()
 {
-	ALostWorldGameModeBase::DualLog("Game Over");
+	ALostWorldGameModeBase::DualLog("Game Over", 0);
 	
 	return true;
 }

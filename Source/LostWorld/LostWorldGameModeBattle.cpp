@@ -358,9 +358,9 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 		LevelDataCopy.FloorDataAsStruct.TopLeftBoundary.X, LevelDataCopy.FloorDataAsStruct.BottomRightBoundary.Y);
 
 	DualLog("Level bottom left boundary: " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.BottomLeftBoundary.X) +
-		", " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.BottomLeftBoundary.Y));
+		", " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.BottomLeftBoundary.Y), 5);
 	DualLog("Level top right boundary: " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.X) +
-		", " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.Y));
+		", " + FString::FromInt(LevelDataCopy.FloorDataAsStruct.TopRightBoundary.Y), 5);
 
 	// Generate the layout of the rooms and corridors.
 	switch (LevelDataCopy.FloorDataAsStruct.Layout)
@@ -512,7 +512,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].MinimumWidth =
 			LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].MaximumLength;
 		
-		DualLog("Room " + FString::FromInt(RoomCount) + " calculated width and length: " + FString::FromInt(CalculatedLengthAndWidth));
+		DualLog("Room " + FString::FromInt(RoomCount) + " calculated width and length: " + FString::FromInt(CalculatedLengthAndWidth), 5);
 
 		// Calculate the boundaries of the room, then calculate their positions in the level.
 		// When the boundaries of the level are odd numbers, we round up for quadrant 4 and round down for all other quadrants
@@ -570,16 +570,16 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 
 		DualLog("Room " + FString::FromInt(RoomCount) + " bottom left boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y));
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y), 5);
 		DualLog("Room " + FString::FromInt(RoomCount) + " bottom right boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.Y));
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.Y), 5);
 		DualLog("Room " + FString::FromInt(RoomCount) + " top left boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.Y));
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.Y), 5);
 		DualLog("Room " + FString::FromInt(RoomCount) + " top right boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y));
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y), 5);
 
 		// For each valid coordinate in each room, spawn a GridTile actor at those coordinates.
 		for (int LengthCount = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X;
@@ -679,11 +679,11 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 
 		DualLog("Corridor " + FString::FromInt(CorridorCount) + " first half starting point " +
 			FString::FromInt(CorridorFirstHalfStartingPoint.X) + ", " +
-			FString::FromInt(CorridorFirstHalfStartingPoint.Y));
+			FString::FromInt(CorridorFirstHalfStartingPoint.Y), 5);
 
 		DualLog("Corridor " + FString::FromInt(CorridorCount) + " second half starting point " +
 			FString::FromInt(CorridorSecondHalfStartingPoint.X) + ", " +
-			FString::FromInt(CorridorSecondHalfStartingPoint.Y));
+			FString::FromInt(CorridorSecondHalfStartingPoint.Y), 5);
 
 		// Calculate the distance between rooms.
 		if (CorridorCount == 0 || CorridorCount == 2) {

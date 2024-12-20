@@ -20,6 +20,9 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool GiveAllEntitiesTestDecks;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int LogLevel = 0;
+
 	FDeveloperSettingsAsStruct()
 	{
 		EnableDeveloperSettingsOverride = true;

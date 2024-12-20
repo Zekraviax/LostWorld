@@ -20,7 +20,7 @@ AActorEntityEnemy::AActorEntityEnemy()
 
 void AActorEntityEnemy::CreateAiBrainComponent()
 {
-	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType);
+	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType, 4);
 	if (EnemyData.EnemyType.Contains("TestEnemyOne")) {
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
 	}

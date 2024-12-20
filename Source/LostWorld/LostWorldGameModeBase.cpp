@@ -1,10 +1,17 @@
 #include "LostWorldGameModeBase.h"
 
 
-void ALostWorldGameModeBase::DualLog(const FString& PreBuiltString)
+#include "LostWorldGameInstanceBase.h"
+#include "Kismet/GameplayStatics.h"
+#include "SaveGameDeveloperSettings.h"
+
+
+void ALostWorldGameModeBase::DualLog(const FString& PreBuiltString, int InLogLevel)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Orange, FString::Printf(TEXT("%s"), *PreBuiltString));
-	UE_LOG(LogTemp, Log, TEXT("%s"), *PreBuiltString);
+	//if (Cast<ULostWorldGameInstanceBase>(GetGameInstance())->DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.LogLevel <= InLogLevel) {
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Orange, FString::Printf(TEXT("%s"), *PreBuiltString));
+		UE_LOG(LogTemp, Log, TEXT("%s"), *PreBuiltString);
+	//}
 }
 
 

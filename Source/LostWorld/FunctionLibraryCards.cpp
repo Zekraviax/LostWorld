@@ -16,6 +16,9 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction)
 		case (ECardFunctions::TestFunctionTwo):
 			TestCardTwo();
 			break;
+		case (ECardFunctions::TestFunctionThree):
+			TestCardThree();
+			break;
 		default:
 			break;
 	}
@@ -57,4 +60,10 @@ void AFunctionLibraryCards::TestCardTwo() const
 			Cast<AActorEntityEnemy>(Enemy)->TakeDamage(StandardDamageFormula(Attacker, Cast<AActorEntityEnemy>(Enemy), 5));
 		}
 	}
+}
+
+
+void AFunctionLibraryCards::TestCardThree() const
+{
+	Cast<IInterfaceBattle>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller)->DrawCard();
 }

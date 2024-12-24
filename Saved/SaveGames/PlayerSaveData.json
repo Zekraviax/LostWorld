@@ -19,12 +19,14 @@
 			"TestCardOne",
 			"TestCardOne",
 			"TestCardOne",
-			"TestCardOne",
 			"TestCardTwo",
 			"TestCardTwo",
 			"TestCardTwo",
 			"TestCardTwo",
-			"TestCardTwo"
+			"TestCardThree",
+			"TestCardThree",
+			"TestCardThree",
+			"TestCardThree"
 		],
 		"StartOfBattleHandSize": 5
 	}

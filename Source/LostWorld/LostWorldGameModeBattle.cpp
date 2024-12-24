@@ -33,8 +33,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		
 		// Clear the entities in battle array
 		EntitiesInBattleArray.Empty();
-
-		// Get all tiles within 2 tiles of the player that are empty.
+		
 		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
 			AActorGridTile* FoundTile = *Itr;
 			// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
@@ -42,8 +41,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
 				// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
 				// because the UI might obscure the enemy.
-				if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
-					(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
+				//if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
+					//(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
 					// Third, make sure the tile isn't in a corridor.
 					if (FoundTile->CorridorIndex == -1) {
 						// Fourth, make sure the player isn't occupying the tile.
@@ -51,7 +50,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 							ValidEnemySpawnTiles.Add(FoundTile);
 						}
 					}
-				}
+				//}
 			}
 		}
 
@@ -139,7 +138,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	
 	// Lazy turn order calculation:
 	// The player goes first.
-	// then their allies, in whatever order the game finds them.
+	// then the players' allies, in whatever order the game finds them.
 	// then the enemies, in whatever order the game finds them.
 
 	// Calculate turn order.
@@ -277,9 +276,14 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.SelectedTargets.Empty();
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
 
-	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
+	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::Self) {
+		TempStackEntry.SelectedTargets.Add(TempStackEntry.Controller);
+
+		FinishedGettingTargetsForCard();
+	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+		
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			BattleHudWidget->PlayerStartCastingCard(CardToCast, TempStackEntry.Function, TempStackEntry.SelectedTargets.Num());
 	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEnemies) {
@@ -302,7 +306,7 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 	// Pay the cost for casting the card.
 	Cast<IInterfaceBattle>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
 
-	// To-Do: Replace all of these redundant casts to the actor, with casts to the interface.
+	// To-Do: Replace all of these redundant casts to the actor with casts to the interface.
 	Cast<IInterfaceBattle>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	
 	TheStack.Add(TempStackEntry);

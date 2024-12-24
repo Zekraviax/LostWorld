@@ -67,6 +67,7 @@ enum class ECardElements : uint8
 UENUM(BlueprintType)
 enum class ECardTargets : uint8
 {
+	Self,
 	OneEnemy,
 	AllEnemies
 };
@@ -76,7 +77,8 @@ UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
 	TestFunctionOne,
-	TestFunctionTwo
+	TestFunctionTwo,
+	TestFunctionThree
 };
 
 

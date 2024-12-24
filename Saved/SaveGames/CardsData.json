@@ -3,15 +3,18 @@
 		"Name": "TestCardOne",
 		"DisplayName": "Test Card One",
 		"BaseCost": 1,
-		"BaseDamage": 10,
-		"BaseHealing": 0,
 		"CardTypes": [
 			"Spell"
 		],
-		"Description": "This is a default description.",
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 10,
+		"BaseHealing": 0,
+		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "AnySingleEntity"
+			"TestFunctionOne": "OneEnemy"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 10,
@@ -21,18 +24,42 @@
 		"Name": "TestCardTwo",
 		"DisplayName": "Test Card Two",
 		"BaseCost": 4,
-		"BaseDamage": 5,
-		"BaseHealing": 0,
 		"CardTypes": [
 			"Spell"
 		],
-		"Description": "This is a default description.",
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 5,
+		"BaseHealing": 0,
+		"Description": "Deal damage to all enemies with base power ${TotalPower}.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionTwo": "AllEntities"
+			"TestFunctionTwo": "AllEnemies"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 5,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardThree",
+		"DisplayName": "Test Card Three",
+		"BaseCost": 2,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Draw 1 card.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionThree": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
 		"TotalHealing": 0
 	}
 ]

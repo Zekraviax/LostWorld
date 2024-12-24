@@ -19,4 +19,5 @@ public:
 	
 	void TestCardOne() const;
 	void TestCardTwo() const;
+	void TestCardThree() const;
 };

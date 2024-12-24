@@ -2,6 +2,8 @@
 
 
 #include "CoreMinimal.h"
+#include "LostWorldGameModeBase.h"
+#include "SaveGameDeveloperSettings.h"
 #include "Engine/GameInstance.h"
 #include "Variables.h"
 #include "LostWorldGameInstanceBase.generated.h"

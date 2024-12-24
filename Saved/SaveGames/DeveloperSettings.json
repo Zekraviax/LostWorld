@@ -1,3 +1,6 @@
 {
-	"giveAllEntitiesTestDecks": true
+	"enableDeveloperSettingsOverride": true,
+	"printMessageOnGameStart": "Developer mode enabled.",
+	"giveAllEntitiesTestDecks": false,
+	"logLevel": 3
 }

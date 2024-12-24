@@ -96,6 +96,9 @@ bool AActorEntityPlayer::TakeDamage(float Damage)
 	} else {
 		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	}
+
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " takes " +
+		FString::FromInt(Damage) + " damage.", 3);
 	
 	return true;
 }
@@ -113,6 +116,8 @@ bool AActorEntityPlayer::StartTurn()
 {
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::Battle);
+
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn!", 3);
 		
 	return true;
 }
@@ -122,6 +127,8 @@ bool AActorEntityPlayer::EndTurn()
 {
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::None);
+
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn ends.", 3);
 
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 	

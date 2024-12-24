@@ -44,4 +44,5 @@ public:
 	virtual bool EntityDefeated() override;
 
 	virtual bool StartTurn() override;
+	virtual bool EndTurn() override;
 };

@@ -25,7 +25,7 @@ public:
 	// 4 - Very Verbose Log
 	static void DualLog(const FString& PreBuiltString, int InLogLevel);
 
-	// Parse variables within written texts.
-	// E.g. ${BasePower} should be replaced with the power of the card.
+	// Parse sub-variables within written text variables.
+	// E.g. ${BasePower} should be replaced with the power of a card.
 	static FString ParseVariablesInText(const FCard& InCard, const FString& InString);
 };

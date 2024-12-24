@@ -316,6 +316,8 @@ void ALostWorldGameModeBattle::CastCard()
 	if (!FunctionLibraryCardsInstance) {
 		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
 	}
+
+	DualLog(TheStack[0].Controller->EntityData.DisplayName + " attacks!", 3);
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 
@@ -326,6 +328,10 @@ void ALostWorldGameModeBattle::CastCard()
 // -------------------------------- Battle: Ending Phase
 void ALostWorldGameModeBattle::EndOfTurn()
 {
+	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
+		Cast<AActorEntityEnemy>(TurnQueue[0])->EndTurn();
+	}
+	
 	TurnQueue.RemoveAt(0);
 
 	StartOfTurn();

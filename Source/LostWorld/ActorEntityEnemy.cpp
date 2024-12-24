@@ -82,6 +82,9 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 	} else {
 		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	}
+
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " takes " +
+	FString::FromInt(Damage) + " damage.", 3);
 	
 	return true;
 }
@@ -99,7 +102,17 @@ bool AActorEntityEnemy::EntityDefeated()
 
 bool AActorEntityEnemy::StartTurn()
 {
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 3);
+	
 	AiBrainComponent->StartTurn();
 	
 	return true;
+}
+
+
+bool AActorEntityEnemy::EndTurn()
+{
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is ending their turn.", 3);
+	
+	return IInterfaceBattle::EndTurn();
 }

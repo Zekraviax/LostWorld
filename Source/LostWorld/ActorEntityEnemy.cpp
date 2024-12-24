@@ -100,6 +100,15 @@ bool AActorEntityEnemy::EntityDefeated()
 }
 
 
+bool AActorEntityEnemy::ReceiveHealing(float Healing)
+{
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is healed for " +
+		FString::FromInt(Healing) + " health points.", 3);
+	
+	return IInterfaceBattle::ReceiveHealing(Healing);
+}
+
+
 bool AActorEntityEnemy::StartTurn()
 {
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 3);

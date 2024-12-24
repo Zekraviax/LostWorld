@@ -39,6 +39,8 @@ public:
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;
 
+	virtual bool ReceiveHealing(float Healing) override;
+
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;
 };

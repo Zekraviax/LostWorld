@@ -112,6 +112,21 @@ bool AActorEntityPlayer::EntityDefeated()
 }
 
 
+bool AActorEntityPlayer::ReceiveHealing(float Healing)
+{
+	EntityData.Stats.CurrentHealthPoints += Healing;
+
+	if (EntityData.Stats.CurrentHealthPoints > EntityData.Stats.MaximumHealthPoints) {
+		EntityData.Stats.CurrentHealthPoints = EntityData.Stats.MaximumHealthPoints;
+	}
+
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " is healed for " +
+		FString::FromInt(Healing) + " health points.", 3);
+	
+	return IInterfaceBattle::ReceiveHealing(Healing);
+}
+
+
 bool AActorEntityPlayer::StartTurn()
 {
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->

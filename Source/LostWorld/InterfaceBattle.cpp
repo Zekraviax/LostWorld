@@ -60,6 +60,12 @@ bool IInterfaceBattle::EntityDefeated()
 }
 
 
+bool IInterfaceBattle::ReceiveHealing(float Healing)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::StartTurn()
 {
 	return true;

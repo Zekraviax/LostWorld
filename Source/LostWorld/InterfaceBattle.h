@@ -31,6 +31,8 @@ public:
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();
 
+	virtual bool ReceiveHealing(float Healing);
+
 	virtual bool StartTurn();
 	virtual bool EndTurn();
 };

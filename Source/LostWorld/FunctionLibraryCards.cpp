@@ -67,3 +67,9 @@ void AFunctionLibraryCards::TestCardThree() const
 {
 	Cast<IInterfaceBattle>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller)->DrawCard();
 }
+
+
+void AFunctionLibraryCards::TestCardFour() const
+{
+	Cast<IInterfaceBattle>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller)->ReceiveHealing(5);
+}

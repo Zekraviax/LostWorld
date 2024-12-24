@@ -69,6 +69,7 @@ enum class ECardTargets : uint8
 {
 	Self,
 	OneEnemy,
+	AnyOneEntity,
 	AllEnemies
 };
 
@@ -78,7 +79,8 @@ enum class ECardFunctions : uint8
 {
 	TestFunctionOne,
 	TestFunctionTwo,
-	TestFunctionThree
+	TestFunctionThree,
+	TestFunctionFour
 };
 
 

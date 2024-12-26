@@ -45,11 +45,11 @@
 			{
 				"CurrentHealthPoints": 25,
 				"MaximumHealthPoints": 25,
-				"CurrentManaPoints": 10,
-				"MaximumManaPoints": 10,
+				"CurrentManaPoints": 25,
+				"MaximumManaPoints": 25,
 				"CurrentBarrierPoints": 0,
 				"Strength": 5,
-				"Toughness": 5,
+				"Toughness": 7,
 				"Agility": 5,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
@@ -67,7 +67,7 @@
 				"TestCardTwo",
 				"TestCardTwo",
 				"TestCardTwo",
-				"TestCardTwo"
+				"TestCardThree"
 			],
 			"StartOfBattleHandSize": 5
 		},

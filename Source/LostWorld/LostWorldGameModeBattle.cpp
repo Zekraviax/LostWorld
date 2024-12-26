@@ -41,8 +41,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
 				// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
 				// because the UI might obscure the enemy.
-				//if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
-					//(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
+				if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
+					(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
 					// Third, make sure the tile isn't in a corridor.
 					if (FoundTile->CorridorIndex == -1) {
 						// Fourth, make sure the player isn't occupying the tile.
@@ -50,11 +50,11 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 							ValidEnemySpawnTiles.Add(FoundTile);
 						}
 					}
-				//}
+				}
 			}
 		}
 
-		// Spawn enemies at random valid tiles
+		// Spawn enemies at random valid tiles.
 		// ReSharper disable once CppTooWideScope
 		const FActorSpawnParameters SpawnParameters;
 		for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
@@ -74,11 +74,17 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			// Then get the entity's cards from the cards json and add them to their deck.
 			FEnemyEntity* EnemyEntityData = EnemyDataTable->FindRow<FEnemyEntity>(EnemyRowNames[RowCount], ContextString);
 			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = *EnemyEntityData;
-			
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData->EntityData;
+
+			DualLog("Spawn enemy: " + EnemyEntityData->EntityData.DisplayName, 4);
+
+			// Set up the enemy's deck.
 			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
 				FCard* InCard = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
 				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
 			}
+
+			
 		}
 
 		// Reset all of the players' card arrays.
@@ -135,6 +141,8 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Calculate the turn order.
 	// Shuffle everyone's decks.
 	// Each entity draws a hand of cards.
+	// Give each entity the status effects they should start the battle with,
+	// Then trigger each status effect that triggers at the start of a battle.
 	
 	// Lazy turn order calculation:
 	// The player goes first.
@@ -171,6 +179,12 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 		Entity->ResetEntityBillboardPositionAndRotation();
 		Cast<UWidgetEntityBillboard>(Entity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(Entity->EntityData);
 	}
+
+	// Give each entity the status effects they should start the battle with.
+	
+
+	// Trigger all status effects that trigger at the start of battles.
+	
 
 	// Begin the turn for the first entity in the turn array.
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
@@ -479,7 +493,8 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 
 						// To-Do: Choose an encounter from the levels' list of possible encounters,
 						// factoring in the current floor and the encounters' minimum and maximum levels.
-						RandomGridTile->Encounter = LevelDataCopy.Encounters[0];
+						int RandomEnemyEncounter = FMath::RandRange(0, LevelDataCopy.Encounters.Num() - 1);
+						RandomGridTile->Encounter = LevelDataCopy.Encounters[RandomEnemyEncounter];
 						RandomGridTile->SetTileColour(FLinearColor(0.25f, 0.f, 0.f));
 					}
 

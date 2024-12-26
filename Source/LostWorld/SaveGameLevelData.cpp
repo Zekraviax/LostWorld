@@ -51,7 +51,7 @@ void USaveGameLevelData::SaveLevelDataToJson()
 void USaveGameLevelData::LoadLevelDataFromJson()
 {
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
-	FString PlayerSaveDataFileName = "SaveGames/TestLevelData.json";
+	FString PlayerSaveDataFileName = "SaveGames/TestLevelData2.json";
 
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
 	PlayerDataSaveFilePath.Append(PlayerSaveDataFileName);
@@ -64,11 +64,14 @@ void USaveGameLevelData::LoadLevelDataFromJson()
 	}
 
 	FString PlayerDataAsJson;
+	TArray<FLevelDataAsStruct> LevelDataAsStructsArray;
 	FLevelDataAsStruct LevelDataAsStruct;
 
 	FFileHelper::LoadFileToString(PlayerDataAsJson, *PlayerDataSaveFilePath);
-	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &LevelDataAsStruct, 0, 0);
-
-	// Apply level data
-	LevelData = LevelDataAsStruct;
+	//FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &LevelDataAsStruct, 0, 0);
+	FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsJson, &LevelDataAsStructsArray, 0, 0);
+	
+	// Apply level data.
+	// To-Do: Make this function search for a level using a given string/
+	LevelData = LevelDataAsStructsArray[0];
 }

@@ -17,9 +17,9 @@ public:
 	AActorEntityEnemy();
 
 
-// ---------------------------------------- Variables ---------------------------------------- //
+	// ---------------------------------------- Variables ---------------------------------------- //
 
-// -------------------------------- Enemy-exclusive variables
+	// -------------------------------- Enemy-exclusive variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEnemyEntity EnemyData;
 	
@@ -27,12 +27,12 @@ public:
 	UAiBrainBase* AiBrainComponent;
 
 	
-// ---------------------------------------- Functions ---------------------------------------- //
+	// ---------------------------------------- Functions ---------------------------------------- //
 
-// -------------------------------- Enemy-exclusive functions
+	// -------------------------------- Enemy-exclusive functions
 	void CreateAiBrainComponent();
 
-// -------------------------------- Battle Interface functions
+	// -------------------------------- Battle Interface functions
 	virtual bool OverrideDeck(TArray<FCard> InDeck) override;
 	virtual bool AddCardToDeck(FCard InCard) override;
 	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck) override;
@@ -44,6 +44,7 @@ public:
 	virtual bool EntityDefeated() override;
 
 	virtual bool ReceiveHealing(float Healing) override;
+	virtual bool GainBarrier(int InBarrier) override;
 
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;

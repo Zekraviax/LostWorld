@@ -8,5 +8,14 @@
 		],
 		"MinimumFloor": 1,
 		"MaximumFloor": 1
+	},
+	{
+		"Name": "TestEncounterTwo",
+		"EncounterType": "Enemy",
+		"EnemiesRowNames": [
+			"TestEnemyTwo"
+		],
+		"MinimumFloor": 1,
+		"MaximumFloor": 1
 	}
 ]

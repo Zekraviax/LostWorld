@@ -109,6 +109,17 @@ bool AActorEntityEnemy::ReceiveHealing(float Healing)
 }
 
 
+bool AActorEntityEnemy::GainBarrier(int InBarrier)
+{
+	EntityData.Stats.CurrentBarrierPoints += InBarrier;
+
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " gains " +
+		FString::FromInt(InBarrier) + " barrier.", 3);
+	
+	return IInterfaceBattle::GainBarrier(InBarrier);
+}
+
+
 bool AActorEntityEnemy::StartTurn()
 {
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 3);

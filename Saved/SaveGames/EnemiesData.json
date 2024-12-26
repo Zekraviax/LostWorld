@@ -1,6 +1,7 @@
 [
 	{
 		"Name": "TestEnemyOne",
+		"EnemyType": "TestEnemyOne",
 		"EntityData":
 		{
 			"DisplayName": "Default Jim",
@@ -10,9 +11,51 @@
 				"MaximumHealthPoints": 10,
 				"CurrentManaPoints": 10,
 				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
 				"Strength": 5,
 				"Toughness": 5,
-				"Agility": 5
+				"Agility": 5,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsRowNames": []
+			},
+			"CardsInDeckRowNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo"
+			],
+			"StartOfBattleHandSize": 5
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "TestEnemyTwo",
+		"EnemyType": "TestEnemyTwo",
+		"EntityData":
+		{
+			"DisplayName": "Test Boss",
+			"Stats":
+			{
+				"CurrentHealthPoints": 25,
+				"MaximumHealthPoints": 25,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 5,
+				"Toughness": 5,
+				"Agility": 5,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsRowNames": [
+					"IronShell"
+				]
 			},
 			"CardsInDeckRowNames": [
 				"TestCardOne",

@@ -32,6 +32,7 @@ public:
 	virtual bool EntityDefeated();
 
 	virtual bool ReceiveHealing(float Healing);
+	virtual bool GainBarrier(int InBarrier);
 
 	virtual bool StartTurn();
 	virtual bool EndTurn();

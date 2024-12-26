@@ -66,6 +66,12 @@ bool IInterfaceBattle::ReceiveHealing(float Healing)
 }
 
 
+bool IInterfaceBattle::GainBarrier(int InBarrier)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::StartTurn()
 {
 	return true;

@@ -1,0 +1,28 @@
+[
+	{
+		"Name": "PosonTest",
+		"DisplayName": "Poison Test",
+		"Description": "At the start of this entity's turn, it takes 1/8th of its Max HP as damage.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"StartOfOwnersTurn"
+		],
+		"CurrentStackCount": 5,
+		"MaximumStackCount": 5,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": false
+	},
+	{
+		"Name": "IronShell",
+		"DisplayName": "Iron Shell",
+		"Description": "Gain 5x your Max HP as Barrier at the start of the battle.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"StartOfBattle"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": false
+	}
+]

@@ -95,6 +95,24 @@ enum class EPlayerControlModes : uint8
 };
 
 
+// -------------------------------- Miscellaneous
+UENUM(BlueprintType)
+enum class EStatusEffectFunctions : uint8
+{
+	Poison,
+};
+
+
+UENUM(BlueprintType)
+enum class ETimingTriggers : uint8
+{
+	None,
+	StartOfBattle,
+	StartOfOwnersTurn,
+	StartOfEveryTurn,
+};
+
+
 
 // ---------------------------------------- Structs ---------------------------------------- //
 USTRUCT(BlueprintType)
@@ -127,6 +145,49 @@ struct LOSTWORLD_API FIntVector2D
 	{
 		return X == OtherStruct.X &&
 			Y == OtherStruct.Y;
+	}
+};
+
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FStatusEffect : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Description;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EStatusEffectFunctions StatusEffect;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ETimingTriggers> TimingTriggers;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentStackCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaximumStackCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool DecrementStacksWhenTriggered;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool VisibleToPlayer;
+
+	FStatusEffect()
+	{
+		DisplayName = "Test";
+		Description = "This is a test description.";
+		StatusEffect = EStatusEffectFunctions::Poison;
+		TimingTriggers = { ETimingTriggers::StartOfBattle };
+		CurrentStackCount = 5;
+		MaximumStackCount = 5;
+		DecrementStacksWhenTriggered = true;
+		VisibleToPlayer = false;
 	}
 };
 
@@ -224,6 +285,9 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumManaPoints;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentBarrierPoints;
+
 	// Increases damage dealt by physical attacks.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Strength;
@@ -232,13 +296,19 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Toughness;
 
-	// Hastens the rate at which their readiness increases.
+	// Determines the rate at which their readiness increases.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Agility;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FStatusEffect> CurrentStatusEffects;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> StartBattleWithStatusEffectsRowNames;
+	
 	// Default constructor
 	FEntityBaseStats()
 	{
@@ -246,6 +316,7 @@ struct LOSTWORLD_API FEntityBaseStats
 		MaximumHealthPoints = 10;
 		CurrentManaPoints = 10;
 		MaximumManaPoints = 10;
+		CurrentBarrierPoints = 0;
 		Strength = 1;
 		Toughness = 1;
 		Agility = 1;
@@ -528,7 +599,7 @@ struct LOSTWORLD_API FFloorDataAsStruct
 
 
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FLevelDataAsStruct
+struct LOSTWORLD_API FLevelDataAsStruct : public FTableRowBase
 {
 	GENERATED_BODY()
 

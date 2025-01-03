@@ -70,6 +70,8 @@ bool AActorEntityBase::DrawCard()
 	// Shift the top card of the deck into the hand
 	Hand.Add(Deck[0]);
 	Deck.RemoveAt(0);
+
+	// To-Do: Calculate variables such as TotalCost here.
 	
 	return IInterfaceBattle::DrawCard();
 }
@@ -120,7 +122,8 @@ bool AActorEntityBase::TakeDamage(float Damage)
 bool AActorEntityBase::EntityDefeated()
 {
 	Destroy();
-	
+
+	// To-Do: Remove the entity from the turn order, if the battle isn't over.
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfBattleCheck();
 
 	return IInterfaceBattle::EntityDefeated();

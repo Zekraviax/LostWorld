@@ -2,7 +2,7 @@
 	{
 		"Name": "TestEncounterOne",
 		"EncounterType": "Enemy",
-		"EnemiesRowNames": [
+		"EnemyTypes": [
 			"TestEnemyOne",
 			"TestEnemyOne"
 		],
@@ -12,7 +12,7 @@
 	{
 		"Name": "TestEncounterTwo",
 		"EncounterType": "Enemy",
-		"EnemiesRowNames": [
+		"EnemyTypes": [
 			"TestEnemyTwo"
 		],
 		"MinimumFloor": 1,

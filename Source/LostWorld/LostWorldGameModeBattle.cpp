@@ -26,90 +26,92 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 	// To-Do: Get data from the JSON files, not the DataTables.
 	// Get the Enemy data table row names from the Encounter data table.
-	if (EncounterDataTable && EnemyDataTable) {
-		FString ContextString;
-		TArray<FName> EnemyRowNames = EnemyEncounter.EnemiesRowNames;
-		TArray<AActorGridTile*> ValidEnemySpawnTiles;
-		FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
-			ControlledPlayerEntity->GetActorLocation();
-		
-		// Clear the entities in battle array
-		EntitiesInBattleArray.Empty();
-		
-		for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-			AActorGridTile* FoundTile = *Itr;
-			// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
-			if (FoundTile->Encounter.EncounterType == EEncounterTypes::Enemy ||
-				FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
-				// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
-				// because the UI might obscure the enemy.
-				if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
-					(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
-					// Third, make sure the tile isn't in a corridor.
-					if (FoundTile->CorridorIndex == -1) {
-						// Fourth, make sure the player isn't occupying the tile.
-						if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
-							ValidEnemySpawnTiles.Add(FoundTile);
-						}
+
+	FString ContextString;
+	TArray<FName> EnemyRowNames = EnemyEncounter.EnemyTypes;
+	TArray<AActorGridTile*> ValidEnemySpawnTiles;
+	FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
+		ControlledPlayerEntity->GetActorLocation();
+	
+	// Clear the entities in battle array
+	EntitiesInBattleArray.Empty();
+	
+	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
+		AActorGridTile* FoundTile = *Itr;
+		// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
+		if (FoundTile->Encounter.EncounterType == EEncounterTypes::Enemy ||
+			FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
+			// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
+			// because the UI might obscure the enemy.
+			if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
+				(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
+				// Third, make sure the tile isn't in a corridor.
+				if (FoundTile->CorridorIndex == -1) {
+					// Fourth, make sure the player isn't occupying the tile.
+					if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
+						ValidEnemySpawnTiles.Add(FoundTile);
 					}
 				}
 			}
 		}
-
-		// Spawn enemies at random valid tiles.
-		// ReSharper disable once CppTooWideScope
-		const FActorSpawnParameters SpawnParameters;
-		for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
-			AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
-
-			EntitiesInBattleArray.Add(GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
-				FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
-				FRotator::ZeroRotator,
-				SpawnParameters));
-			
-			// Attach an AI brain component
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
-
-			ValidEnemySpawnTiles.Remove(RandomTile);
-
-			// Assign the enemy's data to their actor.
-			// Then get the entity's cards from the cards json and add them to their deck.
-			FEnemyEntity* EnemyEntityData = EnemyDataTable->FindRow<FEnemyEntity>(EnemyRowNames[RowCount], ContextString);
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = *EnemyEntityData;
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData->EntityData;
-
-			DualLog("Spawn enemy: " + EnemyEntityData->EntityData.DisplayName, 3);
-
-			// Set up the enemy's deck.
-			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
-				FCard* InCard = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
-				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
-			}
-		}
-
-		// Reset all of the players' card arrays.
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Deck.Empty();
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
-		
-		// The players' deck can be fetched from the GameInstance.
-		TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckRowNames;
-		for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
-			FCard* InCard = CardsDataTable->FindRow<FCard>(PlayerCardsInDeckRowNames[CardCount], ContextString);
-			Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->AddCardToDeck(*InCard);
-		}
-
-		// Add the player's entity to the array last.
-		EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
-
-		// Don't need to change the players' control mode here, because it will be set at the start of each turn.
-		// Swap out the level exploration UI for the battle UI.
-		// Make sure it's a "clean slate".
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
-		
-		// Once everything is done, begin Turn Zero.
-		PreBattleTurnZero(EnemyEncounter);
 	}
+
+	// Spawn enemies at random valid tiles.
+	// ReSharper disable once CppTooWideScope
+	const FActorSpawnParameters SpawnParameters;
+	for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
+		AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
+
+		EntitiesInBattleArray.Add(GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
+			FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
+			FRotator::ZeroRotator,
+			SpawnParameters));
+		
+		// Attach an AI brain component
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
+
+		ValidEnemySpawnTiles.Remove(RandomTile);
+
+		// Assign the enemy's data to their actor.
+		// Then get the entity's cards from the cards json and add them to their deck.
+		FEnemyEntity EnemyEntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+			GetEnemyFromJson(EnemyRowNames[RowCount].ToString());
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = EnemyEntityData;
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData.EntityData;
+
+		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
+
+		// Set up the enemy's deck.
+		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckRowNames.Num(); CardCount++) {
+			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckRowNames[CardCount].ToString());
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
+		}
+	}
+
+	// Reset all of the players' card arrays.
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Deck.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
+	
+	// The players' deck can be fetched from the GameInstance.
+	TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckRowNames;
+	for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
+		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+			GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
+		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->AddCardToDeck(InCard);
+	}
+
+	// Add the player's entity to the array last.
+	EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
+
+	// Don't need to change the players' control mode here, because it will be set at the start of each turn.
+	// Swap out the level exploration UI for the battle UI.
+	// Make sure it's a "clean slate".
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
+	
+	// Once everything is done, begin Turn Zero.
+	PreBattleTurnZero(EnemyEncounter);
 }
 
 
@@ -208,22 +210,14 @@ void ALostWorldGameModeBattle::StartOfTurn()
 	if (TurnQueue.Num() < 15) {
 		AddMaxNumberOfEntitiesToTurnQueue(false);
 	}
-	
-	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
-		Cast<AActorEntityEnemy>(TurnQueue[0])->StartTurn();
-	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
-		Cast<AActorEntityPlayer>(TurnQueue[0])->StartTurn();
-	}
+
+	Cast<IInterfaceBattle>(TurnQueue[0])->StartTurn();
 }
 
 
 void ALostWorldGameModeBattle::DrawPhaseDrawCard()
 {
-	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
-		Cast<AActorEntityEnemy>(TurnQueue[0])->DrawCard();
-	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
-		Cast<AActorEntityPlayer>(TurnQueue[0])->DrawCard();
-	}
+	Cast<IInterfaceBattle>(TurnQueue[0])->DrawCard();
 }
 
 
@@ -232,10 +226,10 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 	// Each entity in battle has a 'readiness' value.
 	// When an entity's readiness value reaches 1000, add it to the turn queue,
 	// and reset the value.
-
-	// To-Do: Reset the readiness value to a random integer between 0 and the entity's Agility.
+	
 	TArray<AActor*> ActorsInBattle;
 	TArray<AActorEntityBase*> Entities;
+	int TurnQueueSize = TurnQueue.Num();
 
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), ActorsInBattle);
 	
@@ -255,8 +249,6 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 		}
 	}
 
-	int TurnQueueSize = TurnQueue.Num();
-
 	for (int EntityCount = 0; EntityCount < 15 - TurnQueueSize; EntityCount++) {
 		bool EntityHasReachedThreshold = false;
 
@@ -267,8 +259,7 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 				float IncrementMinimum = ((EntityAgility / 64) * 0.9) + 10;
 				float IncrementMaximum = ((EntityAgility / 64) * 1.1) + 10;
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
-
-				// To-Do: Clean up DualLog statements.
+				
 				DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum), 4);
 				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness), 4);
 				

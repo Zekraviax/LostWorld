@@ -31,5 +31,7 @@ public:
 	void LoadPlayerSaveJson();
 	FString LoadFileFromJson(const FString& FileName) const;
 
+	FCard GetCardFromJson(const FString& CardName) const;
+	FEnemyEntity GetEnemyFromJson(const FString& EnemyType) const;
 	FStatusEffect GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const;
 };

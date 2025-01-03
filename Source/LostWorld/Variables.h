@@ -409,7 +409,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	EEncounterTypes EncounterType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> EnemiesRowNames;
+	TArray<FName> EnemyTypes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumFloor;
@@ -420,7 +420,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FEncounter()
 	{
 		EncounterType = EEncounterTypes::None;
-		EnemiesRowNames = { "TestEnemyOne", "TestEnemyOne" };
+		EnemyTypes = { "TestEnemyOne", "TestEnemyOne" };
 		MinimumFloor = 1;
 		MaximumFloor = 1;
 	}
@@ -428,14 +428,13 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FORCEINLINE bool operator==(const FEncounter& OtherStruct) const
 	{
 		return this->EncounterType == OtherStruct.EncounterType &&
-				this->EnemiesRowNames == OtherStruct.EnemiesRowNames &&
+				this->EnemyTypes == OtherStruct.EnemyTypes &&
 				this->MinimumFloor == OtherStruct.MinimumFloor &&
 				this->MaximumFloor == OtherStruct.MaximumFloor;
 	}
 };
 
 
-// -------------------------------- Levels
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FCorridorDataAsStruct
 {

@@ -68,17 +68,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AActorEntityBase> ActorEntityEnemyBlueprintClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UDataTable* CardsDataTable;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UDataTable* EncounterDataTable;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UDataTable* EnemyDataTable;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UDataTable* StatusEffectDataTable;
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.

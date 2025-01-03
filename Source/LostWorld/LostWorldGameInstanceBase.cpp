@@ -52,6 +52,40 @@ FString ULostWorldGameInstanceBase::LoadFileFromJson(const FString& FileName) co
 }
 
 
+FCard ULostWorldGameInstanceBase::GetCardFromJson(const FString& CardName) const
+{
+	TArray<FCard> CardsArray;
+	FString CardJsonAsString = LoadFileFromJson("CardsData");
+
+	FJsonObjectConverter::JsonArrayStringToUStruct(CardJsonAsString, &CardsArray, 0, 0);
+
+	for (FCard Card : CardsArray) {
+		if (Card.DisplayName.Equals(CardName)) {
+			return Card;
+		}
+	}
+
+	return CardsArray[0];
+}
+
+
+FEnemyEntity ULostWorldGameInstanceBase::GetEnemyFromJson(const FString& EnemyType) const
+{
+	TArray<FEnemyEntity> EnemiesArray;
+	FString EnemyJsonAsString = LoadFileFromJson("EnemiesData");
+
+	FJsonObjectConverter::JsonArrayStringToUStruct(EnemyJsonAsString, &EnemiesArray, 0, 0);
+
+	for (FEnemyEntity Enemy : EnemiesArray) {
+		if (Enemy.EnemyType.Equals(EnemyType)) {
+			return Enemy;
+		}
+	}
+
+	return EnemiesArray[0];
+}
+
+
 FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const
 {
 	TArray<FStatusEffect> StatusEffectsArray;

@@ -71,6 +71,6 @@ void USaveGameLevelData::LoadLevelDataFromJson()
 	FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsJson, &LevelDataAsStructsArray, 0, 0);
 	
 	// Apply level data.
-	// To-Do: Make this function search for a level using a given string/
+	// To-Do: Make this function search for a level using a given string
 	LevelData = LevelDataAsStructsArray[0];
 }

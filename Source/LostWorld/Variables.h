@@ -100,6 +100,7 @@ UENUM(BlueprintType)
 enum class EStatusEffectFunctions : uint8
 {
 	Poison,
+	IronShell,
 };
 
 
@@ -307,7 +308,7 @@ struct LOSTWORLD_API FEntityBaseStats
 	TArray<FStatusEffect> CurrentStatusEffects;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> StartBattleWithStatusEffectsRowNames;
+	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
 	
 	// Default constructor
 	FEntityBaseStats()

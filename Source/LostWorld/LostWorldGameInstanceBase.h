@@ -2,7 +2,6 @@
 
 
 #include "CoreMinimal.h"
-#include "LostWorldGameModeBase.h"
 #include "SaveGameDeveloperSettings.h"
 #include "Engine/GameInstance.h"
 #include "Variables.h"
@@ -31,4 +30,6 @@ public:
 	
 	void LoadPlayerSaveJson();
 	FString LoadFileFromJson(const FString& FileName) const;
+
+	FStatusEffect GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const;
 };

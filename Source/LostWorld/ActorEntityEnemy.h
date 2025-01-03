@@ -9,7 +9,7 @@
 
 
 UCLASS()
-class LOSTWORLD_API AActorEntityEnemy : public AActorEntityBase, public IInterfaceBattle
+class LOSTWORLD_API AActorEntityEnemy : public AActorEntityBase
 {
 	GENERATED_BODY()
 	
@@ -45,6 +45,8 @@ public:
 
 	virtual bool ReceiveHealing(float Healing) override;
 	virtual bool GainBarrier(int InBarrier) override;
+
+	virtual bool AddStatusEffect(FStatusEffect StatusEffect) override;
 
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;

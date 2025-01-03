@@ -17,7 +17,7 @@
 				"Agility": 5,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsRowNames": []
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"CardsInDeckRowNames": [
 				"TestCardOne",
@@ -53,8 +53,8 @@
 				"Agility": 5,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsRowNames": [
-					"IronShell"
+				"StartBattleWithStatusEffectsDisplayNames": [
+					"Iron Shell"
 				]
 			},
 			"CardsInDeckRowNames": [

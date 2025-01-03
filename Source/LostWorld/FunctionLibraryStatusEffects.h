@@ -15,7 +15,7 @@ class LOSTWORLD_API AFunctionLibraryStatusEffects : public AActor
 	GENERATED_BODY()
 	
 public:
-	static void ExecuteFunction(EStatusEffectFunctions InFunction);
+	static void ExecuteFunction(EStatusEffectFunctions InFunction, AActorEntityBase* InEffectedEntity);
 
 	static void Poison (AActorEntityBase* EffectedEntity);
 	static void IronShell(AActorEntityBase* EffectedEntity);

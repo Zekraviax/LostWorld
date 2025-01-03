@@ -77,6 +77,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UDataTable* EnemyDataTable;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* StatusEffectDataTable;
+
 // ---------------------------------------- Functions ---------------------------------------- //
 	// The GameModeBattle will handle battle functionality, such as dealing damage and spending mana.
 		// It will also handle as much input as possible:

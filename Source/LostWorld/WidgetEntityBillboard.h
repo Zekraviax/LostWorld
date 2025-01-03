@@ -28,6 +28,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* ManaText;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UProgressBar* BarrierBar;
+
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 	void UpdateBillboard(const FEntity& InEntity) const;

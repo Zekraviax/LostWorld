@@ -72,6 +72,12 @@ bool IInterfaceBattle::GainBarrier(int InBarrier)
 }
 
 
+bool IInterfaceBattle::AddStatusEffect(FStatusEffect StatusEffect)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::StartTurn()
 {
 	return true;

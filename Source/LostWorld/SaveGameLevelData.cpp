@@ -68,7 +68,6 @@ void USaveGameLevelData::LoadLevelDataFromJson()
 	FLevelDataAsStruct LevelDataAsStruct;
 
 	FFileHelper::LoadFileToString(PlayerDataAsJson, *PlayerDataSaveFilePath);
-	//FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &LevelDataAsStruct, 0, 0);
 	FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsJson, &LevelDataAsStructsArray, 0, 0);
 	
 	// Apply level data.

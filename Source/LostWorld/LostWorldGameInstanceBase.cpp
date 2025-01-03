@@ -50,3 +50,20 @@ FString ULostWorldGameInstanceBase::LoadFileFromJson(const FString& FileName) co
 
 	return JsonFileAsString;
 }
+
+
+FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const
+{
+	TArray<FStatusEffect> StatusEffectsArray;
+	FString StatusEffectJsonAsString = LoadFileFromJson("StatusEffectsData");
+
+	FJsonObjectConverter::JsonArrayStringToUStruct(StatusEffectJsonAsString, &StatusEffectsArray, 0, 0);
+
+	for (FStatusEffect StatusEffect : StatusEffectsArray) {
+		if (StatusEffect.DisplayName.Equals(StatusEffectDisplayName)) {
+			return StatusEffect;
+		}
+	}
+
+	return StatusEffectsArray[0];
+}

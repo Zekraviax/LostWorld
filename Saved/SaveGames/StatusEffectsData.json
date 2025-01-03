@@ -16,7 +16,7 @@
 		"Name": "IronShell",
 		"DisplayName": "Iron Shell",
 		"Description": "Gain 5x your Max HP as Barrier at the start of the battle.",
-		"StatusEffect": "Poison",
+		"StatusEffect": "IronShell",
 		"TimingTriggers": [
 			"StartOfBattle"
 		],

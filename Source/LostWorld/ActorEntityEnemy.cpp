@@ -3,6 +3,7 @@
 
 #include "AiBrainBase.h"
 #include "AiBrainTestEnemyOne.h"
+#include "AiBrainTestEnemyTwo.h"
 #include "LostWorldGameModeBattle.h"
 #include "WidgetEntityBillboard.h"
 
@@ -23,6 +24,8 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType, 4);
 	if (EnemyData.EnemyType.Contains("TestEnemyOne")) {
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
+	} else if ("TestEnemyTwo") {
+		AiBrainComponent = NewObject<UAiBrainTestEnemyTwo>(this);
 	}
 }
 
@@ -104,6 +107,8 @@ bool AActorEntityEnemy::ReceiveHealing(float Healing)
 {
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is healed for " +
 		FString::FromInt(Healing) + " health points.", 3);
+
+	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::ReceiveHealing(Healing);
 }
@@ -115,8 +120,18 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " gains " +
 		FString::FromInt(InBarrier) + " barrier.", 3);
+
+	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::GainBarrier(InBarrier);
+}
+
+
+bool AActorEntityEnemy::AddStatusEffect(FStatusEffect StatusEffect)
+{
+	StatusEffects.Add(StatusEffect);
+	
+	return IInterfaceBattle::AddStatusEffect(StatusEffect);
 }
 
 

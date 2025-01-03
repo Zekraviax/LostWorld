@@ -5,11 +5,15 @@
 #include "InterfaceBattle.h"
 
 
-void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFunction)
+void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFunction, AActorEntityBase* InEffectedEntity)
 {
 	switch (InFunction)
 	{
 		case (EStatusEffectFunctions::Poison):
+			Poison(InEffectedEntity);
+			break;
+		case (EStatusEffectFunctions::IronShell):
+			IronShell(InEffectedEntity);
 			break;
 		default:
 			break;

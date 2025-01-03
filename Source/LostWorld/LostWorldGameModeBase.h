@@ -18,9 +18,9 @@ public:
 	// Since it's in the GameModeBase, it can be accessed via any child GameMode, and therefore
 	// from anywhere in the game.
 	// Log Levels:
-	// 0 - Fatal Fault
-	// 1 - Error
-	// 2 - Warning
+	// 0 - Error
+	// 1 - Warning
+	// 2 - Log
 	// 3 - Verbose Log
 	// 4 - Very Verbose Log
 	static void DualLog(const FString& PreBuiltString, int InLogLevel);

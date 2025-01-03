@@ -6,6 +6,7 @@
 #include "ActorGridTile.h"
 #include "AiBrainBase.h"
 #include "FunctionLibraryCards.h"
+#include "FunctionLibraryStatusEffects.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldPlayerControllerBase.h"
@@ -23,6 +24,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// Change the player's controls to Battle mode
 	// Disable player movement
 
+	// To-Do: Get data from the JSON files, not the DataTables.
 	// Get the Enemy data table row names from the Encounter data table.
 	if (EncounterDataTable && EnemyDataTable) {
 		FString ContextString;
@@ -83,8 +85,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 				FCard* InCard = CardsDataTable->FindRow<FCard>(EnemyEntityData->EntityData.CardsInDeckRowNames[CardCount], ContextString);
 				Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(*InCard);
 			}
-
-			
 		}
 
 		// Reset all of the players' card arrays.
@@ -180,11 +180,18 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 		Cast<UWidgetEntityBillboard>(Entity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(Entity->EntityData);
 	}
 
-	// Give each entity the status effects they should start the battle with.
-	
+	// Give each entity the status effects they should start the battle with,
+	// And trigger all status effects that trigger at the start of battles.
+	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
+		for (FString StatusEffectDisplayName : Entity->EntityData.Stats.StartBattleWithStatusEffectsDisplayNames) {
+			Cast<IInterfaceBattle>(Entity)->AddStatusEffect(
+				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetStatusEffectFromJson(StatusEffectDisplayName));
 
-	// Trigger all status effects that trigger at the start of battles.
-	
+			if (Entity->StatusEffects.Last().TimingTriggers.Contains(ETimingTriggers::StartOfBattle)) {
+				AFunctionLibraryStatusEffects::ExecuteFunction(Entity->StatusEffects.Last().StatusEffect, Entity);
+			}
+		}
+	}
 
 	// Begin the turn for the first entity in the turn array.
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
@@ -258,8 +265,8 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 
 				// To-Do: Clean up DualLog statements.
-				//DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum));
-				//DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness));
+				DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum), 5);
+				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness), 5);
 				
 				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
 				if (Entity->EntityData.Stats.Readiness >= 1000) {

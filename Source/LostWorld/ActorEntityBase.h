@@ -55,6 +55,11 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCard> Discard;
+
+
+// -------------------------------- Other
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FStatusEffect> StatusEffects;
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //

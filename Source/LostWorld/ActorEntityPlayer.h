@@ -10,7 +10,7 @@
 
 
 UCLASS()
-class LOSTWORLD_API AActorEntityPlayer : public AActorEntityBase, public IInterfaceBattle
+class LOSTWORLD_API AActorEntityPlayer : public AActorEntityBase
 {
 	GENERATED_BODY()
 	

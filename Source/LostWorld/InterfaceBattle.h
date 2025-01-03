@@ -34,6 +34,8 @@ public:
 	virtual bool ReceiveHealing(float Healing);
 	virtual bool GainBarrier(int InBarrier);
 
+	virtual bool AddStatusEffect(FStatusEffect StatusEffect);
+
 	virtual bool StartTurn();
 	virtual bool EndTurn();
 };

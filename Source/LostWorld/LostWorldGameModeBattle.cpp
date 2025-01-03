@@ -78,7 +78,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = *EnemyEntityData;
 			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData->EntityData;
 
-			DualLog("Spawn enemy: " + EnemyEntityData->EntityData.DisplayName, 4);
+			DualLog("Spawn enemy: " + EnemyEntityData->EntityData.DisplayName, 3);
 
 			// Set up the enemy's deck.
 			for (int CardCount = 0; CardCount < EnemyEntityData->EntityData.CardsInDeckRowNames.Num(); CardCount++) {
@@ -238,16 +238,20 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 	TArray<AActorEntityBase*> Entities;
 
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), ActorsInBattle);
-
-	if (OverrideReadiness) {
-		for (AActor* Actor : ActorsInBattle) {
-			if (Cast<AActorEntityEnemy>(Actor)) {
+	
+	for (AActor* Actor : ActorsInBattle) {
+		if (Cast<AActorEntityEnemy>(Actor)) {
+			if (OverrideReadiness) {
 				Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Agility);
-				Entities.Add(Cast<AActorEntityEnemy>(Actor));
-			} else if (Cast<AActorEntityPlayer>(Actor)) {
-				Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
-				Entities.Add(Cast<AActorEntityPlayer>(Actor));
 			}
+			
+			Entities.Add(Cast<AActorEntityEnemy>(Actor));
+		} else if (Cast<AActorEntityPlayer>(Actor)) {
+			if (OverrideReadiness) {
+				Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
+			}
+			
+			Entities.Add(Cast<AActorEntityPlayer>(Actor));
 		}
 	}
 
@@ -265,8 +269,8 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 
 				// To-Do: Clean up DualLog statements.
-				DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum), 5);
-				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness), 5);
+				DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum), 4);
+				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness), 4);
 				
 				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
 				if (Entity->EntityData.Stats.Readiness >= 1000) {
@@ -342,7 +346,8 @@ void ALostWorldGameModeBattle::CastCard()
 		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
 	}
 
-	DualLog(TheStack[0].Controller->EntityData.DisplayName + " attacks!", 3);
+	DualLog(TheStack[0].Controller->EntityData.DisplayName + " attacks!", 2);
+	//	DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Controller->Hand[TheStack[0].IndexInHandArray].DisplayName, 2);
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 
@@ -602,16 +607,16 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 
 		DualLog("Room " + FString::FromInt(RoomCount) + " bottom left boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y), 5);
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y), 4);
 		DualLog("Room " + FString::FromInt(RoomCount) + " bottom right boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.Y), 5);
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightBoundary.Y), 4);
 		DualLog("Room " + FString::FromInt(RoomCount) + " top left boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.Y), 5);
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftBoundary.Y), 4);
 		DualLog("Room " + FString::FromInt(RoomCount) + " top right boundary: " +
 			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.X) + ", " +
-			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y), 5);
+			FString::FromInt(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y), 4);
 
 		// For each valid coordinate in each room, spawn a GridTile actor at those coordinates.
 		for (int LengthCount = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X;
@@ -711,11 +716,11 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 
 		DualLog("Corridor " + FString::FromInt(CorridorCount) + " first half starting point " +
 			FString::FromInt(CorridorFirstHalfStartingPoint.X) + ", " +
-			FString::FromInt(CorridorFirstHalfStartingPoint.Y), 5);
+			FString::FromInt(CorridorFirstHalfStartingPoint.Y), 4);
 
 		DualLog("Corridor " + FString::FromInt(CorridorCount) + " second half starting point " +
 			FString::FromInt(CorridorSecondHalfStartingPoint.X) + ", " +
-			FString::FromInt(CorridorSecondHalfStartingPoint.Y), 5);
+			FString::FromInt(CorridorSecondHalfStartingPoint.Y), 4);
 
 		// Calculate the distance between rooms.
 		if (CorridorCount == 0 || CorridorCount == 2) {
@@ -730,7 +735,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			// Use absolute values when calculating distances to avoid adding complexity.
 			YAxisDistanceBetweenRooms = abs(CorridorFirstHalfStartingPoint.Y - CorridorSecondHalfStartingPoint.Y) - 1;
 			
-			// DualLog("Y-Axis distance between rooms: " + FString::FromInt(YAxisDistanceBetweenRooms));
+			DualLog("Y-Axis distance between rooms: " + FString::FromInt(YAxisDistanceBetweenRooms), 4);
 
 			// First half of the corridor generation:
 			// Spawn two separate halves of the corridor that meet on one axis, but not both axes.
@@ -810,7 +815,7 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			// Use absolute values when calculating distances to avoid adding complexity.
 			XAxisDistanceBetweenRooms = abs(CorridorFirstHalfStartingPoint.X - CorridorSecondHalfStartingPoint.X) - 1;
 			
-			// DualLog("X-Axis distance between rooms: " + FString::FromInt(XAxisDistanceBetweenRooms));
+			DualLog("X-Axis distance between rooms: " + FString::FromInt(XAxisDistanceBetweenRooms), 4);
 
 			// First half of the corridor generation:
 			// Spawn two separate halves of the corridor that meet on one axis, but not both axes.

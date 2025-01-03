@@ -146,7 +146,12 @@ bool AActorEntityBase::GainBarrier(int InBarrier)
 
 bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 {
-	StatusEffects.Add(StatusEffect);
+	if (EntityData.Stats.CurrentBarrierPoints > 0 || StatusEffect.BlockedByBarrier) {
+		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
+	} else {
+		StatusEffects.Add(StatusEffect);
+	}
+	
 	
 	return IInterfaceBattle::AddStatusEffect(StatusEffect);
 }

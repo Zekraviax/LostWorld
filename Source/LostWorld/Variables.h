@@ -179,6 +179,9 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool VisibleToPlayer;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool BlockedByBarrier;
+
 	FStatusEffect()
 	{
 		DisplayName = "Test";
@@ -189,6 +192,7 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 		MaximumStackCount = 5;
 		DecrementStacksWhenTriggered = true;
 		VisibleToPlayer = false;
+		BlockedByBarrier = false;
 	}
 };
 

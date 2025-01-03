@@ -2,5 +2,5 @@
 	"enableDeveloperSettingsOverride": true,
 	"printMessageOnGameStart": "Developer mode enabled.",
 	"giveAllEntitiesTestDecks": false,
-	"logLevel": 4
+	"logLevel": 2
 }

@@ -91,7 +91,7 @@ bool AActorEntityPlayer::TakeDamage(float Damage)
 	Super::TakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " takes " +
-		FString::FromInt(Damage) + " damage.", 3);
+		FString::FromInt(Damage) + " damage.", 2);
 
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
@@ -113,7 +113,7 @@ bool AActorEntityPlayer::ReceiveHealing(float Healing)
 	Super::ReceiveHealing(Healing);
 	
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " is healed for " +
-		FString::FromInt(Healing) + " health points.", 3);
+		FString::FromInt(Healing) + " health points.", 2);
 	
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
@@ -138,7 +138,7 @@ bool AActorEntityPlayer::StartTurn()
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::Battle);
 
-	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn!", 3);
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn!", 2);
 		
 	return Super::StartTurn();
 }
@@ -149,7 +149,7 @@ bool AActorEntityPlayer::EndTurn()
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::None);
 
-	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn ends.", 3);
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn ends.", 2);
 
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 	

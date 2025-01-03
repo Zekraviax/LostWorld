@@ -72,7 +72,7 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 	AActorEntityBase::TakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " takes " +
-		FString::FromInt(Damage) + " damage.", 3);
+		FString::FromInt(Damage) + " damage.", 2);
 
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
@@ -89,7 +89,7 @@ bool AActorEntityEnemy::EntityDefeated()
 bool AActorEntityEnemy::ReceiveHealing(float Healing)
 {
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is healed for " +
-		FString::FromInt(Healing) + " health points.", 3);
+		FString::FromInt(Healing) + " health points.", 2);
 
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 
@@ -104,7 +104,7 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 	EntityData.Stats.CurrentBarrierPoints += InBarrier;
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " gains " +
-		FString::FromInt(InBarrier) + " barrier.", 3);
+		FString::FromInt(InBarrier) + " barrier.", 2);
 
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 
@@ -122,7 +122,7 @@ bool AActorEntityEnemy::AddStatusEffect(FStatusEffect StatusEffect)
 
 bool AActorEntityEnemy::StartTurn()
 {
-	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 3);
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 2);
 	
 	AiBrainComponent->StartTurn();
 	
@@ -132,7 +132,7 @@ bool AActorEntityEnemy::StartTurn()
 
 bool AActorEntityEnemy::EndTurn()
 {
-	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is ending their turn.", 3);
+	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is ending their turn.", 2);
 	
 	return Super::EndTurn();
 }

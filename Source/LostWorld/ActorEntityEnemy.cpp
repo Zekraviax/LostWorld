@@ -30,17 +30,16 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 }
 
 
+// -------------------------------- Battle Interface functions
 bool AActorEntityEnemy::OverrideDeck(TArray<FCard> InDeck)
 {
-	Deck = InDeck;
-	return true;
+	return Super::OverrideDeck(InDeck);
 }
 
 
 bool AActorEntityEnemy::AddCardToDeck(FCard InCard)
 {
-	Deck.Add(InCard);
-	return true;
+	return Super::AddCardToDeck(InCard);
 }
 
 
@@ -48,58 +47,42 @@ TArray<FCard> AActorEntityEnemy::ShuffleDeck(TArray<FCard> InDeck)
 {
 	// The Shuffle Deck function doesn't need to have multiple different definitions,
 	// so we can just use the default one.
-	return IInterfaceBattle::ShuffleDeck(Deck);
+	return Super::ShuffleDeck(Deck);
 }
 
 bool AActorEntityEnemy::DrawCard()
 {
 	// Shift the top card of the deck into the hand
-	Hand.Add(Deck[0]);
-	Deck.RemoveAt(0);
-	return true;
+	return Super::DrawCard();
 }
 
 bool AActorEntityEnemy::DiscardCard(int IndexInHand)
 {
-	Discard.Add(Hand[IndexInHand]);
-	Hand.RemoveAt(IndexInHand);
-	
-	return true;
+	return Super::DiscardCard(IndexInHand);
 }
 
 bool AActorEntityEnemy::PayCostsForCard(int IndexInHand)
 {
-	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
-	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	
-	return true;
+	return Super::PayCostsForCard(IndexInHand);
 }
 
 
 bool AActorEntityEnemy::TakeDamage(float Damage)
 {
-	EntityData.Stats.CurrentHealthPoints -= Damage;
-
-	if (EntityData.Stats.CurrentHealthPoints <= 0) {
-		EntityDefeated();
-	} else {
-		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	}
+	AActorEntityBase::TakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " takes " +
-	FString::FromInt(Damage) + " damage.", 3);
-	
-	return true;
+		FString::FromInt(Damage) + " damage.", 3);
+
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
+	return IInterfaceBattle::TakeDamage(Damage);
 }
 
 
 bool AActorEntityEnemy::EntityDefeated()
 {
-	Destroy();
-	
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfBattleCheck();
-
-	return true;
+	return Super::EntityDefeated();
 }
 
 
@@ -109,7 +92,9 @@ bool AActorEntityEnemy::ReceiveHealing(float Healing)
 		FString::FromInt(Healing) + " health points.", 3);
 
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	
+
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return IInterfaceBattle::ReceiveHealing(Healing);
 }
 
@@ -122,16 +107,16 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 		FString::FromInt(InBarrier) + " barrier.", 3);
 
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	
+
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return IInterfaceBattle::GainBarrier(InBarrier);
 }
 
 
 bool AActorEntityEnemy::AddStatusEffect(FStatusEffect StatusEffect)
 {
-	StatusEffects.Add(StatusEffect);
-	
-	return IInterfaceBattle::AddStatusEffect(StatusEffect);
+	return Super::AddStatusEffect(StatusEffect);
 }
 
 
@@ -141,7 +126,7 @@ bool AActorEntityEnemy::StartTurn()
 	
 	AiBrainComponent->StartTurn();
 	
-	return true;
+	return Super::StartTurn();
 }
 
 
@@ -149,5 +134,5 @@ bool AActorEntityEnemy::EndTurn()
 {
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is ending their turn.", 3);
 	
-	return IInterfaceBattle::EndTurn();
+	return Super::EndTurn();
 }

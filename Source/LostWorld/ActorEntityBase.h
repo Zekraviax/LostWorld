@@ -3,6 +3,7 @@
 
 #include "Components/WidgetComponent.h"
 #include "CoreMinimal.h"
+#include "InterfaceBattle.h"
 #include "GameFramework/Actor.h"
 #include "Variables.h"
 #include "ActorEntityBase.generated.h"
@@ -13,7 +14,7 @@ class UWidgetEntityBillboard;
 
 // The base Entity class that all subtypes of Entities will inherit from, including the player.
 UCLASS()
-class LOSTWORLD_API AActorEntityBase : public AActor
+class LOSTWORLD_API AActorEntityBase : public AActor, public IInterfaceBattle
 {
 	GENERATED_BODY()
 	
@@ -66,9 +67,24 @@ public:
 	void ResetEntityBillboardPositionAndRotation() const;
 
 // -------------------------------- Child actor functions
-// The Enemy entity and Player entity will implement their own versions of the following interface functions separately.
+// The Enemy entity and Player entity will also override these so they can have additional effects.
 // This is so that the Player entity can receive data from and send data to the Players' GameInstance, which persists
 // between battles.
-	//virtual void AddCardToDeck(FCard InCard);
-	
+	virtual bool OverrideDeck(TArray<FCard> InDeck) override;
+	virtual bool AddCardToDeck(FCard InCard) override;
+	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck) override;
+	virtual bool DrawCard() override;
+	virtual bool DiscardCard(int IndexInHand) override;
+	virtual bool PayCostsForCard(int IndexInHand) override;
+
+	virtual bool TakeDamage(float Damage) override;
+	virtual bool EntityDefeated() override;
+
+	virtual bool ReceiveHealing(float Healing) override;
+	virtual bool GainBarrier(int InBarrier) override;
+
+	virtual bool AddStatusEffect(FStatusEffect StatusEffect) override;
+
+	virtual bool StartTurn() override;
+	virtual bool EndTurn() override;
 };

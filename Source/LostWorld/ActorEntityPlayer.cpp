@@ -6,7 +6,6 @@
 #include "LostWorldGameModeBattle.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
-#include "WidgetEntityBillboard.h"
 #include "WidgetHudBattle.h"
 
 
@@ -32,21 +31,19 @@ AActorEntityPlayer::AActorEntityPlayer()
 
 bool AActorEntityPlayer::OverrideDeck(TArray<FCard> InDeck)
 {
-	Deck = InDeck;
-	return true;
+	return Super::OverrideDeck(InDeck);
 }
 
 
 bool AActorEntityPlayer::AddCardToDeck(FCard InCard)
 {
-	Deck.Add(InCard);
-	return true;
+	return Super::AddCardToDeck(InCard);
 }
 
 
 TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
 {
-	return IInterfaceBattle::ShuffleDeck(Deck);
+	return Super::ShuffleDeck(Deck);
 }
 
 
@@ -59,47 +56,44 @@ bool AActorEntityPlayer::DrawCard()
 	UWidgetCard* LocalCardReference = Cast<ALostWorldPlayerControllerBattle>(
 		GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
 	
-	LocalCardReference->IndexInHandArray = Hand.Num();
-	
+	LocalCardReference->IndexInHandArray = Hand.Num() - 1;
 	Deck.RemoveAt(0);
-	return true;
+	
+	return IInterfaceBattle::DrawCard();
 }
 
 
 bool AActorEntityPlayer::DiscardCard(int IndexInHand)
 {
-	Discard.Add(Hand[IndexInHand - 1]);
-	Hand.RemoveAt(IndexInHand - 1);
+	Super::DiscardCard(IndexInHand);
 
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		BattleHudWidget->PlayerFinishCastingCard(IndexInHand);
-	
+
+	Cast<ALostWorldPlayerControllerBattle>(
+		GetWorld()->GetFirstPlayerController())->BattleHudWidget->ResetAllCardWidgetIndices();
+
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return true;
 }
 
 
 bool AActorEntityPlayer::PayCostsForCard(int IndexInHand)
 {
-	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand - 1].TotalCost;
-	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	
-	return true;
+	return Super::PayCostsForCard(IndexInHand);
 }
 
 
 bool AActorEntityPlayer::TakeDamage(float Damage)
 {
-	EntityData.Stats.CurrentHealthPoints -= Damage;
-
-	if (EntityData.Stats.CurrentHealthPoints <= 0) {
-		EntityDefeated();
-	} else {
-		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
-	}
+	Super::TakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " takes " +
 		FString::FromInt(Damage) + " damage.", 3);
-	
+
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return true;
 }
 
@@ -107,23 +101,34 @@ bool AActorEntityPlayer::TakeDamage(float Damage)
 bool AActorEntityPlayer::EntityDefeated()
 {
 	ALostWorldGameModeBase::DualLog("Game Over", 0);
-	
+
+	// To-Do: Implement game overs.
 	return true;
 }
 
 
 bool AActorEntityPlayer::ReceiveHealing(float Healing)
 {
-	EntityData.Stats.CurrentHealthPoints += Healing;
-
-	if (EntityData.Stats.CurrentHealthPoints > EntityData.Stats.MaximumHealthPoints) {
-		EntityData.Stats.CurrentHealthPoints = EntityData.Stats.MaximumHealthPoints;
-	}
-
+	Super::ReceiveHealing(Healing);
+	
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " is healed for " +
 		FString::FromInt(Healing) + " health points.", 3);
 	
-	return IInterfaceBattle::ReceiveHealing(Healing);
+	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
+	// in order to avoid any unexpected behaviors from calling the same function twice.
+	return true;
+}
+
+
+bool AActorEntityPlayer::GainBarrier(int InBarrier)
+{
+	return Super::GainBarrier(InBarrier);
+}
+
+
+bool AActorEntityPlayer::AddStatusEffect(FStatusEffect StatusEffect)
+{
+	return Super::AddStatusEffect(StatusEffect);
 }
 
 
@@ -134,7 +139,7 @@ bool AActorEntityPlayer::StartTurn()
 
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn!", 3);
 		
-	return true;
+	return Super::StartTurn();
 }
 
 

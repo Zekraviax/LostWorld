@@ -21,8 +21,7 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 		if (DropPositionY < 0.75) {
 			// CAST THAT CARD BABYYYYY
 			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->GetTargetsForCard(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
-		}
-		// Otherwise, the drag and drop operation will cancel.
+		} // Else, the drag and drop operation will cancel.
 	}
 
 	return true;

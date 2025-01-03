@@ -41,6 +41,7 @@ void AActorEntityBase::ResetEntityBillboardPositionAndRotation() const
 }
 
 
+// -------------------------------- Battle Interface functions
 bool AActorEntityBase::OverrideDeck(TArray<FCard> InDeck)
 {
 	Deck = InDeck;

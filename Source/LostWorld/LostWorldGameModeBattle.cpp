@@ -286,7 +286,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
-	FCard CardToCast = TurnQueue[0]->Hand[CardIndexInHandArray - 1];
+	FCard CardToCast = TurnQueue[0]->Hand[CardIndexInHandArray];
 	TArray<ECardFunctions> CardFunctions;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 

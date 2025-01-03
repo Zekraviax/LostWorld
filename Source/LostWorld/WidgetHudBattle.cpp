@@ -40,6 +40,16 @@ UWidgetCard* UWidgetHudBattle::CreateCardWidgetInHand(const FCard& InCard) const
 }
 
 
+void UWidgetHudBattle::ResetAllCardWidgetIndices() const
+{
+	for (int CardWidgetCount = 0; CardWidgetCount < CardsInHandScrollBox->GetChildrenCount(); CardWidgetCount++) {
+		if (Cast<UWidgetCard>(CardsInHandScrollBox->GetChildAt(CardWidgetCount))) {
+			Cast<UWidgetCard>(CardsInHandScrollBox->GetChildAt(CardWidgetCount))->IndexInHandArray = CardWidgetCount;
+		}
+	}
+}
+
+
 void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const
 {
 	if (Cast<AActorEntityPlayer>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TurnQueue[0])) {
@@ -71,7 +81,7 @@ void UWidgetHudBattle::PlayerFinishCastingCard(int IndexInHand) const
 	CardTargetText->SetVisibility(ESlateVisibility::Collapsed);
 
 	// Remove the card from the HUD.
-	CardsInHandScrollBox->RemoveChildAt(IndexInHand - 1);
+	CardsInHandScrollBox->RemoveChildAt(IndexInHand);
 }
 
 

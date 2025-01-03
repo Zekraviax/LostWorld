@@ -29,6 +29,7 @@ AActorEntityPlayer::AActorEntityPlayer()
 }
 
 
+// -------------------------------- Battle Interface functions
 bool AActorEntityPlayer::OverrideDeck(TArray<FCard> InDeck)
 {
 	return Super::OverrideDeck(InDeck);

@@ -94,19 +94,24 @@ bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 bool AActorEntityBase::TakeDamage(float Damage)
 {
 	// First, any barriers up will absorb damage.
-	if (EntityData.Stats.CurrentBarrierPoints > 0) {
-		
+	while (Damage > 0 && EntityData.Stats.CurrentBarrierPoints > 0) {
+		Damage--;
+		EntityData.Stats.CurrentBarrierPoints--;
 	}
 
 	// Then, damage will be go to the entity's raw health.
-	EntityData.Stats.CurrentHealthPoints -= Damage;
-
+	if (Damage > 0) {
+		EntityData.Stats.CurrentHealthPoints -= Damage;
 	
-	if (EntityData.Stats.CurrentHealthPoints <= 0) {
-		EntityDefeated();
-	} else {
+		if (EntityData.Stats.CurrentHealthPoints <= 0) {
+			EntityDefeated();
+		}
+	}
+
+	if (EntityBillboard->GetUserWidgetObject()) {
 		Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	}
+	
 	
 	return IInterfaceBattle::TakeDamage(Damage);
 }

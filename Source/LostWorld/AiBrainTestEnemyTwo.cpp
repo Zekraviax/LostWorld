@@ -21,11 +21,13 @@ void UAiBrainTestEnemyTwo::SelectCardToCast()
 
 	if (FindCardInHand("Test Card Three") != -1) {
 		GetTargetsForCard(FindCardInHand("Test Card Three"));
-	} if (FindCardInHand("Test Card One") != -1) {
-		GetTargetsForCard(FindCardInHand("Test Card One"));
-	} else {
-		EndTurn();
 	}
+
+	if (FindCardInHand("Test Card One") != -1) {
+		GetTargetsForCard(FindCardInHand("Test Card One"));
+	} 
+
+	EndTurn();
 }
 
 void UAiBrainTestEnemyTwo::GetTargetsForCard(int IndexInHand)

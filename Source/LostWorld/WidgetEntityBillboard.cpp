@@ -14,6 +14,8 @@ void UWidgetEntityBillboard::UpdateBillboard(const FEntity& InEntity) const
 
 	if (InEntity.Stats.CurrentBarrierPoints > 0) {
 		BarrierBar->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+		float BarrierAsPercentage = float(InEntity.Stats.CurrentBarrierPoints) / float(InEntity.Stats.MaximumHealthPoints);
+		HealthBar->SetPercent(BarrierAsPercentage);
 
 		FString BarrierTextAsString = FString::FromInt(InEntity.Stats.CurrentBarrierPoints);
 		HealthText->SetText(FText::FromString(BarrierTextAsString));

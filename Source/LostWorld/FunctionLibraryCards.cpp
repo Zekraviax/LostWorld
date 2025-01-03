@@ -33,7 +33,7 @@ int AFunctionLibraryCards::StandardDamageFormula(AActorEntityBase* Attacker, AAc
 	// Step3 = RoundUp(Step2)
 
 	float CalculatedDamage = Attacker->EntityData.Stats.Strength * AttackBasePower;
-	CalculatedDamage /= 2;
+	CalculatedDamage -= 2;
 	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
 	CalculatedDamage /= Defender->EntityData.Stats.Toughness;
 	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);

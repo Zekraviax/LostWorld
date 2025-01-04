@@ -132,6 +132,12 @@ bool AActorEntityBase::EntityDefeated()
 
 bool AActorEntityBase::ReceiveHealing(float Healing)
 {
+	EntityData.Stats.CurrentHealthPoints += Healing;
+	
+	if (EntityData.Stats.CurrentHealthPoints > EntityData.Stats.MaximumHealthPoints) {
+		EntityData.Stats.CurrentHealthPoints = EntityData.Stats.MaximumHealthPoints;
+	}
+	
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::ReceiveHealing(Healing);

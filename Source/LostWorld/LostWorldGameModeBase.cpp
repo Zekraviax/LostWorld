@@ -19,6 +19,8 @@ FString ALostWorldGameModeBase::ParseVariablesInText(const FCard& InCard, const 
 {
 	FString ReturnString = InString.Replace(TEXT("${TotalPower}"), *FString::FromInt(InCard.TotalDamage));
 	ReturnString = ReturnString.Replace(TEXT("${BasePower}"), *FString::FromInt(InCard.BaseDamage));
+	ReturnString = InString.Replace(TEXT("${TotalHealing}"), *FString::FromInt(InCard.TotalHealing));
+	ReturnString = ReturnString.Replace(TEXT("${BaseHealing}"), *FString::FromInt(InCard.BaseHealing));
 	
 	return ReturnString;
 }

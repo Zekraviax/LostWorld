@@ -61,5 +61,26 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardFour",
+		"DisplayName": "Test Card Four",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Air"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 5,
+		"Description": "Heal one target with base power ${TotalHealing}.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionFour": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 5
 	}
 ]

@@ -21,6 +21,8 @@ void UAiBrainTestEnemyOne::SelectCardToCast()
 
 	if (FindCardInHand("Test Card One") != -1) {
 		GetTargetsForCard(FindCardInHand("Test Card One"));
+	} else {
+		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
 	}
 }
 

@@ -19,6 +19,9 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction)
 		case (ECardFunctions::TestFunctionThree):
 			TestCardThree();
 			break;
+		case (ECardFunctions::TestFunctionFour):
+			TestCardFour();
+			break;
 		default:
 			break;
 	}

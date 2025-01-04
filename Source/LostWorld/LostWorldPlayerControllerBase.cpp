@@ -23,7 +23,7 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 	{
 		case (EPlayerControlModes::TargetSelectionSingleEntity):
 			GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
-			ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 4);
+			ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
 
 			if (Cast<AActorEntityBase>(Hit.GetActor())) {
 				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));

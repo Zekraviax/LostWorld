@@ -19,17 +19,17 @@
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
 			},
-			"CardsInDeckRowNames": [
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo"
+			"CardsInDeckDisplayNames": [
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Two"
 			],
 			"StartOfBattleHandSize": 5
 		},
@@ -57,17 +57,17 @@
 					"Iron Shell"
 				]
 			},
-			"CardsInDeckRowNames": [
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardThree"
+			"CardsInDeckDisplayNames": [
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Three"
 			],
 			"StartOfBattleHandSize": 5
 		},

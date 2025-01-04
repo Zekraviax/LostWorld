@@ -67,6 +67,10 @@ void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, ECardFunction
 					break;
 				case ECardFunctions::TestFunctionTwo:
 					break;
+				case ECardFunctions::TestFunctionFour:
+					CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
+					CardTargetText->SetText(FText::FromString("Select 1 Entity"));
+					break;
 				default:
 					break;
 			}

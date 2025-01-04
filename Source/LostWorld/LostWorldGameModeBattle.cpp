@@ -82,9 +82,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
 
 		// Set up the enemy's deck.
-		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckRowNames.Num(); CardCount++) {
+		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
 			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckRowNames[CardCount].ToString());
+				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckDisplayNames[CardCount].ToString());
 			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
 		}
 	}
@@ -95,7 +95,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
 	
 	// The players' deck can be fetched from the GameInstance.
-	TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckRowNames;
+	TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckDisplayNames;
 	for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
 		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
@@ -296,7 +296,8 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 		TempStackEntry.SelectedTargets.Add(TempStackEntry.Controller);
 
 		FinishedGettingTargetsForCard();
-	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy) {
+	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy ||
+			*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnyOneEntity) {
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
 		
@@ -338,7 +339,7 @@ void ALostWorldGameModeBattle::CastCard()
 	}
 
 	DualLog(TheStack[0].Controller->EntityData.DisplayName + " attacks!", 2);
-	//	DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Controller->Hand[TheStack[0].IndexInHandArray].DisplayName, 2);
+	//DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Controller->Hand[TheStack[0].IndexInHandArray].DisplayName, 2);
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 

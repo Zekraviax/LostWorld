@@ -5,29 +5,29 @@
 		"DisplayName": "Default Jim",
 		"Stats":
 		{
-			"CurrentHealthPoints": 12,
-			"MaximumHealthPoints": 12,
-			"CurrentManaPoints": 10,
-			"MaximumManaPoints": 10,
+			"CurrentHealthPoints": 50,
+			"MaximumHealthPoints": 50,
+			"CurrentManaPoints": 25,
+			"MaximumManaPoints": 25,
 			"Strength": 10,
 			"Toughness": 10,
 			"Agility": 10,
 			"Readiness": 0
 		},
-		"CardsInDeckRowNames": [
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardOne",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardTwo",
-			"TestCardThree",
-			"TestCardThree",
-			"TestCardThree",
-			"TestCardThree"
+		"CardsInDeckDisplayNames": [
+			"Test Card One",
+			"Test Card One",
+			"Test Card One",
+			"Test Card Two",
+			"Test Card Two",
+			"Test Card Two",
+			"Test Card Three",
+			"Test Card Three",
+			"Test Card Three",
+			"Test Card Four",
+			"Test Card Four",
+			"Test Card Four"
 		],
-		"StartOfBattleHandSize": 5
+		"StartOfBattleHandSize": 7
 	}
 }

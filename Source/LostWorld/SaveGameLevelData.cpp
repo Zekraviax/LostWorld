@@ -51,7 +51,7 @@ void USaveGameLevelData::SaveLevelDataToJson()
 void USaveGameLevelData::LoadLevelDataFromJson()
 {
 	IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
-	FString PlayerSaveDataFileName = "SaveGames/TestLevelData2.json";
+	FString PlayerSaveDataFileName = "SaveGames/TestLevelData.json";
 
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
 	PlayerDataSaveFilePath.Append(PlayerSaveDataFileName);

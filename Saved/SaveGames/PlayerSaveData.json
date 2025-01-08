@@ -2,7 +2,7 @@
 	"Name": "NewRow",
 	"EntityData":
 	{
-		"DisplayName": "Default Jim",
+		"DisplayName": "Default Player",
 		"Stats":
 		{
 			"CurrentHealthPoints": 50,
@@ -15,18 +15,16 @@
 			"Readiness": 0
 		},
 		"CardsInDeckDisplayNames": [
-			"Test Card One",
-			"Test Card One",
-			"Test Card One",
 			"Test Card Two",
 			"Test Card Two",
-			"Test Card Two",
-			"Test Card Three",
 			"Test Card Three",
 			"Test Card Three",
 			"Test Card Four",
 			"Test Card Four",
-			"Test Card Four"
+			"Poison Dart",
+			"Poison Dart",
+			"Armour Breaker",
+			"Armour Breaker"
 		],
 		"StartOfBattleHandSize": 7
 	}

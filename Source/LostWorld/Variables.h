@@ -67,6 +67,7 @@ enum class ECardElements : uint8
 UENUM(BlueprintType)
 enum class ECardTargets : uint8
 {
+	None,
 	Self,
 	OneEnemy,
 	AnyOneEntity,
@@ -77,10 +78,16 @@ enum class ECardTargets : uint8
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
+	// -------- Passively changes cards while they're in the hand
+	CostsAllMana,
+	// -------- Specific to one card -------- //
 	TestFunctionOne,
 	TestFunctionTwo,
 	TestFunctionThree,
-	TestFunctionFour
+	TestFunctionFour,
+	PoisonDart,
+	ArmourBreaker,
+	HyperBeam
 };
 
 
@@ -354,7 +361,7 @@ struct LOSTWORLD_API FEntity
 	FEntity()
 	{
 		DisplayName = "Default Jim";
-		CardsInDeckDisplayNames = { "TestCardOne", "TestCardOne" };
+		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
 	}
 };

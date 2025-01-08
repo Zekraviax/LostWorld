@@ -13,8 +13,17 @@ bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 
 void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 {
+	TArray<ECardFunctions> CardFunctions;
+	InCard.FunctionsAndTargets.GetKeys(CardFunctions);
+	
 	CardNameText->SetText(FText::FromString(InCard.DisplayName));
-	CostText->SetText(FText::FromString(FString::FromInt(InCard.TotalCost)));
+
+	// If the card has a special cost, the text should be X instead of a number
+	if (CardFunctions.Contains(ECardFunctions::CostsAllMana)) {
+		CostText->SetText(FText::FromString("X"));
+	} else {
+		CostText->SetText(FText::FromString(FString::FromInt(InCard.TotalCost)));
+	}
 
 	FString CardTypesAsString;
 	for (const ECardTypes Type : InCard.CardTypes) {

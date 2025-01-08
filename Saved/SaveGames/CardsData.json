@@ -82,5 +82,47 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 5
+	},
+	{
+		"Name": "PoisonDart",
+		"DisplayName": "Poison Dart",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 2,
+		"BaseHealing": 0,
+		"Description": "Deal light damage and poison a target.",
+		"FunctionsAndTargets":
+		{
+			"PoisonDart": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "ArmourBreaker",
+		"DisplayName": "Armour Breaker",
+		"BaseCost": 7,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 12,
+		"BaseHealing": 0,
+		"Description": "Deals moderate damage. Damage is doubled against barriers.",
+		"FunctionsAndTargets":
+		{
+			"ArmourBreaker": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 12,
+		"TotalHealing": 0
 	}
 ]

@@ -1,31 +1,37 @@
-{
-	"Name": "NewRow",
-	"EntityData":
+[
 	{
-		"DisplayName": "Default Player",
-		"Stats":
+		"Name": "Player",
+		"EntityData":
 		{
-			"CurrentHealthPoints": 50,
-			"MaximumHealthPoints": 50,
-			"CurrentManaPoints": 25,
-			"MaximumManaPoints": 25,
-			"Strength": 10,
-			"Toughness": 10,
-			"Agility": 10,
-			"Readiness": 0
-		},
-		"CardsInDeckDisplayNames": [
-			"Test Card Two",
-			"Test Card Two",
-			"Test Card Three",
-			"Test Card Three",
-			"Test Card Four",
-			"Test Card Four",
-			"Poison Dart",
-			"Poison Dart",
-			"Armour Breaker",
-			"Armour Breaker"
-		],
-		"StartOfBattleHandSize": 7
+			"DisplayName": "Player",
+			"Stats":
+			{
+				"CurrentHealthPoints": 50,
+				"MaximumHealthPoints": 50,
+				"CurrentManaPoints": 20,
+				"MaximumManaPoints": 20,
+				"CurrentBarrierPoints": 0,
+				"Strength": 10,
+				"Toughness": 10,
+				"Agility": 10,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"CardsInDeckDisplayNames": [
+				"Test Card Two",
+				"Test Card Two",
+				"Test Card Three",
+				"Test Card Three",
+				"Test Card Four",
+				"Test Card Four",
+				"Poison Dart",
+				"Poison Dart",
+				"Armour Breaker",
+				"Armour Breaker"
+			],
+			"StartOfBattleHandSize": 7
+		}
 	}
-}
+]

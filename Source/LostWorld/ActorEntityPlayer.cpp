@@ -121,6 +121,12 @@ bool AActorEntityPlayer::ReceiveHealing(float Healing)
 }
 
 
+bool AActorEntityPlayer::GainMana(int InMana)
+{
+	return Super::GainMana(InMana);
+}
+
+
 bool AActorEntityPlayer::GainBarrier(int InBarrier)
 {
 	return Super::GainBarrier(InBarrier);

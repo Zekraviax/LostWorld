@@ -32,6 +32,7 @@ public:
 	virtual bool EntityDefeated();
 
 	virtual bool ReceiveHealing(float Healing);
+	virtual bool GainMana(int InMana);
 	virtual bool GainBarrier(int InBarrier);
 
 	virtual bool AddStatusEffect(FStatusEffect StatusEffect);

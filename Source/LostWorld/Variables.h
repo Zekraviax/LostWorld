@@ -313,6 +313,9 @@ struct LOSTWORLD_API FEntityBaseStats
 	int Agility;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int ManaRegeneration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -332,6 +335,7 @@ struct LOSTWORLD_API FEntityBaseStats
 		Strength = 1;
 		Toughness = 1;
 		Agility = 1;
+		ManaRegeneration = 1;
 		Readiness = 0;
 	}
 };

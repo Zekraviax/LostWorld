@@ -145,6 +145,14 @@ bool AActorEntityBase::ReceiveHealing(float Healing)
 }
 
 
+bool AActorEntityBase::GainMana(int InMana)
+{
+	EntityData.Stats.CurrentManaPoints += InMana;
+	
+	return IInterfaceBattle::GainMana(InMana);
+}
+
+
 bool AActorEntityBase::GainBarrier(int InBarrier)
 {
 	EntityData.Stats.CurrentBarrierPoints += InBarrier;
@@ -178,6 +186,11 @@ bool AActorEntityBase::StartTurn()
 	}
 
 	// To-Do: For every entity, check for status effects that trigger at the start of every entity's turns.
+
+	// Start of turn regenerations
+	if (EntityData.Stats.ManaRegeneration > 0) {
+		GainMana(EntityData.Stats.ManaRegeneration);
+	}
 	
 	return IInterfaceBattle::StartTurn();
 }

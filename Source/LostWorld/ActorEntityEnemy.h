@@ -44,6 +44,7 @@ public:
 	virtual bool EntityDefeated() override;
 
 	virtual bool ReceiveHealing(float Healing) override;
+	virtual bool GainMana(int InMana) override;
 	virtual bool GainBarrier(int InBarrier) override;
 
 	virtual bool AddStatusEffect(FStatusEffect StatusEffect) override;

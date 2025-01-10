@@ -99,6 +99,12 @@ bool AActorEntityEnemy::ReceiveHealing(float Healing)
 }
 
 
+bool AActorEntityEnemy::GainMana(int InMana)
+{
+	return Super::GainMana(InMana);
+}
+
+
 bool AActorEntityEnemy::GainBarrier(int InBarrier)
 {
 	EntityData.Stats.CurrentBarrierPoints += InBarrier;

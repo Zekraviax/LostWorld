@@ -28,12 +28,13 @@ void ULostWorldGameInstanceBase::Init()
 
 void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
 {
-	FString PlayerDataAsJson = LoadFileFromJson("PlayerSaveData");
-	FPlayerSave PlayerDataAsStruct;
-	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataAsStruct, 0, 0);
+	FString PlayerDataAsString = LoadFileFromJson("PlayerSaveData");
+	TArray<FPlayerSave> PlayerDataArray;
+	
+	FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsString, &PlayerDataArray, 0, 0);
 	
 	// Apply player data
-	CurrentPlayerSave = PlayerDataAsStruct;
+	CurrentPlayerSave = PlayerDataArray[0];
 }
 
 

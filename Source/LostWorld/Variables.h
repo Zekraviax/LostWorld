@@ -87,7 +87,8 @@ enum class ECardFunctions : uint8
 	TestFunctionFour,
 	PoisonDart,
 	ArmourBreaker,
-	HyperBeam
+	HyperBeam,
+	TestFunctionFive
 };
 
 

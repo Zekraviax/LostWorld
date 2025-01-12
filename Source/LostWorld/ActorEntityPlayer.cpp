@@ -50,15 +50,11 @@ TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
 
 bool AActorEntityPlayer::DrawCard()
 {
-	// Shift the top card of the deck into the hand
-	Hand.Add(Deck[0]);
-
-	// Create a card widget for the card and add it to the players' HUD.
+	Super::DrawCard();
+	
+	// Create a widget for the card and add it to the players' HUD.
 	UWidgetCard* LocalCardReference = Cast<ALostWorldPlayerControllerBattle>(
 		GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
-	
-	LocalCardReference->IndexInHandArray = Hand.Num() - 1;
-	Deck.RemoveAt(0);
 	
 	return IInterfaceBattle::DrawCard();
 }

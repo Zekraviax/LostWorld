@@ -124,5 +124,68 @@
 		"TotalCost": 1,
 		"TotalDamage": 12,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "HyperBeam",
+		"DisplayName": "Hyper Beam",
+		"BaseCost": -1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Arcane"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Costs all of your mana. The more mana that was spent to cast this spell, the more damage it deals.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "AnyOneEntity"
+		},
+		"TotalCost": -1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardFive",
+		"DisplayName": "Test Card Five",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Arcane"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Draw cards until your deck is empty, then draw one more.",
+		"FunctionsAndTargets":
+		{
+			"TestCardFive": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Trick",
+		"DisplayName": "Trick",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Cosmic"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Swap your hand and deck.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
 	}
 ]

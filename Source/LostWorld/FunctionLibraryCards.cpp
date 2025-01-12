@@ -29,6 +29,8 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 		case (ECardFunctions::ArmourBreaker):
 			ArmourBreaker();
 			break;
+		case (ECardFunctions::TestFunctionFive):
+			TestCardFive();
 		default:
 			break;
 	}
@@ -134,4 +136,17 @@ void AFunctionLibraryCards::HyperBeam() const
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
 	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, BasePower));
+}
+
+
+void AFunctionLibraryCards::TestCardFive() const
+{
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+	
+	// Draw cards until your deck is empty, then draw one more.
+	while (Attacker->Deck.Num() > 0) {
+		Cast<IInterfaceBattle>(Attacker)->DrawCard();
+	}
+
+	Cast<IInterfaceBattle>(Attacker)->DrawCard();
 }

@@ -24,6 +24,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FPlayerSave CurrentPlayerSave;
+	
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	virtual void Init() override;

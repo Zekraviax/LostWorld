@@ -48,6 +48,12 @@ bool IInterfaceBattle::PayCostsForCard(int IndexInHand)
 }
 
 
+bool IInterfaceBattle::ShuffleDiscardPileIntoDeck()
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::TakeDamage(float Damage)
 {
 	return true;

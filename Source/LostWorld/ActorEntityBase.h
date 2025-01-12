@@ -42,8 +42,7 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent* EntityBillboard;
-
-
+	
 // -------------------------------- Cards & Deck
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEntity EntityData;
@@ -56,7 +55,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCard> Discard;
-
 
 // -------------------------------- Other
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -76,6 +74,7 @@ public:
 	virtual bool DrawCard() override;
 	virtual bool DiscardCard(int IndexInHand) override;
 	virtual bool PayCostsForCard(int IndexInHand) override;
+	virtual bool ShuffleDiscardPileIntoDeck() override;
 
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;

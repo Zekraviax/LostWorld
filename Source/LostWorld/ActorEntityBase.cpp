@@ -68,11 +68,24 @@ TArray<FCard> AActorEntityBase::ShuffleDeck(TArray<FCard> InDeck)
 
 bool AActorEntityBase::DrawCard()
 {
+	if (Deck.Num() < 1) {
+		// If there's no cards in the deck, check if there are any cards in the discard pile.
+		// If there are, shuffle the discard pile into the deck.
+		if (Discard.Num() > 0) {
+			ShuffleDiscardPileIntoDeck();
+		} else {
+			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName + " can't draw any cards!", 2);
+		}
+	}
+	
 	// Shift the top card of the deck into the hand
 	Hand.Add(Deck[0]);
 	Deck.RemoveAt(0);
 
-	// To-Do: Calculate variables such as TotalCost here.
+	// Calculate card variables such as total cost here.
+	Hand.Last().TotalCost = Hand.Last().BaseCost;
+	Hand.Last().TotalDamage = Hand.Last().BaseDamage;
+	Hand.Last().TotalHealing = Hand.Last().BaseHealing;
 	
 	return IInterfaceBattle::DrawCard();
 }
@@ -91,6 +104,21 @@ bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::PayCostsForCard(IndexInHand);
+}
+
+
+bool AActorEntityBase::ShuffleDiscardPileIntoDeck()
+{
+	if (Discard.Num() > 0) {
+		for (int DiscardCount = 0; DiscardCount < Discard.Num(); DiscardCount++) {
+			Deck.Add(Discard[DiscardCount]);
+		}
+	}
+
+	Discard.Empty();
+	ShuffleDeck(Deck);
+	
+	return IInterfaceBattle::ShuffleDiscardPileIntoDeck();
 }
 
 

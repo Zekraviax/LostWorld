@@ -27,6 +27,7 @@ public:
 	virtual bool DrawCard();
 	virtual bool DiscardCard(int IndexInHand);
 	virtual bool PayCostsForCard(int IndexInHand);
+	virtual bool ShuffleDiscardPileIntoDeck();
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();

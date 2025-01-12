@@ -26,7 +26,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 	// To-Do: Get data from the JSON files, not the DataTables.
 	// Get the Enemy data table row names from the Encounter data table.
-
 	FString ContextString;
 	TArray<FName> EnemyRowNames = EnemyEncounter.EnemyTypes;
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;

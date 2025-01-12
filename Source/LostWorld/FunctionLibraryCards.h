@@ -25,4 +25,5 @@ public:
 	void PoisonDart() const;
 	void ArmourBreaker() const;
 	void HyperBeam() const;
+	void TestCardFive() const;
 };

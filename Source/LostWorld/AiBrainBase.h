@@ -6,6 +6,7 @@
 #include "AiBrainBase.generated.h"
 
 
+class AActorEntityBase;
 class AActorEntityEnemy;
 
 
@@ -27,6 +28,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 // ---------------------------------------- Variables ---------------------------------------- //
+
+// -------------------------------- Timers
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FTimerHandle CastCardTimerHandle;
 

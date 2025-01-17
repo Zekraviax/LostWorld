@@ -30,7 +30,6 @@ void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
 {
 	FString PlayerDataAsString = LoadFileFromJson("PlayerSaveData");
 	TArray<FPlayerSave> PlayerDataArray;
-	
 	FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsString, &PlayerDataArray, 0, 0);
 	
 	// Apply player data
@@ -57,7 +56,6 @@ FCard ULostWorldGameInstanceBase::GetCardFromJson(const FString& CardName) const
 {
 	TArray<FCard> CardsArray;
 	FString CardJsonAsString = LoadFileFromJson("CardsData");
-
 	FJsonObjectConverter::JsonArrayStringToUStruct(CardJsonAsString, &CardsArray, 0, 0);
 
 	for (FCard Card : CardsArray) {
@@ -74,7 +72,6 @@ FEnemyEntity ULostWorldGameInstanceBase::GetEnemyFromJson(const FString& EnemyTy
 {
 	TArray<FEnemyEntity> EnemiesArray;
 	FString EnemyJsonAsString = LoadFileFromJson("EnemiesData");
-
 	FJsonObjectConverter::JsonArrayStringToUStruct(EnemyJsonAsString, &EnemiesArray, 0, 0);
 
 	for (FEnemyEntity Enemy : EnemiesArray) {
@@ -91,7 +88,6 @@ FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString&
 {
 	TArray<FStatusEffect> StatusEffectsArray;
 	FString StatusEffectJsonAsString = LoadFileFromJson("StatusEffectsData");
-
 	FJsonObjectConverter::JsonArrayStringToUStruct(StatusEffectJsonAsString, &StatusEffectsArray, 0, 0);
 
 	for (FStatusEffect StatusEffect : StatusEffectsArray) {

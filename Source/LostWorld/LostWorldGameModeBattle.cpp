@@ -34,7 +34,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	
 	// Clear the entities in battle array
 	EntitiesInBattleArray.Empty();
-	
+
+	// Before the entity joins the battle, we must find a tile for it to be spawned at.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
 		AActorGridTile* FoundTile = *Itr;
 		// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
@@ -61,6 +62,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
 		AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
 
+		// Spawns an actor into the world.
+		// To-Do: Use an Object Pool instead of directly spawning actors.
 		EntitiesInBattleArray.Add(GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
 			FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
 			FRotator::ZeroRotator,
@@ -77,6 +80,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			GetEnemyFromJson(EnemyRowNames[RowCount].ToString());
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = EnemyEntityData;
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData.EntityData;
+
+		// Assign team?
+		//EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
 
 		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
 
@@ -336,9 +342,8 @@ void ALostWorldGameModeBattle::CastCard()
 	if (!FunctionLibraryCardsInstance) {
 		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
 	}
-
-	DualLog(TheStack[0].Controller->EntityData.DisplayName + " attacks!", 2);
-	//DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Controller->Hand[TheStack[0].IndexInHandArray].DisplayName, 2);
+	
+	DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Card.DisplayName, 2);
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 

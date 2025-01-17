@@ -77,7 +77,7 @@ public:
 		// The GameModeBattle will also handle level generation since the game will transition seamlessly,
 		// between level exploration and battles.
 
-	// This transition will handle the technical things such as spawning enemies into the world.
+	// This transition will handle the technical things.
 	void TransitionToBattle(const FEncounter& EnemyEncounter);
 	// Check if either the player, or all enemies, have been wiped out.
 	void EndOfBattleCheck() const;

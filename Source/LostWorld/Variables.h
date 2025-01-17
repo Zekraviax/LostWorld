@@ -78,7 +78,7 @@ enum class ECardTargets : uint8
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
-	// -------- Passively changes cards while they're in the hand
+	// -------- Passively modified cards while they're in the hand
 	CostsAllMana,
 	// -------- Specific to one card -------- //
 	TestFunctionOne,

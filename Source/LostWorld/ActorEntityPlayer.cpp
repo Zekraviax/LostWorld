@@ -55,6 +55,8 @@ bool AActorEntityPlayer::DrawCard()
 	// Create a widget for the card and add it to the players' HUD.
 	UWidgetCard* LocalCardReference = Cast<ALostWorldPlayerControllerBattle>(
 		GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
+
+	LocalCardReference->CardData = Hand.Last();
 	
 	return IInterfaceBattle::DrawCard();
 }

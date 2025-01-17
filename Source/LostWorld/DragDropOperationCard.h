@@ -2,6 +2,7 @@
 
 
 #include "CoreMinimal.h"
+#include "Variables.h"
 #include "Blueprint/DragDropOperation.h"
 #include "DragDropOperationCard.generated.h"
 
@@ -13,6 +14,9 @@ class LOSTWORLD_API UDragDropOperationCard : public UDragDropOperation
 
 // ---------------------------------------- Variables ---------------------------------------- //
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FCard DraggedCardData;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FVector2D CursorPositionAsPercentage;
 	

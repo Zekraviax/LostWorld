@@ -20,8 +20,10 @@ void UDragDropOperationCard::Dragged_Implementation(const FPointerEvent& Pointer
 	CursorPositionAsPercentage.X = PixelPosition.X / ViewportDimensions.X;
 	CursorPositionAsPercentage.Y = PixelPosition.Y / ViewportDimensions.Y;
 
-	// Check if the player can afford to cast the card.
+	// To-Do: Check if the player can afford to cast the card (?)
 	// AActorEntityPlayer* Player = Cast<>(GetWorld->GetAuthGameMode())
+
+	Cast<UWidgetCard>(DefaultDragVisual)->UpdateComponentsFromPassedCard(Cast<UWidgetCard>(Payload)->CardData);
 	
 	if (CursorPositionAsPercentage.Y > 0.749) {
 		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 0.f, 1.f));

@@ -88,7 +88,8 @@ enum class ECardFunctions : uint8
 	PoisonDart,
 	ArmourBreaker,
 	HyperBeam,
-	TestFunctionFive
+	TestFunctionFive,
+	TestFunctionSix
 };
 
 
@@ -109,6 +110,7 @@ enum class EStatusEffectFunctions : uint8
 {
 	Poison,
 	IronShell,
+	StrengthUp
 };
 
 
@@ -119,8 +121,27 @@ enum class ETimingTriggers : uint8
 	StartOfBattle,
 	StartOfOwnersTurn,
 	StartOfEveryTurn,
+	EndOfAffectedEntitysTurn,
+	OnStatusEffectApplied,
 };
 
+
+UENUM(BlueprintType)
+enum class EDamageTypes : uint8
+{
+	Physical,
+	Magical,
+	Pure
+};
+
+
+UENUM(BlueprintType)
+enum class ETeams : uint8
+{
+	PlayerTeam,
+	EnemyTeam1,
+	EnemyTeam2
+};
 
 
 // ---------------------------------------- Structs ---------------------------------------- //
@@ -176,6 +197,9 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 	TArray<ETimingTriggers> TimingTriggers;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ETimingTriggers> DecrementStackTriggers;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CurrentStackCount;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -202,28 +226,6 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 		VisibleToPlayer = false;
 		BlockedByBarrier = false;
 	}
-};
-
-
-USTRUCT(BlueprintType)
-struct LOSTWORLD_API FStackEntry
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ECardFunctions Function;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ECardTargets TargetingMode;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActorEntityBase* Controller;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<AActorEntityBase*> SelectedTargets;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int IndexInHandArray;
 };
 
 
@@ -280,6 +282,31 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 };
 
 
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FStackEntry
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ECardFunctions Function;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ECardTargets TargetingMode;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActorEntityBase* Controller;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<AActorEntityBase*> SelectedTargets;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int IndexInHandArray;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FCard Card;
+};
+
+
 // -------------------------------- Entities
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FEntityBaseStats
@@ -309,6 +336,14 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Toughness;
 
+	// Increases damage dealt by magical attacks.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Intelligence;
+	
+	// Reduces damage taken from magical attacks.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Willpower;
+
 	// Determines the rate at which their readiness increases.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Agility;
@@ -335,6 +370,8 @@ struct LOSTWORLD_API FEntityBaseStats
 		CurrentBarrierPoints = 0;
 		Strength = 1;
 		Toughness = 1;
+		Intelligence = 1;
+		Willpower = 1;
 		Agility = 1;
 		ManaRegeneration = 1;
 		Readiness = 0;
@@ -363,11 +400,15 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StartOfBattleHandSize;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ETeams Team;
+
 	FEntity()
 	{
 		DisplayName = "Default Jim";
 		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
+		Team = ETeams::PlayerTeam;
 	}
 };
 

@@ -50,24 +50,23 @@ void UWidgetHudBattle::ResetAllCardWidgetIndices() const
 }
 
 
-void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, ECardFunctions CurrentFunction, int CurrentNumberOfTargets) const
+void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, int IndexInHand, ECardTargets CurrentTargetMode, int CurrentNumberOfTargets) const
 {
 	if (Cast<AActorEntityPlayer>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TurnQueue[0])) {
 		if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->ControlMode != EPlayerControlModes::None) {
 			// Display a copy of the card the player is in the middle of casting
 			CurrentCardBeingCast->SetVisibility(ESlateVisibility::HitTestInvisible);
 			CurrentCardBeingCast->UpdateComponentsFromPassedCard(InCard);
+			CurrentCardBeingCast->IndexInHandArray = IndexInHand;
 				
 			// Update the helper text that tells the player which entities they can select
 			// and how many entities they're already selected (if the card allows selecting more than one.)
-			switch (CurrentFunction) {
-				case ECardFunctions::TestFunctionOne:
+			switch (CurrentTargetMode) {
+				case ECardTargets::OneEnemy:
 					CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
 					CardTargetText->SetText(FText::FromString("Select 1 Enemy"));
 					break;
-				case ECardFunctions::TestFunctionTwo:
-					break;
-				case ECardFunctions::TestFunctionFour:
+				case ECardTargets::AnyOneEntity:
 					CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
 					CardTargetText->SetText(FText::FromString("Select 1 Entity"));
 					break;

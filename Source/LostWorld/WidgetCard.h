@@ -16,10 +16,10 @@ class LOSTWORLD_API UWidgetCard : public UUserWidget
 
 public:
 // ---------------------------------------- Variables ---------------------------------------- //
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FCard CardData;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int IndexInHandArray; // this int points to the card in the player's hand
 
 // -------------------------------- Widget components

@@ -6,7 +6,8 @@
 			{
 				"EncounterType": "Enemy",
 				"EnemyTypes": [
-					"TestEnemyTwo"
+					"WolfPack",
+					"WolfPackAlpha"
 				],
 				"MinimumFloor": 1,
 				"MaximumFloor": 1

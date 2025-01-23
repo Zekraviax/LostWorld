@@ -7,13 +7,23 @@
 			"TestEnemyOne"
 		],
 		"MinimumFloor": 1,
-		"MaximumFloor": 1
+		"MaximumFloor": -1
 	},
 	{
 		"Name": "TestEncounterTwo",
 		"EncounterType": "Enemy",
 		"EnemyTypes": [
 			"TestEnemyTwo"
+		],
+		"MinimumFloor": 2,
+		"MaximumFloor": -1
+	},
+	{
+		"Name": "WolfPack1",
+		"EncounterType": "None",
+		"EnemyTypes": [
+			"WolfPack",
+			"WolfPackAlpha"
 		],
 		"MinimumFloor": 1,
 		"MaximumFloor": 1

@@ -15,7 +15,7 @@ class LOSTWORLD_API AFunctionLibraryCards : public AActor
 public:
 	void ExecuteFunction(ECardFunctions InFunction) const;
 
-	static int StandardDamageFormula(AActorEntityBase* Attacker, AActorEntityBase* Defender, int AttackBasePower);
+	static int StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
 	static int ArmourBreakerDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
 	
 	void TestCardOne() const;
@@ -26,4 +26,6 @@ public:
 	void ArmourBreaker() const;
 	void HyperBeam() const;
 	void TestCardFive() const;
+	void TestCardSix() const;
+	void HowlOfCommand() const;
 };

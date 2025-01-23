@@ -5,6 +5,7 @@
 #include "InterfaceBattle.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBattle.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
@@ -31,18 +32,32 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 			break;
 		case (ECardFunctions::TestFunctionFive):
 			TestCardFive();
+			break;
+		case (ECardFunctions::TestFunctionSix):
+			TestCardSix();
+			break;
+		case (ECardFunctions::HowlOfCommand):
+			HowlOfCommand();
+			break;
 		default:
 			break;
 	}
 }
 
 
-int AFunctionLibraryCards::StandardDamageFormula(AActorEntityBase* Attacker, AActorEntityBase* Defender, const int AttackBasePower)
+int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower)
 {
 	// Damage formula
 	// Step1 = ((Strength * Attack) / 2) * Rand(0.95, 1.1)
 	// Step2 = Step1 / (Defence * Rand(0.95 * 1.05))
 	// Step3 = RoundUp(Step2)
+
+	// To-Do: Check for status effects that modify damage and/or base power
+	for (FStatusEffect StatusEffect : Defender->StatusEffects) {
+		if (StatusEffect.StatusEffect == EStatusEffectFunctions::Howl) {
+			AttackBasePower += 2;
+		}
+	}
 
 	float CalculatedDamage = Attacker->EntityData.Stats.Strength * AttackBasePower;
 	CalculatedDamage -= 2;
@@ -58,12 +73,7 @@ int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* At
 {
 	// Damage formula is the same as the standard formula, except damage is doubled against barriers.
 	// So for each 1 point of barrier the defender has, add 1 point of damage, capping out at 2x the calculated damage.
-	float CalculatedDamage = Attacker->EntityData.Stats.Strength * AttackBasePower;
-	CalculatedDamage -= 2;
-	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
-	CalculatedDamage /= Defender->EntityData.Stats.Toughness;
-	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
-	
+	int CalculatedDamage = StandardDamageFormula(Attacker, Defender, AttackBasePower);
 	int BarrierPoints = Defender->EntityData.Stats.CurrentBarrierPoints;
 	int BonusDamage = 0;
 	
@@ -115,8 +125,6 @@ void AFunctionLibraryCards::PoisonDart() const
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
 	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, 2));
-	Cast<IInterfaceBattle>(Defender)->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-		GetStatusEffectFromJson("Poison Test"));
 }
 
 
@@ -149,4 +157,54 @@ void AFunctionLibraryCards::TestCardFive() const
 	}
 
 	Cast<IInterfaceBattle>(Attacker)->DrawCard();
+}
+
+
+void AFunctionLibraryCards::TestCardSix() const
+{
+	// To-Do: Clean up these repetitive lines that get the Attacker and Defender
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+	FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
+
+	SummonData.EntityData.Team = Attacker->EntityData.Team;
+	
+	// Spawn the summon and make it the same team as the entity summoning it
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
+}
+
+
+void AFunctionLibraryCards::HowlOfCommand() const
+{
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
+	
+	// First, get all Wolf Pack allies and set their target overrides.
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
+
+	// Find each entity that isn't on the same team as this one.
+	TArray<AActorEntityBase*> FoundEnemies;
+	
+	for (AActor* Actor : FoundActors) {
+		if (Cast<AActorEntityBase>(Actor)->EntityData.Team != Attacker->EntityData.Team) {
+			FoundEnemies.Add(Cast<AActorEntityBase>(Actor));
+			break;
+		}
+	}
+
+	for (AActor* Actor : FoundActors) {
+		if (Cast<AActorEntityBase>(Actor)->EntityData.Team == Attacker->EntityData.Team &&
+			Cast<AActorEntityBase>(Actor)->EntityData.EntityTypes.Contains(EEntityTypes::WolfPack) &&
+			Cast<AActorEntityBase>(Actor)->FindComponentByClass<UAiBrainBase>()) {
+			Cast<AActorEntityBase>(Actor)->FindComponentByClass<UAiBrainBase>()->AttackTargetsOverride.Empty();
+			Cast<AActorEntityBase>(Actor)->FindComponentByClass<UAiBrainBase>()->AttackTargetsOverride.Add(FoundEnemies[0]);
+
+			ALostWorldGameModeBase::DualLog(Cast<AActorEntityBase>(Actor)->EntityData.DisplayName +
+				" is targeting " + FoundEnemies[0]->EntityData.DisplayName + "!", 2);
+		}
+	}
+
+	// Second, inflict the target with the Howl status effect that increases the power of cards targeted at them.
+	Cast<IInterfaceBattle>(Defender)->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Howl"));
 }

@@ -192,7 +192,7 @@ bool AActorEntityBase::GainBarrier(int InBarrier)
 
 bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 {
-	if (EntityData.Stats.CurrentBarrierPoints > 0 || StatusEffect.BlockedByBarrier) {
+	if (EntityData.Stats.CurrentBarrierPoints > 0 && StatusEffect.BlockedByBarrier) {
 		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
 	} else {
 		// To-Do: Make status effects add stacks to status effects that the entity already has.
@@ -208,7 +208,7 @@ bool AActorEntityBase::StartTurn()
 {
 	// Check for status effects that trigger at the start of the owners' turn.
 	for (FStatusEffect StatusEffect : StatusEffects) {
-		if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfOwnersTurn)) {
+		if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitysTurn)) {
 			AFunctionLibraryStatusEffects::ExecuteFunction(StatusEffect.StatusEffect, this);
 		}
 	}

@@ -5,6 +5,10 @@
 		"EntityData":
 		{
 			"DisplayName": "Default Jim",
+			"EntityTypes": [
+				"Enemy",
+				"TestEnemyOne"
+			],
 			"Stats":
 			{
 				"CurrentHealthPoints": 10,
@@ -14,7 +18,100 @@
 				"CurrentBarrierPoints": 0,
 				"Strength": 5,
 				"Toughness": 5,
+				"Intelligence": 5,
+				"Willpower": 5,
 				"Agility": 5,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"CardsInDeckDisplayNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo"
+			],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "TestEnemyTwo",
+		"EnemyType": "TestEnemyTwo",
+		"EntityData":
+		{
+			"DisplayName": "Test Boss",
+			"EntityTypes": [
+				"Enemy",
+				"TestEnemyTwo"
+			],
+			"Stats":
+			{
+				"CurrentHealthPoints": 25,
+				"MaximumHealthPoints": 25,
+				"CurrentManaPoints": 25,
+				"MaximumManaPoints": 25,
+				"CurrentBarrierPoints": 0,
+				"Strength": 5,
+				"Toughness": 7,
+				"Intelligence": 5,
+				"Willpower": 7,
+				"Agility": 5,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": [
+					"Iron Shell"
+				]
+			},
+			"CardsInDeckDisplayNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardThree"
+			],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "WolfPack",
+		"EnemyType": "WolfPack",
+		"EntityData":
+		{
+			"DisplayName": "Wolf Pack",
+			"EntityTypes": [
+				"Enemy",
+				"WolfPack"
+			],
+			"Stats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 2,
+				"Toughness": 2,
+				"Intelligence": 2,
+				"Willpower": 0,
+				"Agility": 2,
+				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
@@ -25,51 +122,58 @@
 				"Test Card One",
 				"Test Card One",
 				"Test Card One",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Two"
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One"
 			],
-			"StartOfBattleHandSize": 5
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
 		},
 		"ExperiencePoints": 1
 	},
 	{
-		"Name": "TestEnemyTwo",
-		"EnemyType": "TestEnemyTwo",
+		"Name": "WolfPackAlpha",
+		"EnemyType": "WolfPackAlpha",
 		"EntityData":
 		{
-			"DisplayName": "Test Boss",
+			"DisplayName": "Wolf Pack Alpha",
+			"EntityTypes": [
+				"Enemy",
+				"WolfPackAlpha"
+			],
 			"Stats":
 			{
-				"CurrentHealthPoints": 25,
-				"MaximumHealthPoints": 25,
-				"CurrentManaPoints": 25,
-				"MaximumManaPoints": 25,
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
 				"CurrentBarrierPoints": 0,
-				"Strength": 5,
-				"Toughness": 7,
-				"Agility": 5,
+				"Strength": 3,
+				"Toughness": 3,
+				"Intelligence": 3,
+				"Willpower": 3,
+				"Agility": 3,
+				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": [
-					"Iron Shell"
-				]
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"CardsInDeckDisplayNames": [
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
 				"Test Card One",
 				"Test Card One",
 				"Test Card One",
 				"Test Card One",
-				"Test Card One",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Two",
-				"Test Card Three"
+				"Test Card One"
 			],
-			"StartOfBattleHandSize": 5
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
 		},
 		"ExperiencePoints": 1
 	}

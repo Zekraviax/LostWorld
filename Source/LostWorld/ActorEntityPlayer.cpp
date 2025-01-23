@@ -51,12 +51,14 @@ TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
 bool AActorEntityPlayer::DrawCard()
 {
 	Super::DrawCard();
-	
+
+	// To-Do: Only create the widget if it's the entity's turn.
 	// Create a widget for the card and add it to the players' HUD.
 	UWidgetCard* LocalCardReference = Cast<ALostWorldPlayerControllerBattle>(
 		GetWorld()->GetFirstPlayerController())->BattleHudWidget->CreateCardWidgetInHand(Hand.Last());
 
 	LocalCardReference->CardData = Hand.Last();
+	LocalCardReference->IndexInHandArray = Hand.Num() - 1;
 	
 	return IInterfaceBattle::DrawCard();
 }

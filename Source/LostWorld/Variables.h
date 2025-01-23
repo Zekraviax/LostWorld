@@ -71,6 +71,7 @@ enum class ECardTargets : uint8
 	Self,
 	OneEnemy,
 	AnyOneEntity,
+	AllAllies,
 	AllEnemies
 };
 
@@ -89,7 +90,8 @@ enum class ECardFunctions : uint8
 	ArmourBreaker,
 	HyperBeam,
 	TestFunctionFive,
-	TestFunctionSix
+	TestFunctionSix,
+	HowlOfCommand
 };
 
 
@@ -110,7 +112,8 @@ enum class EStatusEffectFunctions : uint8
 {
 	Poison,
 	IronShell,
-	StrengthUp
+	StrengthUp,
+	Howl
 };
 
 
@@ -119,7 +122,7 @@ enum class ETimingTriggers : uint8
 {
 	None,
 	StartOfBattle,
-	StartOfOwnersTurn,
+	StartOfAffectedEntitysTurn,
 	StartOfEveryTurn,
 	EndOfAffectedEntitysTurn,
 	OnStatusEffectApplied,
@@ -141,6 +144,22 @@ enum class ETeams : uint8
 	PlayerTeam,
 	EnemyTeam1,
 	EnemyTeam2
+};
+
+
+UENUM(BlueprintType)
+enum class EEntityTypes : uint8
+{
+	// Extensive list of entities.
+	// Main types:
+	Player,
+	Enemy,
+	SummonedEntity,
+	// Enemy exclusive types
+	TestEnemyOne,
+	TestEnemyTwo,
+	WolfPack,
+	WolfPackAlpha
 };
 
 
@@ -390,6 +409,9 @@ struct LOSTWORLD_API FEntity
 	FString DisplayName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<EEntityTypes> EntityTypes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBaseStats Stats;
 
 	// All entities will have a Deck variable, even if they don't use it in gameplay.
@@ -406,6 +428,7 @@ struct LOSTWORLD_API FEntity
 	FEntity()
 	{
 		DisplayName = "Default Jim";
+		EntityTypes = { EEntityTypes::Enemy };
 		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
 		Team = ETeams::PlayerTeam;
@@ -433,6 +456,16 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 		EnemyType = "TestEnemyOne";
 		ExperiencePoints = 1;
 	}
+};
+
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FSummonEntity : public FTableRowBase
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FEntity EntityData;
 };
 
 

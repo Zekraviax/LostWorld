@@ -29,6 +29,7 @@ void UAiBrainTestEnemyOne::SelectCardToCast()
 void UAiBrainTestEnemyOne::GetTargetsForCard(int IndexInHand)
 {
 	Super::GetTargetsForCard(IndexInHand);
+	
 	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
 
 	// Find a random player to be the target.

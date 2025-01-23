@@ -82,6 +82,11 @@ public:
 	// Check if either the player, or all enemies, have been wiped out.
 	void EndOfBattleCheck() const;
 	void PlayerVictory() const;
+
+	// The SpawnEntity function can serve the dual purposes of initializing a battle,
+	// and spawning Summons mid-battle.
+	// To-Do: Finish testing this function, and incorporate it into the TransitionToBattle function.
+	void SpawnEntity(FEntity InEntity);
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:
@@ -134,4 +139,8 @@ public:
 
 	// From Step One, each level Layout will have their own function.
 	void GenerateLevelLayoutFourSquares();
+
+	
+// -------------------------------- Other functions
+	void GetPlayerLocationAndRoom(FVector& PlayerLocation, int& RoomIndex) const;
 };

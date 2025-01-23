@@ -36,6 +36,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FTimerHandle EndTurnTimerHandle;
 
+// -------------------------------- Decision-making
+	// If this array has any entities in it, force this entity to attack them.
+	// Should be emptied at the end of every turn (?)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<AActorEntityBase*> AttackTargetsOverride;
+	
+	// How many turns this entity has taken since the battle begun.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int SelfTurnCounter;
+
 // ---------------------------------------- Functions ---------------------------------------- //
 	virtual void StartTurn();
 

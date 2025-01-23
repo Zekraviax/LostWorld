@@ -68,9 +68,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
 			FRotator::ZeroRotator,
 			SpawnParameters));
-		
-		// Attach an AI brain component
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
 
 		ValidEnemySpawnTiles.Remove(RandomTile);
 
@@ -78,13 +75,17 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		// Then get the entity's cards from the cards json and add them to their deck.
 		FEnemyEntity EnemyEntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			GetEnemyFromJson(EnemyRowNames[RowCount].ToString());
+
+		// Assign team
+		EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
+		
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = EnemyEntityData;
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData.EntityData;
 
-		// Assign team?
-		//EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
-
 		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
+
+		// Attach an AI brain component
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
 
 		// Set up the enemy's deck.
 		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
@@ -106,6 +107,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
 		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->AddCardToDeck(InCard);
 	}
+
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
 
 	// Add the player's entity to the array last.
 	EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
@@ -296,6 +299,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	TempStackEntry.Controller = TurnQueue[0];
 	TempStackEntry.SelectedTargets.Empty();
 	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+	TempStackEntry.Card = CardToCast;
 
 	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::Self) {
 		TempStackEntry.SelectedTargets.Add(TempStackEntry.Controller);
@@ -307,7 +311,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
 		
 		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
-			BattleHudWidget->PlayerStartCastingCard(CardToCast, TempStackEntry.Function, TempStackEntry.SelectedTargets.Num());
+			BattleHudWidget->PlayerStartCastingCard(CardToCast, CardIndexInHandArray, TempStackEntry.TargetingMode, TempStackEntry.SelectedTargets.Num());
 	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEnemies) {
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);

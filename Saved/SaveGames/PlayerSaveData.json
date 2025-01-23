@@ -4,6 +4,9 @@
 		"EntityData":
 		{
 			"DisplayName": "Player",
+			"EntityTypes": [
+				"Player"
+			],
 			"Stats":
 			{
 				"CurrentHealthPoints": 50,
@@ -13,6 +16,8 @@
 				"CurrentBarrierPoints": 0,
 				"Strength": 10,
 				"Toughness": 10,
+				"Intelligence": 10,
+				"Willpower": 10,
 				"Agility": 10,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
@@ -20,8 +25,8 @@
 				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"CardsInDeckDisplayNames": [
-				"Test Card Two",
-				"Test Card Two",
+				"Test Card Six",
+				"Test Card Six",
 				"Test Card Three",
 				"Test Card Three",
 				"Test Card Five",
@@ -29,13 +34,10 @@
 				"Poison Dart",
 				"Poison Dart",
 				"Armour Breaker",
-				"Armour Breaker",
-				"Test Card Five",
-				"Test Card Five",
-				"Test Card Five",
-				"Test Card Five"
+				"Armour Breaker"
 			],
-			"StartOfBattleHandSize": 7
+			"StartOfBattleHandSize": 7,
+			"Team": "PlayerTeam"
 		}
 	}
 ]

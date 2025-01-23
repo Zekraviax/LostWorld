@@ -23,7 +23,7 @@
 	{
 		"Name": "TestCardTwo",
 		"DisplayName": "Test Card Two",
-		"BaseCost": 4,
+		"BaseCost": 2,
 		"CardTypes": [
 			"Spell"
 		],
@@ -44,7 +44,7 @@
 	{
 		"Name": "TestCardThree",
 		"DisplayName": "Test Card Three",
-		"BaseCost": 2,
+		"BaseCost": 3,
 		"CardTypes": [
 			"Spell"
 		],
@@ -65,7 +65,7 @@
 	{
 		"Name": "TestCardFour",
 		"DisplayName": "Test Card Four",
-		"BaseCost": 3,
+		"BaseCost": 4,
 		"CardTypes": [
 			"Spell"
 		],
@@ -161,7 +161,7 @@
 		"Description": "Draw cards until your deck is empty, then draw one more.",
 		"FunctionsAndTargets":
 		{
-			"TestCardFive": "Self"
+			"TestFunctionFive": "Self"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 0,
@@ -185,6 +185,48 @@
 			"TestFunctionOne": "OneEnemy"
 		},
 		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardSix",
+		"DisplayName": "Test Card Six",
+		"BaseCost": 6,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Divine"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Summon a TestSummon.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionSix": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "HowlOfCommand",
+		"DisplayName": "Howl Of Command",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+		"FunctionsAndTargets":
+		{
+			"HowlOfCommand": "OneEnemy"
+		},
+		"TotalCost": 5,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	}

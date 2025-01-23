@@ -5,12 +5,14 @@
 		"Description": "At the start of this entity's turn, it takes 1/8th of its Max HP as damage.",
 		"StatusEffect": "Poison",
 		"TimingTriggers": [
-			"StartOfOwnersTurn"
+			"StartOfAffectedEntitysTurn"
 		],
-		"CurrentStackCount": 5,
-		"MaximumStackCount": 5,
+		"DecrementStackTriggers": [],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 8,
 		"DecrementStacksWhenTriggered": true,
-		"VisibleToPlayer": false
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": true
 	},
 	{
 		"Name": "IronShell",
@@ -20,9 +22,45 @@
 		"TimingTriggers": [
 			"StartOfBattle"
 		],
+		"DecrementStackTriggers": [],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 1,
 		"DecrementStacksWhenTriggered": false,
-		"VisibleToPlayer": false
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "StrengthUp",
+		"DisplayName": "Strength Up",
+		"Description": "Increases strength by 1 point per stack. Lose 1 start at the start of this entity's turn.",
+		"StatusEffect": "StrengthUp",
+		"TimingTriggers": [
+			"OnStatusEffectApplied"
+		],
+		"DecrementStackTriggers": [
+			"StartOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": -1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "Howl",
+		"DisplayName": "Howl",
+		"Description": "Attacks made against this entity have increased base power.",
+		"StatusEffect": "Howl",
+		"TimingTriggers": [
+			"None"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 3,
+		"MaximumStackCount": 3,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": true,
+		"BlockedByBarrier": true
 	}
 ]

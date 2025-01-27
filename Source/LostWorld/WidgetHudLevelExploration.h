@@ -10,5 +10,12 @@ UCLASS()
 class LOSTWORLD_API UWidgetHudLevelExploration : public UUserWidget
 {
 	GENERATED_BODY()
+
+public:
+// ---------------------------------------- Variables ---------------------------------------- //
+
 	
+// ---------------------------------------- Functions ---------------------------------------- //
+	UFUNCTION(BlueprintCallable)
+	void OpenDeckEditorWidget();
 };

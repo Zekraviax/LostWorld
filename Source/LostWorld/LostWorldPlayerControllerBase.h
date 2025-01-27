@@ -9,6 +9,7 @@
 
 // Forward Declarations
 class AActorEntityPlayer;
+class UWidgetDeckEditor;
 class UWidgetHudBattle;
 class UWidgetHudLevelExploration;
 
@@ -37,6 +38,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetHudBattle* BattleHudWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetDeckEditor> DeckEditorWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetDeckEditor* DeckEditorWidget;
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -48,10 +55,11 @@ protected:
 // -------------------------------- Player controls
 public:
 	void OnLeftMouseButtonClick();
-	
 	void SetControlMode(EPlayerControlModes InControlMode);
 
 // -------------------------------- Widgets
+	void CloseAllWidgets();
 	void AddBattleHudToViewport();
 	void AddLevelHudToViewport();
+	void AddDeckEditorToViewport();
 };

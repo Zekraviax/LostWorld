@@ -99,15 +99,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Deck.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
-	
-	// The players' deck can be fetched from the GameInstance.
-	TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckDisplayNames;
-	for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
-		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-			GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
-		Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->AddCardToDeck(InCard);
-	}
-
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
 
 	// Add the player's entity to the array last.
@@ -456,6 +447,14 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				// Player data loading is handled in the GameInstanceBase.
 				// Here, we just fetch it from the game instance.
 				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
+
+				// Load the players' card collection here, when their actor is first spawned.
+				TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckDisplayNames;
+				for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
+					FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
+					PlayerEntityReference->AddCardToDeck(InCard);
+				}
 
 				// Players' first time billboard setup.
 				Cast<UWidgetEntityBillboard>(PlayerEntityReference->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(PlayerEntityReference->EntityData);

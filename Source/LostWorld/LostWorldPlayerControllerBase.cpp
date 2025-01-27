@@ -1,8 +1,10 @@
 #include "LostWorldPlayerControllerBase.h"
 
 #include "ActorEntityBase.h"
+#include "ActorEntityPlayer.h"
 #include "LostWorldGameModeBase.h"
 #include "LostWorldGameModeBattle.h"
+#include "WidgetDeckEditor.h"
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
 
@@ -40,13 +42,39 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 }
 
 
-void ALostWorldPlayerControllerBase::AddBattleHudToViewport()
+void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InControlMode)
+{
+	ControlMode = InControlMode;
+
+	ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
+}
+
+
+void ALostWorldPlayerControllerBase::CloseAllWidgets()
 {
 	if (LevelHudWidget) {
 		if (LevelHudWidget->IsInViewport()) {
 			LevelHudWidget->RemoveFromViewport();
 		}
 	}
+
+	if (BattleHudWidget) {
+		if (BattleHudWidget->IsInViewport()) {
+			BattleHudWidget->RemoveFromViewport();
+		}
+	}
+
+	if (DeckEditorWidget) {
+		if (DeckEditorWidget->IsInViewport()) {
+			DeckEditorWidget->RemoveFromViewport();
+		}
+	}
+}
+
+
+void ALostWorldPlayerControllerBase::AddBattleHudToViewport()
+{
+	CloseAllWidgets();
 	
 	if (BattleHudWidgetBlueprintClass && !BattleHudWidget) {
 		BattleHudWidget = CreateWidget<UWidgetHudBattle>(GetWorld(), BattleHudWidgetBlueprintClass);
@@ -61,11 +89,7 @@ void ALostWorldPlayerControllerBase::AddBattleHudToViewport()
 
 void ALostWorldPlayerControllerBase::AddLevelHudToViewport()
 {
-	if (BattleHudWidget) {
-		if (BattleHudWidget->IsInViewport()) {
-			BattleHudWidget->RemoveFromViewport();
-		}
-	}
+	CloseAllWidgets();
 	
 	if (LevelHudWidgetBlueprintClass && !LevelHudWidget) {
 		LevelHudWidget = CreateWidget<UWidgetHudLevelExploration>(GetWorld(), LevelHudWidgetBlueprintClass);
@@ -77,9 +101,16 @@ void ALostWorldPlayerControllerBase::AddLevelHudToViewport()
 }
 
 
-void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InControlMode)
+void ALostWorldPlayerControllerBase::AddDeckEditorToViewport()
 {
-	ControlMode = InControlMode;
+	CloseAllWidgets();
+	
+	if (DeckEditorWidgetBlueprintClass && !DeckEditorWidget) {
+		DeckEditorWidget = CreateWidget<UWidgetDeckEditor>(GetWorld(), DeckEditorWidgetBlueprintClass);
+	}
 
-	ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
+	if (DeckEditorWidget) {
+		DeckEditorWidget->AddToViewport();
+		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->Deck);
+	}
 }

@@ -113,7 +113,8 @@ enum class EStatusEffectFunctions : uint8
 	Poison,
 	IronShell,
 	StrengthUp,
-	Howl
+	Howl,
+	Adrenaline
 };
 
 
@@ -144,6 +145,44 @@ enum class ETeams : uint8
 	PlayerTeam,
 	EnemyTeam1,
 	EnemyTeam2
+};
+
+
+UENUM(BlueprintType)
+enum class EEquipSlots : uint8
+{
+	// Slots:
+	// Head								(Helmets, Hats)
+	// 5 Left-ear Earrings/Piercings	(Earrings, Piercings, Industrial Bars)
+	// 5 Right-ear Earrings/Piercings
+	// Neck								(Capes, Amulets, Chokers, Cloaks)
+	// Torso							(Shirts, Breastplates, Robes, Corsets)
+	// Left Hand						(Gloves)
+	// Right Hand
+	// 5 Left Hand Fingers				(Rings)
+	// 5 Right Hand Fingers
+	// Waist							(Belts)
+	// Legs (Pant)						(Pants, Greaves)
+	// Left Shoe						(Shoes, Boots)
+	// Right Shoe
+	// Left-hand Weapon					(Swords, Axes, Staves, Bows, Maces, Rods, Wands, etc.)
+	// Right-hand Weapon
+	None						UMETA(DisplayName = "N/A"),
+	Head						UMETA(DisplayName = "Head"),
+	LeftEar						UMETA(DisplayName = "Left Ear"),
+	RightEar					UMETA(DisplayName = "Right Ear"),
+	Neck						UMETA(DisplayName = "Neck"),
+	Torso						UMETA(DisplayName = "Torso"),
+	LeftHand					UMETA(DisplayName = "Left Hand"),
+	RightHand					UMETA(DisplayName = "Right Hand"),
+	LeftFinger					UMETA(DisplayName = "Left Finger"),
+	RightFinger					UMETA(DisplayName = "Right Finger"),
+	Waist						UMETA(DisplayName = "Waist"),
+	Legs						UMETA(DisplayName = "Legs"),
+	LeftFoot					UMETA(DisplayName = "Left Foot"),
+	RightFoot					UMETA(DisplayName = "Right Foot"),
+	LeftHandWeapon				UMETA(DisplayName = "Left-Hand Weapon"),
+	RightHandWeapon				UMETA(DisplayName = "Right-Hand Weapon"),
 };
 
 
@@ -366,6 +405,9 @@ struct LOSTWORLD_API FEntityBaseStats
 	// Determines the rate at which their readiness increases.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Agility;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int HealthRegeneration;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int ManaRegeneration;
@@ -392,8 +434,35 @@ struct LOSTWORLD_API FEntityBaseStats
 		Intelligence = 1;
 		Willpower = 1;
 		Agility = 1;
+		HealthRegeneration = 0;
 		ManaRegeneration = 1;
 		Readiness = 0;
+	}
+};
+
+
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FEquipment : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Description;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EEquipSlots EquipSlot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FEntityBaseStats StatModifiers;
+
+	FEquipment()
+	{
+		DisplayName = "Test Equipment";
+		Description = "This is a test equipment.";
+		EquipSlot = EEquipSlots::Head;
 	}
 };
 
@@ -412,11 +481,20 @@ struct LOSTWORLD_API FEntity
 	TArray<EEntityTypes> EntityTypes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FEntityBaseStats Stats;
+	FEntityBaseStats BaseStats;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FEntityBaseStats TotalStats;
 
 	// All entities will have a Deck variable, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckDisplayNames;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FEquipment> EquippedItems;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FEquipment> EquipmentInventory;
 
 	// How many cards should this entity draw at the start of a battle?
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

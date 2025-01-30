@@ -9,7 +9,7 @@
 				"Enemy",
 				"TestEnemyOne"
 			],
-			"Stats":
+			"BaseStats":
 			{
 				"CurrentHealthPoints": 10,
 				"MaximumHealthPoints": 10,
@@ -21,6 +21,25 @@
 				"Intelligence": 5,
 				"Willpower": 5,
 				"Agility": 5,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
@@ -38,6 +57,8 @@
 				"TestCardTwo",
 				"TestCardTwo"
 			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
 			"Team": "EnemyTeam1"
 		},
@@ -53,7 +74,7 @@
 				"Enemy",
 				"TestEnemyTwo"
 			],
-			"Stats":
+			"BaseStats":
 			{
 				"CurrentHealthPoints": 25,
 				"MaximumHealthPoints": 25,
@@ -65,12 +86,31 @@
 				"Intelligence": 5,
 				"Willpower": 7,
 				"Agility": 5,
+				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": [
 					"Iron Shell"
 				]
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"CardsInDeckDisplayNames": [
 				"TestCardOne",
@@ -84,6 +124,8 @@
 				"TestCardTwo",
 				"TestCardThree"
 			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
 			"Team": "EnemyTeam1"
 		},
@@ -99,7 +141,7 @@
 				"Enemy",
 				"WolfPack"
 			],
-			"Stats":
+			"BaseStats":
 			{
 				"CurrentHealthPoints": 10,
 				"MaximumHealthPoints": 10,
@@ -111,6 +153,25 @@
 				"Intelligence": 2,
 				"Willpower": 0,
 				"Agility": 2,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
@@ -128,6 +189,8 @@
 				"Test Card One",
 				"Test Card One"
 			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
 			"Team": "EnemyTeam1"
 		},
@@ -143,18 +206,37 @@
 				"Enemy",
 				"WolfPackAlpha"
 			],
-			"Stats":
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 15,
+				"MaximumHealthPoints": 15,
+				"CurrentManaPoints": 15,
+				"MaximumManaPoints": 15,
+				"CurrentBarrierPoints": 0,
+				"Strength": 4,
+				"Toughness": 4,
+				"Intelligence": 4,
+				"Willpower": 4,
+				"Agility": 4,
+				"HealthRegeneration": 4,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
 			{
 				"CurrentHealthPoints": 10,
 				"MaximumHealthPoints": 10,
 				"CurrentManaPoints": 10,
 				"MaximumManaPoints": 10,
 				"CurrentBarrierPoints": 0,
-				"Strength": 3,
-				"Toughness": 3,
-				"Intelligence": 3,
-				"Willpower": 3,
-				"Agility": 3,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
@@ -172,6 +254,8 @@
 				"Test Card One",
 				"Test Card One"
 			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
 			"Team": "EnemyTeam1"
 		},

@@ -238,6 +238,18 @@ bool AActorEntityBase::CalculateTotalStats()
 {
 	// To-Do: Figure out whether HP and MP values should be ignored when calculating stats
 	EntityData.TotalStats = EntityData.BaseStats;
+
+	for (FEquipment EquippedItem : EntityData.EquippedItems) {
+		EntityData.TotalStats.MaximumHealthPoints += EquippedItem.StatModifiers.MaximumHealthPoints;
+		EntityData.TotalStats.MaximumManaPoints += EquippedItem.StatModifiers.MaximumManaPoints;
+		EntityData.TotalStats.Strength += EquippedItem.StatModifiers.Strength;
+		EntityData.TotalStats.Toughness += EquippedItem.StatModifiers.Toughness;
+		EntityData.TotalStats.Intelligence += EquippedItem.StatModifiers.Intelligence;
+		EntityData.TotalStats.Willpower += EquippedItem.StatModifiers.Willpower;
+		EntityData.TotalStats.Agility += EquippedItem.StatModifiers.Agility;
+		EntityData.TotalStats.HealthRegeneration += EquippedItem.StatModifiers.HealthRegeneration;
+		EntityData.TotalStats.ManaRegeneration += EquippedItem.StatModifiers.ManaRegeneration;
+	}
 	
 	return IInterfaceEntity::CalculateTotalStats();
 }

@@ -59,10 +59,10 @@ int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacke
 		}
 	}
 
-	float CalculatedDamage = Attacker->EntityData.Stats.Strength * AttackBasePower;
+	float CalculatedDamage = Attacker->EntityData.TotalStats.Strength * AttackBasePower;
 	CalculatedDamage -= 2;
 	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
-	CalculatedDamage /= Defender->EntityData.Stats.Toughness;
+	CalculatedDamage /= Defender->EntityData.TotalStats.Toughness;
 	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
 
 	return FMath::RoundToInt(CalculatedDamage);
@@ -74,7 +74,7 @@ int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* At
 	// Damage formula is the same as the standard formula, except damage is doubled against barriers.
 	// So for each 1 point of barrier the defender has, add 1 point of damage, capping out at 2x the calculated damage.
 	int CalculatedDamage = StandardDamageFormula(Attacker, Defender, AttackBasePower);
-	int BarrierPoints = Defender->EntityData.Stats.CurrentBarrierPoints;
+	int BarrierPoints = Defender->EntityData.TotalStats.CurrentBarrierPoints;
 	int BonusDamage = 0;
 	
 	while (BarrierPoints > 0 && BonusDamage < FMath::RoundToInt(CalculatedDamage)) {

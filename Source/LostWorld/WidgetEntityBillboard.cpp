@@ -3,26 +3,26 @@
 
 void UWidgetEntityBillboard::UpdateBillboard(const FEntity& InEntity) const
 {
-	float HealthAsPercentage = float(InEntity.Stats.CurrentHealthPoints) / float(InEntity.Stats.MaximumHealthPoints);
+	float HealthAsPercentage = float(InEntity.TotalStats.CurrentHealthPoints) / float(InEntity.TotalStats.MaximumHealthPoints);
 	HealthBar->SetPercent(HealthAsPercentage);
 
-	float ManaAsPercentage = float(InEntity.Stats.CurrentManaPoints) / float(InEntity.Stats.MaximumManaPoints);
+	float ManaAsPercentage = float(InEntity.TotalStats.CurrentManaPoints) / float(InEntity.TotalStats.MaximumManaPoints);
 	ManaBar->SetPercent(ManaAsPercentage);
 
-	FString ManaTextAsString = FString::FromInt(InEntity.Stats.CurrentManaPoints) + " / " + FString::FromInt(InEntity.Stats.MaximumManaPoints);
+	FString ManaTextAsString = FString::FromInt(InEntity.TotalStats.CurrentManaPoints) + " / " + FString::FromInt(InEntity.TotalStats.MaximumManaPoints);
 	ManaText->SetText(FText::FromString(ManaTextAsString));
 
-	if (InEntity.Stats.CurrentBarrierPoints > 0) {
+	if (InEntity.TotalStats.CurrentBarrierPoints > 0) {
 		BarrierBar->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-		float BarrierAsPercentage = float(InEntity.Stats.CurrentBarrierPoints) / float(InEntity.Stats.MaximumHealthPoints);
+		float BarrierAsPercentage = float(InEntity.TotalStats.CurrentBarrierPoints) / float(InEntity.TotalStats.MaximumHealthPoints);
 		HealthBar->SetPercent(BarrierAsPercentage);
 
-		FString BarrierTextAsString = FString::FromInt(InEntity.Stats.CurrentBarrierPoints);
+		FString BarrierTextAsString = FString::FromInt(InEntity.TotalStats.CurrentBarrierPoints);
 		HealthText->SetText(FText::FromString(BarrierTextAsString));
 	} else {
 		BarrierBar->SetVisibility(ESlateVisibility::Collapsed);
 
-		FString HealthTextAsString = FString::FromInt(InEntity.Stats.CurrentHealthPoints) + " / " + FString::FromInt(InEntity.Stats.MaximumHealthPoints);
+		FString HealthTextAsString = FString::FromInt(InEntity.TotalStats.CurrentHealthPoints) + " / " + FString::FromInt(InEntity.TotalStats.MaximumHealthPoints);
 		HealthText->SetText(FText::FromString(HealthTextAsString));
 	}
 }

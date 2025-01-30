@@ -7,9 +7,9 @@
 			"EntityTypes": [
 				"Player"
 			],
-			"Stats":
+			"BaseStats":
 			{
-				"CurrentHealthPoints": 50,
+				"CurrentHealthPoints": 25,
 				"MaximumHealthPoints": 50,
 				"CurrentManaPoints": 20,
 				"MaximumManaPoints": 20,
@@ -19,6 +19,25 @@
 				"Intelligence": 10,
 				"Willpower": 10,
 				"Agility": 10,
+				"HealthRegeneration": 1,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
@@ -36,6 +55,33 @@
 				"Armour Breaker",
 				"Armour Breaker"
 			],
+			"EquippedItems": [
+				{
+					"Name": "RingOfRefreshment",
+					"DisplayName": "Ring of Refreshment",
+					"Description": "Grants +1 HP Regeneration and +1 Mana Regeneration.",
+					"EquipSlot": "RightHand",
+					"StatModifiers":
+					{
+						"CurrentHealthPoints": 0,
+						"MaximumHealthPoints": 0,
+						"CurrentManaPoints": 0,
+						"MaximumManaPoints": 0,
+						"CurrentBarrierPoints": 0,
+						"Strength": 0,
+						"Toughness": 0,
+						"Intelligence": 0,
+						"Willpower": 0,
+						"Agility": 0,
+						"HealthRegeneration": 1,
+						"ManaRegeneration": 1,
+						"Readiness": 0,
+						"CurrentStatusEffects": [],
+						"StartBattleWithStatusEffectsDisplayNames": []
+					}
+				}
+			],
+			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 7,
 			"Team": "PlayerTeam"
 		}

@@ -61,12 +61,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FStatusEffect> StatusEffects;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FEquipment> EquippedItems;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FEquipment> EquipmentInventory;
-	
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	void ResetEntityBillboardPositionAndRotation() const;

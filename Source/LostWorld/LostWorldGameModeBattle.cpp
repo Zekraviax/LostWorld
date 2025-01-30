@@ -82,6 +82,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = EnemyEntityData;
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData.EntityData;
 
+		// Enemy stat calculation.
+		Cast<IInterfaceEntity>(EntitiesInBattleArray.Last())->CalculateTotalStats();
+
 		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
 
 		// Attach an AI brain component
@@ -95,9 +98,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		}
 	}
 
-	// Reset all of the players' card arrays.
+	// Reset all of the players' card arrays, except their deck.
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Deck.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
 
@@ -184,7 +186,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Give each entity the status effects they should start the battle with,
 	// And trigger all status effects that trigger at the start of battles.
 	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
-		for (FString StatusEffectDisplayName : Entity->EntityData.Stats.StartBattleWithStatusEffectsDisplayNames) {
+		for (FString StatusEffectDisplayName : Entity->EntityData.TotalStats.StartBattleWithStatusEffectsDisplayNames) {
 			Cast<IInterfaceBattle>(Entity)->AddStatusEffect(
 				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetStatusEffectFromJson(StatusEffectDisplayName));
 
@@ -235,13 +237,13 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 	for (AActor* Actor : ActorsInBattle) {
 		if (Cast<AActorEntityEnemy>(Actor)) {
 			if (OverrideReadiness) {
-				Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.Stats.Agility);
+				Cast<AActorEntityEnemy>(Actor)->EntityData.TotalStats.Readiness = FMath::RandRange(0, Cast<AActorEntityEnemy>(Actor)->EntityData.TotalStats.Agility);
 			}
 			
 			Entities.Add(Cast<AActorEntityEnemy>(Actor));
 		} else if (Cast<AActorEntityPlayer>(Actor)) {
 			if (OverrideReadiness) {
-				Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.Stats.Agility);
+				Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Agility);
 			}
 			
 			Entities.Add(Cast<AActorEntityPlayer>(Actor));
@@ -253,18 +255,18 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 
 		while (!EntityHasReachedThreshold) {
 			for (AActorEntityBase* Entity : Entities) {
-				float EntityAgility = Entity->EntityData.Stats.Agility;
+				float EntityAgility = Entity->EntityData.TotalStats.Agility;
 				// Declaring these floats here to avoid 'ambiguous call to overloaded function' errors.
 				float IncrementMinimum = ((EntityAgility / 64) * 0.9) + 10;
 				float IncrementMaximum = ((EntityAgility / 64) * 1.1) + 10;
 				float ReadinessIncrement = FMath::RandRange(IncrementMinimum, IncrementMaximum);
 				
 				DualLog(FString::SanitizeFloat(IncrementMinimum) + " / " + FString::SanitizeFloat(IncrementMaximum), 4);
-				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.Stats.Readiness), 4);
+				DualLog(FString::SanitizeFloat(ReadinessIncrement) + + " - " + FString::SanitizeFloat(Entity->EntityData.TotalStats.Readiness), 4);
 				
-				Entity->EntityData.Stats.Readiness += ReadinessIncrement;
-				if (Entity->EntityData.Stats.Readiness >= 1000) {
-					Entity->EntityData.Stats.Readiness -= 1000;
+				Entity->EntityData.TotalStats.Readiness += ReadinessIncrement;
+				if (Entity->EntityData.TotalStats.Readiness >= 1000) {
+					Entity->EntityData.TotalStats.Readiness -= 1000;
 					EntityHasReachedThreshold = true;
 					TurnQueue.Add(Entity);
 				}
@@ -455,6 +457,9 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
 					PlayerEntityReference->AddCardToDeck(InCard);
 				}
+
+				// Player stat calculation.
+				PlayerEntityReference->CalculateTotalStats();
 
 				// Players' first time billboard setup.
 				Cast<UWidgetEntityBillboard>(PlayerEntityReference->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(PlayerEntityReference->EntityData);

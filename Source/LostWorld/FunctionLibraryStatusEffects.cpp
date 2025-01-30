@@ -25,7 +25,7 @@ void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFun
 void AFunctionLibraryStatusEffects::Poison(AActorEntityBase* EffectedEntity)
 {
 	// To-Do: Make poison damage scale based on the number of stacks the entity has.
-	float PoisonDamageAsFloat = EffectedEntity->EntityData.Stats.MaximumHealthPoints * 0.125;
+	float PoisonDamageAsFloat = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 0.125;
 	int PoisonDamageAsInt = FMath::RoundToFloat(PoisonDamageAsFloat);
 
 	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName + " is poisoned!", 2);
@@ -36,7 +36,7 @@ void AFunctionLibraryStatusEffects::Poison(AActorEntityBase* EffectedEntity)
 
 void AFunctionLibraryStatusEffects::IronShell(AActorEntityBase* EffectedEntity)
 {
-	int BarrierGain = EffectedEntity->EntityData.Stats.MaximumHealthPoints * 5;
+	int BarrierGain = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 5;
 
 	Cast<IInterfaceBattle>(EffectedEntity)->GainBarrier(BarrierGain);
 }

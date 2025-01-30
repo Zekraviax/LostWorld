@@ -62,5 +62,22 @@
 		"DecrementStacksWhenTriggered": true,
 		"VisibleToPlayer": true,
 		"BlockedByBarrier": true
+	},
+	{
+		"Name": "Adrenaline",
+		"DisplayName": "Adrenaline",
+		"Description": "Increases Strength, Toughness, Intelligence, Willpower, Agility, HP Regen and MP Regen by 1 per stack. If you started the battle with this status effect, draw 1 more card.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"OnStatusEffectApplied"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": -1,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
 	}
 ]

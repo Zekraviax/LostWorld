@@ -100,7 +100,7 @@ bool AActorEntityBase::DiscardCard(int IndexInHand)
 
 bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 {
-	EntityData.Stats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
+	EntityData.TotalStats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::PayCostsForCard(IndexInHand);
@@ -125,16 +125,16 @@ bool AActorEntityBase::ShuffleDiscardPileIntoDeck()
 bool AActorEntityBase::TakeDamage(float Damage)
 {
 	// First, any barriers up will absorb damage.
-	while (Damage > 0 && EntityData.Stats.CurrentBarrierPoints > 0) {
+	while (Damage > 0 && EntityData.TotalStats.CurrentBarrierPoints > 0) {
 		Damage--;
-		EntityData.Stats.CurrentBarrierPoints--;
+		EntityData.TotalStats.CurrentBarrierPoints--;
 	}
 
 	// Then, damage will be go to the entity's raw health.
 	if (Damage > 0) {
-		EntityData.Stats.CurrentHealthPoints -= Damage;
+		EntityData.TotalStats.CurrentHealthPoints -= Damage;
 	
-		if (EntityData.Stats.CurrentHealthPoints <= 0) {
+		if (EntityData.TotalStats.CurrentHealthPoints <= 0) {
 			EntityDefeated();
 		}
 	}
@@ -161,10 +161,10 @@ bool AActorEntityBase::EntityDefeated()
 
 bool AActorEntityBase::ReceiveHealing(float Healing)
 {
-	EntityData.Stats.CurrentHealthPoints += Healing;
+	EntityData.TotalStats.CurrentHealthPoints += Healing;
 	
-	if (EntityData.Stats.CurrentHealthPoints > EntityData.Stats.MaximumHealthPoints) {
-		EntityData.Stats.CurrentHealthPoints = EntityData.Stats.MaximumHealthPoints;
+	if (EntityData.TotalStats.CurrentHealthPoints > EntityData.TotalStats.MaximumHealthPoints) {
+		EntityData.TotalStats.CurrentHealthPoints = EntityData.TotalStats.MaximumHealthPoints;
 	}
 	
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
@@ -175,7 +175,7 @@ bool AActorEntityBase::ReceiveHealing(float Healing)
 
 bool AActorEntityBase::GainMana(int InMana)
 {
-	EntityData.Stats.CurrentManaPoints += InMana;
+	EntityData.TotalStats.CurrentManaPoints += InMana;
 	
 	return IInterfaceBattle::GainMana(InMana);
 }
@@ -183,7 +183,7 @@ bool AActorEntityBase::GainMana(int InMana)
 
 bool AActorEntityBase::GainBarrier(int InBarrier)
 {
-	EntityData.Stats.CurrentBarrierPoints += InBarrier;
+	EntityData.TotalStats.CurrentBarrierPoints += InBarrier;
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::GainBarrier(InBarrier);
@@ -192,7 +192,7 @@ bool AActorEntityBase::GainBarrier(int InBarrier)
 
 bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 {
-	if (EntityData.Stats.CurrentBarrierPoints > 0 && StatusEffect.BlockedByBarrier) {
+	if (EntityData.TotalStats.CurrentBarrierPoints > 0 && StatusEffect.BlockedByBarrier) {
 		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
 	} else {
 		// To-Do: Make status effects add stacks to status effects that the entity already has.
@@ -215,9 +215,13 @@ bool AActorEntityBase::StartTurn()
 
 	// To-Do: For every entity, check for status effects that trigger at the start of every entity's turns.
 
-	// Start of turn regenerations
-	if (EntityData.Stats.ManaRegeneration > 0) {
-		GainMana(EntityData.Stats.ManaRegeneration);
+	// Start of turn regenerations.
+	if (EntityData.TotalStats.HealthRegeneration > 0) {
+		ReceiveHealing(EntityData.TotalStats.HealthRegeneration);
+	}
+	
+	if (EntityData.TotalStats.ManaRegeneration > 0) {
+		GainMana(EntityData.TotalStats.ManaRegeneration);
 	}
 	
 	return IInterfaceBattle::StartTurn();
@@ -227,4 +231,13 @@ bool AActorEntityBase::StartTurn()
 bool AActorEntityBase::EndTurn()
 {
 	return IInterfaceBattle::EndTurn();
+}
+
+
+bool AActorEntityBase::CalculateTotalStats()
+{
+	// To-Do: Figure out whether HP and MP values should be ignored when calculating stats
+	EntityData.TotalStats = EntityData.BaseStats;
+	
+	return IInterfaceEntity::CalculateTotalStats();
 }

@@ -3,8 +3,9 @@
 
 #include "Components/WidgetComponent.h"
 #include "CoreMinimal.h"
-#include "InterfaceBattle.h"
 #include "GameFramework/Actor.h"
+#include "InterfaceBattle.h"
+#include "InterfaceEntity.h"
 #include "Variables.h"
 #include "ActorEntityBase.generated.h"
 
@@ -14,7 +15,7 @@ class UWidgetEntityBillboard;
 
 // The base Entity class that all subtypes of Entities will inherit from, including the player.
 UCLASS()
-class LOSTWORLD_API AActorEntityBase : public AActor, public IInterfaceBattle
+class LOSTWORLD_API AActorEntityBase : public AActor, public IInterfaceBattle, public IInterfaceEntity
 {
 	GENERATED_BODY()
 	
@@ -60,6 +61,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FStatusEffect> StatusEffects;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FEquipment> EquippedItems;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FEquipment> EquipmentInventory;
+	
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	void ResetEntityBillboardPositionAndRotation() const;
@@ -87,4 +94,7 @@ public:
 
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;
+
+// -------------------------------- Entity Interface functions
+	virtual bool CalculateTotalStats() override;
 };

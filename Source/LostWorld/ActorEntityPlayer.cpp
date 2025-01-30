@@ -30,24 +30,6 @@ AActorEntityPlayer::AActorEntityPlayer()
 
 
 // -------------------------------- Battle Interface functions
-bool AActorEntityPlayer::OverrideDeck(TArray<FCard> InDeck)
-{
-	return Super::OverrideDeck(InDeck);
-}
-
-
-bool AActorEntityPlayer::AddCardToDeck(FCard InCard)
-{
-	return Super::AddCardToDeck(InCard);
-}
-
-
-TArray<FCard> AActorEntityPlayer::ShuffleDeck(TArray<FCard> InDeck)
-{
-	return Super::ShuffleDeck(Deck);
-}
-
-
 bool AActorEntityPlayer::DrawCard()
 {
 	Super::DrawCard();
@@ -77,12 +59,6 @@ bool AActorEntityPlayer::DiscardCard(int IndexInHand)
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return true;
-}
-
-
-bool AActorEntityPlayer::PayCostsForCard(int IndexInHand)
-{
-	return Super::PayCostsForCard(IndexInHand);
 }
 
 
@@ -120,31 +96,12 @@ bool AActorEntityPlayer::ReceiveHealing(float Healing)
 	return true;
 }
 
-
-bool AActorEntityPlayer::GainMana(int InMana)
-{
-	return Super::GainMana(InMana);
-}
-
-
-bool AActorEntityPlayer::GainBarrier(int InBarrier)
-{
-	return Super::GainBarrier(InBarrier);
-}
-
-
-bool AActorEntityPlayer::AddStatusEffect(FStatusEffect StatusEffect)
-{
-	return Super::AddStatusEffect(StatusEffect);
-}
-
-
 bool AActorEntityPlayer::StartTurn()
 {
 	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		SetControlMode(EPlayerControlModes::Battle);
 
-	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " 's turn!", 2);
+	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + "'s turn!", 2);
 		
 	return Super::StartTurn();
 }

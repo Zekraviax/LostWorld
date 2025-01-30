@@ -40,42 +40,6 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 
 
 // -------------------------------- Battle Interface functions
-bool AActorEntityEnemy::OverrideDeck(TArray<FCard> InDeck)
-{
-	return Super::OverrideDeck(InDeck);
-}
-
-
-bool AActorEntityEnemy::AddCardToDeck(FCard InCard)
-{
-	return Super::AddCardToDeck(InCard);
-}
-
-
-TArray<FCard> AActorEntityEnemy::ShuffleDeck(TArray<FCard> InDeck)
-{
-	// The Shuffle Deck function doesn't need to have multiple different definitions,
-	// so we can just use the default one.
-	return Super::ShuffleDeck(Deck);
-}
-
-bool AActorEntityEnemy::DrawCard()
-{
-	// Shift the top card of the deck into the hand
-	return Super::DrawCard();
-}
-
-bool AActorEntityEnemy::DiscardCard(int IndexInHand)
-{
-	return Super::DiscardCard(IndexInHand);
-}
-
-bool AActorEntityEnemy::PayCostsForCard(int IndexInHand)
-{
-	return Super::PayCostsForCard(IndexInHand);
-}
-
-
 bool AActorEntityEnemy::TakeDamage(float Damage)
 {
 	AActorEntityBase::TakeDamage(Damage);
@@ -86,12 +50,6 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return IInterfaceBattle::TakeDamage(Damage);
-}
-
-
-bool AActorEntityEnemy::EntityDefeated()
-{
-	return Super::EntityDefeated();
 }
 
 
@@ -108,15 +66,9 @@ bool AActorEntityEnemy::ReceiveHealing(float Healing)
 }
 
 
-bool AActorEntityEnemy::GainMana(int InMana)
-{
-	return Super::GainMana(InMana);
-}
-
-
 bool AActorEntityEnemy::GainBarrier(int InBarrier)
 {
-	EntityData.Stats.CurrentBarrierPoints += InBarrier;
+	EntityData.TotalStats.CurrentBarrierPoints += InBarrier;
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " gains " +
 		FString::FromInt(InBarrier) + " barrier.", 2);
@@ -126,12 +78,6 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return IInterfaceBattle::GainBarrier(InBarrier);
-}
-
-
-bool AActorEntityEnemy::AddStatusEffect(FStatusEffect StatusEffect)
-{
-	return Super::AddStatusEffect(StatusEffect);
 }
 
 

@@ -8,3 +8,9 @@ void UWidgetHudLevelExploration::OpenDeckEditorWidget()
 {
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddDeckEditorToViewport();
 }
+
+
+void UWidgetHudLevelExploration::OpenEquipmentWidget()
+{
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddEquipmentToViewport();
+}

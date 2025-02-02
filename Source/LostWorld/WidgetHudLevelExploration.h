@@ -18,4 +18,7 @@ public:
 // ---------------------------------------- Functions ---------------------------------------- //
 	UFUNCTION(BlueprintCallable)
 	void OpenDeckEditorWidget();
+
+	UFUNCTION(BlueprintCallable)
+	void OpenEquipmentWidget();
 };

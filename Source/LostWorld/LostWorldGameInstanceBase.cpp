@@ -98,3 +98,19 @@ FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString&
 
 	return StatusEffectsArray[0];
 }
+
+
+FSummonEntity ULostWorldGameInstanceBase::GetSummonFromJson(const FString& SummonName) const
+{
+	TArray<FSummonEntity> SummonsArray;
+	FString SummonJsonAsString = LoadFileFromJson("SummonsData");
+	FJsonObjectConverter::JsonArrayStringToUStruct(SummonJsonAsString, &SummonsArray, 0, 0);
+
+	for (FSummonEntity Summon : SummonsArray) {
+		if (Summon.EntityData.DisplayName.Equals(SummonName)) {
+			return Summon;
+		}
+	}
+
+	return SummonsArray[0];
+}

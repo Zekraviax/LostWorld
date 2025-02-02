@@ -10,6 +10,7 @@
 // Forward Declarations
 class AActorEntityPlayer;
 class UWidgetDeckEditor;
+class UWidgetEquipment;
 class UWidgetHudBattle;
 class UWidgetHudLevelExploration;
 
@@ -44,6 +45,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetDeckEditor* DeckEditorWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetEquipment> EquipmentWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetEquipment* EquipmentWidget;
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -58,8 +65,9 @@ public:
 	void SetControlMode(EPlayerControlModes InControlMode);
 
 // -------------------------------- Widgets
-	void CloseAllWidgets();
+	void CloseAllWidgets() const;
 	void AddBattleHudToViewport();
 	void AddLevelHudToViewport();
 	void AddDeckEditorToViewport();
+	void AddEquipmentToViewport();
 };

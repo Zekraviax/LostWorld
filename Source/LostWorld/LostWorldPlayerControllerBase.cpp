@@ -5,6 +5,7 @@
 #include "LostWorldGameModeBase.h"
 #include "LostWorldGameModeBattle.h"
 #include "WidgetDeckEditor.h"
+#include "WidgetEquipment.h"
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
 
@@ -50,7 +51,7 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 }
 
 
-void ALostWorldPlayerControllerBase::CloseAllWidgets()
+void ALostWorldPlayerControllerBase::CloseAllWidgets() const
 {
 	if (LevelHudWidget) {
 		if (LevelHudWidget->IsInViewport()) {
@@ -67,6 +68,12 @@ void ALostWorldPlayerControllerBase::CloseAllWidgets()
 	if (DeckEditorWidget) {
 		if (DeckEditorWidget->IsInViewport()) {
 			DeckEditorWidget->RemoveFromViewport();
+		}
+	}
+
+	if (EquipmentWidget) {
+		if (EquipmentWidget->IsInViewport()) {
+			EquipmentWidget->RemoveFromViewport();
 		}
 	}
 }
@@ -112,5 +119,21 @@ void ALostWorldPlayerControllerBase::AddDeckEditorToViewport()
 	if (DeckEditorWidget) {
 		DeckEditorWidget->AddToViewport();
 		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->Deck);
+	}
+}
+
+
+void ALostWorldPlayerControllerBase::AddEquipmentToViewport()
+{
+	CloseAllWidgets();
+	
+	if (EquipmentWidgetBlueprintClass && !EquipmentWidget) {
+		EquipmentWidget = CreateWidget<UWidgetEquipment>(GetWorld(), EquipmentWidgetBlueprintClass);
+	}
+
+	if (EquipmentWidget) {
+		EquipmentWidget->AddToViewport();
+		EquipmentWidget->PopulateEquippedItemsScrollBox(ControlledPlayerEntity->EntityData.EquippedItems);
+		EquipmentWidget->PopulateUnequippedItemsScrollBox(ControlledPlayerEntity->EntityData.EquipmentInventory);
 	}
 }

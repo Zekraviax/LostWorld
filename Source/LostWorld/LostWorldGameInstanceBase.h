@@ -35,4 +35,5 @@ public:
 	FCard GetCardFromJson(const FString& CardName) const;
 	FEnemyEntity GetEnemyFromJson(const FString& EnemyType) const;
 	FStatusEffect GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const;
+	FSummonEntity GetSummonFromJson(const FString& SummonName) const;
 };

@@ -116,6 +116,6 @@ bool AActorEntityPlayer::EndTurn()
 
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 	
-	return true;
+	return Super::EndTurn();
 }
 

@@ -10,6 +10,7 @@
 // Forward Declarations
 class AActorEntityPlayer;
 class UWidgetDeckEditor;
+class UWidgetDevTestMenu;
 class UWidgetEquipment;
 class UWidgetHudBattle;
 class UWidgetHudLevelExploration;
@@ -52,6 +53,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetEquipment* EquipmentWidget;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetDevTestMenu> DevTestWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetDevTestMenu* DevTestWidget;
+	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 
@@ -69,5 +76,6 @@ public:
 	void AddBattleHudToViewport();
 	void AddLevelHudToViewport();
 	void AddDeckEditorToViewport();
+	void AddDevTestMenuToViewport();
 	void AddEquipmentToViewport();
 };

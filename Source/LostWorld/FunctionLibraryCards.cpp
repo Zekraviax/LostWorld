@@ -39,6 +39,9 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 		case (ECardFunctions::HowlOfCommand):
 			HowlOfCommand();
 			break;
+		case (ECardFunctions::EnergyAllAround):
+			EnergyAllAround();
+			break;
 		default:
 			break;
 	}
@@ -207,4 +210,14 @@ void AFunctionLibraryCards::HowlOfCommand() const
 	// Second, inflict the target with the Howl status effect that increases the power of cards targeted at them.
 	Cast<IInterfaceBattle>(Defender)->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Howl"));
+}
+
+
+void AFunctionLibraryCards::EnergyAllAround() const
+{
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
+	int BasePower = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CardsCastThisTurn + 1;
+
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, BasePower));
 }

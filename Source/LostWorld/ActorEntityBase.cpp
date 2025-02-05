@@ -230,6 +230,8 @@ bool AActorEntityBase::StartTurn()
 
 bool AActorEntityBase::EndTurn()
 {
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CardsCastThisTurn = 0;
+	
 	return IInterfaceBattle::EndTurn();
 }
 

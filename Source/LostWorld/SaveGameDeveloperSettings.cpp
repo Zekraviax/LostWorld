@@ -13,7 +13,7 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 	SavePath = FPaths::ProjectSavedDir();
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: ProjectSavedDir: %s"), *SavePath);
 	SavePath.Append(SaveGamesFolderPathAppend);
-	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's Save Data Folder: %s"), *SavePath);
+	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Save Data Folder: %s"), *SavePath);
 
 	FString DeveloperSettingsAsJson;
 	FJsonObjectConverter::UStructToJsonObjectString(DeveloperSettingsAsStruct, DeveloperSettingsAsJson, 0, 0);
@@ -25,23 +25,23 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 
 	if (!FileManager.DirectoryExists(*SavePath)) {
 		if (FileManager.CreateDirectory(*SavePath)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player's save data folder did not exist but was created successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Dev settings save data folder did not exist but was created successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Player's save data folder does not exist and could not be created."));
+			UE_LOG(LogTemp, Error, TEXT("Dev settings save data folder does not exist and could not be created."));
 		}
 	}
 
 	if (FileManager.DirectoryExists(*SavePath)) {
 		FString FileName = SavePath.Append("DeveloperSettings.json");
-		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player's save data file name: %s"), *FileName);
+		UE_LOG(LogTemp, Warning, TEXT("FilePaths: PDev settings save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(DeveloperSettingsAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player's data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Dev settings data saves successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Player's data."));
+			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Dev settings data."));
 		}
 	} else {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not save Player's data."));
+		UE_LOG(LogTemp, Error, TEXT("Error: Could not save Dev settings data."));
 	}
 }
 

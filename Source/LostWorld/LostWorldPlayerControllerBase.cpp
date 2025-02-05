@@ -5,6 +5,7 @@
 #include "LostWorldGameModeBase.h"
 #include "LostWorldGameModeBattle.h"
 #include "WidgetDeckEditor.h"
+#include "WidgetDevTestMenu.h"
 #include "WidgetEquipment.h"
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
@@ -119,6 +120,22 @@ void ALostWorldPlayerControllerBase::AddDeckEditorToViewport()
 	if (DeckEditorWidget) {
 		DeckEditorWidget->AddToViewport();
 		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->Deck);
+	}
+}
+
+
+void ALostWorldPlayerControllerBase::AddDevTestMenuToViewport()
+{
+	// Don't close anything when opening this menu.
+	// Just overlay this menu on top of everything else.
+	
+	if (DevTestWidgetBlueprintClass && !DevTestWidget) {
+		DevTestWidget = CreateWidget<UWidgetDevTestMenu>(GetWorld(), DevTestWidgetBlueprintClass);
+	}
+
+	if (DevTestWidget) {
+		DevTestWidget->AddToViewport();
+		DevTestWidget->OnDevTestMenuWidgetOpened();
 	}
 }
 

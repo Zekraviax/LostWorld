@@ -28,4 +28,5 @@ public:
 	void TestCardFive() const;
 	void TestCardSix() const;
 	void HowlOfCommand() const;
+	void EnergyAllAround() const;
 };

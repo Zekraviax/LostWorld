@@ -14,3 +14,9 @@ void UWidgetHudLevelExploration::OpenEquipmentWidget()
 {
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddEquipmentToViewport();
 }
+
+
+void UWidgetHudLevelExploration::OpenDevTestMenuWidget()
+{
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddDevTestMenuToViewport();
+}

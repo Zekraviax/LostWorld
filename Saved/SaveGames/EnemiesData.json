@@ -45,6 +45,28 @@
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
 			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
 			"CardsInDeckDisplayNames": [
 				"TestCardOne",
 				"TestCardOne",
@@ -112,6 +134,28 @@
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
 			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
 			"CardsInDeckDisplayNames": [
 				"TestCardOne",
 				"TestCardOne",
@@ -177,6 +221,28 @@
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
 			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
 			"CardsInDeckDisplayNames": [
 				"Test Card One",
 				"Test Card One",
@@ -241,6 +307,28 @@
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
 				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
 			},
 			"CardsInDeckDisplayNames": [
 				"Howl Of Command",

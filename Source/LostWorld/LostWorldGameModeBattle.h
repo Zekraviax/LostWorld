@@ -45,6 +45,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> TurnQueue;
 
+	// Counts every spell cast by every entity.
+	// Resets at the start of every entity's turn.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int CardsCastThisTurn;
+
 	// Temporary stack entry used only for getting the targets
 	// before being added to the stack properly.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

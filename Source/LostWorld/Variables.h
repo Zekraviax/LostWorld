@@ -79,8 +79,11 @@ enum class ECardTargets : uint8
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
-	// -------- Passively modified cards while they're in the hand
+	// -------- Placeholder -------- //
+	None,
+	// -------- Passively modified cards while they're in the hand -------- //
 	CostsAllMana,
+	CostsHp,
 	// -------- Specific to one card -------- //
 	TestFunctionOne,
 	TestFunctionTwo,
@@ -91,7 +94,8 @@ enum class ECardFunctions : uint8
 	HyperBeam,
 	TestFunctionFive,
 	TestFunctionSix,
-	HowlOfCommand
+	HowlOfCommand,
+	EnergyAllAround
 };
 
 
@@ -441,6 +445,41 @@ struct LOSTWORLD_API FEntityBaseStats
 };
 
 
+// Offensive affinities: Multiply the calculated damage by the given number (converted to a percentage).
+// Defensive affinities: "Invert" the percentage, then multiply the damage by the given number (e.g. 175 becomes 25%.)
+// A high enough defensive affinity will cause the entity to absorb the damage as healing.
+// A low enough defensive affinity will cause the entity to take more damage.
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FElementalAffinities
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int FireAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int WaterAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int AirAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int EarthAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int LightAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CosmicAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int ArcaneAffinity = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int DivineAffinity = 100;
+};
+
+
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FEquipment : public FTableRowBase
 {
@@ -486,6 +525,12 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntityBaseStats TotalStats;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FElementalAffinities OffensiveAffinities;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FElementalAffinities DefensiveAffinities;
+
 	// All entities will have a Deck variable, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckDisplayNames;
@@ -499,7 +544,7 @@ struct LOSTWORLD_API FEntity
 	// How many cards should this entity draw at the start of a battle?
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StartOfBattleHandSize;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ETeams Team;
 

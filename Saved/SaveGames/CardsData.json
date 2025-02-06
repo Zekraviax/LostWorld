@@ -128,7 +128,7 @@
 	{
 		"Name": "HyperBeam",
 		"DisplayName": "Hyper Beam",
-		"BaseCost": -1,
+		"BaseCost": 0,
 		"CardTypes": [
 			"Spell"
 		],
@@ -137,12 +137,13 @@
 		],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Costs all of your mana. The more mana that was spent to cast this spell, the more damage it deals.",
+		"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "AnyOneEntity"
+			"HyperBeam": "AnyOneEntity",
+			"CostsAllMana": "None"
 		},
-		"TotalCost": -1,
+		"TotalCost": 0,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},

@@ -30,6 +30,9 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 		case (ECardFunctions::ArmourBreaker):
 			ArmourBreaker();
 			break;
+		case (ECardFunctions::HyperBeam):
+			HyperBeam();
+			break;
 		case (ECardFunctions::TestFunctionFive):
 			TestCardFive();
 			break;
@@ -142,11 +145,11 @@ void AFunctionLibraryCards::ArmourBreaker() const
 
 void AFunctionLibraryCards::HyperBeam() const
 {
-	int BasePower = 1;
+	int BasePower = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalCost * 2;
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, BasePower));
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, BasePower));
 }
 
 

@@ -100,7 +100,17 @@ bool AActorEntityBase::DiscardCard(int IndexInHand)
 
 bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 {
-	EntityData.TotalStats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
+	TArray<ECardFunctions> CardFunctions;
+	Hand[IndexInHand].FunctionsAndTargets.GetKeys(CardFunctions);
+	
+	if (CardFunctions.Contains(ECardFunctions::CostsAllMana)) {
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card.TotalCost =
+			EntityData.TotalStats.CurrentManaPoints;
+		
+		EntityData.TotalStats.CurrentManaPoints = 0;
+	} else {
+		EntityData.TotalStats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
+	}
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::PayCostsForCard(IndexInHand);

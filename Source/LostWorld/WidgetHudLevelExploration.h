@@ -21,4 +21,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OpenEquipmentWidget();
+	
+	UFUNCTION(BlueprintCallable)
+	void OpenDevTestMenuWidget();
 };

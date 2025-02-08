@@ -1,0 +1,83 @@
+{
+	"entityData":
+	{
+		"displayName": "Player",
+		"entityTypes": [
+			"Player"
+		],
+		"baseStats":
+		{
+			"currentHealthPoints": 25,
+			"maximumHealthPoints": 50,
+			"currentManaPoints": 20,
+			"maximumManaPoints": 20,
+			"currentBarrierPoints": 0,
+			"strength": 10,
+			"toughness": 10,
+			"intelligence": 10,
+			"willpower": 10,
+			"agility": 10,
+			"healthRegeneration": 1,
+			"manaRegeneration": 1,
+			"readiness": 0,
+			"currentStatusEffects": [],
+			"startBattleWithStatusEffectsDisplayNames": []
+		},
+		"totalStats":
+		{
+			"currentHealthPoints": 25,
+			"maximumHealthPoints": 50,
+			"currentManaPoints": 20,
+			"maximumManaPoints": 20,
+			"currentBarrierPoints": 0,
+			"strength": 10,
+			"toughness": 10,
+			"intelligence": 10,
+			"willpower": 10,
+			"agility": 10,
+			"healthRegeneration": 1,
+			"manaRegeneration": 1,
+			"readiness": 0,
+			"currentStatusEffects": [],
+			"startBattleWithStatusEffectsDisplayNames": []
+		},
+		"offensiveAffinities":
+		{
+			"fireAffinity": 100,
+			"waterAffinity": 100,
+			"airAffinity": 100,
+			"earthAffinity": 100,
+			"lightAffinity": 100,
+			"cosmicAffinity": 100,
+			"arcaneAffinity": 100,
+			"divineAffinity": 100
+		},
+		"defensiveAffinities":
+		{
+			"fireAffinity": 100,
+			"waterAffinity": 100,
+			"airAffinity": 100,
+			"earthAffinity": 100,
+			"lightAffinity": 100,
+			"cosmicAffinity": 100,
+			"arcaneAffinity": 100,
+			"divineAffinity": 100
+		},
+		"cardsInDeckDisplayNames": [
+			"Test Card Six",
+			"Test Card Six",
+			"Hyper Beam",
+			"Hyper Beam",
+			"Test Card Five",
+			"Test Card Five",
+			"Armour Breaker",
+			"Armour Breaker",
+			"Energy In The Air",
+			"Energy In The Air"
+		],
+		"equippedItems": [],
+		"equipmentInventory": [],
+		"startOfBattleHandSize": 7,
+		"team": "PlayerTeam"
+	}
+}

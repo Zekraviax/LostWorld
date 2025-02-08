@@ -1,0 +1,352 @@
+[
+	{
+		"Name": "TestEnemyOne",
+		"EnemyType": "TestEnemyOne",
+		"EntityData":
+		{
+			"DisplayName": "Default Jim",
+			"EntityTypes": [
+				"Enemy",
+				"TestEnemyOne"
+			],
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 5,
+				"Toughness": 5,
+				"Intelligence": 5,
+				"Willpower": 5,
+				"Agility": 5,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"CardsInDeckDisplayNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo"
+			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "TestEnemyTwo",
+		"EnemyType": "TestEnemyTwo",
+		"EntityData":
+		{
+			"DisplayName": "Test Boss",
+			"EntityTypes": [
+				"Enemy",
+				"TestEnemyTwo"
+			],
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 25,
+				"MaximumHealthPoints": 25,
+				"CurrentManaPoints": 25,
+				"MaximumManaPoints": 25,
+				"CurrentBarrierPoints": 0,
+				"Strength": 5,
+				"Toughness": 7,
+				"Intelligence": 5,
+				"Willpower": 7,
+				"Agility": 5,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": [
+					"Iron Shell"
+				]
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"CardsInDeckDisplayNames": [
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardOne",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardTwo",
+				"TestCardThree"
+			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "WolfPack",
+		"EnemyType": "WolfPack",
+		"EntityData":
+		{
+			"DisplayName": "Wolf Pack",
+			"EntityTypes": [
+				"Enemy",
+				"WolfPack"
+			],
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 2,
+				"Toughness": 2,
+				"Intelligence": 2,
+				"Willpower": 0,
+				"Agility": 2,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"CardsInDeckDisplayNames": [
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One"
+			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "WolfPackAlpha",
+		"EnemyType": "WolfPackAlpha",
+		"EntityData":
+		{
+			"DisplayName": "Wolf Pack Alpha",
+			"EntityTypes": [
+				"Enemy",
+				"WolfPackAlpha"
+			],
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 15,
+				"MaximumHealthPoints": 15,
+				"CurrentManaPoints": 15,
+				"MaximumManaPoints": 15,
+				"CurrentBarrierPoints": 0,
+				"Strength": 4,
+				"Toughness": 4,
+				"Intelligence": 4,
+				"Willpower": 4,
+				"Agility": 4,
+				"HealthRegeneration": 4,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"CardsInDeckDisplayNames": [
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
+				"Howl Of Command",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One",
+				"Test Card One"
+			],
+			"EquippedItems": [],
+			"EquipmentInventory": [],
+			"StartOfBattleHandSize": 5,
+			"Team": "EnemyTeam1"
+		},
+		"ExperiencePoints": 1
+	}
+]

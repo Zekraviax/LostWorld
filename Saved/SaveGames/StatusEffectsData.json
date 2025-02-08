@@ -1,0 +1,83 @@
+[
+	{
+		"Name": "PosonTest",
+		"DisplayName": "Poison Test",
+		"Description": "At the start of this entity's turn, it takes 1/8th of its Max HP as damage.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"StartOfAffectedEntitysTurn"
+		],
+		"DecrementStackTriggers": [],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 8,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": true
+	},
+	{
+		"Name": "IronShell",
+		"DisplayName": "Iron Shell",
+		"Description": "Gain 5x your Max HP as Barrier at the start of the battle.",
+		"StatusEffect": "IronShell",
+		"TimingTriggers": [
+			"StartOfBattle"
+		],
+		"DecrementStackTriggers": [],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "StrengthUp",
+		"DisplayName": "Strength Up",
+		"Description": "Increases strength by 1 point per stack. Lose 1 start at the start of this entity's turn.",
+		"StatusEffect": "StrengthUp",
+		"TimingTriggers": [
+			"OnStatusEffectApplied"
+		],
+		"DecrementStackTriggers": [
+			"StartOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": -1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "Howl",
+		"DisplayName": "Howl",
+		"Description": "Attacks made against this entity have increased base power.",
+		"StatusEffect": "Howl",
+		"TimingTriggers": [
+			"None"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 3,
+		"MaximumStackCount": 3,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": true,
+		"BlockedByBarrier": true
+	},
+	{
+		"Name": "Adrenaline",
+		"DisplayName": "Adrenaline",
+		"Description": "Increases Strength, Toughness, Intelligence, Willpower, Agility, HP Regen and MP Regen by 1 per stack. If you started the battle with this status effect, draw 1 more card.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"OnStatusEffectApplied"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": -1,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	}
+]

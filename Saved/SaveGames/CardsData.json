@@ -1,0 +1,255 @@
+[
+	{
+		"Name": "TestCardOne",
+		"DisplayName": "Test Card One",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 10,
+		"BaseHealing": 0,
+		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 10,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardTwo",
+		"DisplayName": "Test Card Two",
+		"BaseCost": 2,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 5,
+		"BaseHealing": 0,
+		"Description": "Deal damage to all enemies with base power ${TotalPower}.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionTwo": "AllEnemies"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 5,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardThree",
+		"DisplayName": "Test Card Three",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Draw 1 card.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionThree": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardFour",
+		"DisplayName": "Test Card Four",
+		"BaseCost": 4,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Air"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 5,
+		"Description": "Heal one target with base power ${TotalHealing}.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionFour": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 5
+	},
+	{
+		"Name": "PoisonDart",
+		"DisplayName": "Poison Dart",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 2,
+		"BaseHealing": 0,
+		"Description": "Deal light damage and poison a target.",
+		"FunctionsAndTargets":
+		{
+			"PoisonDart": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "ArmourBreaker",
+		"DisplayName": "Armour Breaker",
+		"BaseCost": 7,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 12,
+		"BaseHealing": 0,
+		"Description": "Deals moderate damage. Damage is doubled against barriers.",
+		"FunctionsAndTargets":
+		{
+			"ArmourBreaker": "AnyOneEntity"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 12,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "HyperBeam",
+		"DisplayName": "Hyper Beam",
+		"BaseCost": 0,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Arcane"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+		"FunctionsAndTargets":
+		{
+			"HyperBeam": "AnyOneEntity",
+			"CostsAllMana": "None"
+		},
+		"TotalCost": 0,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardFive",
+		"DisplayName": "Test Card Five",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Arcane"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Draw cards until your deck is empty, then draw one more.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionFive": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Trick",
+		"DisplayName": "Trick",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Cosmic"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Swap your hand and deck.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TestCardSix",
+		"DisplayName": "Test Card Six",
+		"BaseCost": 6,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Divine"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Summon a TestSummon.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionSix": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "HowlOfCommand",
+		"DisplayName": "Howl Of Command",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+		"FunctionsAndTargets":
+		{
+			"HowlOfCommand": "OneEnemy"
+		},
+		"TotalCost": 5,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "EnergyInTheAir",
+		"DisplayName": "Energy In The Air",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Arcane"
+		],
+		"BaseDamage": 1,
+		"BaseHealing": 0,
+		"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+		"FunctionsAndTargets":
+		{
+			"EnergyAllAround": "OneEnemy"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	}
+]

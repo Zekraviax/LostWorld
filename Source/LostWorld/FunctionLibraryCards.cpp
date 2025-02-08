@@ -97,7 +97,8 @@ void AFunctionLibraryCards::TestCardOne() const
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 	
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, 10));
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
 
@@ -107,7 +108,8 @@ void AFunctionLibraryCards::TestCardTwo() const
 	
 	for (AActorEntityBase* Enemy : Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets) {
 		if (Cast<AActorEntityEnemy>(Enemy)) {
-			Cast<AActorEntityEnemy>(Enemy)->TakeDamage(StandardDamageFormula(Attacker, Cast<AActorEntityEnemy>(Enemy), 5));
+			Cast<IInterfaceBattle>(Enemy)->TakeDamage(StandardDamageFormula(Attacker, Enemy,
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 		}
 	}
 }
@@ -130,7 +132,8 @@ void AFunctionLibraryCards::PoisonDart() const
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, 2));
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
 
@@ -139,7 +142,8 @@ void AFunctionLibraryCards::ArmourBreaker() const
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, 12));
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
 
@@ -223,4 +227,14 @@ void AFunctionLibraryCards::EnergyAllAround() const
 	int BasePower = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CardsCastThisTurn + 1;
 
 	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, BasePower));
+}
+
+
+void AFunctionLibraryCards::DealDamageToOneTarget() const
+{
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
+
+	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }

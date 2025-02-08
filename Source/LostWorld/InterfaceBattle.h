@@ -38,6 +38,8 @@ public:
 
 	virtual bool AddStatusEffect(FStatusEffect StatusEffect);
 
+	//virtual 
+
 	virtual bool StartTurn();
 	virtual bool EndTurn();
 };

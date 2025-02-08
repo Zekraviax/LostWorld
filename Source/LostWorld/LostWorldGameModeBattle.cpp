@@ -404,6 +404,7 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 }
 
 
+// To-Do: Rename this function to something like "execute first stack entry"
 void ALostWorldGameModeBattle::CastCard()
 {
 	if (!FunctionLibraryCardsInstance) {

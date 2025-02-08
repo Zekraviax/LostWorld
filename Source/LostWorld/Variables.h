@@ -84,6 +84,14 @@ enum class ECardFunctions : uint8
 	// -------- Passively modified cards while they're in the hand -------- //
 	CostsAllMana,
 	CostsHp,
+	// -------- Passively modified cards while they're in any zone except the hand -------- //
+	CanCastFromGraveyard,
+	CanCastFromDeck,
+	CanCastFromExile,
+	// -------- Deletes cards when certain conditions are met -------- //
+	Temporary,	// At end of battle
+	Ephemeral, // At the end of every turn and when played
+	SingleUse, // When played
 	// -------- Specific to one card -------- //
 	TestFunctionOne,
 	TestFunctionTwo,
@@ -95,7 +103,10 @@ enum class ECardFunctions : uint8
 	TestFunctionFive,
 	TestFunctionSix,
 	HowlOfCommand,
-	EnergyAllAround
+	EnergyAllAround,
+	PinpointThrust,
+	// -------- Generic functions -------- //
+	DealDamageToOneTarget
 };
 
 

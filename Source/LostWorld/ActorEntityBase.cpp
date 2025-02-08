@@ -90,6 +90,7 @@ bool AActorEntityBase::DrawCard()
 	return IInterfaceBattle::DrawCard();
 }
 
+
 bool AActorEntityBase::DiscardCard(int IndexInHand)
 {
 	Discard.Add(Hand[IndexInHand]);
@@ -97,6 +98,7 @@ bool AActorEntityBase::DiscardCard(int IndexInHand)
 	
 	return IInterfaceBattle::DiscardCard(IndexInHand);
 }
+
 
 bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 {

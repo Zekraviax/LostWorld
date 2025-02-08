@@ -17,7 +17,8 @@ public:
 
 	static int StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
 	static int ArmourBreakerDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
-	
+
+	// -------- Specific to one card -------- //
 	void TestCardOne() const;
 	void TestCardTwo() const;
 	void TestCardThree() const;
@@ -29,4 +30,6 @@ public:
 	void TestCardSix() const;
 	void HowlOfCommand() const;
 	void EnergyAllAround() const;
+	// -------- Generic functions -------- //
+	void DealDamageToOneTarget() const;
 };

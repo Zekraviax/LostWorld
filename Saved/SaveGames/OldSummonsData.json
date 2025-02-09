@@ -1,0 +1,261 @@
+[
+	{
+		"Name": "DingoCompanion",
+		"EntityBaseData":
+		{
+			"DisplayName": "Dingo Companion",
+			"HealthValues":
+			{
+				"X_Value": 20,
+				"Y_Value": 20
+			},
+			"ManaValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 3,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 1,
+				"Constitution": 1,
+				"Intelligence": 1,
+				"Wisdom": 1,
+				"Dexterity": 1
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": true,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "SuddenInspiration"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "SuddenInspiration"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "SuddenInspiration"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "LayOnHands"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "LayOnHands"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Annihilate"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "SpiderCompanion"
+			}
+		],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 1,
+		"BaseMoney": 1
+	},
+	{
+		"Name": "SpiderCompanion",
+		"EntityBaseData":
+		{
+			"DisplayName": "Spider Companion",
+			"HealthValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"ManaValues":
+			{
+				"X_Value": 20,
+				"Y_Value": 20
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 5,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 1,
+				"Constitution": 1,
+				"Intelligence": 1,
+				"Wisdom": 3,
+				"Dexterity": 1
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": true,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "TwinFangs"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "TwinFangs"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "TwinFangs"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "BloodRecycling"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "BloodRecycling"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "BloodRecycling"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "RollingQuake"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "RollingQuake"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Annihilate"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "DingoCompanion"
+			}
+		],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 1,
+		"BaseMoney": 1
+	},
+	{
+		"Name": "UtopiaTree",
+		"EntityBaseData":
+		{
+			"DisplayName": "Utopia Tree",
+			"HealthValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"ManaValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 5,
+			"HandSize": 3,
+			"CoreStats":
+			{
+				"Strength": 0,
+				"Constitution": 2,
+				"Intelligence": 2,
+				"Wisdom": 2,
+				"Dexterity": 2
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 1,
+		"BaseMoney": 1
+	}
+]

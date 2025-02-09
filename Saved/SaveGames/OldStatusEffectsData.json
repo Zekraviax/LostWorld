@@ -1,0 +1,77 @@
+[
+	{
+		"Name": "Poison",
+		"DisplayName": "Poison",
+		"Description": "At the beginning of this entities' turn, it loses 1 life for each stack of Poison.",
+		"Icon": "None",
+		"CounterValues":
+		{
+			"X_Value": 3,
+			"Y_Value": 3
+		},
+		"TickDownCondition": "E_None",
+		"Consideration": "E_Negative",
+		"StatusFunctions": "Class'/Script/LostWorld_422.StatusFunctions_Poison'",
+		"Source": "None"
+	},
+	{
+		"Name": "HPRegen",
+		"DisplayName": "HP Regen",
+		"Description": "This entities' HP regeneration is increased by 1 for each stack of HP Regen.",
+		"Icon": "None",
+		"CounterValues":
+		{
+			"X_Value": 3,
+			"Y_Value": 3
+		},
+		"TickDownCondition": "E_BeginningOfAffectedEntityTurn",
+		"Consideration": "E_Positive",
+		"StatusFunctions": "None",
+		"Source": "None"
+	},
+	{
+		"Name": "MuscleMass",
+		"DisplayName": "Muscle Mass",
+		"Description": "This entity has +1 Strength and +1 Constitution.",
+		"Icon": "None",
+		"CounterValues":
+		{
+			"X_Value": 3,
+			"Y_Value": 3
+		},
+		"TickDownCondition": "E_BeginningOfAffectedEntityTurn",
+		"Consideration": "E_Positive",
+		"StatusFunctions": "None",
+		"Source": "None"
+	},
+	{
+		"Name": "MentalMight",
+		"DisplayName": "Mental Might",
+		"Description": "You gain +1 Intelligence and +1 Wisdom.",
+		"Icon": "None",
+		"CounterValues":
+		{
+			"X_Value": 3,
+			"Y_Value": 3
+		},
+		"TickDownCondition": "E_BeginningOfAffectedEntityTurn",
+		"Consideration": "E_Positive",
+		"StatusFunctions": "None",
+		"Source": "None"
+	},
+	{
+		"Name": "Barrier",
+		"DisplayName": "Barrier",
+		"Description": "Absorbs 1 damage from an enemy's attack.",
+		"Icon": "None",
+		"CounterValues":
+		{
+			"X_Value": 1,
+			"Y_Value": 1
+		},
+		"TickDownCondition": "E_None",
+		"Consideration": "E_Positive",
+		"StatusFunctions": "None",
+		"Source": "None"
+	}
+]

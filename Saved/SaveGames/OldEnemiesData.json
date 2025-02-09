@@ -1,0 +1,425 @@
+[
+	{
+		"Name": "Test",
+		"EntityBaseData":
+		{
+			"DisplayName": "Test",
+			"HealthValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"ManaValues":
+			{
+				"X_Value": 10,
+				"Y_Value": 10
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 3,
+			"HandSize": 7,
+			"CoreStats":
+			{
+				"Strength": 1,
+				"Constitution": 1,
+				"Intelligence": 1,
+				"Wisdom": 1,
+				"Dexterity": 1
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Shock"
+			}
+		],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 2,
+			"Constitution": 2,
+			"Intelligence": 2,
+			"Wisdom": 2,
+			"Dexterity": 2
+		},
+		"BaseExperiencePoints": 1,
+		"BaseMoney": 1
+	},
+	{
+		"Name": "Hogbot",
+		"EntityBaseData":
+		{
+			"DisplayName": "Hogbot",
+			"HealthValues":
+			{
+				"X_Value": 12,
+				"Y_Value": 12
+			},
+			"ManaValues":
+			{
+				"X_Value": 5,
+				"Y_Value": 5
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 1,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 3,
+				"Constitution": 3,
+				"Intelligence": 3,
+				"Wisdom": 3,
+				"Dexterity": 3
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "A small mechanical pig. Has the capability of joining with several other Hogbots to form a Hogtron.",
+		"Image": "None",
+		"Cards": [],
+		"MinimumBaseStats":
+		{
+			"Strength": 2,
+			"Constitution": 2,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 4,
+			"Constitution": 3,
+			"Intelligence": 2,
+			"Wisdom": 2,
+			"Dexterity": 2
+		},
+		"BaseExperiencePoints": 2,
+		"BaseMoney": 2
+	},
+	{
+		"Name": "AnimatedStone",
+		"EntityBaseData":
+		{
+			"DisplayName": "Animated Stone",
+			"HealthValues":
+			{
+				"X_Value": 15,
+				"Y_Value": 15
+			},
+			"ManaValues":
+			{
+				"X_Value": 5,
+				"Y_Value": 5
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 1,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 4,
+				"Constitution": 5,
+				"Intelligence": 1,
+				"Wisdom": 1,
+				"Dexterity": 1
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "NormalPunch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "NormalPunch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Scratch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Scratch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "Scratch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "NormalPunch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "NormalPunch"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "LayOnHands"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "RollingQuake"
+			},
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "RollingQuake"
+			}
+		],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 5,
+		"BaseMoney": 5
+	},
+	{
+		"Name": "IronShellAutomaton",
+		"EntityBaseData":
+		{
+			"DisplayName": "Iron-Shell Automaton",
+			"HealthValues":
+			{
+				"X_Value": 90,
+				"Y_Value": 90
+			},
+			"ManaValues":
+			{
+				"X_Value": 1,
+				"Y_Value": 1
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 1,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 10,
+				"Constitution": 10,
+				"Intelligence": 1,
+				"Wisdom": 1,
+				"Dexterity": 1
+			},
+			"Traits": [
+				{
+					"DataTable": "DataTable'/Game/DataTables/Traits_List.Traits_List'",
+					"RowName": "IronShellAutomaton"
+				}
+			],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "A tiny crystal core wrapped in an extremely strong iron skin. It looks like it should have a pair of legs.",
+		"Image": "None",
+		"Cards": [
+			{
+				"DataTable": "DataTable'/Game/DataTables/Cards_List.Cards_List'",
+				"RowName": "NormalPunch"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			},
+			{
+				"DataTable": "None",
+				"RowName": "None"
+			}
+		],
+		"MinimumBaseStats":
+		{
+			"Strength": 10,
+			"Constitution": 10,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 10,
+			"Constitution": 10,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 50,
+		"BaseMoney": 100
+	},
+	{
+		"Name": "AxeRaider",
+		"EntityBaseData":
+		{
+			"DisplayName": "Changeling Axe Raider",
+			"HealthValues":
+			{
+				"X_Value": 8,
+				"Y_Value": 8
+			},
+			"ManaValues":
+			{
+				"X_Value": 4,
+				"Y_Value": 4
+			},
+			"Barrier": 0,
+			"HealthRegenPerTurn": 0,
+			"ManaRegenPerTurn": 5,
+			"HandSize": 5,
+			"CoreStats":
+			{
+				"Strength": 3,
+				"Constitution": 3,
+				"Intelligence": 1,
+				"Wisdom": 1,
+				"Dexterity": 3
+			},
+			"Traits": [],
+			"IsPlayer": false,
+			"IsPlayerControllable": false,
+			"GameOverOnDeath":
+			{
+				"GameOverOnDeath": false,
+				"GameOverMessage": "You died."
+			},
+			"CurrentDeck": []
+		},
+		"Description": "Default",
+		"Image": "None",
+		"Cards": [],
+		"MinimumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"MaximumBaseStats":
+		{
+			"Strength": 1,
+			"Constitution": 1,
+			"Intelligence": 1,
+			"Wisdom": 1,
+			"Dexterity": 1
+		},
+		"BaseExperiencePoints": 1,
+		"BaseMoney": 1
+	}
+]

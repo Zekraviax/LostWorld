@@ -256,7 +256,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Give each entity the status effects they should start the battle with,
 	// And trigger all status effects that trigger at the start of battles.
 	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
-		for (FString StatusEffectDisplayName : Entity->EntityData.TotalStats.StartBattleWithStatusEffectsDisplayNames) {
+		for (FString StatusEffectDisplayName : Entity->EntityData.StartBattleWithStatusEffectsDisplayNames) {
 			Cast<IInterfaceBattle>(Entity)->AddStatusEffect(
 				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetStatusEffectFromJson(StatusEffectDisplayName));
 

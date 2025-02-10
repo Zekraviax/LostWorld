@@ -429,12 +429,6 @@ struct LOSTWORLD_API FEntityBaseStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FStatusEffect> CurrentStatusEffects;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
 	
 	// Default constructor
 	FEntityBaseStats()
@@ -542,13 +536,31 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FElementalAffinities DefensiveAffinities;
 
-	// All entities will have a Deck variable, even if they don't use it in gameplay.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FStatusEffect> CurrentStatusEffects;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MinimumDeckSize = -1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaximumDeckSize = -1;
+
+	// All entities will have a Deck, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckDisplayNames;
+
+	// All entities will have a Collection as well, so that can swap cards in and out of their deck mid-battle.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> CardsInCollectionDisplayNames;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquippedItems;
 
+	// This variable exists for all entities because all entities can have unequipped and equipped items.
+	// To-Do: Give enemies the ability to equip and unequip items.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquipmentInventory;
 
@@ -559,6 +571,10 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ETeams Team;
 
+	// Shout cards can only be played once per turn, but don't cost anything to play.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool HasUsedShoutThisTurn;
+
 	FEntity()
 	{
 		DisplayName = "Default Jim";
@@ -566,6 +582,7 @@ struct LOSTWORLD_API FEntity
 		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
 		Team = ETeams::PlayerTeam;
+		HasUsedShoutThisTurn = false;
 	}
 };
 

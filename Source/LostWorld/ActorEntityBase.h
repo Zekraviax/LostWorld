@@ -91,4 +91,7 @@ public:
 
 // -------------------------------- Entity Interface functions
 	virtual bool CalculateTotalStats() override;
+
+	virtual bool EquipItem(int IndexInInventoryArray) override;
+	virtual bool UnequipItem(int IndexInInventoryArray) override;
 };

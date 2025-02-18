@@ -1,7 +1,9 @@
 #include "WidgetEquipment.h"
 
 
+#include "LostWorldGameInstanceBase.h"
 #include "Components/TextBlock.h"
+#include "LostWorldPlayerControllerBase.h"
 #include "WidgetEquipmentItem.h"
 
 
@@ -14,6 +16,7 @@ void UWidgetEquipment::PopulateEquippedItemsScrollBox(TArray<FEquipment> Equippe
 			GetWorld(), EquipmentItemWidgetBlueprintClass);
 
 		EquipmentItemWidget->SetDataFromPassedEquipment(EquippedItem);
+		EquipmentItemWidget->IndexInArray = EquippedItems.Find(EquippedItem);
 		EquipmentItemWidget->EquipUnequipText->SetText(FText::FromString("Remove"));
 
 		EquippedItemsScrollBox->AddChild(EquipmentItemWidget);
@@ -34,4 +37,11 @@ void UWidgetEquipment::PopulateUnequippedItemsScrollBox(TArray<FEquipment> Unequ
 
 		UnequippedItemsScrollBox->AddChild(EquipmentItemWidget);
 	}
+}
+
+
+void UWidgetEquipment::CloseEquipmentWidget()
+{
+	Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->SavePlayerActorDataToJson();
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 }

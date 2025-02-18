@@ -3,7 +3,7 @@
 		"Name": "RingOfRefreshment",
 		"DisplayName": "Ring of Refreshment",
 		"Description": "Grants +1 HP Regeneration and +1 Mana Regeneration.",
-		"EquipSlot": "RightHand",
+		"EquipSlot": "LeftFinger",
 		"StatModifiers":
 		{
 			"CurrentHealthPoints": 0,
@@ -18,9 +18,7 @@
 			"Agility": 0,
 			"HealthRegeneration": 1,
 			"ManaRegeneration": 1,
-			"Readiness": 0,
-			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": []
+			"Readiness": 0
 		}
 	}
 ]

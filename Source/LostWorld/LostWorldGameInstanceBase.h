@@ -30,7 +30,10 @@ public:
 	virtual void Init() override;
 	
 	void LoadPlayerSaveJson();
+	// This function saves the data from the GameInstance CurrentPlayerSave to the JSON file.
 	void SavePlayerDataJson() const;
+	// This function saves the data from the ActorEntityPlayer to the JSON file.
+	void SavePlayerActorDataToJson() const;
 	
 	FString LoadFileFromJson(const FString& FileName) const;
 	FCard GetCardFromJson(const FString& CardName) const;

@@ -19,4 +19,7 @@ class LOSTWORLD_API IInterfaceEntity
 
 public:
 	virtual bool CalculateTotalStats();
+
+	virtual bool EquipItem(int IndexInInventoryArray);
+	virtual bool UnequipItem(int IndexInEquipmentArray);
 };

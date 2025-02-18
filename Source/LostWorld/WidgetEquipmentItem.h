@@ -20,6 +20,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEquipment EquipmentItemData;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int IndexInArray;
+
 // -------------------------------- Widget components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UImage* BackgroundImage;
@@ -33,4 +36,7 @@ public:
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	void SetDataFromPassedEquipment(const FEquipment& Equipment);
+
+	UFUNCTION(BlueprintCallable)
+	void OnEquipmentButtonPressed();
 };

@@ -508,6 +508,14 @@ struct LOSTWORLD_API FEquipment : public FTableRowBase
 		Description = "This is a test equipment.";
 		EquipSlot = EEquipSlots::Head;
 	}
+
+	FORCEINLINE bool operator==(const FEquipment& OtherEquipment) const
+	{
+		return this->DisplayName == OtherEquipment.DisplayName &&
+				this->Description == OtherEquipment.Description &&
+				this->EquipSlot == OtherEquipment.EquipSlot;
+				//&& this->StatModifiers == OtherEquipment.StatModifiers;
+	}
 };
 
 

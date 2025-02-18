@@ -267,3 +267,20 @@ bool AActorEntityBase::CalculateTotalStats()
 	
 	return IInterfaceEntity::CalculateTotalStats();
 }
+
+bool AActorEntityBase::EquipItem(int IndexInInventoryArray)
+{
+	EntityData.EquippedItems.Add(EntityData.EquipmentInventory[IndexInInventoryArray]);
+	EntityData.EquipmentInventory.RemoveAt(IndexInInventoryArray);
+	
+	return IInterfaceEntity::EquipItem(IndexInInventoryArray);
+}
+
+
+bool AActorEntityBase::UnequipItem(int IndexInInventoryArray)
+{
+	EntityData.EquipmentInventory.Add(EntityData.EquippedItems[IndexInInventoryArray]);
+	EntityData.EquippedItems.RemoveAt(IndexInInventoryArray);
+	
+	return IInterfaceEntity::UnequipItem(IndexInInventoryArray);
+}

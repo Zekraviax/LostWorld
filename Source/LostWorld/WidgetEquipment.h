@@ -32,4 +32,7 @@ public:
 // ---------------------------------------- Functions ---------------------------------------- //
 	void PopulateEquippedItemsScrollBox(TArray<FEquipment> EquippedItems) const;
 	void PopulateUnequippedItemsScrollBox(TArray<FEquipment> UnequippedItems) const;
+
+	UFUNCTION(BlueprintCallable)
+	void CloseEquipmentWidget();
 };

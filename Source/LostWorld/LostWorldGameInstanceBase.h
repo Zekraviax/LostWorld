@@ -12,6 +12,17 @@
 class USaveGameDeveloperSettings;
 
 
+// Local /enumsstructs
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FPlayerSavesAsStruct
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FPlayerSave> SaveObjectsArray;
+};
+
+
 UCLASS()
 class LOSTWORLD_API ULostWorldGameInstanceBase : public UGameInstance
 {
@@ -22,8 +33,20 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameDeveloperSettings* DeveloperSettingsSaveGame;
 
+	// To-Do: Make this into an array of Saves,
+	// create one variable for tracking the index of the last loaded object,
+	// and one for tracking the index of the last saved object.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FPlayerSavesAsStruct AllPlayerSaves;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FPlayerSave CurrentPlayerSave;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int LastLoadedPlayerSaveObject;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int LastSavedPlayerSaveObject;
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -31,7 +54,7 @@ public:
 	
 	void LoadPlayerSaveJson();
 	// This function saves the data from the GameInstance CurrentPlayerSave to the JSON file.
-	void SavePlayerDataJson() const;
+	void SavePlayerDataJson();
 	// This function saves the data from the ActorEntityPlayer to the JSON file.
 	void SavePlayerActorDataToJson() const;
 	

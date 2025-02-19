@@ -42,8 +42,12 @@ void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
 }
 
 
-void ULostWorldGameInstanceBase::SavePlayerDataJson() const
+void ULostWorldGameInstanceBase::SavePlayerDataJson()
 {
+	// Insert the current player save data into the save objects array at the last loaded index,
+	// then save the whole array.
+	AllPlayerSaves.SaveObjectsArray[LastLoadedPlayerSaveObject] = CurrentPlayerSave;
+	
 	FString SaveGamesFolderPathAppend = "SaveGames/";
 	FString SavePath = "C:\\Users\\zekra\\Documents\\UE\\Projects\\Starmark\\Saved\\SaveGames";
 
@@ -54,8 +58,8 @@ void ULostWorldGameInstanceBase::SavePlayerDataJson() const
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player Save Data Folder: %s"), *SavePath);
 
 	FString PlayerDataAsJson;
-	FJsonObjectConverter::UStructToJsonObjectString(CurrentPlayerSave, PlayerDataAsJson, 0, 0);
-
+	FJsonObjectConverter::UStructToJsonObjectString(AllPlayerSaves, PlayerDataAsJson, 0, 0);
+	
 	// Before we save the json file, we need to check if the player's save data folder exists.
 	// If it doesn't, we make it first.
 	// The directory path should be 'SavePath + DeveloperSettings'.

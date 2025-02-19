@@ -42,6 +42,6 @@ void UWidgetEquipment::PopulateUnequippedItemsScrollBox(TArray<FEquipment> Unequ
 
 void UWidgetEquipment::CloseEquipmentWidget()
 {
-	Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->SavePlayerActorDataToJson();
+	Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->SavePlayerDataJson();
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 }

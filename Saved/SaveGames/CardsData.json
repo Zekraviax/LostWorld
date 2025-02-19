@@ -251,5 +251,85 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "HammerBlow",
+		"DisplayName": "Hammer Blow",
+		"BaseCost": 4,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 9,
+		"BaseHealing": 0,
+		"Description": "Deals damage to one target. Deals extra damage to stunned targets. Stuns targets that aren't stunned.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Shurikenjutsu",
+		"DisplayName": "Shurikenjutsu",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Air"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Deal damage to any one target calculated using your Agility.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "MasterOfReality",
+		"DisplayName": "Master Of Reality",
+		"BaseCost": 16,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Instead of drawing a card, you may Create a card instead. Cards created this way are Temporary.",
+		"FunctionsAndTargets":
+		{
+			"None": "Self"
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "ApocalypseChanneler",
+		"DisplayName": "Apocalypse Channeler",
+		"BaseCost": 13,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Cosmic"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "You may permanently Destroy any number of cards in your Collection. Attack a random enemy X times with base power X, where X is quadruple the number of cards destroyed this way.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
 	}
 ]

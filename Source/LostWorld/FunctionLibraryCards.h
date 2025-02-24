@@ -30,6 +30,7 @@ public:
 	void TestCardSix() const;
 	void HowlOfCommand() const;
 	void EnergyAllAround() const;
+	void CallForFriends() const;
 	// -------- Generic functions -------- //
 	void DealDamageToOneTarget() const;
 };

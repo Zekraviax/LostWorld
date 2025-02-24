@@ -230,6 +230,30 @@ void AFunctionLibraryCards::EnergyAllAround() const
 }
 
 
+void AFunctionLibraryCards::CallForFriends() const
+{
+	bool RandomSuccess = FMath::RandBool();
+	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+
+	ALostWorldGameModeBase::DualLog(Cast<AActorEntityBase>(Attacker)->EntityData.DisplayName +
+				" tries to call for friends!", 2);
+	
+	if (RandomSuccess) {
+		// Get the entity type and spawn another one.
+		FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
+
+		SummonData.EntityData.Team = Attacker->EntityData.Team;
+	
+		// Spawn the summon and make it the same team as the entity summoning it
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
+
+		ALostWorldGameModeBase::DualLog("A appeared!", 2);
+	} else {
+		ALostWorldGameModeBase::DualLog("But it failed.", 2);
+	}
+}
+
+
 void AFunctionLibraryCards::DealDamageToOneTarget() const
 {
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;

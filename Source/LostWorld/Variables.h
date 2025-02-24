@@ -105,6 +105,8 @@ enum class ECardFunctions : uint8
 	HowlOfCommand,
 	EnergyAllAround,
 	PinpointThrust,
+	CallForFriends,
+	Inflame,
 	// -------- Generic functions -------- //
 	DealDamageToOneTarget
 };
@@ -129,7 +131,8 @@ enum class EStatusEffectFunctions : uint8
 	IronShell,
 	StrengthUp,
 	Howl,
-	Adrenaline
+	Adrenaline,
+	MutantAura
 };
 
 
@@ -141,6 +144,7 @@ enum class ETimingTriggers : uint8
 	StartOfAffectedEntitysTurn,
 	StartOfEveryTurn,
 	EndOfAffectedEntitysTurn,
+	EndOfEveryTurn,
 	OnStatusEffectApplied,
 };
 
@@ -213,7 +217,9 @@ enum class EEntityTypes : uint8
 	TestEnemyOne,
 	TestEnemyTwo,
 	WolfPack,
-	WolfPackAlpha
+	WolfPackAlpha,
+	Hogbot,
+	MegaHogbot
 };
 
 

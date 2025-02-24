@@ -284,10 +284,9 @@
 		],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal damage to any one target calculated using your Agility.",
+		"Description": "Deal damage to any one target. Damage is calculated using your Agility.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "OneEnemy"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 0,
@@ -300,13 +299,14 @@
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [],
+		"CardElements": [
+			"Divine"
+		],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
 		"Description": "Instead of drawing a card, you may Create a card instead. Cards created this way are Temporary.",
 		"FunctionsAndTargets":
 		{
-			"None": "Self"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 0,
@@ -325,6 +325,86 @@
 		"BaseDamage": 0,
 		"BaseHealing": 0,
 		"Description": "You may permanently Destroy any number of cards in your Collection. Attack a random enemy X times with base power X, where X is quadruple the number of cards destroyed this way.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "GoreRush",
+		"DisplayName": "Gore Rush",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Technique"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 10,
+		"BaseHealing": 0,
+		"Description": "Deal damage to one target. Base damage is increased by 1.5x if the target is bleeding.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "CallForFriends",
+		"DisplayName": "Call For Friends",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Summon an entity of the same type as this one. Has a 50% chance to fail.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "PinpointThrust",
+		"DisplayName": "Pinpoint Thrust",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Technique"
+		],
+		"CardElements": [
+			"Air"
+		],
+		"BaseDamage": 6,
+		"BaseHealing": 0,
+		"Description": "Deals damage to one target. Has a 1/5 chance to be a Critical Hit. Critical Hits ignore defences and deal 1.5x damage.",
+		"FunctionsAndTargets":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Inflame",
+		"DisplayName": "Inflame",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Inflict Burn on the target and give it 2 stacks of Muscle Surge",
 		"FunctionsAndTargets":
 		{
 		},

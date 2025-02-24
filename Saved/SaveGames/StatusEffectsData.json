@@ -1,13 +1,15 @@
 [
 	{
-		"Name": "PosonTest",
-		"DisplayName": "Poison Test",
+		"Name": "PoisonTest",
+		"DisplayName": "Poison",
 		"Description": "At the start of this entity's turn, it takes 1/8th of its Max HP as damage.",
 		"StatusEffect": "Poison",
 		"TimingTriggers": [
 			"StartOfAffectedEntitysTurn"
 		],
-		"DecrementStackTriggers": [],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 8,
 		"DecrementStacksWhenTriggered": true,
@@ -78,6 +80,36 @@
 		"MaximumStackCount": -1,
 		"DecrementStacksWhenTriggered": true,
 		"VisibleToPlayer": false,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "MutantAura",
+		"DisplayName": "Mutant Aura",
+		"Description": "At the end of each entities' turns, transform one card in their hand into a random card.",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"DecrementStackTriggers": [],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": true,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "SneakyStones",
+		"DisplayName": "Sneaky Stones",
+		"Description": "Whenever an entity plays a card, attack that entity (base power 1.)",
+		"StatusEffect": "Poison",
+		"TimingTriggers": [
+			"None"
+		],
+		"DecrementStackTriggers": [],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 1,
+		"DecrementStacksWhenTriggered": false,
+		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	}
 ]

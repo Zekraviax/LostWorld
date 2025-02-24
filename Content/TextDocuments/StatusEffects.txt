@@ -1,0 +1,12 @@
+Name:
+Effect(s):
+
+
+Name: Warden
+Effect(s): Prevent all damage this summons' summoner would take during their turns.
+Note: Exclusive to Summons.
+
+
+Name: Miasma
+Effect(s): All entities cannot be healed.
+

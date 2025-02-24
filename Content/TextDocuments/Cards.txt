@@ -1,1 +1,20 @@
-test
+Name:
+Cost:
+Type(s):
+Element(s):
+Effect(s):
+
+
+Name: ?
+Cost: ?
+Type(s): Spell
+Element(s): Arcane
+Effect(s): Deal damage to one target. Base power is equal to the number of cards in their deck.
+
+
+Name:
+Cost: 
+Type(s):
+Element(s):
+Effect(s):
+

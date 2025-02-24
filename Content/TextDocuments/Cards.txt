@@ -12,9 +12,9 @@ Element(s): Arcane
 Effect(s): Deal damage to one target. Base power is equal to the number of cards in their deck.
 
 
-Name:
-Cost: 
-Type(s):
-Element(s):
-Effect(s):
-
+Name: Hidden Revolver
+Cost: 6 
+Type(s): Technique
+Element(s): Air
+Effect(s): If it's your first turn of the battle, you may play this card for free.
+If you can equip a weapon, Create a Temporary Pistol equippable item and equip it.

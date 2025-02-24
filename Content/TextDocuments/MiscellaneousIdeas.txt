@@ -1,1 +1,3 @@
-test
+Key Word: Disable
+Disabling an equipped item prevents any cards it gives from being played, prevents any passive, 
+triggered, or active effects from being used, and prevents the equipped item from giving any stats.

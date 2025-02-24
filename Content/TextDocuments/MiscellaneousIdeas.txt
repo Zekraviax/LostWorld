@@ -1,3 +1,11 @@
 Key Word: Disable
 Disabling an equipped item prevents any cards it gives from being played, prevents any passive, 
-triggered, or active effects from being used, and prevents the equipped item from giving any stats.
+triggered, or active effects from being used, and prevents the equipped item from giving any 
+stats.
+
+
+Key Word: Destroy
+Any card that is Destroyed is removed from the entitys' Deck, Collection, and all battle zones
+(Draw pile, Discard pile, Void). Any items that are destroyed cannot be used, are removed from
+the inventory, are unequipped if they were equipped, and any cards that they give are also 
+destroyed.

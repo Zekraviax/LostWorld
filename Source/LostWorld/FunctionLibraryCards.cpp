@@ -162,7 +162,7 @@ void AFunctionLibraryCards::TestCardFive() const
 	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	
 	// Draw cards until your deck is empty, then draw one more.
-	while (Attacker->Deck.Num() > 0) {
+	while (Attacker->EntityData.Deck.Num() > 0) {
 		Cast<IInterfaceBattle>(Attacker)->DrawCard();
 	}
 

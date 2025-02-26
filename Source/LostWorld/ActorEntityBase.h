@@ -44,18 +44,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetComponent* EntityBillboard;
 	
-// -------------------------------- Cards & Deck
+// -------------------------------- Data
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FEntity EntityData;
-	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCard> Deck;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCard> Hand;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FCard> Discard;
 
 // -------------------------------- Other
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

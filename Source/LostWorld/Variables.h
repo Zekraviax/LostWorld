@@ -105,6 +105,8 @@ enum class ECardFunctions : uint8
 	HowlOfCommand,
 	EnergyAllAround,
 	PinpointThrust,
+	CallForFriends,
+	Inflame,
 	// -------- Generic functions -------- //
 	DealDamageToOneTarget
 };
@@ -129,7 +131,8 @@ enum class EStatusEffectFunctions : uint8
 	IronShell,
 	StrengthUp,
 	Howl,
-	Adrenaline
+	Adrenaline,
+	MutantAura
 };
 
 
@@ -141,6 +144,7 @@ enum class ETimingTriggers : uint8
 	StartOfAffectedEntitysTurn,
 	StartOfEveryTurn,
 	EndOfAffectedEntitysTurn,
+	EndOfEveryTurn,
 	OnStatusEffectApplied,
 };
 
@@ -213,7 +217,9 @@ enum class EEntityTypes : uint8
 	TestEnemyOne,
 	TestEnemyTwo,
 	WolfPack,
-	WolfPackAlpha
+	WolfPackAlpha,
+	Hogbot,
+	MegaHogbot
 };
 
 
@@ -514,6 +520,14 @@ struct LOSTWORLD_API FEquipment : public FTableRowBase
 		Description = "This is a test equipment.";
 		EquipSlot = EEquipSlots::Head;
 	}
+
+	FORCEINLINE bool operator==(const FEquipment& OtherEquipment) const
+	{
+		return this->DisplayName == OtherEquipment.DisplayName &&
+				this->Description == OtherEquipment.Description &&
+				this->EquipSlot == OtherEquipment.EquipSlot;
+				//&& this->StatModifiers == OtherEquipment.StatModifiers;
+	}
 };
 
 
@@ -542,13 +556,51 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FElementalAffinities DefensiveAffinities;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FStatusEffect> CurrentStatusEffects;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
+
+	// To-Do: Move card arrays (like the Deck, Draw Pile, Graveyard, etc.) to here
+	// from their AActors.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Deck;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Hand;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> DrawPile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> DiscardPile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Exile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MinimumDeckSize = -1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaximumDeckSize = -1;
+
+	// To-Do: Remove these FName arrays.
+	// As of 2025/02/19, they are deprecated.
+	// All entities will have a Deck, even if they don't use it in gameplay.
 	// All entities will have a Deck variable, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckDisplayNames;
+
+	// All entities will have a Collection as well, so that can swap cards in and out of their deck mid-battle.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> CardsInCollectionDisplayNames;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquippedItems;
 
+	// This variable exists for all entities because all entities can have unequipped and equipped items.
+	// To-Do: Give enemies the ability to equip and unequip items.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquipmentInventory;
 
@@ -559,6 +611,10 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ETeams Team;
 
+	// Shout cards can only be played once per turn, but don't cost anything to play.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool HasUsedShoutThisTurn;
+
 	FEntity()
 	{
 		DisplayName = "Default Jim";
@@ -566,6 +622,7 @@ struct LOSTWORLD_API FEntity
 		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
 		Team = ETeams::PlayerTeam;
+		HasUsedShoutThisTurn = false;
 	}
 };
 

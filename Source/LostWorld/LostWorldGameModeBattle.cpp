@@ -99,8 +99,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	}
 
 	// Reset all of the players' card arrays, except their deck.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Hand.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.DiscardPile.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
 
 	// Add the player's entity to the array last.
@@ -228,9 +228,9 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
 		if (Cast<AActorEntityEnemy>(Entity)) {
-			Entity->Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->EntityData.Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
-			Entity->Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->EntityData.Deck);
 		}
 	}
 
@@ -352,7 +352,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
-	FCard CardToCast = TurnQueue[0]->Hand[CardIndexInHandArray];
+	FCard CardToCast = TurnQueue[0]->EntityData.Hand[CardIndexInHandArray];
 	TArray<ECardFunctions> CardFunctions;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 

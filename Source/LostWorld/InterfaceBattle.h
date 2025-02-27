@@ -22,12 +22,12 @@ class LOSTWORLD_API IInterfaceBattle
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	virtual bool OverrideDeck(TArray<FCard> InDeck);
-	virtual bool AddCardToDeck(FCard InCard);
-	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck);
+	virtual bool AddCardToDrawPile(FCard InCard);
+	virtual TArray<FCard> ShuffleDrawPile(TArray<FCard> InDeck);
 	virtual bool DrawCard();
 	virtual bool DiscardCard(int IndexInHand);
 	virtual bool PayCostsForCard(int IndexInHand);
-	virtual bool ShuffleDiscardPileIntoDeck();
+	virtual bool ShuffleDiscardPileIntoDrawPile();
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();

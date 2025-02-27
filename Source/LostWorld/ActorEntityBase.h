@@ -61,12 +61,12 @@ public:
 // This is so that the Player entity can receive data from and send data to the Players' GameInstance, which persists
 // between battles.
 	virtual bool OverrideDeck(TArray<FCard> InDeck) override;
-	virtual bool AddCardToDeck(FCard InCard) override;
-	virtual TArray<FCard> ShuffleDeck(TArray<FCard> InDeck) override;
+	virtual bool AddCardToDrawPile(FCard InCard) override;
+	virtual TArray<FCard> ShuffleDrawPile(TArray<FCard> InDeck) override;
 	virtual bool DrawCard() override;
 	virtual bool DiscardCard(int IndexInHand) override;
 	virtual bool PayCostsForCard(int IndexInHand) override;
-	virtual bool ShuffleDiscardPileIntoDeck() override;
+	virtual bool ShuffleDiscardPileIntoDrawPile() override;
 
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;

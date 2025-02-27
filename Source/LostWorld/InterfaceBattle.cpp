@@ -8,13 +8,13 @@ bool IInterfaceBattle::OverrideDeck(TArray<FCard> InDeck)
 }
 
 
-bool IInterfaceBattle::AddCardToDeck(FCard Card)
+bool IInterfaceBattle::AddCardToDrawPile(FCard Card)
 {
 	return true;
 }
 
 
-TArray<FCard> IInterfaceBattle::ShuffleDeck(TArray<FCard> InDeck)
+TArray<FCard> IInterfaceBattle::ShuffleDrawPile(TArray<FCard> InDeck)
 {
 	TArray<FCard> ShuffledDeck;
 
@@ -48,7 +48,7 @@ bool IInterfaceBattle::PayCostsForCard(int IndexInHand)
 }
 
 
-bool IInterfaceBattle::ShuffleDiscardPileIntoDeck()
+bool IInterfaceBattle::ShuffleDiscardPileIntoDrawPile()
 {
 	return true;
 }

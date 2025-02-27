@@ -51,19 +51,19 @@ bool AActorEntityBase::OverrideDeck(TArray<FCard> InDeck)
 }
 
 
-bool AActorEntityBase::AddCardToDeck(FCard InCard)
+bool AActorEntityBase::AddCardToDrawPile(FCard InCard)
 {
 	EntityData.DrawPile.Add(InCard);
 	
-	return IInterfaceBattle::AddCardToDeck(InCard);
+	return IInterfaceBattle::AddCardToDrawPile(InCard);
 }
 
 
-TArray<FCard> AActorEntityBase::ShuffleDeck(TArray<FCard> InDeck)
+TArray<FCard> AActorEntityBase::ShuffleDrawPile(TArray<FCard> InDeck)
 {
 	// The Shuffle Deck function doesn't need to have multiple different definitions,
 	// so we can just use the default one.
-	return IInterfaceBattle::ShuffleDeck(EntityData.DrawPile);
+	return IInterfaceBattle::ShuffleDrawPile(EntityData.DrawPile);
 }
 
 bool AActorEntityBase::DrawCard()
@@ -72,7 +72,7 @@ bool AActorEntityBase::DrawCard()
 		// If there's no cards in the deck, check if there are any cards in the discard pile.
 		// If there are, shuffle the discard pile into the deck.
 		if (EntityData.DiscardPile.Num() > 0) {
-			ShuffleDiscardPileIntoDeck();
+			ShuffleDiscardPileIntoDrawPile();
 		} else {
 			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName + " can't draw any cards!", 2);
 		}
@@ -119,7 +119,7 @@ bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 }
 
 
-bool AActorEntityBase::ShuffleDiscardPileIntoDeck()
+bool AActorEntityBase::ShuffleDiscardPileIntoDrawPile()
 {
 	if (EntityData.DiscardPile.Num() > 0) {
 		for (int DiscardCount = 0; DiscardCount < EntityData.DiscardPile.Num(); DiscardCount++) {
@@ -128,9 +128,9 @@ bool AActorEntityBase::ShuffleDiscardPileIntoDeck()
 	}
 
 	EntityData.DiscardPile.Empty();
-	ShuffleDeck(EntityData.DrawPile);
+	ShuffleDrawPile(EntityData.DrawPile);
 	
-	return IInterfaceBattle::ShuffleDiscardPileIntoDeck();
+	return IInterfaceBattle::ShuffleDiscardPileIntoDrawPile();
 }
 
 

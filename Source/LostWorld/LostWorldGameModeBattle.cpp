@@ -94,7 +94,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
 			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckDisplayNames[CardCount].ToString());
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
 		}
 	}
 
@@ -195,7 +195,7 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 	for (int CardCount = 0; CardCount < InEntity.CardsInDeckDisplayNames.Num(); CardCount++) {
 		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			GetCardFromJson(InEntity.CardsInDeckDisplayNames[CardCount].ToString());
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
 	}
 
 	// Initialize billboard
@@ -228,9 +228,9 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
 		if (Cast<AActorEntityEnemy>(Entity)) {
-			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->EntityData.Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
-			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->EntityData.Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		}
 	}
 
@@ -527,7 +527,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
 					FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
-					PlayerEntityReference->AddCardToDeck(InCard);
+					PlayerEntityReference->AddCardToDrawPile(InCard);
 				}
 
 				// Player stat calculation.

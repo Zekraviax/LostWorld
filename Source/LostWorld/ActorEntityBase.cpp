@@ -45,47 +45,47 @@ void AActorEntityBase::ResetEntityBillboardPositionAndRotation() const
 // -------------------------------- Battle Interface functions
 bool AActorEntityBase::OverrideDeck(TArray<FCard> InDeck)
 {
-	Deck = InDeck;
+	EntityData.DrawPile = InDeck;
 	
 	return IInterfaceBattle::OverrideDeck(InDeck);
 }
 
 
-bool AActorEntityBase::AddCardToDeck(FCard InCard)
+bool AActorEntityBase::AddCardToDrawPile(FCard InCard)
 {
-	Deck.Add(InCard);
+	EntityData.DrawPile.Add(InCard);
 	
-	return IInterfaceBattle::AddCardToDeck(InCard);
+	return IInterfaceBattle::AddCardToDrawPile(InCard);
 }
 
 
-TArray<FCard> AActorEntityBase::ShuffleDeck(TArray<FCard> InDeck)
+TArray<FCard> AActorEntityBase::ShuffleDrawPile(TArray<FCard> InDeck)
 {
 	// The Shuffle Deck function doesn't need to have multiple different definitions,
 	// so we can just use the default one.
-	return IInterfaceBattle::ShuffleDeck(Deck);
+	return IInterfaceBattle::ShuffleDrawPile(EntityData.DrawPile);
 }
 
 bool AActorEntityBase::DrawCard()
 {
-	if (Deck.Num() < 1) {
+	if (EntityData.DrawPile.Num() < 1) {
 		// If there's no cards in the deck, check if there are any cards in the discard pile.
 		// If there are, shuffle the discard pile into the deck.
-		if (Discard.Num() > 0) {
-			ShuffleDiscardPileIntoDeck();
+		if (EntityData.DiscardPile.Num() > 0) {
+			ShuffleDiscardPileIntoDrawPile();
 		} else {
 			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName + " can't draw any cards!", 2);
 		}
 	}
 	
 	// Shift the top card of the deck into the hand
-	Hand.Add(Deck[0]);
-	Deck.RemoveAt(0);
+	EntityData.Hand.Add(EntityData.DrawPile[0]);
+	EntityData.DrawPile.RemoveAt(0);
 
 	// Calculate card variables such as total cost here.
-	Hand.Last().TotalCost = Hand.Last().BaseCost;
-	Hand.Last().TotalDamage = Hand.Last().BaseDamage;
-	Hand.Last().TotalHealing = Hand.Last().BaseHealing;
+	EntityData.Hand.Last().TotalCost = EntityData.Hand.Last().BaseCost;
+	EntityData.Hand.Last().TotalDamage = EntityData.Hand.Last().BaseDamage;
+	EntityData.Hand.Last().TotalHealing = EntityData.Hand.Last().BaseHealing;
 	
 	return IInterfaceBattle::DrawCard();
 }
@@ -93,8 +93,8 @@ bool AActorEntityBase::DrawCard()
 
 bool AActorEntityBase::DiscardCard(int IndexInHand)
 {
-	Discard.Add(Hand[IndexInHand]);
-	Hand.RemoveAt(IndexInHand);
+	EntityData.DiscardPile.Add(EntityData.Hand[IndexInHand]);
+	EntityData.Hand.RemoveAt(IndexInHand);
 	
 	return IInterfaceBattle::DiscardCard(IndexInHand);
 }
@@ -103,7 +103,7 @@ bool AActorEntityBase::DiscardCard(int IndexInHand)
 bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 {
 	TArray<ECardFunctions> CardFunctions;
-	Hand[IndexInHand].FunctionsAndTargets.GetKeys(CardFunctions);
+	EntityData.Hand[IndexInHand].FunctionsAndTargets.GetKeys(CardFunctions);
 	
 	if (CardFunctions.Contains(ECardFunctions::CostsAllMana)) {
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card.TotalCost =
@@ -111,7 +111,7 @@ bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 		
 		EntityData.TotalStats.CurrentManaPoints = 0;
 	} else {
-		EntityData.TotalStats.CurrentManaPoints -= Hand[IndexInHand].TotalCost;
+		EntityData.TotalStats.CurrentManaPoints -= EntityData.Hand[IndexInHand].TotalCost;
 	}
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
@@ -119,18 +119,18 @@ bool AActorEntityBase::PayCostsForCard(int IndexInHand)
 }
 
 
-bool AActorEntityBase::ShuffleDiscardPileIntoDeck()
+bool AActorEntityBase::ShuffleDiscardPileIntoDrawPile()
 {
-	if (Discard.Num() > 0) {
-		for (int DiscardCount = 0; DiscardCount < Discard.Num(); DiscardCount++) {
-			Deck.Add(Discard[DiscardCount]);
+	if (EntityData.DiscardPile.Num() > 0) {
+		for (int DiscardCount = 0; DiscardCount < EntityData.DiscardPile.Num(); DiscardCount++) {
+			EntityData.DrawPile.Add(EntityData.DiscardPile[DiscardCount]);
 		}
 	}
 
-	Discard.Empty();
-	ShuffleDeck(Deck);
+	EntityData.DiscardPile.Empty();
+	ShuffleDrawPile(EntityData.DrawPile);
 	
-	return IInterfaceBattle::ShuffleDiscardPileIntoDeck();
+	return IInterfaceBattle::ShuffleDiscardPileIntoDrawPile();
 }
 
 

@@ -18,7 +18,9 @@
 			"Agility": 0,
 			"HealthRegeneration": 1,
 			"ManaRegeneration": 1,
-			"Readiness": 0
+			"Readiness": 0,
+			"CurrentStatusEffects": [],
+			"StartBattleWithStatusEffectsDisplayNames": []
 		}
 	}
 ]

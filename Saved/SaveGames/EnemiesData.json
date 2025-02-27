@@ -23,7 +23,9 @@
 				"Agility": 5,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -39,7 +41,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -112,7 +116,11 @@
 				"Agility": 5,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": [
+					"Iron Shell"
+				]
 			},
 			"TotalStats":
 			{
@@ -128,7 +136,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -201,7 +211,9 @@
 				"Agility": 2,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -217,7 +229,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -290,7 +304,9 @@
 				"Agility": 4,
 				"HealthRegeneration": 4,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -306,7 +322,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{

@@ -94,13 +94,13 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
 			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckDisplayNames[CardCount].ToString());
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
 		}
 	}
 
 	// Reset all of the players' card arrays, except their deck.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Hand.Empty();
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->Discard.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Hand.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.DiscardPile.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
 
 	// Add the player's entity to the array last.
@@ -195,7 +195,7 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 	for (int CardCount = 0; CardCount < InEntity.CardsInDeckDisplayNames.Num(); CardCount++) {
 		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			GetCardFromJson(InEntity.CardsInDeckDisplayNames[CardCount].ToString());
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDeck(InCard);
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
 	}
 
 	// Initialize billboard
@@ -228,9 +228,9 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
 		if (Cast<AActorEntityEnemy>(Entity)) {
-			Entity->Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDeck(Entity->Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
-			Entity->Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDeck(Entity->Deck);
+			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		}
 	}
 
@@ -256,7 +256,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Give each entity the status effects they should start the battle with,
 	// And trigger all status effects that trigger at the start of battles.
 	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
-		for (FString StatusEffectDisplayName : Entity->EntityData.StartBattleWithStatusEffectsDisplayNames) {
+		for (FString StatusEffectDisplayName : Entity->EntityData.TotalStats.StartBattleWithStatusEffectsDisplayNames) {
 			Cast<IInterfaceBattle>(Entity)->AddStatusEffect(
 				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetStatusEffectFromJson(StatusEffectDisplayName));
 
@@ -352,7 +352,7 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
-	FCard CardToCast = TurnQueue[0]->Hand[CardIndexInHandArray];
+	FCard CardToCast = TurnQueue[0]->EntityData.Hand[CardIndexInHandArray];
 	TArray<ECardFunctions> CardFunctions;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
 
@@ -527,7 +527,7 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
 					FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
-					PlayerEntityReference->AddCardToDeck(InCard);
+					PlayerEntityReference->AddCardToDrawPile(InCard);
 				}
 
 				// Player stat calculation.

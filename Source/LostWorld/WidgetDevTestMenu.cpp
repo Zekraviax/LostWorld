@@ -43,7 +43,7 @@ void UWidgetDevTestMenu::AddCardToDeck(const FString& CardDisplayName) const
 	for (FCard Card : CardsArray) {
 		if (CardDisplayName == Card.DisplayName) {
 			Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
-				ControlledPlayerEntity->Deck.Add(Card);
+				ControlledPlayerEntity->EntityData.Deck.Add(Card);
 			Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
 				ControlledPlayerEntity->EntityData.CardsInDeckDisplayNames.Add(FName(CardDisplayName));
 

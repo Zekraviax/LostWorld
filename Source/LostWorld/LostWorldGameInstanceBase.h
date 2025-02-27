@@ -12,7 +12,7 @@
 class USaveGameDeveloperSettings;
 
 
-// Local /enumsstructs
+// Local enums/structs
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FPlayerSavesAsStruct
 {

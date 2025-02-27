@@ -435,6 +435,12 @@ struct LOSTWORLD_API FEntityBaseStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FStatusEffect> CurrentStatusEffects;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
 	
 	// Default constructor
 	FEntityBaseStats()
@@ -556,13 +562,32 @@ struct LOSTWORLD_API FEntity
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
 
+	// To-Do: Move card arrays (like the Deck, Draw Pile, Graveyard, etc.) to here
+	// from their AActors.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Deck;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Hand;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> DrawPile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> DiscardPile;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Exile;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumDeckSize = -1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumDeckSize = -1;
 
-	// All entities will have a Deck, even if they don't use it in gameplay.
+	// To-Do: Remove these FName arrays.
+	// As of 2025/02/19, they are deprecated.
+	// All entities will have a Deck variable, even if they don't use it in gameplay.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FName> CardsInDeckDisplayNames;
 

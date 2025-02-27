@@ -119,7 +119,7 @@ void ALostWorldPlayerControllerBase::AddDeckEditorToViewport()
 
 	if (DeckEditorWidget) {
 		DeckEditorWidget->AddToViewport();
-		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->Deck);
+		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->EntityData.Deck);
 	}
 }
 

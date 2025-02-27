@@ -91,10 +91,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
 
 		// Set up the enemy's deck.
-		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
-			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckDisplayNames[CardCount].ToString());
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
+		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.Deck.Num(); CardCount++) {
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(
+				EnemyEntityData.EntityData.Deck[CardCount]);
 		}
 	}
 
@@ -192,10 +191,8 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 	DualLog("Spawn enemy: " + InEntity.DisplayName, 3);
 
 	// Set up the enemy's deck.
-	for (int CardCount = 0; CardCount < InEntity.CardsInDeckDisplayNames.Num(); CardCount++) {
-		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-			GetCardFromJson(InEntity.CardsInDeckDisplayNames[CardCount].ToString());
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
+	for (int CardCount = 0; CardCount < InEntity.Deck.Num(); CardCount++) {
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InEntity.Deck[CardCount]);
 	}
 
 	// Initialize billboard
@@ -520,14 +517,14 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 
 				// Player data loading is handled in the GameInstanceBase.
 				// Here, we just fetch it from the game instance.
-				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
+				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())
+					->CurrentPlayerSave.EntityData;
 
 				// Load the players' card collection here, when their actor is first spawned.
-				TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckDisplayNames;
-				for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
-					FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
-					PlayerEntityReference->AddCardToDrawPile(InCard);
+				for (int CardCount = 0; CardCount < Cast<ULostWorldGameInstanceBase>(
+					GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.Deck.Num(); CardCount++) {
+					PlayerEntityReference->AddCardToDrawPile(Cast<ULostWorldGameInstanceBase>(
+					GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.Deck[CardCount]);
 				}
 
 				// Player stat calculation.

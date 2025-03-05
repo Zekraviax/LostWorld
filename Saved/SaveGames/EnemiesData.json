@@ -69,21 +69,215 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				}
+			],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
@@ -118,9 +312,7 @@
 				"ManaRegeneration": 1,
 				"Readiness": 0,
 				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": [
-					"Iron Shell"
-				]
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -163,22 +355,218 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectsDisplayNames": [
+				"IronShell"
+			],
+			"Collection": [],
+			"Deck": [],
+			"Hand": [
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				}
+			],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardOne",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardTwo",
-				"TestCardThree"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
@@ -257,21 +645,213 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Default Card",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "This is a default description.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				}
+			],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
@@ -350,21 +930,215 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [
+				{
+					"DisplayName": "Howl Of Command",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FunctionsAndTargets":
+					{
+						"HowlOfCommand": "OneEnemy"
+					},
+					"TotalCost": 5,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Howl Of Command",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FunctionsAndTargets":
+					{
+						"HowlOfCommand": "OneEnemy"
+					},
+					"TotalCost": 5,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Howl Of Command",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FunctionsAndTargets":
+					{
+						"HowlOfCommand": "OneEnemy"
+					},
+					"TotalCost": 5,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Howl Of Command",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FunctionsAndTargets":
+					{
+						"HowlOfCommand": "OneEnemy"
+					},
+					"TotalCost": 5,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Howl Of Command",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FunctionsAndTargets":
+					{
+						"HowlOfCommand": "OneEnemy"
+					},
+					"TotalCost": 5,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				}
+			],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"Howl Of Command",
-				"Howl Of Command",
-				"Howl Of Command",
-				"Howl Of Command",
-				"Howl Of Command",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
@@ -396,7 +1170,9 @@
 				"Agility": 10,
 				"HealthRegeneration": 1,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -412,7 +1188,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -438,21 +1216,14 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"Gore Rush",
-				"Gore Rush",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One",
-				"Test Card One"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,
@@ -484,7 +1255,9 @@
 				"Agility": 25,
 				"HealthRegeneration": 5,
 				"ManaRegeneration": 5,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -500,7 +1273,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -526,21 +1301,14 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush",
-				"Gore Rush"
-			],
-			"CardsInCollectionDisplayNames": [],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 7,

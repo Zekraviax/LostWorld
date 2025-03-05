@@ -10,3 +10,6 @@ Note: Exclusive to Summons.
 Name: Miasma
 Effect(s): All entities cannot be healed.
 
+
+Name: Tough Shell
+Effect(s): This entity takes 0.5x damage from cards with base power 10 or more.

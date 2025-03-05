@@ -43,11 +43,11 @@ void AActorEntityBase::ResetEntityBillboardPositionAndRotation() const
 
 
 // -------------------------------- Battle Interface functions
-bool AActorEntityBase::OverrideDeck(TArray<FCard> InDeck)
+bool AActorEntityBase::AddCardToDeck(FCard InCard)
 {
-	EntityData.DrawPile = InDeck;
+	EntityData.Deck.Add(InCard);
 	
-	return IInterfaceBattle::OverrideDeck(InDeck);
+	return IInterfaceBattle::AddCardToDeck(InCard);
 }
 
 

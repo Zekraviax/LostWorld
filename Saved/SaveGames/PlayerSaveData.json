@@ -21,7 +21,9 @@
 				"Agility": 5,
 				"HealthRegeneration": 1,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"TotalStats":
 			{
@@ -37,7 +39,9 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
 			},
 			"OffensiveAffinities":
 			{
@@ -63,23 +67,458 @@
 			},
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card One",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Fire"
+					],
+					"BaseDamage": 10,
+					"BaseHealing": 0,
+					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 10,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Two",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 5,
+					"BaseHealing": 0,
+					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionTwo": "AllEnemies"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 5,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Two",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 5,
+					"BaseHealing": 0,
+					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionTwo": "AllEnemies"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 5,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Three",
+					"BaseCost": 3,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Water"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Draw 1 card.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionThree": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Three",
+					"BaseCost": 3,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Water"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Draw 1 card.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionThree": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Four",
+					"BaseCost": 4,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Air"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 5,
+					"Description": "Heal one target with base power ${TotalHealing}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionFour": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 5
+				},
+				{
+					"DisplayName": "Test Card Four",
+					"BaseCost": 4,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Air"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 5,
+					"Description": "Heal one target with base power ${TotalHealing}.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionFour": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 5
+				},
+				{
+					"DisplayName": "Trick",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Cosmic"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Swap your hand and deck.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Trick",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Cosmic"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Swap your hand and deck.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionOne": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Energy In The Air",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 1,
+					"BaseHealing": 0,
+					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+					"FunctionsAndTargets":
+					{
+						"EnergyAllAround": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Energy In The Air",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 1,
+					"BaseHealing": 0,
+					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+					"FunctionsAndTargets":
+					{
+						"EnergyAllAround": "OneEnemy"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				}
+			],
+			"Deck": [
+				{
+					"DisplayName": "Poison Dart",
+					"BaseCost": 3,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 2,
+					"BaseHealing": 0,
+					"Description": "Deal light damage and poison a target.",
+					"FunctionsAndTargets":
+					{
+						"PoisonDart": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Poison Dart",
+					"BaseCost": 3,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 2,
+					"BaseHealing": 0,
+					"Description": "Deal light damage and poison a target.",
+					"FunctionsAndTargets":
+					{
+						"PoisonDart": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Armour Breaker",
+					"BaseCost": 7,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 12,
+					"BaseHealing": 0,
+					"Description": "Deals moderate damage. Damage is doubled against barriers.",
+					"FunctionsAndTargets":
+					{
+						"ArmourBreaker": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 12,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Armour Breaker",
+					"BaseCost": 7,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 12,
+					"BaseHealing": 0,
+					"Description": "Deals moderate damage. Damage is doubled against barriers.",
+					"FunctionsAndTargets":
+					{
+						"ArmourBreaker": "AnyOneEntity"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 12,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Hyper Beam",
+					"BaseCost": 0,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+					"FunctionsAndTargets":
+					{
+						"HyperBeam": "AnyOneEntity",
+						"CostsAllMana": "None"
+					},
+					"TotalCost": 0,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Hyper Beam",
+					"BaseCost": 0,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+					"FunctionsAndTargets":
+					{
+						"HyperBeam": "AnyOneEntity",
+						"CostsAllMana": "None"
+					},
+					"TotalCost": 0,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Five",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Draw cards until your deck is empty, then draw one more.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionFive": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Five",
+					"BaseCost": 5,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Draw cards until your deck is empty, then draw one more.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionFive": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Six",
+					"BaseCost": 6,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Divine"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Summon a TestSummon.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionSix": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Test Card Six",
+					"BaseCost": 6,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Divine"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Description": "Summon a TestSummon.",
+					"FunctionsAndTargets":
+					{
+						"TestFunctionSix": "Self"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				}
+			],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
-			"CardsInDeckDisplayNames": [
-				"Test Card Five",
-				"Test Card Five",
-				"Test Card Six",
-				"Test Card Six",
-				"Armour Breaker",
-				"Armour Breaker",
-				"Poison Dart",
-				"Poison Dart",
-				"Energy In The Air",
-				"Energy In The Air"
-			],
-			"CardsInCollectionDisplayNames": [
-				"Test Card One"
-			],
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 5,

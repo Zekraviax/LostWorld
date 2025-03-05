@@ -565,6 +565,9 @@ struct LOSTWORLD_API FEntity
 	// To-Do: Move card arrays (like the Deck, Draw Pile, Graveyard, etc.) to here
 	// from their AActors.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCard> Collection;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCard> Deck;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -584,16 +587,6 @@ struct LOSTWORLD_API FEntity
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumDeckSize = -1;
-
-	// To-Do: Remove these FName arrays.
-	// As of 2025/02/19, they are deprecated.
-	// All entities will have a Deck variable, even if they don't use it in gameplay.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> CardsInDeckDisplayNames;
-
-	// All entities will have a Collection as well, so that can swap cards in and out of their deck mid-battle.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> CardsInCollectionDisplayNames;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquippedItems;
@@ -618,7 +611,6 @@ struct LOSTWORLD_API FEntity
 	{
 		DisplayName = "Default Jim";
 		EntityTypes = { EEntityTypes::Enemy };
-		CardsInDeckDisplayNames = { "Test Card One", "Test Card One" };
 		StartOfBattleHandSize = 5;
 		Team = ETeams::PlayerTeam;
 		HasUsedShoutThisTurn = false;

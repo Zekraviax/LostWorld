@@ -2,7 +2,7 @@
 
 
 // Add default functionality here for any IInterfaceBattle functions that are not pure virtual.
-bool IInterfaceBattle::OverrideDeck(TArray<FCard> InDeck)
+bool IInterfaceBattle::AddCardToDeck(FCard InCard)
 {
 	return true;
 }

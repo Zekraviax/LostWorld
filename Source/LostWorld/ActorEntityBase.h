@@ -60,7 +60,7 @@ public:
 // The Enemy entity and Player entity will also override these so they can have additional effects.
 // This is so that the Player entity can receive data from and send data to the Players' GameInstance, which persists
 // between battles.
-	virtual bool OverrideDeck(TArray<FCard> InDeck) override;
+	virtual bool AddCardToDeck(FCard InCard) override;
 	virtual bool AddCardToDrawPile(FCard InCard) override;
 	virtual TArray<FCard> ShuffleDrawPile(TArray<FCard> InDeck) override;
 	virtual bool DrawCard() override;

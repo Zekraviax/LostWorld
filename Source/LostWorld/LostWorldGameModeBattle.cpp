@@ -91,10 +91,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
 
 		// Set up the enemy's deck.
-		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.CardsInDeckDisplayNames.Num(); CardCount++) {
-			FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-				GetCardFromJson(EnemyEntityData.EntityData.CardsInDeckDisplayNames[CardCount].ToString());
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
+		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.Deck.Num(); CardCount++) {
+			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->
+			AddCardToDrawPile(EnemyEntityData.EntityData.Deck[CardCount]);
 		}
 	}
 
@@ -183,24 +182,22 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 	// Then get the entity's cards from the cards json and add them to their deck.
 	Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = InEntity;
 
-	// Assign team?
+	// To-Do: Assign team.
 	//EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
 
 	// Stat calculations.
 	Cast<IInterfaceEntity>(EntitiesInBattleArray.Last())->CalculateTotalStats();
 
-	DualLog("Spawn enemy: " + InEntity.DisplayName, 3);
-
-	// Set up the enemy's deck.
-	for (int CardCount = 0; CardCount < InEntity.CardsInDeckDisplayNames.Num(); CardCount++) {
-		FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-			GetCardFromJson(InEntity.CardsInDeckDisplayNames[CardCount].ToString());
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InCard);
+	// Set up the enemy's deck and draw pile.
+	for (int CardCount = 0; CardCount < InEntity.Deck.Num(); CardCount++) {
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InEntity.Deck[CardCount]);
 	}
 
 	// Initialize billboard
 	SpawnedEntity->ResetEntityBillboardPositionAndRotation();
 	Cast<UWidgetEntityBillboard>(SpawnedEntity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(SpawnedEntity->EntityData);
+
+	DualLog("Spawned enemy: " + InEntity.DisplayName, 3);
 
 	// To-Do: When an entity is summoned mid-battle, the whole turn queue needs to be recalculated,
 	// but the currently acting actor should always be the first in the turn queue.
@@ -523,11 +520,8 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
 
 				// Load the players' card collection here, when their actor is first spawned.
-				TArray<FName> PlayerCardsInDeckRowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData.CardsInDeckDisplayNames;
-				for (int CardCount = 0; CardCount < PlayerCardsInDeckRowNames.Num(); CardCount++) {
-					FCard InCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-						GetCardFromJson(PlayerCardsInDeckRowNames[CardCount].ToString());
-					PlayerEntityReference->AddCardToDrawPile(InCard);
+				for (int CardCount = 0; CardCount < PlayerEntityReference->EntityData.Deck.Num(); CardCount++) {
+					PlayerEntityReference->AddCardToDrawPile(PlayerEntityReference->EntityData.Deck[CardCount]);
 				}
 
 				// Player stat calculation.

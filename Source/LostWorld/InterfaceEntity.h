@@ -18,6 +18,8 @@ class LOSTWORLD_API IInterfaceEntity
 	GENERATED_BODY()
 
 public:
+
+	
 	virtual bool CalculateTotalStats();
 
 	virtual bool EquipItem(int IndexInInventoryArray);

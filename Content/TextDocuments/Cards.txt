@@ -17,4 +17,29 @@ Cost: 6
 Type(s): Technique
 Element(s): Air
 Effect(s): If it's your first turn of the battle, you may play this card for free.
-If you can equip a weapon, Create a Temporary Pistol equippable item and equip it.
+If you can equip a weapon, create a temporary Pistol equippable item and equip it.
+
+
+Name: Funeral Pyre
+Cost: ? 
+Type(s): Spell
+Element(s): Light
+Effect(s): Exile a card in a discard pile. Heal yourself for HP equal to that card's base cost.
+
+
+
+Name: Recursive Resourcing
+Cost: ?
+Type(s): Spell
+Element(s): Arcane
+Effect(s): Enhance a card in your hand with the following effects:
+'This card costs 1 less for each other copy you have of it in your hand.'
+'When you play this card, create and draw a copy of it.'
+
+
+Name: ?
+Cost: ?
+Type(s): Spell
+Element(s): Water
+Effect(s): You may reveal any number of cards in an enemy's hand. For each card revealed this way, 
+you take damage equal to that card's base cost.

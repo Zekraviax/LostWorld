@@ -13,7 +13,8 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 {
 	Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 
-	if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->ControlMode == EPlayerControlModes::Battle) {
+	if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+		ControlMode == EPlayerControlModes::Battle) {
 		// Calculate the drop position scaled down to between 0.0 and 1.0
 		// In the context of the viewport, the Y axis is the up-down axis.
 		float DropPositionY = Cast<UDragDropOperationCard>(InOperation)->CursorPositionAsPercentage.Y;

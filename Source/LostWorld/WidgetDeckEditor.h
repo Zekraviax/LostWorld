@@ -29,12 +29,20 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UUniformGridPanel* CardsInDeckUniformGridPanel;
 
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	//UScrollBox* CardsInCollectionScrollBox;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UScrollBox* CardsInCollectionScrollBox;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UUniformGridPanel* CardsInCollectionUniformGridPanel;
 
 
 // ---------------------------------------- Functions ---------------------------------------- //
+protected:
+	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
+
+public:
 	void PopulateCardsInDeckUniformGridPanel(TArray<FCard> Deck) const;
+	void PopulateCardsInCollectionUniformGridPanel(TArray<FCard> Collection) const;
 
 	UFUNCTION(BlueprintCallable)
 	void CloseDeckEditor();

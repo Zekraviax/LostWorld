@@ -1,7 +1,6 @@
 #include "DragDropOperationCard.h"
 
 
-#include "LostWorldGameModeBase.h"
 #include "WidgetCard.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 
@@ -17,6 +16,7 @@ void UDragDropOperationCard::Dragged_Implementation(const FPointerEvent& Pointer
 	USlateBlueprintLibrary::AbsoluteToViewport(Payload, ScreenSpacePosition, PixelPosition, AtoVPosition);
 	GEngine->GameViewport->GetViewportSize(ViewportDimensions);
 
+	CursorPosition.X = PixelPosition.X;
 	CursorPositionAsPercentage.X = PixelPosition.X / ViewportDimensions.X;
 	CursorPositionAsPercentage.Y = PixelPosition.Y / ViewportDimensions.Y;
 

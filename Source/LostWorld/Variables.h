@@ -120,6 +120,7 @@ enum class EPlayerControlModes : uint8
 	LevelExploration,
 	Battle,
 	TargetSelectionSingleEntity,
+	DeckEditor
 };
 
 

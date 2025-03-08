@@ -48,7 +48,8 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 {
 	ControlMode = InControlMode;
 
-	ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
+	// To-Do: Figure out an alternative way of converting an enum to a string.
+	//ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
 }
 
 
@@ -120,6 +121,7 @@ void ALostWorldPlayerControllerBase::AddDeckEditorToViewport()
 	if (DeckEditorWidget) {
 		DeckEditorWidget->AddToViewport();
 		DeckEditorWidget->PopulateCardsInDeckUniformGridPanel(ControlledPlayerEntity->EntityData.Deck);
+		DeckEditorWidget->PopulateCardsInCollectionUniformGridPanel(ControlledPlayerEntity->EntityData.Collection);
 	}
 }
 
@@ -128,7 +130,6 @@ void ALostWorldPlayerControllerBase::AddDevTestMenuToViewport()
 {
 	// Don't close anything when opening this menu.
 	// Just overlay this menu on top of everything else.
-	
 	if (DevTestWidgetBlueprintClass && !DevTestWidget) {
 		DevTestWidget = CreateWidget<UWidgetDevTestMenu>(GetWorld(), DevTestWidgetBlueprintClass);
 	}

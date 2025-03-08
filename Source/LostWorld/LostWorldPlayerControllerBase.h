@@ -27,6 +27,9 @@ public:
 	AActorEntityPlayer* ControlledPlayerEntity;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	EPlayerControlModes PreviousControlMode = EPlayerControlModes::LevelExploration;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	EPlayerControlModes ControlMode = EPlayerControlModes::LevelExploration;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

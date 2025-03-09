@@ -6,6 +6,7 @@
 
 void UWidgetHudLevelExploration::OpenDeckEditorWidget()
 {
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::DeckEditor;
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddDeckEditorToViewport();
 }
 

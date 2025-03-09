@@ -15,7 +15,9 @@ public class LostWorld : ModuleRules
 			"Engine", 
 			"InputCore",
 			"Json",
-			"JsonUtilities"
+			"JsonUtilities",
+			"Slate",
+			"SlateCore"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

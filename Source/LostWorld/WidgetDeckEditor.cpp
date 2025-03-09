@@ -2,43 +2,54 @@
 
 
 #include "DragDropOperationCard.h"
+#include "LostWorldGameModeBase.h"
 #include "Components/UniformGridSlot.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBase.h"
 #include "LostWorldPlayerControllerBattle.h"
+#include "Types/ReflectionMetadata.h"
 #include "WidgetCard.h"
-#include "Components/CanvasPanelSlot.h"
+#include "Widgets/SViewport.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 
+
+class FReflectionMetaData;
 
 bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
 	if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 		ControlMode == EPlayerControlModes::DeckEditor) {
-		bool FoundHoveredSlot = false;
 		int HoveredSlotIndex = -1;
+		FString GridPanel = "None";
+		UWidgetCard* SourceWidget = nullptr;
 		
-		// Check if the cursor is within the bounds of each slot of both of the grid panels.
-		for (int SlotCount = 0; SlotCount < CardsInDeckUniformGridPanel->GetSlots().Num(); SlotCount++) {
-			if (Cast<UCanvasPanelSlot>(CardsInDeckUniformGridPanel->GetSlots()[SlotCount])->GetPosition().X >=
-				Cast<UDragDropOperationCard>(InOperation)->CursorPosition.X &&
-				Cast<UCanvasPanelSlot>(CardsInDeckUniformGridPanel->GetSlots()[SlotCount])->GetPosition().Y <=
-				Cast<UDragDropOperationCard>(InOperation)->CursorPosition.Y &&
-				!FoundHoveredSlot) {
-				FoundHoveredSlot = true;
-				HoveredSlotIndex = SlotCount;
+		FWidgetPath Path = FSlateApplication::Get().LocateWindowUnderMouse(FSlateApplication::Get().GetCursorPos(),
+			FSlateApplication::Get().GetInteractiveTopLevelWindows(), true);
+		
+		if (Path.IsValid()) {
+			bool FoundRoot = false;
+			for ( int32 i = 0; i < Path.Widgets.Num(); ++i )
+			{
+				FArrangedWidget& ArrangedWidget = Path.Widgets[ i ];
+				TSharedRef<SWidget> Widget = ArrangedWidget.Widget;
+
+				if ( Widget->GetTypeAsString() == "SUniformGridPanel" ) {
+					FoundRoot = true;
+				} else if ( FoundRoot ) {
+					TSharedPtr<FReflectionMetaData> metadata = Widget->GetMetaData<FReflectionMetaData>();
+					if (metadata.IsValid() && metadata->SourceObject.IsValid()) {
+						SourceWidget = Cast<UWidgetCard>(metadata->SourceObject.Get());
+						ALostWorldGameModeBase::DualLog("Found card: ", 3);
+						break;
+					}
+				}
 			}
 		}
 
-		for (int SlotCount = 0; SlotCount < CardsInCollectionUniformGridPanel->GetSlots().Num(); SlotCount++) {
-			if (Cast<UCanvasPanelSlot>(CardsInCollectionUniformGridPanel->GetSlots()[SlotCount])->GetPosition().X >=
-				Cast<UDragDropOperationCard>(InOperation)->CursorPosition.X &&
-				Cast<UCanvasPanelSlot>(CardsInCollectionUniformGridPanel->GetSlots()[SlotCount])->GetPosition().Y <=
-				Cast<UDragDropOperationCard>(InOperation)->CursorPosition.Y &&
-				!FoundHoveredSlot) {
-				FoundHoveredSlot = true;
-				HoveredSlotIndex = SlotCount;
-			}
+		if (HoveredSlotIndex != -1) {
+		
 		}
+		
 	}
 
 	return Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
@@ -97,5 +108,6 @@ void UWidgetDeckEditor::PopulateCardsInCollectionUniformGridPanel(TArray<FCard> 
 
 void UWidgetDeckEditor::CloseDeckEditor()
 {
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlMode = EPlayerControlModes::LevelExploration;
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 }

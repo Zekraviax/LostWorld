@@ -41,11 +41,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UImage* BackgroundImage;
 
+// -------------------------------- Deck editor
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidget* ParentWidget;
+
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 protected:
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
 public:
-	void UpdateComponentsFromPassedCard(const FCard& InCard) const;
+	void UpdateComponentsFromPassedCard(const FCard& InCard);
 };

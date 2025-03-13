@@ -3,6 +3,8 @@
 #include <string>
 
 #include "LostWorldGameModeBase.h"
+#include "Blueprint/WidgetTree.h"
+#include "Components/PanelWidget.h"
 
 
 bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
@@ -11,7 +13,7 @@ bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 }
 
 
-void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
+void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard)
 {
 	TArray<ECardFunctions> CardFunctions;
 	InCard.FunctionsAndTargets.GetKeys(CardFunctions);
@@ -38,4 +40,16 @@ void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 	ElementsText->SetText(FText::FromString(CardElementsAsString));
 	
 	DescriptionText->SetText(FText::FromString(ALostWorldGameModeBase::ParseVariablesInText(InCard, InCard.Description)));
+
+	// Don't make the function const or this won't work.
+	//CurrentGridPanel = GetParent()->GetName();
+	/*UWidgetTree* CardWidgetTree = this->WidgetTree;
+	if (CardWidgetTree) {
+		UObject* Parent = CardWidgetTree->GetOuter();
+		//CardElementsAsString.Append(UEnum::GetValueAsString("").RightChop(15) + " ");
+		TArray<UObject*> OuterObjects;
+		GetObjectsWithOuter(Parent, OuterObjects);
+
+		ALostWorldGameModeBase::DualLog("", 3);
+	}*/
 }

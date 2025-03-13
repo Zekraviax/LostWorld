@@ -2,7 +2,6 @@
 
 
 #include "CoreMinimal.h"
-#include "Variables.h"
 #include "Blueprint/DragDropOperation.h"
 #include "DragDropOperationCard.generated.h"
 

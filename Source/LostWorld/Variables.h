@@ -359,6 +359,18 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 		TotalCost = 1;
 		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::OneEnemy);
 	}
+
+	FORCEINLINE bool operator==(const FCard& OtherCard) const
+	{
+		return this->DisplayName == OtherCard.DisplayName &&
+			this->BaseCost == OtherCard.BaseCost &&
+			this->CardTypes == OtherCard.CardTypes &&
+			this->CardElements == OtherCard.CardElements &&
+			this->BaseDamage == OtherCard.BaseDamage &&
+			this->BaseHealing == OtherCard.BaseHealing &&
+			this->Description == OtherCard.Description;
+			//this->FunctionsAndTargets == OtherCard.FunctionsAndTargets;
+	}
 };
 
 

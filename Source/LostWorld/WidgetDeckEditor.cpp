@@ -2,19 +2,21 @@
 
 
 #include "ActorEntityPlayer.h"
-#include "DragDropOperationCard.h"
-#include "LostWorldGameModeBase.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 #include "Components/UniformGridSlot.h"
+#include "DragDropOperationCard.h"
 #include "Kismet/GameplayStatics.h"
+#include "LostWorldGameModeBase.h"
 #include "LostWorldPlayerControllerBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "Types/ReflectionMetadata.h"
 #include "WidgetCard.h"
 #include "Widgets/SViewport.h"
-#include "Blueprint/WidgetLayoutLibrary.h"
+
 
 
 class FReflectionMetaData;
+
 
 bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
 {
@@ -70,7 +72,7 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 			// Scenario 1: Dragging a card onto another card.
 			// This inserts the dragged card into the array at the second card's index.
 			if (Cast<UWidgetCard>(DragToWidget)) {
-				// To-Do: Try clearing the whole array and adding elements back one-by-one.
+				// Clear the whole array and add elements back one-by-one.
 				// Create a temporary copy of the array before clearing the original.
 				TArray<FCard> ArrayCopy;
 				int ArrayIndex = -1;

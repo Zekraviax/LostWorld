@@ -24,6 +24,7 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 		UWidget* DragFromWidget = Cast<UWidgetCard>(InOperation->Payload)->ParentWidget;
 		UWidget* DragToWidget = nullptr;
 		FCard DraggedCard = Cast<UWidgetCard>(InOperation->Payload)->CardData;
+		int DraggedCardIndex = Cast<UWidgetCard>(InOperation->Payload)->IndexInGridPanel;
 		
 		ALostWorldPlayerControllerBase* PlayerController = Cast<ALostWorldPlayerControllerBattle>(
 			UGameplayStatics::GetPlayerController(GetWorld(), 0));
@@ -58,7 +59,6 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 					if (Metadata.IsValid() && Metadata->SourceObject.IsValid()) {
 						DragToWidget = Cast<UWidget>(Metadata->SourceObject.Get());
 						GridPanel = DragToWidget->GetName();
-						//break;
 					}
 				}
 			}
@@ -69,28 +69,68 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 		if (IsValid(DragToWidget)) {
 			// Scenario 1: Dragging a card onto another card.
 			// This inserts the dragged card into the array at the second card's index.
-			/*if (Cast<UWidgetCard>(DragToWidget)) {
+			if (Cast<UWidgetCard>(DragToWidget)) {
+				// To-Do: Try clearing the whole array and adding elements back one-by-one.
+				// Create a temporary copy of the array before clearing the original.
+				TArray<FCard> ArrayCopy;
+				int ArrayIndex = -1;
 				FCard CardData = Cast<UWidgetCard>(DragToWidget)->CardData;
+
 				
 				if (GridPanel.Contains("Deck")) {
-					int DeckIndex = PlayerEntity->EntityData.Deck.Find(CardData);
-
-					PlayerEntity->EntityData.Collection.Remove(DraggedCard);
-					PlayerEntity->EntityData.Deck.Insert(DraggedCard, DeckIndex);
+					ArrayCopy = PlayerEntity->EntityData.Deck;
+					PlayerEntity->EntityData.Deck.Empty();
 				} else if (GridPanel.Contains("Collection")) {
-					int DeckIndex = PlayerEntity->EntityData.Collection.Find(CardData);
+					ArrayCopy = PlayerEntity->EntityData.Collection;
+					PlayerEntity->EntityData.Collection.Empty();
+				}
+				
 
-					PlayerEntity->EntityData.Deck.Remove(DraggedCard);
-					PlayerEntity->EntityData.Collection.Insert(DraggedCard, DeckIndex);
-				}*/
+				if (GridPanel.Contains("Deck")) {
+					ArrayIndex = ArrayCopy.Find(CardData);
+				} else if (GridPanel.Contains("Collection")) {
+					ArrayIndex = ArrayCopy.Find(CardData);
+				}
+
+
+				for (int ArrayCount = 0; ArrayCount <= ArrayCopy.Num(); ArrayCount++) {
+					if (GridPanel.Contains("Deck")) {
+						if (ArrayCount < ArrayIndex) {
+							PlayerEntity->EntityData.Deck.Add(ArrayCopy[ArrayCount]);
+						} else if (ArrayCount == ArrayIndex) {
+							PlayerEntity->EntityData.Deck.Add(DraggedCard);
+						} else if (ArrayCount > ArrayIndex) {
+							PlayerEntity->EntityData.Deck.Add(ArrayCopy[ArrayCount - 1]);
+						}
+					} else if (GridPanel.Contains("Collection")) {
+						if (ArrayCount < ArrayIndex) {
+							PlayerEntity->EntityData.Collection.Add(ArrayCopy[ArrayCount]);
+						} else if (ArrayCount == ArrayIndex) {
+							PlayerEntity->EntityData.Collection.Add(DraggedCard);
+						} else if (ArrayCount > ArrayIndex) {
+							PlayerEntity->EntityData.Collection.Add(ArrayCopy[ArrayCount - 1]);
+						}
+					}
+				}
+				
+				if (GridPanel.Contains("Deck")) {
+					PlayerEntity->EntityData.Collection.RemoveAt(DraggedCardIndex);
+				} else if (GridPanel.Contains("Collection")) {
+					PlayerEntity->EntityData.Deck.RemoveAt(DraggedCardIndex);
+				}
+
 			// Scenario 2: Dragging a card onto the grid panel widget.
 			// Insert the card into the array at the end.	
-			} if (Cast<UScrollBox>(DragToWidget)) {
+			} else if (Cast<UScrollBox>(DragToWidget)) {
+				if (DragFromWidget->GetName().Contains("Deck")) {
+					PlayerEntity->EntityData.Deck.RemoveAt(DraggedCardIndex);
+				} else if (DragFromWidget->GetName().Contains("Collection")) {
+					PlayerEntity->EntityData.Collection.RemoveAt(DraggedCardIndex);
+				}
+
 				if (GridPanel.Contains("Deck")) {
-					PlayerEntity->EntityData.Collection.Remove(DraggedCard);
 					PlayerEntity->EntityData.Deck.Add(DraggedCard);
 				} else if (GridPanel.Contains("Collection")) {
-					PlayerEntity->EntityData.Deck.Remove(DraggedCard);
 					PlayerEntity->EntityData.Collection.Add(DraggedCard);
 				}
 			}
@@ -150,6 +190,7 @@ void UWidgetDeckEditor::PopulateCardsInCollectionUniformGridPanel(TArray<FCard> 
 		NewCardWidget->UpdateComponentsFromPassedCard(Collection[CardCount]);
 		CardsInCollectionUniformGridPanel->AddChild(NewCardWidget);
 		NewCardWidget->ParentWidget = CardsInCollectionUniformGridPanel;
+		NewCardWidget->IndexInGridPanel = CardCount;
 		
 		Cast<UUniformGridSlot>(CardsInCollectionUniformGridPanel->GetChildAt(CardsInCollectionUniformGridPanel->
 			GetChildrenCount() - 1)->Slot)->SetRow(Row);

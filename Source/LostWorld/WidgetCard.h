@@ -45,6 +45,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidget* ParentWidget;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int IndexInGridPanel = -1;
+	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
 protected:

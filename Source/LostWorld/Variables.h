@@ -93,19 +93,19 @@ enum class ECardTargets : uint8
 // After each time the card is played.
 // When the player wins a battle.
 // On damage dealt.
-
-// To-Do: Figure out if these should (not?) be combined with timing triggers in a map.
+// After damage calculations but before damage is dealt.
 UENUM(BlueprintType)
 enum class ECardModifiers : uint8
 {
-	// Positive --------
-	BaseCostMinusOne,
-	BaseDamagePlusOne,
+	// Positive ----------------
+	TotalCostMinusOne,
 	TotalDamagePlusOne,
-	// Negative --------
-	DamageSetToOne, // This overrides any damage the card would deal to 1.
-	// Mixed --------
-	CostUpDamageUpHealingUp // Increases cost, damage, and healing.
+	// Negative ----------------
+	// This one overrides any damage the card would deal to 1.
+	DamageSetToOne				UMETA(DisplayName="Damage One"),
+	// Mixed ----------------
+	// Increases cost, damage, and healing.
+	CostUpDamageUpHealingUp 
 };
 
 
@@ -152,6 +152,7 @@ enum class ECardFunctions : uint8
 	PinpointThrust,
 	CallForFriends,
 	Inflame,
+	InfectedBite,
 	// -------- Generic functions -------- //
 	DealDamageToOneTarget
 };
@@ -178,7 +179,9 @@ enum class EStatusEffectFunctions : uint8
 	StrengthUp,
 	Howl,
 	Adrenaline,
-	MutantAura
+	MutantAura,
+	Sap, // Reduces all base stats by 1.
+	Bleeding,
 };
 
 

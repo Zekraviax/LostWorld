@@ -118,17 +118,19 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 }
 
 
-FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, ECardModifierTimingTriggers TimingTrigger)
+FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, const ECardModifierTimingTriggers TimingTrigger)
 {
+	// To-Do: Before card mods can be applied, we need to reset the variables to their base values.
+	InCard.TotalCost = InCard.BaseCost;
+	InCard.TotalDamage = InCard.BaseDamage;
+	InCard.TotalHealing = InCard.BaseHealing;
+	
 	for (auto& Mod : InCard.ModifiersWithTriggers) {
 		if (Mod.Value == TimingTrigger) {
 			switch (Mod.Key)
 			{
-				case (ECardModifiers::BaseCostMinusOne):
-					InCard.BaseCost--;
-					break;
-				case (ECardModifiers::BaseDamagePlusOne):
-					InCard.BaseDamage++;
+				case (ECardModifiers::TotalCostMinusOne):
+					InCard.TotalCost--;
 					break;
 				case (ECardModifiers::TotalDamagePlusOne):
 					InCard.TotalDamage++;
@@ -137,9 +139,9 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 					InCard.TotalDamage = 1;
 					break;
 				case (ECardModifiers::CostUpDamageUpHealingUp):
-					InCard.BaseCost++;
-					InCard.BaseDamage++;
-					InCard.BaseHealing++;
+					InCard.TotalCost++;
+					InCard.TotalDamage++;
+					InCard.TotalHealing++;
 					break;
 				default:
 					break;

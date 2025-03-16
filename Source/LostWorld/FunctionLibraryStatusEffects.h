@@ -19,4 +19,5 @@ public:
 
 	static void Poison (AActorEntityBase* EffectedEntity);
 	static void IronShell(AActorEntityBase* EffectedEntity);
+	static void Bleeding(AActorEntityBase* EffectedEntity);
 };

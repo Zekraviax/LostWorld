@@ -20,10 +20,20 @@
 	},
 	{
 		"Name": "WolfPack1",
-		"EncounterType": "None",
+		"EncounterType": "Enemy",
 		"EnemyTypes": [
 			"WolfPack",
 			"WolfPackAlpha"
+		],
+		"MinimumFloor": 1,
+		"MaximumFloor": 1
+	},
+	{
+		"Name": "RabidRats",
+		"EncounterType": "Enemy",
+		"EnemyTypes": [
+			"RabidRat",
+			"RabidRat"
 		],
 		"MinimumFloor": 1,
 		"MaximumFloor": 1

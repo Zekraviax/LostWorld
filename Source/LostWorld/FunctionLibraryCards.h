@@ -34,6 +34,7 @@ public:
 	void HowlOfCommand() const;
 	void EnergyAllAround() const;
 	void CallForFriends() const;
+	void InfectedBite() const;
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
 };

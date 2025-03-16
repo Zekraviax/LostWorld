@@ -243,6 +243,20 @@ void AFunctionLibraryCards::CallForFriends() const
 }
 
 
+void AFunctionLibraryCards::InfectedBite() const
+{
+	GenericDealDamageToOneTarget();
+
+	if (FMath::RandBool()) {
+		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("PoisonTest"));
+	} else {
+		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Bleeding"));
+	}
+}
+
+
 void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),

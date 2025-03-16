@@ -82,10 +82,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -102,10 +107,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -122,10 +132,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -142,10 +157,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -162,10 +182,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -182,10 +207,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -202,10 +232,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -222,10 +257,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -242,10 +282,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -262,10 +307,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -372,10 +422,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -392,10 +447,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -412,10 +472,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -432,10 +497,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -452,10 +522,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -472,10 +547,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -492,10 +572,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -512,10 +597,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -532,10 +622,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -552,10 +647,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -658,10 +758,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -678,10 +783,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -698,10 +808,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -718,10 +833,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -738,10 +858,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -758,10 +883,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -778,10 +908,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -796,10 +931,15 @@
 					"CardElements": [],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "This is a default description.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 0,
@@ -816,10 +956,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -836,10 +981,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -943,10 +1093,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"HowlOfCommand": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 5,
 					"TotalDamage": 0,
@@ -963,10 +1118,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"HowlOfCommand": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 5,
 					"TotalDamage": 0,
@@ -983,10 +1143,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"HowlOfCommand": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 5,
 					"TotalDamage": 0,
@@ -1003,10 +1168,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"HowlOfCommand": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 5,
 					"TotalDamage": 0,
@@ -1023,10 +1193,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"HowlOfCommand": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 5,
 					"TotalDamage": 0,
@@ -1043,10 +1218,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -1063,10 +1243,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -1083,10 +1268,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -1103,10 +1293,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -1123,10 +1318,15 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
 					},
 					"TotalCost": 1,
 					"TotalDamage": 10,
@@ -1312,6 +1512,91 @@
 			"EquippedItems": [],
 			"EquipmentInventory": [],
 			"StartOfBattleHandSize": 7,
+			"Team": "EnemyTeam1",
+			"HasUsedShoutThisTurn": false
+		},
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "RabidRat",
+		"EnemyType": "RabidRat",
+		"EntityData":
+		{
+			"DisplayName": "Rabit Rat",
+			"EntityTypes": [
+				"Enemy"
+			],
+			"BaseStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 20,
+				"MaximumManaPoints": 20,
+				"CurrentBarrierPoints": 0,
+				"Strength": 3,
+				"Toughness": 1,
+				"Intelligence": 2,
+				"Willpower": 2,
+				"Agility": 15,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 3,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"TotalStats":
+			{
+				"CurrentHealthPoints": 10,
+				"MaximumHealthPoints": 10,
+				"CurrentManaPoints": 10,
+				"MaximumManaPoints": 10,
+				"CurrentBarrierPoints": 0,
+				"Strength": 1,
+				"Toughness": 1,
+				"Intelligence": 1,
+				"Willpower": 1,
+				"Agility": 1,
+				"HealthRegeneration": 0,
+				"ManaRegeneration": 1,
+				"Readiness": 0,
+				"CurrentStatusEffects": [],
+				"StartBattleWithStatusEffectsDisplayNames": []
+			},
+			"OffensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"DefensiveAffinities":
+			{
+				"FireAffinity": 100,
+				"WaterAffinity": 100,
+				"AirAffinity": 100,
+				"EarthAffinity": 100,
+				"LightAffinity": 100,
+				"CosmicAffinity": 100,
+				"ArcaneAffinity": 100,
+				"DivineAffinity": 100
+			},
+			"CurrentStatusEffects": [],
+			"StartBattleWithStatusEffectsDisplayNames": [],
+			"Collection": [],
+			"Deck": [],
+			"Hand": [],
+			"DrawPile": [],
+			"DiscardPile": [],
+			"Exile": [],
+			"MinimumDeckSize": -1,
+			"MaximumDeckSize": -1,
+			"EquippedItems": [],
+			"EquipmentInventory": [],
+			"StartOfBattleHandSize": 5,
 			"Team": "EnemyTeam1",
 			"HasUsedShoutThisTurn": false
 		},

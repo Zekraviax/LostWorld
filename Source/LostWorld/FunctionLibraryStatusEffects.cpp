@@ -3,6 +3,7 @@
 
 #include "ActorEntityBase.h"
 #include "InterfaceBattle.h"
+#include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBase.h"
 
 
@@ -15,6 +16,9 @@ void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFun
 			break;
 		case (EStatusEffectFunctions::IronShell):
 			IronShell(InEffectedEntity);
+			break;
+		case (EStatusEffectFunctions::Bleeding):
+			Bleeding(InEffectedEntity);
 			break;
 		default:
 			break;
@@ -39,4 +43,19 @@ void AFunctionLibraryStatusEffects::IronShell(AActorEntityBase* EffectedEntity)
 	int BarrierGain = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 5;
 
 	Cast<IInterfaceBattle>(EffectedEntity)->GainBarrier(BarrierGain);
+}
+
+
+void AFunctionLibraryStatusEffects::Bleeding(AActorEntityBase* EffectedEntity)
+{
+	// We can't use any functions that require the GetWorld() function here.
+	int BleedingDamageAsInt = 1;
+	
+	for (auto& StatusEffect : EffectedEntity->StatusEffects) {
+		if (StatusEffect.StatusEffect == EStatusEffectFunctions::Bleeding) {
+			BleedingDamageAsInt = StatusEffect.CurrentStackCount;
+		}
+	}
+
+	Cast<IInterfaceBattle>(EffectedEntity)->TakeDamage(BleedingDamageAsInt);
 }

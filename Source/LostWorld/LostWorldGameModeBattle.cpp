@@ -133,7 +133,7 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 				case (ECardModifiers::TotalDamagePlusOne):
 					InCard.TotalDamage++;
 					break;
-				case (ECardModifiers::DamageOne):
+				case (ECardModifiers::DamageSetToOne):
 					InCard.TotalDamage = 1;
 					break;
 				case (ECardModifiers::CostUpDamageUpHealingUp):

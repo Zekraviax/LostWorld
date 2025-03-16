@@ -15,6 +15,9 @@ class LOSTWORLD_API AFunctionLibraryCards : public AActor
 public:
 	void ExecuteFunction(ECardFunctions InFunction) const;
 
+	AActorEntityBase* GetAttacker() const;
+	AActorEntityBase* GetDefender() const;
+
 	static int StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
 	static int ArmourBreakerDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower);
 
@@ -32,5 +35,5 @@ public:
 	void EnergyAllAround() const;
 	void CallForFriends() const;
 	// -------- Generic functions -------- //
-	void DealDamageToOneTarget() const;
+	void GenericDealDamageToOneTarget() const;
 };

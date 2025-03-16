@@ -51,6 +51,18 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 }
 
 
+AActorEntityBase* AFunctionLibraryCards::GetAttacker() const
+{
+	return Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
+}
+
+
+AActorEntityBase* AFunctionLibraryCards::GetDefender() const
+{
+	return Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
+}
+
+
 int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower)
 {
 	// Damage formula
@@ -94,21 +106,16 @@ int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* At
 
 void AFunctionLibraryCards::TestCardOne() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
-	
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
 
 void AFunctionLibraryCards::TestCardTwo() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	
 	for (AActorEntityBase* Enemy : Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets) {
 		if (Cast<AActorEntityEnemy>(Enemy)) {
-			Cast<IInterfaceBattle>(Enemy)->TakeDamage(StandardDamageFormula(Attacker, Enemy,
+			Cast<IInterfaceBattle>(Enemy)->TakeDamage(StandardDamageFormula(GetAttacker(), Enemy,
 				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 		}
 	}
@@ -129,20 +136,14 @@ void AFunctionLibraryCards::TestCardFour() const
 
 void AFunctionLibraryCards::PoisonDart() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
-
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
 
 void AFunctionLibraryCards::ArmourBreaker() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
-
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }
 
@@ -150,33 +151,27 @@ void AFunctionLibraryCards::ArmourBreaker() const
 void AFunctionLibraryCards::HyperBeam() const
 {
 	int BasePower = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalCost * 2;
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender, BasePower));
+	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(), BasePower));
 }
 
 
 void AFunctionLibraryCards::TestCardFive() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	
 	// Draw cards until your deck is empty, then draw one more.
-	while (Attacker->EntityData.Deck.Num() > 0) {
-		Cast<IInterfaceBattle>(Attacker)->DrawCard();
+	while (GetAttacker()->EntityData.Deck.Num() > 0) {
+		Cast<IInterfaceBattle>(GetAttacker())->DrawCard();
 	}
 
-	Cast<IInterfaceBattle>(Attacker)->DrawCard();
+	Cast<IInterfaceBattle>(GetAttacker())->DrawCard();
 }
 
 
 void AFunctionLibraryCards::TestCardSix() const
 {
-	// To-Do: Clean up these repetitive lines that get the Attacker and Defender
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 	FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
 
-	SummonData.EntityData.Team = Attacker->EntityData.Team;
+	SummonData.EntityData.Team = GetAttacker()->EntityData.Team;
 	
 	// Spawn the summon and make it the same team as the entity summoning it
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
@@ -185,25 +180,21 @@ void AFunctionLibraryCards::TestCardSix() const
 
 void AFunctionLibraryCards::HowlOfCommand() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
-	
 	// First, get all Wolf Pack allies and set their target overrides.
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
 
 	// Find each entity that isn't on the same team as this one.
 	TArray<AActorEntityBase*> FoundEnemies;
-	
 	for (AActor* Actor : FoundActors) {
-		if (Cast<AActorEntityBase>(Actor)->EntityData.Team != Attacker->EntityData.Team) {
+		if (Cast<AActorEntityBase>(Actor)->EntityData.Team != GetAttacker()->EntityData.Team) {
 			FoundEnemies.Add(Cast<AActorEntityBase>(Actor));
 			break;
 		}
 	}
 
 	for (AActor* Actor : FoundActors) {
-		if (Cast<AActorEntityBase>(Actor)->EntityData.Team == Attacker->EntityData.Team &&
+		if (Cast<AActorEntityBase>(Actor)->EntityData.Team == GetAttacker()->EntityData.Team &&
 			Cast<AActorEntityBase>(Actor)->EntityData.EntityTypes.Contains(EEntityTypes::WolfPack) &&
 			Cast<AActorEntityBase>(Actor)->FindComponentByClass<UAiBrainBase>()) {
 			Cast<AActorEntityBase>(Actor)->FindComponentByClass<UAiBrainBase>()->AttackTargetsOverride.Empty();
@@ -215,34 +206,32 @@ void AFunctionLibraryCards::HowlOfCommand() const
 	}
 
 	// Second, inflict the target with the Howl status effect that increases the power of cards targeted at them.
-	Cast<IInterfaceBattle>(Defender)->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Howl"));
 }
 
 
 void AFunctionLibraryCards::EnergyAllAround() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
 	int BasePower = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CardsCastThisTurn + 1;
 
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(ArmourBreakerDamageFormula(Attacker, Defender, BasePower));
+	Cast<IInterfaceBattle>(GetDefender())->
+		TakeDamage(ArmourBreakerDamageFormula(GetAttacker(), GetDefender(), BasePower));
 }
 
 
 void AFunctionLibraryCards::CallForFriends() const
 {
 	bool RandomSuccess = FMath::RandBool();
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
 
-	ALostWorldGameModeBase::DualLog(Cast<AActorEntityBase>(Attacker)->EntityData.DisplayName +
+	ALostWorldGameModeBase::DualLog(Cast<AActorEntityBase>(GetAttacker())->EntityData.DisplayName +
 				" tries to call for friends!", 2);
 	
 	if (RandomSuccess) {
 		// Get the entity type and spawn another one.
 		FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
 
-		SummonData.EntityData.Team = Attacker->EntityData.Team;
+		SummonData.EntityData.Team = GetAttacker()->EntityData.Team;
 	
 		// Spawn the summon and make it the same team as the entity summoning it
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
@@ -254,11 +243,8 @@ void AFunctionLibraryCards::CallForFriends() const
 }
 
 
-void AFunctionLibraryCards::DealDamageToOneTarget() const
+void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
-	AActorEntityBase* Attacker = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Controller;
-	AActorEntityBase* Defender = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets[0];
-
-	Cast<IInterfaceBattle>(Defender)->TakeDamage(StandardDamageFormula(Attacker, Defender,
+	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 }

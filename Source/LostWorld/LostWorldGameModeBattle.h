@@ -82,7 +82,9 @@ public:
 		// The GameModeBattle will also handle level generation since the game will transition seamlessly,
 		// between level exploration and battles.
 
+	
 	// This transition will handle the technical things.
+	static FCard ApplyCardModifiersWithTimingTrigger(FCard InCard, ECardModifierTimingTriggers TimingTrigger);
 	void TransitionToBattle(const FEncounter& EnemyEncounter);
 	// Check if either the player, or all enemies, have been wiped out.
 	void EndOfBattleCheck() const;
@@ -92,6 +94,7 @@ public:
 	// and spawning Summons mid-battle.
 	// To-Do: Finish testing this function, and incorporate it into the TransitionToBattle function.
 	void SpawnEntity(FEntity InEntity);
+
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:

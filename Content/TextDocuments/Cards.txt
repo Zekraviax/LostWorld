@@ -27,7 +27,6 @@ Element(s): Light
 Effect(s): Exile a card in a discard pile. Heal yourself for HP equal to that card's base cost.
 
 
-
 Name: Recursive Resourcing
 Cost: ?
 Type(s): Spell
@@ -37,12 +36,13 @@ Effect(s): Enhance a card in your hand with the following effects:
 'When you play this card, create and draw a copy of it.'
 
 
-Name: ?
+Name: Dredge Up The Depths.
 Cost: ?
 Type(s): Spell
 Element(s): Water
-Effect(s): You may reveal any number of cards in an enemy's hand. For each card revealed this way, 
+Effect(s): You may Reveal any number of cards in an enemy's hand. For each card revealed this way, 
 you take damage equal to that card's base cost.
+Note(s): If any enemy has any cards Revealed
 
 
 Name: Animalistic Form
@@ -50,3 +50,30 @@ Cost: ?
 Type(s): Spell
 Element(s): Earth
 Effect(s): You gain the Animalism status effect. Your turn ends.
+
+
+Name: Giant Fireball
+Cost: 1
+Type(s): Spell
+Element(s): Fire
+Effect(s): Has 2 casting modes.
+First: Spend X mana. You gain X stacks of Charging (Giant Fireball).
+Second: Cast your fireball with base power X, where X is the number of Charging stacks you have.
+
+
+Name: Do The Wave!
+Cost: ?
+Type(s): Spell
+Element(s): Arcane
+Effect(s): When casting this, choose any number of Natural Elements (Fire, Water, Air, Earth.)
+This spell becomes the chosen element(s) until it goes to your Discard Pile.
+Deals 5 * X damage to each enemy, where X is the number of Elements this spell is.
+
+
+Name: The Dark Moonlight
+Cost: 15
+Type(s): Spell
+Element(s): Light
+Effect(s): Invert all Negative Status Effects on all allies, and tnvert all Positive Status Effects on all enemies.
+Note(s): Each Non-Mixed Status Effect has a hard-coded correlated status effect, e.g.:
+Regeneration (Positive) and Poison (Negative.)

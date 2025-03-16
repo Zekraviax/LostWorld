@@ -20,6 +20,7 @@
 		"Modifiers": [],
 		"ModifiersWithTriggers":
 		{
+			"CostMinusOne": "OnModifierApplied"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 10,

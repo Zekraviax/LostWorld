@@ -92,8 +92,11 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 		// Set up the enemy's deck.
 		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.Deck.Num(); CardCount++) {
+			FCard Copy = EnemyEntityData.EntityData.Deck[CardCount];
+			//Copy = ApplyCardModifiersWithTimingTrigger(Copy, ECardModifierTimingTriggers::StartOfBattle);
+			
 			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->
-			AddCardToDrawPile(EnemyEntityData.EntityData.Deck[CardCount]);
+			AddCardToDrawPile(Copy);
 		}
 	}
 
@@ -112,6 +115,39 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	
 	// Once everything is done, begin Turn Zero.
 	PreBattleTurnZero(EnemyEncounter);
+}
+
+
+FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, ECardModifierTimingTriggers TimingTrigger)
+{
+	for (auto& Mod : InCard.ModifiersWithTriggers) {
+		if (Mod.Value == TimingTrigger) {
+			switch (Mod.Key)
+			{
+				case (ECardModifiers::CostMinusOne):
+					InCard.BaseCost--;
+					break;
+				case (ECardModifiers::BaseDamagePlusOne):
+					InCard.BaseDamage++;
+					break;
+				case (ECardModifiers::TotalDamagePlusOne):
+					InCard.TotalDamage++;
+					break;
+				case (ECardModifiers::DamageOne):
+					InCard.TotalDamage = 1;
+					break;
+				case (ECardModifiers::CostUpDamageUpHealingUp):
+					InCard.BaseCost++;
+					InCard.BaseDamage++;
+					InCard.BaseHealing++;
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	
+	return InCard;
 }
 
 
@@ -190,7 +226,9 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 
 	// Set up the enemy's deck and draw pile.
 	for (int CardCount = 0; CardCount < InEntity.Deck.Num(); CardCount++) {
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(InEntity.Deck[CardCount]);
+		//FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity.Deck[CardCount], ECardModifierTimingTriggers::StartOfBattle);
+		FCard Copy = InEntity.Deck[CardCount];
+		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(Copy);
 	}
 
 	// Initialize billboard
@@ -209,6 +247,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 {
 	// List of things that need to happen during 'Turn Zero':
 	// Calculate the turn order.
+	// Apply card modifiers that trigger at the start of battles.
 	// Shuffle everyone's decks.
 	// Each entity draws a hand of cards.
 	// Give each entity the status effects they should start the battle with,
@@ -221,13 +260,32 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 	// Calculate turn order.
 	AddMaxNumberOfEntitiesToTurnQueue(true);
-
+	
 	// Shuffle up.
 	for (auto& Entity : EntitiesInBattleArray) {
 		if (Cast<AActorEntityEnemy>(Entity)) {
 			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
 			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
+		}
+	}
+
+	// Apply card modifiers
+	for (auto& Entity : EntitiesInBattleArray) {
+		/*for (FCard Card : Entity->EntityData.DrawPile) {
+			Card = ApplyCardModifiersWithTimingTrigger(Card, ECardModifierTimingTriggers::StartOfBattle);
+		}*/
+
+		for (int Index = Entity->EntityData.DrawPile.Num() - 1; Index >= 0; Index--) {
+			for (auto& Mod : Entity->EntityData.DrawPile[Index].ModifiersWithTriggers) {
+				if (Mod.Value == ECardModifierTimingTriggers::StartOfBattle) {
+					FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.DrawPile[Index],
+						ECardModifierTimingTriggers::StartOfBattle);
+					
+					Entity->EntityData.DrawPile.RemoveAt(Index);
+					Entity->EntityData.DrawPile.Insert(Copy, Index);
+				}
+			}
 		}
 	}
 

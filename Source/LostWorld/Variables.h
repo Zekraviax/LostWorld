@@ -76,6 +76,51 @@ enum class ECardTargets : uint8
 };
 
 
+// Modifiers can be positive (such as cost reductions);
+// negative (such as blocking healing); or mixed.
+
+// Modifiers can also have different 'durations':
+// 'Durations' should be inherent to the modifier(?)
+// List of 'durations':
+// Permanent.
+// Until end of battle.
+// Until end of turn.
+
+// Modifiers can be applied at different times:
+// As soon as the modifier is applied to the card. Should also be applied when the game is launched as well?
+// At the start of battles (when the cards are copied into the draw pile from the deck.)
+// Each time the card is drawn.
+// After each time the card is played.
+// When the player wins a battle.
+// On damage dealt.
+
+// To-Do: Figure out if these should (not?) be combined with timing triggers in a map.
+UENUM(BlueprintType)
+enum class ECardModifiers : uint8
+{
+	// Positive --------
+	CostMinusOne,
+	BaseDamagePlusOne,
+	TotalDamagePlusOne,
+	// Negative --------
+	DamageOne, // This overrides any damage the card would deal to 1.
+	// Mixed --------
+	CostUpDamageUpHealingUp // Increases cost, damage, and healing.
+};
+
+
+UENUM(BlueprintType)
+enum class ECardModifierTimingTriggers : uint8
+{
+	OnModifierApplied,
+	StartOfBattle,
+	StartOfOwnersTurn,
+	OnDrawn,
+	OnDamageDealt,
+	OnBattleVictory
+};
+
+
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
@@ -336,9 +381,18 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
 	FString Description; // Describes the cards functions to the player.
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
+	FString FlavourText;
+
 	// For each function that requires different targets, the game will add an entry to the stack.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
 	TMap<ECardFunctions, ECardTargets> FunctionsAndTargets;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
+	TArray<ECardModifiers> Modifiers;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
+	TMap<ECardModifiers, ECardModifierTimingTriggers> ModifiersWithTriggers;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
 	int TotalCost;
@@ -355,9 +409,14 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 		DisplayName = "Default Card";
 		BaseCost = 1;
 		CardTypes.Add(ECardTypes::Spell);
+		BaseDamage = 0;
+		BaseHealing = 0;
 		Description = "This is a default description.";
-		TotalCost = 1;
+		FlavourText = "This is a default flavour text.";
 		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::OneEnemy);
+		TotalCost = 1;
+		TotalDamage = 0;
+		TotalHealing = 0;
 	}
 
 	FORCEINLINE bool operator==(const FCard& OtherCard) const

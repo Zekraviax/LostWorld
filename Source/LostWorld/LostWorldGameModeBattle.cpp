@@ -124,7 +124,7 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 		if (Mod.Value == TimingTrigger) {
 			switch (Mod.Key)
 			{
-				case (ECardModifiers::CostMinusOne):
+				case (ECardModifiers::BaseCostMinusOne):
 					InCard.BaseCost--;
 					break;
 				case (ECardModifiers::BaseDamagePlusOne):
@@ -272,10 +272,6 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 	// Apply card modifiers
 	for (auto& Entity : EntitiesInBattleArray) {
-		/*for (FCard Card : Entity->EntityData.DrawPile) {
-			Card = ApplyCardModifiersWithTimingTrigger(Card, ECardModifierTimingTriggers::StartOfBattle);
-		}*/
-
 		for (int Index = Entity->EntityData.DrawPile.Num() - 1; Index >= 0; Index--) {
 			for (auto& Mod : Entity->EntityData.DrawPile[Index].ModifiersWithTriggers) {
 				if (Mod.Value == ECardModifierTimingTriggers::StartOfBattle) {

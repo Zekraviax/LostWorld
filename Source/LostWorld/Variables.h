@@ -99,11 +99,11 @@ UENUM(BlueprintType)
 enum class ECardModifiers : uint8
 {
 	// Positive --------
-	CostMinusOne,
+	BaseCostMinusOne,
 	BaseDamagePlusOne,
 	TotalDamagePlusOne,
 	// Negative --------
-	DamageOne, // This overrides any damage the card would deal to 1.
+	DamageSetToOne, // This overrides any damage the card would deal to 1.
 	// Mixed --------
 	CostUpDamageUpHealingUp // Increases cost, damage, and healing.
 };
@@ -387,9 +387,6 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	// For each function that requires different targets, the game will add an entry to the stack.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
 	TMap<ECardFunctions, ECardTargets> FunctionsAndTargets;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
-	TArray<ECardModifiers> Modifiers;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
 	TMap<ECardModifiers, ECardModifierTimingTriggers> ModifiersWithTriggers;

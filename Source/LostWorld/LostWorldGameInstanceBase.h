@@ -33,8 +33,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USaveGameDeveloperSettings* DeveloperSettingsSaveGame;
 
-	// To-Do: Make this into an array of Saves,
-	// create one variable for tracking the index of the last loaded object,
+	// To-Do: Make this into an array of Saves.
+	// Create one variable for tracking the index of the last loaded object,
 	// and one for tracking the index of the last saved object.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FPlayerSavesAsStruct AllPlayerSaves;

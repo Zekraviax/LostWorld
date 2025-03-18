@@ -181,7 +181,11 @@ enum class ECardFunctions : uint8
 	Inflame,
 	InfectedBite,
 	// -------- Generic functions -------- //
-	DealDamageToOneTarget
+	DealDamageToOneTargets,
+	// -------- Modifier functions -------- //
+	// We can use modifier functions to store values,
+	// so that we can create mods that stack or vary over time.
+	CastCount, // How many times this card has been played in a single battle.
 };
 
 

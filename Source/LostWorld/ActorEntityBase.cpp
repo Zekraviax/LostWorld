@@ -250,7 +250,7 @@ bool AActorEntityBase::EndTurn()
 
 bool AActorEntityBase::CalculateTotalStats()
 {
-	// To-Do: Figure out whether HP and MP values should be ignored when calculating stats
+	// To-Do: Figure out whether HP and MP values should be ignored when calculating stats.
 	EntityData.TotalStats = EntityData.BaseStats;
 
 	for (FEquipment EquippedItem : EntityData.EquippedItems) {

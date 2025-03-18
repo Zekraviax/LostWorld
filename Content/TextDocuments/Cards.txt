@@ -77,3 +77,12 @@ Element(s): Light
 Effect(s): Invert all Negative Status Effects on all allies, and tnvert all Positive Status Effects on all enemies.
 Note(s): Each Non-Mixed Status Effect has a hard-coded correlated status effect, e.g.:
 Regeneration (Positive) and Poison (Negative.)
+
+
+Name: Challenge me!
+Cost: 0
+Type(s): Shout
+Element(s): Fire
+Additional Cost: Spend mana in increments of 5.
+Effect(s): For each 5 mana you spend, 1 random enemy summons another enemy of the same type.
+Note(s): Enemies could be organized by 'families' as well.

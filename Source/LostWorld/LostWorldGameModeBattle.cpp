@@ -120,7 +120,15 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, const ECardModifierTimingTriggers TimingTrigger)
 {
-	// To-Do: Before card mods can be applied, we need to reset the variables to their base values.
+	// To-Do: Before card mods can be applied, and depending on the context/timing,
+	// we need to reset the variables to their base values(?)
+
+	// When to reset variables:
+	// OnModifierApplied,
+	// StartOfBattle,
+
+	// When not to:
+	// StartOfTurn
 	InCard.TotalCost = InCard.BaseCost;
 	InCard.TotalDamage = InCard.BaseDamage;
 	InCard.TotalHealing = InCard.BaseHealing;

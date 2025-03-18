@@ -48,7 +48,7 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 {
 	ControlMode = InControlMode;
 
-	// To-Do: Figure out an alternative way of converting an enum to a string.
+	// To-Do: Use UEnum::GetDisplayValueAsText() instead of this.
 	//ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
 }
 

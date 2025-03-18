@@ -121,6 +121,33 @@ enum class ECardModifierTimingTriggers : uint8
 };
 
 
+// Keywords are special behaviours.
+
+// Keywords can be inherent to a card, or applied to cards.
+
+// Keywords can be applied to any type of card; spells, equipment, etc,
+// and might behave differently depending on the card it's attached to.
+UENUM(BlueprintType)
+enum class ECardKeywords : uint8
+{
+	// This permanently removes a card from the players' collection/inventory.
+	// Spells: Permanent removal when the player plays it.
+	//Destroy,
+
+	// Spells: The player can only have one copy in their deck.
+	// Equipment: The player can only have one total in their inventory OR equipped.
+	Unique,
+
+	// Spells: Always draw this card at the start of battles.
+	// Equipment: N/A
+	Ace,
+
+	// Spells: Cannot be played.
+	// Equipment: Any benefits or downsides given by the equipment don't apply while disabled.
+	Disabled,
+};
+
+
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
@@ -380,6 +407,9 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	int BaseHealing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
+	TArray<FString> Keywords;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
 	FString Description; // Describes the cards functions to the player.

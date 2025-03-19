@@ -1,0 +1,421 @@
+Dark Iron Dome - Item Equipment Helmet
+* Your spells cost 1 more.
+* Whenever you take damage from an enemy, prevent 1 of that damage.
+
+Short Sword - Item Equipment Weapon
+* Your Physical Non-Elemental attacks do 1 more damage.
+
+Long Sword - Item Equipment Weapon
+* Your Physical Non-Elemental attacks do 3 more damage and cost 1 more.
+
+Shield Amulet - Item Equipment Necklace
+* Whenever you would be dealt damage, prevent 50% of that damage, rounded up.
+* Your spells cost 50% more, rounded down.
+
+Axe Quiver - Item Equipment Backpack
+* At the start of your turn, add a Throwing Axe card to your hand.
+Throwing Axe - 1 Cost Physical Non-Elemental Spell
+* Deal 5 Physical Damage to a random enemy.
+
+
+Dingo Companion - 1 Cost Divine Summon
+Stats: 
+1/1/1/1/1
+Cards:
+* Spider Companion
+
+
+Spider Companion - 1 Cost Cosmic Summon
+Stats:
+1/1/1/1/1 
+Cards:
+* Dingo Companion
+
+
+Rebel Army - 5 Cost Light Summon
+* Fill the Room with Rebel Soldiers
+Rebel Soldier
+Stats:
+5/5/1/1/5
+Cards:
+
+Life Force - 2 Cost Light Spell
+* Deal Magical Damage to any target equal to your current HP
+
+
+Death Grip - 2 Cost Divine Spell
+* Deal Magical Damage to any target equal to that target's missing health (Maximum minus Current health)
+
+
+Channeled Force - X Cost Arcane Spell
+* Deal Y Magical Damage to any target. Y equals the number of spells you've cast this turn plus X.
+
+
+Raining Blows - 3+X Cost Water Spell
+* Choose a target. Deal Physical Damage equal to your Strength to that target X times.
+
+
+Sol Ring - Item Equipment Ring
+* At the start of your turn, Restore 2 MP.
+* Your Maximum MP is reduced by 1.
+
+
+Firebomb Satchel - Item Equipment
+* 7 Charges
+* At the start of a battle, if this has a charge, add a Firebomb to your hand.
+* Whenever you cast a Firebomb, if this has a charge, add a firebomb to your hand.
+* Whenever this Equipment adds a Firebomb to your hand, reduce it's charges by 1.
+Firebomb - 1 Cost Fire Spell
+* Deal 5 Physical damage to any target.
+
+
+Trainee's Vestments - Item Equipment (Set)
+Set Bonus: +15% XP earned.
+
+
+Ring of Three Wishes - Item Equipment Ring
+3 Charges
+* You can't draw cards except with this Equipment and at the start of your turn.
+* Active, Pay 5 Mana and 1 Charge: Search your deck for a card and draw it.
+
+
+Runestone - Item Equipment Amulet
+* Your spells cost 1 less.
+* Your hand size is reduced by 2.
+
+
+Card Upgrades:
+* Muscle Memory: Increases the card's Repeat count by 1.
+* Spell Mastery: Reduces the card's cost by 1.
+* Raw Power: Increase the cards damage by 1.
+* Rush: Reduces the card's cost by 1 as long as it's the first card you play in a turn.
+* Efficiency: Increase the card's Charges by 1.
+* Ace: Always start battles with this card in your hand.
+
+Card Curses:
+* Bloodletting: Whenever you cast this card, you lose 1 life.
+
+
+Miracles:
+Version 1: A type of spell that automatically casts when drawn, if you have a certain amount of cards in your deck.
+Version 2: When you draw a miracle, you may choose to cast it for free if you meet the requirements. If you don't play it this way, draw it like normal.
+
+
+Natural Order - 5 Cost Earth Spell
+Destroy an entity with lesser strength.
+
+
+Status Effects:
+* Grevious Injury - Reduces Maximum HP by 1 for each stack.
+* Focus - The next damage-dealing attack is a guaranteed Critical Hit.
+* Resilience - Reduces damage taken from enemy attacks by 1.
+
+* Barrier - Absorbs 1 damage from an enemy attack.
+* Light/Dark Shift - This unit receives inverted damage and healing.
+
+
+Inner Demon - 10 Cost Arcane Spell
+Transform into a Demon.
+Base Stats:
+5/5/5/5/5
+Traits:
+* Wrath of Ages:
+Cards gain bonus effects based on how many rounds have elapsed since the battle begun.
+* Rising Rage:
+Each round, increase the damage of each card in your hand, deck, and void by 1.
+Cards:
+* Artillery Fire
+
+
+Wage War - 1 Cost Fire Spell
+* All Entities gain +1 Strength-Up and +1 Focus.
+
+
+Greater Purpose - 3 Cost Light Spell
+* Target Entity gains +1 HP Regen, +1 Resilience, and +10 Barrier. Dispel all negative status effects from them.
+
+
+Card Traits:
+* Unique - Can only have 1 copy in your deck/hand/graveyard/void at any time.
+* Voidbound - Goes to your void instead of your graveyard.
+* Ephemeral - Disappears at the end of each turn.
+* Ace - Always start battles with this in your opening hand.
+
+
+Blood for Blood - 4 Cost Water Spell
+* Each enemy loses HP equal to your missing HP.
+
+
+Seek Power - ? Cost Air Spell
+* Search your deck for a card that does damage and draw it.
+
+
+Trance - ? Cost Arcane Spell
+* Choose a card in your hand, deck, graveyard or void. All cards in your hand, deck and graveyard become copies of that card until the end of your turn.
+
+
+Resplendence - ? Cost Light Spell
+Miracle Requirement: 20 cards in Starting Deck.
+Heal all allies for X health. X is equal to half of their Maximum HP, rounded up.
+
+
+Again! - Fire Shout
+An ally plays a copy of the last card they played during their last turn.
+
+
+Passive Cards:
+Version 1: Passive cards are added to the deck like normal. But they do not appear in battles. These passives have weaker effects.
+Version 2: These passive cards are put in the deck like normal cards, and appear in battles and can be drawn like normal cards but cannot be cast. These passives have stronger effects.
+
+
+Frying Pan - Item Equipment Weapon
+Grants cards:
+Bash: Deals damage equal to 2x Strength.
+Block: Grants X Barrier.
+
+
+Grace From Above - 4 Cost Divine Spell
+Miracle
+Heal for half of your missing health. Gain Barrier equal to half of your missing health. Gain 1 MP.
+
+
+Death Sentence - 1 Mana Cosmic Spell
+The target will die in 10 turns. This cannot be undone.
+
+
+Life After Death - 3 Mana Divine Spell
+The target becomes a Zombie. Zombies can't be healed by normal means, and are immune to Instant Death.
+
+
+Phantom - Status
+Immune to Physical abilities. Cannot deal damage with Physical abilities. Takes more damage from Magical Attacks.
+
+
+Pain Amp - 2 Cost Arcane Spell
+Does X damage for each negative status affecting the target.
+
+
+Dark Iron Blade:
+* Your cards cost 1 more.
+* Your physical attacks do 1 more damage.
+
+
+Flow Of Ideas - 4 Cost Water Spell
+For the rest of your turn, you can pay 1 and discard a card to draw a card.
+
+
+Heartfire - 2 Health Point Cost Fire Spell
+Costs HP instead of MP. Deals 5 damage to any target.
+
+
+We do not fear death! - Earth Shout
+Grant all allies bonus attack and damage reduction based on how much HP they're missing.
+
+
+Echo of Power - 3 Cost Arcane Spell
+Create a temporary copy of the highest cost spell in your hand.
+
+
+Secret Spellbook - Weapon
+At the start of your turns, create and draw a random 1 Cost card.
+
+
+Insane in the Membrane - Passive(?)
+At the end of this entity's turn, all entities play a random card from their hand/deck for free. Targets are chosen randomly.
+
+
+Echo of the Finale - 9 Cost Divine Spell
+Replace your hand with a temporary copy of each card you played during the last turn of the last battle you won.
+
+
+Weapon Master - 1 Cost Fire Spell
+Additional Cost: 1 more Mana for each item you have equipped.
+For each card that was given by an item you have equipped, cast a copy of that card, with targets chosen randomly.
+
+
+Hurricane - Air Spell
+Deals heavy damage to all enemies and shuffles around their boons, conditions, and equipped items between them.
+
+
+Quick Swap - Fire Spell
+Change your equipped weapons.
+
+
+Blunderblast - Fire Spell
+Fire 7 bursts. 1 shot hits the target. All others hit a random enemy.
+
+
+Sleight-Of-Mind - Arcane Spell
+Swap your hand and deck.
+
+
+? - Spell
+Summon all unequipped weapons from your inventory as Haunted Weapons, that have their own stats and cards. When a Haunted Weapon dies, it returns to your inventory.
+
+
+Everyone's Enmity
+15 Cost - Light Spell
+For each positive status effect on an enemy, dispel it then attack that enemy with varying base power.
+Notes: Base power depends on all the status effect variables.
+Attempts to dispel status effects that can't be dispelled.
+
+
+Mind Over Matter
+0 Cost - Arcane Spell
+Additional Cost: +3 MP for each non-spell card in your hand.
+Discard all non-spell cards, then draw 1 spell card for each card discarded this way.
+
+
+Local Teleport
+2 Cost Arcane Spell
+In battle: Guaranteed to flee the battle.
+Out of battle: Allows you to teleport up to 10 tiles away, including across gaps and through walls.
+
+
+Demolish
+? Cost Fire Spell
+In battle: Deal heavy damage to any target that has barrier.
+Out of battle. Break down walls.
+
+
+The City - Buildings:
+* Survivalist: Teaches cards that can be used outside of battle.
+* Library: Offers the widest selection of cards.
+* Armourer: Gives and upgrades equipment.
+* Personal Trainer: Allows player to permanently upgrade stats.
+* Doctors: Sells healing items. Can heal diseases and grevious wounds.
+* Housing: Increases the maximum number of people you can invite to your city.
+* Search and Rescue Station: Gives you missions to find people. Also gives temporary housing for people rescued on missions.
+* Town Hall: Gives every type of mission. All cities start with a town hall. Maybe also allows you to put together a team of characters that party with you on missions, and handle their gear/cards.
+* Warehouse: Increases the maximum number of materials you can store for building and upgrading buildings.
+* Menagerie: Allows the player to acquire summoned creatures. Can also give summons new cards and permanent stat boosts.
+* Philosophers' Den: Allows the player to upgrade cards, maybe combine cards as well.
+
+
+Equinox
+? Cost Light Spell
+Choose one:
+* Deal damage.
+* Heal anyone.
+
+
+Purple
+? Cost Arcane Spell
+- "Chaos"
+- Waste an opponents time. Deal zero damage.
+- Has 1 health.
+
+
+Radiance
+? Cost Light Spell.
+Deal damage to all enemies. For each stack of Burning they have, inflict a stack of Grevious Wounds.
+
+
+Wizard Robes
+Equipment
+Your Spell cards cost 0.75x, but you take 1.5x damage from cards that aren't Spells.
+
+
+Victory Cry
+? Cost Fire Shout
+Has X charges, where X is the number of battles you've one.
+For each charge, give a random ally a random positive status effect. The caster is always guaranteed to get the first status.
+
+
+Flip Kick
+? Cost Air Technique
+Deal damage to one target and cure the caster of negative status effects.
+
+
+Axe Kick
+? Cost Earth Technique
+Deals large damage to one target and inflicts Vulnerable.
+
+
+How do Techniques differ from Spells?
+Any number of the following ways:
+* Scales off the user's Strength instead of Intelligence by default. But can scale of Agility as well.
+* Techniques require practice to master. Using an unmastered technique means reduced effectiveness, but repetition is required for mastery.
+* Some characters have a different resource from MP to play cards. Characters that don't have MP can't play Spells but can use Techniques.
+* Techniques are inspired by real world things such as martial arts.
+
+
+What is a Shout?
+* A Shout is a special type of card. 
+* Shouts don't cost anything to play by default, but can only be played once per turn.
+* Shouts can have additional or secondary costs.
+
+
+What is a Chant?
+* A Chant is a special type of card. 
+* When one entity plays a Chant, they begin "chanting". 
+* If the chanter plays any other card, the current chant ends. If they play a different Chant, then the current one ends and the second chant begins.
+* The Chanters allies can join in. On their turn they will have a "cardless" card that lets them participate in the Chant. "Cardless" cards cannot leave the zone they're
+* The more people that participate in a Chant, the more effective it is.
+* Chants need to be played by at least one caracter per turn cycle in order to be maintained. If a whole turn cycle goes by with nobody contributing, it will end. That means the Chant can go on if the entity who started it is defeated or stops chanting.
+
+
+
+List of Keywords and their effects:
+* Repeater: When you play this card, it goes to the top of your draw pile instead of your discard pile. If a card with Repeater is exiled upon play, then the exile effect takes priority.
+* Ace: You are guaranteed to draw this card during your first turn of battle.
+* Temporary: This card disappears (is exiled) at the end of your turn if its in any zone other than your exile.
+
+
+Advanced Card Display:
+Right-clicking on a card will open the ACD. This is a whole screen detailed display of the card.
+Cards have an array of Enums to be displayed in the ACD next to a picture of the card. Each Enum correlates to a string that gives a detailed description of something.
+The ACD can also provide clarification card effects that may be confusing or ambiguous, in addition to information on how the card interacts with other things.
+
+
+Meditation:
+1 Cost Light Technique:
+Next turn, you heal 1 HP, 1 MP, and cure one status effect on yourself.
+
+
+Ruin
+? Cost Non-Elemental Spell
+Deal damage to any one target. Non-Elemental cards do not factor in any elemental affinities.
+
+
+
+Mage
+Character Class
+Resource: MP
+Passive: Restore 1 MP per turn only while in battle.
+
+
+Elemental Strike
+? Cost Non-Elemental Technique
+When you cast this, choose an element. This card has that element only while it deals damage. (Each time you play it, you can pick a different element. This is because it doesn't track your choice, and the card itself always remains non-elemental.)
+Alternate description: When you play this card, pick an element. This card deals damage of the chosen element.
+
+
+Charley Horse
+? Cost Water Spell
+Inflict a muscle spasm on the target.
+
+
+Panic Attack
+X Cost Arcane Spell.
+Generate and shuffle X random cards into each entities' card zones chosen at random. Each card disappears at the end of the battle. They have the "Panic Attack" keyword. Entities must cast at least one card with that keyword per turn if they have a card with that keyword in their hand.
+
+
+Coaching
+? Cost Earth Technique
+Choose an ally and a card type. During that ally's next turn, cards of the chosen type cost less to play.
+
+
+Meltdown
+? Cost Fire Spell
+Deal damage to one target and inflict 1 stack of Burning for each piece of equipment they're wearing.
+
+
+I've got you in my sights!
+Air Shout
+This turn, your cards ignore Dodge on the target.
+
+
+Baton Pass
+? Cost Air Technique
+The user transfers all of their status effects to an ally.

@@ -7,6 +7,7 @@
 #include "AiBrainBase.h"
 #include "FunctionLibraryCards.h"
 #include "FunctionLibraryStatusEffects.h"
+#include "JsonObjectConverter.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldPlayerControllerBase.h"
@@ -34,6 +35,20 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	
 	// Clear the entities in battle array
 	EntitiesInBattleArray.Empty();
+
+	
+	// To-Do: If the Random Encounters dev setting is enabled, replace the current encounter data with a random one.
+	if (Cast<ULostWorldGameInstanceBase>(GEngine->GameViewport->GetWorld()->GetGameInstance())->
+		DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.RandomEncounters) {
+		// Get all valid encounters.
+		FString AllEncountersAsJson = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+			LoadFileFromJson("EncountersData");
+		TArray<FEncounter> AllEncounters;
+
+		FJsonObjectConverter::JsonArrayStringToUStruct(AllEncountersAsJson, &AllEncounters, 0, 0);
+		EnemyRowNames = AllEncounters[FMath::RandRange(0, AllEncounters.Num() - 1)].EnemyTypes;
+	}
+	
 
 	// Before the entity joins the battle, we must find a tile for it to be spawned at.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {

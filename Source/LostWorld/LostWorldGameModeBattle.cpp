@@ -5,6 +5,7 @@
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
 #include "AiBrainBase.h"
+#include "CustomJsonDeserializer.h"
 #include "FunctionLibraryCards.h"
 #include "FunctionLibraryStatusEffects.h"
 #include "JsonObjectConverter.h"
@@ -38,15 +39,26 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 	
 	// To-Do: If the Random Encounters dev setting is enabled, replace the current encounter data with a random one.
-	if (Cast<ULostWorldGameInstanceBase>(GEngine->GameViewport->GetWorld()->GetGameInstance())->
-		DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.RandomEncounters) {
+	FString OverrideEncountersSetting = Cast<ULostWorldGameInstanceBase>(GEngine->GameViewport->GetWorld()->GetGameInstance())->
+		DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.OverrideEncounters;
+	if (OverrideEncountersSetting != "") {
 		// Get all valid encounters.
 		FString AllEncountersAsJson = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			LoadFileFromJson("EncountersData");
-		TArray<FEncounter> AllEncounters;
 
-		FJsonObjectConverter::JsonArrayStringToUStruct(AllEncountersAsJson, &AllEncounters, 0, 0);
-		EnemyRowNames = AllEncounters[FMath::RandRange(0, AllEncounters.Num() - 1)].EnemyTypes;
+		if (OverrideEncountersSetting == "Random") {
+			TArray<FEncounter> AllEncounters;
+
+			FJsonObjectConverter::JsonArrayStringToUStruct(AllEncountersAsJson, &AllEncounters, 0, 0);
+			EnemyRowNames = AllEncounters[FMath::RandRange(0, AllEncounters.Num() - 1)].EnemyTypes;
+		} else {
+			CustomJsonDeserializer* newJson = new CustomJsonDeserializer();
+		
+			newJson->DeserializeEncounterJson(AllEncountersAsJson, OverrideEncountersSetting);
+			EnemyRowNames = newJson->DeserializeEncounterJson(AllEncountersAsJson, OverrideEncountersSetting).EnemyTypes;
+		
+			newJson = nullptr;
+		}
 	}
 	
 

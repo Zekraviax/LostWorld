@@ -22,16 +22,16 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int LogLevel = 0;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool RandomEncounters;
+	FString OverrideEncounters; // Leave this blank in order to 'turn the setting off'.
 
 	FDeveloperSettingsAsStruct()
 	{
 		EnableDeveloperSettingsOverride = true;
 		PrintMessageOnGameStart = "Developer mode enabled.";
 		GiveAllEntitiesTestDecks = false;
-		RandomEncounters = false;
+		OverrideEncounters = "";
 	}
 };
 

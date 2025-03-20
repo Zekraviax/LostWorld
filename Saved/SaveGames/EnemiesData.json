@@ -1587,7 +1587,268 @@
 			"CurrentStatusEffects": [],
 			"StartBattleWithStatusEffectsDisplayNames": [],
 			"Collection": [],
-			"Deck": [],
+			"Deck": [
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "InfectedBite",
+					"DisplayName": "Infected Bite",
+					"BaseCost": 2,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 3,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"InfectedBite": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				}
+			],
 			"Hand": [],
 			"DrawPile": [],
 			"DiscardPile": [],

@@ -11,6 +11,8 @@
 
 void UAiBrainTestEnemyOne::StartTurn()
 {
+	Super::StartTurn();
+	
 	SelectCardToCast();
 }
 
@@ -19,8 +21,12 @@ void UAiBrainTestEnemyOne::SelectCardToCast()
 {
 	Super::SelectCardToCast();
 
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+
 	if (FindCardInHand("Test Card One") != -1) {
 		GetTargetsForCard(FindCardInHand("Test Card One"));
+	} else if (OwnerAsEnemy->EntityData.Hand.Num() > 0) {
+		GetTargetsForCard(FMath::RandRange(0, OwnerAsEnemy->EntityData.Hand.Num() - 1));
 	} else {
 		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
 	}
@@ -39,7 +45,7 @@ void UAiBrainTestEnemyOne::GetTargetsForCard(int IndexInHand)
 	TArray<ECardFunctions> CardFunctions;
 	OwnerAsEnemy->EntityData.Hand[IndexInHand].FunctionsAndTargets.GetKeys(CardFunctions);
 
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Function = ECardFunctions::TestFunctionOne;
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Function = CardFunctions[0];
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.TargetingMode =
 		*OwnerAsEnemy->EntityData.Hand[IndexInHand].FunctionsAndTargets.Find(CardFunctions[0]);
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Controller = OwnerAsEnemy;

@@ -33,7 +33,7 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::WolfPackAlpha)) {
 		AiBrainComponent = NewObject<UAiBrainBaseWolfPackAlpha>(this);
 	} else {
-		// Default brain
+		// Default brain.
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
 	}
 }
@@ -83,8 +83,6 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 
 bool AActorEntityEnemy::StartTurn()
 {
-	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is taking their turn.", 2);
-	
 	AiBrainComponent->StartTurn();
 	
 	return Super::StartTurn();
@@ -93,7 +91,5 @@ bool AActorEntityEnemy::StartTurn()
 
 bool AActorEntityEnemy::EndTurn()
 {
-	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is ending their turn.", 2);
-	
 	return Super::EndTurn();
 }

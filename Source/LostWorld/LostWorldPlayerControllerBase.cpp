@@ -25,21 +25,21 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 	
 	switch (ControlMode)
 	{
-		case (EPlayerControlModes::TargetSelectionSingleEntity):
-			GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
-			ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
+	case (EPlayerControlModes::TargetSelectionSingleEntity):
+		GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
+		ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
 
-			if (Cast<AActorEntityBase>(Hit.GetActor())) {
-				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));
+		if (Cast<AActorEntityBase>(Hit.GetActor())) {
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));
 
-				SetControlMode(EPlayerControlModes::Battle);
-				
-				// Execute the first stack entry
-				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
-			}
-			break;
-		default:
-			break;
+			SetControlMode(EPlayerControlModes::Battle);
+			
+			// Execute the first stack entry
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+		}
+		break;
+	default:
+		break;
 	}
 }
 

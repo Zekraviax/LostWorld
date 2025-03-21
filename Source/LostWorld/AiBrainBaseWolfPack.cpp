@@ -12,6 +12,8 @@
 
 void UAiBrainBaseWolfPack::StartTurn()
 {
+	Super::StartTurn();
+	
 	SelectCardToCast();
 }
 

@@ -36,9 +36,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	
 	// Clear the entities in battle array
 	EntitiesInBattleArray.Empty();
-
 	
-	// To-Do: If the Random Encounters dev setting is enabled, replace the current encounter data with a random one.
 	FString OverrideEncountersSetting = Cast<ULostWorldGameInstanceBase>(GEngine->GameViewport->GetWorld()->GetGameInstance())->
 		DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.OverrideEncounters;
 	if (OverrideEncountersSetting != "") {
@@ -60,7 +58,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			newJson = nullptr;
 		}
 	}
-	
 
 	// Before the entity joins the battle, we must find a tile for it to be spawned at.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
@@ -87,6 +84,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// ReSharper disable once CppTooWideScope
 	const FActorSpawnParameters SpawnParameters;
 	for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
+		// To-Do: Fix the random tile selection to either:
+		// a. always select a tile to spawn an enemy, or
+		// b. handle the situation where there are no valid tiles.
 		AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
 
 		// Spawns an actor into the world.
@@ -164,22 +164,22 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 		if (Mod.Value == TimingTrigger) {
 			switch (Mod.Key)
 			{
-				case (ECardModifiers::TotalCostMinusOne):
-					InCard.TotalCost--;
-					break;
-				case (ECardModifiers::TotalDamagePlusOne):
-					InCard.TotalDamage++;
-					break;
-				case (ECardModifiers::DamageSetToOne):
-					InCard.TotalDamage = 1;
-					break;
-				case (ECardModifiers::CostUpDamageUpHealingUp):
-					InCard.TotalCost++;
-					InCard.TotalDamage++;
-					InCard.TotalHealing++;
-					break;
-				default:
-					break;
+			case (ECardModifiers::TotalCostMinusOne):
+				InCard.TotalCost--;
+				break;
+			case (ECardModifiers::TotalDamagePlusOne):
+				InCard.TotalDamage++;
+				break;
+			case (ECardModifiers::DamageSetToOne):
+				InCard.TotalDamage = 1;
+				break;
+			case (ECardModifiers::CostUpDamageUpHealingUp):
+				InCard.TotalCost++;
+				InCard.TotalDamage++;
+				InCard.TotalHealing++;
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -348,15 +348,15 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 			Cast<IInterfaceBattle>(Entity)->AddStatusEffect(
 				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetStatusEffectFromJson(StatusEffectDisplayName));
 
-			if (Entity->StatusEffects.Last().TimingTriggers.Contains(ETimingTriggers::StartOfBattle)) {
-				AFunctionLibraryStatusEffects::ExecuteFunction(Entity->StatusEffects.Last().StatusEffect, Entity);
+			if (Entity->EntityData.StatusEffects.Last().TimingTriggers.Contains(ETimingTriggers::StartOfBattle)) {
+				AFunctionLibraryStatusEffects::ExecuteFunction(Entity->EntityData.StatusEffects.Last().StatusEffect, Entity);
 			}
 		}
 	}
 
 	// Begin the turn for the first entity in the turn array.
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
-		TurnQueue[0]->FindComponentByClass<UAiBrainBase>()->StartTurn();
+		Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->StartTurn();
 	} else if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
 		Cast<AActorEntityPlayer>(TurnQueue[0])->StartTurn();
 	}
@@ -500,7 +500,6 @@ void ALostWorldGameModeBattle::CastCard()
 	}
 
 	CardsCastThisTurn++;
-	DualLog(TheStack[0].Controller->EntityData.DisplayName + " casts " + TheStack[0].Card.DisplayName, 2);
 	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 
@@ -554,13 +553,13 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 	// Generate the layout of the rooms and corridors.
 	switch (LevelDataCopy.FloorDataAsStruct.Layout)
 	{
-		case EFloorLayouts::FourSquares:
-			GenerateLevelLayoutFourSquares();
-			break;
-		default:
-			// The FourSquares layout will be used as the default.
-			GenerateLevelLayoutFourSquares();
-			break;
+	case EFloorLayouts::FourSquares:
+		GenerateLevelLayoutFourSquares();
+		break;
+	default:
+		// The FourSquares layout will be used as the default.
+		GenerateLevelLayoutFourSquares();
+		break;
 	}
 	
 	// Once all of the GridTiles are spawned, we can spawn everything else, including but not limited to:

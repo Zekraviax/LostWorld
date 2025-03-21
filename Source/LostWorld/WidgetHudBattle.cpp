@@ -63,16 +63,16 @@ void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, int IndexInHa
 			// Update the helper text that tells the player which entities they can select
 			// and how many entities they're already selected (if the card allows selecting more than one.)
 			switch (CurrentTargetMode) {
-				case ECardTargets::OneEnemy:
-					CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
-					CardTargetText->SetText(FText::FromString("Select 1 Enemy"));
-					break;
-				case ECardTargets::AnyOneEntity:
-					CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
-					CardTargetText->SetText(FText::FromString("Select 1 Entity"));
-					break;
-				default:
-					break;
+			case ECardTargets::OneEnemy:
+				CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
+				CardTargetText->SetText(FText::FromString("Select 1 Enemy"));
+				break;
+			case ECardTargets::AnyOneEntity:
+				CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
+				CardTargetText->SetText(FText::FromString("Select 1 Entity"));
+				break;
+			default:
+				break;
 			}
 		}
 	}

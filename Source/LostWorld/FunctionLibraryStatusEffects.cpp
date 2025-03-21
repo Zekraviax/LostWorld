@@ -3,7 +3,6 @@
 
 #include "ActorEntityBase.h"
 #include "InterfaceBattle.h"
-#include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBase.h"
 
 
@@ -11,17 +10,17 @@ void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFun
 {
 	switch (InFunction)
 	{
-		case (EStatusEffectFunctions::Poison):
-			Poison(InEffectedEntity);
-			break;
-		case (EStatusEffectFunctions::IronShell):
-			IronShell(InEffectedEntity);
-			break;
-		case (EStatusEffectFunctions::Bleeding):
-			Bleeding(InEffectedEntity);
-			break;
-		default:
-			break;
+	case (EStatusEffectFunctions::Poison):
+		Poison(InEffectedEntity);
+		break;
+	case (EStatusEffectFunctions::IronShell):
+		IronShell(InEffectedEntity);
+		break;
+	case (EStatusEffectFunctions::Bleeding):
+		Bleeding(InEffectedEntity);
+		break;
+	default:
+		break;
 	}
 }
 
@@ -51,7 +50,7 @@ void AFunctionLibraryStatusEffects::Bleeding(AActorEntityBase* EffectedEntity)
 	// We can't use any functions that require the GetWorld() function here.
 	int BleedingDamageAsInt = 1;
 	
-	for (auto& StatusEffect : EffectedEntity->StatusEffects) {
+	for (auto& StatusEffect : EffectedEntity->EntityData.StatusEffects) {
 		if (StatusEffect.StatusEffect == EStatusEffectFunctions::Bleeding) {
 			BleedingDamageAsInt = StatusEffect.CurrentStackCount;
 		}

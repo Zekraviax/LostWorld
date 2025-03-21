@@ -11,6 +11,8 @@
 
 void UAiBrainTestEnemyTwo::StartTurn()
 {
+	Super::StartTurn();
+	
 	SelectCardToCast();
 }
 

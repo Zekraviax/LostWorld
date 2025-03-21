@@ -12,41 +12,44 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 {
 	switch (InFunction)
 	{
-		case (ECardFunctions::TestFunctionOne):
-			TestCardOne();
-			break;
-		case (ECardFunctions::TestFunctionTwo):
-			TestCardTwo();
-			break;
-		case (ECardFunctions::TestFunctionThree):
-			TestCardThree();
-			break;
-		case (ECardFunctions::TestFunctionFour):
-			TestCardFour();
-			break;
-		case (ECardFunctions::PoisonDart):
-			PoisonDart();
-			break;
-		case (ECardFunctions::ArmourBreaker):
-			ArmourBreaker();
-			break;
-		case (ECardFunctions::HyperBeam):
-			HyperBeam();
-			break;
-		case (ECardFunctions::TestFunctionFive):
-			TestCardFive();
-			break;
-		case (ECardFunctions::TestFunctionSix):
-			TestCardSix();
-			break;
-		case (ECardFunctions::HowlOfCommand):
-			HowlOfCommand();
-			break;
-		case (ECardFunctions::EnergyAllAround):
-			EnergyAllAround();
-			break;
-		default:
-			break;
+	case (ECardFunctions::TestFunctionOne):
+		TestCardOne();
+		break;
+	case (ECardFunctions::TestFunctionTwo):
+		TestCardTwo();
+		break;
+	case (ECardFunctions::TestFunctionThree):
+		TestCardThree();
+		break;
+	case (ECardFunctions::TestFunctionFour):
+		TestCardFour();
+		break;
+	case (ECardFunctions::PoisonDart):
+		PoisonDart();
+		break;
+	case (ECardFunctions::ArmourBreaker):
+		ArmourBreaker();
+		break;
+	case (ECardFunctions::HyperBeam):
+		HyperBeam();
+		break;
+	case (ECardFunctions::TestFunctionFive):
+		TestCardFive();
+		break;
+	case (ECardFunctions::TestFunctionSix):
+		TestCardSix();
+		break;
+	case (ECardFunctions::HowlOfCommand):
+		HowlOfCommand();
+		break;
+	case (ECardFunctions::EnergyAllAround):
+		EnergyAllAround();
+		break;
+	case (ECardFunctions::InfectedBite):
+		InfectedBite();
+		break;
+	default:
+		break;
 	}
 }
 
@@ -71,7 +74,7 @@ int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacke
 	// Step3 = RoundUp(Step2)
 
 	// To-Do: Check for status effects that modify damage and/or base power
-	for (FStatusEffect StatusEffect : Defender->StatusEffects) {
+	for (FStatusEffect StatusEffect : Defender->EntityData.StatusEffects) {
 		if (StatusEffect.StatusEffect == EStatusEffectFunctions::Howl) {
 			AttackBasePower += 2;
 		}
@@ -138,6 +141,9 @@ void AFunctionLibraryCards::PoisonDart() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+
+	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("PoisonTest"));
 }
 
 

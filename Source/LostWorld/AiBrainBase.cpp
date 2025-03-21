@@ -32,6 +32,9 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UAiBrainBase::StartTurn()
 {
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	ALostWorldGameModeBase::DualLog("Enemy " + OwnerAsEnemy->EntityData.DisplayName +
+		" is taking their turn.", 2);
 }
 
 
@@ -72,17 +75,29 @@ void UAiBrainBase::GetTargetsForCard(int IndexInHand)
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.
 		Add(Cast<AActorEntityBase>(FoundTargets[0]));
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.IndexInHandArray = IndexInHand;
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card = OwnerAsEnemy->EntityData.Hand[IndexInHand];
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card =
+		OwnerAsEnemy->EntityData.Hand[IndexInHand];
 }
 
 
 void UAiBrainBase::CastCardWithDelay()
 {
+	// To-Do: Make this a variable in the .h file and write a function that can return this variable.
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	FCard CardCopy = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card;
+	
+	ALostWorldGameModeBase::DualLog(OwnerAsEnemy->EntityData.DisplayName + " casts "
+		+ CardCopy.DisplayName + "!", 2);
+	
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
 }
 
 
 void UAiBrainBase::EndTurn()
 {
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	ALostWorldGameModeBase::DualLog("Enemy " +
+		OwnerAsEnemy->EntityData.DisplayName + " is ending their turn.", 2);
+	
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 }

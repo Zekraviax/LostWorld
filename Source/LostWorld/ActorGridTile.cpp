@@ -54,12 +54,12 @@ void AActorGridTile::MoveEntityToTile(AActorEntityBase* MovingEntity)
 	// like battles starting or collecting items from treasure chests
 	switch (Encounter.EncounterType)
 	{
-		case EEncounterTypes::Enemy:
-			// Battle begin!
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TransitionToBattle(Encounter);
-			break;
-		default:
-			// Do nothing
-			break;
+	case EEncounterTypes::Enemy:
+		// Battle begin!
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TransitionToBattle(Encounter);
+		break;
+	default:
+		// Do nothing
+		break;
 	}
 }

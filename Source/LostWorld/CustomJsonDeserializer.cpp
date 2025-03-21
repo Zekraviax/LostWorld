@@ -22,7 +22,7 @@ FEncounter CustomJsonDeserializer::DeserializeEncounterJson(const FString& InEnc
 	TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(InEncounterAsString);
 
 	if (FJsonSerializer::Deserialize(JsonReader, JsonValue) && JsonValue.IsValid()) {
-		ALostWorldGameModeBase::DualLog("Deserialized Encounters json", 2);
+		ALostWorldGameModeBase::DualLog("Deserialized Encounters json.", 2);
 		TSharedPtr<FJsonObject> FirstObject = JsonValue->AsArray()[0]->AsObject();
 
 		for (int i = 0; i < JsonValue->AsArray().Num(); i++) {
@@ -50,7 +50,7 @@ FEncounter CustomJsonDeserializer::DeserializeEncounterJson(const FString& InEnc
 			}
 		}
 	} else {
-		ALostWorldGameModeBase::DualLog("Error! Could not deserialize Encounters json", 2);
+		ALostWorldGameModeBase::DualLog("Error! Could not deserialize Encounters json.", 2);
 	}
 	
 	return FEncounter();

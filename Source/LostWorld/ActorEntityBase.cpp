@@ -208,7 +208,25 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
 	} else {
 		// To-Do: Make status effects add stacks to status effects that the entity already has.
-		StatusEffects.Add(StatusEffect);
+		EntityData.StatusEffects.Add(StatusEffect);
+		
+		switch (StatusEffect.StatusEffect)
+		{
+		case (EStatusEffectFunctions::Poison):
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is poisoned!", 2);
+			break;
+		case (EStatusEffectFunctions::StrengthUp):
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " gained strength!", 2);
+			break;
+		case (EStatusEffectFunctions::Adrenaline):
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + "'s adrenaline is flowing!", 2);
+			break;
+		case (EStatusEffectFunctions::Bleeding):
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is bleeding!", 2);
+			break;
+		default:
+			break;
+		}
 	}
 	
 	
@@ -219,7 +237,7 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 bool AActorEntityBase::StartTurn()
 {
 	// Check for status effects that trigger at the start of the owners' turn.
-	for (FStatusEffect StatusEffect : StatusEffects) {
+	for (FStatusEffect StatusEffect : EntityData.StatusEffects) {
 		if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitysTurn)) {
 			AFunctionLibraryStatusEffects::ExecuteFunction(StatusEffect.StatusEffect, this);
 		}

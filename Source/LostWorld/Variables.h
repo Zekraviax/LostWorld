@@ -667,9 +667,7 @@ struct LOSTWORLD_API FEntity
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
-
-	// To-Do: Move card arrays (like the Deck, Draw Pile, Graveyard, etc.) to here
-	// from their AActors.
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCard> Collection;
 	
@@ -687,6 +685,9 @@ struct LOSTWORLD_API FEntity
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCard> Exile;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<FStatusEffect> StatusEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumDeckSize = -1;

@@ -49,8 +49,7 @@ public:
 	FEntity EntityData;
 
 // -------------------------------- Other
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TArray<FStatusEffect> StatusEffects;
+
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //

@@ -21,9 +21,7 @@
 				"Agility": 5,
 				"HealthRegeneration": 1,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -39,9 +37,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -66,7 +62,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [
 				{
 					"DisplayName": "Test Card One",
@@ -79,13 +75,13 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -104,13 +100,13 @@
 					],
 					"BaseDamage": 10,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -129,13 +125,13 @@
 					],
 					"BaseDamage": 5,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionTwo": "AllEnemies"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -154,13 +150,13 @@
 					],
 					"BaseDamage": 5,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionTwo": "AllEnemies"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -179,13 +175,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Draw 1 card.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionThree": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -204,13 +200,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Draw 1 card.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionThree": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -229,13 +225,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 5,
+					"Keywords": [],
 					"Description": "Heal one target with base power ${TotalHealing}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionFour": "AnyOneEntity"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -254,13 +250,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 5,
+					"Keywords": [],
 					"Description": "Heal one target with base power ${TotalHealing}.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionFour": "AnyOneEntity"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -279,13 +275,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Swap your hand and deck.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -304,42 +300,15 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Swap your hand and deck.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionOne": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					
-					"DisplayName": "Poison Dart",
-					"BaseCost": 3,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 2,
-					"BaseHealing": 0,
-					"Description": "Deal light damage and poison a target.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"PoisonDart": "AnyOneEntity"
-					},
-					"Modifiers": [],
-					"ModifiersWithTriggers":
-					{
-						"CostMinusOne": "StartOfBattle"
 					},
 					"TotalCost": 1,
 					"TotalDamage": 0,
@@ -356,13 +325,39 @@
 					],
 					"BaseDamage": 2,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal light damage and poison a target.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"PoisonDart": "AnyOneEntity"
 					},
-					"Modifiers": [],
+					"ModifiersWithTriggers":
+					{
+						"TotalCostMinusOne": "StartOfBattle"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Poison Dart",
+					"BaseCost": 3,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 2,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deal light damage and poison a target.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"PoisonDart": "AnyOneEntity"
+					},
 					"ModifiersWithTriggers":
 					{
 					},
@@ -383,13 +378,13 @@
 					],
 					"BaseDamage": 1,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"EnergyAllAround": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 						"Cantrip": "OnModifierApplied"
@@ -409,13 +404,13 @@
 					],
 					"BaseDamage": 1,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"EnergyAllAround": "OneEnemy"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 						"Cantrip": "OnModifierApplied"
@@ -435,13 +430,13 @@
 					],
 					"BaseDamage": 12,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deals moderate damage. Damage is doubled against barriers.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"ArmourBreaker": "AnyOneEntity"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -460,13 +455,13 @@
 					],
 					"BaseDamage": 12,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Deals moderate damage. Damage is doubled against barriers.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"ArmourBreaker": "AnyOneEntity"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -485,6 +480,7 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
@@ -492,7 +488,6 @@
 						"HyperBeam": "AnyOneEntity",
 						"CostsAllMana": "None"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -511,6 +506,7 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
@@ -518,7 +514,6 @@
 						"HyperBeam": "AnyOneEntity",
 						"CostsAllMana": "None"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -537,13 +532,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Draw cards until your deck is empty, then draw one more.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionFive": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -562,13 +557,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Draw cards until your deck is empty, then draw one more.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionFive": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -587,13 +582,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Summon a TestSummon.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionSix": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -612,13 +607,13 @@
 					],
 					"BaseDamage": 0,
 					"BaseHealing": 0,
+					"Keywords": [],
 					"Description": "Summon a TestSummon.",
 					"FlavourText": "This is a default flavour text.",
 					"FunctionsAndTargets":
 					{
 						"TestFunctionSix": "Self"
 					},
-					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
 					},
@@ -631,6 +626,7 @@
 			"DrawPile": [],
 			"DiscardPile": [],
 			"Exile": [],
+			"StatusEffects": [],
 			"MinimumDeckSize": -1,
 			"MaximumDeckSize": -1,
 			"EquippedItems": [],

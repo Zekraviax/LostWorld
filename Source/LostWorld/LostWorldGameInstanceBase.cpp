@@ -179,20 +179,20 @@ FEnemyEntity ULostWorldGameInstanceBase::GetEnemyFromJson(const FString& EnemyTy
 }
 
 
-FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString& StatusEffectDisplayName) const
+FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const EStatusEffectFunctions StatusFunction) const
 {
 	TArray<FStatusEffect> StatusEffectsArray;
 	FString StatusEffectJsonAsString = LoadFileFromJson("StatusEffectsData");
 	FJsonObjectConverter::JsonArrayStringToUStruct(StatusEffectJsonAsString, &StatusEffectsArray, 0, 0);
 
 	for (FStatusEffect StatusEffect : StatusEffectsArray) {
-		if (StatusEffect.DisplayName.Equals(StatusEffectDisplayName)) {
+		if (StatusEffect.StatusEffect == StatusFunction) {
 			return StatusEffect;
 		}
 	}
 
-	ALostWorldGameModeBase::DualLog("Error! Could not find status effect with display name: " +
-		StatusEffectDisplayName, 2);
+	ALostWorldGameModeBase::DualLog("Error! Could not find status effect with function: " +
+		UEnum::GetDisplayValueAsText(StatusFunction).ToString(), 2);
 	return StatusEffectsArray[0];
 }
 

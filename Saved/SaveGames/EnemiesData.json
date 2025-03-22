@@ -23,9 +23,7 @@
 				"Agility": 5,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -41,9 +39,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -68,7 +64,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [
 				{
@@ -361,9 +357,7 @@
 				"Agility": 5,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -379,9 +373,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -406,7 +398,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [
+			"StartBattleWithStatusEffectFunctions": [
 				"IronShell"
 			],
 			"Collection": [],
@@ -701,9 +693,7 @@
 				"Agility": 2,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -719,9 +709,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -746,7 +734,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [
 				{
@@ -1037,9 +1025,7 @@
 				"Agility": 4,
 				"HealthRegeneration": 4,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -1055,9 +1041,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -1082,7 +1066,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [
 				{
@@ -1375,9 +1359,7 @@
 				"Agility": 10,
 				"HealthRegeneration": 1,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -1393,9 +1375,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -1420,7 +1400,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [],
 			"Hand": [],
@@ -1462,9 +1442,7 @@
 				"Agility": 25,
 				"HealthRegeneration": 5,
 				"ManaRegeneration": 5,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -1480,9 +1458,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -1507,7 +1483,7 @@
 				"DivineAffinity": 50
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [],
 			"Hand": [],
@@ -1549,9 +1525,7 @@
 				"Agility": 15,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 3,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"TotalStats":
 			{
@@ -1567,9 +1541,7 @@
 				"Agility": 1,
 				"HealthRegeneration": 0,
 				"ManaRegeneration": 1,
-				"Readiness": 0,
-				"CurrentStatusEffects": [],
-				"StartBattleWithStatusEffectsDisplayNames": []
+				"Readiness": 0
 			},
 			"OffensiveAffinities":
 			{
@@ -1594,7 +1566,7 @@
 				"DivineAffinity": 100
 			},
 			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectsDisplayNames": [],
+			"StartBattleWithStatusEffectFunctions": [],
 			"Collection": [],
 			"Deck": [
 				{

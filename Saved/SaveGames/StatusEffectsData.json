@@ -5,10 +5,10 @@
 		"Description": "At the start of this entity's turn, it takes 1/8th of its Max HP as damage.",
 		"StatusEffect": "Poison",
 		"TimingTriggers": [
-			"StartOfAffectedEntitysTurn"
+			"StartOfAffectedEntitiesTurn"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 10,
@@ -38,7 +38,7 @@
 			"OnStatusEffectApplied"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
@@ -48,13 +48,13 @@
 	{
 		"Name": "Howl",
 		"DisplayName": "Howl",
-		"Description": "Attacks made against this entity have increased base power.",
+		"Description": "Attacks made against this entity have +2 base power.",
 		"StatusEffect": "Howl",
 		"TimingTriggers": [
 			"None"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 2,
 		"MaximumStackCount": 2,
@@ -70,7 +70,7 @@
 			"OnStatusEffectApplied"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
@@ -83,7 +83,7 @@
 		"Description": "At the end of each entities' turns, transform one card in their hand into a random card.",
 		"StatusEffect": "Poison",
 		"TimingTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfEveryTurn"
 		],
 		"DecrementStackTriggers": [],
 		"CurrentStackCount": 1,
@@ -94,7 +94,7 @@
 	{
 		"Name": "SneakyStones",
 		"DisplayName": "Sneaky Stones",
-		"Description": "Whenever an entity plays a card, attack that entity (base power 1.)",
+		"Description": "Whenever an entity plays a card, attack that entity (with base power 1.)",
 		"StatusEffect": "Poison",
 		"TimingTriggers": [
 			"None"
@@ -111,10 +111,10 @@
 		"Description": "At the start of this entitys' turn, it takes 1 damage per stack of Bleeding.",
 		"StatusEffect": "Bleeding",
 		"TimingTriggers": [
-			"StartOfAffectedEntitysTurn"
+			"StartOfAffectedEntitiesTurn"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
@@ -130,7 +130,7 @@
 			"OnStatusEffectApplied"
 		],
 		"DecrementStackTriggers": [
-			"EndOfAffectedEntitysTurn"
+			"EndOfAffectedEntitiesTurn"
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,

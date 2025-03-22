@@ -227,12 +227,13 @@ enum class ETimingTriggers : uint8
 	None,
 	StartOfBattle,
 	// The 'StartOf' triggers are mutually exclusive (except for StartOfBattle).
-	StartOfAffectedEntitysTurn,
+	StartOfAffectedEntitiesTurn,
 	StartOfEveryTurn,
 	// The 'EndOf' triggers are mutually exclusive.
-	EndOfAffectedEntitysTurn,
+	EndOfAffectedEntitiesTurn,
 	EndOfEveryTurn,
 	OnStatusEffectApplied,
+	WhenStatusEffectTriggers,
 };
 
 
@@ -550,12 +551,6 @@ struct LOSTWORLD_API FEntityBaseStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FStatusEffect> CurrentStatusEffects;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
 	
 	// Default constructor
 	FEntityBaseStats()
@@ -675,7 +670,7 @@ struct LOSTWORLD_API FEntity
 	TArray<FStatusEffect> CurrentStatusEffects;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FString> StartBattleWithStatusEffectsDisplayNames;
+	TArray<EStatusEffectFunctions> StartBattleWithStatusEffectFunctions;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCard> Collection;

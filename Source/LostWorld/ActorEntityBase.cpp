@@ -272,7 +272,7 @@ bool AActorEntityBase::StartTurn()
 	// Check for status effects that trigger at the start of the owners' turn.
 	if (EntityData.StatusEffects.Num() > 0) {
 		for (FStatusEffect StatusEffect : EntityData.StatusEffects) {
-			if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitysTurn)) {
+			if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitiesTurn)) {
 				AFunctionLibraryStatusEffects::ExecuteFunction(StatusEffect.StatusEffect, this);
 			}
 		}
@@ -300,7 +300,7 @@ bool AActorEntityBase::EndTurn()
 	// Decrement end-of-turn status effects here.
 	if (EntityData.StatusEffects.Num() > 0) {
 		for (int Index = EntityData.StatusEffects.Num() - 1; Index >= 0; Index--) {
-			if (EntityData.StatusEffects[Index].DecrementStackTriggers.Contains(ETimingTriggers::EndOfAffectedEntitysTurn)) {
+			if (EntityData.StatusEffects[Index].DecrementStackTriggers.Contains(ETimingTriggers::EndOfAffectedEntitiesTurn)) {
 				EntityData.StatusEffects[Index].CurrentStackCount--;
 				ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " has lost 1 stack of " +
 						EntityData.StatusEffects[Index].DisplayName + ".", 2);

@@ -147,7 +147,7 @@ void AFunctionLibraryCards::PoisonDart() const
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
 
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("PoisonTest"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Poison));
 }
 
 
@@ -218,7 +218,7 @@ void AFunctionLibraryCards::HowlOfCommand() const
 
 	// Second, inflict the target with the Howl status effect that increases the power of cards targeted at them.
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Howl"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Howl));
 }
 
 
@@ -247,8 +247,8 @@ void AFunctionLibraryCards::CallForFriends() const
 	
 		// Spawn the summon and make it the same team as the entity summoning it.
 		if (Cast<AActorEntityEnemy>(this)) {
+			// To-Do: Get EnemyData when an enemy uses a summon.
 			FEnemyEntity EnemyData = FEnemyEntity();
-			EnemyData.EntityData = SummonData.EntityData;
 			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEnemyEntity(EnemyData);
 		} else {
 			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnPlayerEntity(SummonData.EntityData);
@@ -267,10 +267,10 @@ void AFunctionLibraryCards::InfectedBite() const
 
 	if (FMath::RandBool()) {
 		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Poison"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Poison));
 	} else {
 		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Bleeding"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Bleeding));
 	}
 }
 
@@ -285,7 +285,7 @@ void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 void AFunctionLibraryCards::ApplyToughnessDown() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Toughness Down"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::ToughnessDown));
 
 	// Tell the defender to re-calculate their stats.
 	Cast<IInterfaceEntity>(GetDefender())->CalculateTotalStats();

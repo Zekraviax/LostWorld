@@ -73,9 +73,13 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	}
 
 	// Reset all of the players' card arrays, except their deck.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Hand.Empty();
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.DiscardPile.Empty();
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->EntityData.Team = ETeams::PlayerTeam;
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
+		EntityData.Hand.Empty();
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
+		EntityData.DiscardPile.Empty();
+	// To-Do: Figure out if this line is redundant.
+	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
+		EntityData.Team = ETeams::PlayerTeam;
 
 	// Add the player's entity to the array last.
 	EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
@@ -95,15 +99,20 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 	// To-Do: Before card mods can be applied, and depending on the context/timing,
 	// we need to reset the variables to their base values(?)
 
+	// To-Do: Maybe ignore the timing trigger and just reset the card every time,
+	// then apply all mods?
+
 	// When to reset variables:
 	// OnModifierApplied,
-	// StartOfBattle,
 
-	// When not to:
+	// When not to reset variables:
+	// StartOfBattle,
 	// StartOfTurn
-	InCard.TotalCost = InCard.BaseCost;
-	InCard.TotalDamage = InCard.BaseDamage;
-	InCard.TotalHealing = InCard.BaseHealing;
+	if (TimingTrigger == ECardModifierTimingTriggers::OnModifierApplied) {
+		InCard.TotalCost = InCard.BaseCost;
+		InCard.TotalDamage = InCard.BaseDamage;
+		InCard.TotalHealing = InCard.BaseHealing;
+	}
 	
 	for (auto& Mod : InCard.ModifiersWithTriggers) {
 		if (Mod.Value == TimingTrigger) {
@@ -125,6 +134,7 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 				break;
 			case (ECardModifiers::Cantrip):
 				InCard.TotalCost++;
+				InCard.FunctionsAndTargets.Add(ECardFunctions::CasterDrawsOneCard, ECardTargets::Self);
 			default:
 				break;
 			}
@@ -158,14 +168,14 @@ void ALostWorldGameModeBattle::PlayerVictory() const
 
 AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBase* InEntity)
 {
-	// First, find a valid loation for the entity
-	TArray<AActorGridTile*> ValidEnemySpawnTiles;
+	// First, find a valid location for the entity.
+	TArray<AActorGridTile*> ValidEntitySpawnTiles;
 	FVector PlayerEntityLocation = FVector();
 	int PlayerRoomIndex = 0;
-	//AActorEntityBase* ReturnEntityCopy = InEntity;
 
 	GetPlayerLocationAndRoom(PlayerEntityLocation, PlayerRoomIndex);
-	
+
+	// To-Do: Find the locations for all entities in the room and exclude them from the valid tiles array.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
 		AActorGridTile* FoundTile = *Itr;
 		// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
@@ -177,14 +187,14 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 				if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
 					// Fourth, make sure the entity is spawned in the same room as all the other entities.
 					if (FoundTile->RoomIndex == PlayerRoomIndex) {
-						ValidEnemySpawnTiles.Add(FoundTile);
+						ValidEntitySpawnTiles.Add(FoundTile);
 					}
 				}
 			}
 		}
 	}
 
-	AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
+	AActorGridTile* RandomTile = ValidEntitySpawnTiles[FMath::RandRange(0, ValidEntitySpawnTiles.Num() -1)];
 	InEntity->SetActorLocation(RandomTile->GetActorLocation());
 		
 	// Attach an AI brain component if the entity isn't to be controlled by the player.
@@ -195,15 +205,13 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 	// Stat calculations.
 	Cast<IInterfaceEntity>(InEntity)->CalculateTotalStats();
 
-	// Set up the enemy's deck and draw pile.
+	// Set up the entity's draw pile.
+	// Apply card modifiers that "trigger" when applied/when the entity is spawned.
 	for (int CardCount = 0; CardCount < InEntity->EntityData.Deck.Num(); CardCount++) {
-		FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity->EntityData.Deck[CardCount], ECardModifierTimingTriggers::StartOfBattle);
-		//FCard Copy = InEntity->EntityData.Deck[CardCount];
-		Cast<AActorEntityEnemy>(InEntity)->AddCardToDrawPile(Copy);
+		FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity->EntityData.Deck[CardCount],
+			ECardModifierTimingTriggers::OnModifierApplied);
+		InEntity->EntityData.Deck[CardCount] = Copy;
 	}
-	
-	// To-Do: Shuffle the entity's deck.
-	//InEntity->EntityData.DrawPile = Cast<IInterfaceBattle>(InEntity)->ShuffleDrawPile(InEntity->EntityData.Deck);
 
 	// Initialize billboard.
 	InEntity->ResetEntityBillboardPositionAndRotation();
@@ -212,7 +220,7 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 
 	EntitiesInBattleArray.Add(InEntity);
 
-	DualLog("Spawned enemy: " + InEntity->EntityData.DisplayName, 3);
+	DualLog("Spawned entity: " + InEntity->EntityData.DisplayName, 3);
 
 	// To-Do: When an entity is summoned mid-battle, the whole turn queue needs to be recalculated,
 	// but the currently acting actor should always be the first in the turn queue.
@@ -241,11 +249,11 @@ AActorEntityPlayer* ALostWorldGameModeBattle::SpawnPlayerEntity(const FEntity& I
 {
 	const FActorSpawnParameters SpawnParameters;
 
-	AActorEntityPlayer* ReturnEntity = GetWorld()->SpawnActor<AActorEntityPlayer>(ActorEntityEnemyBlueprintClass,
+	AActorEntityPlayer* ReturnEntity = GetWorld()->SpawnActor<AActorEntityPlayer>(ActorEntityPlayerBlueprintClass,
 		FVector(0, 0, 0),FRotator::ZeroRotator, SpawnParameters);
 
 	ReturnEntity->EntityData = InEntityData;
-	ReturnEntity->EntityData.Team = ETeams::EnemyTeam1;
+	ReturnEntity->EntityData.Team = ETeams::PlayerTeam;
 
 	AActorEntityBase* EntityAsBaseClass = Cast<AActorEntityBase>(ReturnEntity);
 	EntityAsBaseClass = FinishSpawningEntity(EntityAsBaseClass);
@@ -271,30 +279,25 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 
 	// Calculate turn order.
 	AddMaxNumberOfEntitiesToTurnQueue(true);
-	
-	// Shuffle up.
+
+	// Apply card modifiers that trigger at the start of battles.
 	for (auto& Entity : EntitiesInBattleArray) {
+		for (int Index = 0; Index < Entity->EntityData.Deck.Num(); Index++) {
+			FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.Deck[Index],
+				ECardModifierTimingTriggers::StartOfBattle);
+			Entity->EntityData.DrawPile.Add(Copy);
+		}
+	}
+
+	// To-Do: Fix this.
+	// Shuffle up.
+	/*for (auto& Entity : EntitiesInBattleArray) {
 		if (Cast<AActorEntityEnemy>(Entity)) {
 			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
 			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
 		}
-	}
-
-	// Apply card modifiers
-	for (auto& Entity : EntitiesInBattleArray) {
-		for (int Index = Entity->EntityData.DrawPile.Num() - 1; Index >= 0; Index--) {
-			for (auto& Mod : Entity->EntityData.DrawPile[Index].ModifiersWithTriggers) {
-				if (Mod.Value == ECardModifierTimingTriggers::StartOfBattle) {
-					FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.DrawPile[Index],
-						ECardModifierTimingTriggers::StartOfBattle);
-					
-					Entity->EntityData.DrawPile.RemoveAt(Index);
-					Entity->EntityData.DrawPile.Insert(Copy, Index);
-				}
-			}
-		}
-	}
+	}*/
 
 	// Draw a full grip.
 	for (auto& Entity : EntitiesInBattleArray) {
@@ -310,6 +313,7 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	}
 
 	// Initialize each entity's billboard.
+	// To-Do: Figure out if this is redundant, considering it also happens when the entity is spawned.
 	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
 		Entity->ResetEntityBillboardPositionAndRotation();
 		Cast<UWidgetEntityBillboard>(Entity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(Entity->EntityData);
@@ -456,12 +460,10 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
 {
 	// Pay the cost for casting the card.
 	Cast<IInterfaceBattle>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
-
-	// To-Do: Replace all of these redundant casts to the actor with casts to the interface.
 	Cast<IInterfaceBattle>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
 	
 	TheStack.Add(TempStackEntry);
-
+	
 	CastCard();
 }
 
@@ -474,8 +476,15 @@ void ALostWorldGameModeBattle::CastCard()
 	}
 
 	CardsCastThisTurn++;
-	
+
+	// To-Do: Figure out a process for executing multiple functions at a time.
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
+	
+	TArray<ECardFunctions> Functions;
+	TheStack[0].Card.FunctionsAndTargets.GetKeys(Functions);
+	if (Functions.Contains(ECardFunctions::CasterDrawsOneCard)) {
+		Cast<IInterfaceBattle>(TheStack[0].Controller)->DrawCard();
+	}
 
 	TheStack.RemoveAt(0);
 }
@@ -574,92 +583,85 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 
 		switch (SpawnIndex)
 		{
-			case 0:
-			{
-				AActorEntityPlayer* PlayerEntityReference = GetWorld()->SpawnActor<AActorEntityPlayer>(ActorEntityPlayerBlueprintClass,
-				FVector(RandomGridTile->GetActorLocation().X, RandomGridTile->GetActorLocation().Y, 0),
-				FRotator::ZeroRotator,
-				SpawnParameters);
+		case 0:
+		{
+			// Player data loading is handled in the GameInstanceBase.
+			// Here, we just fetch it from the game instance.
+			FEntity PlayerData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
+			AActorEntityPlayer* PlayerEntityReference = SpawnPlayerEntity(PlayerData);
 
-				// Set Camera Target.
-				FViewTargetTransitionParams Params;
-				GetWorld()->GetFirstPlayerController()->SetViewTarget(PlayerEntityReference, Params); // This line isn't multiplayer safe
-				PlayerEntityReference->Camera->SetActive(true);
+			// Set Camera Target.
+			FViewTargetTransitionParams Params;
+			GetWorld()->GetFirstPlayerController()->SetViewTarget(PlayerEntityReference, Params); // This line isn't multiplayer safe
+			PlayerEntityReference->Camera->SetActive(true);
 
-				// Add the level HUD to the player's screen.
-				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
+			// Add the level HUD to the player's screen.
+			Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddLevelHudToViewport();
 
-				// Player data loading is handled in the GameInstanceBase.
-				// Here, we just fetch it from the game instance.
-				PlayerEntityReference->EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
+			// Player stat calculation.
+			PlayerEntityReference->CalculateTotalStats();
 
-				// Load the players' card collection here, when their actor is first spawned.
-				for (int CardCount = 0; CardCount < PlayerEntityReference->EntityData.Deck.Num(); CardCount++) {
-					PlayerEntityReference->AddCardToDrawPile(PlayerEntityReference->EntityData.Deck[CardCount]);
-				}
+			// Players' first time billboard setup.
+			Cast<UWidgetEntityBillboard>(PlayerEntityReference->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(PlayerEntityReference->EntityData);
+			PlayerEntityReference->ResetEntityBillboardPositionAndRotation();
 
-				// Player stat calculation.
-				PlayerEntityReference->CalculateTotalStats();
-
-				// Players' first time billboard setup.
-				Cast<UWidgetEntityBillboard>(PlayerEntityReference->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(PlayerEntityReference->EntityData);
-				PlayerEntityReference->ResetEntityBillboardPositionAndRotation();
-
-				// Take control of the entity	
-				Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
-				break;
-			}
-			case 2:
-			{
-				int NumberOfEncounters = 0;
-				FRoomDataAsStruct RandomRoom;
-				bool CoinFlip = true;
-					
-				// Use this Array to randomly generate encounters in randomly chosen rooms,
-				// except for the first randomly chosen room, which will always have an encounter.
-				TArray<int> RoomIndicesArray;	
-				TArray<int> ShuffledRoomIndicesArray = {};
+			// Take control of the entity	.
+			Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity = PlayerEntityReference;	
+			break;
+		}
+		case 2:
+		{
+			int NumberOfEncounters = 0;
+			FRoomDataAsStruct RandomRoom;
+			bool CoinFlip = true;
 				
-				// Get all of the room indices in order.
-				for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
-					RoomIndicesArray.Add(RoomCount);
-				}
-					
-				// Shuffle up the room integers array into a second array.
-				for (int RandomRoomCount = 0; RandomRoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RandomRoomCount++) {
-					int RandomIndex = RoomIndicesArray[FMath::RandRange(0, RoomIndicesArray.Num() - 1)];
-
-					ShuffledRoomIndicesArray.Add(RandomIndex);
-					RoomIndicesArray.Remove(RandomIndex);
-				}
-
-				// Guarantee at least one encounter in one room.
-				// Use the shuffled room indices array to get the room that the encounter will be spawned in to.
-				// For each other room, randomly decide whether or not to spawn an encounter.
-				while (ShuffledRoomIndicesArray.Num() > 0) {
-					if (NumberOfEncounters > 0) {
-						//CoinFlip = FMath::RandBool();
-						CoinFlip = true;
-					}
-
-					if (CoinFlip) {
-						RandomRoom = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[ShuffledRoomIndicesArray[0]];
-						RandomArrayIndex = FMath::RandRange(0, RandomRoom.GridTilesInRoom.Num() - 1);
-						RandomGridTile = RandomRoom.GridTilesInRoom[RandomArrayIndex];
-
-						// To-Do: Choose an encounter from the levels' list of possible encounters,
-						// factoring in the current floor and the encounters' minimum and maximum levels.
-						int RandomEnemyEncounter = FMath::RandRange(0, LevelDataCopy.Encounters.Num() - 1);
-						RandomGridTile->Encounter = LevelDataCopy.Encounters[RandomEnemyEncounter];
-						RandomGridTile->SetTileColour(FLinearColor(0.25f, 0.f, 0.f));
-					}
-
-					// Cap the number of encounters generated to be equal to the number of rooms in the level.
-					ShuffledRoomIndicesArray.RemoveAt(0);
-				}
+			// Use this Array to randomly generate encounters in randomly chosen rooms,
+			// except for the first randomly chosen room, which will always have an encounter.
+			TArray<int> RoomIndicesArray;	
+			TArray<int> ShuffledRoomIndicesArray = {};
 			
-				break;
+			// Get all of the room indices in order.
+			for (int RoomCount = 0; RoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RoomCount++) {
+				RoomIndicesArray.Add(RoomCount);
 			}
+				
+			// Shuffle up the room integers array into a second array.
+			for (int RandomRoomCount = 0; RandomRoomCount < LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray.Num(); RandomRoomCount++) {
+				int RandomIndex = RoomIndicesArray[FMath::RandRange(0, RoomIndicesArray.Num() - 1)];
+
+				ShuffledRoomIndicesArray.Add(RandomIndex);
+				RoomIndicesArray.Remove(RandomIndex);
+			}
+
+			// Guarantee at least one encounter in one room.
+			// Use the shuffled room indices array to get the room that the encounter will be spawned in to.
+			// For each other room, randomly decide whether or not to spawn an encounter.
+			while (ShuffledRoomIndicesArray.Num() > 0) {
+				if (NumberOfEncounters > 0) {
+					//CoinFlip = FMath::RandBool();
+					CoinFlip = true;
+				}
+
+				if (CoinFlip) {
+					RandomRoom = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[ShuffledRoomIndicesArray[0]];
+					RandomArrayIndex = FMath::RandRange(0, RandomRoom.GridTilesInRoom.Num() - 1);
+					RandomGridTile = RandomRoom.GridTilesInRoom[RandomArrayIndex];
+
+					// To-Do: Choose an encounter from the levels' list of possible encounters,
+					// factoring in the current floor and the encounters' minimum and maximum levels.
+					int RandomEnemyEncounter = FMath::RandRange(0, LevelDataCopy.Encounters.Num() - 1);
+					RandomGridTile->Encounter = LevelDataCopy.Encounters[RandomEnemyEncounter];
+					RandomGridTile->SetTileColour(FLinearColor(0.25f, 0.f, 0.f));
+				}
+
+				// Cap the number of encounters generated to be equal to the number of rooms in the level.
+				ShuffledRoomIndicesArray.RemoveAt(0);
+			}
+		
+			break;
+		}
+		default:
+			break;
 		}
 
 		ValidSpawnTilesArray.Remove(RandomGridTile);

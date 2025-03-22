@@ -319,60 +319,7 @@
 					"TotalHealing": 0
 				},
 				{
-					"DisplayName": "Energy In The Air",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 1,
-					"BaseHealing": 0,
-					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"EnergyAllAround": "OneEnemy"
-					},
-					"Modifiers": [],
-					"ModifiersWithTriggers":
-					{
-						"Cantrip": "OnModifierApplied"
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Energy In The Air",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 1,
-					"BaseHealing": 0,
-					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"EnergyAllAround": "OneEnemy"
-					},
-					"Modifiers": [],
-					"ModifiersWithTriggers":
-					{
-						"Cantrip": "OnModifierApplied"
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				}
-			],
-			"Deck": [
-				{
+					
 					"DisplayName": "Poison Dart",
 					"BaseCost": 3,
 					"CardTypes": [
@@ -418,6 +365,60 @@
 					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				}
+			],
+			"Deck": [
+				{
+					"DisplayName": "Energy In The Air",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 1,
+					"BaseHealing": 0,
+					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"EnergyAllAround": "OneEnemy"
+					},
+					"Modifiers": [],
+					"ModifiersWithTriggers":
+					{
+						"Cantrip": "OnModifierApplied"
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Energy In The Air",
+					"BaseCost": 1,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 1,
+					"BaseHealing": 0,
+					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"EnergyAllAround": "OneEnemy"
+					},
+					"Modifiers": [],
+					"ModifiersWithTriggers":
+					{
+						"Cantrip": "OnModifierApplied"
 					},
 					"TotalCost": 1,
 					"TotalDamage": 0,

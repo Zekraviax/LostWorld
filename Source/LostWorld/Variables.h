@@ -183,6 +183,7 @@ enum class ECardFunctions : uint8
 	InfectedBite,
 	// -------- Generic functions -------- //
 	DealDamageToOneTargets,
+	CasterDrawsOneCard,
 	// -------- Modifier functions -------- //
 	// We can use modifier functions to store values,
 	// so that we can create mods that stack or vary over time.

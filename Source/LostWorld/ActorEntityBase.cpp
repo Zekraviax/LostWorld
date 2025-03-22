@@ -78,14 +78,9 @@ bool AActorEntityBase::DrawCard()
 		}
 	}
 	
-	// Shift the top card of the deck into the hand
+	// Shift the top card of the deck into the hand.
 	EntityData.Hand.Add(EntityData.DrawPile[0]);
 	EntityData.DrawPile.RemoveAt(0);
-
-	// Calculate card variables such as total cost here.
-	EntityData.Hand.Last().TotalCost = EntityData.Hand.Last().BaseCost;
-	EntityData.Hand.Last().TotalDamage = EntityData.Hand.Last().BaseDamage;
-	EntityData.Hand.Last().TotalHealing = EntityData.Hand.Last().BaseHealing;
 	
 	return IInterfaceBattle::DrawCard();
 }

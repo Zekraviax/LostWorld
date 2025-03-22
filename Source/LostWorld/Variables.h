@@ -644,7 +644,7 @@ struct LOSTWORLD_API FEquipment : public FTableRowBase
 // This struct should only contain variables that are relevant to all types of entities:
 // Players, normal enemies, boss enemies, summons, and NPCs(?)
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FEntity
+struct LOSTWORLD_API FEntity : public FTableRowBase
 {
 	GENERATED_BODY()
 

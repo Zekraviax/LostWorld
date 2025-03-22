@@ -1,0 +1,37 @@
+[
+	{
+		"Name": "TestEnemyOne",
+		"EnemyType": "TestEnemyOne",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "TestEnemyTwo",
+		"EnemyType": "TestEnemyTwo",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "WolfPack",
+		"EnemyType": "WolfPack",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "WolfPackAlpha",
+		"EnemyType": "WolfPackAlpha",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "Hogbot",
+		"EnemyType": "Hogbot",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "MegaHogbot",
+		"EnemyType": "Mega Hogbot",
+		"ExperiencePoints": 1
+	},
+	{
+		"Name": "RabidRat",
+		"EnemyType": "RabidRat",
+		"ExperiencePoints": 1
+	}
+]

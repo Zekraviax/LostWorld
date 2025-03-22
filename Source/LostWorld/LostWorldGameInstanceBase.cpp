@@ -3,6 +3,7 @@
 
 #include "ActorEntityPlayer.h"
 #include "JsonObjectConverter.h"
+#include "LostWorldGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "SaveGameDeveloperSettings.h"
@@ -190,6 +191,8 @@ FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const FString&
 		}
 	}
 
+	ALostWorldGameModeBase::DualLog("Error! Could not find status effect with display name: " +
+		StatusEffectDisplayName, 2);
 	return StatusEffectsArray[0];
 }
 

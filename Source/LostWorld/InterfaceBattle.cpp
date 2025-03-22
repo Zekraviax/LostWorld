@@ -21,7 +21,7 @@ TArray<FCard> IInterfaceBattle::ShuffleDrawPile(TArray<FCard> InDeck)
 	// For each card in the InDeck array, pick one at random and add it to the ShuffledDeck.
 	for (int DeckCount = InDeck.Num() - 1; DeckCount >= 0; DeckCount--) {
 		int RandomIndex = FMath::RandRange(0, InDeck.Num() - 1);
-
+		
 		ShuffledDeck.Add(InDeck[RandomIndex]);
 		InDeck.RemoveAt(RandomIndex);
 	}

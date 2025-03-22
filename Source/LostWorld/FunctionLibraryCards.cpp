@@ -48,7 +48,11 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 	case (ECardFunctions::InfectedBite):
 		InfectedBite();
 		break;
+	case (ECardFunctions::InflictToughnessDown):
+		ApplyToughnessDown();
+		break;
 	default:
+		ALostWorldGameModeBase::DualLog("Error! This function doesn't have an implementation!", 2);
 		break;
 	}
 }
@@ -263,7 +267,7 @@ void AFunctionLibraryCards::InfectedBite() const
 
 	if (FMath::RandBool()) {
 		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
-		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("PoisonTest"));
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Poison"));
 	} else {
 		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Bleeding"));
@@ -275,4 +279,14 @@ void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+}
+
+
+void AFunctionLibraryCards::ApplyToughnessDown() const
+{
+	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson("Toughness Down"));
+
+	// Tell the defender to re-calculate their stats.
+	Cast<IInterfaceEntity>(GetDefender())->CalculateTotalStats();
 }

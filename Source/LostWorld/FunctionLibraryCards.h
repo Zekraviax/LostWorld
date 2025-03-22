@@ -37,4 +37,5 @@ public:
 	void InfectedBite() const;
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
+	void ApplyToughnessDown() const;
 };

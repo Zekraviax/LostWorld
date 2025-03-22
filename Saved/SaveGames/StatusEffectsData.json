@@ -12,8 +12,7 @@
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 10,
-		"DecrementStacksWhenTriggered": true,
-		"VisibleToPlayer": false,
+		"VisibleToPlayer": true,
 		"BlockedByBarrier": true
 	},
 	{
@@ -27,7 +26,6 @@
 		"DecrementStackTriggers": [],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 1,
-		"DecrementStacksWhenTriggered": false,
 		"VisibleToPlayer": false,
 		"BlockedByBarrier": false
 	},
@@ -44,8 +42,7 @@
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
-		"DecrementStacksWhenTriggered": false,
-		"VisibleToPlayer": false,
+		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	},
 	{
@@ -59,9 +56,8 @@
 		"DecrementStackTriggers": [
 			"EndOfAffectedEntitysTurn"
 		],
-		"CurrentStackCount": 3,
-		"MaximumStackCount": 3,
-		"DecrementStacksWhenTriggered": true,
+		"CurrentStackCount": 2,
+		"MaximumStackCount": 2,
 		"VisibleToPlayer": true,
 		"BlockedByBarrier": true
 	},
@@ -78,8 +74,7 @@
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
-		"DecrementStacksWhenTriggered": true,
-		"VisibleToPlayer": false,
+		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	},
 	{
@@ -93,7 +88,6 @@
 		"DecrementStackTriggers": [],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 1,
-		"DecrementStacksWhenTriggered": false,
 		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	},
@@ -108,7 +102,6 @@
 		"DecrementStackTriggers": [],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 1,
-		"DecrementStacksWhenTriggered": false,
 		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	},
@@ -125,8 +118,23 @@
 		],
 		"CurrentStackCount": 1,
 		"MaximumStackCount": 9999999,
-		"DecrementStacksWhenTriggered": true,
-		"VisibleToPlayer": false,
+		"VisibleToPlayer": true,
+		"BlockedByBarrier": true
+	},
+	{
+		"Name": "ToughnessDown",
+		"DisplayName": "Toughness Down",
+		"Description": "This entities' Toughness is reduced by 1 per stack.",
+		"StatusEffect": "ToughnessDown",
+		"TimingTriggers": [
+			"OnStatusEffectApplied"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 9999999,
+		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
 	}
 ]

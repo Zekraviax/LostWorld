@@ -20,7 +20,6 @@
 		},
 		"ModifiersWithTriggers":
 		{
-			"TotalCostMinusOne": "OnModifierApplied"
 		},
 		"TotalCost": 1,
 		"TotalDamage": 10,
@@ -316,9 +315,9 @@
 	{
 		"Name": "HammerBlow",
 		"DisplayName": "Hammer Blow",
-		"BaseCost": 4,
+		"BaseCost": 6,
 		"CardTypes": [
-			"Spell"
+			"Technique"
 		],
 		"CardElements": [
 			"Earth"
@@ -531,6 +530,32 @@
 		"FunctionsAndTargets":
 		{
 			"InfectedBite": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Screech",
+		"DisplayName": "Screech",
+		"BaseCost": 2,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Air"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "Inflict ToughnessDown on all enemies.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"InflictToughnessDown": "AllEnemies"
 		},
 		"ModifiersWithTriggers":
 		{

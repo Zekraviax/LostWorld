@@ -6,6 +6,7 @@
 #include "AiBrainTestEnemyTwo.h"
 #include "AiBrainBaseWolfPack.h"
 #include "AiBrainBaseWolfPackAlpha.h"
+#include "AiBrainRabidRat.h"
 #include "LostWorldGameModeBattle.h"
 #include "WidgetEntityBillboard.h"
 
@@ -24,6 +25,7 @@ AActorEntityEnemy::AActorEntityEnemy()
 void AActorEntityEnemy::CreateAiBrainComponent()
 {
 	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType, 4);
+	
 	if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyOne)) {
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
 	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyTwo)) {
@@ -32,6 +34,8 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 		AiBrainComponent = NewObject<UAiBrainBaseWolfPack>(this);
 	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::WolfPackAlpha)) {
 		AiBrainComponent = NewObject<UAiBrainBaseWolfPackAlpha>(this);
+	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::RabidRat)) {
+		AiBrainComponent = NewObject<UAiBrainRabidRat>(this);
 	} else {
 		// Default brain.
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);

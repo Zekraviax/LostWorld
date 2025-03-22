@@ -102,6 +102,10 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 	// To-Do: Maybe ignore the timing trigger and just reset the card every time,
 	// then apply all mods?
 
+	// As of March 22, 2025, we're just going to ignore the mods that are muddling the issue like the "StartOfTurn" mod.
+	// For all the currently existing mods, they will be applied once, using the other function
+	// (ApplyAllCardModifiersWithoutTimingTriggers).
+
 	// When to reset variables:
 	// OnModifierApplied,
 
@@ -138,6 +142,41 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 			default:
 				break;
 			}
+		}
+	}
+	
+	return InCard;
+}
+
+
+FCard ALostWorldGameModeBattle::ApplyAllCardModifiersWithoutTimingTriggers(FCard InCard)
+{
+	InCard.TotalCost = InCard.BaseCost;
+	InCard.TotalDamage = InCard.BaseDamage;
+	InCard.TotalHealing = InCard.BaseHealing;
+	
+	for (auto& Mod : InCard.ModifiersWithTriggers) {
+		switch (Mod.Key)
+		{
+		case (ECardModifiers::TotalCostMinusOne):
+			InCard.TotalCost--;
+			break;
+		case (ECardModifiers::TotalDamagePlusOne):
+			InCard.TotalDamage++;
+			break;
+		case (ECardModifiers::DamageSetToOne):
+			InCard.TotalDamage = 1;
+			break;
+		case (ECardModifiers::CostUpDamageUpHealingUp):
+			InCard.TotalCost++;
+			InCard.TotalDamage++;
+			InCard.TotalHealing++;
+			break;
+		case (ECardModifiers::Cantrip):
+			InCard.TotalCost++;
+			InCard.FunctionsAndTargets.Add(ECardFunctions::CasterDrawsOneCard, ECardTargets::Self);
+		default:
+			break;
 		}
 	}
 	
@@ -208,8 +247,7 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 	// Set up the entity's draw pile.
 	// Apply card modifiers that "trigger" when applied/when the entity is spawned.
 	for (int CardCount = 0; CardCount < InEntity->EntityData.Deck.Num(); CardCount++) {
-		FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity->EntityData.Deck[CardCount],
-			ECardModifierTimingTriggers::OnModifierApplied);
+		FCard Copy = ApplyAllCardModifiersWithoutTimingTriggers(InEntity->EntityData.Deck[CardCount]);
 		InEntity->EntityData.Deck[CardCount] = Copy;
 	}
 
@@ -283,21 +321,27 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Apply card modifiers that trigger at the start of battles.
 	for (auto& Entity : EntitiesInBattleArray) {
 		for (int Index = 0; Index < Entity->EntityData.Deck.Num(); Index++) {
-			FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.Deck[Index],
-				ECardModifierTimingTriggers::StartOfBattle);
+			//FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.Deck[Index],
+			//	ECardModifierTimingTriggers::StartOfBattle);
+			FCard Copy = ApplyAllCardModifiersWithoutTimingTriggers(Entity->EntityData.Deck[Index]);
 			Entity->EntityData.DrawPile.Add(Copy);
 		}
 	}
 
 	// To-Do: Fix this.
 	// Shuffle up.
-	/*for (auto& Entity : EntitiesInBattleArray) {
+	for (auto& Entity : EntitiesInBattleArray) {
+		// Since this is the start of the battle, we can erase the current draw pile and make it a copy of the deck.
+		Entity->EntityData.DrawPile.Empty();
+		Entity->EntityData.DrawPile = Entity->EntityData.Deck;
+		//TArray<FCard> DrawPileCopy = Entity->EntityData.DrawPile;
+		
 		if (Cast<AActorEntityEnemy>(Entity)) {
-			Entity->EntityData.Deck = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
+			Entity->EntityData.DrawPile = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.DrawPile);
 		} else if (Cast<AActorEntityPlayer>(Entity)) {
-			Entity->EntityData.Deck = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.Deck);
+			Entity->EntityData.DrawPile = Cast<AActorEntityPlayer>(Entity)->ShuffleDrawPile(Entity->EntityData.DrawPile);
 		}
-	}*/
+	}
 
 	// Draw a full grip.
 	for (auto& Entity : EntitiesInBattleArray) {

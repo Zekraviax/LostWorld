@@ -255,6 +255,9 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 		case (EStatusEffectFunctions::Bleeding):
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is now bleeding!", 2);
 			break;
+		case (EStatusEffectFunctions::ToughnessDown):
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " lost toughness!", 2);
+			break;
 		default:
 			break;
 		}
@@ -333,6 +336,19 @@ bool AActorEntityBase::CalculateTotalStats()
 		EntityData.TotalStats.Agility += EquippedItem.StatModifiers.Agility;
 		EntityData.TotalStats.HealthRegeneration += EquippedItem.StatModifiers.HealthRegeneration;
 		EntityData.TotalStats.ManaRegeneration += EquippedItem.StatModifiers.ManaRegeneration;
+	}
+
+	// Find all status effects that influence an entity's total stats.
+	for (auto& Status : EntityData.StatusEffects) {
+		switch (Status.StatusEffect)
+		{
+		case (EStatusEffectFunctions::StrengthUp):
+			EntityData.TotalStats.Strength += Status.CurrentStackCount;
+		case (EStatusEffectFunctions::ToughnessDown):
+			EntityData.TotalStats.Toughness -= Status.CurrentStackCount;
+		default:
+			break;
+		}
 	}
 	
 	return IInterfaceEntity::CalculateTotalStats();

@@ -86,6 +86,7 @@ public:
 	
 	// This transition will handle the technical things.
 	static FCard ApplyCardModifiersWithTimingTrigger(FCard InCard, ECardModifierTimingTriggers TimingTrigger);
+	static FCard ApplyAllCardModifiersWithoutTimingTriggers(FCard InCard);
 	void TransitionToBattle(const FEncounter& EnemyEncounter);
 	// Check if either the player, or all enemies, have been wiped out.
 	void EndOfBattleCheck() const;

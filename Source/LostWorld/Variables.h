@@ -184,6 +184,7 @@ enum class ECardFunctions : uint8
 	// -------- Generic functions -------- //
 	DealDamageToOneTargets,
 	CasterDrawsOneCard,
+	InflictToughnessDown,
 	// -------- Modifier functions -------- //
 	// We can use modifier functions to store values,
 	// so that we can create mods that stack or vary over time.
@@ -215,16 +216,20 @@ enum class EStatusEffectFunctions : uint8
 	MutantAura,
 	Sap, // Reduces all base stats by 1.
 	Bleeding,
+	ToughnessDown,
 };
 
 
 UENUM(BlueprintType)
 enum class ETimingTriggers : uint8
 {
+	//
 	None,
 	StartOfBattle,
+	// The 'StartOf' triggers are mutually exclusive (except for StartOfBattle).
 	StartOfAffectedEntitysTurn,
 	StartOfEveryTurn,
+	// The 'EndOf' triggers are mutually exclusive.
 	EndOfAffectedEntitysTurn,
 	EndOfEveryTurn,
 	OnStatusEffectApplied,
@@ -301,7 +306,8 @@ enum class EEntityTypes : uint8
 	WolfPack,
 	WolfPackAlpha,
 	Hogbot,
-	MegaHogbot
+	MegaHogbot,
+	RabidRat
 };
 
 
@@ -366,8 +372,9 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumStackCount;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool DecrementStacksWhenTriggered;
+	// To-Do: Reimplement this when a status effect needs it(?)
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//bool DecrementStacksWhenTriggered;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool VisibleToPlayer;
@@ -381,11 +388,11 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 		Description = "This is a test description.";
 		StatusEffect = EStatusEffectFunctions::Poison;
 		TimingTriggers = { ETimingTriggers::StartOfBattle };
-		CurrentStackCount = 5;
-		MaximumStackCount = 5;
-		DecrementStacksWhenTriggered = true;
-		VisibleToPlayer = false;
-		BlockedByBarrier = false;
+		CurrentStackCount = 1;
+		MaximumStackCount = 9999999;
+		//DecrementStacksWhenTriggered = true;
+		VisibleToPlayer = true;
+		BlockedByBarrier = true;
 	}
 };
 

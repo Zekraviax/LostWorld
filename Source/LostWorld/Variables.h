@@ -105,7 +105,8 @@ enum class ECardModifiers : uint8
 	DamageSetToOne				UMETA(DisplayName="Damage One"),
 	// Mixed ----------------
 	// Increases cost, damage, and healing.
-	CostUpDamageUpHealingUp 
+	CostUpDamageUpHealingUp,
+	Cantrip,	// Cost plus 1 and draws a card when played.
 };
 
 
@@ -733,6 +734,7 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString EnemyType;
 
+	// To-Do: Delete this, it's redundant.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntity EntityData;
 

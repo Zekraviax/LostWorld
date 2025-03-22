@@ -338,6 +338,7 @@
 					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
+						"Cantrip": "OnModifierApplied"
 					},
 					"TotalCost": 1,
 					"TotalDamage": 0,
@@ -363,6 +364,7 @@
 					"Modifiers": [],
 					"ModifiersWithTriggers":
 					{
+						"Cantrip": "OnModifierApplied"
 					},
 					"TotalCost": 1,
 					"TotalDamage": 0,

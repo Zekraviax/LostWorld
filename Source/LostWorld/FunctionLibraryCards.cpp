@@ -175,12 +175,13 @@ void AFunctionLibraryCards::TestCardFive() const
 
 void AFunctionLibraryCards::TestCardSix() const
 {
-	FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
+	FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+		GetSummonFromJson("Test Summon");
 
 	SummonData.EntityData.Team = GetAttacker()->EntityData.Team;
 	
 	// Spawn the summon and make it the same team as the entity summoning it
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnPlayerEntity(SummonData.EntityData);
 }
 
 
@@ -235,14 +236,21 @@ void AFunctionLibraryCards::CallForFriends() const
 	
 	if (RandomSuccess) {
 		// Get the entity type and spawn another one.
-		FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetSummonFromJson("Test Summon");
+		FSummonEntity SummonData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+			GetSummonFromJson("Test Summon");
 
 		SummonData.EntityData.Team = GetAttacker()->EntityData.Team;
 	
-		// Spawn the summon and make it the same team as the entity summoning it
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEntity(SummonData.EntityData);
+		// Spawn the summon and make it the same team as the entity summoning it.
+		if (Cast<AActorEntityEnemy>(this)) {
+			FEnemyEntity EnemyData = FEnemyEntity();
+			EnemyData.EntityData = SummonData.EntityData;
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEnemyEntity(EnemyData);
+		} else {
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnPlayerEntity(SummonData.EntityData);
+		}
 
-		ALostWorldGameModeBase::DualLog("A appeared!", 2);
+		ALostWorldGameModeBase::DualLog("A " + SummonData.EntityData.DisplayName + "appeared!", 2);
 	} else {
 		ALostWorldGameModeBase::DualLog("But it failed.", 2);
 	}

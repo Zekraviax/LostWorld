@@ -2,6 +2,7 @@
 
 
 #include "CoreMinimal.h"
+#include "ActorEntityEnemy.h"
 #include "LostWorldGameModeBase.h"
 #include "Variables.h"
 #include "LostWorldGameModeBattle.generated.h"
@@ -90,11 +91,16 @@ public:
 	void EndOfBattleCheck() const;
 	void PlayerVictory() const;
 
-	// The SpawnEntity function can serve the dual purposes of initializing a battle,
-	// and spawning Summons mid-battle.
+	
+	// The spawn function(s) that spawn specific classes of entities should only be used to physically create the entity.
+	// Everything else should be handled by the more generic function.
+	// The FinishSpawningEntity function will find a valid tile within the room for the entity.
 	// To-Do: Finish testing this function, and incorporate it into the TransitionToBattle function.
-	void SpawnEntity(FEntity InEntity);
-
+	// To-Do: Use an Object Pool instead of directly spawning actors.
+	AActorEntityBase* FinishSpawningEntity(AActorEntityBase* InEntity);
+	AActorEntityEnemy* SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData);
+	AActorEntityPlayer* SpawnPlayerEntity(const FEntity& InEntityData);
+	
 	
 	// Structure of a Battle:
 		// Pre-Battle functions:

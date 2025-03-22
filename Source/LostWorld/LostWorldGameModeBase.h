@@ -23,6 +23,7 @@ public:
 	// 2 - Log
 	// 3 - Verbose Log
 	// 4 - Very Verbose Log
+	// To-Do: Improve the LogLevel developer setting to allow for multiple log levels to be enabled at a time.
 	static void DualLog(const FString& PreBuiltString, int InLogLevel);
 
 	// Parse sub-variables within written text variables.

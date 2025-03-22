@@ -31,8 +31,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	FString ContextString;
 	TArray<FName> EnemyRowNames = EnemyEncounter.EnemyTypes;
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;
-	FVector PlayerEntityLocation = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
-		ControlledPlayerEntity->GetActorLocation();
 	
 	// Clear the entities in battle array
 	EntitiesInBattleArray.Empty();
@@ -59,72 +57,19 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		}
 	}
 
-	// Before the entity joins the battle, we must find a tile for it to be spawned at.
-	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
-		AActorGridTile* FoundTile = *Itr;
-		// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
-		if (FoundTile->Encounter.EncounterType == EEncounterTypes::Enemy ||
-			FoundTile->Encounter.EncounterType == EEncounterTypes::None) {
-			// Second, check if the tile is within 1-2 tiles of the player, and isn't 'behind' the player
-			// because the UI might obscure the enemy.
-			if (FoundTile->GetActorLocation().X >= PlayerEntityLocation.X - 200 && FoundTile->GetActorLocation().X <= PlayerEntityLocation.X + 400 &&
-				(FoundTile->GetActorLocation().Y >= PlayerEntityLocation.Y - 200 && FoundTile->GetActorLocation().Y <= PlayerEntityLocation.Y + 400)) {
-				// Third, make sure the tile isn't in a corridor.
-				if (FoundTile->CorridorIndex == -1) {
-					// Fourth, make sure the player isn't occupying the tile.
-					if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
-						ValidEnemySpawnTiles.Add(FoundTile);
-					}
-				}
-			}
-		}
-	}
-
 	// Spawn enemies at random valid tiles.
 	// ReSharper disable once CppTooWideScope
-	const FActorSpawnParameters SpawnParameters;
+	//const FActorSpawnParameters SpawnParameters;
 	for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
 		// To-Do: Fix the random tile selection to either:
 		// a. always select a tile to spawn an enemy, or
 		// b. handle the situation where there are no valid tiles.
-		AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
-
-		// Spawns an actor into the world.
-		// To-Do: Use an Object Pool instead of directly spawning actors.
-		EntitiesInBattleArray.Add(GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
-			FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
-			FRotator::ZeroRotator,
-			SpawnParameters));
-
-		ValidEnemySpawnTiles.Remove(RandomTile);
-
-		// Assign the enemy's data to their actor.
-		// Then get the entity's cards from the cards json and add them to their deck.
+		
+		// Fetch the enemy's data then spawn them in.
 		FEnemyEntity EnemyEntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
 			GetEnemyFromJson(EnemyRowNames[RowCount].ToString());
-
-		// Assign team
-		EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
 		
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EnemyData = EnemyEntityData;
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = EnemyEntityData.EntityData;
-
-		// Enemy stat calculation.
-		Cast<IInterfaceEntity>(EntitiesInBattleArray.Last())->CalculateTotalStats();
-
-		DualLog("Spawn enemy: " + EnemyEntityData.EntityData.DisplayName, 3);
-
-		// Attach an AI brain component
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
-
-		// Set up the enemy's deck.
-		for (int CardCount = 0; CardCount < EnemyEntityData.EntityData.Deck.Num(); CardCount++) {
-			FCard Copy = EnemyEntityData.EntityData.Deck[CardCount];
-			//Copy = ApplyCardModifiersWithTimingTrigger(Copy, ECardModifierTimingTriggers::StartOfBattle);
-			
-			Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->
-			AddCardToDrawPile(Copy);
-		}
+		AActorEntityEnemy* SpawnedEnemy = SpawnEnemyEntity(EnemyEntityData);
 	}
 
 	// Reset all of the players' card arrays, except their deck.
@@ -178,6 +123,8 @@ FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard
 				InCard.TotalDamage++;
 				InCard.TotalHealing++;
 				break;
+			case (ECardModifiers::Cantrip):
+				InCard.TotalCost++;
 			default:
 				break;
 			}
@@ -209,16 +156,16 @@ void ALostWorldGameModeBattle::PlayerVictory() const
 }
 
 
-void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
+AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBase* InEntity)
 {
-	const FActorSpawnParameters SpawnParameters;
+	// First, find a valid loation for the entity
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;
 	FVector PlayerEntityLocation = FVector();
 	int PlayerRoomIndex = 0;
+	//AActorEntityBase* ReturnEntityCopy = InEntity;
 
 	GetPlayerLocationAndRoom(PlayerEntityLocation, PlayerRoomIndex);
 	
-	// Before the entity joins the battle, we must find a tile for it to be spawned at.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
 		AActorGridTile* FoundTile = *Itr;
 		// First, check if the grid tile doesn't have any encounters or the encounter is an enemy encounter.
@@ -238,44 +185,71 @@ void ALostWorldGameModeBattle::SpawnEntity(FEntity InEntity)
 	}
 
 	AActorGridTile* RandomTile = ValidEnemySpawnTiles[FMath::RandRange(0, ValidEnemySpawnTiles.Num() -1)];
-
-	// Spawns an actor into the world.
-	AActorEntityBase* SpawnedEntity = GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
-		FVector(RandomTile->GetActorLocation().X, RandomTile->GetActorLocation().Y, 0),
-		FRotator::ZeroRotator,
-		SpawnParameters);
-	EntitiesInBattleArray.Add(SpawnedEntity);
+	InEntity->SetActorLocation(RandomTile->GetActorLocation());
 		
-	// Attach an AI brain component, if the entity isn't to be controlled by the player;
-	Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->CreateAiBrainComponent();
-
-	ValidEnemySpawnTiles.Remove(RandomTile);
-
-	// Assign the enemy's data to their actor.
-	// Then get the entity's cards from the cards json and add them to their deck.
-	Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->EntityData = InEntity;
-
-	// To-Do: Assign team.
-	//EnemyEntityData.EntityData.Team = ETeams::EnemyTeam1;
-
+	// Attach an AI brain component if the entity isn't to be controlled by the player.
+	if (Cast<AActorEntityEnemy>(InEntity)) {
+		Cast<AActorEntityEnemy>(InEntity)->CreateAiBrainComponent();
+	}
+	
 	// Stat calculations.
-	Cast<IInterfaceEntity>(EntitiesInBattleArray.Last())->CalculateTotalStats();
+	Cast<IInterfaceEntity>(InEntity)->CalculateTotalStats();
 
 	// Set up the enemy's deck and draw pile.
-	for (int CardCount = 0; CardCount < InEntity.Deck.Num(); CardCount++) {
-		//FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity.Deck[CardCount], ECardModifierTimingTriggers::StartOfBattle);
-		FCard Copy = InEntity.Deck[CardCount];
-		Cast<AActorEntityEnemy>(EntitiesInBattleArray.Last())->AddCardToDrawPile(Copy);
+	for (int CardCount = 0; CardCount < InEntity->EntityData.Deck.Num(); CardCount++) {
+		FCard Copy = ApplyCardModifiersWithTimingTrigger(InEntity->EntityData.Deck[CardCount], ECardModifierTimingTriggers::StartOfBattle);
+		//FCard Copy = InEntity->EntityData.Deck[CardCount];
+		Cast<AActorEntityEnemy>(InEntity)->AddCardToDrawPile(Copy);
 	}
+	
+	// To-Do: Shuffle the entity's deck.
+	//InEntity->EntityData.DrawPile = Cast<IInterfaceBattle>(InEntity)->ShuffleDrawPile(InEntity->EntityData.Deck);
 
-	// Initialize billboard
-	SpawnedEntity->ResetEntityBillboardPositionAndRotation();
-	Cast<UWidgetEntityBillboard>(SpawnedEntity->EntityBillboard->GetUserWidgetObject())->UpdateBillboard(SpawnedEntity->EntityData);
+	// Initialize billboard.
+	InEntity->ResetEntityBillboardPositionAndRotation();
+	Cast<UWidgetEntityBillboard>(InEntity->EntityBillboard->GetUserWidgetObject())->
+		UpdateBillboard(InEntity->EntityData);
 
-	DualLog("Spawned enemy: " + InEntity.DisplayName, 3);
+	EntitiesInBattleArray.Add(InEntity);
+
+	DualLog("Spawned enemy: " + InEntity->EntityData.DisplayName, 3);
 
 	// To-Do: When an entity is summoned mid-battle, the whole turn queue needs to be recalculated,
 	// but the currently acting actor should always be the first in the turn queue.
+	return InEntity;
+}
+
+
+AActorEntityEnemy* ALostWorldGameModeBattle::SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData)
+{
+	const FActorSpawnParameters SpawnParameters;
+
+	AActorEntityEnemy* ReturnEnemy = GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
+		FVector(0, 0, 0),FRotator::ZeroRotator, SpawnParameters);
+
+	ReturnEnemy->EnemyData = InEnemyEntityData;
+	ReturnEnemy->EntityData = InEnemyEntityData.EntityData;
+	ReturnEnemy->EnemyData.EntityData.Team = ETeams::EnemyTeam1;
+
+	AActorEntityBase* EnemyAsBaseClass = Cast<AActorEntityBase>(ReturnEnemy);
+	EnemyAsBaseClass = FinishSpawningEntity(EnemyAsBaseClass);
+	return Cast<AActorEntityEnemy>(EnemyAsBaseClass);
+}
+
+
+AActorEntityPlayer* ALostWorldGameModeBattle::SpawnPlayerEntity(const FEntity& InEntityData)
+{
+	const FActorSpawnParameters SpawnParameters;
+
+	AActorEntityPlayer* ReturnEntity = GetWorld()->SpawnActor<AActorEntityPlayer>(ActorEntityEnemyBlueprintClass,
+		FVector(0, 0, 0),FRotator::ZeroRotator, SpawnParameters);
+
+	ReturnEntity->EntityData = InEntityData;
+	ReturnEntity->EntityData.Team = ETeams::EnemyTeam1;
+
+	AActorEntityBase* EntityAsBaseClass = Cast<AActorEntityBase>(ReturnEntity);
+	EntityAsBaseClass = FinishSpawningEntity(EntityAsBaseClass);
+	return Cast<AActorEntityPlayer>(EntityAsBaseClass);
 }
 
 

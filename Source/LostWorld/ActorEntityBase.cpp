@@ -316,6 +316,8 @@ bool AActorEntityBase::EndTurn()
 			}
 		}
 	}
+
+	// To-Do: For every entity, check for status effects that trigger at the end of every entity's turns.
 	
 	return IInterfaceBattle::EndTurn();
 }

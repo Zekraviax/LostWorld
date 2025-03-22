@@ -507,6 +507,16 @@ void ALostWorldGameModeBattle::CastCard()
 }
 
 
+void ALostWorldGameModeBattle::RemoveEntityFromTurnQueue(const AActorEntityBase* Entity)
+{
+	for (int Index = TurnQueue.Num() - 1; Index >= 0; Index--) {
+		if (TurnQueue[Index] == Entity) {
+			TurnQueue.RemoveAt(Index);
+		}
+	}
+}
+
+
 // -------------------------------- Battle: Ending Phase
 void ALostWorldGameModeBattle::EndOfTurn()
 {

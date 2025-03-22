@@ -162,10 +162,24 @@ bool AActorEntityBase::TakeDamage(float Damage)
 
 bool AActorEntityBase::EntityDefeated()
 {
-	Destroy();
+	ALostWorldGameModeBase::DualLog(EntityData.DisplayName + "has been defeated!", 2);
 
-	// To-Do: Remove the entity from the turn order, if the battle isn't over.
+	// Remove the entity from the EntitiesInBattle array.
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EntitiesInBattleArray.Remove(this);
+
+	if (Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TurnQueue[0] == this) {
+		// If the entity died during it's own turn, end the turn.
+		EndTurn();
+	}
+
+	// Re-calculate the turn queue.
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->RemoveEntityFromTurnQueue(this);
+
+	// Check if there is only one team standing.
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfBattleCheck();
+
+	// Physically deleting the actor should be the last thing done here.
+	Destroy();
 
 	return IInterfaceBattle::EntityDefeated();
 }
@@ -235,7 +249,7 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 		switch (InStatusEffect.StatusEffect)
 		{
 		case (EStatusEffectFunctions::Poison):
-			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is poisoned!", 2);
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " has been poisoned!", 2);
 			break;
 		case (EStatusEffectFunctions::StrengthUp):
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " gained strength!", 2);
@@ -244,7 +258,7 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + "'s adrenaline is flowing!", 2);
 			break;
 		case (EStatusEffectFunctions::Bleeding):
-			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is bleeding!", 2);
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is now bleeding!", 2);
 			break;
 		default:
 			break;
@@ -258,9 +272,11 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 bool AActorEntityBase::StartTurn()
 {
 	// Check for status effects that trigger at the start of the owners' turn.
-	for (FStatusEffect StatusEffect : EntityData.StatusEffects) {
-		if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitysTurn)) {
-			AFunctionLibraryStatusEffects::ExecuteFunction(StatusEffect.StatusEffect, this);
+	if (EntityData.StatusEffects.Num() > 0) {
+		for (FStatusEffect StatusEffect : EntityData.StatusEffects) {
+			if (StatusEffect.TimingTriggers.Contains(ETimingTriggers::StartOfAffectedEntitysTurn)) {
+				AFunctionLibraryStatusEffects::ExecuteFunction(StatusEffect.StatusEffect, this);
+			}
 		}
 	}
 
@@ -282,6 +298,24 @@ bool AActorEntityBase::StartTurn()
 bool AActorEntityBase::EndTurn()
 {
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CardsCastThisTurn = 0;
+
+	// Decrement end-of-turn status effects here.
+	if (EntityData.StatusEffects.Num() > 0) {
+		for (int Index = EntityData.StatusEffects.Num() - 1; Index >= 0; Index--) {
+			if (EntityData.StatusEffects[Index].DecrementStackTriggers.Contains(ETimingTriggers::EndOfAffectedEntitysTurn)) {
+				EntityData.StatusEffects[Index].CurrentStackCount--;
+				ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " has lost 1 stack of " +
+						EntityData.StatusEffects[Index].DisplayName + ".", 2);
+
+				if (EntityData.StatusEffects[Index].CurrentStackCount < 1) {
+					ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " no longer has " +
+						EntityData.StatusEffects[Index].DisplayName + ".", 2);
+					
+					EntityData.StatusEffects.RemoveAt(Index);
+				}
+			}
+		}
+	}
 	
 	return IInterfaceBattle::EndTurn();
 }

@@ -56,5 +56,7 @@ void AFunctionLibraryStatusEffects::Bleeding(AActorEntityBase* EffectedEntity)
 		}
 	}
 
+	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName + " is bleeding!", 2);
+
 	Cast<IInterfaceBattle>(EffectedEntity)->TakeDamage(BleedingDamageAsInt);
 }

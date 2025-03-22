@@ -11,7 +11,7 @@
 			"EndOfAffectedEntitysTurn"
 		],
 		"CurrentStackCount": 1,
-		"MaximumStackCount": 8,
+		"MaximumStackCount": 10,
 		"DecrementStacksWhenTriggered": true,
 		"VisibleToPlayer": false,
 		"BlockedByBarrier": true
@@ -34,16 +34,16 @@
 	{
 		"Name": "StrengthUp",
 		"DisplayName": "Strength Up",
-		"Description": "Increases strength by 1 point per stack. Lose 1 start at the start of this entity's turn.",
+		"Description": "Increases strength by 1 point per stack. Lose 1 stack at the end of your turn.",
 		"StatusEffect": "StrengthUp",
 		"TimingTriggers": [
 			"OnStatusEffectApplied"
 		],
 		"DecrementStackTriggers": [
-			"StartOfAffectedEntitysTurn"
+			"EndOfAffectedEntitysTurn"
 		],
 		"CurrentStackCount": 1,
-		"MaximumStackCount": -1,
+		"MaximumStackCount": 9999999,
 		"DecrementStacksWhenTriggered": false,
 		"VisibleToPlayer": false,
 		"BlockedByBarrier": false
@@ -77,7 +77,7 @@
 			"EndOfAffectedEntitysTurn"
 		],
 		"CurrentStackCount": 1,
-		"MaximumStackCount": -1,
+		"MaximumStackCount": 9999999,
 		"DecrementStacksWhenTriggered": true,
 		"VisibleToPlayer": false,
 		"BlockedByBarrier": false
@@ -110,6 +110,23 @@
 		"MaximumStackCount": 1,
 		"DecrementStacksWhenTriggered": false,
 		"VisibleToPlayer": true,
+		"BlockedByBarrier": false
+	},
+	{
+		"Name": "Bleeding",
+		"DisplayName": "Bleeding",
+		"Description": "At the start of this entitys' turn, it takes 1 damage per stack of Bleeding.",
+		"StatusEffect": "Bleeding",
+		"TimingTriggers": [
+			"StartOfAffectedEntitysTurn"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitysTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 9999999,
+		"DecrementStacksWhenTriggered": true,
+		"VisibleToPlayer": false,
 		"BlockedByBarrier": false
 	}
 ]

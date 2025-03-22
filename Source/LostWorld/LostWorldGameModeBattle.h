@@ -36,12 +36,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FLevelDataAsStruct LevelDataCopy;
 
-	// We're adding all the entites in a battle into an array, just in case there
+	// We're adding all the entities in a battle into an array, just in case there
 	// are other entities on the floor that aren't in the battle.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> EntitiesInBattleArray;
 
-	// Each entity in turn queue. (CTB style)
+	// Each entity in turn queue, CTB style.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActorEntityBase*> TurnQueue;
 
@@ -125,6 +125,7 @@ public:
 	void GetTargetsForCard(int CardIndexInHandArray);
 	void FinishedGettingTargetsForCard();
 	void CastCard();
+	void RemoveEntityFromTurnQueue(const AActorEntityBase* Entity);
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.
 			// Effects that last until the end of the turn are cleaned up here, second.

@@ -74,7 +74,7 @@ public:
 	virtual bool GainMana(int InMana) override;
 	virtual bool GainBarrier(int InBarrier) override;
 
-	virtual bool AddStatusEffect(FStatusEffect StatusEffect) override;
+	virtual bool AddStatusEffect(FStatusEffect InStatusEffect) override;
 
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;

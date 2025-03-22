@@ -202,15 +202,37 @@ bool AActorEntityBase::GainBarrier(int InBarrier)
 }
 
 
-bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
+bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 {
-	if (EntityData.TotalStats.CurrentBarrierPoints > 0 && StatusEffect.BlockedByBarrier) {
+	if (EntityData.TotalStats.CurrentBarrierPoints > 0 && InStatusEffect.BlockedByBarrier) {
 		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
 	} else {
 		// To-Do: Make status effects add stacks to status effects that the entity already has.
-		EntityData.StatusEffects.Add(StatusEffect);
+
+		// Check if the entity already has the status effect.
+		// If so, attempt to increment its' stacks.
+		bool hasStatus = false;
+		for (auto& Status : EntityData.StatusEffects) {
+			if (Status.StatusEffect == InStatusEffect.StatusEffect) {
+				hasStatus = true;
+				if (Status.CurrentStackCount < Status.MaximumStackCount) {
+					// Apply stacks until the maximum is reached or there are no more stacks.
+					while (InStatusEffect.CurrentStackCount > 0 && Status.CurrentStackCount < Status.MaximumStackCount) {
+						InStatusEffect.CurrentStackCount--;
+						Status.CurrentStackCount++;
+					}
+				} else {
+					ALostWorldGameModeBase::DualLog(EntityData.DisplayName +
+						" already has the maximum stacks of " + InStatusEffect.DisplayName + "!", 2);
+				}
+			}
+		}
 		
-		switch (StatusEffect.StatusEffect)
+		if (!hasStatus) {
+			EntityData.StatusEffects.Add(InStatusEffect);
+		}
+		
+		switch (InStatusEffect.StatusEffect)
 		{
 		case (EStatusEffectFunctions::Poison):
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is poisoned!", 2);
@@ -229,8 +251,7 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect StatusEffect)
 		}
 	}
 	
-	
-	return IInterfaceBattle::AddStatusEffect(StatusEffect);
+	return IInterfaceBattle::AddStatusEffect(InStatusEffect);
 }
 
 

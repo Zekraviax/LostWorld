@@ -2,15 +2,19 @@ Dark Iron Dome - Item Equipment Helmet
 * Your spells cost 1 more.
 * Whenever you take damage from an enemy, prevent 1 of that damage.
 
+
 Short Sword - Item Equipment Weapon
 * Your Physical Non-Elemental attacks do 1 more damage.
+
 
 Long Sword - Item Equipment Weapon
 * Your Physical Non-Elemental attacks do 3 more damage and cost 1 more.
 
+
 Shield Amulet - Item Equipment Necklace
 * Whenever you would be dealt damage, prevent 50% of that damage, rounded up.
 * Your spells cost 50% more, rounded down.
+
 
 Axe Quiver - Item Equipment Backpack
 * At the start of your turn, add a Throwing Axe card to your hand.
@@ -38,6 +42,7 @@ Rebel Soldier
 Stats:
 5/5/1/1/5
 Cards:
+
 
 Life Force - 2 Cost Light Spell
 * Deal Magical Damage to any target equal to your current HP
@@ -92,6 +97,7 @@ Card Upgrades:
 * Efficiency: Increase the card's Charges by 1.
 * Ace: Always start battles with this card in your hand.
 
+
 Card Curses:
 * Bloodletting: Whenever you cast this card, you lose 1 life.
 
@@ -109,7 +115,6 @@ Status Effects:
 * Grevious Injury - Reduces Maximum HP by 1 for each stack.
 * Focus - The next damage-dealing attack is a guaranteed Critical Hit.
 * Resilience - Reduces damage taken from enemy attacks by 1.
-
 * Barrier - Absorbs 1 damage from an enemy attack.
 * Light/Dark Shift - This unit receives inverted damage and healing.
 
@@ -208,7 +213,7 @@ Heartfire - 2 Health Point Cost Fire Spell
 Costs HP instead of MP. Deals 5 damage to any target.
 
 
-We do not fear death! - Earth Shout
+We don't fear death! - Earth Shout
 Grant all allies bonus attack and damage reduction based on how much HP they're missing.
 
 
@@ -275,7 +280,7 @@ Out of battle: Allows you to teleport up to 10 tiles away, including across gaps
 Demolish
 ? Cost Fire Spell
 In battle: Deal heavy damage to any target that has barrier.
-Out of battle. Break down walls.
+Out of battle: Break down flimsy walls.
 
 
 The City - Buildings:
@@ -355,11 +360,11 @@ What is a Chant?
 * Chants need to be played by at least one caracter per turn cycle in order to be maintained. If a whole turn cycle goes by with nobody contributing, it will end. That means the Chant can go on if the entity who started it is defeated or stops chanting.
 
 
-
 List of Keywords and their effects:
 * Repeater: When you play this card, it goes to the top of your draw pile instead of your discard pile. If a card with Repeater is exiled upon play, then the exile effect takes priority.
 * Ace: You are guaranteed to draw this card during your first turn of battle.
 * Temporary: This card disappears (is exiled) at the end of your turn if its in any zone other than your exile.
+* Exile: When you play this card, exile it instead of sending it to your discard pile. In any other situation, it is discarded normally.
 
 
 Advanced Card Display:
@@ -376,7 +381,6 @@ Next turn, you heal 1 HP, 1 MP, and cure one status effect on yourself.
 Ruin
 ? Cost Non-Elemental Spell
 Deal damage to any one target. Non-Elemental cards do not factor in any elemental affinities.
-
 
 
 Mage
@@ -419,3 +423,55 @@ This turn, your cards ignore Dodge on the target.
 Baton Pass
 ? Cost Air Technique
 The user transfers all of their status effects to an ally.
+
+
+Battle Hymn
+Water Shout & Chant
+Allies gain 1 stack of IntelligenceUp.
+Enemies gain 1 stack of WisdomDown.
+
+
+There is no land for us beyond the Volga!
+Earth Shout
+Cleanses stuns and other similar status effects.
+Allies gain 1 stack of ToughnessUp.
+(Change the name as well.)
+
+
+Dazed
+Status Effect
+Entity cannot use Spells or Techniques this turn (but can use other types of cards.)
+Wears off at the end of their turn.
+
+
+Gods will it!
+Non-Elemental Shout
+Choose an element. Until end of turn, all of your cards become the chosen element.
+
+
+Boil
+? Cost Fire Spell
+Deal damage to one target. Deal more damage for each Water Spell they own.
+
+
+Barbaric Yawp
+Earth Shout
+Until end of turn, you lose all but 1 Intelligence. You gain that much Strength.
+
+
+Heat The Soul
+1 Cost Fire Spell
+Until end of turn, all of your damaging spells have +1 base power.
+
+
+Earthquake
+? Cost Earth Spell
+Deal heavy earth damage to all enemies, then daze enemies who have half health or less.
+
+
+Dragons
+Creatures that do not die of old age, and suffer diseases very, very rarely.
+They live to fight, and fight to die.
+Due to constant combat, their limbs never stop growing.
+
+

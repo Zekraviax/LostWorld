@@ -27,7 +27,6 @@ void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFun
 
 void AFunctionLibraryStatusEffects::Poison(AActorEntityBase* EffectedEntity)
 {
-	// To-Do: Test that poison damages scale based on the number of stacks the entity has.
 	float SingleStackDamage = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 0.1;
 	int Stacks = -1;
 	

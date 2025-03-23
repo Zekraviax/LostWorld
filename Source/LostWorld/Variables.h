@@ -466,14 +466,23 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 
 	FORCEINLINE bool operator==(const FCard& OtherCard) const
 	{
+		TArray<ECardFunctions> ThisFunctions, OtherFunctions;
+		this->FunctionsAndTargets.GetKeys(ThisFunctions);
+		OtherCard.FunctionsAndTargets.GetKeys(OtherFunctions);
+
+		TArray<ECardModifiers> ThisModifiers, OtherModifiers;
+		this->ModifiersWithTriggers.GetKeys(ThisModifiers);
+		OtherCard.ModifiersWithTriggers.GetKeys(OtherModifiers);
+		
 		return this->DisplayName == OtherCard.DisplayName &&
 			this->BaseCost == OtherCard.BaseCost &&
 			this->CardTypes == OtherCard.CardTypes &&
 			this->CardElements == OtherCard.CardElements &&
 			this->BaseDamage == OtherCard.BaseDamage &&
 			this->BaseHealing == OtherCard.BaseHealing &&
-			this->Description == OtherCard.Description;
-			//this->FunctionsAndTargets == OtherCard.FunctionsAndTargets;
+			this->Description == OtherCard.Description &&
+			ThisFunctions == OtherFunctions &&
+			ThisModifiers == OtherModifiers;
 	}
 };
 

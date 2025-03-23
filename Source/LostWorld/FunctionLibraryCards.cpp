@@ -82,7 +82,7 @@ int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacke
 	// Step 4 = Apply offensive elemental affinity.
 	// Step 5 = Apply defensive elemental affinity.
 
-	// To-Do: Check for status effects that modify damage and/or base power
+	// To-Do: Check for status effects that modify total damage and/or base power.
 	for (FStatusEffect StatusEffect : Defender->EntityData.StatusEffects) {
 		if (StatusEffect.StatusEffect == EStatusEffectFunctions::Howl) {
 			AttackBasePower += 2;

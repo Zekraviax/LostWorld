@@ -31,12 +31,12 @@ FEncounter CustomJsonDeserializer::DeserializeEncounterJson(const FString& InEnc
 				TSharedPtr<FJsonObject> ObjectSharedPtr = JsonValue->AsArray()[i]->AsObject();
 				FEncounter ReturnEncounter = FEncounter();
 
-				// Encounter Type
+				// Encounter Type.
 				FString EncounterTypeString = ObjectSharedPtr->GetStringField("EncounterType");
 				int EncounterTypeIndex = StaticEnum<EEncounterTypes>()->GetValueByNameString(EncounterTypeString);
 				ReturnEncounter.EncounterType = static_cast<EEncounterTypes>(EncounterTypeIndex);
 
-				// Array of Entity Types
+				// Array of Entity Types.
 				ReturnEncounter.EntityTypes.Empty();
 				for (int EnemyCount = 0; EnemyCount < ObjectSharedPtr->GetArrayField("EntityTypes").Num(); EnemyCount++) {
 					const TSharedPtr<FJsonValue>& ArrayObject = ObjectSharedPtr->GetArrayField("EntityTypes")[EnemyCount];
@@ -46,7 +46,7 @@ FEncounter CustomJsonDeserializer::DeserializeEncounterJson(const FString& InEnc
 					ReturnEncounter.EntityTypes.Add(ULostWorldGameInstanceBase::EntityTypeStringToEnumValue(ObjectAsString));
 				}
 
-				// To-Do: Minimum and maximum floor
+				// To-Do: Minimum and maximum floor.
 				
 				return ReturnEncounter;
 			}

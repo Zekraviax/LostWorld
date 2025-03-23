@@ -168,9 +168,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, const ECardModifierTimingTriggers TimingTrigger)
 {
 	// To-Do: Before card mods can be applied, and depending on the context/timing, we need to reset the variables to their base values(?)
-
-	// To-Do: Maybe ignore the timing trigger and just reset the card every time,
-	// then apply all mods?
+	// To-Do: Maybe ignore the timing trigger and just reset the card every time, then apply all mods?
 
 	// As of March 22, 2025, we're just going to ignore the mods that are muddling the issue like the "StartOfTurn" mod.
 	// For all the currently existing mods, they will be applied once, using the other function

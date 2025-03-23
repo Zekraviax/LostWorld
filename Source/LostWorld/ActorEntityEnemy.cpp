@@ -24,17 +24,15 @@ AActorEntityEnemy::AActorEntityEnemy()
 
 void AActorEntityEnemy::CreateAiBrainComponent()
 {
-	ALostWorldGameModeBase::DualLog(EnemyData.EnemyType, 4);
-	
-	if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyOne)) {
+	if (EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyOne)) {
 		AiBrainComponent = NewObject<UAiBrainTestEnemyOne>(this);
-	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyTwo)) {
+	} else if (EntityData.EntityTypes.Contains(EEntityTypes::TestEnemyTwo)) {
 		AiBrainComponent = NewObject<UAiBrainTestEnemyTwo>(this);
-	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::WolfPack)) {
+	} else if (EntityData.EntityTypes.Contains(EEntityTypes::WolfPack)) {
 		AiBrainComponent = NewObject<UAiBrainBaseWolfPack>(this);
-	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::WolfPackAlpha)) {
+	} else if (EntityData.EntityTypes.Contains(EEntityTypes::WolfPackAlpha)) {
 		AiBrainComponent = NewObject<UAiBrainBaseWolfPackAlpha>(this);
-	} else if (EnemyData.EntityData.EntityTypes.Contains(EEntityTypes::RabidRat)) {
+	} else if (EntityData.EntityTypes.Contains(EEntityTypes::RabidRat)) {
 		AiBrainComponent = NewObject<UAiBrainRabidRat>(this);
 	} else {
 		// Default brain.

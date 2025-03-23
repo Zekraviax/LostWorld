@@ -60,7 +60,12 @@ public:
 	
 	FString LoadFileFromJson(const FString& FileName) const;
 	FCard GetCardFromJson(const FString& CardName) const;
-	FEnemyEntity GetEnemyFromJson(const FString& EnemyType) const;
+	FEntity GetEntityFromJson(const EEntityTypes& EntityType) const;
+	FEnemyEntity GetEnemyFromJson(const EEntityTypes& EnemyType) const;
 	FStatusEffect GetStatusEffectFromJson(const EStatusEffectFunctions StatusFunction) const;
 	FSummonEntity GetSummonFromJson(const FString& SummonName) const;
+	FEncounter GetEncounterFromJson(const FString& EncounterRowName) const;
+
+	// Enum helpers
+	static EEntityTypes EntityTypeStringToEnumValue(const FString& InString);
 };

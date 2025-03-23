@@ -48,9 +48,9 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 {
 	ControlMode = InControlMode;
 
-	// To-Do: Use UEnum::GetDisplayValueAsText() instead of this.
-	//ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetValueAsName<EPlayerControlModes>(InControlMode).ToString(), 4);
-	ALostWorldGameModeBase::DualLog("InControlMode: " + UEnum::GetDisplayValueAsText(InControlMode).ToString(), 4);
+	// To-Do: Use UEnum::GetDisplayValueAsText().
+	ALostWorldGameModeBase::DualLog("InControlMode: " +
+		UEnum::GetDisplayValueAsText(InControlMode).ToString(), 4);
 }
 
 

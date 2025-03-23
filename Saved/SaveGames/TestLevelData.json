@@ -4,13 +4,18 @@
 		"StairsGoUp": true,
 		"Encounters": [
 			{
+				"Name": "WolfPack1",
 				"EncounterType": "Enemy",
+				"EntityTypes": [
+					"WolfPack",
+					"WolfPackAlpha"
+				],
 				"EnemyTypes": [
 					"WolfPack",
 					"WolfPackAlpha"
 				],
 				"MinimumFloor": 1,
-				"MaximumFloor": 1
+				"MaximumFloor": -1
 			}
 		],
 		"FloorDataAsStruct":
@@ -176,6 +181,10 @@
 		"Encounters": [
 			{
 				"EncounterType": "Enemy",
+				"EntityTypes": [
+					"TestEnemyOne",
+					"TestEnemyOne"
+				],
 				"EnemyTypes": [
 					"TestEnemyOne",
 					"TestEnemyOne"
@@ -185,6 +194,9 @@
 			},
 			{
 				"EncounterType": "Enemy",
+				"EntityTypes": [
+					"TestEnemyTwo"
+				],
 				"EnemyTypes": [
 					"TestEnemyTwo"
 				],

@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Json.h"
 #include "JsonObjectConverter.h"
+#include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBase.h"
 
 
@@ -35,13 +36,14 @@ FEncounter CustomJsonDeserializer::DeserializeEncounterJson(const FString& InEnc
 				int EncounterTypeIndex = StaticEnum<EEncounterTypes>()->GetValueByNameString(EncounterTypeString);
 				ReturnEncounter.EncounterType = static_cast<EEncounterTypes>(EncounterTypeIndex);
 
-				// Array of Enemy Types
-				ReturnEncounter.EnemyTypes.Empty();
-				for (int EnemyCount = 0; EnemyCount < ObjectSharedPtr->GetArrayField("EnemyTypes").Num(); EnemyCount++) {
-					FString OutString;
+				// Array of Entity Types
+				ReturnEncounter.EntityTypes.Empty();
+				for (int EnemyCount = 0; EnemyCount < ObjectSharedPtr->GetArrayField("EntityTypes").Num(); EnemyCount++) {
+					const TSharedPtr<FJsonValue>& ArrayObject = ObjectSharedPtr->GetArrayField("EntityTypes")[EnemyCount];
+					FString ObjectAsString = "";
+					ArrayObject->TryGetString(ObjectAsString);
 					
-					ObjectSharedPtr->GetArrayField("EnemyTypes")[EnemyCount]->TryGetString(OutString);
-					ReturnEncounter.EnemyTypes.Add(*OutString);
+					ReturnEncounter.EntityTypes.Add(ULostWorldGameInstanceBase::EntityTypeStringToEnumValue(ObjectAsString));
 				}
 
 				// To-Do: Minimum and maximum floor

@@ -46,7 +46,7 @@ void AActorGridTile::SetTileColour(FLinearColor NewColour)
 }
 
 
-void AActorGridTile::MoveEntityToTile(AActorEntityBase* MovingEntity)
+void AActorGridTile::MoveEntityToTile(AActorEntityBase* MovingEntity) const
 {
 	MovingEntity->SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, MovingEntity->GetActorLocation().Z));
 

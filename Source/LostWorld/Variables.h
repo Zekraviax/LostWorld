@@ -735,11 +735,7 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString EnemyType;
-
-	// To-Do: Delete this, it's redundant.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FEntity EntityData;
+	EEntityTypes EnemyType;
 
 	// Experience points given to the player when defeated.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -747,7 +743,7 @@ struct LOSTWORLD_API FEnemyEntity : public FTableRowBase
 
 	FEnemyEntity()
 	{
-		EnemyType = "TestEnemyOne";
+		EnemyType = EEntityTypes::TestEnemyOne;
 		ExperiencePoints = 1;
 	}
 };
@@ -789,7 +785,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	EEncounterTypes EncounterType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FName> EnemyTypes;
+	TArray<EEntityTypes> EntityTypes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MinimumFloor;
@@ -800,7 +796,6 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FEncounter()
 	{
 		EncounterType = EEncounterTypes::None;
-		EnemyTypes = { "TestEnemyOne", "TestEnemyOne" };
 		MinimumFloor = 1;
 		MaximumFloor = 1;
 	}
@@ -808,7 +803,7 @@ struct LOSTWORLD_API FEncounter : public FTableRowBase
 	FORCEINLINE bool operator==(const FEncounter& OtherStruct) const
 	{
 		return this->EncounterType == OtherStruct.EncounterType &&
-				this->EnemyTypes == OtherStruct.EnemyTypes &&
+				this->EntityTypes == OtherStruct.EntityTypes &&
 				this->MinimumFloor == OtherStruct.MinimumFloor &&
 				this->MaximumFloor == OtherStruct.MaximumFloor;
 	}

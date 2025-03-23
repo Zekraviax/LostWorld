@@ -249,7 +249,7 @@ void AFunctionLibraryCards::CallForFriends() const
 		if (Cast<AActorEntityEnemy>(this)) {
 			// To-Do: Get EnemyData when an enemy uses a summon.
 			FEnemyEntity EnemyData = FEnemyEntity();
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEnemyEntity(EnemyData);
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnEnemyEntity(EnemyData, SummonData.EntityData);
 		} else {
 			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->SpawnPlayerEntity(SummonData.EntityData);
 		}

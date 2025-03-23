@@ -2,6 +2,10 @@
 	{
 		"Name": "TestEncounterOne",
 		"EncounterType": "Enemy",
+		"EntityTypes": [
+			"TestEnemyOne",
+			"TestEnemyOne"
+		],
 		"EnemyTypes": [
 			"TestEnemyOne",
 			"TestEnemyOne"
@@ -12,6 +16,9 @@
 	{
 		"Name": "TestEncounterTwo",
 		"EncounterType": "Enemy",
+		"EntityTypes": [
+			"TestEnemyTwo"
+		],
 		"EnemyTypes": [
 			"TestEnemyTwo"
 		],
@@ -21,6 +28,10 @@
 	{
 		"Name": "WolfPack1",
 		"EncounterType": "Enemy",
+		"EntityTypes": [
+			"WolfPack",
+			"WolfPackAlpha"
+		],
 		"EnemyTypes": [
 			"WolfPack",
 			"WolfPackAlpha"
@@ -31,6 +42,10 @@
 	{
 		"Name": "RabidRats",
 		"EncounterType": "Enemy",
+		"EntityTypes": [
+			"RabidRat",
+			"RabidRat"
+		],
 		"EnemyTypes": [
 			"RabidRat",
 			"RabidRat"

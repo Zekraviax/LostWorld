@@ -163,18 +163,38 @@ FCard ULostWorldGameInstanceBase::GetCardFromJson(const FString& CardName) const
 }
 
 
-FEnemyEntity ULostWorldGameInstanceBase::GetEnemyFromJson(const FString& EnemyType) const
+FEntity ULostWorldGameInstanceBase::GetEntityFromJson(const EEntityTypes& EntityType) const
+{
+	TArray<FEntity> EntitiesArray;
+	FString EntityJsonAsString = LoadFileFromJson("EntitiesData");
+	FJsonObjectConverter::JsonArrayStringToUStruct(EntityJsonAsString, &EntitiesArray, 0, 0);
+
+	for (FEntity Entity : EntitiesArray) {
+		if (Entity.EntityTypes.Contains(EntityType)) {
+			return Entity;
+		}
+	}
+
+	ALostWorldGameModeBase::DualLog("Error! Could not find entity data with type: "
+		+ UEnum::GetDisplayValueAsText(EntityType).ToString(), 2);
+	return EntitiesArray[0];
+}
+
+
+FEnemyEntity ULostWorldGameInstanceBase::GetEnemyFromJson(const EEntityTypes& EnemyType) const
 {
 	TArray<FEnemyEntity> EnemiesArray;
 	FString EnemyJsonAsString = LoadFileFromJson("EnemiesData");
 	FJsonObjectConverter::JsonArrayStringToUStruct(EnemyJsonAsString, &EnemiesArray, 0, 0);
 
 	for (FEnemyEntity Enemy : EnemiesArray) {
-		if (Enemy.EnemyType.Equals(EnemyType)) {
+		if (Enemy.EnemyType == EnemyType) {
 			return Enemy;
 		}
 	}
 
+	ALostWorldGameModeBase::DualLog("Error! Could not find enemy data with type: "
+		+ UEnum::GetDisplayValueAsText(EnemyType).ToString(), 2);
 	return EnemiesArray[0];
 }
 
@@ -210,4 +230,24 @@ FSummonEntity ULostWorldGameInstanceBase::GetSummonFromJson(const FString& Summo
 	}
 
 	return SummonsArray[0];
+}
+
+
+FEncounter ULostWorldGameInstanceBase::GetEncounterFromJson(const FString& EncounterRowName) const
+{
+	TArray<FEncounter> EncountersArray;
+	FString EncounterJsonAsString = LoadFileFromJson("EncounterData");
+
+	//for () {}
+	return FEncounter();
+}
+
+
+EEntityTypes ULostWorldGameInstanceBase::EntityTypeStringToEnumValue(const FString& InString)
+{
+	const UEnum* EntityTypeEnum = FindObject<UEnum>(ANY_PACKAGE, TEXT("EEntityTypes"), true);
+	int32 Index = EntityTypeEnum->GetIndexByNameString(InString);
+
+	EEntityTypes ReturnType = static_cast<EEntityTypes>((Index));
+	return ReturnType;
 }

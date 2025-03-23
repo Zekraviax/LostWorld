@@ -29,7 +29,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// To-Do: Get data from the JSON files, not the DataTables.
 	// Get the Enemy data table row names from the Encounter data table.
 	FString ContextString;
-	TArray<FName> EnemyRowNames = EnemyEncounter.EnemyTypes;
+	TArray<EEntityTypes> EnemyTypes = EnemyEncounter.EntityTypes;
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;
 	
 	// Clear the entities in battle array
@@ -43,33 +43,36 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 			LoadFileFromJson("EncountersData");
 
 		if (OverrideEncountersSetting == "Random") {
+			// To-Do: Test the random encounter dev setting override.
 			TArray<FEncounter> AllEncounters;
 
 			FJsonObjectConverter::JsonArrayStringToUStruct(AllEncountersAsJson, &AllEncounters, 0, 0);
-			EnemyRowNames = AllEncounters[FMath::RandRange(0, AllEncounters.Num() - 1)].EnemyTypes;
+			EnemyTypes = AllEncounters[FMath::RandRange(0, AllEncounters.Num() - 1)].EntityTypes;
 		} else {
-			CustomJsonDeserializer* newJson = new CustomJsonDeserializer();
-		
-			newJson->DeserializeEncounterJson(AllEncountersAsJson, OverrideEncountersSetting);
-			EnemyRowNames = newJson->DeserializeEncounterJson(AllEncountersAsJson, OverrideEncountersSetting).EnemyTypes;
-		
-			newJson = nullptr;
+			// Get the encounter that overrides the original.
+			CustomJsonDeserializer* JsonDeserializer = new CustomJsonDeserializer();
+			EnemyTypes = JsonDeserializer->DeserializeEncounterJson(AllEncountersAsJson, OverrideEncountersSetting).EntityTypes;
+
+			// Nulling the pointer should make the object get cleaned up.
+			JsonDeserializer = nullptr;
 		}
 	}
 
 	// Spawn enemies at random valid tiles.
 	// ReSharper disable once CppTooWideScope
 	//const FActorSpawnParameters SpawnParameters;
-	for (int RowCount = 0; RowCount < EnemyRowNames.Num(); RowCount++) {
+	for (int RowCount = 0; RowCount < EnemyTypes.Num(); RowCount++) {
 		// To-Do: Fix the random tile selection to either:
 		// a. always select a tile to spawn an enemy, or
 		// b. handle the situation where there are no valid tiles.
 		
 		// Fetch the enemy's data then spawn them in.
 		FEnemyEntity EnemyEntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
-			GetEnemyFromJson(EnemyRowNames[RowCount].ToString());
+			GetEnemyFromJson(EnemyTypes[RowCount]);
+		FEntity EntityData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+			GetEntityFromJson(EnemyTypes[RowCount]);
 		
-		AActorEntityEnemy* SpawnedEnemy = SpawnEnemyEntity(EnemyEntityData);
+		SpawnEnemyEntity(EnemyEntityData, EntityData);
 	}
 
 	// Reset all of the players' card arrays, except their deck.
@@ -266,7 +269,7 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 }
 
 
-AActorEntityEnemy* ALostWorldGameModeBattle::SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData)
+AActorEntityEnemy* ALostWorldGameModeBattle::SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData, const FEntity& InEntityData)
 {
 	const FActorSpawnParameters SpawnParameters;
 
@@ -274,8 +277,8 @@ AActorEntityEnemy* ALostWorldGameModeBattle::SpawnEnemyEntity(const FEnemyEntity
 		FVector(0, 0, 0),FRotator::ZeroRotator, SpawnParameters);
 
 	ReturnEnemy->EnemyData = InEnemyEntityData;
-	ReturnEnemy->EntityData = InEnemyEntityData.EntityData;
-	ReturnEnemy->EnemyData.EntityData.Team = ETeams::EnemyTeam1;
+	ReturnEnemy->EntityData = InEntityData;
+	ReturnEnemy->EntityData.Team = ETeams::EnemyTeam1;
 
 	AActorEntityBase* EnemyAsBaseClass = Cast<AActorEntityBase>(ReturnEnemy);
 	EnemyAsBaseClass = FinishSpawningEntity(EnemyAsBaseClass);

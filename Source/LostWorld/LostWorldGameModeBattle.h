@@ -99,7 +99,7 @@ public:
 	// To-Do: Finish testing this function, and incorporate it into the TransitionToBattle function.
 	// To-Do: Use an Object Pool instead of directly spawning actors.
 	AActorEntityBase* FinishSpawningEntity(AActorEntityBase* InEntity);
-	AActorEntityEnemy* SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData);
+	AActorEntityEnemy* SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData, const FEntity& InEntityData);
 	AActorEntityPlayer* SpawnPlayerEntity(const FEntity& InEntityData);
 	
 	

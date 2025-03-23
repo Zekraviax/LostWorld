@@ -56,5 +56,5 @@ public:
 
 // ---------------------------------------- Functions ---------------------------------------- //
 	void SetTileColour(FLinearColor NewColour);
-	void MoveEntityToTile(AActorEntityBase* MovingEntity);
+	void MoveEntityToTile(AActorEntityBase* MovingEntity) const;
 };

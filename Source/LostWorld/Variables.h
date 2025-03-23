@@ -76,24 +76,23 @@ enum class ECardTargets : uint8
 };
 
 
-// Modifiers can be positive (such as cost reductions);
-// negative (such as blocking healing); or mixed.
+/**Modifiers can be positive (such as cost reductions); negative (such as blocking healing); or mixed.
 
-// Modifiers can also have different 'durations':
-// 'Durations' should be inherent to the modifier(?)
-// List of 'durations':
-// Permanent.
-// Until end of battle.
-// Until end of turn.
+Modifiers can also have different 'durations' (durations should be inherent to the modifier?)
 
-// Modifiers can be applied at different times:
-// As soon as the modifier is applied to the card. Should also be applied when the game is launched as well?
-// At the start of battles (when the cards are copied into the draw pile from the deck.)
-// Each time the card is drawn.
-// After each time the card is played.
-// When the player wins a battle.
-// On damage dealt.
-// After damage calculations but before damage is dealt.
+List of 'durations':
+-  Permanent.
+- Until end of battle.
+- Until end of turn.
+
+Modifiers can be applied at different times:
+- As soon as the modifier is applied to the card. (Should also be applied when the game is launched as well?)
+- At the start of battles/when the cards are copied into the draw pile from the deck.
+- Each time the card is drawn.
+- After each time the card is played.
+- When the player wins a battle.
+- On damage dealt.
+- After damage calculations but before damage is dealt.*/
 UENUM(BlueprintType)
 enum class ECardModifiers : uint8
 {

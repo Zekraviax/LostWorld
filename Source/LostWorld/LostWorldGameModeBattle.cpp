@@ -114,9 +114,10 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].RoomMidpoint.Y,
 		Camera->GetComponentLocation().Z));
 
-	
 	// Then, zoom the camera out until the whole room is visible.
-	TArray<AActorGridTile*> RoomCorners;
+	Camera->SetOrthoWidth(Camera->OrthoWidth + 248);
+	
+	/*TArray<AActorGridTile*> RoomCorners;
 	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
 		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].BottomLeftCoordinate));
 	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
@@ -158,9 +159,9 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		}
 
 		if (AllFourCornersVisible.Contains(false)) {
-			Camera->FieldOfView += 1;
+			Camera->SetOrthoWidth(Camera->OrthoWidth + 248);
 		}
-	}
+	}*/
 	
 	// Once everything is done, begin Turn Zero.
 	PreBattleTurnZero(EnemyEncounter);

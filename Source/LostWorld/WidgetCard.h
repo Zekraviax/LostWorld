@@ -54,5 +54,5 @@ protected:
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation) override;
 
 public:
-	void UpdateComponentsFromPassedCard(const FCard& InCard);
+	void UpdateComponentsFromPassedCard(const FCard& InCard) const;
 };

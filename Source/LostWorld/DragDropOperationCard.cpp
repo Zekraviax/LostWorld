@@ -4,6 +4,7 @@
 #include "ActorEntityPlayer.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "LostWorldGameModeBattle.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "WidgetCard.h"
 
@@ -12,8 +13,7 @@ void UDragDropOperationCard::Dragged_Implementation(const FPointerEvent& Pointer
 {
 	Super::Dragged_Implementation(PointerEvent);
 
-	// Ignore the AtoVPosition.
-	// It's only there because the AbsoluteToViewport function needs it.
+	// Ignore the AtoVPosition, it's only there because the AbsoluteToViewport function needs it.
 	FVector2D PixelPosition, AtoVPosition, ViewportDimensions;
 	FVector2D ScreenSpacePosition = PointerEvent.GetScreenSpacePosition();
 	USlateBlueprintLibrary::AbsoluteToViewport(Payload, ScreenSpacePosition, PixelPosition, AtoVPosition);
@@ -25,26 +25,25 @@ void UDragDropOperationCard::Dragged_Implementation(const FPointerEvent& Pointer
 
 	Cast<UWidgetCard>(DefaultDragVisual)->UpdateComponentsFromPassedCard(Cast<UWidgetCard>(Payload)->CardData);
 	
-	if (CursorPositionAsPercentage.Y > 0.749) {
-		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.5f, 0.f, 1.f));
-	} else {
-		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 0.f, 1.f));
-	}
-
-	// To-Do: Find an alternative way of getting the player controller.
-	/*UWorld* WorldContext = GetWorld();
+	// To-Do: Find an alternative way of getting the world context.
+	UWorld* World = GEngine->GameViewport->GetWorld();
 	ALostWorldPlayerControllerBase* PlayerController = Cast<ALostWorldPlayerControllerBattle>(
-		UGameplayStatics::GetPlayerController(GetWorld(), 0));
+		UGameplayStatics::GetPlayerController(World, 0));
 	AActorEntityPlayer* PlayerEntity = PlayerController->ControlledPlayerEntity;
 	
-	// Check if the player can afford to cast the card.
-	if (PlayerController->ControlMode == EPlayerControlModes::Battle) {
-		if (PlayerEntity->EntityData.BaseStats.CurrentManaPoints < Cast<UWidgetCard>(Payload)->CardData.TotalCost) {
+	// Check if the player can afford to cast the card, if it's their turn, and if they're not in the deck editor.
+	if (PlayerController->ControlMode != EPlayerControlModes::DeckEditor) {
+		if (PlayerEntity->EntityData.BaseStats.CurrentManaPoints < Cast<UWidgetCard>(Payload)->CardData.TotalCost ||
+			Cast<ALostWorldGameModeBattle>(World->GetAuthGameMode())->TurnQueue[0] != PlayerEntity)  {
 			Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.f, 0.f, 1.f));
 		} else {
-			Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.5f, 0.f, 1.f));
+			if (CursorPositionAsPercentage.Y < 0.749) {
+				Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(1.f, 0.5f, 0.f, 1.f));
+			} else {
+				Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 0.f, 1.f));
+			}
 		}
 	} else {
 		Cast<UWidgetCard>(DefaultDragVisual)->BackgroundImage->SetColorAndOpacity(FLinearColor(0.f, 0.f, 0.f, 1.f));
-	}*/
+	}
 }

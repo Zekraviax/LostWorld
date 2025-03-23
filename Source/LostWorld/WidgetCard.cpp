@@ -1,10 +1,8 @@
 #include "WidgetCard.h"
 
-#include <string>
 
 #include "LostWorldGameModeBase.h"
 #include "Blueprint/WidgetTree.h"
-#include "Components/PanelWidget.h"
 
 
 bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
@@ -13,16 +11,14 @@ bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent
 }
 
 
-void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard)
+void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 {
 	TArray<ECardFunctions> Functions;
 	TArray<ECardModifiers> Modifiers;
 	InCard.FunctionsAndTargets.GetKeys(Functions);
 	InCard.ModifiersWithTriggers.GetKeys(Modifiers);
-
 	
 	CardNameText->SetText(FText::FromString(InCard.DisplayName));
-
 	
 	// If the card has a special cost, the text should be X instead of a number.
 	if (Functions.Contains(ECardFunctions::CostsAllMana)) {

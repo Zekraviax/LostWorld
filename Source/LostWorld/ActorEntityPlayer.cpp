@@ -88,9 +88,6 @@ bool AActorEntityPlayer::ReceiveHealing(float Healing)
 {
 	Super::ReceiveHealing(Healing);
 	
-	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " is healed for " +
-		FString::FromInt(Healing) + " health points.", 2);
-	
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
 	return true;

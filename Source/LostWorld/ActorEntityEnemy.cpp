@@ -57,9 +57,6 @@ bool AActorEntityEnemy::TakeDamage(float Damage)
 
 bool AActorEntityEnemy::ReceiveHealing(float Healing)
 {
-	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " is healed for " +
-		FString::FromInt(Healing) + " health points.", 2);
-
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't

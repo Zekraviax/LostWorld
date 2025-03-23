@@ -187,6 +187,9 @@ bool AActorEntityBase::ReceiveHealing(float Healing)
 	if (EntityData.TotalStats.CurrentHealthPoints > EntityData.TotalStats.MaximumHealthPoints) {
 		EntityData.TotalStats.CurrentHealthPoints = EntityData.TotalStats.MaximumHealthPoints;
 	}
+
+	ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is healed for " +
+		FString::FromInt(Healing) + " health points.", 2);
 	
 	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
@@ -197,6 +200,12 @@ bool AActorEntityBase::ReceiveHealing(float Healing)
 bool AActorEntityBase::GainMana(int InMana)
 {
 	EntityData.TotalStats.CurrentManaPoints += InMana;
+
+	if (EntityData.TotalStats.CurrentManaPoints > EntityData.TotalStats.MaximumManaPoints) {
+		EntityData.TotalStats.CurrentManaPoints = EntityData.TotalStats.MaximumManaPoints;
+	}
+	
+	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
 	
 	return IInterfaceBattle::GainMana(InMana);
 }

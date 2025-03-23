@@ -60,7 +60,8 @@ enum class ECardElements : uint8
 	Light,
 	Cosmic,
 	Arcane,
-	Divine
+	Divine,
+	NonElemental
 };
 
 
@@ -565,7 +566,7 @@ struct LOSTWORLD_API FEntityBaseStats
 		Intelligence = 1;
 		Willpower = 1;
 		Agility = 1;
-		HealthRegeneration = 0;
+		HealthRegeneration = 1;
 		ManaRegeneration = 1;
 		Readiness = 0;
 	}
@@ -703,7 +704,7 @@ struct LOSTWORLD_API FEntity : public FTableRowBase
 	TArray<FEquipment> EquippedItems;
 
 	// This variable exists for all entities because all entities can have unequipped and equipped items.
-	// To-Do: Give enemies the ability to equip and unequip items.
+	// To-Do: Give enemies the ability to equip and unequip items in the future.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquipmentInventory;
 

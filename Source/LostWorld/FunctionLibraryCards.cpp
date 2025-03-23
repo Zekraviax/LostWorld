@@ -76,9 +76,11 @@ AActorEntityBase* AFunctionLibraryCards::GetDefender() const
 int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower)
 {
 	// Damage formula
-	// Step1 = ((Strength * Attack) / 2) * Rand(0.95, 1.1)
-	// Step2 = Step1 / (Defence * Rand(0.95 * 1.05))
-	// Step3 = RoundUp(Step2)
+	// Step 1 = ((Strength * Attack) / 2) * Rand(0.95, 1.1)
+	// Step 2 = Step1 / (Defence * Rand(0.95 * 1.05))
+	// Step 3 = RoundUp(Step2)
+	// Step 4 = Apply offensive elemental affinity.
+	// Step 5 = Apply defensive elemental affinity.
 
 	// To-Do: Check for status effects that modify damage and/or base power
 	for (FStatusEffect StatusEffect : Defender->EntityData.StatusEffects) {
@@ -282,7 +284,7 @@ void AFunctionLibraryCards::Vomit() const
 {
 	FStatusEffect StackedPoison = Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Poison);
-	StackedPoison.CurrentStackCount = 5;
+	StackedPoison.CurrentStackCount = 3;
 
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(StackedPoison);
 }

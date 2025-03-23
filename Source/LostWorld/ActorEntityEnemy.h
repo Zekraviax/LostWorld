@@ -9,8 +9,7 @@
 
 
 UCLASS()
-// To-Do: Rename this class to something else, because we're using this actor
-// for both enemies and player controlled summons (?)
+// To-Do: Rename this class to something else, because we're using this actor for both enemies and player controlled summons (?)
 class LOSTWORLD_API AActorEntityEnemy : public AActorEntityBase
 {
 	GENERATED_BODY()

@@ -577,7 +577,7 @@
 		"BaseDamage": 0,
 		"BaseHealing": 0,
 		"Keywords": [],
-		"Description": "Inflicts 5 stacks of poison on to the target.",
+		"Description": "Inflicts 3 stacks of poison on to the target.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{

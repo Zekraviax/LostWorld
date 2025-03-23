@@ -51,6 +51,9 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 	case (ECardFunctions::InflictToughnessDown):
 		ApplyToughnessDown();
 		break;
+	case (ECardFunctions::Vomit):
+		Vomit();
+		break;
 	default:
 		ALostWorldGameModeBase::DualLog("Error! This function doesn't have an implementation!", 2);
 		break;
@@ -272,6 +275,16 @@ void AFunctionLibraryCards::InfectedBite() const
 		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Bleeding));
 	}
+}
+
+
+void AFunctionLibraryCards::Vomit() const
+{
+	FStatusEffect StackedPoison = Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Poison);
+	StackedPoison.CurrentStackCount = 5;
+
+	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(StackedPoison);
 }
 
 

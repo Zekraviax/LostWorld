@@ -75,6 +75,7 @@ public:
 	virtual bool GainBarrier(int InBarrier) override;
 
 	virtual bool AddStatusEffect(FStatusEffect InStatusEffect) override;
+	virtual bool GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks) override;
 
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;

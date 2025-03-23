@@ -543,7 +543,7 @@
 		"DisplayName": "Screech",
 		"BaseCost": 2,
 		"CardTypes": [
-			"Spell"
+			"Technique"
 		],
 		"CardElements": [
 			"Air"
@@ -556,6 +556,32 @@
 		"FunctionsAndTargets":
 		{
 			"InflictToughnessDown": "AllEnemies"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "Vomit",
+		"DisplayName": "Vomit",
+		"BaseCost": 6,
+		"CardTypes": [
+			"Technique"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "Inflicts 5 stacks of poison on to the target.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"Vomit": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{

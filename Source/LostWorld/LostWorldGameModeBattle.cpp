@@ -167,8 +167,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 FCard ALostWorldGameModeBattle::ApplyCardModifiersWithTimingTrigger(FCard InCard, const ECardModifierTimingTriggers TimingTrigger)
 {
-	// To-Do: Before card mods can be applied, and depending on the context/timing,
-	// we need to reset the variables to their base values(?)
+	// To-Do: Before card mods can be applied, and depending on the context/timing, we need to reset the variables to their base values(?)
 
 	// To-Do: Maybe ignore the timing trigger and just reset the card every time,
 	// then apply all mods?
@@ -398,14 +397,11 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 			Entity->EntityData.DrawPile.Add(Copy);
 		}
 	}
-
-	// To-Do: Fix this.
-	// Shuffle up.
+	
 	for (auto& Entity : EntitiesInBattleArray) {
 		// Since this is the start of the battle, we can erase the current draw pile and make it a copy of the deck.
 		Entity->EntityData.DrawPile.Empty();
 		Entity->EntityData.DrawPile = Entity->EntityData.Deck;
-		//TArray<FCard> DrawPileCopy = Entity->EntityData.DrawPile;
 		
 		if (Cast<AActorEntityEnemy>(Entity)) {
 			Entity->EntityData.DrawPile = Cast<AActorEntityEnemy>(Entity)->ShuffleDrawPile(Entity->EntityData.DrawPile);

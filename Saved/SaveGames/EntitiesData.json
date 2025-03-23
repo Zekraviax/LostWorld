@@ -1637,22 +1637,48 @@
                 "TotalHealing": 0
             },
             {
-                "DisplayName": "Infected Bite",
+                "Name": "Vomit",
+                "DisplayName": "Vomit",
+                "BaseCost": 6,
+                "CardTypes": [
+                    "Technique"
+                ],
+                "CardElements": [
+                    "Water"
+                ],
+                "BaseDamage": 0,
+                "BaseHealing": 0,
+                "Keywords": [],
+                "Description": "Inflicts 5 stacks of poison on to the target.",
+                "FlavourText": "This is a default flavour text.",
+                "FunctionsAndTargets":
+                {
+                    "Vomit": "OneEnemy"
+                },
+                "ModifiersWithTriggers":
+                {
+                },
+                "TotalCost": 1,
+                "TotalDamage": 0,
+                "TotalHealing": 0
+            },
+            {
+                "DisplayName": "Screech",
                 "BaseCost": 2,
                 "CardTypes": [
                     "Technique"
                 ],
                 "CardElements": [
-                    "Earth"
+                    "Air"
                 ],
-                "BaseDamage": 3,
+                "BaseDamage": 0,
                 "BaseHealing": 0,
                 "Keywords": [],
-                "Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+                "Description": "Inflict ToughnessDown on all enemies.",
                 "FlavourText": "This is a default flavour text.",
                 "FunctionsAndTargets":
                 {
-                    "InfectedBite": "OneEnemy"
+                    "InflictToughnessDown": "AllEnemies"
                 },
                 "ModifiersWithTriggers":
                 {
@@ -1665,7 +1691,7 @@
                 "DisplayName": "Screech",
                 "BaseCost": 2,
                 "CardTypes": [
-                    "Spell"
+                    "Technique"
                 ],
                 "CardElements": [
                     "Air"
@@ -1690,7 +1716,7 @@
                 "DisplayName": "Screech",
                 "BaseCost": 2,
                 "CardTypes": [
-                    "Spell"
+                    "Technique"
                 ],
                 "CardElements": [
                     "Air"
@@ -1715,7 +1741,7 @@
                 "DisplayName": "Screech",
                 "BaseCost": 2,
                 "CardTypes": [
-                    "Spell"
+                    "Technique"
                 ],
                 "CardElements": [
                     "Air"
@@ -1737,47 +1763,23 @@
                 "TotalHealing": 0
             },
             {
-                "DisplayName": "Screech",
-                "BaseCost": 2,
+                "Name": "Vomit",
+                "DisplayName": "Vomit",
+                "BaseCost": 6,
                 "CardTypes": [
-                    "Spell"
+                    "Technique"
                 ],
                 "CardElements": [
-                    "Air"
+                    "Water"
                 ],
                 "BaseDamage": 0,
                 "BaseHealing": 0,
                 "Keywords": [],
-                "Description": "Inflict ToughnessDown on all enemies.",
+                "Description": "Inflicts 5 stacks of poison on to the target.",
                 "FlavourText": "This is a default flavour text.",
                 "FunctionsAndTargets":
                 {
-                    "InflictToughnessDown": "AllEnemies"
-                },
-                "ModifiersWithTriggers":
-                {
-                },
-                "TotalCost": 1,
-                "TotalDamage": 0,
-                "TotalHealing": 0
-            },
-            {
-                "DisplayName": "Screech",
-                "BaseCost": 2,
-                "CardTypes": [
-                    "Spell"
-                ],
-                "CardElements": [
-                    "Air"
-                ],
-                "BaseDamage": 0,
-                "BaseHealing": 0,
-                "Keywords": [],
-                "Description": "Inflict ToughnessDown on all enemies.",
-                "FlavourText": "This is a default flavour text.",
-                "FunctionsAndTargets":
-                {
-                    "InflictToughnessDown": "AllEnemies"
+                    "Vomit": "OneEnemy"
                 },
                 "ModifiersWithTriggers":
                 {

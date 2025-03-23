@@ -27,11 +27,15 @@ void AFunctionLibraryStatusEffects::ExecuteFunction(EStatusEffectFunctions InFun
 
 void AFunctionLibraryStatusEffects::Poison(AActorEntityBase* EffectedEntity)
 {
-	// To-Do: Make poison damage scale based on the number of stacks the entity has.
-	float PoisonDamageAsFloat = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 0.1;
-	int PoisonDamageAsInt = FMath::RoundToFloat(PoisonDamageAsFloat);
+	// To-Do: Test that poison damages scale based on the number of stacks the entity has.
+	float SingleStackDamage = EffectedEntity->EntityData.TotalStats.MaximumHealthPoints * 0.1;
+	int Stacks = -1;
+	
+	Cast<IInterfaceBattle>(EffectedEntity)->GetStatusEffectStacks(EStatusEffectFunctions::Poison, Stacks);
+	int PoisonDamageAsInt = FMath::RoundToFloat(SingleStackDamage * Stacks);
 
-	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName + " is poisoned!", 2);
+	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName +
+		" is hurting from poison!", 2);
 	
 	Cast<IInterfaceBattle>(EffectedEntity)->TakeDamage(PoisonDamageAsInt);
 }

@@ -95,9 +95,7 @@ public:
 	
 	// The spawn function(s) that spawn specific classes of entities should only be used to physically create the entity.
 	// Everything else should be handled by the more generic function.
-	// The FinishSpawningEntity function will find a valid tile within the room for the entity.
-	// To-Do: Finish testing this function, and incorporate it into the TransitionToBattle function.
-	// To-Do: Use an Object Pool instead of directly spawning actors.
+	// To-Do: Consider using an Object Pool instead of directly spawning actors.
 	AActorEntityBase* FinishSpawningEntity(AActorEntityBase* InEntity);
 	AActorEntityEnemy* SpawnEnemyEntity(const FEnemyEntity& InEnemyEntityData, const FEntity& InEntityData);
 	AActorEntityPlayer* SpawnPlayerEntity(const FEntity& InEntityData);

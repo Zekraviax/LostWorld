@@ -181,6 +181,7 @@ enum class ECardFunctions : uint8
 	CallForFriends,
 	Inflame,
 	InfectedBite,
+	Vomit,
 	// -------- Generic functions -------- //
 	DealDamageToOneTargets,
 	CasterDrawsOneCard,

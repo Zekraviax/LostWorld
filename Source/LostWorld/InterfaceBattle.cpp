@@ -90,6 +90,12 @@ bool IInterfaceBattle::AddStatusEffect(FStatusEffect StatusEffect)
 }
 
 
+bool IInterfaceBattle::GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::StartTurn()
 {
 	return true;

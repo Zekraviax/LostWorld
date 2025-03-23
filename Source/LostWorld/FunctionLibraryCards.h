@@ -35,6 +35,7 @@ public:
 	void EnergyAllAround() const;
 	void CallForFriends() const;
 	void InfectedBite() const;
+	void Vomit() const;
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
 	void ApplyToughnessDown() const;

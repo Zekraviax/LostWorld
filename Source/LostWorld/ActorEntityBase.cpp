@@ -216,8 +216,6 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 	if (EntityData.TotalStats.CurrentBarrierPoints > 0 && InStatusEffect.BlockedByBarrier) {
 		ALostWorldGameModeBase::DualLog("A barrier blocked the status effect from being applied!", 2);
 	} else {
-		// To-Do: Make status effects add stacks to status effects that the entity already has.
-
 		// Check if the entity already has the status effect.
 		// If so, attempt to increment its' stacks.
 		bool hasStatus = false;
@@ -264,6 +262,22 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 	}
 	
 	return IInterfaceBattle::AddStatusEffect(InStatusEffect);
+}
+
+
+bool AActorEntityBase::GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks)
+{
+	for (auto& Status : EntityData.StatusEffects) {
+		if (Status.StatusEffect == Function) {
+			OutStacks = Status.CurrentStackCount;
+			return IInterfaceBattle::GetStatusEffectStacks(Function, OutStacks);
+		}
+	}
+
+	ALostWorldGameModeBase::DualLog("Warning! GetStatusEffectStacks could not find status effect with "
+		"function: " + UEnum::GetDisplayValueAsText(Function).ToString(), 2);
+	OutStacks = -1;
+	return IInterfaceBattle::GetStatusEffectStacks(Function, OutStacks);
 }
 
 

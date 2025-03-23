@@ -168,7 +168,7 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 		PlayerController->DeckEditorWidget->PopulateCardsInCollectionUniformGridPanel(PlayerEntity->EntityData.Collection);
 		
 
-		// Save the players' changes as well.
+		// To-Do: Save the players' changes as well.
 	}
 
 	return Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);

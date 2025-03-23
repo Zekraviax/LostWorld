@@ -66,7 +66,9 @@ public:
 	FSummonEntity GetSummonFromJson(const FString& SummonName) const;
 	FEncounter GetEncounterFromJson(const FString& EncounterRowName) const;
 
-	// Helper functions
+	// Helper functions,
 	static EEntityTypes EntityTypeStringToEnumValue(const FString& InString);
 	AActorGridTile* FindGridTileWithVector(FVector InVector) const;
+	int GetPlayerRoom() const;
+	void GetAllEntityLocations(TArray<FVector>& OutLocations) const;
 };

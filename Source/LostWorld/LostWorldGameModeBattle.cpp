@@ -147,6 +147,8 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	
 	TArray<bool> AllFourCornersVisible = { false };
 	while (AllFourCornersVisible.Contains(false)) {
+		DualLog("While loop", 2);
+		
 		AllFourCornersVisible.Empty();
 
 		for (auto& Coordinate : CoordinatesToTrace) {
@@ -278,9 +280,11 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 	// First, find a valid location for the entity.
 	TArray<AActorGridTile*> ValidEntitySpawnTiles;
 	FVector PlayerEntityLocation = FVector();
-	int PlayerRoomIndex = 0;
+	int PlayerRoomIndex = -1;
 
 	GetPlayerLocationAndRoom(PlayerEntityLocation, PlayerRoomIndex);
+	TArray<FVector> EntityLocations;
+	Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetAllEntityLocations(EntityLocations);
 
 	// To-Do: Find the locations for all entities in the room and exclude them from the valid tiles array.
 	for (TObjectIterator<AActorGridTile> Itr; Itr; ++Itr) {
@@ -291,9 +295,14 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 			// Second, make sure the tile isn't in a corridor.
 			if (FoundTile->CorridorIndex == -1) {
 				// Third, make sure the player isn't occupying the tile.
-				if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
+				//if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
+				if (!EntityLocations.Contains(FoundTile->GetActorLocation())) {
 					// Fourth, make sure the entity is spawned in the same room as all the other entities.
-					if (FoundTile->RoomIndex == PlayerRoomIndex) {
+					if (PlayerRoomIndex < 0) {
+						// If the player room index is less than zero, that means the player is currently being spawned,
+						// and that the check should be skipped.
+						ValidEntitySpawnTiles.Add(FoundTile);
+					} else if (FoundTile->RoomIndex == PlayerRoomIndex) {
 						ValidEntitySpawnTiles.Add(FoundTile);
 					}
 				}
@@ -339,7 +348,7 @@ AActorEntityEnemy* ALostWorldGameModeBattle::SpawnEnemyEntity(const FEnemyEntity
 	const FActorSpawnParameters SpawnParameters;
 
 	AActorEntityEnemy* ReturnEnemy = GetWorld()->SpawnActor<AActorEntityEnemy>(ActorEntityEnemyBlueprintClass,
-		FVector(0, 0, 0),FRotator::ZeroRotator, SpawnParameters);
+		FVector(-200, -200, -200),FRotator::ZeroRotator, SpawnParameters);
 
 	ReturnEnemy->EnemyData = InEnemyEntityData;
 	ReturnEnemy->EntityData = InEntityData;

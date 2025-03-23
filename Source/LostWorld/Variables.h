@@ -700,6 +700,8 @@ struct LOSTWORLD_API FEntity : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FCard> Exile;
 
+	// To-Do: Consider creating a new card zone to put summon cards when they're played.
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FStatusEffect> StatusEffects;
 

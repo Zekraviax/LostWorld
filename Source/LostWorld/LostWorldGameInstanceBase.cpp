@@ -268,3 +268,33 @@ AActorGridTile* ULostWorldGameInstanceBase::FindGridTileWithVector(FVector InVec
 	ALostWorldGameModeBase::DualLog("Warning! FindGridTileWithVector failed to find a grid tile!", 2);
 	return nullptr;
 }
+
+
+int ULostWorldGameInstanceBase::GetPlayerRoom() const
+{
+	TArray<AActor*> FoundGridTiles, FoundPlayers;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorGridTile::StaticClass(), FoundGridTiles);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityPlayer::StaticClass(), FoundPlayers);
+	
+	AActorEntityPlayer* Player = Cast<AActorEntityPlayer>(FoundPlayers[0]);
+	FVector PlayerLocation = Player->GetActorLocation();
+	
+	for (AActor* GridTile : FoundGridTiles) {
+		if (GridTile->GetActorLocation().X == PlayerLocation.X && GridTile->GetActorLocation().Y == PlayerLocation.Y) {
+			return Cast<AActorGridTile>(GridTile)->RoomIndex;
+		}
+	}
+	
+	return -1;
+}
+
+
+void ULostWorldGameInstanceBase::GetAllEntityLocations(TArray<FVector>& OutLocations) const
+{
+	TArray<AActor*> FoundActors, FoundGridTiles;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
+	
+	for (auto& Actor : FoundActors) {
+		OutLocations.Add(Actor->GetActorLocation());
+	}
+}

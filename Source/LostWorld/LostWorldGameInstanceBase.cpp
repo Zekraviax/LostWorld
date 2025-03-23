@@ -2,9 +2,10 @@
 
 
 #include "ActorEntityPlayer.h"
+#include "ActorGridTile.h"
 #include "JsonObjectConverter.h"
-#include "LostWorldGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "LostWorldGameModeBase.h"
 #include "LostWorldPlayerControllerBattle.h"
 #include "SaveGameDeveloperSettings.h"
 
@@ -250,4 +251,20 @@ EEntityTypes ULostWorldGameInstanceBase::EntityTypeStringToEnumValue(const FStri
 
 	EEntityTypes ReturnType = static_cast<EEntityTypes>((Index));
 	return ReturnType;
+}
+
+
+AActorGridTile* ULostWorldGameInstanceBase::FindGridTileWithVector(FVector InVector) const
+{
+	TArray<AActor*> FoundGridTiles;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorGridTile::StaticClass(), FoundGridTiles);
+
+	for (auto& Tile : FoundGridTiles) {
+		if (Tile->GetActorLocation() == InVector && Cast<AActorGridTile>(Tile)) {
+			return Cast<AActorGridTile>(Tile);
+		}
+	}
+
+	ALostWorldGameModeBase::DualLog("Warning! FindGridTileWithVector failed to find a grid tile!", 2);
+	return nullptr;
 }

@@ -158,5 +158,6 @@ public:
 
 	
 // -------------------------------- Other functions
+	// To-Do: Move this to the game instance and split it into two functions.
 	void GetPlayerLocationAndRoom(FVector& PlayerLocation, int& RoomIndex) const;
 };

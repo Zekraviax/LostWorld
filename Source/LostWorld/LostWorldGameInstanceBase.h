@@ -2,8 +2,8 @@
 
 
 #include "CoreMinimal.h"
-#include "SaveGameDeveloperSettings.h"
 #include "Engine/GameInstance.h"
+#include "SaveGameDeveloperSettings.h"
 #include "Variables.h"
 #include "LostWorldGameInstanceBase.generated.h"
 
@@ -66,6 +66,7 @@ public:
 	FSummonEntity GetSummonFromJson(const FString& SummonName) const;
 	FEncounter GetEncounterFromJson(const FString& EncounterRowName) const;
 
-	// Enum helpers
+	// Helper functions
 	static EEntityTypes EntityTypeStringToEnumValue(const FString& InString);
+	AActorGridTile* FindGridTileWithVector(FVector InVector) const;
 };

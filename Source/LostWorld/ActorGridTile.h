@@ -41,7 +41,7 @@ public:
 	FLinearColor TileColour;
 
 	
-// -------------------------------- Data
+// -------------------------------- Variables
 	// Keep track of what room or corridor this tile is in.
 	// Use -1 for the CorridorIndex if the tile is in a room, and vice versa.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -57,4 +57,9 @@ public:
 // ---------------------------------------- Functions ---------------------------------------- //
 	void SetTileColour(FLinearColor NewColour);
 	void MoveEntityToTile(AActorEntityBase* MovingEntity) const;
+
+	// To-Do: Write a function that figures out whether or not an entity can be spawned on this tile.
+	// Entities can not be spawned on a tile under the following conditions:
+	// 1. There is already another entity on the tile (in-battle.)
+	// 2. The tile has an encounter (out-of-battle, and encounter type doesn't matter.)
 };

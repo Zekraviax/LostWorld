@@ -6,6 +6,7 @@
 #include "ActorGridTile.h"
 #include "AiBrainBase.h"
 #include "CustomJsonDeserializer.h"
+#include "DrawDebugHelpers.h"
 #include "FunctionLibraryCards.h"
 #include "FunctionLibraryStatusEffects.h"
 #include "JsonObjectConverter.h"
@@ -21,16 +22,18 @@
 void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncounter)
 {
 	// List of things that need to happen before any pre-battle functions can be run:
-	// Add the Battle UI to the players' HUD
-	// Spawn enemy entities in to the level
-	// Change the player's controls to Battle mode
-	// Disable player movement
+	// Add the Battle UI to the players' HUD.
+	// Spawn enemy entities in to the level.
+	// Change the player's controls to Battle mode.
+	// Disable player movement.
+	// Manipulate the camera so that it encompasses the whole room and all entities within it.
 
 	// To-Do: Get data from the JSON files, not the DataTables.
 	// Get the Enemy data table row names from the Encounter data table.
 	FString ContextString;
 	TArray<EEntityTypes> EnemyTypes = EnemyEncounter.EntityTypes;
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;
+
 	
 	// Clear the entities in battle array
 	EntitiesInBattleArray.Empty();
@@ -58,6 +61,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		}
 	}
 
+	
 	// Spawn enemies at random valid tiles.
 	// ReSharper disable once CppTooWideScope
 	//const FActorSpawnParameters SpawnParameters;
@@ -75,6 +79,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		SpawnEnemyEntity(EnemyEntityData, EntityData);
 	}
 
+	
 	// Reset all of the players' card arrays, except their deck.
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
 		EntityData.Hand.Empty();
@@ -84,13 +89,76 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
 		EntityData.Team = ETeams::PlayerTeam;
 
+	
 	// Add the player's entity to the array last.
-	EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
+	EntitiesInBattleArray.Add(Cast<ALostWorldPlayerControllerBattle>(
+		GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity);
 
+	
 	// Don't need to change the players' control mode here, because it will be set at the start of each turn.
 	// Swap out the level exploration UI for the battle UI.
 	// Make sure it's a "clean slate".
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->AddBattleHudToViewport();
+
+	
+	// Player camera manipulation.
+	// First, move the camera to the middle point of the room.
+	FVector PlayerLocation = FVector::ZeroVector;
+	UCameraComponent* Camera = Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->
+		ControlledPlayerEntity->Camera;
+	int Room = 0;
+	GetPlayerLocationAndRoom(PlayerLocation, Room);
+	
+	Camera->SetWorldLocation(FVector(
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].RoomMidpoint.X,
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].RoomMidpoint.Y,
+		Camera->GetComponentLocation().Z));
+
+	
+	// Then, zoom the camera out until the whole room is visible.
+	TArray<AActorGridTile*> RoomCorners;
+	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].BottomLeftCoordinate));
+	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].BottomRightCoordinate));
+	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].TopLeftCoordinate));
+	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].TopRightCoordinate));
+
+	FCollisionObjectQueryParams ObjectParams = FCollisionObjectQueryParams();
+	FCollisionQueryParams& TraceParams = FCollisionQueryParams::DefaultQueryParam;
+	FHitResult TraceHit(ForceInit);
+	FVector TraceStart = Camera->GetComponentLocation();
+	TraceStart.Z += 1000;
+
+	FVector Origin;
+	FVector Bounds;
+	TArray<FVector> CoordinatesToTrace;
+
+	for (auto& Corner : RoomCorners) {
+		Corner->GetActorBounds(true, Origin, Bounds);
+
+		CoordinatesToTrace.Add(FVector(Origin.X + Bounds.X, Origin.Y + Bounds.Y, Origin.Z));
+		CoordinatesToTrace.Add(FVector(Origin.X - Bounds.X, Origin.Y + Bounds.Y, Origin.Z));
+		CoordinatesToTrace.Add(FVector(Origin.X + Bounds.X, Origin.Y - Bounds.Y, Origin.Z));
+		CoordinatesToTrace.Add(FVector(Origin.X - Bounds.X, Origin.Y - Bounds.Y, Origin.Z));
+	}
+	
+	TArray<bool> AllFourCornersVisible = { false };
+	while (AllFourCornersVisible.Contains(false)) {
+		AllFourCornersVisible.Empty();
+
+		for (auto& Coordinate : CoordinatesToTrace) {
+			AllFourCornersVisible.Add(GetWorld()->LineTraceSingleByObjectType(
+				TraceHit, TraceStart, RoomCorners[0]->GetActorLocation(), ObjectParams, TraceParams));
+			//DrawDebugLine(GetWorld(), TraceStart, Coordinate, FColor::Red, false, 60);
+		}
+
+		if (AllFourCornersVisible.Contains(false)) {
+			Camera->FieldOfView += 1;
+		}
+	}
 	
 	// Once everything is done, begin Turn Zero.
 	PreBattleTurnZero(EnemyEncounter);
@@ -817,8 +885,8 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			LengthCount++) {
 			for (int WidthCount = LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y;
 				WidthCount <= LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y;
-				WidthCount++) {
-				
+				WidthCount++)
+			{
 				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Add(
 					GetWorld()->SpawnActor<AActorGridTile>(ActorGridTileBlueprintClass,
 					FVector(LengthCount * 200, WidthCount * 200, 0),
@@ -826,10 +894,36 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 					SpawnParameters));
 				
 				// Assign variables to the tile here.
-				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Last()->RoomIndex = RoomCount;
-				
+				LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].GridTilesInRoom.Last()->
+					RoomIndex = RoomCount;
+
+				// Take note of which tiles are in the corners.
+				if (LengthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X &&
+					WidthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y) {
+					LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftCoordinate =
+						FVector(LengthCount * 200, WidthCount * 200, 0);
+				} else if (LengthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.X &&
+					WidthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y) {
+					LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightCoordinate =
+						FVector(LengthCount * 200, WidthCount * 200, 0);
+				}
+
+				if (LengthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.X &&
+					WidthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.Y) {
+					LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomRightCoordinate =
+						FVector(LengthCount * 200, WidthCount * 200, 0);
+				} else if (LengthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftBoundary.X &&
+					WidthCount == LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightBoundary.Y) {
+					LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopLeftCoordinate =
+						FVector(LengthCount * 200, WidthCount * 200, 0);
+				}
 			}
 		}
+
+		// Calculate the middle point of the room.
+		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].RoomMidpoint =
+			(LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].BottomLeftCoordinate +
+			LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[RoomCount].TopRightCoordinate) / 2;
 	}
 
 	// Generate four corridors that connect the four rooms.

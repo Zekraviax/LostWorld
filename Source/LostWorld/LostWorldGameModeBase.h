@@ -24,6 +24,8 @@ public:
 	// 3 - Verbose Log
 	// 4 - Very Verbose Log
 	// To-Do: Improve the LogLevel developer setting to allow for multiple log levels to be enabled at a time.
+	// To-Do: Implement an option to save the text to a combat log.
+	// To-Do: Add colours!
 	static void DualLog(const FString& PreBuiltString, int InLogLevel);
 
 	// Parse sub-variables within written text variables.

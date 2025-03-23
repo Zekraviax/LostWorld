@@ -867,6 +867,21 @@ struct LOSTWORLD_API FRoomDataAsStruct
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActorGridTile*> GridTilesInRoom;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector BottomLeftCoordinate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector BottomRightCoordinate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector TopLeftCoordinate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector TopRightCoordinate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector RoomMidpoint;
+
 	FRoomDataAsStruct()
 	{
 		MinimumLength = 3;

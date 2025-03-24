@@ -13,48 +13,34 @@
 void UAiBrainBaseWolfPackAlpha::StartTurn()
 {
 	Super::StartTurn();
-	
-	SelectCardToCast();
 }
 
 
 void UAiBrainBaseWolfPackAlpha::SelectCardToCast()
 {
-	Super::SelectCardToCast();
+	if (SelfTurnCounter == 0 && FindCardInHand("Howl") != -1) {
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
+			Cast<AActorEntityEnemy>(GetOwner());
 
-	if (FindCardInHand("Howl Of Command") != -1 && SelfTurnCounter < 1) {
-		GetTargetsForCard(FindCardInHand("Howl of Command"));
-		SelfTurnCounter++;
-	} else if (FindCardInHand("Test Card One") != -1) {
-		GetTargetsForCard(FindCardInHand("Test Card One"));
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
+			FindCardInHand("Howl");
+	
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CreateStackEntry(SelectedCardInHandIndex);
 	} else {
-		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
+		Super::SelectCardToCast();
 	}
 }
 
 
-void UAiBrainBaseWolfPackAlpha::GetTargetsForCard(int IndexInHand)
+void UAiBrainBaseWolfPackAlpha::GetTargetsForCard(int StackEntryIndex)
 {
-	Super::GetTargetsForCard(IndexInHand);
-	
 	// If the wolf does not have a target override, then find a random player to be the target.
 	if (AttackTargetsOverride.Num() > 0) {
-		TArray<AActor*> FoundTargets;
-		
-		for (auto& Target : AttackTargetsOverride) {
-			FoundTargets.Add(Target);
-		}
-
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Empty();
-
-		for (AActor* Actor : FoundTargets) {
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
-				TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Actor));
-		}
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard(StackEntryIndex,
+			AttackTargetsOverride);
+	} else {
+		Super::GetTargetsForCard(StackEntryIndex);
 	}
-
-	GetWorld()->GetTimerManager().SetTimer(CastCardTimerHandle, this, &UAiBrainBase::CastCardWithDelay,2.5f, false);
-	GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
 }
 
 

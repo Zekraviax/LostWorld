@@ -38,5 +38,6 @@ public:
 	void Vomit() const;
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
+	void DrawOneCard() const;
 	void ApplyToughnessDown() const;
 };

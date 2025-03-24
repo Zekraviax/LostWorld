@@ -44,7 +44,7 @@ public:
 	UWidgetCard* CreateCardWidgetInHand(const FCard& InCard) const;
 	void ResetAllCardWidgetIndices() const;
 	
-	void PlayerStartCastingCard(const FCard& InCard, int IndexInHand, ECardTargets CurrentTargetMode, int CurrentNumberOfTargets) const;
+	void PlayerStartCastingCard(const FCard& InCard, int IndexInHand, ECardTargets CurrentTargetMode, int CurrentStackEntry) const;
 	void PlayerFinishCastingCard(int IndexInHand) const;	// Also triggers if the player cancels casting a card
 
 	UFUNCTION(BlueprintCallable)

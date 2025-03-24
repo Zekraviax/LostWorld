@@ -71,9 +71,10 @@ enum class ECardTargets : uint8
 	None,
 	Self,
 	OneEnemy,
+	OneRandomEnemy,
 	AnyOneEntity,
 	AllAllies,
-	AllEnemies
+	AllEnemies,
 };
 
 
@@ -149,6 +150,7 @@ enum class ECardKeywords : uint8
 };
 
 
+// To-Do: Write down how to differentiate between Functions and Modifiers.
 UENUM(BlueprintType)
 enum class ECardFunctions : uint8
 {
@@ -162,9 +164,9 @@ enum class ECardFunctions : uint8
 	CanCastFromDeck,
 	CanCastFromExile,
 	// -------- Deletes cards when certain conditions are met -------- //
-	Temporary,	// At end of battle
-	Ephemeral, // At the end of every turn and when played
-	SingleUse, // When played
+	Temporary,	// At end of battle.
+	Ephemeral,	// At the end of every turn and when played.
+	SingleUse,	// When played.
 	// -------- Specific to one card -------- //
 	TestFunctionOne,
 	TestFunctionTwo,
@@ -182,6 +184,7 @@ enum class ECardFunctions : uint8
 	Inflame,
 	InfectedBite,
 	Vomit,
+	Demi,
 	// -------- Generic functions -------- //
 	DealDamageToOneTargets,
 	CasterDrawsOneCard,
@@ -190,6 +193,8 @@ enum class ECardFunctions : uint8
 	// We can use modifier functions to store values,
 	// so that we can create mods that stack or vary over time.
 	CastCount, // How many times this card has been played in a single battle.
+	// -------- Other -------- //
+	AddTotalCostStackEntries, // Used for X cost cards. X is the amount of MP spent to cast the card.
 };
 
 
@@ -302,6 +307,7 @@ enum class EEntityTypes : uint8
 	Player,
 	Enemy,
 	SummonedEntity,
+	Boss,
 	// Enemy exclusive types
 	TestEnemyOne,
 	TestEnemyTwo,
@@ -309,7 +315,9 @@ enum class EEntityTypes : uint8
 	WolfPackAlpha,
 	Hogbot,
 	MegaHogbot,
-	RabidRat
+	RabidRat,
+	// Boss types
+	IronShellAutomation,
 };
 
 
@@ -374,10 +382,6 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaximumStackCount;
 
-	// To-Do: Reimplement this when a status effect needs it(?)
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//bool DecrementStacksWhenTriggered;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool VisibleToPlayer;
 
@@ -392,7 +396,6 @@ struct LOSTWORLD_API FStatusEffect : public FTableRowBase
 		TimingTriggers = { ETimingTriggers::StartOfBattle };
 		CurrentStackCount = 1;
 		MaximumStackCount = 9999999;
-		//DecrementStacksWhenTriggered = true;
 		VisibleToPlayer = true;
 		BlockedByBarrier = true;
 	}

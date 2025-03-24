@@ -4,6 +4,7 @@
 #include "ActorEntityPlayer.h"
 #include "LostWorldGameModeBase.h"
 #include "LostWorldGameModeBattle.h"
+#include "LostWorldPlayerControllerBattle.h"
 #include "WidgetDeckEditor.h"
 #include "WidgetDevTestMenu.h"
 #include "WidgetEquipment.h"
@@ -27,15 +28,19 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 	{
 	case (EPlayerControlModes::TargetSelectionSingleEntity):
 		GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
-		ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
+		//ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
 
 		if (Cast<AActorEntityBase>(Hit.GetActor())) {
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Hit.GetActor()));
-
 			SetControlMode(EPlayerControlModes::Battle);
+
+			// Continue with stack entry execution.
+			TArray<AActorEntityBase*> HitTargetsForStackEntry;
+			HitTargetsForStackEntry.Add(Cast<AActorEntityBase>(Hit.GetActor()));
+
+			int StackEntryIndex = Cast<ALostWorldPlayerControllerBattle>(this)->StackEntryIndexForManualTargetSelection;
 			
-			// Execute the first stack entry
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard(
+				StackEntryIndex,HitTargetsForStackEntry);
 		}
 		break;
 	default:
@@ -50,7 +55,7 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 
 	// Ongoing To-Do: Remember to use UEnum::GetDisplayValueAsText().
 	ALostWorldGameModeBase::DualLog("InControlMode: " +
-		UEnum::GetDisplayValueAsText(InControlMode).ToString(), 4);
+		UEnum::GetDisplayValueAsText(InControlMode).ToString(), 3);
 }
 
 

@@ -33,5 +33,10 @@
 		"Name": "RabidRat",
 		"EnemyType": "RabidRat",
 		"ExperiencePoints": 1
+	},
+	{
+		"Name": "IronShellAutomaton",
+		"EnemyType": "IronShellAutomation",
+		"ExperiencePoints": 1
 	}
 ]

@@ -46,18 +46,26 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int SelfTurnCounter;
 
-// ---------------------------------------- Functions ---------------------------------------- //
-	virtual void StartTurn();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int SelectedCardInHandIndex;
 
+// ---------------------------------------- Functions ---------------------------------------- //
 	// When the enemy finds the card they want to cast,
 	// add an image of it to the players' HUD and get the targets for it.
 	// After a short delay, cast the card.
 
 	// Returns -1 if the card with the given name can't be found.
 	// Otherwise, returns the index of the card in the hand array.
-	virtual int FindCardInHand(FString InCardDisplayName);
+
+	// To-Do: Write a function that the AI can use to check for all cards that they can cast:
+	// Cards they have the MP to cast.
+	// Shouts if they haven't used one this turn.
+	// etc,
+	virtual void StartTurn();
 	virtual void SelectCardToCast();
-	virtual void GetTargetsForCard(int IndexInHand);
-	virtual void CastCardWithDelay();
+	virtual void GetTargetsForCard(int StackEntryIndex);
 	virtual void EndTurn();
+
+	// Helper functions
+	virtual int FindCardInHand(FString InCardDisplayName);
 };

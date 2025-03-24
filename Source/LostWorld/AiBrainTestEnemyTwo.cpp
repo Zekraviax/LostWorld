@@ -21,21 +21,21 @@ void UAiBrainTestEnemyTwo::SelectCardToCast()
 {
 	Super::SelectCardToCast();
 
-	if (FindCardInHand("Test Card Three") != -1) {
-		GetTargetsForCard(FindCardInHand("Test Card Three"));
+	/*if (FindCardInHand("Test Card Three") != -1) {
+		GetTargetsForCard();
 	}
 
 	if (FindCardInHand("Test Card One") != -1) {
-		GetTargetsForCard(FindCardInHand("Test Card One"));
-	} 
+		GetTargetsForCard();
+	} */
 
 	EndTurn();
 }
 
-void UAiBrainTestEnemyTwo::GetTargetsForCard(int IndexInHand)
+void UAiBrainTestEnemyTwo::GetTargetsForCard(int StackEntryIndex)
 {
-	Super::GetTargetsForCard(IndexInHand);
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	Super::GetTargetsForCard(StackEntryIndex);
+	/*AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
 
 	// Find a random player to be the target.
 	TArray<AActor*> FoundPlayers;
@@ -54,7 +54,7 @@ void UAiBrainTestEnemyTwo::GetTargetsForCard(int IndexInHand)
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.IndexInHandArray = IndexInHand;
 
 	GetWorld()->GetTimerManager().SetTimer(CastCardTimerHandle, this, &UAiBrainBase::CastCardWithDelay,2.5f, false);
-	GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
+	GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);*/
 }
 
 

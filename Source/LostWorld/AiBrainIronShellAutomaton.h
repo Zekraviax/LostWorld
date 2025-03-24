@@ -3,11 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "AiBrainBase.h"
-#include "AiBrainBaseWolfPack.generated.h"
+#include "AiBrainIronShellAutomaton.generated.h"
 
 
 UCLASS()
-class LOSTWORLD_API UAiBrainBaseWolfPack : public UAiBrainBase
+class LOSTWORLD_API UAiBrainIronShellAutomaton : public UAiBrainBase
 {
 	GENERATED_BODY()
 

@@ -21,8 +21,17 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 	
 		if (DropPositionY < 0.75) {
 			// CAST THAT CARD BABYYYYY
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->GetTargetsForCard(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
-		} // Else, the drag and drop operation will cancel.
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
+				Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::
+					GetPlayerController(GetWorld(), 0))->ControlledPlayerEntity;
+
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
+				Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray;
+			
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
+				CreateStackEntry(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
+		}
+		// Else, the drag and drop operation will cancel.
 	}
 
 	return true;
@@ -51,17 +60,20 @@ void UWidgetHudBattle::ResetAllCardWidgetIndices() const
 }
 
 
-void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, int IndexInHand, ECardTargets CurrentTargetMode, int CurrentNumberOfTargets) const
+void UWidgetHudBattle::PlayerStartCastingCard(const FCard& InCard, int IndexInHand, ECardTargets CurrentTargetMode, int CurrentStackEntry) const
 {
 	if (Cast<AActorEntityPlayer>(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TurnQueue[0])) {
-		if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->ControlMode != EPlayerControlModes::None) {
+		if (Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+			ControlMode != EPlayerControlModes::None) {
 			// Display a copy of the card the player is in the middle of casting
 			CurrentCardBeingCast->SetVisibility(ESlateVisibility::HitTestInvisible);
 			CurrentCardBeingCast->UpdateComponentsFromPassedCard(InCard);
 			CurrentCardBeingCast->IndexInHandArray = IndexInHand;
+			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+				StackEntryIndexForManualTargetSelection = CurrentStackEntry;
 				
 			// Update the helper text that tells the player which entities they can select
-			// and how many entities they're already selected (if the card allows selecting more than one.)
+			// and how many entities they're already selected (if the card allows for selecting more than one.)
 			switch (CurrentTargetMode) {
 			case ECardTargets::OneEnemy:
 				CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);

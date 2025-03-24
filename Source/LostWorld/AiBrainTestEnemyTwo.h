@@ -14,7 +14,7 @@ class LOSTWORLD_API UAiBrainTestEnemyTwo : public UAiBrainBase
 public:
 	virtual void StartTurn() override;
 	virtual void SelectCardToCast() override;
-	virtual void GetTargetsForCard(int IndexInHand) override;
+	virtual void GetTargetsForCard(int StackEntryIndex) override;
 	virtual void EndTurn() override;
 	
 };

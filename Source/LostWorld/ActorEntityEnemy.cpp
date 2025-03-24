@@ -82,9 +82,11 @@ bool AActorEntityEnemy::GainBarrier(int InBarrier)
 
 bool AActorEntityEnemy::StartTurn()
 {
-	AiBrainComponent->StartTurn();
+	Super::StartTurn();
 	
-	return Super::StartTurn();
+	AiBrainComponent->StartTurn();
+
+	return true;
 }
 
 

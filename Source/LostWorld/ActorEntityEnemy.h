@@ -19,6 +19,8 @@ public:
 
 
 // ---------------------------------------- Variables ---------------------------------------- //
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FTimerHandle StartTurnTimerHandle;
 
 // -------------------------------- Enemy-exclusive variables
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

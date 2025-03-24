@@ -33,8 +33,54 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 void UAiBrainBase::StartTurn()
 {
 	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-	ALostWorldGameModeBase::DualLog("Enemy " + OwnerAsEnemy->EntityData.DisplayName +
+	ALostWorldGameModeBase::DualLog(OwnerAsEnemy->EntityData.DisplayName +
 		" is taking their turn.", 2);
+
+	GetWorld()->GetTimerManager().SetTimer(CastCardTimerHandle, this,
+		&UAiBrainBase::SelectCardToCast,1.5f, false);
+}
+
+
+void UAiBrainBase::SelectCardToCast()
+{
+	// Default implementation. Get a random card, then create a stack entry.
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	SelectedCardInHandIndex = FMath::RandRange(0, OwnerAsEnemy->EntityData.Hand.Num() - 1);
+	
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
+		Cast<AActorEntityEnemy>(GetOwner());
+
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
+		SelectedCardInHandIndex;
+	
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CreateStackEntry(SelectedCardInHandIndex);
+}
+
+
+void UAiBrainBase::GetTargetsForCard(int StackEntryIndex)
+{
+	// Default implementation: Get a random enemy.
+	TArray<AActor*> FoundTargetsAsActors;
+	TArray<AActorEntityBase*> FoundTargetsAsEntities;
+	
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityPlayer::StaticClass(), FoundTargetsAsActors);
+	FoundTargetsAsEntities.Add(Cast<AActorEntityBase>(FoundTargetsAsActors[FMath::RandRange(0,
+		FoundTargetsAsActors.Num() - 1)]));
+
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard(StackEntryIndex,
+		FoundTargetsAsEntities);
+}
+
+
+void UAiBrainBase::EndTurn()
+{
+	SelfTurnCounter++;
+	
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	ALostWorldGameModeBase::DualLog(
+		OwnerAsEnemy->EntityData.DisplayName + " is ending their turn.", 2);
+	
+	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 }
 
 
@@ -49,55 +95,4 @@ int UAiBrainBase::FindCardInHand(FString InCardDisplayName)
 	}
 	
 	return -1;
-}
-
-
-void UAiBrainBase::SelectCardToCast()
-{
-}
-
-
-// To-Do: Remove this duplicate code from the AiBrain child classes.
-void UAiBrainBase::GetTargetsForCard(int IndexInHand)
-{
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-	TArray<ECardFunctions> CardFunctions;
-	TArray<AActor*> FoundTargets;
-	OwnerAsEnemy->EntityData.Hand[IndexInHand].FunctionsAndTargets.GetKeys(CardFunctions);
-	
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityPlayer::StaticClass(), FoundTargets);
-	
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Function = CardFunctions[0];
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.TargetingMode =
-		*OwnerAsEnemy->EntityData.Hand[IndexInHand].FunctionsAndTargets.Find(CardFunctions[0]);
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Controller = OwnerAsEnemy;
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.Empty();
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.SelectedTargets.
-		Add(Cast<AActorEntityBase>(FoundTargets[0]));
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.IndexInHandArray = IndexInHand;
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card =
-		OwnerAsEnemy->EntityData.Hand[IndexInHand];
-}
-
-
-void UAiBrainBase::CastCardWithDelay()
-{
-	// To-Do: Make this a variable in the .h file and write a function that can return this variable.
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-	FCard CardCopy = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TempStackEntry.Card;
-	
-	ALostWorldGameModeBase::DualLog(OwnerAsEnemy->EntityData.DisplayName + " casts "
-		+ CardCopy.DisplayName + "!", 2);
-	
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard();
-}
-
-
-void UAiBrainBase::EndTurn()
-{
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-	ALostWorldGameModeBase::DualLog("Enemy " +
-		OwnerAsEnemy->EntityData.DisplayName + " is ending their turn.", 2);
-	
-	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 }

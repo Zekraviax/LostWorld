@@ -54,8 +54,13 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 	case (ECardFunctions::Vomit):
 		Vomit();
 		break;
+	case (ECardFunctions::CasterDrawsOneCard):
+		DrawOneCard();
+		break;
 	default:
-		ALostWorldGameModeBase::DualLog("Error! This function doesn't have an implementation!", 2);
+		FString ErrorMessage = "Error! Function " + UEnum::GetDisplayValueAsText(InFunction).ToString() +
+			" does not have an implementation!";
+		ALostWorldGameModeBase::DualLog(ErrorMessage, 2);
 		break;
 	}
 }
@@ -294,6 +299,12 @@ void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+}
+
+
+void AFunctionLibraryCards::DrawOneCard() const
+{
+	Cast<IInterfaceBattle>(GetDefender())->DrawCard();
 }
 
 

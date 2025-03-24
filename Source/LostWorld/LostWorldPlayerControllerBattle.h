@@ -10,6 +10,12 @@ UCLASS()
 class LOSTWORLD_API ALostWorldPlayerControllerBattle : public ALostWorldPlayerControllerBase
 {
 	GENERATED_BODY()
+	
+public:
+// ---------------------------------------- Variables ---------------------------------------- //
+	// This keeps track of which stack entry the player is manually selecting targets for.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int StackEntryIndexForManualTargetSelection = -1;	
 
 // ---------------------------------------- Functions ---------------------------------------- //
 

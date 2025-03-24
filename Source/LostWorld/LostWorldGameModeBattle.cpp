@@ -467,6 +467,7 @@ void ALostWorldGameModeBattle::StartOfTurn()
 		AddMaxNumberOfEntitiesToTurnQueue(false);
 	}
 
+
 	Cast<IInterfaceBattle>(TurnQueue[0])->StartTurn();
 }
 
@@ -532,35 +533,95 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 
 
 // -------------------------------- Battle: Main Phase
-void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
+void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 {
+	// This function should only add one stack entry at a time.
+	// This allows for getting targets one at a time.
+	// Card functions and mods that need to add multiple stack entries should have a way of tracking
+	// how many stack entries are remaining; e.g.
+	// X cost cards can reduce the temporary total cost by 1 per stack entry.
+	
 	// Get a reference to the card in the player's hand.
 	// Don't pass a copy of the FCard struct.
 	// The stack entry will keep track of the target(s).
 	FCard CardToCast = TurnQueue[0]->EntityData.Hand[CardIndexInHandArray];
 	TArray<ECardFunctions> CardFunctions;
+	TArray<ECardModifiers> CardMods;
 	CardToCast.FunctionsAndTargets.GetKeys(CardFunctions);
+	CardToCast.ModifiersWithTriggers.GetKeys(CardMods);
 
-	// Rest the temp stack entry.
-	TempStackEntry.Function = CardFunctions[0];
-	TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
-	TempStackEntry.Controller = TurnQueue[0];
-	TempStackEntry.SelectedTargets.Empty();
-	TempStackEntry.IndexInHandArray = CardIndexInHandArray;
-	TempStackEntry.Card = CardToCast;
+	// Handle cards that want to create and add multiple stack entries here.
+	if (CardFunctions.Contains(ECardFunctions::AddTotalCostStackEntries)) {
+		if (CardToCast.TotalCost > 0) {
+			TempStackEntry.Function = CardFunctions[0];
+			TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
+			TempStackEntry.Controller = TurnQueue[0];
+			TempStackEntry.SelectedTargets.Empty();
+			TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+			TempStackEntry.Card = CardToCast;
+			
+			TheStack.Add(TempStackEntry);
 
-	if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::Self) {
-		TempStackEntry.SelectedTargets.Add(TempStackEntry.Controller);
-
-		FinishedGettingTargetsForCard();
-	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::OneEnemy ||
-			*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AnyOneEntity) {
-		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
-			SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+			GetTargetsForStackEntry(TheStack.Num() - 1);
+		} else {
+			FinishedGettingTargetsForCard();
+		}
+	} else {
+		TempStackEntry.Function = CardFunctions[0];
+		TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
+		TempStackEntry.Controller = TurnQueue[0];
+		TempStackEntry.SelectedTargets.Empty();
+		TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+		TempStackEntry.Card = CardToCast;
 		
-		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
-			BattleHudWidget->PlayerStartCastingCard(CardToCast, CardIndexInHandArray, TempStackEntry.TargetingMode, TempStackEntry.SelectedTargets.Num());
-	} else if (*CardToCast.FunctionsAndTargets.Find(CardFunctions[0]) == ECardTargets::AllEnemies) {
+		TheStack.Add(TempStackEntry);
+
+		GetTargetsForStackEntry(TheStack.Num() - 1);
+	}
+
+	// Here, we can also create stack entries for functions that are appended onto the card.
+	// E.g. the Cantrip effect can create another stack entry to draw the controller a card.
+	if (CardMods.Contains(ECardModifiers::Cantrip)) {
+		TempStackEntry.Function = ECardFunctions::CasterDrawsOneCard;
+		TempStackEntry.TargetingMode = ECardTargets::Self;
+		TempStackEntry.Controller = TurnQueue[0];
+		TempStackEntry.SelectedTargets.Empty();
+		TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+		TempStackEntry.Card = CardToCast;
+		
+		TheStack.Add(TempStackEntry);
+
+		GetTargetsForStackEntry(TheStack.Num() - 1);
+	}
+}
+
+
+void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
+{
+	const int NullIndex = -1;
+	const TArray<AActorEntityBase*> NullArray;
+	
+	if (TheStack[Index].TargetingMode == ECardTargets::Self) {
+		TheStack[Index].SelectedTargets.Add(TempStackEntry.Controller);
+		FinishedGettingTargetsForCard(NullIndex, NullArray);
+	} else if (TheStack[Index].TargetingMode == ECardTargets::OneEnemy ||
+		TheStack[Index].TargetingMode == ECardTargets::AnyOneEntity) {
+		// This function only finds the target a Player has selected, so
+		// To-Do: Overhaul this function to work for NPCs as well.
+		if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
+			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+				SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
+	
+			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+				BattleHudWidget->PlayerStartCastingCard(TheStack[Index].Card, TheStack[Index].IndexInHandArray,
+				TempStackEntry.TargetingMode, Index);
+		} else {
+			Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->GetTargetsForCard(Index);
+		}
+		
+
+		// To-Do: Proper handling for selecting targets for the stack entry, because it interrupts the flow of combat.
+	} else if (TheStack[Index].TargetingMode == ECardTargets::AllEnemies) {
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
 
@@ -570,42 +631,85 @@ void ALostWorldGameModeBattle::GetTargetsForCard(int CardIndexInHandArray)
 			}
 		}
 
-		FinishedGettingTargetsForCard();
+		FinishedGettingTargetsForCard(NullIndex, NullArray);
+	} else {
+		DualLog("Error! No valid targeting mode for stack entry!", 2);
 	}
 }
 
 
-void ALostWorldGameModeBattle::FinishedGettingTargetsForCard()
+/** Before the execution of stack entries can continue,
+we need to validate that all stack entries have valid targets.
+If one doesn't, we might be waiting for the player to select a target.
+
+This function will also handle manual target selection.
+Whenever a player or NPC manually selects a target, they can pass it to this function alongside the
+stack entry index that the targets are for.
+
+// Give this function a more well-thought-out name.*/
+void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(int Index, TArray<AActorEntityBase*> Targets)
 {
-	// Pay the cost for casting the card.
-	Cast<IInterfaceBattle>(TempStackEntry.Controller)->PayCostsForCard(TempStackEntry.IndexInHandArray);
-	Cast<IInterfaceBattle>(TempStackEntry.Controller)->DiscardCard(TempStackEntry.IndexInHandArray);
+	if (Index != -1 && Targets.Num() > 0) {
+		TheStack[Index].SelectedTargets = Targets;
+	}
 	
-	TheStack.Add(TempStackEntry);
+	bool AllStackEntriesHaveTargets = true;
+	for (auto& Entry : TheStack) {
+		if (Entry.SelectedTargets.Num() < 1 && AllStackEntriesHaveTargets) {
+			// If we find one stack entry that doesn't have targets, that's enough to pause execution.
+			AllStackEntriesHaveTargets = false;
+		}
+	}
 	
-	CastCard();
+	// Once the card has created all of the stack entries it needs to, the entity
+	// must discard the card from their hand.
+	if (AllStackEntriesHaveTargets) {
+		PayCostsForCard();
+
+		PayCostsAndDiscardCardEntity->DiscardCard(PayCostsAndDiscardCardHandIndex);
+
+		CardsCastThisTurn++;
+
+		GetWorld()->GetTimerManager().SetTimer(StackExecutionTimerHandle, this,
+			&ALostWorldGameModeBattle::ExecuteFirstStackEntry,1.5f, false);
+	}
 }
 
 
-// To-Do: Rename this function to something like "execute first stack entry"
-void ALostWorldGameModeBattle::CastCard()
+void ALostWorldGameModeBattle::PayCostsForCard() const
+{
+	// This function should be able to handle the primary cost and all secondary costs.
+	PayCostsAndDiscardCardEntity->PayCostsForCard(PayCostsAndDiscardCardHandIndex);
+
+	DualLog(PayCostsAndDiscardCardEntity->EntityData.DisplayName + " casts " +
+		PayCostsAndDiscardCardEntity->EntityData.Hand[PayCostsAndDiscardCardHandIndex].DisplayName + "!", 2);
+}
+
+
+// To-Do: Finish overhauling how The Stack works.
+void ALostWorldGameModeBattle::ExecuteFirstStackEntry()
 {
 	if (!FunctionLibraryCardsInstance) {
 		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
 	}
 
-	CardsCastThisTurn++;
-
 	// To-Do: Figure out a process for executing multiple functions at a time.
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
-	
-	TArray<ECardFunctions> Functions;
-	TheStack[0].Card.FunctionsAndTargets.GetKeys(Functions);
-	if (Functions.Contains(ECardFunctions::CasterDrawsOneCard)) {
-		Cast<IInterfaceBattle>(TheStack[0].Controller)->DrawCard();
-	}
 
 	TheStack.RemoveAt(0);
+
+	// If there are more stack entries, keep executing them until there are none.
+	// Then, if the currently acting entity is a player, give them full control again.
+	// If they're a NPC, call a function that resumes their AI execution.
+	if (TheStack.Num() > 0) {
+		GetWorld()->GetTimerManager().SetTimer(StackExecutionTimerHandle, this,
+			&ALostWorldGameModeBattle::ExecuteFirstStackEntry,1.5f, false);
+	} else {
+		// To-Do: Make an AI that can cast multiple cards in a turn.
+		if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
+			Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->EndTurn();
+		}
+	}
 }
 
 

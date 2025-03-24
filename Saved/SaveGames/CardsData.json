@@ -589,5 +589,32 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "Demi",
+		"DisplayName": "Demi",
+		"BaseCost": -1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Cosmic"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 1/3 success chance.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"Demi": "AllEnemies",
+			"AddTotalCostStackEntries": "None"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
 	}
 ]

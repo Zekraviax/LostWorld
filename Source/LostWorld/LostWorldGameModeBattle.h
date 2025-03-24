@@ -62,6 +62,16 @@ public:
 	TArray<FStackEntry> TheStack;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FTimerHandle StackExecutionTimerHandle;
+
+	// Whenever calls the CreateStackEntry function for the first time.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	AActorEntityBase* PayCostsAndDiscardCardEntity;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int PayCostsAndDiscardCardHandIndex;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	AFunctionLibraryCards* FunctionLibraryCardsInstance;
 	
 	// Must be assigned in the editor first.
@@ -127,9 +137,14 @@ public:
 	void DrawPhaseDrawCard();
 		// Main phase:
 			// Entity can play cards and take special actions like consuming items.
-	void GetTargetsForCard(int CardIndexInHandArray);
-	void FinishedGettingTargetsForCard();
-	void CastCard();
+	// The following group of functions should flow from one to the next to the next.
+	void CreateStackEntry(int CardIndexInHandArray);
+	void GetTargetsForStackEntry(int Index);
+	// how tf do I make functions overloaded in ue4 c++
+	void FinishedGettingTargetsForCard(int Index = -1, TArray<AActorEntityBase*> Targets = {}); 
+	void PayCostsForCard() const;
+	void ExecuteFirstStackEntry();
+	
 	void RemoveEntityFromTurnQueue(const AActorEntityBase* Entity);
 		// Ending phase:
 			// Effects that trigger at the end of a turn trigger here, first.

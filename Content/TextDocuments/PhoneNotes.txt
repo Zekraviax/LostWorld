@@ -164,7 +164,7 @@ Miracle Requirement: 20 cards in Starting Deck.
 Heal all allies for X health. X is equal to half of their Maximum HP, rounded up.
 
 
-Again! - Fire Shout
+"Again!" - Fire Shout
 An ally plays a copy of the last card they played during their last turn.
 
 
@@ -213,7 +213,7 @@ Heartfire - 2 Health Point Cost Fire Spell
 Costs HP instead of MP. Deals 5 damage to any target.
 
 
-We don't fear death! - Earth Shout
+"We don't fear death!" - Earth Shout
 Grant all allies bonus attack and damage reduction based on how much HP they're missing.
 
 
@@ -415,7 +415,7 @@ Meltdown
 Deal damage to one target and inflict 1 stack of Burning for each piece of equipment they're wearing.
 
 
-I've got you in my sights!
+"I've got you in my sights!"
 Air Shout
 This turn, your cards ignore Dodge on the target.
 
@@ -431,11 +431,11 @@ Allies gain 1 stack of IntelligenceUp.
 Enemies gain 1 stack of WisdomDown.
 
 
-There is no land for us beyond the Volga!
+"There is no land for us beyond the Volga!"
 Earth Shout
 Cleanses stuns and other similar status effects.
 Allies gain 1 stack of ToughnessUp.
-(Change the name as well.)
+(Change the re-world references as well.)
 
 
 Dazed
@@ -444,7 +444,7 @@ Entity cannot use Spells or Techniques this turn (but can use other types of car
 Wears off at the end of their turn.
 
 
-Gods will it!
+"Gods will it!"
 Non-Elemental Shout
 Choose an element. Until end of turn, all of your cards become the chosen element.
 
@@ -473,5 +473,27 @@ Dragons
 Creatures that do not die of old age, and suffer diseases very, very rarely.
 They live to fight, and fight to die.
 Due to constant combat, their limbs never stop growing.
+They are sentient, they do recognize their built-in unending drive to fight.
+It's very rare to meet one in person. Their numbers have never been high, due to few-and-far-between births.
+One boss in-game is an Ancient Dragon, survivor of a thousand battles, covered in scars and endlessly growing wings and limbs.
+
+
+Peculiar Cairn
+4 Cost Earth Summon
+"Keywords":
+Passive: This entity cannot attack or play any cards.
+Stone: This entity cannot be affected by most status effects.
+Conduit: All allies' cards cost 1 less to play.
+Sturdy: Only takes 1 damage per hit.
+
+
+Demi
+X Cost Cosmic Spell
+Choose a target. For each mana spent to play this card, attempt to cut the targets' current HP in half.
+
+
+"Open fire!"
+Fire Shout
+Each ally that has a Ranged Weapon or a Fire Spell in their hand uses one of those things chosen at random.
 
 

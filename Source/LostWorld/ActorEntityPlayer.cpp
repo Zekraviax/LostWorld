@@ -42,7 +42,7 @@ bool AActorEntityPlayer::DrawCard()
 	LocalCardReference->CardData = EntityData.Hand.Last();
 	LocalCardReference->IndexInHandArray = EntityData.Hand.Num() - 1;
 	
-	return IInterfaceBattle::DrawCard();
+	return true;
 }
 
 

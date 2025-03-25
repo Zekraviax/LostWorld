@@ -1862,9 +1862,316 @@
 			"DivineAffinity": 100
 		},
 		"CurrentStatusEffects": [],
-		"StartBattleWithStatusEffectFunctions": [],
+		"StartBattleWithStatusEffectFunctions": [
+			"IronShell"
+		],
 		"Collection": [],
-		"Deck": [],
+		"Deck": [
+			{
+				"DisplayName": "Hammer Blow",
+				"BaseCost": 6,
+				"CardTypes": [
+					"Technique"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 9,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"HammerBlow": "OneEnemy"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Hammer Blow",
+				"BaseCost": 6,
+				"CardTypes": [
+					"Technique"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 9,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"HammerBlow": "OneEnemy"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Hammer Blow",
+				"BaseCost": 6,
+				"CardTypes": [
+					"Technique"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 9,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"HammerBlow": "OneEnemy"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Hammer Blow",
+				"BaseCost": 6,
+				"CardTypes": [
+					"Technique"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 9,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"HammerBlow": "OneEnemy"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Demi",
+				"BaseCost": -1,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Cosmic"
+				],
+				"BaseDamage": 0,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 1/3 success chance.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"Demi": "AllEnemies",
+					"AddTotalCostStackEntries": "None"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Demi",
+				"BaseCost": -1,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Cosmic"
+				],
+				"BaseDamage": 0,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 1/3 success chance.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"Demi": "AllEnemies",
+					"AddTotalCostStackEntries": "None"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Demi",
+				"BaseCost": -1,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Cosmic"
+				],
+				"BaseDamage": 0,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 1/3 success chance.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"Demi": "AllEnemies",
+					"AddTotalCostStackEntries": "None"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Demi",
+				"BaseCost": -1,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Cosmic"
+				],
+				"BaseDamage": 0,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 1/3 success chance.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"Demi": "AllEnemies",
+					"AddTotalCostStackEntries": "None"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 0,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Armour Breaker",
+				"BaseCost": 7,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 12,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals moderate damage. Damage is doubled against barriers.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"ArmourBreaker": "AnyOneEntity"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 12,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Armour Breaker",
+				"BaseCost": 7,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 12,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals moderate damage. Damage is doubled against barriers.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"ArmourBreaker": "AnyOneEntity"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 12,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Armour Breaker",
+				"BaseCost": 7,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 12,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals moderate damage. Damage is doubled against barriers.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"ArmourBreaker": "AnyOneEntity"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 12,
+				"TotalHealing": 0
+			},
+			{
+				"DisplayName": "Armour Breaker",
+				"BaseCost": 7,
+				"CardTypes": [
+					"Spell"
+				],
+				"CardElements": [
+					"Earth"
+				],
+				"BaseDamage": 12,
+				"BaseHealing": 0,
+				"Keywords": [],
+				"Description": "Deals moderate damage. Damage is doubled against barriers.",
+				"FlavourText": "This is a default flavour text.",
+				"FunctionsAndTargets":
+				{
+					"ArmourBreaker": "AnyOneEntity"
+				},
+				"ModifiersWithTriggers":
+				{
+				},
+				"TotalCost": 1,
+				"TotalDamage": 12,
+				"TotalHealing": 0
+			}
+		],
 		"Hand": [],
 		"DrawPile": [],
 		"DiscardPile": [],

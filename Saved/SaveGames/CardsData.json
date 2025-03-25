@@ -325,7 +325,7 @@
 		"BaseDamage": 9,
 		"BaseHealing": 0,
 		"Keywords": [],
-		"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+		"Description": "Deals damage to one target. Deals 1.2x damage to stunned targets. Stuns targets that aren't stunned.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{

@@ -182,13 +182,11 @@ void AFunctionLibraryCards::HyperBeam() const
 void AFunctionLibraryCards::TestCardFive() const
 {
 	// Draw cards until your deck is empty, then draw one more.
-	int CardsToDraw = GetAttacker()->EntityData.Deck.Num();
+	int CardsToDraw = GetAttacker()->EntityData.Deck.Num() + 1;
 	
 	for (int Count = 0; Count < CardsToDraw; Count++) {
 		Cast<IInterfaceBattle>(GetAttacker())->DrawCard();
 	}
-
-	Cast<IInterfaceBattle>(GetAttacker())->DrawCard();
 }
 
 

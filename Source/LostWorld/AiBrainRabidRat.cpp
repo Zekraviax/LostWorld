@@ -18,6 +18,7 @@ void UAiBrainRabidRat::SelectCardToCast()
 	// except for the first turn, where it will always use Screech.
 	
 	// The higher the weight, the more likely the card is to be selected.
+	// Weights:
 	// Infected Bite - 3
 	// Screech - 2
 	// Vomit - 1
@@ -41,21 +42,24 @@ void UAiBrainRabidRat::SelectCardToCast()
 	}
 
 	if (SelfTurnCounter == 0 && FindCardInHand("Screech") != -1) {
+		SelectedCardInHandIndex = FindCardInHand("Screech");
+			
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
 			Cast<AActorEntityEnemy>(GetOwner());
-
+		
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
-			FindCardInHand("Screech");
+			SelectedCardInHandIndex;
 	
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CreateStackEntry(SelectedCardInHandIndex);
 	} else if (WeightedCardArray.Num() > 0) {
-		FCard RandomCard = WeightedCardArray[FMath::RandRange(0, WeightedCardArray.Num() - 1)];
+		SelectedCardInHandIndex = FMath::RandRange(0, WeightedCardArray.Num() - 1);
+		FCard RandomCard = WeightedCardArray[SelectedCardInHandIndex];
 		
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
 			Cast<AActorEntityEnemy>(GetOwner());
 
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
-			FindCardInHand(RandomCard.DisplayName);
+			SelectedCardInHandIndex;
 	
 		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->CreateStackEntry(SelectedCardInHandIndex);
 	} else {

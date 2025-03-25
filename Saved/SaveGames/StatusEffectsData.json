@@ -136,5 +136,21 @@
 		"MaximumStackCount": 9999999,
 		"VisibleToPlayer": true,
 		"BlockedByBarrier": false
+	},
+	{
+		"Name": "Stun",
+		"DisplayName": "Stun",
+		"Description": "Entity cannot act this turn.",
+		"StatusEffect": "Stun",
+		"TimingTriggers": [
+			"StartOfAffectedEntitiesTurn"
+		],
+		"DecrementStackTriggers": [
+			"EndOfAffectedEntitiesTurn"
+		],
+		"CurrentStackCount": 1,
+		"MaximumStackCount": 9999999,
+		"VisibleToPlayer": true,
+		"BlockedByBarrier": false
 	}
 ]

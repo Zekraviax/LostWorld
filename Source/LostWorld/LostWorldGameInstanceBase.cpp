@@ -212,7 +212,7 @@ FStatusEffect ULostWorldGameInstanceBase::GetStatusEffectFromJson(const EStatusE
 		}
 	}
 
-	ALostWorldGameModeBase::DualLog("Error! Could not find status effect with function: " +
+	ALostWorldGameModeBase::DualLog("Error! Did not find status effect with function: " +
 		UEnum::GetDisplayValueAsText(StatusFunction).ToString(), 2);
 	return StatusEffectsArray[0];
 }

@@ -95,12 +95,20 @@ bool AActorEntityPlayer::ReceiveHealing(float Healing)
 
 bool AActorEntityPlayer::StartTurn()
 {
-	Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
-		SetControlMode(EPlayerControlModes::Battle);
-
-	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + "'s turn!", 2);
+	Super::StartTurn();
+	
+	if (HasStatusEffect(EStatusEffectFunctions::Stun)) {
+		EndTurnTimerDelegate.BindUFunction(this, FName("EndTurn"));
 		
-	return Super::StartTurn();
+		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, EndTurnTimerDelegate, 1.5f, false);
+	} else {
+		ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + "'s turn!", 2);
+		
+		Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
+			SetControlMode(EPlayerControlModes::Battle);
+	}
+	
+	return true;
 }
 
 

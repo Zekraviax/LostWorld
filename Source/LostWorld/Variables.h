@@ -185,6 +185,7 @@ enum class ECardFunctions : uint8
 	InfectedBite,
 	Vomit,
 	Demi,
+	HammerBlow,
 	// -------- Generic functions -------- //
 	DealDamageToOneTargets,
 	CasterDrawsOneCard,
@@ -223,6 +224,7 @@ enum class EStatusEffectFunctions : uint8
 	Sap, // Reduces all base stats by 1.
 	Bleeding,
 	ToughnessDown,
+	Stun,
 };
 
 

@@ -37,6 +37,7 @@ public:
 	virtual bool GainBarrier(int InBarrier);
 
 	virtual bool AddStatusEffect(FStatusEffect StatusEffect);
+	virtual bool HasStatusEffect(EStatusEffectFunctions Function);
 	virtual bool GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks);
 
 	//virtual 

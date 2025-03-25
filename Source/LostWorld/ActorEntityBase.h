@@ -49,7 +49,10 @@ public:
 	FEntity EntityData;
 
 // -------------------------------- Other
-
+	FTimerDelegate EndTurnTimerDelegate;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FTimerHandle EndTurnTimerHandle;
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -75,6 +78,7 @@ public:
 	virtual bool GainBarrier(int InBarrier) override;
 
 	virtual bool AddStatusEffect(FStatusEffect InStatusEffect) override;
+	virtual bool HasStatusEffect(EStatusEffectFunctions Function) override;
 	virtual bool GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks) override;
 
 	virtual bool StartTurn() override;

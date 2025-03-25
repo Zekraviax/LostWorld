@@ -84,7 +84,13 @@ bool AActorEntityEnemy::StartTurn()
 {
 	Super::StartTurn();
 	
-	AiBrainComponent->StartTurn();
+	if (HasStatusEffect(EStatusEffectFunctions::Stun)) {
+		EndTurnTimerDelegate.BindUFunction(this, FName("EndTurn"));
+		
+		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, EndTurnTimerDelegate, 1.5f, false);
+	} else {
+		AiBrainComponent->StartTurn();
+	}
 
 	return true;
 }

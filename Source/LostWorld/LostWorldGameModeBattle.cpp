@@ -614,7 +614,7 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
 	
 			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 				BattleHudWidget->PlayerStartCastingCard(TheStack[Index].Card, TheStack[Index].IndexInHandArray,
-				TempStackEntry.TargetingMode, Index);
+				TheStack[Index].TargetingMode, Index);
 		} else {
 			Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->GetTargetsForCard(Index);
 		}
@@ -626,8 +626,8 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
 
 		for (AActor* Actor : FoundActors) {
-			if (Cast<AActorEntityBase>(Actor)) {
-				TempStackEntry.SelectedTargets.Add(Cast<AActorEntityBase>(Actor));
+			if (Cast<AActorEntityBase>(Actor)->EntityData.Team != TheStack[Index].Controller->EntityData.Team) {
+				TheStack[Index].SelectedTargets.Add(Cast<AActorEntityBase>(Actor));
 			}
 		}
 

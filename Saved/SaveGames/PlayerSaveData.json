@@ -364,6 +364,58 @@
 					"TotalCost": 1,
 					"TotalDamage": 0,
 					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Hyper Beam",
+					"BaseCost": 0,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"HyperBeam": "AnyOneEntity",
+						"CostsAllMana": "None"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 0,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"DisplayName": "Hyper Beam",
+					"BaseCost": 0,
+					"CardTypes": [
+						"Spell"
+					],
+					"CardElements": [
+						"Arcane"
+					],
+					"BaseDamage": 0,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"HyperBeam": "AnyOneEntity",
+						"CostsAllMana": "None"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 0,
+					"TotalDamage": 0,
+					"TotalHealing": 0
 				}
 			],
 			"Deck": [
@@ -470,58 +522,6 @@
 					"TotalHealing": 0
 				},
 				{
-					"DisplayName": "Hyper Beam",
-					"BaseCost": 0,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HyperBeam": "AnyOneEntity",
-						"CostsAllMana": "None"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 0,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Hyper Beam",
-					"BaseCost": 0,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HyperBeam": "AnyOneEntity",
-						"CostsAllMana": "None"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 0,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
 					"DisplayName": "Test Card Five",
 					"BaseCost": 5,
 					"CardTypes": [
@@ -613,6 +613,58 @@
 					"FunctionsAndTargets":
 					{
 						"TestFunctionSix": "Self"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "HammerBlow",
+					"DisplayName": "Hammer Blow",
+					"BaseCost": 6,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 9,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"HammerBlow": "OneEnemy"
+					},
+					"ModifiersWithTriggers":
+					{
+					},
+					"TotalCost": 1,
+					"TotalDamage": 0,
+					"TotalHealing": 0
+				},
+				{
+					"Name": "HammerBlow",
+					"DisplayName": "Hammer Blow",
+					"BaseCost": 6,
+					"CardTypes": [
+						"Technique"
+					],
+					"CardElements": [
+						"Earth"
+					],
+					"BaseDamage": 9,
+					"BaseHealing": 0,
+					"Keywords": [],
+					"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+					"FlavourText": "This is a default flavour text.",
+					"FunctionsAndTargets":
+					{
+						"HammerBlow": "OneEnemy"
 					},
 					"ModifiersWithTriggers":
 					{

@@ -16,14 +16,11 @@ void UAiBrainIronShellAutomaton::SelectCardToCast()
 	Super::SelectCardToCast();
 	
 	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-
-	/*if (TurnCount == 0 && FindCardInHand("Screech") != -1) {
-		GetTargetsForCard(FindCardInHand("Screech"));
-	} else if (OwnerAsEnemy->EntityData.Hand.Num() > 0) {
-		GetTargetsForCard(FMath::RandRange(0, OwnerAsEnemy->EntityData.Hand.Num() - 1));
-	} else {
-		GetWorld()->GetTimerManager().SetTimer(EndTurnTimerHandle, this, &UAiBrainBase::EndTurn,3.f, false);
-	}*/
+	
+	// Weights:
+	// Armour Breaker - 2
+	// Hammer Blow - 3
+	// Demi - 2
 
 	// If the automation chooses to use Demi, it needs to have enough mana to cast it at least a few times.
 	if (OwnerAsEnemy->EntityData.TotalStats.CurrentManaPoints >= 4) {

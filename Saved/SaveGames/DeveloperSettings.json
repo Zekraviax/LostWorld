@@ -3,5 +3,5 @@
 	"printMessageOnGameStart": "Developer mode enabled.",
 	"giveAllEntitiesTestDecks": false,
 	"logLevel": 2,
-	"overrideEncounters": ""
+	"overrideEncounters": "RabidRats"
 }

@@ -54,8 +54,11 @@ void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
 	case (ECardFunctions::Vomit):
 		Vomit();
 		break;
-	case (ECardFunctions::CasterDrawsOneCard):
+	case ECardFunctions::CasterDrawsOneCard:
 		DrawOneCard();
+		break;
+	case ECardFunctions::HammerBlow:
+		HammerBlow();
 		break;
 	default:
 		FString ErrorMessage = "Error! Function " + UEnum::GetDisplayValueAsText(InFunction).ToString() +
@@ -179,7 +182,9 @@ void AFunctionLibraryCards::HyperBeam() const
 void AFunctionLibraryCards::TestCardFive() const
 {
 	// Draw cards until your deck is empty, then draw one more.
-	while (GetAttacker()->EntityData.Deck.Num() > 0) {
+	int CardsToDraw = GetAttacker()->EntityData.Deck.Num();
+	
+	for (int Count = 0; Count < CardsToDraw; Count++) {
 		Cast<IInterfaceBattle>(GetAttacker())->DrawCard();
 	}
 
@@ -292,6 +297,22 @@ void AFunctionLibraryCards::Vomit() const
 	StackedPoison.CurrentStackCount = 3;
 
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(StackedPoison);
+}
+
+
+void AFunctionLibraryCards::HammerBlow() const
+{
+	if (GetDefender()->HasStatusEffect(EStatusEffectFunctions::Stun)) {
+		int ModifiedDamage = FMath::RoundToInt(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
+			TheStack[0].Card.TotalDamage) * 1.2;
+
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage = ModifiedDamage;
+	} else {
+		Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
+		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Stun));
+	}
+
+	GenericDealDamageToOneTarget();
 }
 
 

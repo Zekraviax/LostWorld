@@ -36,6 +36,7 @@ public:
 	void CallForFriends() const;
 	void InfectedBite() const;
 	void Vomit() const;
+	void HammerBlow() const;
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
 	void DrawOneCard() const;

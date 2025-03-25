@@ -73,14 +73,22 @@ bool AActorEntityBase::DrawCard()
 		// If there are, shuffle the discard pile into the deck.
 		if (EntityData.DiscardPile.Num() > 0) {
 			ShuffleDiscardPileIntoDrawPile();
+
+			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName +
+				" shuffle their discard pile into their draw pile.", 2);
 		} else {
-			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName + " can't draw any cards!", 2);
+			ALostWorldGameModeBattle::DualLog(EntityData.DisplayName +
+				" doesn't have any cards in their draw pile or discard pile!", 2);
 		}
 	}
 	
 	// Shift the top card of the deck into the hand.
-	EntityData.Hand.Add(EntityData.DrawPile[0]);
-	EntityData.DrawPile.RemoveAt(0);
+	if (EntityData.DrawPile.Num() > 0) {
+		EntityData.Hand.Add(EntityData.DrawPile[0]);
+		EntityData.DrawPile.RemoveAt(0);
+	} else {
+		ALostWorldGameModeBattle::DualLog(EntityData.DisplayName + " can't draw any cards!", 2);
+	}
 	
 	return IInterfaceBattle::DrawCard();
 }
@@ -250,27 +258,41 @@ bool AActorEntityBase::AddStatusEffect(FStatusEffect InStatusEffect)
 		
 		switch (InStatusEffect.StatusEffect)
 		{
-		case (EStatusEffectFunctions::Poison):
+		case EStatusEffectFunctions::Poison:
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " has been poisoned!", 2);
 			break;
-		case (EStatusEffectFunctions::StrengthUp):
+		case EStatusEffectFunctions::StrengthUp:
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " gained strength!", 2);
 			break;
-		case (EStatusEffectFunctions::Adrenaline):
+		case EStatusEffectFunctions::Adrenaline:
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + "'s adrenaline is flowing!", 2);
 			break;
-		case (EStatusEffectFunctions::Bleeding):
+		case EStatusEffectFunctions::Bleeding:
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is now bleeding!", 2);
 			break;
-		case (EStatusEffectFunctions::ToughnessDown):
+		case EStatusEffectFunctions::ToughnessDown:
 			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " lost toughness!", 2);
 			break;
+		case EStatusEffectFunctions::Stun:
+			ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " has been stunned!", 2);
 		default:
 			break;
 		}
 	}
 	
 	return IInterfaceBattle::AddStatusEffect(InStatusEffect);
+}
+
+
+bool AActorEntityBase::HasStatusEffect(EStatusEffectFunctions Function)
+{
+	for (auto& Status : EntityData.StatusEffects) {
+		if (Status.StatusEffect == Function && Status.CurrentStackCount > 0) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
@@ -310,6 +332,11 @@ bool AActorEntityBase::StartTurn()
 	
 	if (EntityData.TotalStats.ManaRegeneration > 0) {
 		GainMana(EntityData.TotalStats.ManaRegeneration);
+	}
+
+	// Skipping the turn needs to be handled separately for player and enemy entities.
+	if (HasStatusEffect(EStatusEffectFunctions::Stun)) {
+		ALostWorldGameModeBase::DualLog(EntityData.DisplayName + " is stunned and cannot act!", 2);
 	}
 	
 	return IInterfaceBattle::StartTurn();

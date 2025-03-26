@@ -720,7 +720,7 @@ struct LOSTWORLD_API FEntity : public FTableRowBase
 	TArray<FEquipment> EquippedItems;
 
 	// This variable exists for all entities because all entities can have unequipped and equipped items.
-	// To-Do: Give enemies the ability to equip and unequip items in the future.
+	// Future: Give enemies the ability to equip and unequip items.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEquipment> EquipmentInventory;
 

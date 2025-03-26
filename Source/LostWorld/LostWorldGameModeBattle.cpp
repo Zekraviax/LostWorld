@@ -606,8 +606,6 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
 		FinishedGettingTargetsForCard(NullIndex, NullArray);
 	} else if (TheStack[Index].TargetingMode == ECardTargets::OneEnemy ||
 		TheStack[Index].TargetingMode == ECardTargets::AnyOneEntity) {
-		// This function only finds the target a Player has selected, so
-		// To-Do: Overhaul this function to work for NPCs as well.
 		if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
 			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 				SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
@@ -618,9 +616,6 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
 		} else {
 			Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->GetTargetsForCard(Index);
 		}
-		
-
-		// To-Do: Proper handling for selecting targets for the stack entry, because it interrupts the flow of combat.
 	} else if (TheStack[Index].TargetingMode == ECardTargets::AllEnemies) {
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
@@ -686,14 +681,12 @@ void ALostWorldGameModeBattle::PayCostsForCard() const
 }
 
 
-// To-Do: Finish overhauling how The Stack works.
 void ALostWorldGameModeBattle::ExecuteFirstStackEntry()
 {
 	if (!FunctionLibraryCardsInstance) {
 		FunctionLibraryCardsInstance = GetWorld()->SpawnActor<AFunctionLibraryCards>();
 	}
-
-	// To-Do: Figure out a process for executing multiple functions at a time.
+	
 	FunctionLibraryCardsInstance->ExecuteFunction(TheStack[0].Function);
 
 	TheStack.RemoveAt(0);

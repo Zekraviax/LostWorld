@@ -4,7 +4,6 @@
 #include "CoreMinimal.h"
 #include "ActorEntityBase.h"
 #include "AiBrainBase.h"
-#include "InterfaceBattle.h"
 #include "ActorEntityEnemy.generated.h"
 
 

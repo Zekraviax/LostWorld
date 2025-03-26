@@ -148,6 +148,9 @@ bool AActorEntityBase::TakeDamage(float Damage)
 	// Then, damage will be go to the entity's raw health.
 	if (Damage > 0) {
 		EntityData.TotalStats.CurrentHealthPoints -= Damage;
+
+		// To-Do: Implement a variable that tracks whether an entity has dealt damage with cards on any given turn.
+		// Here is where it should be set to 'true'.
 	
 		if (EntityData.TotalStats.CurrentHealthPoints <= 0) {
 			EntityDefeated();
@@ -388,7 +391,7 @@ bool AActorEntityBase::CalculateTotalStats()
 		EntityData.TotalStats.ManaRegeneration += EquippedItem.StatModifiers.ManaRegeneration;
 	}
 
-	// Find all status effects that influence an entity's total stats.
+	// Find all status effects that influence an entities' total stats.
 	for (auto& Status : EntityData.StatusEffects) {
 		switch (Status.StatusEffect)
 		{

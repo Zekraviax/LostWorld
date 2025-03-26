@@ -14,6 +14,7 @@ class UWidgetDevTestMenu;
 class UWidgetEquipment;
 class UWidgetHudBattle;
 class UWidgetHudLevelExploration;
+class UWidgetPauseMenu;
 
 
 UCLASS()
@@ -61,6 +62,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetDevTestMenu* DevTestWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetPauseMenu> PauseMenuWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetPauseMenu* PauseMenuWidget;
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -81,4 +88,5 @@ public:
 	void AddDeckEditorToViewport();
 	void AddDevTestMenuToViewport();
 	void AddEquipmentToViewport();
+	void AddPauseMenuToViewport();
 };

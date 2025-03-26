@@ -24,4 +24,7 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void OpenDevTestMenuWidget();
+
+	UFUNCTION(BlueprintCallable)
+	void OpenPauseMenuWidget();
 };

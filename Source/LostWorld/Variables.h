@@ -323,6 +323,21 @@ enum class EEntityTypes : uint8
 };
 
 
+/** Like keywords, but for entities.
+ 
+To-Do: Create a terminology json that handles the following:
+- Translates enums into proper english.
+- Provides descriptions for terminology.
+- Provides alternate words for terminology.
+*/
+UENUM(BlueprintType)
+enum class EEntityTraits : uint8
+{
+	Passive, // Entity cannot play cards, and does not get to take turns.
+	Sturdy, // Only takes 1 damage per stack entry.
+};
+
+
 // ---------------------------------------- Structs ---------------------------------------- //
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FIntVector2D
@@ -784,10 +799,17 @@ struct LOSTWORLD_API FPlayerSave : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FEntity EntityData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString CurrentLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int CurrentFloor;
 	
 	FPlayerSave()
 	{
-		
+		CurrentLevel = "TestLevel";
+		CurrentFloor = 1;
 	}
 };
 

@@ -38,7 +38,7 @@ void USaveGameLevelData::SaveLevelDataToJson()
 		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Level save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(LevelDataAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Level data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Level data saved successfully."));
 		} else {
 			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Level data."));
 		}

@@ -10,6 +10,7 @@
 #include "WidgetEquipment.h"
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
+#include "WidgetPauseMenu.h"
 
 
 void ALostWorldPlayerControllerBase::SetupInputComponent()
@@ -82,6 +83,12 @@ void ALostWorldPlayerControllerBase::CloseAllWidgets() const
 	if (EquipmentWidget) {
 		if (EquipmentWidget->IsInViewport()) {
 			EquipmentWidget->RemoveFromViewport();
+		}
+	}
+
+	if (PauseMenuWidget) {
+		if (PauseMenuWidget->IsInViewport()) {
+			PauseMenuWidget->RemoveFromViewport();
 		}
 	}
 }
@@ -159,5 +166,20 @@ void ALostWorldPlayerControllerBase::AddEquipmentToViewport()
 		EquipmentWidget->AddToViewport();
 		EquipmentWidget->PopulateEquippedItemsScrollBox(ControlledPlayerEntity->EntityData.EquippedItems);
 		EquipmentWidget->PopulateUnequippedItemsScrollBox(ControlledPlayerEntity->EntityData.EquipmentInventory);
+	}
+}
+
+
+void ALostWorldPlayerControllerBase::AddPauseMenuToViewport()
+{
+	// We won't close all widgets first. Instead we will just overlay this one on top.
+	
+	if (PauseMenuWidgetBlueprintClass && !PauseMenuWidget) {
+		PauseMenuWidget = CreateWidget<UWidgetPauseMenu>(GetWorld(), PauseMenuWidgetBlueprintClass);
+	}
+
+	if (PauseMenuWidget) {
+		// To-Do: Pause execution of the game.
+		PauseMenuWidget->AddToViewport();
 	}
 }

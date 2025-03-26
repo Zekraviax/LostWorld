@@ -36,7 +36,7 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 		UE_LOG(LogTemp, Warning, TEXT("FilePaths: PDev settings save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(DeveloperSettingsAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Dev settings data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Dev settings saved successfully."));
 		} else {
 			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Dev settings data."));
 		}

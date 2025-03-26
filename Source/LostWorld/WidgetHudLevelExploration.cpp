@@ -21,3 +21,9 @@ void UWidgetHudLevelExploration::OpenDevTestMenuWidget()
 {
 	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddDevTestMenuToViewport();
 }
+
+
+void UWidgetHudLevelExploration::OpenPauseMenuWidget()
+{
+	Cast<ALostWorldPlayerControllerBase>(GetWorld()->GetFirstPlayerController())->AddPauseMenuToViewport();
+}

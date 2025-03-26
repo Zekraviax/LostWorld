@@ -1,691 +1,694 @@
-[
-	{
-		"Name": "NewRow",
-		"EntityData":
+{
+	"saveObjectsArray": [
 		{
-			"DisplayName": "Val",
-			"EntityTypes": [
-				"Player"
-			],
-			"BaseStats":
+			"entityData":
 			{
-				"CurrentHealthPoints": 25,
-				"MaximumHealthPoints": 50,
-				"CurrentManaPoints": 25,
-				"MaximumManaPoints": 50,
-				"CurrentBarrierPoints": 0,
-				"Strength": 5,
-				"Toughness": 5,
-				"Intelligence": 5,
-				"Willpower": 5,
-				"Agility": 5,
-				"HealthRegeneration": 1,
-				"ManaRegeneration": 1,
-				"Readiness": 0
+				"displayName": "Val",
+				"entityTypes": [
+					"Player"
+				],
+				"baseStats":
+				{
+					"currentHealthPoints": 25,
+					"maximumHealthPoints": 50,
+					"currentManaPoints": 25,
+					"maximumManaPoints": 50,
+					"currentBarrierPoints": 0,
+					"strength": 5,
+					"toughness": 5,
+					"intelligence": 5,
+					"willpower": 5,
+					"agility": 5,
+					"healthRegeneration": 1,
+					"manaRegeneration": 1,
+					"readiness": 0
+				},
+				"totalStats":
+				{
+					"currentHealthPoints": 25,
+					"maximumHealthPoints": 50,
+					"currentManaPoints": 25,
+					"maximumManaPoints": 50,
+					"currentBarrierPoints": 0,
+					"strength": 5,
+					"toughness": 5,
+					"intelligence": 5,
+					"willpower": 5,
+					"agility": 5,
+					"healthRegeneration": 1,
+					"manaRegeneration": 1,
+					"readiness": 0
+				},
+				"offensiveAffinities":
+				{
+					"fireAffinity": 100,
+					"waterAffinity": 100,
+					"airAffinity": 100,
+					"earthAffinity": 100,
+					"lightAffinity": 100,
+					"cosmicAffinity": 100,
+					"arcaneAffinity": 100,
+					"divineAffinity": 100
+				},
+				"defensiveAffinities":
+				{
+					"fireAffinity": 100,
+					"waterAffinity": 100,
+					"airAffinity": 100,
+					"earthAffinity": 100,
+					"lightAffinity": 100,
+					"cosmicAffinity": 100,
+					"arcaneAffinity": 100,
+					"divineAffinity": 100
+				},
+				"currentStatusEffects": [],
+				"startBattleWithStatusEffectFunctions": [],
+				"collection": [
+					{
+						"displayName": "Test Card One",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Fire"
+						],
+						"baseDamage": 10,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to one enemy with base power ${TotalPower}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionOne": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 10,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card One",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Fire"
+						],
+						"baseDamage": 10,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to one enemy with base power ${TotalPower}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionOne": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 10,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Two",
+						"baseCost": 2,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 5,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to all enemies with base power ${TotalPower}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionTwo": "AllEnemies"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 5,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Two",
+						"baseCost": 2,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 5,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to all enemies with base power ${TotalPower}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionTwo": "AllEnemies"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 5,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Three",
+						"baseCost": 3,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Water"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Draw 1 card.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionThree": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Three",
+						"baseCost": 3,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Water"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Draw 1 card.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionThree": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Four",
+						"baseCost": 4,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Air"
+						],
+						"baseDamage": 0,
+						"baseHealing": 5,
+						"keywords": [],
+						"description": "Heal one target with base power ${TotalHealing}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionFour": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 5
+					},
+					{
+						"displayName": "Test Card Four",
+						"baseCost": 4,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Air"
+						],
+						"baseDamage": 0,
+						"baseHealing": 5,
+						"keywords": [],
+						"description": "Heal one target with base power ${TotalHealing}.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionFour": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 5
+					},
+					{
+						"displayName": "Trick",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Cosmic"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Swap your hand and deck.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionOne": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Trick",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Cosmic"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Swap your hand and deck.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionOne": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Poison Dart",
+						"baseCost": 3,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 2,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal light damage and poison a target.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"PoisonDart": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+							"TotalCostMinusOne": "StartOfBattle"
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Poison Dart",
+						"baseCost": 3,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 2,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal light damage and poison a target.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"PoisonDart": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 1,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Hyper Beam",
+						"baseCost": 0,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"HyperBeam": "AnyOneEntity",
+							"CostsAllMana": "None"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 0,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Hyper Beam",
+						"baseCost": 0,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"HyperBeam": "AnyOneEntity",
+							"CostsAllMana": "None"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 0,
+						"totalDamage": 0,
+						"totalHealing": 0
+					}
+				],
+				"deck": [
+					{
+						"displayName": "Energy In The Air",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 1,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"EnergyAllAround": "OneEnemy",
+							"CasterDrawsOneCard": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+							"Cantrip": "OnModifierApplied"
+						},
+						"totalCost": 2,
+						"totalDamage": 1,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Energy In The Air",
+						"baseCost": 1,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 1,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"EnergyAllAround": "OneEnemy",
+							"CasterDrawsOneCard": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+							"Cantrip": "OnModifierApplied"
+						},
+						"totalCost": 2,
+						"totalDamage": 1,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Armour Breaker",
+						"baseCost": 7,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 12,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deals moderate damage. Damage is doubled against barriers.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"ArmourBreaker": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 7,
+						"totalDamage": 12,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Armour Breaker",
+						"baseCost": 7,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 12,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deals moderate damage. Damage is doubled against barriers.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"ArmourBreaker": "AnyOneEntity"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 7,
+						"totalDamage": 12,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Five",
+						"baseCost": 5,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Draw cards until your deck is empty, then draw one more.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionFive": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 5,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Five",
+						"baseCost": 5,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Arcane"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Draw cards until your deck is empty, then draw one more.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionFive": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 5,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Six",
+						"baseCost": 6,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Divine"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Summon a TestSummon.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionSix": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 6,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Test Card Six",
+						"baseCost": 6,
+						"cardTypes": [
+							"Spell"
+						],
+						"cardElements": [
+							"Divine"
+						],
+						"baseDamage": 0,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Summon a TestSummon.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"TestFunctionSix": "Self"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 6,
+						"totalDamage": 0,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Hammer Blow",
+						"baseCost": 6,
+						"cardTypes": [
+							"Technique"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 9,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"HammerBlow": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 6,
+						"totalDamage": 9,
+						"totalHealing": 0
+					},
+					{
+						"displayName": "Hammer Blow",
+						"baseCost": 6,
+						"cardTypes": [
+							"Technique"
+						],
+						"cardElements": [
+							"Earth"
+						],
+						"baseDamage": 9,
+						"baseHealing": 0,
+						"keywords": [],
+						"description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
+						"flavourText": "This is a default flavour text.",
+						"functionsAndTargets":
+						{
+							"HammerBlow": "OneEnemy"
+						},
+						"modifiersWithTriggers":
+						{
+						},
+						"totalCost": 6,
+						"totalDamage": 9,
+						"totalHealing": 0
+					}
+				],
+				"hand": [],
+				"drawPile": [],
+				"discardPile": [],
+				"exile": [],
+				"statusEffects": [],
+				"minimumDeckSize": -1,
+				"maximumDeckSize": -1,
+				"equippedItems": [],
+				"equipmentInventory": [],
+				"startOfBattleHandSize": 5,
+				"team": "PlayerTeam",
+				"hasUsedShoutThisTurn": false
 			},
-			"TotalStats":
-			{
-				"CurrentHealthPoints": 10,
-				"MaximumHealthPoints": 10,
-				"CurrentManaPoints": 10,
-				"MaximumManaPoints": 10,
-				"CurrentBarrierPoints": 0,
-				"Strength": 1,
-				"Toughness": 1,
-				"Intelligence": 1,
-				"Willpower": 1,
-				"Agility": 1,
-				"HealthRegeneration": 0,
-				"ManaRegeneration": 1,
-				"Readiness": 0
-			},
-			"OffensiveAffinities":
-			{
-				"FireAffinity": 100,
-				"WaterAffinity": 100,
-				"AirAffinity": 100,
-				"EarthAffinity": 100,
-				"LightAffinity": 100,
-				"CosmicAffinity": 100,
-				"ArcaneAffinity": 100,
-				"DivineAffinity": 100
-			},
-			"DefensiveAffinities":
-			{
-				"FireAffinity": 100,
-				"WaterAffinity": 100,
-				"AirAffinity": 100,
-				"EarthAffinity": 100,
-				"LightAffinity": 100,
-				"CosmicAffinity": 100,
-				"ArcaneAffinity": 100,
-				"DivineAffinity": 100
-			},
-			"CurrentStatusEffects": [],
-			"StartBattleWithStatusEffectFunctions": [],
-			"Collection": [
-				{
-					"DisplayName": "Test Card One",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Fire"
-					],
-					"BaseDamage": 10,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionOne": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 10,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card One",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Fire"
-					],
-					"BaseDamage": 10,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to one enemy with base power ${TotalPower}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionOne": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 10,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Two",
-					"BaseCost": 2,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 5,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionTwo": "AllEnemies"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 5,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Two",
-					"BaseCost": 2,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 5,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to all enemies with base power ${TotalPower}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionTwo": "AllEnemies"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 5,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Three",
-					"BaseCost": 3,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Water"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Draw 1 card.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionThree": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Three",
-					"BaseCost": 3,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Water"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Draw 1 card.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionThree": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Four",
-					"BaseCost": 4,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Air"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 5,
-					"Keywords": [],
-					"Description": "Heal one target with base power ${TotalHealing}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionFour": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 5
-				},
-				{
-					"DisplayName": "Test Card Four",
-					"BaseCost": 4,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Air"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 5,
-					"Keywords": [],
-					"Description": "Heal one target with base power ${TotalHealing}.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionFour": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 5
-				},
-				{
-					"DisplayName": "Trick",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Cosmic"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Swap your hand and deck.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionOne": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Trick",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Cosmic"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Swap your hand and deck.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionOne": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Poison Dart",
-					"BaseCost": 3,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 2,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal light damage and poison a target.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"PoisonDart": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-						"TotalCostMinusOne": "StartOfBattle"
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Poison Dart",
-					"BaseCost": 3,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 2,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal light damage and poison a target.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"PoisonDart": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Hyper Beam",
-					"BaseCost": 0,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HyperBeam": "AnyOneEntity",
-						"CostsAllMana": "None"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 0,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Hyper Beam",
-					"BaseCost": 0,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HyperBeam": "AnyOneEntity",
-						"CostsAllMana": "None"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 0,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				}
-			],
-			"Deck": [
-				{
-					"DisplayName": "Energy In The Air",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 1,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"EnergyAllAround": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-						"Cantrip": "OnModifierApplied"
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Energy In The Air",
-					"BaseCost": 1,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 1,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"EnergyAllAround": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-						"Cantrip": "OnModifierApplied"
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Armour Breaker",
-					"BaseCost": 7,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 12,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deals moderate damage. Damage is doubled against barriers.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"ArmourBreaker": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 12,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Armour Breaker",
-					"BaseCost": 7,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 12,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deals moderate damage. Damage is doubled against barriers.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"ArmourBreaker": "AnyOneEntity"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 12,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Five",
-					"BaseCost": 5,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Draw cards until your deck is empty, then draw one more.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionFive": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Five",
-					"BaseCost": 5,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Arcane"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Draw cards until your deck is empty, then draw one more.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionFive": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Six",
-					"BaseCost": 6,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Divine"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Summon a TestSummon.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionSix": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"DisplayName": "Test Card Six",
-					"BaseCost": 6,
-					"CardTypes": [
-						"Spell"
-					],
-					"CardElements": [
-						"Divine"
-					],
-					"BaseDamage": 0,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Summon a TestSummon.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"TestFunctionSix": "Self"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"Name": "HammerBlow",
-					"DisplayName": "Hammer Blow",
-					"BaseCost": 6,
-					"CardTypes": [
-						"Technique"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 9,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HammerBlow": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				},
-				{
-					"Name": "HammerBlow",
-					"DisplayName": "Hammer Blow",
-					"BaseCost": 6,
-					"CardTypes": [
-						"Technique"
-					],
-					"CardElements": [
-						"Earth"
-					],
-					"BaseDamage": 9,
-					"BaseHealing": 0,
-					"Keywords": [],
-					"Description": "Deals damage to one target. Deals more damage to stunned targets. Stuns targets that aren't stunned.",
-					"FlavourText": "This is a default flavour text.",
-					"FunctionsAndTargets":
-					{
-						"HammerBlow": "OneEnemy"
-					},
-					"ModifiersWithTriggers":
-					{
-					},
-					"TotalCost": 1,
-					"TotalDamage": 0,
-					"TotalHealing": 0
-				}
-			],
-			"Hand": [],
-			"DrawPile": [],
-			"DiscardPile": [],
-			"Exile": [],
-			"StatusEffects": [],
-			"MinimumDeckSize": -1,
-			"MaximumDeckSize": -1,
-			"EquippedItems": [],
-			"EquipmentInventory": [],
-			"StartOfBattleHandSize": 5,
-			"Team": "PlayerTeam",
-			"HasUsedShoutThisTurn": false
+			"currentLevel": "TestLevel",
+			"currentFloor": 1
 		}
-	}
-]
+	]
+}

@@ -48,7 +48,13 @@ void ULostWorldGameInstanceBase::SavePlayerDataJson()
 {
 	// Insert the current player save data into the save objects array at the last loaded index,
 	// then save the whole array.
-	AllPlayerSaves.SaveObjectsArray[LastLoadedPlayerSaveObject] = CurrentPlayerSave;
+	if (AllPlayerSaves.SaveObjectsArray.Num() > LastLoadedPlayerSaveObject) {
+		AllPlayerSaves.SaveObjectsArray[LastLoadedPlayerSaveObject] = CurrentPlayerSave;
+	} else {
+		AllPlayerSaves.SaveObjectsArray.Add(CurrentPlayerSave);
+		LastSavedPlayerSaveObject = AllPlayerSaves.SaveObjectsArray.Num() - 1;
+	}
+	
 	
 	FString SaveGamesFolderPathAppend = "SaveGames/";
 	FString SavePath = "C:\\Users\\zekra\\Documents\\UE\\Projects\\Starmark\\Saved\\SaveGames";
@@ -80,7 +86,7 @@ void ULostWorldGameInstanceBase::SavePlayerDataJson()
 		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(PlayerDataAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Player data saved successfully."));
 		} else {
 			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Player data."));
 		}
@@ -123,7 +129,7 @@ void ULostWorldGameInstanceBase::SavePlayerActorDataToJson() const
 		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(PlayerDataAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Player data saves successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Player data saved successfully."));
 		} else {
 			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Player data."));
 		}

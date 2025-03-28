@@ -8,7 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 
 
-void AFunctionLibraryCards::ExecuteFunction(ECardFunctions InFunction) const
+void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction) 
 {
 	switch (InFunction)
 	{
@@ -81,7 +81,13 @@ AActorEntityBase* AFunctionLibraryCards::GetDefender() const
 }
 
 
-int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower)
+FStackEntry AFunctionLibraryCards::GetFirstStackEntry() const
+{
+	return Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0];
+}
+
+
+int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacker, AActorEntityBase* Defender, int AttackBasePower) const
 {
 	// Damage formula
 	// Step 1 = ((Strength * Attack) / 2) * Rand(0.95, 1.1)
@@ -103,11 +109,23 @@ int AFunctionLibraryCards::StandardDamageFormula(const AActorEntityBase* Attacke
 	CalculatedDamage /= Defender->EntityData.TotalStats.Toughness;
 	CalculatedDamage *= FMath::RandRange(0.95f, 1.1f);
 
+	int OffensiveAffinity;
+	Cast<IInterfaceBattle>(GetAttacker())->ReturnOffensiveElementalAffinity(
+		GetFirstStackEntry().Card.CardElements[0], OffensiveAffinity);
+	
+	float OffensiveMultiplier = OffensiveAffinity / 100;
+	CalculatedDamage *= OffensiveMultiplier;
+
+	// Round calculated damage to 2 decimal places.
+	CalculatedDamage = CalculatedDamage * 100;
+	FMath::TruncateToHalfIfClose(CalculatedDamage);
+	CalculatedDamage = CalculatedDamage / 100;
+
 	return FMath::RoundToInt(CalculatedDamage);
 }
 
 
-int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* Attacker, const AActorEntityBase* Defender, int AttackBasePower)
+int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* Attacker, AActorEntityBase* Defender, const int AttackBasePower) const
 {
 	// Damage formula is the same as the standard formula, except damage is doubled against barriers.
 	// So for each 1 point of barrier the defender has, add 1 point of damage, capping out at 2x the calculated damage.
@@ -127,16 +145,16 @@ int AFunctionLibraryCards::ArmourBreakerDamageFormula(const AActorEntityBase* At
 void AFunctionLibraryCards::TestCardOne() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+		GetFirstStackEntry().Card.TotalDamage));
 }
 
 
-void AFunctionLibraryCards::TestCardTwo() const
+void AFunctionLibraryCards::TestCardTwo() 
 {
 	for (AActorEntityBase* Enemy : Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets) {
 		if (Cast<AActorEntityEnemy>(Enemy)) {
 			Cast<IInterfaceBattle>(Enemy)->TakeDamage(StandardDamageFormula(GetAttacker(), Enemy,
-				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+				GetFirstStackEntry().Card.TotalDamage));
 		}
 	}
 }
@@ -157,7 +175,7 @@ void AFunctionLibraryCards::TestCardFour() const
 void AFunctionLibraryCards::PoisonDart() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+		GetFirstStackEntry().Card.TotalDamage));
 
 	Cast<IInterfaceBattle>(GetDefender())->AddStatusEffect(Cast<ULostWorldGameInstanceBase>(
 		GetWorld()->GetGameInstance())->GetStatusEffectFromJson(EStatusEffectFunctions::Poison));
@@ -167,7 +185,7 @@ void AFunctionLibraryCards::PoisonDart() const
 void AFunctionLibraryCards::ArmourBreaker() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+		GetFirstStackEntry().Card.TotalDamage));
 }
 
 
@@ -244,7 +262,7 @@ void AFunctionLibraryCards::EnergyAllAround() const
 }
 
 
-void AFunctionLibraryCards::CallForFriends() const
+void AFunctionLibraryCards::CallForFriends() 
 {
 	bool RandomSuccess = FMath::RandBool();
 
@@ -274,7 +292,7 @@ void AFunctionLibraryCards::CallForFriends() const
 }
 
 
-void AFunctionLibraryCards::InfectedBite() const
+void AFunctionLibraryCards::InfectedBite() 
 {
 	GenericDealDamageToOneTarget();
 
@@ -298,7 +316,7 @@ void AFunctionLibraryCards::Vomit() const
 }
 
 
-void AFunctionLibraryCards::HammerBlow() const
+void AFunctionLibraryCards::HammerBlow() 
 {
 	if (GetDefender()->HasStatusEffect(EStatusEffectFunctions::Stun)) {
 		int ModifiedDamage = FMath::RoundToInt(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
@@ -317,7 +335,7 @@ void AFunctionLibraryCards::HammerBlow() const
 void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
-		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Card.TotalDamage));
+		GetFirstStackEntry().Card.TotalDamage));
 }
 
 

@@ -102,6 +102,18 @@ bool IInterfaceBattle::GetStatusEffectStacks(EStatusEffectFunctions Function, in
 }
 
 
+bool IInterfaceBattle::ReturnOffensiveElementalAffinity(ECardElements Element, int& OutAffinity)
+{
+	return true;
+}
+
+
+bool IInterfaceBattle::ReturnDefensiveElementalAffinity(ECardElements Element, int& OutAffinity)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::StartTurn()
 {
 	return true;

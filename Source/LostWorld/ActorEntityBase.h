@@ -81,6 +81,9 @@ public:
 	virtual bool HasStatusEffect(EStatusEffectFunctions Function) override;
 	virtual bool GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks) override;
 
+	virtual bool ReturnOffensiveElementalAffinity(ECardElements Element, int& OutAffinity) override;
+	virtual bool ReturnDefensiveElementalAffinity(ECardElements Element, int& OutAffinity) override;
+
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;
 

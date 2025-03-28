@@ -40,7 +40,8 @@ public:
 	virtual bool HasStatusEffect(EStatusEffectFunctions Function);
 	virtual bool GetStatusEffectStacks(EStatusEffectFunctions Function, int& OutStacks);
 
-	//virtual 
+	virtual bool ReturnOffensiveElementalAffinity(ECardElements Element, int& OutAffinity);
+	virtual bool ReturnDefensiveElementalAffinity(ECardElements Element, int& OutAffinity);
 
 	virtual bool StartTurn();
 	virtual bool EndTurn();

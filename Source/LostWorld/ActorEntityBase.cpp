@@ -315,6 +315,62 @@ bool AActorEntityBase::GetStatusEffectStacks(EStatusEffectFunctions Function, in
 }
 
 
+bool AActorEntityBase::ReturnOffensiveElementalAffinity(ECardElements Element, int& OutAffinity)
+{
+	switch (Element)
+	{
+	case ECardElements::Fire:
+		OutAffinity = EntityData.OffensiveAffinities.FireAffinity;
+	case ECardElements::Water:
+		OutAffinity = EntityData.OffensiveAffinities.WaterAffinity;
+	case ECardElements::Air:
+		OutAffinity = EntityData.OffensiveAffinities.AirAffinity;
+	case ECardElements::Earth:
+		OutAffinity = EntityData.OffensiveAffinities.EarthAffinity;
+	case ECardElements::Light:
+		OutAffinity = EntityData.OffensiveAffinities.LightAffinity;
+	case ECardElements::Arcane:
+		OutAffinity = EntityData.OffensiveAffinities.ArcaneAffinity;
+	case ECardElements::Cosmic:
+		OutAffinity = EntityData.OffensiveAffinities.CosmicAffinity;
+	case ECardElements::Divine:
+		OutAffinity = EntityData.OffensiveAffinities.DivineAffinity;
+	default:
+		break;
+	}
+
+	return true;
+}
+
+
+bool AActorEntityBase::ReturnDefensiveElementalAffinity(ECardElements Element, int& OutAffinity)
+{
+	switch (Element)
+	{
+	case ECardElements::Fire:
+		OutAffinity = EntityData.DefensiveAffinities.FireAffinity;
+	case ECardElements::Water:
+		OutAffinity = EntityData.DefensiveAffinities.WaterAffinity;
+	case ECardElements::Air:
+		OutAffinity = EntityData.DefensiveAffinities.AirAffinity;
+	case ECardElements::Earth:
+		OutAffinity = EntityData.DefensiveAffinities.EarthAffinity;
+	case ECardElements::Light:
+		OutAffinity = EntityData.DefensiveAffinities.LightAffinity;
+	case ECardElements::Arcane:
+		OutAffinity = EntityData.DefensiveAffinities.ArcaneAffinity;
+	case ECardElements::Cosmic:
+		OutAffinity = EntityData.DefensiveAffinities.CosmicAffinity;
+	case ECardElements::Divine:
+		OutAffinity = EntityData.DefensiveAffinities.DivineAffinity;
+	default:
+		break;
+	}
+
+	return true;
+}
+
+
 bool AActorEntityBase::StartTurn()
 {
 	// Check for status effects that trigger at the start of the owners' turn.

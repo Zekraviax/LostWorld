@@ -606,3 +606,16 @@ Deals bonus damage if you have 1/2 HP or less. Has bonus effect if you have 1/4 
 Lash Out
 Fire Technique
 Deal damage to every enemy that dealt damage between your last turn and your current turn.
+
+
+"No price is too great!"
+Light Shout
+Additional Cost: Sacrifice any amount of HP.
+Each enemy loses that much strength. If you sacrificed 1/2 of your maximum HP or more with this card, inflict each enemy with negative status effects. (Increase the damage they take, mana degeneration)
+
+
+"Treatments"
+A list of cosmetic types that the player can apply to cards:
+- Alternate arts
+- Alternate card borders
+- Foiling

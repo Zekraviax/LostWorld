@@ -75,8 +75,10 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 			if (Cast<UWidgetCard>(DragToWidget)) {
 				// Clear the whole array and add elements back one-by-one.
 				// Create a temporary copy of the array before clearing the original.
+				
+				// ReSharper disable once CppInitializedValueIsAlwaysRewritten
+				int CardInArrayIndex = -1;
 				TArray<FCard> ArrayCopy;
-				int ArrayIndex = -1;
 				FCard CardData = Cast<UWidgetCard>(DragToWidget)->CardData;
 				
 				
@@ -88,25 +90,25 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 					PlayerEntity->EntityData.Collection.Empty();
 				}
 
-				ArrayIndex = ArrayCopy.Find(CardData);
+				CardInArrayIndex = ArrayCopy.Find(CardData);
 				
 
-				if (ArrayIndex > -1 && DraggedCardIndex > -1) {
+				if (CardInArrayIndex > -1 && DraggedCardIndex > -1) {
 					for (int ArrayCount = 0; ArrayCount <= ArrayCopy.Num(); ArrayCount++) {
 						if (GridPanel.Contains("Deck")) {
-							if (ArrayCount < ArrayIndex) {
+							if (ArrayCount < CardInArrayIndex) {
 								PlayerEntity->EntityData.Deck.Add(ArrayCopy[ArrayCount]);
-							} else if (ArrayCount == ArrayIndex) {
+							} else if (ArrayCount == CardInArrayIndex) {
 								PlayerEntity->EntityData.Deck.Add(DraggedCard);
-							} else if (ArrayCount > ArrayIndex) {
+							} else if (ArrayCount > CardInArrayIndex) {
 								PlayerEntity->EntityData.Deck.Add(ArrayCopy[ArrayCount - 1]);
 							}
 						} else if (GridPanel.Contains("Collection")) {
-							if (ArrayCount < ArrayIndex) {
+							if (ArrayCount < CardInArrayIndex) {
 								PlayerEntity->EntityData.Collection.Add(ArrayCopy[ArrayCount]);
-							} else if (ArrayCount == ArrayIndex) {
+							} else if (ArrayCount == CardInArrayIndex) {
 								PlayerEntity->EntityData.Collection.Add(DraggedCard);
-							} else if (ArrayCount > ArrayIndex) {
+							} else if (ArrayCount > CardInArrayIndex) {
 								PlayerEntity->EntityData.Collection.Add(ArrayCopy[ArrayCount - 1]);
 							}
 						}
@@ -119,7 +121,7 @@ bool UWidgetDeckEditor::NativeOnDrop(const FGeometry& InGeometry, const FDragDro
 					}
 				}
 
-				if (ArrayIndex < 0) {
+				if (CardInArrayIndex < 0) {
 					ALostWorldGameModeBase::DualLog("Error! Could not get array index!", 2);
 
 					if (PlayerEntity->EntityData.Deck.Num() < 1) {

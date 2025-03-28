@@ -323,13 +323,7 @@ enum class EEntityTypes : uint8
 };
 
 
-/** Like keywords, but for entities.
- 
-To-Do: Create a terminology json that handles the following:
-- Translates enums into proper english.
-- Provides descriptions for terminology.
-- Provides alternate words for terminology.
-*/
+/** Like keywords, but for entities.*/
 UENUM(BlueprintType)
 enum class EEntityTraits : uint8
 {
@@ -370,6 +364,29 @@ struct LOSTWORLD_API FIntVector2D
 		return X == OtherStruct.X &&
 			Y == OtherStruct.Y;
 	}
+};
+
+/** To-Do: Create a terminology json that handles the following (amongst other things):
+- Translates enums into proper english.
+- Provides descriptions for terminology.
+- Provides alternate words for terminology.
+*/
+USTRUCT(BlueprintType)
+struct LOSTWORLD_API FTerminology : public FTableRowBase
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString EnumAsString;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString ShortDescription;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString LongDescription;
 };
 
 
@@ -803,8 +820,9 @@ struct LOSTWORLD_API FPlayerSave : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString CurrentLevel;
 
+	// To-Do: Learn more about signed vs unsigned integers, and use smaller ints when bigger ones aren't necessary.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int CurrentFloor;
+	uint8 CurrentFloor;
 	
 	FPlayerSave()
 	{

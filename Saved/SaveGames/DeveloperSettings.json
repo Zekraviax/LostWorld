@@ -1,7 +1,7 @@
 {
-	"enableDeveloperSettingsOverride": true,
-	"printMessageOnGameStart": "Developer mode enabled.",
-	"giveAllEntitiesTestDecks": false,
-	"logLevel": 2,
-	"overrideEncounters": "RabidRats"
+	"EnableDeveloperSettingsOverride": true,
+	"PrintMessageOnGameStart": "Developer mode enabled.",
+	"GiveAllEntitiesTestDecks": false,
+	"LogLevels": [ 0, 1, 2 ],
+	"OverrideEncounters": "RabidRats"
 }

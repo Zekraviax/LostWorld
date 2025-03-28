@@ -167,7 +167,10 @@ public:
 	void GenerateLevelAndSpawnEverything();
 
 	// From Step One, each level Layout will have their own function.
+	// Test generator:
 	void GenerateLevelLayoutFourSquares();
+	// Primarily used in the Dusk Road.
+	void GenerateLevelLayoutLongRoad();
 
 	
 // -------------------------------- Other functions

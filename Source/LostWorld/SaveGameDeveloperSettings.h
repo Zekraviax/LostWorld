@@ -2,12 +2,13 @@
 
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "GameFramework/SaveGame.h"
 #include "SaveGameDeveloperSettings.generated.h"
 
 
 USTRUCT(BlueprintType)
-struct LOSTWORLD_API FDeveloperSettingsAsStruct
+struct LOSTWORLD_API FDeveloperSettingsAsStruct : public FTableRowBase
 {
 	GENERATED_BODY()
 
@@ -21,7 +22,7 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct
 	bool GiveAllEntitiesTestDecks;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int LogLevel = 0;
+	TArray<int> LogLevels;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString OverrideEncounters; // Leave this blank in order to 'turn the setting off'.
@@ -31,6 +32,7 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct
 		EnableDeveloperSettingsOverride = true;
 		PrintMessageOnGameStart = "Developer mode enabled.";
 		GiveAllEntitiesTestDecks = false;
+		LogLevels = { 0, 1, 2 };
 		OverrideEncounters = "";
 	}
 };

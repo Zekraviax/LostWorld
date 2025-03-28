@@ -1,0 +1,9 @@
+[
+	{
+		"Name": "NewRow",
+		"EnumAsString": "TestEnum",
+		"DisplayName": "Name",
+		"ShortDescription": "Short Description",
+		"LongDescription": "Long Description"
+	}
+]

@@ -27,9 +27,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// Change the player's controls to Battle mode.
 	// Disable player movement.
 	// Manipulate the camera so that it encompasses the whole room and all entities within it.
-
-	// To-Do: Get data from the JSON files, not the DataTables.
-	// Get the Enemy data table row names from the Encounter data table.
 	FString ContextString;
 	TArray<EEntityTypes> EnemyTypes = EnemyEncounter.EntityTypes;
 	TArray<AActorGridTile*> ValidEnemySpawnTiles;
@@ -85,9 +82,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 		EntityData.Hand.Empty();
 	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
 		EntityData.DiscardPile.Empty();
-	// To-Do: Figure out if this line is redundant.
-	Cast<ALostWorldPlayerControllerBattle>(GetWorld()->GetFirstPlayerController())->ControlledPlayerEntity->
-		EntityData.Team = ETeams::PlayerTeam;
 
 	
 	// Add the player's entity to the array last.
@@ -1283,6 +1277,20 @@ void ALostWorldGameModeBattle::GenerateLevelLayoutFourSquares()
 			LevelDataCopy.FloorDataAsStruct.CorridorDataAsStructsArray[CorridorCount].GridTilesInCorridor.Last()->CorridorIndex = CorridorCount;
 		}
 	}
+}
+
+
+/** Long Road level layout:
+Generates one long level that bends slightly. Either the the length should be the entire length of the level.
+The width should be a few tiles. (4-5)
+
+The stairs should always be spawned on the opposite side of the player.
+
+Should occasionally have branching paths, with another stairs tile. But these paths should always lead to
+something interesting in the next room.
+*/
+void ALostWorldGameModeBattle::GenerateLevelLayoutLongRoad()
+{
 }
 
 

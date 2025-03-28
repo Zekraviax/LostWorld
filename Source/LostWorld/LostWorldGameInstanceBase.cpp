@@ -65,8 +65,10 @@ void ULostWorldGameInstanceBase::SavePlayerDataJson()
 	SavePath.Append(SaveGamesFolderPathAppend);
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Player Save Data Folder: %s"), *SavePath);
 
+	// To-Do: More testing on saving and loading arrays of player data.
 	FString PlayerDataAsJson;
-	FJsonObjectConverter::UStructToJsonObjectString(AllPlayerSaves, PlayerDataAsJson, 0, 0);
+	FJsonObjectConverter::UStructToJsonObjectString(AllPlayerSaves.SaveObjectsArray[LastLoadedPlayerSaveObject],
+		PlayerDataAsJson, 0, 0);
 	
 	// Before we save the json file, we need to check if the player's save data folder exists.
 	// If it doesn't, we make it first.

@@ -6,7 +6,6 @@
 #include "ActorGridTile.h"
 #include "AiBrainBase.h"
 #include "CustomJsonDeserializer.h"
-#include "DrawDebugHelpers.h"
 #include "FunctionLibraryCards.h"
 #include "FunctionLibraryStatusEffects.h"
 #include "JsonObjectConverter.h"
@@ -290,7 +289,6 @@ AActorEntityBase* ALostWorldGameModeBattle::FinishSpawningEntity(AActorEntityBas
 			// Second, make sure the tile isn't in a corridor.
 			if (FoundTile->CorridorIndex == -1) {
 				// Third, make sure the player isn't occupying the tile.
-				//if (FoundTile->GetActorLocation().X != PlayerEntityLocation.X && FoundTile->GetActorLocation().Y != PlayerEntityLocation.Y) {
 				if (!EntityLocations.Contains(FoundTile->GetActorLocation())) {
 					// Fourth, make sure the entity is spawned in the same room as all the other entities.
 					if (PlayerRoomIndex < 0) {
@@ -393,8 +391,6 @@ void ALostWorldGameModeBattle::PreBattleTurnZero(const FEncounter& EnemyEncounte
 	// Apply card modifiers that trigger at the start of battles.
 	for (auto& Entity : EntitiesInBattleArray) {
 		for (int Index = 0; Index < Entity->EntityData.Deck.Num(); Index++) {
-			//FCard Copy = ApplyCardModifiersWithTimingTrigger(Entity->EntityData.Deck[Index],
-			//	ECardModifierTimingTriggers::StartOfBattle);
 			FCard Copy = ApplyAllCardModifiersWithoutTimingTriggers(Entity->EntityData.Deck[Index]);
 			Entity->EntityData.DrawPile.Add(Copy);
 		}
@@ -493,7 +489,8 @@ void ALostWorldGameModeBattle::AddMaxNumberOfEntitiesToTurnQueue(bool OverrideRe
 			Entities.Add(Cast<AActorEntityEnemy>(Actor));
 		} else if (Cast<AActorEntityPlayer>(Actor)) {
 			if (OverrideReadiness) {
-				Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Readiness = FMath::RandRange(0, Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Agility);
+				Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Readiness = FMath::RandRange
+				(0, Cast<AActorEntityPlayer>(Actor)->EntityData.TotalStats.Agility);
 			}
 			
 			Entities.Add(Cast<AActorEntityPlayer>(Actor));
@@ -796,7 +793,8 @@ void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 		case 0:
 		{
 			// Player data loading is handled in the GameInstanceBase.
-			// Here, we just fetch it from the game instance.
+			// Here, we just fetch it from the GameInstance.
+				Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->LoadPlayerSaveJson();
 			FEntity PlayerData = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CurrentPlayerSave.EntityData;
 			AActorEntityPlayer* PlayerEntityReference = SpawnPlayerEntity(PlayerData);
 

@@ -595,7 +595,7 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index)
 	if (TheStack[Index].TargetingMode == ECardTargets::Self) {
 		// Self target.
 		TheStack[Index].SelectedTargets.Add(TheStack[Index].Controller);
-		FinishedGettingTargetsForCard(NullIndex, NullArray);
+		FinishedGettingTargetsForCard(Index, NullArray);
 	} else if (TheStack[Index].TargetingMode == ECardTargets::OneEnemy ||
 		TheStack[Index].TargetingMode == ECardTargets::AnyOneEntity) {
 		// One entity.
@@ -620,7 +620,7 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index)
 			}
 		}
 
-		FinishedGettingTargetsForCard(NullIndex, NullArray);
+		FinishedGettingTargetsForCard(Index, NullArray);
 	} else {
 		DualLog("Error! No valid targeting mode for stack entry!", 2);
 	}

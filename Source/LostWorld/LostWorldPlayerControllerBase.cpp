@@ -42,7 +42,7 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 			int StackEntryIndex = Cast<ALostWorldPlayerControllerBattle>(this)->StackEntryIndexForManualTargetSelection;
 			
 			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->FinishedGettingTargetsForCard(
-				StackEntryIndex,HitTargetsForStackEntry);
+				StackEntryIndex, HitTargetsForStackEntry);
 		}
 		break;
 	default:

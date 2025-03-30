@@ -20,16 +20,20 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 		float DropPositionY = Cast<UDragDropOperationCard>(InOperation)->CursorPositionAsPercentage.Y;
 	
 		if (DropPositionY < 0.75) {
-			// CAST THAT CARD BABYYYYY
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
-				Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::
-					GetPlayerController(GetWorld(), 0))->ControlledPlayerEntity;
+			if (Cast<UWidgetCard>(InOperation->Payload)->CardData.BaseCost == -1) {
+				// Prompt the player to select a value for X if they're casting an X cost card.
+			} else {
+				// CAST THAT CARD BABYYYYY
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
+					Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::
+						GetPlayerController(GetWorld(), 0))->ControlledPlayerEntity;
 
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
-				Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray;
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardHandIndex =
+					Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray;
 			
-			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
-				CreateStackEntry(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
+				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
+					CreateStackEntry(Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
+			}
 		}
 		// Else, the drag and drop operation will cancel.
 	}

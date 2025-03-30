@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Variables.h"
+#include "WidgetPlayerPrompt.h"
 #include "LostWorldPlayerControllerBase.generated.h"
 
 
@@ -68,6 +69,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWidgetPauseMenu* PauseMenuWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UWidgetPlayerPrompt> PlayerPromptWidgetBlueprintClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UWidgetPlayerPrompt* PlayerPromptWidget;
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -89,4 +96,5 @@ public:
 	void AddDevTestMenuToViewport();
 	void AddEquipmentToViewport();
 	void AddPauseMenuToViewport();
+	void AddPlayerPromptToViewport(EPromptType InPromptType);
 };

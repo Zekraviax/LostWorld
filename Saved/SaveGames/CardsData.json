@@ -617,5 +617,31 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "SwarmAttack",
+		"DisplayName": "Swarm Attack",
+		"BaseCost": 5,
+		"CardTypes": [
+			"Technique"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "Each entity of the same type as this one attacks the target.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
 	}
 ]

@@ -32,7 +32,7 @@ void UAiBrainBase::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UAiBrainBase::StartTurn()
 {
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	const AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
 	ALostWorldGameModeBase::DualLog(OwnerAsEnemy->EntityData.DisplayName +
 		" is taking their turn.", 2);
 
@@ -41,11 +41,24 @@ void UAiBrainBase::StartTurn()
 }
 
 
+void UAiBrainBase::GetAllCastableCards()
+{
+	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
+	CastableCardIndicesInHand.Empty();
+	
+	for (int Index = 0; Index < OwnerAsEnemy->EntityData.Hand.Num(); Index++) {
+		// Check for enough MP.
+		if (OwnerAsEnemy->EntityData.TotalStats.CurrentManaPoints >= OwnerAsEnemy->EntityData.Hand[Index].TotalCost) {
+			CastableCardIndicesInHand.Add(Index);
+		}
+	}
+}
+
+
 void UAiBrainBase::SelectCardToCast()
 {
 	// Default implementation. Get a random card, then create a stack entry.
-	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
-	SelectedCardInHandIndex = FMath::RandRange(0, OwnerAsEnemy->EntityData.Hand.Num() - 1);
+	SelectedCardInHandIndex = FMath::RandRange(0, CastableCardIndicesInHand.Num() - 1);
 	
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =
 		Cast<AActorEntityEnemy>(GetOwner());
@@ -57,7 +70,7 @@ void UAiBrainBase::SelectCardToCast()
 }
 
 
-void UAiBrainBase::GetTargetsForCard(int StackEntryIndex)
+void UAiBrainBase::GetTargetsForCard(const int StackEntryIndex)
 {
 	// Default implementation: Get a random enemy.
 	TArray<AActor*> FoundTargetsAsActors;

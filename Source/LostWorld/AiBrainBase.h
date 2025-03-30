@@ -47,6 +47,9 @@ public:
 	int SelfTurnCounter;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TArray<int> CastableCardIndicesInHand;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int SelectedCardInHandIndex;
 
 // ---------------------------------------- Functions ---------------------------------------- //
@@ -62,6 +65,7 @@ public:
 	// Shouts if they haven't used one this turn.
 	// etc,
 	virtual void StartTurn();
+	virtual void GetAllCastableCards();
 	virtual void SelectCardToCast();
 	virtual void GetTargetsForCard(int StackEntryIndex);
 	virtual void EndTurn();

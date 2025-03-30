@@ -141,8 +141,8 @@ public:
 	void CreateStackEntry(int CardIndexInHandArray);
 	void GetTargetsForStackEntry(int Index);
 	// how tf do I make functions overloaded in ue4 c++
-	void FinishedGettingTargetsForCard(int Index = -1, TArray<AActorEntityBase*> Targets = {}); 
-	void PayCostsForCard() const;
+	void FinishedGettingTargetsForCard(int Index = -1, const TArray<AActorEntityBase*>& Targets = {}); 
+	void PayCostsForCard(int StackIndex) const;
 	void ExecuteFirstStackEntry();
 	
 	void RemoveEntityFromTurnQueue(const AActorEntityBase* Entity);

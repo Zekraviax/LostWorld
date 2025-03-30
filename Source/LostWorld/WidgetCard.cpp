@@ -21,7 +21,7 @@ void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 	CardNameText->SetText(FText::FromString(InCard.DisplayName));
 	
 	// If the card has a special cost, the text should be X instead of a number.
-	if (Functions.Contains(ECardFunctions::CostsAllMana)) {
+	if (Functions.Contains(ECardFunctions::CostsAllMana) || InCard.BaseCost == -1) {
 		CostText->SetText(FText::FromString("X"));
 	} else {
 		CostText->SetText(FText::FromString(FString::FromInt(InCard.TotalCost)));

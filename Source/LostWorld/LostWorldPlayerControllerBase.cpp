@@ -11,6 +11,7 @@
 #include "WidgetHudBattle.h"
 #include "WidgetHudLevelExploration.h"
 #include "WidgetPauseMenu.h"
+#include "WidgetPlayerPrompt.h"
 
 
 void ALostWorldPlayerControllerBase::SetupInputComponent()
@@ -173,7 +174,6 @@ void ALostWorldPlayerControllerBase::AddEquipmentToViewport()
 void ALostWorldPlayerControllerBase::AddPauseMenuToViewport()
 {
 	// We won't close all widgets first. Instead we will just overlay this one on top.
-	
 	if (PauseMenuWidgetBlueprintClass && !PauseMenuWidget) {
 		PauseMenuWidget = CreateWidget<UWidgetPauseMenu>(GetWorld(), PauseMenuWidgetBlueprintClass);
 	}
@@ -181,5 +181,19 @@ void ALostWorldPlayerControllerBase::AddPauseMenuToViewport()
 	if (PauseMenuWidget) {
 		// To-Do: Pause execution of the game.
 		PauseMenuWidget->AddToViewport();
+	}
+}
+
+
+void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(EPromptType InPromptType)
+{
+	// We won't close all widgets first. Instead we will just overlay this one on top.
+	if (PlayerPromptWidgetBlueprintClass && !PlayerPromptWidget) {
+		PlayerPromptWidget = CreateWidget<UWidgetPlayerPrompt>(GetWorld(), PlayerPromptWidgetBlueprintClass);
+	}
+
+	if (PlayerPromptWidget) {
+		PlayerPromptWidget->SetUpPrompt(InPromptType);
+		PlayerPromptWidget->AddToViewport();
 	}
 }

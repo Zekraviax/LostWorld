@@ -587,16 +587,18 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 }
 
 
-void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
+void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index)
 {
 	const int NullIndex = -1;
 	const TArray<AActorEntityBase*> NullArray;
 	
 	if (TheStack[Index].TargetingMode == ECardTargets::Self) {
-		TheStack[Index].SelectedTargets.Add(TempStackEntry.Controller);
+		// Self target.
+		TheStack[Index].SelectedTargets.Add(TheStack[Index].Controller);
 		FinishedGettingTargetsForCard(NullIndex, NullArray);
 	} else if (TheStack[Index].TargetingMode == ECardTargets::OneEnemy ||
 		TheStack[Index].TargetingMode == ECardTargets::AnyOneEntity) {
+		// One entity.
 		if (Cast<AActorEntityPlayer>(TurnQueue[0])) {
 			Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->
 				SetControlMode(EPlayerControlModes::TargetSelectionSingleEntity);
@@ -608,6 +610,7 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(int Index)
 			Cast<AActorEntityEnemy>(TurnQueue[0])->AiBrainComponent->GetTargetsForCard(Index);
 		}
 	} else if (TheStack[Index].TargetingMode == ECardTargets::AllEnemies) {
+		// All entities on the same team.
 		TArray<AActor*> FoundActors;
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActorEntityBase::StaticClass(), FoundActors);
 
@@ -632,8 +635,8 @@ This function will also handle manual target selection.
 Whenever a player or NPC manually selects a target, they can pass it to this function alongside the
 stack entry index that the targets are for.
 
-// Give this function a more well-thought-out name.*/
-void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(int Index, TArray<AActorEntityBase*> Targets)
+// To-Do: Give this function a more well-thought-out name?*/
+void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(const int Index, const TArray<AActorEntityBase*>& Targets)
 {
 	if (Index != -1 && Targets.Num() > 0) {
 		TheStack[Index].SelectedTargets = Targets;
@@ -650,7 +653,7 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(int Index, TArray<A
 	// Once the card has created all of the stack entries it needs to, the entity
 	// must discard the card from their hand.
 	if (AllStackEntriesHaveTargets) {
-		PayCostsForCard();
+		PayCostsForCard(Index);
 
 		PayCostsAndDiscardCardEntity->DiscardCard(PayCostsAndDiscardCardHandIndex);
 
@@ -662,10 +665,23 @@ void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(int Index, TArray<A
 }
 
 
-void ALostWorldGameModeBattle::PayCostsForCard() const
+/** This function should be able to handle the primary cost and all secondary costs.
+
+If the cost of a card is X:\n
+Players: Give Players a prompt to select the value of X.\n
+AI: Use an AiBrain function to override the total cost.*/
+void ALostWorldGameModeBattle::PayCostsForCard(int StackIndex) const
 {
-	// This function should be able to handle the primary cost and all secondary costs.
-	PayCostsAndDiscardCardEntity->PayCostsForCard(PayCostsAndDiscardCardHandIndex);
+	if (TheStack[StackIndex].Controller->EntityData.Hand[PayCostsAndDiscardCardHandIndex].BaseCost != -1) {
+		PayCostsAndDiscardCardEntity->PayCostsForCard(PayCostsAndDiscardCardHandIndex);
+	} else {
+		// Check if the entity has already overriden the total cost of the card.
+		if (TheStack[StackIndex].Card.TotalCost < 1) {
+			DualLog("The MP for this X-Cost spell " +
+				TheStack[StackIndex].Controller->EntityData.Hand[PayCostsAndDiscardCardHandIndex].DisplayName +
+				" needs to be paid!", 2);
+		}
+	}
 
 	DualLog(PayCostsAndDiscardCardEntity->EntityData.DisplayName + " casts " +
 		PayCostsAndDiscardCardEntity->EntityData.Hand[PayCostsAndDiscardCardHandIndex].DisplayName + "!", 2);

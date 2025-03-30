@@ -13,7 +13,6 @@ void UAiBrainRabidRat::StartTurn()
 
 void UAiBrainRabidRat::SelectCardToCast()
 {
-	
 	// Each card in this enemy's deck is assigned a weight, which is used to randomly decide which card to cast,
 	// except for the first turn, where it will always use Screech.
 	
@@ -22,7 +21,6 @@ void UAiBrainRabidRat::SelectCardToCast()
 	// Infected Bite - 3
 	// Screech - 2
 	// Vomit - 1
-
 	AActorEntityEnemy* OwnerAsEnemy = Cast<AActorEntityEnemy>(GetOwner());
 	TArray<FCard> WeightedCardArray;
 

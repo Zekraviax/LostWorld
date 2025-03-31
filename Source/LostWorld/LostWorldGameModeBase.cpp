@@ -7,6 +7,9 @@
 
 void ALostWorldGameModeBase::DualLog(const FString& PreBuiltString, int InLogLevel)
 {
+	// Temporary Debug String
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *PreBuiltString);
+	
 	if (Cast<ULostWorldGameInstanceBase>(GEngine->GameViewport->GetWorld()->GetGameInstance())->
 		DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.LogLevels.Contains(InLogLevel)) {
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Orange, FString::Printf(TEXT("%s"), *PreBuiltString));

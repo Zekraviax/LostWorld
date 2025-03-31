@@ -139,7 +139,7 @@ public:
 			// Entity can play cards and take special actions like consuming items.
 	// The following group of functions should flow from one to the next to the next.
 	void CreateStackEntry(int CardIndexInHandArray);
-	void GetTargetsForStackEntry(int Index);
+	void GetTargetsForStackEntry(int Index, bool ContinueStackEntryExecution);
 	// how tf do I make functions overloaded in ue4 c++
 	void FinishedGettingTargetsForCard(int Index = -1, const TArray<AActorEntityBase*>& Targets = {}); 
 	void PayCostsForCard(int StackIndex) const;

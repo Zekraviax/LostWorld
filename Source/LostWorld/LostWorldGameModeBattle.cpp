@@ -543,7 +543,7 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 
 	// Handle cards that want to create and add multiple stack entries here.
 	if (CardFunctions.Contains(ECardFunctions::AddTotalCostStackEntries)) {
-		if (CardToCast.TotalCost > 0) {
+		while (CardToCast.TotalCost > 0) {
 			TempStackEntry.Function = CardFunctions[0];
 			TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
 			TempStackEntry.Controller = TurnQueue[0];
@@ -553,9 +553,14 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 			
 			TheStack.Add(TempStackEntry);
 
-			GetTargetsForStackEntry(TheStack.Num() - 1);
-		} else {
-			FinishedGettingTargetsForCard();
+			// Only the last stack entry should continue stack execution beyond getting targets.
+			if (CardToCast.TotalCost == 1) {
+				GetTargetsForStackEntry(TheStack.Num() - 1, true);
+			} else {
+				GetTargetsForStackEntry(TheStack.Num() - 1, false);
+			}
+			
+			CardToCast.TotalCost--;
 		}
 	} else {
 		TempStackEntry.Function = CardFunctions[0];
@@ -567,7 +572,7 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 		
 		TheStack.Add(TempStackEntry);
 
-		GetTargetsForStackEntry(TheStack.Num() - 1);
+		GetTargetsForStackEntry(TheStack.Num() - 1, true);
 	}
 
 	// Here, we can also create stack entries for functions that are appended onto the card.
@@ -582,20 +587,23 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 		
 		TheStack.Add(TempStackEntry);
 
-		GetTargetsForStackEntry(TheStack.Num() - 1);
+		GetTargetsForStackEntry(TheStack.Num() - 1, true);
 	}
 }
 
 
-void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index)
+void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index, bool ContinueStackEntryExecution)
 {
-	const int NullIndex = -1;
-	const TArray<AActorEntityBase*> NullArray;
+	//const int NullIndex = -1;
+	//const TArray<AActorEntityBase*> NullArray;
 	
 	if (TheStack[Index].TargetingMode == ECardTargets::Self) {
 		// Self target.
 		TheStack[Index].SelectedTargets.Add(TheStack[Index].Controller);
-		FinishedGettingTargetsForCard(Index, NullArray);
+		
+		if (ContinueStackEntryExecution) {
+			FinishedGettingTargetsForCard(Index, TheStack[Index].SelectedTargets);
+		}
 	} else if (TheStack[Index].TargetingMode == ECardTargets::OneEnemy ||
 		TheStack[Index].TargetingMode == ECardTargets::AnyOneEntity) {
 		// One entity.
@@ -620,7 +628,9 @@ void ALostWorldGameModeBattle::GetTargetsForStackEntry(const int Index)
 			}
 		}
 
-		FinishedGettingTargetsForCard(Index, NullArray);
+		if (ContinueStackEntryExecution) {
+			FinishedGettingTargetsForCard(Index, TheStack[Index].SelectedTargets);
+		}
 	} else {
 		DualLog("Error! No valid targeting mode for stack entry!", 2);
 	}
@@ -638,7 +648,7 @@ stack entry index that the targets are for.
 // To-Do: Give this function a more well-thought-out name?*/
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(const int Index, const TArray<AActorEntityBase*>& Targets)
 {
-	if (Index != -1 && Targets.Num() > 0) {
+	if (Index != -1 && Targets.Num() > 0 && TheStack[Index].SelectedTargets.Num() < 1) {
 		TheStack[Index].SelectedTargets = Targets;
 	}
 	
@@ -676,7 +686,7 @@ void ALostWorldGameModeBattle::PayCostsForCard(int StackIndex) const
 		PayCostsAndDiscardCardEntity->PayCostsForCard(PayCostsAndDiscardCardHandIndex);
 	} else {
 		// Check if the entity has already overriden the total cost of the card.
-		if (TheStack[StackIndex].Card.TotalCost < 1) {
+		if (TheStack[StackIndex].Card.TotalCost == -1) {
 			DualLog("The MP for this X-Cost spell " +
 				TheStack[StackIndex].Controller->EntityData.Hand[PayCostsAndDiscardCardHandIndex].DisplayName +
 				" needs to be paid!", 2);

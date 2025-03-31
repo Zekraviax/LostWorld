@@ -13,7 +13,7 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 	SavePath = FPaths::ProjectSavedDir();
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: ProjectSavedDir: %s"), *SavePath);
 	SavePath.Append(SaveGamesFolderPathAppend);
-	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Save Data Folder: %s"), *SavePath);
+	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Developer Settings Data Folder: %s"), *SavePath);
 
 	FString DeveloperSettingsAsJson;
 	FJsonObjectConverter::UStructToJsonObjectString(DeveloperSettingsAsStruct, DeveloperSettingsAsJson, 0, 0);
@@ -25,23 +25,23 @@ void USaveGameDeveloperSettings::SaveDeveloperSettingsToJson()
 
 	if (!FileManager.DirectoryExists(*SavePath)) {
 		if (FileManager.CreateDirectory(*SavePath)) {
-			UE_LOG(LogTemp, Warning, TEXT("Dev settings save data folder did not exist but was created successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Developer Settings save data folder did not exist but was created successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Dev settings save data folder does not exist and could not be created."));
+			UE_LOG(LogTemp, Warning, TEXT("Developer Settings save data folder does not exist and could not be created."));
 		}
 	}
 
 	if (FileManager.DirectoryExists(*SavePath)) {
 		FString FileName = SavePath.Append("DeveloperSettings.json");
-		UE_LOG(LogTemp, Warning, TEXT("FilePaths: PDev settings save data file name: %s"), *FileName);
+		UE_LOG(LogTemp, Warning, TEXT("FilePaths: Developer Settings save data file name: %s"), *FileName);
 
 		if (FFileHelper::SaveStringToFile(DeveloperSettingsAsJson, *FileName)) {
-			UE_LOG(LogTemp, Warning, TEXT("Dev settings saved successfully."));
+			UE_LOG(LogTemp, Warning, TEXT("Developer Settings saved successfully."));
 		} else {
-			UE_LOG(LogTemp, Error, TEXT("Error: Failed to save Dev settings data."));
+			UE_LOG(LogTemp, Warning, TEXT("Error: Failed to save Developer Settings."));
 		}
 	} else {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not save Dev settings data."));
+		UE_LOG(LogTemp, Warning, TEXT("Error: Could not save Developer Settings."));
 	}
 }
 
@@ -56,7 +56,7 @@ void USaveGameDeveloperSettings::LoadDeveloperSettingsFromJson()
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Save Data Folder: %s"), *PlayerDataSaveFilePath);
 	
 	if (!FileManager.FileExists(*PlayerDataSaveFilePath)) {
-		UE_LOG(LogTemp, Error, TEXT("Error: Could not find Developer Settings. Attempting to create data now."));
+		UE_LOG(LogTemp, Warning, TEXT("Error: Could not find Developer Settings. Attempting to create data now."));
 		SaveDeveloperSettingsToJson();
 	}
 
@@ -64,7 +64,11 @@ void USaveGameDeveloperSettings::LoadDeveloperSettingsFromJson()
 	FDeveloperSettingsAsStruct PlayerDataAsStruct;
 
 	FFileHelper::LoadFileToString(PlayerDataAsJson, *PlayerDataSaveFilePath);
-	FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataAsStruct, 0, 0);
+	if (FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataAsStruct, 0, 0)) {
+		UE_LOG(LogTemp, Warning, TEXT("Successfully converted DeveloperSettings json to UStruct."));
+	} else {
+		UE_LOG(LogTemp, Warning, TEXT("Error: Failed to convert DeveloperSettings json to UStruct!"));
+	}
 
 	// Apply player data
 	DeveloperSettingsAsStruct = PlayerDataAsStruct;

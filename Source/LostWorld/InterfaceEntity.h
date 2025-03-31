@@ -18,7 +18,7 @@ class LOSTWORLD_API IInterfaceEntity
 	GENERATED_BODY()
 
 public:
-
+	virtual bool OverrideHp(int InHp);
 	
 	virtual bool CalculateTotalStats();
 

@@ -22,6 +22,12 @@ bool UWidgetHudBattle::NativeOnDrop(const FGeometry& InGeometry, const FDragDrop
 		if (DropPositionY < 0.75) {
 			if (Cast<UWidgetCard>(InOperation->Payload)->CardData.BaseCost == -1) {
 				// Prompt the player to select a value for X if they're casting an X cost card.
+				Cast<ALostWorldPlayerControllerBase>(UGameplayStatics::GetPlayerController(
+					GetWorld(), 0))->AddPlayerPromptToViewport(EPromptType::SpendManaOnXCostSpell,
+					Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(
+					GetWorld(), 0))->ControlledPlayerEntity->EntityData.Hand[
+					Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray],
+					Cast<UWidgetCard>(InOperation->Payload)->IndexInHandArray);
 			} else {
 				// CAST THAT CARD BABYYYYY
 				Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->PayCostsAndDiscardCardEntity =

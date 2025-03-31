@@ -1,6 +1,12 @@
 #include "InterfaceEntity.h"
 
 
+bool IInterfaceEntity::OverrideHp(int InHp)
+{
+	return true;
+}
+
+
 bool IInterfaceEntity::CalculateTotalStats()
 {
 	return true;

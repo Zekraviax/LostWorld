@@ -30,7 +30,7 @@ void ALostWorldPlayerControllerBase::OnLeftMouseButtonClick()
 	{
 	case (EPlayerControlModes::TargetSelectionSingleEntity):
 		GetHitResultUnderCursor(ECC_WorldDynamic, false, Hit);
-		//ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
+		ALostWorldGameModeBase::DualLog("Hit: " + Hit.GetActor()->GetName(), 3);
 
 		if (Cast<AActorEntityBase>(Hit.GetActor())) {
 			SetControlMode(EPlayerControlModes::Battle);
@@ -185,7 +185,7 @@ void ALostWorldPlayerControllerBase::AddPauseMenuToViewport()
 }
 
 
-void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(EPromptType InPromptType)
+void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(const EPromptType InPromptType, FCard InCard, int IndexInHand)
 {
 	// We won't close all widgets first. Instead we will just overlay this one on top.
 	if (PlayerPromptWidgetBlueprintClass && !PlayerPromptWidget) {
@@ -193,7 +193,7 @@ void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(EPromptType InPro
 	}
 
 	if (PlayerPromptWidget) {
-		PlayerPromptWidget->SetUpPrompt(InPromptType);
+		PlayerPromptWidget->SetUpPrompt(InPromptType, InCard, IndexInHand);
 		PlayerPromptWidget->AddToViewport();
 	}
 }

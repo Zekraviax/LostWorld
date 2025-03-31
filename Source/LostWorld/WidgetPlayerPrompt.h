@@ -3,9 +3,10 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
-#include "CoreMinimal.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
+#include "CoreMinimal.h"
+#include "Variables.h"
 
 #include "WidgetPlayerPrompt.generated.h"
 
@@ -28,12 +29,17 @@ class LOSTWORLD_API UWidgetPlayerPrompt : public UUserWidget
 
 public:
 // ---------------------------------------- Variables ---------------------------------------- //
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	EPromptType CurrentPromptType;
 
 	// Used for things such as incrementing and decrementing the MP the player will spend on an X spell.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int LocalVar;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FCard LocalCard;
+
+	int LocalIndexInHand;
 
 // -------------------------------- Widget components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
@@ -74,7 +80,7 @@ public:
 	FVector2D BackgroundImageDimension = FVector2D(600, 300);
 
 // ---------------------------------------- Functions ---------------------------------------- //
-	void SetUpPrompt(EPromptType InPromptType);
+	void SetUpPrompt(EPromptType InPromptType, const FCard& InCard, int IndexInHand);
 	void SpendManaOnXCostSpell();
 
 // -------------------------------- Widget components
@@ -83,4 +89,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OnRightButtonPressed();
+	
+	UFUNCTION(BlueprintCallable)
+	void OnConfirmButtonPressed();
+
+	UFUNCTION(BlueprintCallable)
+	void OnCancelButtonPressed();
 };

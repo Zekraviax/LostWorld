@@ -38,6 +38,7 @@ public:
 	void InfectedBite();
 	void Vomit() const;
 	void HammerBlow();
+	void Demi();
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
 	void DrawOneCard() const;

@@ -88,6 +88,8 @@ public:
 	virtual bool EndTurn() override;
 
 // -------------------------------- Entity Interface functions
+	virtual bool OverrideHp(int InHp) override;
+	
 	virtual bool CalculateTotalStats() override;
 
 	virtual bool EquipItem(int IndexInInventoryArray) override;

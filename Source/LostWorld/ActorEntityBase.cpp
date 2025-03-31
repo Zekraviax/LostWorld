@@ -430,6 +430,15 @@ bool AActorEntityBase::EndTurn()
 }
 
 
+bool AActorEntityBase::OverrideHp(int InHp)
+{
+	EntityData.TotalStats.CurrentHealthPoints = InHp;
+	Cast<UWidgetEntityBillboard>(EntityBillboard->GetUserWidgetObject())->UpdateBillboard(EntityData);
+	
+	return IInterfaceEntity::OverrideHp(InHp);
+}
+
+
 bool AActorEntityBase::CalculateTotalStats()
 {
 	// To-Do: Figure out whether HP and MP values should be ignored when calculating stats.

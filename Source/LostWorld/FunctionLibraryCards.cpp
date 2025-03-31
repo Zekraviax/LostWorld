@@ -60,6 +60,9 @@ void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction)
 	case ECardFunctions::HammerBlow:
 		HammerBlow();
 		break;
+	case ECardFunctions::Demi:
+		Demi();
+		break;
 	default:
 		FString ErrorMessage = "Error! Function " + UEnum::GetDisplayValueAsText(InFunction).ToString() +
 			" does not have an implementation!";
@@ -329,6 +332,28 @@ void AFunctionLibraryCards::HammerBlow()
 	}
 
 	GenericDealDamageToOneTarget();
+}
+
+
+void AFunctionLibraryCards::Demi()
+{
+	// Roll the dice. If unsuccessful, do nothing.
+	int DiceRoll = FMath::RandRange(2, 5);
+
+	if (DiceRoll <= 2) {
+		ALostWorldGameModeBase::DualLog("Failed!", 2);
+	} else {
+		// Get random target.
+		AActorEntityBase* RandomTarget = Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].
+			SelectedTargets[FMath::RandRange(0, Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
+			TheStack[0].SelectedTargets.Num() - 1)];
+
+		// Cut their HP in half.
+		float HalvedHp = RandomTarget->EntityData.TotalStats.CurrentHealthPoints / 2;
+		Cast<IInterfaceEntity>(RandomTarget)->OverrideHp(FMath::RoundHalfToEven(HalvedHp));
+
+		ALostWorldGameModeBase::DualLog("Success!", 2);
+	}
 }
 
 

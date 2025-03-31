@@ -37,8 +37,10 @@ void ULostWorldGameInstanceBase::LoadPlayerSaveJson()
 	TArray<FPlayerSave> PlayerDataArray;
 
 	if (FJsonObjectConverter::JsonArrayStringToUStruct(PlayerDataAsJson, &PlayerDataArray, 0, 0)) {
+		UE_LOG(LogTemp, Warning, TEXT("Successfully loaded PlayerData as JsonArrayString."));
 		CurrentPlayerSave = PlayerDataArray[0];
 	} else if (FJsonObjectConverter::JsonObjectStringToUStruct(PlayerDataAsJson, &PlayerDataSingle, 0, 0)) {
+		UE_LOG(LogTemp, Warning, TEXT("Successfully loaded PlayerData as singular JsonObjectString."));
 		CurrentPlayerSave = PlayerDataSingle;
 	}
 }
@@ -145,12 +147,17 @@ FString ULostWorldGameInstanceBase::LoadFileFromJson(const FString& FileName) co
 {
 	FString SaveGamesFilePathAndName = "SaveGames/" + FileName + ".json";
 	FString PlayerDataSaveFilePath = FPaths::ProjectSavedDir();
+	FString JsonFileAsString;
 	
 	PlayerDataSaveFilePath.Append(SaveGamesFilePathAndName);
 	UE_LOG(LogTemp, Warning, TEXT("File Path: %s"), *PlayerDataSaveFilePath);
 
-	FString JsonFileAsString;
-	FFileHelper::LoadFileToString(JsonFileAsString, *PlayerDataSaveFilePath);
+	// Ongoing To-Do: Don't use DualLog when loading JSON files because the DeveloperSettings might not be loaded yet.
+	if (!FFileHelper::LoadFileToString(JsonFileAsString, *PlayerDataSaveFilePath)) {
+		UE_LOG(LogTemp, Warning, TEXT("Error: Failed to load file: %s"), *PlayerDataSaveFilePath);
+	} else {
+		UE_LOG(LogTemp, Warning, TEXT("Successfully loaded file: : %s"), *PlayerDataSaveFilePath);
+	}
 
 	return JsonFileAsString;
 }

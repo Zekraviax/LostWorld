@@ -319,7 +319,7 @@ void AFunctionLibraryCards::Vomit() const
 }
 
 
-void AFunctionLibraryCards::HammerBlow() 
+void AFunctionLibraryCards::HammerBlow() const
 {
 	if (GetDefender()->HasStatusEffect(EStatusEffectFunctions::Stun)) {
 		int ModifiedDamage = FMath::RoundToInt(Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->
@@ -335,7 +335,7 @@ void AFunctionLibraryCards::HammerBlow()
 }
 
 
-void AFunctionLibraryCards::Demi()
+void AFunctionLibraryCards::Demi() const
 {
 	// Roll the dice. If unsuccessful, do nothing.
 	int DiceRoll = FMath::RandRange(2, 5);

@@ -28,14 +28,15 @@ void UWidgetPlayerPrompt::SpendManaOnXCostSpell()
 {
 	LocalVar = 0;
 	
-	Title->SetText(FText::FromString("Choose MP value for X"));
-	Body->SetText(FText::FromString(FString::FromInt(LocalVar)));
+	Title->SetText(FText::FromString("Casting X cost spell " + LocalCard.DisplayName));
+	Body->SetText(FText::FromString("Choose a value for X:\n" + FString::FromInt(LocalVar)));
+	Body->Font.Size = 20;
 	
 	LeftButton->SetVisibility(ESlateVisibility::Visible);
 	LeftButtonText->SetText(FText::FromString("<"));
 	
 	RightButton->SetVisibility(ESlateVisibility::Visible);
-	LeftButtonText->SetText(FText::FromString(">"));
+	RightButtonText->SetText(FText::FromString(">"));
 
 	ConfirmButton->SetVisibility(ESlateVisibility::Visible);
 	CancelButton->SetVisibility(ESlateVisibility::Visible);
@@ -49,7 +50,7 @@ void UWidgetPlayerPrompt::OnLeftButtonPressed()
 	case EPromptType::SpendManaOnXCostSpell:
 		if (LocalVar > 0) {
 			LocalVar--;
-			Body->SetText(FText::FromString(FString::FromInt(LocalVar)));
+			Body->SetText(FText::FromString("Choose a value for X:\n" + FString::FromInt(LocalVar)));
 		}
 		break;
 	default:
@@ -62,8 +63,9 @@ void UWidgetPlayerPrompt::OnRightButtonPressed()
 	switch (CurrentPromptType)
 	{
 	case EPromptType::SpendManaOnXCostSpell:
+		// To-Do: Warn the player if the value for X they've set is greater than their current MP.
 		LocalVar++;
-		Body->SetText(FText::FromString(FString::FromInt(LocalVar)));
+		Body->SetText(FText::FromString("Choose a value for X:\n" + FString::FromInt(LocalVar)));
 		break;
 	default:
 		break;

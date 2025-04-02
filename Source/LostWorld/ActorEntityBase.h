@@ -14,6 +14,8 @@ class UWidgetEntityBillboard;
 
 
 // The base Entity class that all subtypes of Entities will inherit from, including the player.
+
+// To-Do: Consider overhauling all of the AActorEntities classes so that only one class is needed.
 UCLASS()
 class LOSTWORLD_API AActorEntityBase : public AActor, public IInterfaceBattle, public IInterfaceEntity
 {

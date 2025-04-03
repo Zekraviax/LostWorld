@@ -110,52 +110,6 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 	// Then, zoom the camera out until the whole room is visible.
 	Camera->SetOrthoWidth(Camera->OrthoWidth + 248);
 	
-	/*TArray<AActorGridTile*> RoomCorners;
-	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
-		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].BottomLeftCoordinate));
-	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
-		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].BottomRightCoordinate));
-	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
-		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].TopLeftCoordinate));
-	RoomCorners.Add(Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->FindGridTileWithVector(
-		LevelDataCopy.FloorDataAsStruct.RoomDataAsStructsArray[Room].TopRightCoordinate));
-
-	FCollisionObjectQueryParams ObjectParams = FCollisionObjectQueryParams();
-	FCollisionQueryParams& TraceParams = FCollisionQueryParams::DefaultQueryParam;
-	FHitResult TraceHit(ForceInit);
-	FVector TraceStart = Camera->GetComponentLocation();
-	TraceStart.Z += 1000;
-
-	FVector Origin;
-	FVector Bounds;
-	TArray<FVector> CoordinatesToTrace;
-
-	for (auto& Corner : RoomCorners) {
-		Corner->GetActorBounds(true, Origin, Bounds);
-
-		CoordinatesToTrace.Add(FVector(Origin.X + Bounds.X, Origin.Y + Bounds.Y, Origin.Z));
-		CoordinatesToTrace.Add(FVector(Origin.X - Bounds.X, Origin.Y + Bounds.Y, Origin.Z));
-		CoordinatesToTrace.Add(FVector(Origin.X + Bounds.X, Origin.Y - Bounds.Y, Origin.Z));
-		CoordinatesToTrace.Add(FVector(Origin.X - Bounds.X, Origin.Y - Bounds.Y, Origin.Z));
-	}
-	
-	TArray<bool> AllFourCornersVisible = { false };
-	while (AllFourCornersVisible.Contains(false)) {
-		DualLog("While loop", 2);
-		
-		AllFourCornersVisible.Empty();
-
-		for (auto& Coordinate : CoordinatesToTrace) {
-			AllFourCornersVisible.Add(GetWorld()->LineTraceSingleByObjectType(
-				TraceHit, TraceStart, RoomCorners[0]->GetActorLocation(), ObjectParams, TraceParams));
-			//DrawDebugLine(GetWorld(), TraceStart, Coordinate, FColor::Red, false, 60);
-		}
-
-		if (AllFourCornersVisible.Contains(false)) {
-			Camera->SetOrthoWidth(Camera->OrthoWidth + 248);
-		}
-	}*/
-	
 	// Once everything is done, begin Turn Zero.
 	PreBattleTurnZero(EnemyEncounter);
 }

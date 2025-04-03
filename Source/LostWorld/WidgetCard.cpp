@@ -52,19 +52,6 @@ void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 		DescriptionText->SetText(FText::FromString(ALostWorldGameModeBase::ParseVariablesInText(
 		InCard, InCard.Description)));
 	}
-
-	
-	// Don't make the function const or this won't work.
-	//CurrentGridPanel = GetParent()->GetName();
-	/*UWidgetTree* CardWidgetTree = this->WidgetTree;
-	if (CardWidgetTree) {
-		UObject* Parent = CardWidgetTree->GetOuter();
-		//CardElementsAsString.Append(UEnum::GetValueAsString("").RightChop(15) + " ");
-		TArray<UObject*> OuterObjects;
-		GetObjectsWithOuter(Parent, OuterObjects);
-
-		ALostWorldGameModeBase::DualLog("", 3);
-	}*/
 }
 
 

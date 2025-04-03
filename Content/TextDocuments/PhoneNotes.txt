@@ -560,6 +560,7 @@ Unkind Universe
 ? Cost Cosmic Spell
 Steal all positive status effects from all enemies, then give one enemy all negative status effects among all allies.
 
+
 Dwarf Moon/Planet
 Cosmic Summon
 Traits:
@@ -573,8 +574,10 @@ X Cost Cosmic Spell
 For each MP spent to cast this, deal damage to two different random enemies.
 
 
+The Advanced Card Display
 Random Idea
 When using the ACD to view an entity (any kind except the player), the player can use this screen to apply cosmetic changes such as different skins.
+
 
 Ace Up Your Sleeve
 1 Cost Arcane Spell
@@ -619,3 +622,153 @@ A list of cosmetic types that the player can apply to cards:
 - Alternate arts
 - Alternate card borders
 - Foiling
+
+
+Hardening
+Status Effect
+Whenever this entity takes damage from a card, it gains 1 stack of Hardening.
+Hardening increases Toughness and Wisdom by 1 per stack.
+
+
+Elemental Hardening
+Whenever this entity takes damage from an elemental ability, it gains 1 stack of Elemental Hardening.
+Elemental Hardening increases all Defensive Affinities by 25 per stack.
+
+
+(Element) Piercing
+This entity ignores half of the target's (Element) Defensive Affinity.
+
+
+Rat Abilities:
+- scratch
+- bite
+- screech
+- call for friends
+- vomit
+- swarm attack (each rat attacks one target at the same time)
+
+
+Bloodstained Trance
+? Technique
+Whenever you cast a card that Resolves and does damage, gain 1 stack of Bloodstained Trance.
+Whenever one of your cards Resolves without dealing damage, lose all stacks of Bloodstained Trance.
+
+
+Bum Rush
+Air Technique
+Does extra damage if it's the first card you play in a turn.
+
+
+"Save our souls!"
+Light Shout
+Heal all allies for a large percentage of their max HP. Inflict a Heal Block on all allies (a status effect that prevents all healing, and expires at the end of their turns.)
+
+
+Ad Nauseam
+Light / Arcane Spell
+Deal damage to all entities. Base power is equal to the number of Ad Nauseam cards played this battle.
+
+
+Judgment
+Light Shout
+If the target has dealt damage to another entity, prevent them from playing Spells, Techniques and Shouts for X turns.
+If they haven't, cure them of all negative status effects, and heal their HP and MP for a small amount.
+
+
+Mining Automata
+Enemy Entity
+Cards:
+- Bum Rush
+- "Open fire!"
+- Meltdown
+- Drill: 
+Earth Technique
+Does damage that ignores barrier.
+- Gather Gems:
+Light Technique
+The caster gains random positive status effects
+
+
+Hard Mode:
+Difficulty Setting
+Instead of simply tweaking numbers, Hard Mode does the following:
+- Enemies have more cards in their deck.
+- Enemies have different decks with more synergistic cards.
+- Enemies have more advanced AI.
+- Random Events are more unfavourable (gives less rewards or healing, does more damage.)
+
+
+Belome, the Bandit
+Random Event
+You are stopped by a rugged, battle-scarred man. He demands you pay a price before he will let you pass. You can:
+- Agree to pay, in which case he will remember this and demand more payment if you cross paths again.
+- Refuse and turn away. He won't do much if you decide to take a different path.
+- Fight him. He prefers to fight dirty, but will try to stop the fight if you bring him low, in which case:
+-- You can continue to fight. His behaviour will grow more desperate. If you kill him, you will never see him again.
+-- You can let him go. If you encounter him again, he will remember that you spared him, and act more favourably to you.
+- If you have enough of a reputation, his "tough-guy" demeanor will be shaken, and he will change his mind, allowing you to pass for free. You may pass, or take any of the previous options. You can also talk to him. With enough conversations, you can convince him to join you.
+
+As an entity, he has:
+Traits:
+- Bandit Veteran: Starts battles with 2 stacks of Hardened.
+Cards:
+- Call for friends
+- Hidden Revolver
+- Gut
+Water Technique
+Does small damage but inflicts heavy bleeding.
+
+
+
+Dusk Road Leopard
+Enemy
+Traits:
+- Ambusher: Does more damage on its first turn, if it acts first in battle.
+- Predator: Does more damage to targets with 1/2 HP or less.
+Cards:
+- Pounce
+- Scratch
+Zero cost Technique that does minor damage.
+- Roar
+Air Shout
+Inflicts Strength Down on all enemies.
+
+
+Level Scaling:
+Core Mechanic
+As players clear floors, enemies will get stronger and more deadly, but higher risk also means higher rewards. Level Scaling is optional, and is off by default.
+Bosses are by default exempt from all scaling modifiers, unless the player decides to disable this exemption.
+Scaling modifiers are cumulative, and don't disappear until the player leaves the level by any means.
+Floors will always give a negative modifier. Every 2nd(?) floor will give a positive modifier in addition to the negative modifier.
+Some of the more difficult modifiers will never appear on lower level floors. Each of these modifiers will have a MinimumFloor value that the player must reach before they will appear.
+Some scaling modifiers have a cap. Once this cap is reached, these modifiers will not be applied any more.
+
+List of Level Scaling modifiers:
+- Enemy cards have +1 Total Damage.
+- Enemies get +1 to their highest stat.
+- Enemies get +1 to either their Strength or Intelligence, whichever is higher.
+- Enemies have +1 Agility.
+- Enemies have +1 Total HP and MP.
+- Enemies that can Call For Friends are more likely to do so.
+- Encounters start with another enemy. Some enemies are Unique; there can only be one in a battle, including all (most?) bosses. But bosses can have minions - the same type of enemies that can be found in the level.
+- Cards are more likely to be a higher rarity.
+- Find +1 card from encounters/treasure chests that give cards.
+- Reward Encounters give more rewards. Or in other words, "Some random encounters are more rewarding."
+
+
+Reward Encounters
+Terminology
+Shorthand phrase that describes random encounters that give the player stuff; cards, money, equipment, XP, other items. 
+
+
+Succumb To Darkness
+Light Spell
+Choose a target, then choose one of the following:
+- The target loses life equal to the number of stacks of each negative status effect they have.
+- Convert all status effect targets on the target into Dark Might stacks
+
+
+Dark Might
+Mixed Status Effect
+This entity's cards have +1 Total Power per stack but they take damage equal to 1/5 of the damage their cards deal.
+Whenever they play a card that doesn't deal damage, they take X damage. X is the number of cards they have played this turn.

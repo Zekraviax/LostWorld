@@ -28,6 +28,7 @@ public:
 	virtual bool DiscardCard(int IndexInHand);
 	virtual bool PayCostsForCard(int IndexInHand);
 	virtual bool ShuffleDiscardPileIntoDrawPile();
+	virtual bool BottomCard(FCard InCard);
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();

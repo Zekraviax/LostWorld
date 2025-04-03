@@ -39,8 +39,10 @@ public:
 	void Vomit() const;
 	void HammerBlow() const;
 	void Demi() const;
+	void CreateEphemeralTrainOfThought();
 	// -------- Generic functions -------- //
 	void GenericDealDamageToOneTarget() const;
 	void DrawOneCard() const;
 	void ApplyToughnessDown() const;
+	void DrawOneCardThenBottomOneCard();
 };

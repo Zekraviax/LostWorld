@@ -643,5 +643,56 @@
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
+	},
+	{
+		"Name": "ThisIsATest",
+		"DisplayName": "\"This Is a Test!\"",
+		"BaseCost": 0,
+		"CardTypes": [
+			"Shout"
+		],
+		"CardElements": [],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "This is a default description.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "AllAllies"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "TrainOfThought",
+		"DisplayName": "Train Of Thought",
+		"BaseCost": 3,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Keywords": [],
+		"Description": "Draw a card, then put a card from your hand on the bottom of your draw pile. Create an Ephemeral Train Of Thought and add it to your hand.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"DrawOneCardThenBottomOneCard": "Self",
+			"CreateEphemeralTrainOfThought": "Self"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
 	}
 ]

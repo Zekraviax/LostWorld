@@ -55,4 +55,10 @@ protected:
 
 public:
 	void UpdateComponentsFromPassedCard(const FCard& InCard) const;
+
+	UFUNCTION(BlueprintCallable)
+	void OnCardClicked();
+
+	UFUNCTION(BlueprintCallable)
+	EPlayerControlModes GetPlayerControlMode();
 };

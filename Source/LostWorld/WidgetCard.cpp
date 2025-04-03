@@ -2,7 +2,9 @@
 
 
 #include "LostWorldGameModeBase.h"
+#include "LostWorldPlayerControllerBattle.h"
 #include "Blueprint/WidgetTree.h"
+#include "Kismet/GameplayStatics.h"
 
 
 bool UWidgetCard::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent, UDragDropOperation* InOperation)
@@ -63,4 +65,24 @@ void UWidgetCard::UpdateComponentsFromPassedCard(const FCard& InCard) const
 
 		ALostWorldGameModeBase::DualLog("", 3);
 	}*/
+}
+
+
+void UWidgetCard::OnCardClicked()
+{
+	switch (GetPlayerControlMode())
+	{
+	case EPlayerControlModes::BottomOneCardInHand:
+		
+		break;
+	default:
+		break;
+	}
+}
+
+
+EPlayerControlModes UWidgetCard::GetPlayerControlMode()
+{
+	return Cast<ALostWorldPlayerControllerBattle>(UGameplayStatics::GetPlayerController(
+		GetWorld(), 0))->ControlMode;
 }

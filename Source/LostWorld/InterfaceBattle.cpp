@@ -54,6 +54,12 @@ bool IInterfaceBattle::ShuffleDiscardPileIntoDrawPile()
 }
 
 
+bool IInterfaceBattle::BottomCard(FCard InCard)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::TakeDamage(float Damage)
 {
 	return true;

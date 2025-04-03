@@ -139,14 +139,15 @@ enum class ECardKeywords : uint8
 	// Spells: The player can only have one copy in their deck.
 	// Equipment: The player can only have one total in their inventory OR equipped.
 	Unique,
-
 	// Spells: Always draw this card at the start of battles.
 	// Equipment: N/A
 	Ace,
-
 	// Spells: Cannot be played.
 	// Equipment: Any benefits or downsides given by the equipment don't apply while disabled.
 	Disabled,
+	// Spells: Exiled to your void at the end of every turn, if it isn't already in the void.
+	// Equipment: N/A
+	Ephemeral,
 };
 
 
@@ -186,10 +187,12 @@ enum class ECardFunctions : uint8
 	Vomit,
 	Demi,
 	HammerBlow,
+	CreateEphemeralTrainOfThought,
 	// -------- Generic functions -------- //
-	DealDamageToOneTargets,
+	DealDamageToOneTargets,	// To-Do: Fix this typo.
 	CasterDrawsOneCard,
 	InflictToughnessDown,
+	DrawOneCardThenBottomOneCard,
 	// -------- Modifier functions -------- //
 	// We can use modifier functions to store values,
 	// so that we can create mods that stack or vary over time.
@@ -204,10 +207,13 @@ UENUM(BlueprintType)
 enum class EPlayerControlModes : uint8
 {
 	None,
+	// Out-of-battle
 	LevelExploration,
+	DeckEditor,
+	// In battle
 	Battle,
 	TargetSelectionSingleEntity,
-	DeckEditor
+	BottomOneCardInHand,
 };
 
 

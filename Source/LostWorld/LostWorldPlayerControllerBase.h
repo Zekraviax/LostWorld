@@ -96,5 +96,5 @@ public:
 	void AddDevTestMenuToViewport();
 	void AddEquipmentToViewport();
 	void AddPauseMenuToViewport();
-	void AddPlayerPromptToViewport(const EPromptType InPromptType, FCard InCard, int IndexInHand);
+	void AddPlayerPromptToViewport(const EPromptType InPromptType, const FCard& InCard, int IndexInHand);
 };

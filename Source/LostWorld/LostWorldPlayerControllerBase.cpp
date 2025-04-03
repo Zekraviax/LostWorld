@@ -58,6 +58,13 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 	// Ongoing To-Do: Remember to use UEnum::GetDisplayValueAsText().
 	ALostWorldGameModeBase::DualLog("InControlMode: " +
 		UEnum::GetDisplayValueAsText(InControlMode).ToString(), 3);
+
+	// Handle each control mode.
+	if (InControlMode == EPlayerControlModes::BottomOneCardInHand) {
+		// Prompt the player to pick a card.
+		BattleHudWidget->CardTargetText->SetText(
+			FText::FromString("Select 1 card to put on the bottom of your Draw Pile"));
+	}
 }
 
 
@@ -185,7 +192,7 @@ void ALostWorldPlayerControllerBase::AddPauseMenuToViewport()
 }
 
 
-void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(const EPromptType InPromptType, FCard InCard, int IndexInHand)
+void ALostWorldPlayerControllerBase::AddPlayerPromptToViewport(const EPromptType InPromptType, const FCard& InCard, const int IndexInHand)
 {
 	// We won't close all widgets first. Instead we will just overlay this one on top.
 	if (PlayerPromptWidgetBlueprintClass && !PlayerPromptWidget) {

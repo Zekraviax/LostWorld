@@ -137,6 +137,27 @@ bool AActorEntityBase::ShuffleDiscardPileIntoDrawPile()
 }
 
 
+bool AActorEntityBase::BottomCard(FCard InCard)
+{
+	bool FoundCard = false;
+	for (auto& Card : EntityData.Hand) {
+		if (Card == InCard) {
+			EntityData.DrawPile.Add(InCard);
+			EntityData.Hand.RemoveSingle(InCard);
+			
+			FoundCard = true;
+			break;
+		}
+	}
+
+	if (!FoundCard) {
+		ALostWorldGameModeBase::DualLog("Warning! BottomCard function failed to find card in hand!", 2);
+	}
+	
+	return IInterfaceBattle::BottomCard(InCard);
+}
+
+
 bool AActorEntityBase::TakeDamage(float Damage)
 {
 	// First, any barriers up will absorb damage.

@@ -30,6 +30,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UScrollBox* CardsInHandScrollBox;
 
+	// To-Do: Change the name of this variable since we're using it for more than just card targeting.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UTextBlock* CardTargetText;
 

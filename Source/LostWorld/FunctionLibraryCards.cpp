@@ -2,6 +2,7 @@
 
 
 #include "ActorEntityEnemy.h"
+#include "ActorEntityPlayer.h"
 #include "InterfaceBattle.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBattle.h"
@@ -12,6 +13,7 @@ void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction)
 {
 	switch (InFunction)
 	{
+	// -------- Specific to one card -------- //
 	case (ECardFunctions::TestFunctionOne):
 		TestCardOne();
 		break;
@@ -45,23 +47,30 @@ void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction)
 	case (ECardFunctions::EnergyAllAround):
 		EnergyAllAround();
 		break;
+	case (ECardFunctions::CallForFriends):
+		CallForFriends();
+		break;
 	case (ECardFunctions::InfectedBite):
 		InfectedBite();
 		break;
-	case (ECardFunctions::InflictToughnessDown):
-		ApplyToughnessDown();
-		break;
 	case (ECardFunctions::Vomit):
 		Vomit();
-		break;
-	case ECardFunctions::CasterDrawsOneCard:
-		DrawOneCard();
 		break;
 	case ECardFunctions::HammerBlow:
 		HammerBlow();
 		break;
 	case ECardFunctions::Demi:
 		Demi();
+		break;
+	// -------- Generic functions -------- //
+	case ECardFunctions::DealDamageToOneTargets:
+		GenericDealDamageToOneTarget();
+		break;
+	case ECardFunctions::CasterDrawsOneCard:
+		DrawOneCard();
+		break;
+	case (ECardFunctions::InflictToughnessDown):
+		ApplyToughnessDown();
 		break;
 	default:
 		FString ErrorMessage = "Error! Function " + UEnum::GetDisplayValueAsText(InFunction).ToString() +
@@ -152,6 +161,7 @@ void AFunctionLibraryCards::TestCardOne() const
 }
 
 
+// -------- Specific to one card -------- //
 void AFunctionLibraryCards::TestCardTwo() 
 {
 	for (AActorEntityBase* Enemy : Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].SelectedTargets) {
@@ -357,6 +367,12 @@ void AFunctionLibraryCards::Demi() const
 }
 
 
+// -------- Generic functions -------- //
+void AFunctionLibraryCards::CreateEphemeralTrainOfThought()
+{
+}
+
+
 void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
@@ -377,4 +393,19 @@ void AFunctionLibraryCards::ApplyToughnessDown() const
 
 	// Tell the defender to re-calculate their stats.
 	Cast<IInterfaceEntity>(GetDefender())->CalculateTotalStats();
+}
+
+
+void AFunctionLibraryCards::DrawOneCardThenBottomOneCard()
+{
+	// Draw card first.
+	Cast<IInterfaceBattle>(GetDefender())->DrawCard();
+
+	// The player needs to be prompted to discard a card,
+	// And their control mode needs to be changed.
+	if (Cast<AActorEntityPlayer>(GetDefender())) {
+		
+	} else {
+		ALostWorldGameModeBase::DualLog("Enemy behaviour not implemented: Choose a card and put it on the bottom of your draw pile.", 2);
+	}
 }

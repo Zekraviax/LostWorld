@@ -1141,7 +1141,7 @@ Currently, the only exception is when one card creates multiple stack entries at
 
 
 
-"I know a guy"
+"I know a guy."
 Earth Shout
 2 Charges.
 Guaranteed to summon an ally of the same entity type.
@@ -1155,13 +1155,116 @@ Additional Cost: Sacrifice HP in increments of 3 up to a max of 15.
 For every 3 HP sacrificed this way, draw 1 card and restore 2 MP.
 
 
+
 Moment's Respite
 Light Spell
 All entities cannot play damaging cards until the end of your next turn.
 When this card is played, all copies of it for each entity go on a 2 turn cooldown.
+(A damaging card is a card
 
 
 
+Twin Snakes
+Trait
+The first 2 damaging cards you play each turn have 1/2 bonus Total Power. Other damaging cards you play have -2 Base Power.
 
 
 
+Desperate Healing
+Trait
+Once per turn this entity can create a random healing card with Ephemeral.
+(A healing card is any card with a Base Healing value greater than zero.)
+
+
+
+Dark Iron Armour
+Equipment Set
+For each piece equipped:
+* The cost of your Spells is increased by 1/5th of their Base Cost, rounded to the nearest whole number.
+* Your Techniques' Base Power is increased by 1/5, rounded to the nearest whole number.
+Set Bonus: Whenever an enemy targets you with a Spell, their Current MP is reduced by 1/5 of their Maximum MP, rounded to the nearest whole number. This effect can reduce their Current MP below zero.
+
+
+
+?
+Boss Battle
+This boss starts with all Defensive Elemental Affinities at 190 and all Status Resistances at 95. Thus they only take 1/10th damage from all attacks and only suffer a 5% chance of receiving Negative Status Ailments.
+
+The player must bring an Ally or Summon with a special card that can *permanently* reduce their Defensive Affinities or Status Resistances.
+
+As their HP, Defensive Affinities, and Status Resistances fall, they become more unhinged. They will gain access to more and more powerful cards, but will choose their cards and their targets more randomly.
+
+Gaining a wider variety of cards makes them more and more unpredictable as the battle goes on.
+
+
+
+Death Lust
+Card Upgrade
+Increases the damage dealt by a large amount, but also increases self-damage/recoil by a small amount.
+(Cann only be applied to cards that do recoil damage.)
+
+
+
+Bloodlust
+Card Upgrade
+Increases the number of times the card attacks the target(s).
+(Can only be applied to cards that already attack multiple times, including cards that attack a random number of times.)
+
+
+
+Great Sacrifice
+Light Spell
+Additional Cost: You lose 1 Maximum HP.
+Heal any target to full HP.
+
+
+
+Awakening Counter
+Trait
+Launch a Strong Counter-Attack against any Enemy that reduces your Current HP below 1/2 of your Maximum HP.
+
+
+
+Aster
+Non-Player Character
+A mage that specializes in Cosmic cards.
+
+Their story follows their struggle with expectations placed on them their whole life, going as far back as their parents finding out their mother was pregnant.
+
+Aster comes from a long, long line of Mages that specialize in Cosmic magic. They are expected to follow in their parents' and ancestors' footsteps; studying and practicing this one specific type of magic for their whole life.
+
+Fun fact: According to Wikipedia, the word Aster comes from the Ancient Greek word ἀστήρ (astḗr), meaning 'star'.
+
+
+
+Evade Tank
+High Cost Air Spell
+End your turn.
+Until your next turn, you have a 4/5 chance to dodge any damage or negative effects that would be applied to you.
+
+
+
+Soul Strike
+Moderate Cost Divine Technique
+Attacks the targets' HP and MP.
+(HP attacks and MP attacks use different damage formulae.)
+
+
+
+Stinger Thrust
+Low Cost Light Technique
+Deal damage to one target and gain 1 stack of Evade.
+
+
+
+Evade
+Positive Status Effect
+Version 1: Ignore the next card that would affect this character, then lose 1 stack of Evade.
+(Affect means, but is not limited to, any of the following things: Dealing damage, applying status effects, healing)
+Version 2: Ignore the next Card that would deal damage to this character, then lose 1 stack of Evade.
+
+
+
+Gorillamorphosis
+Moderate Cost Earth Spell
+The user transforms into a rune-scarred gorilla. It's attacks gain a flat +X Total Power bonus that cannot be dispelled for a long as the user is metamorphosed.

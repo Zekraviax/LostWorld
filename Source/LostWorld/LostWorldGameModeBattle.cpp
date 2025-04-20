@@ -109,6 +109,7 @@ void ALostWorldGameModeBattle::TransitionToBattle(const FEncounter& EnemyEncount
 
 	// Then, zoom the camera out until the whole room is visible.
 	Camera->SetOrthoWidth(Camera->OrthoWidth + 248);
+
 	
 	// Once everything is done, begin Turn Zero.
 	PreBattleTurnZero(EnemyEncounter);
@@ -516,6 +517,24 @@ void ALostWorldGameModeBattle::CreateStackEntry(int CardIndexInHandArray)
 			
 			CardToCast.TotalCost--;
 		}
+	} else if (CardFunctions.Num() > 1) {
+		for (auto& Function : CardFunctions) {
+			TempStackEntry.Function = Function;
+			TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(Function);
+			TempStackEntry.Controller = TurnQueue[0];
+			TempStackEntry.SelectedTargets.Empty();
+			TempStackEntry.IndexInHandArray = CardIndexInHandArray;
+			TempStackEntry.Card = CardToCast;
+
+			TheStack.Add(TempStackEntry);
+
+			// Only the last stack entry should continue stack execution beyond getting targets.
+			if (CardFunctions.Last() == Function) {
+				GetTargetsForStackEntry(TheStack.Num() - 1, true);
+			} else {
+				GetTargetsForStackEntry(TheStack.Num() - 1, false);
+			}
+		}
 	} else {
 		TempStackEntry.Function = CardFunctions[0];
 		TempStackEntry.TargetingMode = *CardToCast.FunctionsAndTargets.Find(CardFunctions[0]);
@@ -597,9 +616,7 @@ If one doesn't, we might be waiting for the player to select a target.
 
 This function will also handle manual target selection.
 Whenever a player or NPC manually selects a target, they can pass it to this function alongside the
-stack entry index that the targets are for.
-
-// To-Do: Give this function a more well-thought-out name?*/
+stack entry index that the targets are for.*/
 void ALostWorldGameModeBattle::FinishedGettingTargetsForCard(const int Index, const TArray<AActorEntityBase*>& Targets)
 {
 	if (Index != -1 && Targets.Num() > 0 && TheStack[Index].SelectedTargets.Num() < 1) {
@@ -666,8 +683,12 @@ void ALostWorldGameModeBattle::ExecuteFirstStackEntry()
 	// Then, if the currently acting entity is a player, give them full control again.
 	// If they're a NPC, call a function that resumes their AI execution.
 	if (TheStack.Num() > 0) {
-		GetWorld()->GetTimerManager().SetTimer(StackExecutionTimerHandle, this,
-			&ALostWorldGameModeBattle::ExecuteFirstStackEntry,1.5f, false);
+		if (TheStack[0].Function == ECardFunctions::WaitForPreviousFunctionPlayerInput) {
+			DualLog("Awaiting player input.", 2);
+		} else {
+			GetWorld()->GetTimerManager().SetTimer(StackExecutionTimerHandle, this,
+				&ALostWorldGameModeBattle::ExecuteFirstStackEntry,1.5f, false);
+		}
 	} else {
 		// To-Do: Make an AI that can cast multiple cards in a turn.
 		if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
@@ -692,6 +713,15 @@ void ALostWorldGameModeBattle::EndOfTurn()
 {
 	if (Cast<AActorEntityEnemy>(TurnQueue[0])) {
 		Cast<AActorEntityEnemy>(TurnQueue[0])->EndTurn();
+	}
+
+	// To-Do: Search for all Temporary cards and exile them.
+	for (AActorEntityBase* Entity : EntitiesInBattleArray) {
+		for (FCard CardInHand : Entity->EntityData.Hand) {
+			if (CardInHand.Keywords.Contains(ECardKeywords::Ephemeral)) {
+				Cast<IInterfaceBattle>(Entity)->ExileCardFromZone("Hand", CardInHand);
+			}
+		}
 	}
 	
 	TurnQueue.RemoveAt(0);

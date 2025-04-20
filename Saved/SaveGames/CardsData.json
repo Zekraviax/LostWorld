@@ -686,6 +686,7 @@
 		"FunctionsAndTargets":
 		{
 			"DrawOneCardThenBottomOneCard": "Self",
+			"WaitForPreviousFunctionPlayerInput": "Self",
 			"CreateEphemeralTrainOfThought": "Self"
 		},
 		"ModifiersWithTriggers":

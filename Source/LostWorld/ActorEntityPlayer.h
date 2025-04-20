@@ -5,8 +5,10 @@
 #include "Camera/CameraComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "InterfaceBattle.h"
 #include "ActorEntityPlayer.generated.h"
+
+
+class ALostWorldPlayerControllerBase;
 
 
 UCLASS()
@@ -31,6 +33,9 @@ public:
 // -------------------------------- Battle Interface functions
 	virtual bool DrawCard() override;
 	virtual bool DiscardCard(int IndexInHand) override;
+	virtual bool BottomCard(FCard InCard) override;
+
+	virtual bool ExileCardFromZone(FString InZoneName, FCard InCard) override;
 
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;
@@ -40,5 +45,6 @@ public:
 	virtual bool StartTurn() override;
 	virtual bool EndTurn() override;
 
-// -------------------------------- Battle Interface functions
+// -------------------------------- Other
+	ALostWorldPlayerControllerBase* ReturnThisPlayersController();
 };

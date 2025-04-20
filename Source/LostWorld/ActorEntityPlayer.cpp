@@ -62,6 +62,38 @@ bool AActorEntityPlayer::DiscardCard(int IndexInHand)
 }
 
 
+bool AActorEntityPlayer::BottomCard(FCard InCard)
+{
+	Super::BottomCard(InCard);
+
+	// Refresh all card-in-hand widgets.
+	Cast<ALostWorldPlayerControllerBattle>(ReturnThisPlayersController())->RefreshAllCardInHandWidgets();
+
+	// Clear 'Bottom Card' prompt.
+	Cast<ALostWorldPlayerControllerBattle>(ReturnThisPlayersController())->BattleHudWidget->CardTargetText->
+		SetVisibility(ESlateVisibility::Collapsed);
+	Cast<ALostWorldPlayerControllerBattle>(ReturnThisPlayersController())->BattleHudWidget->CardTargetText->SetText(
+		FText::FromString(""));
+
+	Cast<ALostWorldPlayerControllerBattle>(ReturnThisPlayersController())->SetControlMode(EPlayerControlModes::Battle);
+	
+	return true;
+}
+
+
+bool AActorEntityPlayer::ExileCardFromZone(FString InZoneName, FCard InCard)
+{
+	Super::ExileCardFromZone(InZoneName, InCard);
+
+	// Refresh all card-in-hand widgets.
+	Cast<ALostWorldPlayerControllerBattle>(ReturnThisPlayersController())->RefreshAllCardInHandWidgets();
+
+	ALostWorldGameModeBase::DualLog("Your ephemeral " + InCard.DisplayName + " disappeared.", 2);
+
+	return true;
+}
+
+
 bool AActorEntityPlayer::TakeDamage(float Damage)
 {
 	Super::TakeDamage(Damage);
@@ -122,5 +154,22 @@ bool AActorEntityPlayer::EndTurn()
 	Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->EndOfTurn();
 	
 	return Super::EndTurn();
+}
+
+
+ALostWorldPlayerControllerBase* AActorEntityPlayer::ReturnThisPlayersController()
+{
+	TArray<AActor*> FoundControllers;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ALostWorldPlayerControllerBase::StaticClass(), FoundControllers);
+
+	for (AActor* Actor : FoundControllers) {
+		if (Cast<ALostWorldPlayerControllerBase>(Actor)) {
+			if (Cast<ALostWorldPlayerControllerBase>(Actor)->ControlledPlayerEntity == this) {
+				return Cast<ALostWorldPlayerControllerBase>(Actor);
+			}
+		}
+	}
+
+	return nullptr;
 }
 

@@ -3,6 +3,7 @@
 
 #include "ActorEntityPlayer.h"
 #include "ActorGridTile.h"
+#include "WidgetHudBattle.h"
 
 
 void ALostWorldPlayerControllerBattle::SetupInputComponent()
@@ -110,5 +111,16 @@ void ALostWorldPlayerControllerBattle::PlayerMoveWest()
 				}
 			}
 		}
+	}
+}
+
+
+void ALostWorldPlayerControllerBattle::RefreshAllCardInHandWidgets()
+{
+	BattleHudWidget->CardsInHandScrollBox->ClearChildren();
+
+	for (FCard CardInHand : ControlledPlayerEntity->EntityData.Hand) {
+		// ReSharper disable once CppExpressionWithoutSideEffects
+		BattleHudWidget->CreateCardWidgetInHand(CardInHand);
 	}
 }

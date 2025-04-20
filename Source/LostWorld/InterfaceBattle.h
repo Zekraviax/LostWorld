@@ -29,6 +29,9 @@ public:
 	virtual bool PayCostsForCard(int IndexInHand);
 	virtual bool ShuffleDiscardPileIntoDrawPile();
 	virtual bool BottomCard(FCard InCard);
+	virtual bool DrawCreatedCard(FCard InCard);
+	
+	virtual bool ExileCardFromZone(FString InZoneName, FCard InCard);
 
 	virtual bool TakeDamage(float Damage);
 	virtual bool EntityDefeated();

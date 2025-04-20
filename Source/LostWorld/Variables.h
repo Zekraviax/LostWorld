@@ -123,17 +123,18 @@ enum class ECardModifierTimingTriggers : uint8
 };
 
 
-// Keywords are special behaviours.
+/** Keywords are special behaviours.
 
-// Keywords can be inherent to a card, or applied to cards.
+Keywords can be inherent to a card, or applied to cards.
 
-// Keywords can be applied to any type of card; spells, equipment, etc,
-// and might behave differently depending on the card it's attached to.
+Keywords can be applied to any type of card; spells, equipment, etc,
+and might behave differently depending on the card it's attached to.*/
 UENUM(BlueprintType)
 enum class ECardKeywords : uint8
 {
 	// This permanently removes a card from the players' collection/inventory.
 	// Spells: Permanent removal when the player plays it.
+	// Equipment: ?
 	//Destroy,
 
 	// Spells: The player can only have one copy in their deck.
@@ -148,6 +149,10 @@ enum class ECardKeywords : uint8
 	// Spells: Exiled to your void at the end of every turn, if it isn't already in the void.
 	// Equipment: N/A
 	Ephemeral,
+	// Spells: If this card is in your opening hand at the start of battle, it is automagically played for free.
+	// Equipment: if this item is equipped at the start of a battle and has an active or triggered effect, the effect
+	// is automagically activated at no cost.
+	Auto,
 };
 
 
@@ -199,6 +204,9 @@ enum class ECardFunctions : uint8
 	CastCount, // How many times this card has been played in a single battle.
 	// -------- Other -------- //
 	AddTotalCostStackEntries, // Used for X cost cards. X is the amount of MP spent to cast the card.
+	// When this comes -after- another function, wait for that function to finish executing
+	// before executing the next function. Currently, this one ignores targeting because it's player-exclusive.
+	WaitForPreviousFunctionPlayerInput,	
 };
 
 
@@ -376,6 +384,7 @@ struct LOSTWORLD_API FIntVector2D
 - Translates enums into proper english.
 - Provides descriptions for terminology.
 - Provides alternate words for terminology.
+- Display icons for any terminology that has them (e.g. the Eight Elements.)
 */
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FTerminology : public FTableRowBase
@@ -467,10 +476,10 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	int BaseHealing;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
-	TArray<FString> Keywords;
+	TArray<ECardKeywords> Keywords;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
-	FString Description; // Describes the cards functions to the player.
+	FString Description; // To-Do: Create a Style Guide for writing card description.
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
 	FString FlavourText;

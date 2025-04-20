@@ -72,6 +72,9 @@ public:
 	virtual bool PayCostsForCard(int IndexInHand) override;
 	virtual bool ShuffleDiscardPileIntoDrawPile() override;
 	virtual bool BottomCard(FCard InCard) override;
+	virtual bool DrawCreatedCard(FCard InCard) override;
+	
+	virtual bool ExileCardFromZone(FString InZoneName, FCard InCard) override;
 	
 	virtual bool TakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;

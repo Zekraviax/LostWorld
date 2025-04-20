@@ -34,6 +34,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	EPlayerControlModes ControlMode = EPlayerControlModes::LevelExploration;
 
+// -------------------------------- Widgets
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UWidgetHudLevelExploration> LevelHudWidgetBlueprintClass;
 
@@ -78,8 +79,6 @@ public:
 	
 	
 // ---------------------------------------- Functions ---------------------------------------- //
-
-// -------------------------------- Player input
 protected:
 	virtual void SetupInputComponent() override;
 

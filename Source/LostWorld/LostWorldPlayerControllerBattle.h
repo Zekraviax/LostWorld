@@ -17,6 +17,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int StackEntryIndexForManualTargetSelection = -1;	
 
+	
 // ---------------------------------------- Functions ---------------------------------------- //
 
 // -------------------------------- Player input
@@ -29,4 +30,7 @@ public:
 	void PlayerMoveSouth();
 	void PlayerMoveEast();
 	void PlayerMoveWest();
+
+// -------------------------------- Widgets
+	void RefreshAllCardInHandWidgets();
 };

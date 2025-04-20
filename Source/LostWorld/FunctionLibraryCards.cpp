@@ -6,6 +6,7 @@
 #include "InterfaceBattle.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBattle.h"
+#include "LostWorldPlayerControllerBase.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -62,6 +63,9 @@ void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction)
 	case ECardFunctions::Demi:
 		Demi();
 		break;
+	case ECardFunctions::CreateEphemeralTrainOfThought:
+		CreateEphemeralTrainOfThought();
+		break;
 	// -------- Generic functions -------- //
 	case ECardFunctions::DealDamageToOneTargets:
 		GenericDealDamageToOneTarget();
@@ -71,6 +75,9 @@ void AFunctionLibraryCards::ExecuteFunction(const ECardFunctions InFunction)
 		break;
 	case (ECardFunctions::InflictToughnessDown):
 		ApplyToughnessDown();
+		break;
+	case (ECardFunctions::DrawOneCardThenBottomOneCard):
+		DrawOneCardThenBottomOneCard();
 		break;
 	default:
 		FString ErrorMessage = "Error! Function " + UEnum::GetDisplayValueAsText(InFunction).ToString() +
@@ -367,12 +374,19 @@ void AFunctionLibraryCards::Demi() const
 }
 
 
-// -------- Generic functions -------- //
-void AFunctionLibraryCards::CreateEphemeralTrainOfThought()
+void AFunctionLibraryCards::CreateEphemeralTrainOfThought() const
 {
+	FCard NewCard = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->
+		GetCardFromJson("Train Of Thought");
+	
+	NewCard.Keywords.Add(ECardKeywords::Ephemeral);
+
+	Cast<IInterfaceBattle>(GetDefender())->DrawCreatedCard(NewCard);
 }
 
 
+
+// -------- Generic functions -------- //
 void AFunctionLibraryCards::GenericDealDamageToOneTarget() const
 {
 	Cast<IInterfaceBattle>(GetDefender())->TakeDamage(StandardDamageFormula(GetAttacker(), GetDefender(),
@@ -398,13 +412,17 @@ void AFunctionLibraryCards::ApplyToughnessDown() const
 
 void AFunctionLibraryCards::DrawOneCardThenBottomOneCard()
 {
+	// It is mandatory for the game to wait for whichever entity is acting to select a card to bottom.
+	// Therefore, once the entity has selected a card, they need to tell the GameMode to continue stack entry execution.
+	
 	// Draw card first.
 	Cast<IInterfaceBattle>(GetDefender())->DrawCard();
 
 	// The player needs to be prompted to discard a card,
 	// And their control mode needs to be changed.
 	if (Cast<AActorEntityPlayer>(GetDefender())) {
-		
+		Cast<ALostWorldPlayerControllerBase>(Cast<AActorEntityPlayer>(GetDefender())->
+			ReturnThisPlayersController())->SetControlMode(EPlayerControlModes::BottomOneCardInHand);
 	} else {
 		ALostWorldGameModeBase::DualLog("Enemy behaviour not implemented: Choose a card and put it on the bottom of your draw pile.", 2);
 	}

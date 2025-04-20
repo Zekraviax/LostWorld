@@ -60,6 +60,18 @@ bool IInterfaceBattle::BottomCard(FCard InCard)
 }
 
 
+bool IInterfaceBattle::DrawCreatedCard(FCard InCard)
+{
+	return true;
+}
+
+
+bool IInterfaceBattle::ExileCardFromZone(FString InZoneName, FCard InCard)
+{
+	return true;
+}
+
+
 bool IInterfaceBattle::TakeDamage(float Damage)
 {
 	return true;

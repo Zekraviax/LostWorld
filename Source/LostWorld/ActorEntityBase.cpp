@@ -152,9 +152,40 @@ bool AActorEntityBase::BottomCard(FCard InCard)
 
 	if (!FoundCard) {
 		ALostWorldGameModeBase::DualLog("Warning! BottomCard function failed to find card in hand!", 2);
+	} else {
+		// Continue stack execution.
+		if (Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack[0].Function ==
+			ECardFunctions::WaitForPreviousFunctionPlayerInput) {
+			ALostWorldGameModeBase::DualLog("Continue Stack execution.", 2);
+			Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->TheStack.RemoveAt(0);
+		}
+		
+		Cast<ALostWorldGameModeBattle>(GetWorld()->GetAuthGameMode())->ExecuteFirstStackEntry();
 	}
 	
 	return IInterfaceBattle::BottomCard(InCard);
+}
+
+
+/** This function should trigger all 'Draw' triggers just like the normal Draw function.
+ * 
+@param InCard 
+@return The card that was created.
+*/
+bool AActorEntityBase::DrawCreatedCard(FCard InCard)
+{
+	EntityData.Hand.Add(InCard);
+	
+	return IInterfaceBattle::DrawCreatedCard(InCard);
+}
+
+
+bool AActorEntityBase::ExileCardFromZone(FString InZoneName, FCard InCard)
+{
+	EntityData.Hand.RemoveSingle(InCard);
+	EntityData.Exile.Add(InCard);
+	
+	return IInterfaceBattle::ExileCardFromZone(InZoneName, InCard);
 }
 
 

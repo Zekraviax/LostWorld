@@ -62,6 +62,7 @@ void ALostWorldPlayerControllerBase::SetControlMode(EPlayerControlModes InContro
 	// Handle each control mode.
 	if (InControlMode == EPlayerControlModes::BottomOneCardInHand) {
 		// Prompt the player to pick a card.
+		BattleHudWidget->CardTargetText->SetVisibility(ESlateVisibility::HitTestInvisible);
 		BattleHudWidget->CardTargetText->SetText(
 			FText::FromString("Select 1 card to put on the bottom of your Draw Pile"));
 	}

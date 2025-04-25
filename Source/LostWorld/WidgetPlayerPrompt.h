@@ -20,8 +20,7 @@ enum class EPromptType : uint8
 
 /** A jack-of-all-trades widget that does the following:
 Allows the player to decide how much mana to spend on X cost spells.
-Warns the player when they are about to leave a menu without saving their changes.
-*/
+Warns the player when they are about to leave a menu without saving their changes.*/
 UCLASS()
 class LOSTWORLD_API UWidgetPlayerPrompt : public UUserWidget
 {

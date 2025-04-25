@@ -1,6 +1,7 @@
 #include "SaveGameDeveloperSettings.h"
 
 
+#include "LostWorldGameInstanceBase.h"
 #include "Runtime/JsonUtilities/Public/JsonObjectConverter.h"
 
 
@@ -70,6 +71,24 @@ void USaveGameDeveloperSettings::LoadDeveloperSettingsFromJson()
 		UE_LOG(LogTemp, Warning, TEXT("Error: Failed to convert DeveloperSettings json to UStruct!"));
 	}
 
-	// Apply player data
+	// Apply player data.
 	DeveloperSettingsAsStruct = PlayerDataAsStruct;
+}
+
+
+void USaveGameDeveloperSettings::ValidateJson(FString InJsonAsString, FString InDataTableFileName, const FString& InDataTableRowName)
+{
+	// First, get the json file.
+	//FString CardJsonAsString = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->LoadFileFromJson("CardsData");
+	FCard Card = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->GetCardFromJson(InDataTableRowName);
+
+	// Second, get the data table row.
+	FString ContextString;
+	TArray<FName> RowNames = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CardsDataTable->GetRowNames();
+	FCard* Row = Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->CardsDataTable->FindRow<FCard>(
+		FName(*InDataTableRowName), ContextString);
+
+	if (Row != &Card) {
+		
+	}
 }

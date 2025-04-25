@@ -47,6 +47,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int LastSavedPlayerSaveObject;
+
+	// Ongoing To-Do: These two UProperties can be mixed-and-matched.
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UDataTable* CardsDataTable;
 	
 
 // ---------------------------------------- Functions ---------------------------------------- //

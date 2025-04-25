@@ -27,6 +27,12 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString OverrideEncounters; // Leave this blank in order to 'turn the setting off'.
 
+	// If true, then run a 'Json Validation' function whenever a Json file is loaded.
+	// If the Json file does not match the corresponding DataTable, then this function should fix that.
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool JsonValidation;
+
 	FDeveloperSettingsAsStruct()
 	{
 		EnableDeveloperSettingsOverride = true;
@@ -34,6 +40,7 @@ struct LOSTWORLD_API FDeveloperSettingsAsStruct : public FTableRowBase
 		GiveAllEntitiesTestDecks = false;
 		LogLevels = { 0, 1, 2 };
 		OverrideEncounters = "";
+		JsonValidation = false;
 	}
 };
 
@@ -55,4 +62,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void LoadDeveloperSettingsFromJson();
+
+	/** To-Do: Complete this function and test with every DataTable.
+
+	UE DataTables automatically handle UStruct formatting. When DataTables are exported into Json files,
+	they also handle the formatting for the file.
+
+	So this function should compare a Json item with the relevant DataTable row. If the Json does not
+	match the DataTable row, the Json should be overriden with the DataTable row.*/
+	void ValidateJson(FString InJsonAsString, FString InDataTableFileName, const FString& InDataTableRowName);
 };

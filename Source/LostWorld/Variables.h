@@ -384,8 +384,7 @@ struct LOSTWORLD_API FIntVector2D
 - Translates enums into proper english.
 - Provides descriptions for terminology.
 - Provides alternate words for terminology.
-- Display icons for any terminology that has them (e.g. the Eight Elements.)
-*/
+- Display icons for any terminology that has them (e.g. the Eight Elements.)*/
 USTRUCT(BlueprintType)
 struct LOSTWORLD_API FTerminology : public FTableRowBase
 {
@@ -475,9 +474,6 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
 	int BaseHealing;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Base)
-	TArray<ECardKeywords> Keywords;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Text)
 	FString Description; // To-Do: Create a Style Guide for writing card description.
 
@@ -490,6 +486,24 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
 	TMap<ECardModifiers, ECardModifierTimingTriggers> ModifiersWithTriggers;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
+	TArray<ECardKeywords> Keywords;
+
+	/** Action Speed modifies the user's Readiness. The higher the card's Action Speed, the higher the users' Readiness.
+	 
+	 If a character plays multiple cards with different Action Speeds, the cards' Action Speeds will all be added together,
+	 and the sum total will be applied to the character when they end their turn.
+	 
+	 An Action Speed of 0 is the default, and the neutral value. 0 means that the user's Readiness will not be impacted at all.
+	 
+	 For every integer value, the characters' Readiness is multiplied by 0.1.
+	 E.g:
+	 A total Action Value of 3 equals a Readiness multiplier of 1.3x.
+	 A total Action Value of -4 equals a Readiness multiplier of 0.6x.
+	 This means a characters' Action Value cannot go below 0.1x, or -9.*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Functions)
+	int ActionSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CalculatedVariables)
 	int TotalCost;
@@ -511,6 +525,7 @@ struct LOSTWORLD_API FCard : public FTableRowBase
 		Description = "This is a default description.";
 		FlavourText = "This is a default flavour text.";
 		FunctionsAndTargets.Add(ECardFunctions::TestFunctionOne, ECardTargets::OneEnemy);
+		ActionSpeed = 0;
 		TotalCost = 1;
 		TotalDamage = 0;
 		TotalHealing = 0;
@@ -601,7 +616,7 @@ struct LOSTWORLD_API FEntityBaseStats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Willpower;
 
-	// Determines the rate at which their readiness increases.
+	// Determines the rate at which their Readiness increases.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Agility;
 	
@@ -610,6 +625,11 @@ struct LOSTWORLD_API FEntityBaseStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int ManaRegeneration;
+
+	// If a character has an EntityBaseStat ActionSpeed that is not zero, then that value will always be applied
+	// to their TotalActionSpeed at the start of their turns.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int TotalActionSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Readiness;
@@ -629,6 +649,7 @@ struct LOSTWORLD_API FEntityBaseStats
 		Agility = 1;
 		HealthRegeneration = 1;
 		ManaRegeneration = 1;
+		TotalActionSpeed = 0;
 		Readiness = 0;
 	}
 };

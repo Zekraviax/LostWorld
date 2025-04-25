@@ -1295,8 +1295,7 @@ The width should be a few tiles. (4-5)
 The stairs should always be spawned on the opposite side of the player.
 
 Should occasionally have branching paths, with another stairs tile. But these paths should always lead to
-something interesting in the next room.
-*/
+something interesting in the next room.*/
 void ALostWorldGameModeBattle::GenerateLevelLayoutLongRoad()
 {
 }

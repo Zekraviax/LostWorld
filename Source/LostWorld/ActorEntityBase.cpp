@@ -168,10 +168,8 @@ bool AActorEntityBase::BottomCard(FCard InCard)
 
 
 /** This function should trigger all 'Draw' triggers just like the normal Draw function.
- * 
 @param InCard 
-@return The card that was created.
-*/
+@return The card that was created.*/
 bool AActorEntityBase::DrawCreatedCard(FCard InCard)
 {
 	EntityData.Hand.Add(InCard);

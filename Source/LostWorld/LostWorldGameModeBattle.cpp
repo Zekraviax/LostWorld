@@ -733,6 +733,12 @@ void ALostWorldGameModeBattle::EndOfTurn()
 // -------------------------------- Level Generation
 void ALostWorldGameModeBattle::GenerateLevelAndSpawnEverything()
 {
+	// To-Do: Move this function call to a better place.
+	// We're calling this function here because, as of writing this comment, it's the earliest we can access the GameInstance.
+	if (Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->DeveloperSettingsSaveGame->DeveloperSettingsAsStruct.ValidateAllJson) {
+		Cast<ULostWorldGameInstanceBase>(GetWorld()->GetGameInstance())->DeveloperSettingsSaveGame->ValidateAllCardsJson();
+	}
+	
 	// If the Level data doesn't exist, create it (with default values.)
 	if (!LevelDataSaveGameReference) {
 		LevelDataSaveGameReference = Cast<USaveGameLevelData>(UGameplayStatics::CreateSaveGameObject(USaveGameLevelData::StaticClass()));

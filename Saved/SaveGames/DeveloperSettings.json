@@ -1,7 +1,11 @@
-{
-	"EnableDeveloperSettingsOverride": true,
-	"PrintMessageOnGameStart": "Developer mode enabled.",
-	"GiveAllEntitiesTestDecks": false,
-	"LogLevels": [ 0, 1, 2 ],
-	"OverrideEncounters": "RabidRats"
-}
+[
+	{
+		"Name": "NewRow",
+		"EnableDeveloperSettingsOverride": true,
+		"PrintMessageOnGameStart": "Developer mode enabled. Begin testing JSON validation.",
+		"GiveAllEntitiesTestDecks": false,
+		"LogLevels": [ 0, 1, 2 ],
+		"OverrideEncounters": "",
+		"ValidateAllJson": true
+	}
+]

@@ -281,20 +281,20 @@ UENUM(BlueprintType)
 enum class EEquipSlots : uint8
 {
 	// Slots:
-	// Head								(Helmets, Hats)
-	// 5 Left-ear Earrings/Piercings	(Earrings, Piercings, Industrial Bars)
-	// 5 Right-ear Earrings/Piercings
-	// Neck								(Capes, Amulets, Chokers, Cloaks)
-	// Torso							(Shirts, Breastplates, Robes, Corsets)
-	// Left Hand						(Gloves)
+	// Head									(Helmets, Hats)
+	// Five Left-ear Earrings/Piercings		(Earrings, Piercings, Industrial Bars)
+	// Five Right-ear Earrings/Piercings
+	// Neck									(Capes, Amulets, Chokers, Cloaks)
+	// Torso								(Shirts, Breastplates, Robes, Corsets)
+	// Left Hand							(Gloves)
 	// Right Hand
-	// 5 Left Hand Fingers				(Rings)
-	// 5 Right Hand Fingers
-	// Waist							(Belts)
-	// Legs (Pant)						(Pants, Greaves)
-	// Left Shoe						(Shoes, Boots)
+	// Five Left Hand Fingers				(Rings)
+	// Five Right Hand Fingers
+	// Waist								(Belts)
+	// Legs (Pant)							(Pants, Greaves)
+	// Left Shoe							(Shoes, Boots)
 	// Right Shoe
-	// Left-hand Weapon					(Swords, Axes, Staves, Bows, Maces, Rods, Wands, etc.)
+	// Left-hand Weapon						(Swords, Axes, Staves, Bows, Maces, Rods, Wands, etc.)
 	// Right-hand Weapon
 	None						UMETA(DisplayName = "N/A"),
 	Head						UMETA(DisplayName = "Head"),

@@ -7,8 +7,6 @@
 
 class LOSTWORLD_API CustomJsonDeserializer
 {
-
-private:
 	TSharedPtr<FJsonValue> JsonValue;
 	
 public:

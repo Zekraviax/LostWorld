@@ -1,30 +1,7 @@
 [
 	{
 		"Name": "TestCardOne",
-		"DisplayName": "Test Card One",
-		"BaseCost": 1,
-		"CardTypes": [
-			"Spell"
-		],
-		"CardElements": [
-			"Fire"
-		],
-		"BaseDamage": 10,
-		"BaseHealing": 0,
-		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
-		"FlavourText": "This is a default flavour text.",
-		"FunctionsAndTargets":
-		{
-			"TestFunctionOne": "OneEnemy"
-		},
-		"ModifiersWithTriggers":
-		{
-		},
-		"Keywords": [],
-		"ActionSpeed": 0,
-		"TotalCost": 1,
-		"TotalDamage": 10,
-		"TotalHealing": 0
+		"DisplayName": "Test Card One"
 	},
 	{
 		"Name": "TestCardTwo",
@@ -774,6 +751,85 @@
 		},
 		"Keywords": [],
 		"ActionSpeed": -1,
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "StaunchDefence",
+		"DisplayName": "Staunch Defence",
+		"BaseCost": 15,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Earth"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Until your next turn, you intercept all single target enemy cards that would target allies. You take 1/2 damage from all attacks, but cannot evade attacks.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"Keywords": [],
+		"ActionSpeed": -3,
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "KillRush",
+		"DisplayName": "Kill Rush",
+		"BaseCost": 20,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Water"
+		],
+		"BaseDamage": 30,
+		"BaseHealing": 0,
+		"Description": "Deals high damage to one target. If a character is defeated with this card, Create a copy of this card and play it for free.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"Keywords": [],
+		"ActionSpeed": -1,
+		"TotalCost": 1,
+		"TotalDamage": 0,
+		"TotalHealing": 0
+	},
+	{
+		"Name": "CutTheDecks",
+		"DisplayName": "Cut The Decks",
+		"BaseCost": 30,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Divine"
+		],
+		"BaseDamage": 0,
+		"BaseHealing": 0,
+		"Description": "Each character shuffles their Hand, Discard and Draw Piles together, then exiles the top half of the Draw Pile (rounded up), then draws 5 cards.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
+		"Keywords": [],
+		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0

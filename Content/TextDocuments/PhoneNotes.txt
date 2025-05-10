@@ -1268,3 +1268,79 @@ Version 2: Ignore the next Card that would deal damage to this character, then l
 Gorillamorphosis
 Moderate Cost Earth Spell
 The user transforms into a rune-scarred gorilla. It's attacks gain a flat +X Total Power bonus that cannot be dispelled for a long as the user is metamorphosed.
+
+
+
+Iniquity
+Low Cost Arcane Technique
+Steal a Positive Status Effect from any one character.
+
+
+
+Mountain Blast
+Moderate Cost Air/Water Spell
+For each enemy, for each stack of Chilled they have, inflict 1 stack of one of the following status effects at random:
+* Sap
+* MP Drain
+* HP Drain
+* Readiness Down
+
+
+
+Demons
+Species
+Sentient creatures born of pure magical energy. They can normally only manifest as magical energy in the world. This means that they don't have true physical forms, and can't interact with anything non-magical. 
+
+When they do manifest, they usually take the form of a humanoid: Human head and neck, arms, torso. Their "torso" trails off downward into nothingness.
+
+Demons tend to avoid spellcasting whenever possible, since their magical power doubles as their life force. Instead they use intelligence and cunning to get what they want.
+
+Demons are all sentient and sapient; they have their own desires and hopes and dreams like any human. But most will aspire to gain a physical form at some point.
+
+Demon sightings are only somewhat uncommon, primarily due to a low population. Demon "birth" sightings are extremely rare, and very little documentation of such events exists.
+
+
+
+Mysterious Orb
+Equipment - Weapon
+Active Ability, Pay 1 MP: Create and Draw a random card, then increase the cost of this ability by 1. At the end of your turn, this ability's cost resets to 1.
+
+
+
+Thunderclap
+Air Spell
+Does massive damage to all enemies that are Stunned, and minor damage to enemies that aren't.
+
+
+
+Piroutte Kick
+Light Technique
+Deals damage to one target. Every time this card is played its Base Damage is increased until the end of the battle.
+
+
+Smash and Grab
+Fire Technique
+Deal damage to one target and attempt to Steal from them. If the target has any negative status conditions, the rate of Stealing success is increased. Different status effects increase the success chance by different rates.
+(Stuns equal a 100% success rate.)
+
+
+
+Stealing
+Gameplay Mechanic
+Each enemy has a list of items they can drop after battle. Stealing allows the player to attempt to gain these items multiple times.
+
+Each item in the game has its own base chance of being successfully stolen.
+
+When a player attempts to Steal, each item on the target's drop table rolls for success.
+
+
+
+Death Knight
+Trait
+Whenever this character takes damage, reduce the damage by half rounded-up, then split the damage between its HP and MP.
+
+
+
+Greater Agility
+Trait
+If this character dealt damage to an enemy during its last turn, it gains 1 stack of Evade at the start of its turn.

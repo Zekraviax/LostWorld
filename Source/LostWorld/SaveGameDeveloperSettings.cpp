@@ -108,9 +108,6 @@ void USaveGameDeveloperSettings::SaveJsonAsStringToFile(const FString& InFileNam
 	SavePath.Append(SaveGamesFolderPathAppend);
 	UE_LOG(LogTemp, Warning, TEXT("FilePaths: Developer Settings Data Folder: %s"), *SavePath);
 
-	//FString DeveloperSettingsAsJson;
-	//FJsonObjectConverter::UStructToJsonObjectString(DeveloperSettingsAsStruct, DeveloperSettingsAsJson, 0, 0);
-
 	// Before we save the json file, we need to check if the player's save data folder exists.
 	// If it doesn't, we make it first.
 	// The directory path should be 'SavePath + DeveloperSettings'.
@@ -167,9 +164,12 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 		if (JsonCardsArray[Index] == DataTableCardsArray[Index]) {
 			// To-Do: Make a viable != operator for FCards.
 		} else {
+			// In the FCards array, override the incorrect data with the correct DataTable row.
 			JsonCardsArray[Index] = DataTableCardsArray[Index];
+			
 			ALostWorldGameModeBase::DualLog("Card " + DataTableCardsArray[Index].DisplayName + " failed validation part 2.", 2);
 
+			// One time check to set a flag to overwrite the Json file.
 			if (!OverrideCardsJsonFile) {
 				OverrideCardsJsonFile = true;
 				ALostWorldGameModeBase::DualLog("CardsData.json requires overwriting.", 2);
@@ -178,27 +178,32 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 	}
 
 	// Validation part 3: Overwrite the json file if necessary.
+	// The FCards array should have been overriden with the correct data by this point.
 	if (OverrideCardsJsonFile) {
 		// Since this is only a developer tool, we're going to do minimal defensive coding here.
-		//IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
 		FString CardsJsonFullSavePath = FPaths::ProjectSavedDir() + "SaveGames/CardsData.json";
 		FString NewCardsJsonAsJson;
-		
+
+		// UStruct wrapper for an array of FCards.
 		FCardsArrayWrapper CardsArrayWrapper;
 		CardsArrayWrapper.Cards = DataTableCardsArray;
 
-		// To-Do: Create a UStruct Wrapper for the Cards array.
-		//FJsonObjectConverter::UStructToJsonObjectString(CardsArrayWrapper, NewCardsJsonAsJson, 0, 0);
-		//FFileHelper::SaveStringToFile(NewCardsJsonAsJson, *CardsJsonFullSavePath);
+		//FFileHelper::SaveStringToFile(JsonCardsArray, *CardsJsonFullSavePath);
 
-		//FString ObjectPathString =
-		FString OutJsonAsString;
 		CustomJsonParser* JsonSerializer = new CustomJsonParser();
-		JsonSerializer->SerializeTArrayWithRowNames(DataTableCardsArray.GetData(), FCard::StaticStruct(), DataTableCardsArray, OutJsonAsString);
-
-		//FCard* CardPointer = &DataTableCardsArray[0];
-		//JsonSerializer->InputAnyStruct(DataTableCardsArray);
+		//const UScriptStruct* CardScriptStruct = Cast<const UScriptStruct>(JsonCardsArray[0]);
+		//JsonSerializer->SerializeTArrayWithRowNames(DataTableCardsArray.GetData(), FCard::StaticStruct(), DataTableCardsArray, OutJsonAsString);
+		//JsonSerializer->CustomSerializeStruct(CardsArrayWrapper.Cards.GetData(), CardsArrayWrapper.Cards[0], OutJsonAsString);
+		//UDataTable* CardsTable = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable;
+		JsonSerializer->BeginSerializationOfGenericStruct(JsonCardsArray[1]);
+		FString OutJsonAsString = JsonSerializer->CreateStructuredJsonString(JsonCardsArray.Num(), DataTableCardsArray.GetData(), FCard::StaticStruct());
 		
+		//TArray<FString> OutFilenames = { "Test" };
+		//FFileHelper::SaveStringToFile(->GetTableAsJSON(EDataTableExportFlags::UseJsonObjectsForStructs),*OutFilenames[0]);
+		
+		//FJsonObjectConverter::UStructToJsonObjectString(CardsArrayWrapper, OutJsonAsString);
+		JsonSerializer = nullptr;
+
 		SaveJsonAsStringToFile("Test", OutJsonAsString);
 	}
 }

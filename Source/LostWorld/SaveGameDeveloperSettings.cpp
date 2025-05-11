@@ -182,7 +182,7 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 	if (OverrideCardsJsonFile) {
 		// Since this is only a developer tool, we're going to do minimal defensive coding here.
 		FString CardsJsonFullSavePath = FPaths::ProjectSavedDir() + "SaveGames/CardsData.json";
-		FString NewCardsJsonAsJson;
+		FString NewCardsJsonAsJson, OutJsonAsString;
 
 		// UStruct wrapper for an array of FCards.
 		FCardsArrayWrapper CardsArrayWrapper;
@@ -195,8 +195,10 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 		//JsonSerializer->SerializeTArrayWithRowNames(DataTableCardsArray.GetData(), FCard::StaticStruct(), DataTableCardsArray, OutJsonAsString);
 		//JsonSerializer->CustomSerializeStruct(CardsArrayWrapper.Cards.GetData(), CardsArrayWrapper.Cards[0], OutJsonAsString);
 		//UDataTable* CardsTable = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable;
-		JsonSerializer->BeginSerializationOfGenericStruct(JsonCardsArray[1]);
-		FString OutJsonAsString = JsonSerializer->CreateStructuredJsonString(JsonCardsArray.Num(), DataTableCardsArray.GetData(), FCard::StaticStruct());
+		//FString OutJsonAsString = JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, DataTableCardsArray.GetData(), FCard::StaticStruct());
+		
+		//JsonSerializer->BeginSerializationOfGenericStruct(JsonCardsArray[1]);
+		JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
 		
 		//TArray<FString> OutFilenames = { "Test" };
 		//FFileHelper::SaveStringToFile(->GetTableAsJSON(EDataTableExportFlags::UseJsonObjectsForStructs),*OutFilenames[0]);

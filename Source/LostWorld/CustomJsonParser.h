@@ -20,15 +20,38 @@ public:
 
 	//void CustomSerializeStruct(void* InStructData, const UScriptStruct* InStructDefinition, FString& OutJson);
 
+
+	
 	template<typename InStructType>
-	void BeginSerializationOfGenericStruct(const InStructType& InStruct)
+	void BeginSerializationOfGenericStruct(const InStructType& InStruct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString)
 	{
-		SerializeSingleUstructToJsonObject(InStructType::StaticStruct(), &InStruct);
+		SerializeSingleUstructToJsonObject(InStructType::StaticStruct(), &InStruct, InRowName, InJsonWriter, OutFormattedStructAsString);
 	};
 	
-	FString SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct);
+	FString SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString);
 
-	/** This function takes a Struct Definition, then creates a formatted JSON string with X array entries,
-	then outputs the structured FString.*/
-	FString CreateStructuredJsonString(int MaxLoopCount, void* InStructData, const UScriptStruct* InStructDefinition);
+
+	
+	template<typename InStructType>
+	void BeginCreationOfStructuredJsonString(const TArray<InStructType>& InStruct, TArray<FName> InRowNames, FString& OutFormattedJsonString)
+	{
+		//OutFormattedJsonString = CreateStructuredJsonString();
+		FString UnformattedStructAsString;
+		TSharedRef <TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
+	
+		// Start writing the Json string.
+		JsonWriter->WriteArrayStart();
+
+		for (int Index = 0; Index < InStruct.Num(); Index++) {
+			JsonWriter->WriteObjectStart();
+			
+			BeginSerializationOfGenericStruct(InStruct[Index], InRowNames[Index], JsonWriter,OutFormattedJsonString);
+
+			JsonWriter->WriteObjectEnd();
+			//JsonWriter->WriteValue("test_identifier", OutFormattedJsonString);
+		}
+		
+		JsonWriter->WriteArrayEnd();
+		JsonWriter->Close();
+	}
 };

@@ -59,7 +59,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 }
 
 
-template <typename T>
+/*template <typename T>
 void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<T>& InArray, FString& OutJson)
 {
 	FString JsonString;
@@ -92,7 +92,7 @@ void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const USc
 
 	OutJson = JsonString;
 	//ALostWorldGameModeBase::DualLog("", 2);
-}
+}*/
 
 
 /*template <typename InStructType>
@@ -131,23 +131,38 @@ FString CustomJsonParser::SerializeSingleUstructToJsonObject(const InStructType&
 }*/
 
 
-FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct)
+FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString)
 {
-	FString ReturnStructuredJsonStrung;
+	FString ValueAsString;
+
+	// Before the normal properties can be written to the Json, we need to write the RowName to the json.
+	InJsonWriter->WriteValue("Name", InRowName.ToString());
 	
-	return ReturnStructuredJsonStrung;
+	for (TFieldIterator<FProperty> It(StructDefinition); It; ++It) {
+		FProperty* Property = *It;
+
+		FString VariableName = Property->GetName();
+		const void* Value = Property->ContainerPtrToValuePtr<uint8>(Struct);
+		
+		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value);
+		InJsonWriter->WriteValue(VariableName, ValueAsString);
+		//OutUnformattedStructAsString = ValueAsString;
+	}
+	
+	return ValueAsString;
 }
 
 
-FString CustomJsonParser::CreateStructuredJsonString(int MaxLoopCount, void* InStructData,const UScriptStruct* InStructDefinition)
+/*FString CustomJsonParser::CreateStructuredJsonString()
 {
 	FString ReturnStructuredJsonString;
 	TSharedRef <TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&ReturnStructuredJsonString);
 	
 	// Start writing the Json string.
 	JsonWriter->WriteArrayStart();
+	JsonWriter->WriteObjectStart();
 
-	for (int LoopCount = 0; LoopCount < MaxLoopCount; LoopCount++) {
+	/*for (int LoopCount = 0; LoopCount < MaxLoopCount; LoopCount++) {
 		JsonWriter->WriteObjectStart();
 
 		// Write the Row Name to the Json string first, then fetch the value.
@@ -165,18 +180,19 @@ FString CustomJsonParser::CreateStructuredJsonString(int MaxLoopCount, void* InS
 				FString ParsedVariable = ParseUStructPropertyIntoJsonString(Property, ValuePointer);
 				JsonWriter->WriteValue(VariableName, ParsedVariable);
 			}
-		}*/
+		}
 		
 		FString SerializedStruct = "";
 	
 		JsonWriter->WriteObjectEnd();
 	}
-	
+
+	JsonWriter->WriteObjectEnd();
 	JsonWriter->WriteArrayEnd();
 	JsonWriter->Close();
 	
 	return ReturnStructuredJsonString;
-}
+}*/
 
 
 // Ongoing To-Do: Functions that use templates need to be explicitly instantiated with all supported types,

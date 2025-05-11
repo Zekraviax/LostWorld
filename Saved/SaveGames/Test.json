@@ -3,7 +3,17 @@
 		"Name": "TestCardOne",
 		"DisplayName": "Test Card One",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "10",
 		"BaseHealing": "0",
@@ -11,6 +21,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -21,7 +32,17 @@
 		"Name": "TestCardTwo",
 		"DisplayName": "Test Card Two",
 		"BaseCost": "2",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "5",
 		"BaseHealing": "0",
@@ -29,6 +50,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -39,7 +61,17 @@
 		"Name": "TestCardThree",
 		"DisplayName": "Test Card Three",
 		"BaseCost": "3",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -47,6 +79,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -57,7 +90,17 @@
 		"Name": "TestCardFour",
 		"DisplayName": "Test Card Four",
 		"BaseCost": "4",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "5",
@@ -65,6 +108,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -75,7 +119,17 @@
 		"Name": "PoisonDart",
 		"DisplayName": "Poison Dart",
 		"BaseCost": "3",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "2",
 		"BaseHealing": "0",
@@ -83,6 +137,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -93,7 +148,17 @@
 		"Name": "ArmourBreaker",
 		"DisplayName": "Armour Breaker",
 		"BaseCost": "7",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "12",
 		"BaseHealing": "0",
@@ -101,6 +166,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -111,7 +177,17 @@
 		"Name": "HyperBeam",
 		"DisplayName": "Hyper Beam",
 		"BaseCost": "0",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -119,6 +195,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "0",
@@ -129,7 +206,17 @@
 		"Name": "TestCardFive",
 		"DisplayName": "Test Card Five",
 		"BaseCost": "5",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -137,6 +224,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -147,7 +235,17 @@
 		"Name": "Trick",
 		"DisplayName": "Trick",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -155,6 +253,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -165,7 +264,17 @@
 		"Name": "TestCardSix",
 		"DisplayName": "Test Card Six",
 		"BaseCost": "6",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -173,6 +282,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -183,7 +293,17 @@
 		"Name": "HowlOfCommand",
 		"DisplayName": "Howl Of Command",
 		"BaseCost": "5",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -191,6 +311,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "5",
@@ -201,7 +322,17 @@
 		"Name": "EnergyInTheAir",
 		"DisplayName": "Energy In The Air",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "1",
 		"BaseHealing": "0",
@@ -209,6 +340,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -219,7 +351,17 @@
 		"Name": "HammerBlow",
 		"DisplayName": "Hammer Blow",
 		"BaseCost": "6",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "9",
 		"BaseHealing": "0",
@@ -227,6 +369,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -237,7 +380,17 @@
 		"Name": "Shurikenjutsu",
 		"DisplayName": "Shurikenjutsu",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -245,6 +398,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -255,7 +409,17 @@
 		"Name": "MasterOfReality",
 		"DisplayName": "Master Of Reality",
 		"BaseCost": "16",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -263,6 +427,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -273,7 +438,17 @@
 		"Name": "ApocalypseChanneler",
 		"DisplayName": "Apocalypse Channeler",
 		"BaseCost": "13",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -281,6 +456,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -291,7 +467,17 @@
 		"Name": "GoreRush",
 		"DisplayName": "Gore Rush",
 		"BaseCost": "5",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "10",
 		"BaseHealing": "0",
@@ -299,6 +485,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -309,7 +496,17 @@
 		"Name": "CallForFriends",
 		"DisplayName": "Call For Friends",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -317,6 +514,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -327,7 +525,17 @@
 		"Name": "PinpointThrust",
 		"DisplayName": "Pinpoint Thrust",
 		"BaseCost": "3",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "6",
 		"BaseHealing": "0",
@@ -335,6 +543,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -345,7 +554,17 @@
 		"Name": "Inflame",
 		"DisplayName": "Inflame",
 		"BaseCost": "1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -353,6 +572,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -363,7 +583,17 @@
 		"Name": "InfectedBite",
 		"DisplayName": "Infected Bite",
 		"BaseCost": "2",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "3",
 		"BaseHealing": "0",
@@ -371,6 +601,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -381,7 +612,17 @@
 		"Name": "Screech",
 		"DisplayName": "Screech",
 		"BaseCost": "2",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -389,6 +630,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -399,7 +641,17 @@
 		"Name": "Vomit",
 		"DisplayName": "Vomit",
 		"BaseCost": "6",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -407,6 +659,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -417,7 +670,17 @@
 		"Name": "Demi",
 		"DisplayName": "Demi",
 		"BaseCost": "-1",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -425,6 +688,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -435,7 +699,17 @@
 		"Name": "SwarmAttack",
 		"DisplayName": "Swarm Attack",
 		"BaseCost": "5",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -443,6 +717,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -453,7 +728,17 @@
 		"Name": "ThisIsATest",
 		"DisplayName": "\"This Is a Test!\"",
 		"BaseCost": "0",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -461,6 +746,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -471,7 +757,17 @@
 		"Name": "TrainOfThought",
 		"DisplayName": "Train Of Thought",
 		"BaseCost": "3",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -479,6 +775,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",
@@ -489,7 +786,17 @@
 		"Name": "QuickJab",
 		"DisplayName": "Quick Jab",
 		"BaseCost": "2",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -497,6 +804,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "3",
 		"TotalCost": "1",
@@ -507,7 +815,17 @@
 		"Name": "FleetFootwork",
 		"DisplayName": "Fleet Footwork",
 		"BaseCost": "10",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -515,6 +833,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "-1",
 		"TotalCost": "1",
@@ -525,7 +844,17 @@
 		"Name": "StaunchDefence",
 		"DisplayName": "Staunch Defence",
 		"BaseCost": "15",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -533,6 +862,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "-3",
 		"TotalCost": "1",
@@ -543,7 +873,17 @@
 		"Name": "KillRush",
 		"DisplayName": "Kill Rush",
 		"BaseCost": "20",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "30",
 		"BaseHealing": "0",
@@ -551,6 +891,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "-1",
 		"TotalCost": "1",
@@ -561,7 +902,17 @@
 		"Name": "CutTheDecks",
 		"DisplayName": "Cut The Decks",
 		"BaseCost": "30",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Spell"
+			}
+		],
 		"CardTypes": "",
+		"test_array_identifier": [
+			{
+				"test_value_identifier": "Fire"
+			}
+		],
 		"CardElements": "",
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -569,6 +920,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets": "",
 		"ModifiersWithTriggers": "",
+		"test_array_identifier": [],
 		"Keywords": "",
 		"ActionSpeed": "0",
 		"TotalCost": "1",

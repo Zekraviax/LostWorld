@@ -4,7 +4,6 @@
 #include "CustomJsonParser.h"
 #include "LostWorldGameInstanceBase.h"
 #include "LostWorldGameModeBase.h"
-#include "Kismet/KismetArrayLibrary.h"
 #include "Runtime/JsonUtilities/Public/JsonObjectConverter.h"
 
 
@@ -187,23 +186,10 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 		// UStruct wrapper for an array of FCards.
 		FCardsArrayWrapper CardsArrayWrapper;
 		CardsArrayWrapper.Cards = DataTableCardsArray;
-
-		//FFileHelper::SaveStringToFile(JsonCardsArray, *CardsJsonFullSavePath);
-
+		
 		CustomJsonParser* JsonSerializer = new CustomJsonParser();
-		//const UScriptStruct* CardScriptStruct = Cast<const UScriptStruct>(JsonCardsArray[0]);
-		//JsonSerializer->SerializeTArrayWithRowNames(DataTableCardsArray.GetData(), FCard::StaticStruct(), DataTableCardsArray, OutJsonAsString);
-		//JsonSerializer->CustomSerializeStruct(CardsArrayWrapper.Cards.GetData(), CardsArrayWrapper.Cards[0], OutJsonAsString);
-		//UDataTable* CardsTable = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable;
-		//FString OutJsonAsString = JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, DataTableCardsArray.GetData(), FCard::StaticStruct());
-		
-		//JsonSerializer->BeginSerializationOfGenericStruct(JsonCardsArray[1]);
 		JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
-		
-		//TArray<FString> OutFilenames = { "Test" };
-		//FFileHelper::SaveStringToFile(->GetTableAsJSON(EDataTableExportFlags::UseJsonObjectsForStructs),*OutFilenames[0]);
-		
-		//FJsonObjectConverter::UStructToJsonObjectString(CardsArrayWrapper, OutJsonAsString);
+
 		JsonSerializer = nullptr;
 
 		SaveJsonAsStringToFile("Test", OutJsonAsString);

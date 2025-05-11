@@ -13,13 +13,10 @@ public:
 	~CustomJsonParser();
 
 	// UE already has built-in functions for writing properly formatted JSON that we can use.
-	static FString ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer);
+	static FString ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter);
 	
 	template<typename T>
 	void SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<T>& InArray, FString& OutJson);
-
-	//void CustomSerializeStruct(void* InStructData, const UScriptStruct* InStructDefinition, FString& OutJson);
-
 
 	
 	template<typename InStructType>
@@ -28,16 +25,13 @@ public:
 		SerializeSingleUstructToJsonObject(InStructType::StaticStruct(), &InStruct, InRowName, InJsonWriter, OutFormattedStructAsString);
 	};
 	
-	FString SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString);
-
+	FString SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, FName InRowName, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, FString& OutFormattedStructAsString);
 
 	
 	template<typename InStructType>
-	void BeginCreationOfStructuredJsonString(const TArray<InStructType>& InStruct, TArray<FName> InRowNames, FString& OutFormattedJsonString)
-	{
-		//OutFormattedJsonString = CreateStructuredJsonString();
+	void BeginCreationOfStructuredJsonString(const TArray<InStructType>& InStruct, TArray<FName> InRowNames, FString& OutFormattedJsonString) {
 		FString UnformattedStructAsString;
-		TSharedRef <TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
+		TSharedRef<TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
 	
 		// Start writing the Json string.
 		JsonWriter->WriteArrayStart();
@@ -48,7 +42,6 @@ public:
 			BeginSerializationOfGenericStruct(InStruct[Index], InRowNames[Index], JsonWriter,OutFormattedJsonString);
 
 			JsonWriter->WriteObjectEnd();
-			//JsonWriter->WriteValue("test_identifier", OutFormattedJsonString);
 		}
 		
 		JsonWriter->WriteArrayEnd();

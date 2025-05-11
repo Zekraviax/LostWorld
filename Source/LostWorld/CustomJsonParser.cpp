@@ -15,7 +15,7 @@ CustomJsonParser::~CustomJsonParser()
 }
 
 
-FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer)
+FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter)
 {
 	//float FloatValue;
 	//FName NameValue;
@@ -37,6 +37,12 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		return FString::FromInt(IntValue);
 	}
 
+	// Floats
+	if (Cast<FFloatProperty>(Property)) {
+		const float FloatValue = Cast<FFloatProperty>(Property)->GetPropertyValue(ValuePointer);
+		return FString::SanitizeFloat(FloatValue);
+	}
+
 	// Booleans
 	if (Cast<FBoolProperty>(Property)) {
 		const bool BoolValue = Cast<FBoolProperty>(Property)->GetPropertyValue(ValuePointer);
@@ -47,91 +53,48 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	
 	// To-Do: Enums
 	if (Cast<FEnumProperty>(Property)) {
-		
+		const UEnum* EnumProperty = Cast<FEnumProperty>(Property)->GetEnum();
+		FName EnumAsName = EnumProperty->GetNameByIndex(0);
+		FString EnumAsString;
+		EnumAsName.ToString().Split(TEXT("::"), nullptr, &EnumAsString, ESearchCase::IgnoreCase);
+		//FString ReturnString = Cast<FEnumProperty>(Property).Get
+		//return UEnum::GetDisplayValueAsText(EnumProperty).ToString();
+		return EnumAsString;
 	}
 
 	// To-Do: Array handling
 	if (Cast<FArrayProperty>(Property)) {
-		//JsonWriter->WriteArrayStart();
+		const FArrayProperty* ArrayProperty = Cast<FArrayProperty>(Property);
+
+		//ALostWorldGameModeBase::DualLog("Parsing FArrayProperty" + ArrayProperty->GetName(), 2);
+		FString OutFormattedArrayJsonString = "";
+		TSharedRef <TJsonWriter<TCHAR>> ArrayJsonWriter = TJsonWriterFactory<>::Create(&OutFormattedArrayJsonString);
+
+		// Needs an Array Start and an Array End write.
+		ArrayJsonWriter->WriteArrayStart("test_array_identifier");
+		
+		FScriptArrayHelper ArrayHelper(ArrayProperty, ValuePointer);
+		for (int32 ArrayEntryIndex = 0; ArrayEntryIndex < ArrayHelper.Num(); ++ArrayEntryIndex) {
+			ArrayJsonWriter->WriteObjectStart();
+			
+			const uint8* ArrayEntryData = ArrayHelper.GetRawPtr(ArrayEntryIndex);
+			FString ValueAsString = ParseUStructPropertyIntoJsonString(ArrayProperty->Inner, ArrayEntryData, InJsonWriter);
+			ArrayJsonWriter->WriteValue("test_value_identifier", ValueAsString);
+
+			ArrayJsonWriter->WriteObjectEnd();
+		}
+		
+		ArrayJsonWriter->WriteArrayEnd();
+		ArrayJsonWriter->Close();
+
+		return OutFormattedArrayJsonString;
 	}
 	
-	return "";
+	return ""; 
 }
 
 
-/*template <typename T>
-void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<T>& InArray, FString& OutJson)
-{
-	FString JsonString;
-	TSharedRef <TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&JsonString);
-	
-	// Start writing the Json string.
-	JsonWriter->WriteArrayStart();
-	JsonWriter->WriteObjectStart();
-
-	// Write the Row Name to the Json string first, then fetch the value.
-	for (TFieldIterator<FProperty> Iterator(InStructDefinition); Iterator; ++Iterator) {
-		const FProperty* Property = *Iterator;
-
-		// Get variable name.
-		FString VariableName = Property->GetName();
-
-		for (int32 ArrayIndex = 0; ArrayIndex < Property->ArrayDim; ArrayIndex++) {
-			// Get the pointer to where the data is stored.
-			void* ValuePointer = Property->ContainerPtrToValuePtr<void>(InStructData, ArrayIndex);
-
-			// Parse the variable into two different strings: the name and the value.
-			FString ParsedVariable = ParseUStructPropertyIntoJsonString(Property, ValuePointer);
-			JsonWriter->WriteValue(VariableName, ParsedVariable);
-		}
-	}
-	
-	JsonWriter->WriteObjectEnd();
-	JsonWriter->WriteArrayEnd();
-	JsonWriter->Close();
-
-	OutJson = JsonString;
-	//ALostWorldGameModeBase::DualLog("", 2);
-}*/
-
-
-/*template <typename InStructType>
-FString CustomJsonParser::SerializeSingleUstructToJsonObject(const InStructType& InStruct)
-{
-	const UStruct* StructDefinition = InStruct::StaticStruct();
-	const void Struct = &InStruct;
-
-	for (TFieldIterator<FProperty> It(StructDefinition); It; ++It)
-	{
-		FProperty* Property = *It;
-
-		FString VariableName = StandardizeCase(Property->GetName());
-		const void* Value = Property->ContainerPtrToValuePtr<uint8>(Struct);
-	}
-}*/
-
-
-/*void CustomJsonParser::CustomSerializeStruct(void* InStructData, const UScriptStruct* InStructDefinition, FString& OutJson)
-{
-	for (TFieldIterator<FProperty> Iterator(InStructDefinition); Iterator; ++Iterator) {
-		const FProperty* Property = *Iterator;
-
-		// Get variable name.
-		FString VariableName = Property->GetName();
-
-		for (int32 ArrayIndex = 0; ArrayIndex < Property->ArrayDim; ArrayIndex++) {
-			// Get the pointer to where the data is stored.
-			void* ValuePointer = Property->ContainerPtrToValuePtr<void>(InStructData, ArrayIndex);
-
-			// Parse the variable into two different strings: the name and the value.
-			OutJson = ParseUStructPropertyIntoJsonString(Property, ValuePointer);
-			//JsonWriter->WriteValue(VariableName, ParsedVariable);
-		}
-	}
-}*/
-
-
-FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString)
+FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, const FName InRowName, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, FString& OutFormattedStructAsString)
 {
 	FString ValueAsString;
 
@@ -144,58 +107,14 @@ FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* Stru
 		FString VariableName = Property->GetName();
 		const void* Value = Property->ContainerPtrToValuePtr<uint8>(Struct);
 		
-		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value);
+		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value, InJsonWriter);
 		InJsonWriter->WriteValue(VariableName, ValueAsString);
-		//OutUnformattedStructAsString = ValueAsString;
 	}
 	
 	return ValueAsString;
 }
 
 
-/*FString CustomJsonParser::CreateStructuredJsonString()
-{
-	FString ReturnStructuredJsonString;
-	TSharedRef <TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&ReturnStructuredJsonString);
-	
-	// Start writing the Json string.
-	JsonWriter->WriteArrayStart();
-	JsonWriter->WriteObjectStart();
-
-	/*for (int LoopCount = 0; LoopCount < MaxLoopCount; LoopCount++) {
-		JsonWriter->WriteObjectStart();
-
-		// Write the Row Name to the Json string first, then fetch the value.
-		/*for (TFieldIterator<FProperty> Iterator(InStructDefinition); Iterator; ++Iterator) {
-			const FProperty* Property = *Iterator;
-
-			// Get variable name.
-			FString VariableName = Property->GetName();
-
-			for (int32 ArrayIndex = 0; ArrayIndex < Property->ArrayDim; ArrayIndex++) {
-				// Get the pointer to where the data is stored.
-				void* ValuePointer = Property->ContainerPtrToValuePtr<void>(InStructData, ArrayIndex);
-
-				// Parse the variable into two different strings: the name and the value.
-				FString ParsedVariable = ParseUStructPropertyIntoJsonString(Property, ValuePointer);
-				JsonWriter->WriteValue(VariableName, ParsedVariable);
-			}
-		}
-		
-		FString SerializedStruct = "";
-	
-		JsonWriter->WriteObjectEnd();
-	}
-
-	JsonWriter->WriteObjectEnd();
-	JsonWriter->WriteArrayEnd();
-	JsonWriter->Close();
-	
-	return ReturnStructuredJsonString;
-}*/
-
-
 // Ongoing To-Do: Functions that use templates need to be explicitly instantiated with all supported types,
 // in order to prevent the error "LNK2019: unresolved external symbol".
-//template LOSTWORLD_API void CustomJsonParser::SerializeSingleUstructToJsonObject(const FCard& InStruct);
 template LOSTWORLD_API void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<FCard>& InArray, FString& OutJson);

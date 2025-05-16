@@ -13,7 +13,7 @@ public:
 	~CustomJsonParser();
 
 	// UE already has built-in functions for writing properly formatted JSON that we can use.
-	static FString ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter);
+	static FString ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, bool WriteToJson);
 	
 	template<typename T>
 	void SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<T>& InArray, FString& OutJson);

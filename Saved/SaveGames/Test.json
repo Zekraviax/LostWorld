@@ -4,10 +4,10 @@
 		"DisplayName": "Test Card One",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "10",
 		"BaseHealing": "0",
@@ -24,10 +24,10 @@
 		"DisplayName": "Test Card Two",
 		"BaseCost": "2",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "5",
 		"BaseHealing": "0",
@@ -44,10 +44,10 @@
 		"DisplayName": "Test Card Three",
 		"BaseCost": "3",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -64,10 +64,10 @@
 		"DisplayName": "Test Card Four",
 		"BaseCost": "4",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "5",
@@ -84,10 +84,10 @@
 		"DisplayName": "Poison Dart",
 		"BaseCost": "3",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "2",
 		"BaseHealing": "0",
@@ -104,10 +104,10 @@
 		"DisplayName": "Armour Breaker",
 		"BaseCost": "7",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "12",
 		"BaseHealing": "0",
@@ -124,10 +124,10 @@
 		"DisplayName": "Hyper Beam",
 		"BaseCost": "0",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -144,10 +144,10 @@
 		"DisplayName": "Test Card Five",
 		"BaseCost": "5",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -164,10 +164,10 @@
 		"DisplayName": "Trick",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -184,10 +184,10 @@
 		"DisplayName": "Test Card Six",
 		"BaseCost": "6",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -204,10 +204,10 @@
 		"DisplayName": "Howl Of Command",
 		"BaseCost": "5",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -224,10 +224,10 @@
 		"DisplayName": "Energy In The Air",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "1",
 		"BaseHealing": "0",
@@ -244,10 +244,10 @@
 		"DisplayName": "Hammer Blow",
 		"BaseCost": "6",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "9",
 		"BaseHealing": "0",
@@ -264,10 +264,10 @@
 		"DisplayName": "Shurikenjutsu",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -284,10 +284,10 @@
 		"DisplayName": "Master Of Reality",
 		"BaseCost": "16",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -304,10 +304,10 @@
 		"DisplayName": "Apocalypse Channeler",
 		"BaseCost": "13",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -324,10 +324,10 @@
 		"DisplayName": "Gore Rush",
 		"BaseCost": "5",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "10",
 		"BaseHealing": "0",
@@ -344,10 +344,10 @@
 		"DisplayName": "Call For Friends",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -364,10 +364,10 @@
 		"DisplayName": "Pinpoint Thrust",
 		"BaseCost": "3",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "6",
 		"BaseHealing": "0",
@@ -384,10 +384,10 @@
 		"DisplayName": "Inflame",
 		"BaseCost": "1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -404,10 +404,10 @@
 		"DisplayName": "Infected Bite",
 		"BaseCost": "2",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "3",
 		"BaseHealing": "0",
@@ -424,10 +424,10 @@
 		"DisplayName": "Screech",
 		"BaseCost": "2",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -444,10 +444,10 @@
 		"DisplayName": "Vomit",
 		"BaseCost": "6",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -464,10 +464,10 @@
 		"DisplayName": "Demi",
 		"BaseCost": "-1",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -484,10 +484,10 @@
 		"DisplayName": "Swarm Attack",
 		"BaseCost": "5",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -504,10 +504,10 @@
 		"DisplayName": "\"This Is a Test!\"",
 		"BaseCost": "0",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -524,10 +524,10 @@
 		"DisplayName": "Train Of Thought",
 		"BaseCost": "3",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -544,10 +544,10 @@
 		"DisplayName": "Quick Jab",
 		"BaseCost": "2",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -564,10 +564,10 @@
 		"DisplayName": "Fleet Footwork",
 		"BaseCost": "10",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -584,10 +584,10 @@
 		"DisplayName": "Staunch Defence",
 		"BaseCost": "15",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",
@@ -604,10 +604,10 @@
 		"DisplayName": "Kill Rush",
 		"BaseCost": "20",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "30",
 		"BaseHealing": "0",
@@ -624,10 +624,10 @@
 		"DisplayName": "Cut The Decks",
 		"BaseCost": "30",
 		"CardTypes": [
-			"Spell"
+			""
 		],
 		"CardElements": [
-			"Fire"
+			""
 		],
 		"BaseDamage": "0",
 		"BaseHealing": "0",

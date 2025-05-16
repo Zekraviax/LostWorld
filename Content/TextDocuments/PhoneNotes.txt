@@ -1318,6 +1318,7 @@ Light Technique
 Deals damage to one target. Every time this card is played its Base Damage is increased until the end of the battle.
 
 
+
 Smash and Grab
 Fire Technique
 Deal damage to one target and attempt to Steal from them. If the target has any negative status conditions, the rate of Stealing success is increased. Different status effects increase the success chance by different rates.
@@ -1344,3 +1345,35 @@ Whenever this character takes damage, reduce the damage by half rounded-up, then
 Greater Agility
 Trait
 If this character dealt damage to an enemy during its last turn, it gains 1 stack of Evade at the start of its turn.
+
+
+
+Earth Spike
+1 Cost Earth Spell
+Does low damage to one target, and has a low chance of inflicting Bleeding.
+Much to the chagrin of beginning earth mages, students of other elements tease them for learning to throw rocks in their first magic lessons.
+
+
+
+All-Out Attack
+High Cost Light Technique
+For each Ally, deal damage to all Enemies based on that ally's Stats. Your turn ends, and each other Ally skips their next turn.
+
+
+
+Levels and Leveling Up
+Gameplay Mechanic
+
+Each Ally starts at Level 1. Whenever EXP is spent to increase a Base Stat, that Ally's level goes up by one.
+
+Enemies gain Levels as players descend through dungeons. (Refer to the Level Scaling mechanic for more details.)
+
+
+
+Crop Rotation
+Earth Spell
+Purge all Positive Status Effects you have. For each Status Effect purged this way, gain that many Stacks of a Positive Status Effect of your choice that you didn't Purge with this Card.
+
+
+
+

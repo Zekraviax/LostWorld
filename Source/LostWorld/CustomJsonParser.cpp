@@ -17,6 +17,7 @@ CustomJsonParser::~CustomJsonParser()
 
 FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter)
 {
+	FString VariableName = Property->GetName();
 	//float FloatValue;
 	//FName NameValue;
 	//FText TextValue;
@@ -27,6 +28,8 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		//FString StringValue = "\"" + Cast<UStrProperty>(Property)->GetName() + "\": \"" + Cast<UStrProperty>(Property)->GetPropertyValue(ValuePointer) + "\"";
 		//FString StringValue = Cast<UStrProperty>(Property)->GetName() + "\": \"" + Cast<UStrProperty>(Property)->GetPropertyValue(ValuePointer);
 		FString StringValue = Cast<FStrProperty>(Property)->GetPropertyValue(ValuePointer);
+
+		InJsonWriter->WriteValue(VariableName, StringValue);
 		return StringValue;
 	}
 
@@ -34,12 +37,16 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	if (Cast<FIntProperty>(Property)) {
 		const int IntValue = Cast<FIntProperty>(Property)->GetPropertyValue(ValuePointer);
 		//return "\"" + Cast<UIntProperty>(Property)->GetName() + "\": \"" + FString::FromInt(IntValue) + "\"";
+
+		InJsonWriter->WriteValue(VariableName, FString::FromInt(IntValue));
 		return FString::FromInt(IntValue);
 	}
 
 	// Floats
 	if (Cast<FFloatProperty>(Property)) {
 		const float FloatValue = Cast<FFloatProperty>(Property)->GetPropertyValue(ValuePointer);
+
+		InJsonWriter->WriteValue(VariableName, FString::SanitizeFloat(FloatValue));
 		return FString::SanitizeFloat(FloatValue);
 	}
 
@@ -59,6 +66,8 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		EnumAsName.ToString().Split(TEXT("::"), nullptr, &EnumAsString, ESearchCase::IgnoreCase);
 		//FString ReturnString = Cast<FEnumProperty>(Property).Get
 		//return UEnum::GetDisplayValueAsText(EnumProperty).ToString();
+
+		InJsonWriter->WriteValue(EnumAsString);
 		return EnumAsString;
 	}
 
@@ -68,24 +77,31 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 
 		//ALostWorldGameModeBase::DualLog("Parsing FArrayProperty" + ArrayProperty->GetName(), 2);
 		FString OutFormattedArrayJsonString = "";
-		TSharedRef <TJsonWriter<TCHAR>> ArrayJsonWriter = TJsonWriterFactory<>::Create(&OutFormattedArrayJsonString);
+		//TSharedRef <TJsonWriter<TCHAR>> ArrayJsonWriter = TJsonWriterFactory<>::Create(&OutFormattedArrayJsonString);
+
+		//InJsonWriter->WriteValue(VariableName, ArrayProperty);
 
 		// Needs an Array Start and an Array End write.
-		ArrayJsonWriter->WriteArrayStart("test_array_identifier");
-		
+		//InJsonWriter->WriteObjectStart();
+		InJsonWriter->WriteArrayStart(VariableName);
+		//ArrayJsonWriter->WriteArrayStart();
+
+		// Need a secondary function for specifically parsing arrays into their individual entries.
 		FScriptArrayHelper ArrayHelper(ArrayProperty, ValuePointer);
 		for (int32 ArrayEntryIndex = 0; ArrayEntryIndex < ArrayHelper.Num(); ++ArrayEntryIndex) {
-			ArrayJsonWriter->WriteObjectStart();
+			//ArrayJsonWriter->WriteObjectStart();
 			
 			const uint8* ArrayEntryData = ArrayHelper.GetRawPtr(ArrayEntryIndex);
 			FString ValueAsString = ParseUStructPropertyIntoJsonString(ArrayProperty->Inner, ArrayEntryData, InJsonWriter);
-			ArrayJsonWriter->WriteValue("test_value_identifier", ValueAsString);
+			//ArrayJsonWriter->WriteValue("test_value_identifier", ValueAsString);
+			//InJsonWriter->WriteValue(ValueAsString);
 
-			ArrayJsonWriter->WriteObjectEnd();
+			//ArrayJsonWriter->WriteObjectEnd();
 		}
 		
-		ArrayJsonWriter->WriteArrayEnd();
-		ArrayJsonWriter->Close();
+		InJsonWriter->WriteArrayEnd();
+		//InJsonWriter->WriteObjectEnd();
+		//ArrayJsonWriter->Close();
 
 		return OutFormattedArrayJsonString;
 	}
@@ -108,7 +124,7 @@ FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* Stru
 		const void* Value = Property->ContainerPtrToValuePtr<uint8>(Struct);
 		
 		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value, InJsonWriter);
-		InJsonWriter->WriteValue(VariableName, ValueAsString);
+		//InJsonWriter->WriteValue(VariableName, ValueAsString);
 	}
 	
 	return ValueAsString;

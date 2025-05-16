@@ -31,7 +31,9 @@ public:
 	template<typename InStructType>
 	void BeginCreationOfStructuredJsonString(const TArray<InStructType>& InStruct, TArray<FName> InRowNames, FString& OutFormattedJsonString) {
 		FString UnformattedStructAsString;
+		
 		TSharedRef<TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
+		JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
 	
 		// Start writing the Json string.
 		JsonWriter->WriteArrayStart();

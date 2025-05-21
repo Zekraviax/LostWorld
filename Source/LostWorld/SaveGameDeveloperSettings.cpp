@@ -191,7 +191,6 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 		JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
 
 		JsonSerializer = nullptr;
-
 		SaveJsonAsStringToFile("Test", OutJsonAsString);
 	}
 }

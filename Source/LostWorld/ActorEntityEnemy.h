@@ -35,7 +35,7 @@ public:
 	void CreateAiBrainComponent();
 
 // -------------------------------- Battle Interface functions
-	virtual bool TakeDamage(float Damage) override;
+	virtual bool EntityTakeDamage(float Damage) override;
 
 	virtual bool ReceiveHealing(float Healing) override;
 	virtual bool GainBarrier(int InBarrier) override;

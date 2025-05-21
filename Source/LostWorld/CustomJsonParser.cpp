@@ -108,9 +108,15 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		Result = Value;
 		FString EnumAsNameString = EnumTypeProperty->GetNameStringByValue(Result.GetValue());
 		
-		
 		if (WriteToJson) {
-			InJsonWriter->WriteValue(ValueAsString);
+			bool WriteVariableName = false;
+			ValueAsString = EnumAsNameString;
+
+			if (WriteVariableName) {
+				InJsonWriter->WriteValue(VariableName, ValueAsString);
+			} else {
+				InJsonWriter->WriteValue(ValueAsString);
+			}
 		}
 	}
 
@@ -156,4 +162,4 @@ FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* Stru
 
 // Ongoing To-Do: Functions that use templates need to be explicitly instantiated with all supported types,
 // in order to prevent the error "LNK2019: unresolved external symbol".
-template LOSTWORLD_API void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<FCard>& InArray, FString& OutJson);
+//template LOSTWORLD_API void CustomJsonParser::SerializeTArrayWithRowNames(void* InStructData, const UScriptStruct* InStructDefinition, const TArray<FCard>& InArray, FString& OutJson);

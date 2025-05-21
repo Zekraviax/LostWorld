@@ -94,9 +94,9 @@ bool AActorEntityPlayer::ExileCardFromZone(FString InZoneName, FCard InCard)
 }
 
 
-bool AActorEntityPlayer::TakeDamage(float Damage)
+bool AActorEntityPlayer::EntityTakeDamage(float Damage)
 {
-	Super::TakeDamage(Damage);
+	Super::EntityTakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Player " + EntityData.DisplayName + " takes " +
 		FString::FromInt(Damage) + " damage.", 2);

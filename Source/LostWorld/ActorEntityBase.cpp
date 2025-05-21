@@ -187,7 +187,7 @@ bool AActorEntityBase::ExileCardFromZone(FString InZoneName, FCard InCard)
 }
 
 
-bool AActorEntityBase::TakeDamage(float Damage)
+bool AActorEntityBase::EntityTakeDamage(float Damage)
 {
 	// First, any barriers up will absorb damage.
 	while (Damage > 0 && EntityData.TotalStats.CurrentBarrierPoints > 0) {
@@ -212,7 +212,7 @@ bool AActorEntityBase::TakeDamage(float Damage)
 	}
 	
 	
-	return IInterfaceBattle::TakeDamage(Damage);
+	return IInterfaceBattle::EntityTakeDamage(Damage);
 }
 
 

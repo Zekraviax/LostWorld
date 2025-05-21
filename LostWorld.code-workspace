@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "LostWorld",
+			"path": "."
+		},
+		{
+			"name": "UE4",
+			"path": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp",
+			"vadimcn.vscode-lldb",
+			"ms-vscode.mono-debug"
+		]
+	}
+}

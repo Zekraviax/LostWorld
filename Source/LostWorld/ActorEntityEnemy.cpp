@@ -42,16 +42,16 @@ void AActorEntityEnemy::CreateAiBrainComponent()
 
 
 // -------------------------------- Battle Interface functions
-bool AActorEntityEnemy::TakeDamage(float Damage)
+bool AActorEntityEnemy::EntityTakeDamage(float Damage)
 {
-	AActorEntityBase::TakeDamage(Damage);
+	AActorEntityBase::EntityTakeDamage(Damage);
 
 	ALostWorldGameModeBase::DualLog("Enemy " + EntityData.DisplayName + " takes " +
 		FString::FromInt(Damage) + " damage.", 2);
 
 	// Note: Bear in mind that this actor could use the IInterface's default implementation, but doesn't
 	// in order to avoid any unexpected behaviors from calling the same function twice.
-	return IInterfaceBattle::TakeDamage(Damage);
+	return IInterfaceBattle::EntityTakeDamage(Damage);
 }
 
 

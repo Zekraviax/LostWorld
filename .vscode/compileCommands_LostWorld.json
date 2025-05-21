@@ -1,0 +1,397 @@
+[
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityEnemy.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityEnemy.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityPlayer.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorEntityPlayer.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorGridTile.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/ActorGridTile.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBaseWolfPack.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBaseWolfPack.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBaseWolfPackAlpha.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainBaseWolfPackAlpha.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainIronShellAutomaton.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainIronShellAutomaton.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainRabidRat.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainRabidRat.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainTestEnemyOne.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainTestEnemyOne.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainTestEnemyTwo.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/AiBrainTestEnemyTwo.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/CustomJsonDeserializer.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/CustomJsonDeserializer.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/CustomJsonParser.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/CustomJsonParser.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/DragDropOperationCard.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/DragDropOperationCard.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/FunctionLibraryCards.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/FunctionLibraryCards.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/FunctionLibraryStatusEffects.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/FunctionLibraryStatusEffects.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/InterfaceBattle.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/InterfaceBattle.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/InterfaceEntity.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/InterfaceEntity.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorld.Build.cs",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorld.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorld.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameInstanceBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameInstanceBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameModeBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameModeBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameModeBattle.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameModeBattle.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameStateBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldGameStateBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerControllerBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerControllerBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerControllerBattle.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerControllerBattle.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerStateBase.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/LostWorldPlayerStateBase.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/SaveGameDeveloperSettings.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/SaveGameDeveloperSettings.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/SaveGameLevelData.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/SaveGameLevelData.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/Variables.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/Variables.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetCard.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetCard.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetDeckEditor.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetDeckEditor.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetDevTestMenu.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetDevTestMenu.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEntityBillboard.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEntityBillboard.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEquipment.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEquipment.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEquipmentItem.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetEquipmentItem.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetHudBattle.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetHudBattle.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetHudLevelExploration.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetHudLevelExploration.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetPauseMenu.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetPauseMenu.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetPlayerPrompt.cpp",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	},
+	{
+		"file": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Source/LostWorld/WidgetPlayerPrompt.h",
+		"command": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"directory": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Source"
+	}
+]

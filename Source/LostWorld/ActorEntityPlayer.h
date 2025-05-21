@@ -37,7 +37,7 @@ public:
 
 	virtual bool ExileCardFromZone(FString InZoneName, FCard InCard) override;
 
-	virtual bool TakeDamage(float Damage) override;
+	virtual bool EntityTakeDamage(float Damage) override;
 	virtual bool EntityDefeated() override;
 
 	virtual bool ReceiveHealing(float Healing) override;

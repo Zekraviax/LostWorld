@@ -36,7 +36,7 @@ void AFunctionLibraryStatusEffects::Poison(AActorEntityBase* EffectedEntity)
 	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName +
 		" is hurting from poison!", 2);
 	
-	Cast<IInterfaceBattle>(EffectedEntity)->TakeDamage(PoisonDamageAsInt);
+	Cast<IInterfaceBattle>(EffectedEntity)->EntityTakeDamage(PoisonDamageAsInt);
 }
 
 
@@ -61,5 +61,5 @@ void AFunctionLibraryStatusEffects::Bleeding(AActorEntityBase* EffectedEntity)
 
 	ALostWorldGameModeBase::DualLog(EffectedEntity->EntityData.DisplayName + " is bleeding!", 2);
 
-	Cast<IInterfaceBattle>(EffectedEntity)->TakeDamage(BleedingDamageAsInt);
+	Cast<IInterfaceBattle>(EffectedEntity)->EntityTakeDamage(BleedingDamageAsInt);
 }

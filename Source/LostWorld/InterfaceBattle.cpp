@@ -72,7 +72,7 @@ bool IInterfaceBattle::ExileCardFromZone(FString InZoneName, FCard InCard)
 }
 
 
-bool IInterfaceBattle::TakeDamage(float Damage)
+bool IInterfaceBattle::EntityTakeDamage(float Damage)
 {
 	return true;
 }

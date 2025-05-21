@@ -1,0 +1,445 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "LostWorld Linux Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Linux Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Linux DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Linux Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Shipping",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Shipping",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Linux Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Shipping",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Test",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Test",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Linux Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorld Linux Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Linux",
+				"Test",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Linux Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Debug",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Linux DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"DebugGame",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Linux Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		},
+		{
+			"label": "LostWorldEditor Linux Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Linux",
+				"Development",
+				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			}
+		}
+	]
+}

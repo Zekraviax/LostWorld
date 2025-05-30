@@ -624,9 +624,11 @@ Deal heavy earth damage to all enemies, then daze enemies who have half health o
 
 
 Dragons
+Species
 Creatures that do not die of old age, and suffer diseases very, very rarely.
 They live to fight, and fight to die.
 Due to constant combat, their limbs never stop growing.
+
 They are sentient, they do recognize their built-in unending drive to fight.
 It's very rare to meet one in person. Their numbers have never been high, due to few-and-far-between births.
 One boss in-game is an Ancient Dragon, survivor of a thousand battles, covered in scars and endlessly growing wings and limbs.
@@ -1299,6 +1301,8 @@ Demons are all sentient and sapient; they have their own desires and hopes and d
 
 Demon sightings are only somewhat uncommon, primarily due to a low population. Demon "birth" sightings are extremely rare, and very little documentation of such events exists.
 
+(Are demons the product of souls returning to the world from the afterlife?)
+
 
 
 Mysterious Orb
@@ -1373,6 +1377,42 @@ Enemies gain Levels as players descend through dungeons. (Refer to the Level Sca
 Crop Rotation
 Earth Spell
 Purge all Positive Status Effects you have. For each Status Effect purged this way, gain that many Stacks of a Positive Status Effect of your choice that you didn't Purge with this Card.
+
+
+
+The Three Triads
+100 Cost Arcane Summon
+This character's Base Stats are all equal to the number of cards in your deck squared.
+
+
+
+Curse of Generosity
+Negative Status Effect
+Whenever this Character plays a Card, each Enemy may choose to Create a Copy of that card and Draw it.
+
+
+
+Peak Physical Conditioning
+Trait
+You gain more EXP, and your techniques require less uses to level up.
+
+
+
+Hyper Orb
+Equipment - Weapon(?)
+Your Outgoing Damage is increased by 1.3x.
+Whenever you Cast a Card, you lose 1/10 of your Maximum HP.
+
+
+Last Word
+Arcane Spell
+This Spell can't be countered.
+Counter all other Cards on the stack.
+"...Yes, of course my work is deadly. But only after many more decades of service, and while surrounded by my loved ones, will I go gently into the night."
+
+
+
+?
 
 
 

@@ -39,7 +39,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		
 		if (WriteToJson) {
 			ValueAsString = FString::FromInt(IntValue);
-			InJsonWriter->WriteValue(VariableName, ValueAsString);
+			InJsonWriter->WriteValue(VariableName, IntValue);
 		}
 	}
 
@@ -66,46 +66,10 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	// To-Do: Enums
 	if (Cast<FEnumProperty>(Property)) {
 		const UEnum* EnumTypeProperty = Cast<FEnumProperty>(Property)->GetEnum();
-		//int EnumIndex = EnumProperty->GetValueByName(FName(*StrValue));
-		//FString EnumAsString = *UEnum::GetValueAsString(YourStaminaStatus));
-
+		const FEnumProperty* EnumProperty = CastField<FEnumProperty>(Property);
 		
-		const FEnumProperty* EnumProperty2 = CastField<FEnumProperty>(Property);
-		//uint8* EnumPointer = EnumProperty2->ContainerPtrToValuePtr<uint8>(Property);
-		//uint8 EnumPointer = *EnumProperty->ContainerPtrToValuePtr(this);
-
-		
-		const FEnumProperty* EnumPropertyClass = static_cast<const FEnumProperty*>(Property);
-		const FProperty* Enum = EnumPropertyClass->GetUnderlyingProperty();
-		const FFieldClass* EnumClass = Enum->GetClass();
-
-		
-		const FNumericProperty* UnderlyingProp = CastField<FEnumProperty>(Property)->GetUnderlyingProperty();
-		//const int64 EnumValue = UnderlyingProp->GetSignedIntPropertyValue(Property->ContainerPtrToValuePtr<void>(Property));
-
-		
-		//UObject* OwnerObject; // in your case 'this' you need to get the pointer to the struct
-		//UEnumProperty* EnumProp;
-		//const void* ptrValue = EnumProperty2->ContainerPtrToValuePtr<>(OwnerObject);
-
-		
-		FName EnumAsName = EnumTypeProperty->GetFName();
-		for (int32 Index = 0; Index < EnumTypeProperty->NumEnums(); ++Index)
-		{
-			FString EnumName = EnumTypeProperty->GetNameStringByIndex(Index);
-			int64 EnumValue = EnumTypeProperty->GetValueByIndex(Index);
-
-			FString EnumAsString = EnumTypeProperty->GetNameStringByIndex(EnumValue);
-			EnumAsName.ToString().Split(TEXT("::"), nullptr, &ValueAsString, ESearchCase::IgnoreCase);
-		}
-		
-		//FString EnumAsString = EnumTypeProperty->GetNameStringByIndex(EnumValue);
-		EnumAsName.ToString().Split(TEXT("::"), nullptr, &ValueAsString, ESearchCase::IgnoreCase);
-
-		
-		int64 Value = EnumProperty2->GetUnderlyingProperty()->GetSignedIntPropertyValue(ValuePointer);
-		TOptional<int64> Result;
-		Result = Value;
+		int64 Value = EnumProperty->GetUnderlyingProperty()->GetSignedIntPropertyValue(ValuePointer);
+		TOptional<int64> Result = Value;
 		FString EnumAsNameString = EnumTypeProperty->GetNameStringByValue(Result.GetValue());
 		
 		if (WriteToJson) {

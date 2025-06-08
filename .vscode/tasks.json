@@ -2,6 +2,556 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "LostWorld Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Mac Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld Mac Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld Mac Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"Mac",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld IOS Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld IOS DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld IOS Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld IOS Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld IOS Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld IOS Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"IOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
 			"label": "LostWorld Linux Debug Build",
 			"group": "build",
 			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
@@ -9,13 +559,13 @@
 				"LostWorld",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -26,7 +576,7 @@
 				"LostWorld",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -35,7 +585,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -46,14 +596,14 @@
 				"LostWorld",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -64,13 +614,13 @@
 				"LostWorld",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -81,7 +631,7 @@
 				"LostWorld",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -90,7 +640,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -101,14 +651,14 @@
 				"LostWorld",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -119,13 +669,13 @@
 				"LostWorld",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -136,7 +686,7 @@
 				"LostWorld",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -145,7 +695,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -156,14 +706,14 @@
 				"LostWorld",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -174,13 +724,13 @@
 				"LostWorld",
 				"Linux",
 				"Shipping",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -191,7 +741,7 @@
 				"LostWorld",
 				"Linux",
 				"Shipping",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -200,7 +750,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -211,14 +761,14 @@
 				"LostWorld",
 				"Linux",
 				"Shipping",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -229,13 +779,13 @@
 				"LostWorld",
 				"Linux",
 				"Test",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -246,7 +796,7 @@
 				"LostWorld",
 				"Linux",
 				"Test",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -255,7 +805,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -266,14 +816,564 @@
 				"LostWorld",
 				"Linux",
 				"Test",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld LinuxAArch64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld LinuxAArch64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld LinuxAArch64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld LinuxAArch64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld LinuxAArch64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld LinuxAArch64 Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"LinuxAArch64",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld TVOS Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld TVOS DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld TVOS Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld TVOS Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Shipping",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorld TVOS Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorld TVOS Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorld",
+				"TVOS",
+				"Test",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -284,13 +1384,13 @@
 				"LostWorldEditor",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -301,7 +1401,7 @@
 				"LostWorldEditor",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -310,7 +1410,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -321,14 +1421,14 @@
 				"LostWorldEditor",
 				"Linux",
 				"Debug",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -339,13 +1439,13 @@
 				"LostWorldEditor",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -356,7 +1456,7 @@
 				"LostWorldEditor",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -365,7 +1465,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -376,14 +1476,14 @@
 				"LostWorldEditor",
 				"Linux",
 				"DebugGame",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -394,13 +1494,13 @@
 				"LostWorldEditor",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -411,7 +1511,7 @@
 				"LostWorldEditor",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
@@ -420,7 +1520,7 @@
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		},
 		{
@@ -431,14 +1531,179 @@
 				"LostWorldEditor",
 				"Linux",
 				"Development",
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-waitmutex",
 				"-clean"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Debug",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"DebugGame",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"LostWorldEditor Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
+			}
+		},
+		{
+			"label": "LostWorldEditor Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+			"args": [
+				"LostWorldEditor",
+				"Mac",
+				"Development",
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 			}
 		}
 	]

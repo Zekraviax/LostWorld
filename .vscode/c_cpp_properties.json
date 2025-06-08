@@ -3,12 +3,12 @@
 		{
 			"name": "LostWorldEditor Editor Linux Development (LostWorld)",
 			"intelliSenseMode": "clang-x64",
-			"compileCommands": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_LostWorld.json"
+			"compileCommands": "/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld.json"
 		},
 		{
 			"name": "Linux",
 			"intelliSenseMode": "clang-x64",
-			"compileCommands": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/.vscode/compileCommands_Default.json"
+			"compileCommands": "/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_Default.json"
 		}
 	]
 }

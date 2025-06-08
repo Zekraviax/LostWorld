@@ -5,100 +5,100 @@
 			"name": "LostWorld (Debug)",
 			"request": "launch",
 			"preLaunchTask": "LostWorld Linux Debug Build",
-			"program": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Binaries/Linux/UE4-Linux-Debug",
+			"program": "/home/valerie/Documents/Projects/LostWorld/Binaries/Linux/LostWorld-Linux-Debug",
 			"args": [
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorld (DebugGame)",
 			"request": "launch",
 			"preLaunchTask": "LostWorld Linux DebugGame Build",
-			"program": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Binaries/Linux/UE4-Linux-DebugGame",
+			"program": "/home/valerie/Documents/Projects/LostWorld/Binaries/Linux/LostWorld-Linux-DebugGame",
 			"args": [
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorld (Development)",
 			"request": "launch",
 			"preLaunchTask": "LostWorld Linux Development Build",
-			"program": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Binaries/Linux/UE4",
+			"program": "/home/valerie/Documents/Projects/LostWorld/Binaries/Linux/LostWorld",
 			"args": [
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorld (Shipping)",
 			"request": "launch",
 			"preLaunchTask": "LostWorld Linux Shipping Build",
-			"program": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Binaries/Linux/UE4-Linux-Shipping",
+			"program": "/home/valerie/Documents/Projects/LostWorld/Binaries/Linux/LostWorld-Linux-Shipping",
 			"args": [
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorld (Test)",
 			"request": "launch",
 			"preLaunchTask": "LostWorld Linux Test Build",
-			"program": "/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/Binaries/Linux/UE4-Linux-Test",
+			"program": "/home/valerie/Documents/Projects/LostWorld/Binaries/Linux/LostWorld-Linux-Test",
 			"args": [
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorldEditor (Debug)",
 			"request": "launch",
 			"preLaunchTask": "LostWorldEditor Linux Debug Build",
-			"program": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Binaries/Linux/UE4Editor-Linux-Debug",
+			"program": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Binaries/Linux/UE4Editor-Linux-Debug",
 			"args": [
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject"
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject"
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorldEditor (DebugGame)",
 			"request": "launch",
 			"preLaunchTask": "LostWorldEditor Linux DebugGame Build",
-			"program": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Binaries/Linux/UE4Editor-Linux-DebugGame",
+			"program": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Binaries/Linux/UE4Editor-Linux-DebugGame",
 			"args": [
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject"
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject"
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "LostWorldEditor (Development)",
 			"request": "launch",
 			"preLaunchTask": "LostWorldEditor Linux Development Build",
-			"program": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Binaries/Linux/UE4Editor",
+			"program": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Binaries/Linux/UE4Editor",
 			"args": [
-				"/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject"
+				"/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject"
 			],
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2",
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom",
 			"type": "lldb"
 		},
 		{
 			"name": "Generate Project Files",
 			"type": "mono",
 			"request": "launch",
-			"program": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2/Engine/Binaries/DotNET/UnrealBuildTool.exe",
+			"program": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Binaries/DotNET/UnrealBuildTool.exe",
 			"console": "internalConsole",
 			"args": [
 				"-projectfiles",
 				"-vscode",
-				"-project=/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject",
+				"-project=/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject",
 				"-game",
 				"-engine"
 			],
 			"internalConsoleOptions": "openOnSessionStart",
-			"cwd": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
+			"cwd": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 		}
 	]
 }

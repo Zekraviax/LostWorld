@@ -3,10 +3,6 @@
 		{
 			"name": "LostWorld",
 			"path": "."
-		},
-		{
-			"name": "UE4",
-			"path": "/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2"
 		}
 	],
 	"settings": {

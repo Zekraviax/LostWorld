@@ -9,10 +9,10 @@ CONFIG -= qt
 
 TARGET = UE4 
 
-unrealRootPath=/var/home/bazzite/Documents/Unreal Engine/dev-4.27.2
-LostWorldRootPath=/home/bazzite/UnrealEngine/Projects/LostWorld 4.27
+unrealRootPath=/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom
+LostWorldRootPath=/home/valerie/Documents/Projects/LostWorld
 
-gameProjectFile=/home/bazzite/UnrealEngine/Projects/LostWorld 4.27/LostWorld.uproject
+gameProjectFile=/home/valerie/Documents/Projects/LostWorld/LostWorld.uproject
 build=bash $$unrealRootPath/Engine/Build/BatchFiles/Linux/RunMono.sh $$unrealRootPath/Engine/Binaries/DotNET/UnrealBuildTool.exe
 
 args=$(ARGS)
@@ -23,46 +23,26 @@ include(LostWorldConfig.pri)
 include(LostWorldIncludes.pri)
 include(LostWorldDefines.pri)
 
+LostWorld-Linux-Debug.commands = $$build LostWorld Linux Debug  -project="\"$$gameProjectFile\"" $$args
 LostWorld-Linux-DebugGame.commands = $$build LostWorld Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
 LostWorld-Linux-Shipping.commands = $$build LostWorld Linux Shipping  -project="\"$$gameProjectFile\"" $$args
+LostWorld-Linux-Test.commands = $$build LostWorld Linux Test  -project="\"$$gameProjectFile\"" $$args
 LostWorld.commands = $$build LostWorld Linux Development  -project="\"$$gameProjectFile\"" $$args
 
+LostWorldEditor-Linux-Debug.commands = $$build LostWorldEditor Linux Debug  -project="\"$$gameProjectFile\"" $$args
 LostWorldEditor-Linux-DebugGame.commands = $$build LostWorldEditor Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
 LostWorldEditor-Linux-Shipping.commands = $$build LostWorldEditor Linux Shipping  -project="\"$$gameProjectFile\"" $$args
+LostWorldEditor-Linux-Test.commands = $$build LostWorldEditor Linux Test  -project="\"$$gameProjectFile\"" $$args
 LostWorldEditor.commands = $$build LostWorldEditor Linux Development  -project="\"$$gameProjectFile\"" $$args
 
-UE4Client-Linux-DebugGame.commands = $$build UE4Client Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
-UE4Client-Linux-Shipping.commands = $$build UE4Client Linux Shipping  -project="\"$$gameProjectFile\"" $$args
-UE4Client.commands = $$build UE4Client Linux Development  -project="\"$$gameProjectFile\"" $$args
-
-UE4Editor-Linux-DebugGame.commands = $$build UE4Editor Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
-UE4Editor-Linux-Shipping.commands = $$build UE4Editor Linux Shipping  -project="\"$$gameProjectFile\"" $$args
-UE4Editor.commands = $$build UE4Editor Linux Development  -project="\"$$gameProjectFile\"" $$args
-
-UE4Game-Linux-DebugGame.commands = $$build UE4Game Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
-UE4Game-Linux-Shipping.commands = $$build UE4Game Linux Shipping  -project="\"$$gameProjectFile\"" $$args
-UE4Game.commands = $$build UE4Game Linux Development  -project="\"$$gameProjectFile\"" $$args
-
-UE4Server-Linux-DebugGame.commands = $$build UE4Server Linux DebugGame  -project="\"$$gameProjectFile\"" $$args
-UE4Server-Linux-Shipping.commands = $$build UE4Server Linux Shipping  -project="\"$$gameProjectFile\"" $$args
-UE4Server.commands = $$build UE4Server Linux Development  -project="\"$$gameProjectFile\"" $$args
-
 QMAKE_EXTRA_TARGETS += \ 
+	LostWorld-Linux-Debug \
 	LostWorld-Linux-DebugGame \
 	LostWorld-Linux-Shipping \
+	LostWorld-Linux-Test \
 	LostWorld \
+	LostWorldEditor-Linux-Debug \
 	LostWorldEditor-Linux-DebugGame \
 	LostWorldEditor-Linux-Shipping \
+	LostWorldEditor-Linux-Test \
 	LostWorldEditor \
-	UE4Client-Linux-DebugGame \
-	UE4Client-Linux-Shipping \
-	UE4Client \
-	UE4Editor-Linux-DebugGame \
-	UE4Editor-Linux-Shipping \
-	UE4Editor \
-	UE4Game-Linux-DebugGame \
-	UE4Game-Linux-Shipping \
-	UE4Game \
-	UE4Server-Linux-DebugGame \
-	UE4Server-Linux-Shipping \
-	UE4Server \

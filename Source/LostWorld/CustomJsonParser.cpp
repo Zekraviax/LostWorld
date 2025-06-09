@@ -15,7 +15,7 @@ CustomJsonParser::~CustomJsonParser()
 }
 
 
-FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, bool WriteToJson)
+FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, bool InWriteToJson, bool InWriteVariableName)
 {
 	FString VariableName = Property->GetName();
 	FString ValueAsString;
@@ -28,7 +28,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	if (Cast<FStrProperty>(Property)) {
 		ValueAsString = Cast<FStrProperty>(Property)->GetPropertyValue(ValuePointer);
 
-		if (WriteToJson) {
+		if (InWriteToJson) {
 			InJsonWriter->WriteValue(VariableName, ValueAsString);
 		}
 	}
@@ -37,7 +37,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	if (Cast<FIntProperty>(Property)) {
 		const int IntValue = Cast<FIntProperty>(Property)->GetPropertyValue(ValuePointer);
 		
-		if (WriteToJson) {
+		if (InWriteToJson) {
 			ValueAsString = FString::FromInt(IntValue);
 			InJsonWriter->WriteValue(VariableName, IntValue);
 		}
@@ -47,7 +47,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	if (Cast<FFloatProperty>(Property)) {
 		const float FloatValue = Cast<FFloatProperty>(Property)->GetPropertyValue(ValuePointer);
 
-		if (WriteToJson) {
+		if (InWriteToJson) {
 			ValueAsString = FString::SanitizeFloat(FloatValue);
 			InJsonWriter->WriteValue(VariableName, FloatValue);
 		}
@@ -57,13 +57,13 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 	if (Cast<FBoolProperty>(Property)) {
 		const bool BoolValue = Cast<FBoolProperty>(Property)->GetPropertyValue(ValuePointer);
 
-		if (WriteToJson) {
+		if (InWriteToJson) {
 			ValueAsString = BoolValue ? "true" : "false";
 			InJsonWriter->WriteValue(VariableName, BoolValue);
 		}
 	}
 	
-	// To-Do: Enums
+	// Enums
 	if (Cast<FEnumProperty>(Property)) {
 		const UEnum* EnumTypeProperty = Cast<FEnumProperty>(Property)->GetEnum();
 		const FEnumProperty* EnumProperty = CastField<FEnumProperty>(Property);
@@ -72,11 +72,10 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		TOptional<int64> Result = Value;
 		FString EnumAsNameString = EnumTypeProperty->GetNameStringByValue(Result.GetValue());
 		
-		if (WriteToJson) {
-			bool WriteVariableName = false;
+		if (InWriteToJson) {
 			ValueAsString = EnumAsNameString;
 
-			if (WriteVariableName) {
+			if (InWriteVariableName) {
 				InJsonWriter->WriteValue(VariableName, ValueAsString);
 			} else {
 				InJsonWriter->WriteValue(ValueAsString);
@@ -84,7 +83,29 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		}
 	}
 
-	// To-Do: Array handling
+	// To-Do: Maps
+	if (Cast<FMapProperty>(Property)) {
+		const FMapProperty* MapProp = CastField<const FMapProperty>(Property);
+		InJsonWriter->WriteObjectStart(VariableName);
+
+		FScriptMapHelper MapHelper(MapProp, ValuePointer);
+
+		for (int32 MapSparseIndex = 0; MapSparseIndex < MapHelper.GetMaxIndex(); ++MapSparseIndex) {
+			if (MapHelper.IsValidIndex(MapSparseIndex)) {
+				const uint8* MapKeyData = MapHelper.GetKeyPtr(MapSparseIndex);
+				const uint8* MapValueData = MapHelper.GetValuePtr(MapSparseIndex);
+
+				// JSON object keys must always be strings
+				const FString KeyValue = DataTableUtils::GetPropertyValueAsStringDirect(MapHelper.GetKeyProperty(), MapKeyData, EDataTableExportFlags::UseJsonObjectsForStructs);
+				//WriteContainerEntry(MapHelper.GetValueProperty(), MapValueData, &KeyValue);
+				ParseUStructPropertyIntoJsonString(MapHelper.GetValueProperty(), MapValueData, InJsonWriter, InWriteToJson, true);
+			}
+		}
+
+		InJsonWriter->WriteObjectEnd();
+	}
+
+	// Arrays
 	if (Cast<FArrayProperty>(Property)) {
 		const FArrayProperty* ArrayProperty = Cast<FArrayProperty>(Property);
 
@@ -94,7 +115,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		for (int32 ArrayEntryIndex = 0; ArrayEntryIndex < ArrayHelper.Num(); ++ArrayEntryIndex) {
 
 			const uint8* ArrayEntryData = ArrayHelper.GetRawPtr(ArrayEntryIndex);
-			ParseUStructPropertyIntoJsonString(ArrayProperty->Inner, ArrayEntryData, InJsonWriter, true);
+			ParseUStructPropertyIntoJsonString(ArrayProperty->Inner, ArrayEntryData, InJsonWriter, true, InWriteVariableName);
 		}
 		
 		InJsonWriter->WriteArrayEnd();
@@ -117,7 +138,7 @@ FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* Stru
 		FString VariableName = Property->GetName();
 		const void* Value = Property->ContainerPtrToValuePtr<uint8>(Struct);
 		
-		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value, InJsonWriter, true);
+		ValueAsString = ParseUStructPropertyIntoJsonString(Property, Value, InJsonWriter, true, false);
 	}
 	
 	return ValueAsString;

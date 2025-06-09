@@ -1283,6 +1283,14 @@ OTHER_FILES += \
 	"$$unrealRootPath/Engine/Plugins/Lumin/MagicLeapSharedFile/Source/MagicLeapSharedFile.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Lumin/MagicLeapTablet/Source/MagicLeapTablet.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Lumin/MLSDK/Source/MLSDK/MLSDK.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RD/RD.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderBlueprint/RiderBlueprint.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderDebuggerSupport/RiderDebuggerSupport.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderGameControl/RiderGameControl.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderLC/RiderLC.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderLink/RiderLink.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderLogging/RiderLogging.Build.cs" \
+	"$$unrealRootPath/Engine/Plugins/Marketplace/Developer/RiderLink/Source/RiderShaderInfo/RiderShaderInfo.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Media/AjaMedia/Source/AjaMedia/AjaMedia.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Media/AjaMedia/Source/AjaMediaEditor/AjaMediaEditor.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Media/AjaMedia/Source/AjaMediaFactory/AjaMediaFactory.Build.cs" \

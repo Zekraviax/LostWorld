@@ -1,7 +1,16 @@
 [
 	{
 		"Name": "TestCardOne",
-		"DisplayName": "Test Card One"
+		"DisplayName": "Test Card One",
+		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
+		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"TestFunctionOne": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		}
 	},
 	{
 		"Name": "TestCardTwo",

@@ -1,397 +1,397 @@
 [
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityEnemy.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityEnemy.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityPlayer.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorEntityPlayer.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorGridTile.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/ActorGridTile.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBaseWolfPack.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBaseWolfPack.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBaseWolfPackAlpha.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainBaseWolfPackAlpha.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainIronShellAutomaton.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainIronShellAutomaton.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainRabidRat.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainRabidRat.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainTestEnemyOne.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainTestEnemyOne.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainTestEnemyTwo.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/AiBrainTestEnemyTwo.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/CustomJsonDeserializer.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/CustomJsonDeserializer.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/CustomJsonParser.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/CustomJsonParser.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/DragDropOperationCard.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/DragDropOperationCard.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/FunctionLibraryCards.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/FunctionLibraryCards.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/FunctionLibraryStatusEffects.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/FunctionLibraryStatusEffects.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/InterfaceBattle.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/InterfaceBattle.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/InterfaceEntity.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/InterfaceEntity.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorld.Build.cs",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorld.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorld.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameInstanceBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameInstanceBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameModeBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameModeBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameModeBattle.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameModeBattle.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameStateBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldGameStateBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerControllerBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerControllerBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerControllerBattle.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerControllerBattle.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerStateBase.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/LostWorldPlayerStateBase.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/SaveGameDeveloperSettings.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/SaveGameDeveloperSettings.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/SaveGameLevelData.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/SaveGameLevelData.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/Variables.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/Variables.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetCard.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetCard.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetDeckEditor.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetDeckEditor.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetDevTestMenu.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetDevTestMenu.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEntityBillboard.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEntityBillboard.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEquipment.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEquipment.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEquipmentItem.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetEquipmentItem.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetHudBattle.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetHudBattle.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetHudLevelExploration.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetHudLevelExploration.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetPauseMenu.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetPauseMenu.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetPlayerPrompt.cpp",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	},
 	{
 		"file": "/home/valerie/Documents/Projects/LostWorld/Source/LostWorld/WidgetPlayerPrompt.h",
-		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.176.rsp\"",
+		"command": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v19_clang-11.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++ @\"/home/valerie/Documents/Projects/LostWorld/.vscode/compileCommands_LostWorld/LostWorld.183.rsp\"",
 		"directory": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom/Engine/Source"
 	}
 ]

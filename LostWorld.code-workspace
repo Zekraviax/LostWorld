@@ -3,6 +3,10 @@
 		{
 			"name": "LostWorld",
 			"path": "."
+		},
+		{
+			"name": "UE4",
+			"path": "/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom"
 		}
 	],
 	"settings": {

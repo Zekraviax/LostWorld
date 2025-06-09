@@ -13,6 +13,13 @@
 		"BaseHealing": 0,
 		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -33,6 +40,13 @@
 		"BaseHealing": 0,
 		"Description": "Deal damage to all enemies with base power ${TotalPower}.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AllEnemies"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -53,6 +67,13 @@
 		"BaseHealing": 0,
 		"Description": "Draw 1 card.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "Self"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -73,6 +94,13 @@
 		"BaseHealing": 5,
 		"Description": "Heal one target with base power ${TotalHealing}.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AnyOneEntity"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -93,6 +121,13 @@
 		"BaseHealing": 0,
 		"Description": "Deal light damage and poison a target.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AnyOneEntity"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -113,6 +148,13 @@
 		"BaseHealing": 0,
 		"Description": "Deals moderate damage. Damage is doubled against barriers.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AnyOneEntity"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -133,6 +175,14 @@
 		"BaseHealing": 0,
 		"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AnyOneEntity",
+			"FunctionsAndTargets": "None"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 0,
@@ -153,6 +203,13 @@
 		"BaseHealing": 0,
 		"Description": "Draw cards until your deck is empty, then draw one more.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "Self"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -173,6 +230,13 @@
 		"BaseHealing": 0,
 		"Description": "Swap your hand and deck.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -193,6 +257,13 @@
 		"BaseHealing": 0,
 		"Description": "Summon a TestSummon.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "Self"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -213,6 +284,13 @@
 		"BaseHealing": 0,
 		"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 5,
@@ -233,6 +311,13 @@
 		"BaseHealing": 0,
 		"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -253,6 +338,13 @@
 		"BaseHealing": 0,
 		"Description": "Deals damage to one target. Deals 1.2x damage to stunned targets. Stuns targets that aren't stunned.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -273,6 +365,12 @@
 		"BaseHealing": 0,
 		"Description": "Deal damage to any one target. Damage is calculated using your Agility.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -293,6 +391,12 @@
 		"BaseHealing": 0,
 		"Description": "Instead of drawing a card, you may Create a card instead. Cards created this way are Temporary.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -313,6 +417,12 @@
 		"BaseHealing": 0,
 		"Description": "You may permanently Destroy any number of cards in your Collection. Attack a random enemy X times with base power X, where X is quadruple the number of cards destroyed this way.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -333,6 +443,12 @@
 		"BaseHealing": 0,
 		"Description": "Deal damage to one target. Base damage is increased by 1.5x if the target is bleeding.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -353,6 +469,12 @@
 		"BaseHealing": 0,
 		"Description": "Summon an entity of the same type as this one. Has a 50% chance to fail.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -373,6 +495,12 @@
 		"BaseHealing": 0,
 		"Description": "Deals damage to one target. Has a 1/5 chance to be a Critical Hit. Critical Hits ignore defences and deal 1.5x damage.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -393,6 +521,12 @@
 		"BaseHealing": 0,
 		"Description": "Inflict Burn on the target and give it 2 stacks of Muscle Surge",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -413,6 +547,13 @@
 		"BaseHealing": 0,
 		"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -433,6 +574,13 @@
 		"BaseHealing": 0,
 		"Description": "Inflict ToughnessDown on all enemies.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AllEnemies"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -453,6 +601,13 @@
 		"BaseHealing": 0,
 		"Description": "Inflicts 3 stacks of poison on to the target.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -473,6 +628,14 @@
 		"BaseHealing": 0,
 		"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 2/5 success chance.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AllEnemies",
+			"FunctionsAndTargets": "None"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -493,6 +656,13 @@
 		"BaseHealing": 0,
 		"Description": "Each entity of the same type as this one attacks the target.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -513,6 +683,13 @@
 		"BaseHealing": 0,
 		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "AllAllies"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -533,6 +710,15 @@
 		"BaseHealing": 0,
 		"Description": "Draw a card, then put a card from your hand on the bottom of your draw pile. Create an Ephemeral Train Of Thought and add it to your hand.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "Self",
+			"FunctionsAndTargets": "Self",
+			"FunctionsAndTargets": "Self"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
@@ -553,6 +739,13 @@
 		"BaseHealing": 0,
 		"Description": "Deals small damage to one target. This card has a high Action Speed.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 3,
 		"TotalCost": 1,
@@ -573,6 +766,12 @@
 		"BaseHealing": 0,
 		"Description": "Until the end of this turn, whenever you play a card, increase its Action Speed by 1.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": -1,
 		"TotalCost": 1,
@@ -593,6 +792,12 @@
 		"BaseHealing": 0,
 		"Description": "Until your next turn, you intercept all single target enemy cards that would target allies. You take 1/2 damage from all attacks, but cannot evade attacks.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": -3,
 		"TotalCost": 1,
@@ -613,6 +818,12 @@
 		"BaseHealing": 0,
 		"Description": "Deals high damage to one target. If a character is defeated with this card, Create a copy of this card and play it for free.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": -1,
 		"TotalCost": 1,
@@ -633,6 +844,13 @@
 		"BaseHealing": 0,
 		"Description": "Each character shuffles their Hand, Discard and Draw Piles together, then exiles the top half of the Draw Pile (rounded up), then draws 5 cards.",
 		"FlavourText": "This is a default flavour text.",
+		"FunctionsAndTargets":
+		{
+			"FunctionsAndTargets": "OneEnemy"
+		},
+		"ModifiersWithTriggers":
+		{
+		},
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,

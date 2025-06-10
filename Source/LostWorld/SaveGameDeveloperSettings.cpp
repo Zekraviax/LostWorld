@@ -139,58 +139,80 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 {
 	// Search through each and every Json file for each and every instance of a Card.
 	// First file: CardsData.json
-	bool OverrideCardsJsonFile = false;
+	bool ValidationPartOneSuccessful = true;
+	bool OverrideCurrentJsonFile = false;
 	TArray<FCard> JsonCardsArray, DataTableCardsArray;
-	FString CardsJsonAsString = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->LoadFileFromJson("CardsData");
+	const FString CardsJsonAsString = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->LoadFileFromJson("CardsData");
 	TArray<FName> RowNames = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable->GetRowNames();
 
 	// Validation part 1: Ensure that the file can be loaded and parsed into unreal engine data formats.
-	if (FJsonObjectConverter::JsonArrayStringToUStruct(CardsJsonAsString, &JsonCardsArray, 0, 0)) {
-		// Validation part 1 successful.
-		ALostWorldGameModeBase::DualLog("CardsData.json file validation part 1. No action necessary.", 2);
-	} else {
-		ALostWorldGameModeBase::DualLog("CardsData.json file failed validation part 1.\nCards data must be fixed.", 2);
-	}
-
-	// Validation part 2: Compare the data from the json file and the data from the data table.
 	for (FName RowName : RowNames) {
 		FString ContextString;
 		DataTableCardsArray.Add(*Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable->
 			FindRow<FCard>(FName(RowName), ContextString));
 	}
 	
-	for (int Index = 0; Index < JsonCardsArray.Num(); Index++) {
-		if (JsonCardsArray[Index] == DataTableCardsArray[Index]) {
-			// To-Do: Make a viable != operator for FCards.
-		} else {
-			// In the FCards array, override the incorrect data with the correct DataTable row.
-			JsonCardsArray[Index] = DataTableCardsArray[Index];
-			
-			ALostWorldGameModeBase::DualLog("Card " + DataTableCardsArray[Index].DisplayName + " failed validation part 2.", 2);
+	if (FJsonObjectConverter::JsonArrayStringToUStruct(CardsJsonAsString, &JsonCardsArray, 0, 0)) {
+		ValidationPartOneSuccessful = true;
+		ALostWorldGameModeBase::DualLog("CardsData.json file validation part 1 was successful. No action necessary.", 2);
+	} else {
+		ValidationPartOneSuccessful = false;
+		ALostWorldGameModeBase::DualLog("CardsData.json file failed validation part 1.\nCards data must be fixed.", 2);
+	}
 
-			// One time check to set a flag to overwrite the Json file.
-			if (!OverrideCardsJsonFile) {
-				OverrideCardsJsonFile = true;
-				ALostWorldGameModeBase::DualLog("CardsData.json requires overwriting.", 2);
+	// Validation part 2: Compare the data from the json file and the data from the data table.
+	if (!ValidationPartOneSuccessful)
+	{
+		for (int Index = 0; Index < JsonCardsArray.Num(); Index++) {
+			if (JsonCardsArray[Index] == DataTableCardsArray[Index]) {
+				// To-Do: Make a viable != operator for FCards.
+			} else {
+				// One time check to set a flag to overwrite the Json file.
+				if (!OverrideCurrentJsonFile) {
+					OverrideCurrentJsonFile = true;
+
+					// In the FCards array, override the incorrect data with the correct DataTable row.
+					JsonCardsArray[Index] = DataTableCardsArray[Index];
+					ALostWorldGameModeBase::DualLog("Card " + DataTableCardsArray[Index].DisplayName + " failed validation part 2.", 2);
+					ALostWorldGameModeBase::DualLog("CardsData.json requires overwriting.", 2);
+				}
 			}
+		}
+
+		// Validation part 3: Overwrite the json file if necessary.
+		// The FCards array should have been overriden with the correct data by this point.
+		if (OverrideCurrentJsonFile) {
+			// Since this is only a developer tool, we're going to do minimal defensive coding here.
+			FString OutJsonAsString;
+
+			// UStruct wrapper for an array of FCards.
+			FCardsArrayWrapper CardsArrayWrapper;
+			CardsArrayWrapper.Cards = DataTableCardsArray;
+			
+			CustomJsonParser* JsonSerializer = new CustomJsonParser();
+			JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
+
+			// To-Do: Move the following line to the end of the function.
+			JsonSerializer = nullptr;
+			SaveJsonAsStringToFile("CardsData", OutJsonAsString);
 		}
 	}
 
-	// Validation part 3: Overwrite the json file if necessary.
-	// The FCards array should have been overriden with the correct data by this point.
-	if (OverrideCardsJsonFile) {
-		// Since this is only a developer tool, we're going to do minimal defensive coding here.
-		FString CardsJsonFullSavePath = FPaths::ProjectSavedDir() + "SaveGames/CardsData.json";
-		FString NewCardsJsonAsJson, OutJsonAsString;
+	// Validation part 4: Repeat parts 1, 2, and 3 for all other instances of a Card in all other Json files.
+	// We process the files in alphabetical order.
+	ValidationPartOneSuccessful = true;
+	OverrideCurrentJsonFile = false;
+	TArray<FEntity> JsonEntitiesArray;
+	const FString EntitiesJsonAsString = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->LoadFileFromJson("EntitiesData");
+	if (FJsonObjectConverter::JsonArrayStringToUStruct(EntitiesJsonAsString, &JsonEntitiesArray, 0, 0)) {
+		ALostWorldGameModeBase::DualLog("EntitiesData.json file validation part 1 was successful. No action necessary.", 2);
+	} else {
+		ALostWorldGameModeBase::DualLog("EntitiesData.json file failed validation part 1.\nEnemies data must be fixed.", 2);
+	}
 
-		// UStruct wrapper for an array of FCards.
-		FCardsArrayWrapper CardsArrayWrapper;
-		CardsArrayWrapper.Cards = DataTableCardsArray;
-		
-		CustomJsonParser* JsonSerializer = new CustomJsonParser();
-		JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
-
-		JsonSerializer = nullptr;
-		SaveJsonAsStringToFile("Test", OutJsonAsString);
+	for (int EntityIndex = 0; EntityIndex < JsonEntitiesArray.Num(); EntityIndex++) {
+		for (int DeckIndex = 0; DeckIndex < JsonEntitiesArray[EntityIndex].Deck.Num(); DeckIndex++) {
+			
+		}
 	}
 }

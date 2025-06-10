@@ -2,15 +2,29 @@
 	{
 		"Name": "TestCardOne",
 		"DisplayName": "Test Card One",
+		"BaseCost": 1,
+		"CardTypes": [
+			"Spell"
+		],
+		"CardElements": [
+			"Fire"
+		],
+		"BaseDamage": 10,
+		"BaseHealing": 0,
 		"Description": "Deal damage to one enemy with base power ${TotalPower}.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
-		}
+		},
+		"Keywords": [],
+		"ActionSpeed": 0,
+		"TotalCost": 1,
+		"TotalDamage": 10,
+		"TotalHealing": 0
 	},
 	{
 		"Name": "TestCardTwo",
@@ -28,7 +42,7 @@
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionTwo": "AllEnemies"
+			"FunctionsAndTargets": "AllEnemies"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -36,26 +50,24 @@
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
-		"TotalDamage": 5,
+		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "TestCardThree",
-		"DisplayName": "Test Card Three",
-		"BaseCost": 3,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Water"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Draw 1 card.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionThree": "Self"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -68,21 +80,19 @@
 	},
 	{
 		"Name": "TestCardFour",
-		"DisplayName": "Test Card Four",
-		"BaseCost": 4,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
-		"BaseHealing": 5,
-		"Description": "Heal one target with base power ${TotalHealing}.",
+		"BaseHealing": 0,
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionFour": "AnyOneEntity"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -91,25 +101,23 @@
 		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
-		"TotalHealing": 5
+		"TotalHealing": 0
 	},
 	{
 		"Name": "PoisonDart",
-		"DisplayName": "Poison Dart",
-		"BaseCost": 3,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 2,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal light damage and poison a target.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"PoisonDart": "AnyOneEntity"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -122,21 +130,19 @@
 	},
 	{
 		"Name": "ArmourBreaker",
-		"DisplayName": "Armour Breaker",
-		"BaseCost": 7,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 12,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals moderate damage. Damage is doubled against barriers.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"ArmourBreaker": "AnyOneEntity"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -144,54 +150,49 @@
 		"Keywords": [],
 		"ActionSpeed": 0,
 		"TotalCost": 1,
-		"TotalDamage": 12,
+		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "HyperBeam",
-		"DisplayName": "Hyper Beam",
-		"BaseCost": 0,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Arcane"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Costs all of your mana. Base damage is equal to double the mana spent to cast this spell.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"HyperBeam": "AnyOneEntity",
-			"CostsAllMana": "None"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
 		"ActionSpeed": 0,
-		"TotalCost": 0,
+		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "TestCardFive",
-		"DisplayName": "Test Card Five",
-		"BaseCost": 5,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Arcane"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Draw cards until your deck is empty, then draw one more.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionFive": "Self"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -204,21 +205,19 @@
 	},
 	{
 		"Name": "Trick",
-		"DisplayName": "Trick",
+		"DisplayName": "Default Card",
 		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Cosmic"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Swap your hand and deck.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -231,21 +230,19 @@
 	},
 	{
 		"Name": "TestCardSix",
-		"DisplayName": "Test Card Six",
-		"BaseCost": 6,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Divine"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Summon a TestSummon.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionSix": "Self"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -258,48 +255,44 @@
 	},
 	{
 		"Name": "HowlOfCommand",
-		"DisplayName": "Howl Of Command",
-		"BaseCost": 5,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Fire"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Force all Wolf Pack allies to attack the chosen target. Attacks made against the target have increased base power.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"HowlOfCommand": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
 		"ActionSpeed": 0,
-		"TotalCost": 5,
+		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "EnergyInTheAir",
-		"DisplayName": "Energy In The Air",
+		"DisplayName": "Default Card",
 		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Arcane"
-		],
-		"BaseDamage": 1,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal damage to any one target. Base power is equal to the number of spells cast this turn.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"EnergyAllAround": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -312,21 +305,19 @@
 	},
 	{
 		"Name": "HammerBlow",
-		"DisplayName": "Hammer Blow",
-		"BaseCost": 6,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 9,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals damage to one target. Deals 1.2x damage to stunned targets. Stuns targets that aren't stunned.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"HammerBlow": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -339,20 +330,19 @@
 	},
 	{
 		"Name": "Shurikenjutsu",
-		"DisplayName": "Shurikenjutsu",
+		"DisplayName": "Default Card",
 		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal damage to any one target. Damage is calculated using your Agility.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -365,20 +355,19 @@
 	},
 	{
 		"Name": "MasterOfReality",
-		"DisplayName": "Master Of Reality",
-		"BaseCost": 16,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Divine"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Instead of drawing a card, you may Create a card instead. Cards created this way are Temporary.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -391,20 +380,19 @@
 	},
 	{
 		"Name": "ApocalypseChanneler",
-		"DisplayName": "Apocalypse Channeler",
-		"BaseCost": 13,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Cosmic"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "You may permanently Destroy any number of cards in your Collection. Attack a random enemy X times with base power X, where X is quadruple the number of cards destroyed this way.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -417,20 +405,19 @@
 	},
 	{
 		"Name": "GoreRush",
-		"DisplayName": "Gore Rush",
-		"BaseCost": 5,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 10,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal damage to one target. Base damage is increased by 1.5x if the target is bleeding.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -443,20 +430,19 @@
 	},
 	{
 		"Name": "CallForFriends",
-		"DisplayName": "Call For Friends",
+		"DisplayName": "Default Card",
 		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Summon an entity of the same type as this one. Has a 50% chance to fail.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -469,20 +455,19 @@
 	},
 	{
 		"Name": "PinpointThrust",
-		"DisplayName": "Pinpoint Thrust",
-		"BaseCost": 3,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
-		"BaseDamage": 6,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals damage to one target. Has a 1/5 chance to be a Critical Hit. Critical Hits ignore defences and deal 1.5x damage.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -495,20 +480,19 @@
 	},
 	{
 		"Name": "Inflame",
-		"DisplayName": "Inflame",
+		"DisplayName": "Default Card",
 		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Fire"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Inflict Burn on the target and give it 2 stacks of Muscle Surge",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -521,21 +505,19 @@
 	},
 	{
 		"Name": "InfectedBite",
-		"DisplayName": "Infected Bite",
-		"BaseCost": 2,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 3,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals damage to one target and always inflicts either Poison or Bleeding.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"InfectedBite": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -548,21 +530,19 @@
 	},
 	{
 		"Name": "Screech",
-		"DisplayName": "Screech",
-		"BaseCost": 2,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Inflict ToughnessDown on all enemies.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"InflictToughnessDown": "AllEnemies"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -575,21 +555,19 @@
 	},
 	{
 		"Name": "Vomit",
-		"DisplayName": "Vomit",
-		"BaseCost": 6,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Water"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Inflicts 3 stacks of poison on to the target.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"Vomit": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -602,22 +580,19 @@
 	},
 	{
 		"Name": "Demi",
-		"DisplayName": "Demi",
-		"BaseCost": -1,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Cosmic"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Attempt to cut a random enemies' HP in half X times. Each attempt has a 2/5 success chance.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"Demi": "AllEnemies",
-			"AddTotalCostStackEntries": "None"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -630,21 +605,19 @@
 	},
 	{
 		"Name": "SwarmAttack",
-		"DisplayName": "Swarm Attack",
-		"BaseCost": 5,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Water"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Each entity of the same type as this one attacks the target.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -657,21 +630,19 @@
 	},
 	{
 		"Name": "ThisIsATest",
-		"DisplayName": "\"This Is a Test!\"",
-		"BaseCost": 0,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Shout"
+			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
 		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "AllAllies"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -684,23 +655,19 @@
 	},
 	{
 		"Name": "TrainOfThought",
-		"DisplayName": "Train Of Thought",
-		"BaseCost": 3,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Water"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Draw a card, then put a card from your hand on the bottom of your draw pile. Create an Ephemeral Train Of Thought and add it to your hand.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"DrawOneCardThenBottomOneCard": "Self",
-			"WaitForPreviousFunctionPlayerInput": "Self",
-			"CreateEphemeralTrainOfThought": "Self"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
@@ -713,126 +680,119 @@
 	},
 	{
 		"Name": "QuickJab",
-		"DisplayName": "Quick Jab",
-		"BaseCost": 2,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals small damage to one target. This card has a high Action Speed.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"DealDamageToOneTargets": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
-		"ActionSpeed": 3,
+		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "FleetFootwork",
-		"DisplayName": "Fleet Footwork",
-		"BaseCost": 10,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
-			"Technique"
+			"Spell"
 		],
-		"CardElements": [
-			"Air"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Until the end of this turn, whenever you play a card, increase its Action Speed by 1.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
-		"ActionSpeed": -1,
+		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "StaunchDefence",
-		"DisplayName": "Staunch Defence",
-		"BaseCost": 15,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Until your next turn, you intercept all single target enemy cards that would target allies. You take 1/2 damage from all attacks, but cannot evade attacks.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
-		"ActionSpeed": -3,
+		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "KillRush",
-		"DisplayName": "Kill Rush",
-		"BaseCost": 20,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Water"
-		],
-		"BaseDamage": 30,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deals high damage to one target. If a character is defeated with this card, Create a copy of this card and play it for free.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{
 		},
 		"Keywords": [],
-		"ActionSpeed": -1,
+		"ActionSpeed": 0,
 		"TotalCost": 1,
 		"TotalDamage": 0,
 		"TotalHealing": 0
 	},
 	{
 		"Name": "CutTheDecks",
-		"DisplayName": "Cut The Decks",
-		"BaseCost": 30,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Divine"
-		],
+		"CardElements": [],
 		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Each character shuffles their Hand, Discard and Draw Piles together, then exiles the top half of the Draw Pile (rounded up), then draws 5 cards.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"TestFunctionOne": "OneEnemy"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{

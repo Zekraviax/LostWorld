@@ -4,6 +4,7 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../Programs/UnrealEngine_4.27_Custom" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="/var/home/valerie/Documents/Programs/UnrealEngine_4.27_Custom" vcs="Git" />
     <mapping directory="/var/home/valerie/Documents/Projects/LostWorld" vcs="Git" />
   </component>
 </project>

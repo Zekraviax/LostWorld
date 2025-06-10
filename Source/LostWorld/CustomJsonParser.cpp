@@ -19,10 +19,6 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 {
 	FString VariableName = Property->GetName();
 	FString ValueAsString;
-	//float FloatValue;
-	//FName NameValue;
-	//FText TextValue;
-
 	
 	// Strings
 	if (Cast<FStrProperty>(Property)) {
@@ -83,7 +79,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		}
 	}
 
-	// To-Do: Maps
+	// Maps
 	if (Cast<FMapProperty>(Property)) {
 		const FMapProperty* MapProp = CastField<const FMapProperty>(Property);
 		InJsonWriter->WriteObjectStart(VariableName);
@@ -97,7 +93,6 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 
 				// JSON object keys must always be strings
 				const FString KeyValue = DataTableUtils::GetPropertyValueAsStringDirect(MapHelper.GetKeyProperty(), MapKeyData, EDataTableExportFlags::UseJsonObjectsForStructs);
-				//WriteContainerEntry(MapHelper.GetValueProperty(), MapValueData, &KeyValue);
 				ParseUStructPropertyIntoJsonString(MapHelper.GetValueProperty(), MapValueData, InJsonWriter, InWriteToJson, true);
 			}
 		}

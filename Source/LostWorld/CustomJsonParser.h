@@ -12,6 +12,7 @@ public:
 
 	// UE already has built-in functions for writing properly formatted JSON that we can use.
 	static FString ParseUStructPropertyIntoJsonString(const FProperty* Property, const void* ValuePointer, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, bool InWriteToJson, bool InWriteVariableName);
+
 	
 	template<typename InStructType>
 	void BeginSerializationOfGenericStruct(const InStructType& InStruct, FName InRowName, TSharedRef<TJsonWriter<TCHAR>> InJsonWriter, FString& OutFormattedStructAsString)
@@ -29,7 +30,7 @@ public:
 		TSharedRef<TJsonWriter<TCHAR>> JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
 		JsonWriter = TJsonWriterFactory<>::Create(&OutFormattedJsonString);
 	
-		// Start writing the Json string.
+		// Start writing the entire Json string.
 		JsonWriter->WriteArrayStart();
 
 		for (int Index = 0; Index < InStruct.Num(); Index++) {

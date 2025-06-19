@@ -144,6 +144,8 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 	TArray<FCard> JsonCardsArray, DataTableCardsArray;
 	const FString CardsJsonAsString = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->LoadFileFromJson("CardsData");
 	TArray<FName> RowNames = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->CardsDataTable->GetRowNames();
+	CustomJsonParser* JsonSerializer = nullptr;
+	FString OutJsonAsString;
 
 	// Validation part 1: Ensure that the file can be loaded and parsed into unreal engine data formats.
 	for (FName RowName : RowNames) {
@@ -183,36 +185,83 @@ void USaveGameDeveloperSettings::ValidateAllCardsJson() const
 		// The FCards array should have been overriden with the correct data by this point.
 		if (OverrideCurrentJsonFile) {
 			// Since this is only a developer tool, we're going to do minimal defensive coding here.
-			FString OutJsonAsString;
 
 			// UStruct wrapper for an array of FCards.
 			FCardsArrayWrapper CardsArrayWrapper;
 			CardsArrayWrapper.Cards = DataTableCardsArray;
-			
-			CustomJsonParser* JsonSerializer = new CustomJsonParser();
-			JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
 
-			// To-Do: Move the following line to the end of the function.
-			JsonSerializer = nullptr;
+			if (!JsonSerializer) {
+				JsonSerializer = new CustomJsonParser();
+			}
+
+			JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
 			SaveJsonAsStringToFile("CardsData", OutJsonAsString);
 		}
 	}
 
 	// Validation part 4: Repeat parts 1, 2, and 3 for all other instances of a Card in all other Json files.
 	// We process the files in alphabetical order.
-	ValidationPartOneSuccessful = true;
-	OverrideCurrentJsonFile = false;
+	
+	// Validation part 1: Ensure that the file can be loaded and parsed into unreal engine data formats.
+	bool FinishedOverridingCurrentJsonFile = false;
 	TArray<FEntity> JsonEntitiesArray;
 	const FString EntitiesJsonAsString = Cast<ULostWorldGameInstanceBase>(WorldReference->GetGameInstance())->LoadFileFromJson("EntitiesData");
-	if (FJsonObjectConverter::JsonArrayStringToUStruct(EntitiesJsonAsString, &JsonEntitiesArray, 0, 0)) {
+	FJsonObjectConverter::JsonArrayStringToUStruct(EntitiesJsonAsString, &JsonEntitiesArray, 0, 0);
+	/*if (FJsonObjectConverter::JsonArrayStringToUStruct(EntitiesJsonAsString, &JsonEntitiesArray, 0, 0)) {
+		ValidationPartOneSuccessful = true;
 		ALostWorldGameModeBase::DualLog("EntitiesData.json file validation part 1 was successful. No action necessary.", 2);
 	} else {
+		ValidationPartOneSuccessful = false;
 		ALostWorldGameModeBase::DualLog("EntitiesData.json file failed validation part 1.\nEnemies data must be fixed.", 2);
+	}*/
+
+	// Validation part 2: Compare the data from the json file and the data from the data table.
+	for (int EntityIndex = 0; EntityIndex < JsonEntitiesArray.Num(); EntityIndex++) {
+		if (!FinishedOverridingCurrentJsonFile) {
+			for (int DeckIndex = 0; DeckIndex < JsonEntitiesArray[EntityIndex].Deck.Num(); DeckIndex++) {
+				if (DataTableCardsArray.Find(JsonEntitiesArray[EntityIndex].Deck[DeckIndex])) {
+					// To-Do: Make a viable != operator for FCards.
+				} else {
+					ALostWorldGameModeBase::DualLog("Card " + JsonEntitiesArray[EntityIndex].Deck[DeckIndex].DisplayName + " failed validation part 2.", 2);
+					ALostWorldGameModeBase::DualLog("EntitiesData.json requires overwriting.", 2);
+
+					if (!JsonSerializer) {
+						JsonSerializer = new CustomJsonParser();
+					}
+		
+					JsonSerializer->BeginCreationOfStructuredJsonString(JsonEntitiesArray, RowNames, OutJsonAsString);
+					SaveJsonAsStringToFile("EntitiesData", OutJsonAsString);
+					
+					FinishedOverridingCurrentJsonFile = true;
+					break;
+				}
+			}
+		}
 	}
 
-	for (int EntityIndex = 0; EntityIndex < JsonEntitiesArray.Num(); EntityIndex++) {
-		for (int DeckIndex = 0; DeckIndex < JsonEntitiesArray[EntityIndex].Deck.Num(); DeckIndex++) {
-			
+	// Validation part 3: Overwrite the json file if necessary.
+	/*if (OverrideCurrentJsonFile) {
+		FString OutJsonAsString;
+
+		// We need to create an array of json cards that matches the data table entry.
+		// UStruct wrapper for an array of FCards.
+		FCardsArrayWrapper EntityCardsArrayWrapper;
+		//CardsArrayWrapper.Cards = DataTableCardsArray;
+
+		for (int EntityIndex = 0; EntityIndex < JsonEntitiesArray.Num(); EntityIndex++) {
+			for (int DeckIndex = 0; DeckIndex < JsonEntitiesArray[EntityIndex].Deck.Num(); DeckIndex++) {
+				if (!JsonSerializer) {
+					JsonSerializer = new CustomJsonParser();
+				}
+		
+				JsonSerializer->BeginCreationOfStructuredJsonString(JsonCardsArray, RowNames, OutJsonAsString);
+				SaveJsonAsStringToFile("CardsData", OutJsonAsString);
+			}
 		}
+	}*/
+
+	// End of function
+	if (JsonSerializer) {
+		JsonSerializer = nullptr;
 	}
 }

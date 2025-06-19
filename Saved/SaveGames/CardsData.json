@@ -28,21 +28,19 @@
 	},
 	{
 		"Name": "TestCardTwo",
-		"DisplayName": "Test Card Two",
-		"BaseCost": 2,
+		"DisplayName": "Default Card",
+		"BaseCost": 1,
 		"CardTypes": [
 			"Spell"
 		],
-		"CardElements": [
-			"Earth"
-		],
-		"BaseDamage": 5,
+		"CardElements": [],
+		"BaseDamage": 0,
 		"BaseHealing": 0,
-		"Description": "Deal damage to all enemies with base power ${TotalPower}.",
+		"Description": "This is a default description.",
 		"FlavourText": "This is a default flavour text.",
 		"FunctionsAndTargets":
 		{
-			"FunctionsAndTargets": "AllEnemies"
+			"FunctionsAndTargets": "OneEnemy"
 		},
 		"ModifiersWithTriggers":
 		{

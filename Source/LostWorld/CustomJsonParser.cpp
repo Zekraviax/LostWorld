@@ -71,7 +71,10 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 		if (InWriteToJson) {
 			ValueAsString = EnumAsNameString;
 
-			if (InWriteVariableName) {
+			// To-Do: Check if the value needs to be written with an identifier.
+			if (VariableName == "Team") {
+				InJsonWriter->WriteValue(VariableName, ValueAsString);
+			} else if (InWriteVariableName) {
 				InJsonWriter->WriteValue(VariableName, ValueAsString);
 			} else {
 				InJsonWriter->WriteValue(ValueAsString);
@@ -120,6 +123,7 @@ FString CustomJsonParser::ParseUStructPropertyIntoJsonString(const FProperty* Pr
 }
 
 
+// ReSharper disable once CppMemberFunctionMayBeStatic
 FString CustomJsonParser::SerializeSingleUstructToJsonObject(const UStruct* StructDefinition, const void* Struct, const FName InRowName, const TSharedRef<TJsonWriter<TCHAR>>& InJsonWriter, FString& OutFormattedStructAsString)
 {
 	FString ValueAsString;
